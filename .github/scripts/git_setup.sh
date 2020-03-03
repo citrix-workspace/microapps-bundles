@@ -20,6 +20,7 @@ git remote set-url origin "git@github.com:${repository}.git"
 
 mkdir -p "${HOME}/.ssh/"
 echo "${ssh_priv_key}" > "${HOME}/.ssh/id_rsa"
+sed -i -e "s#\\\\n#\n#g" "${HOME}/.ssh/id_rsa"
 chmod 600 "${HOME}/.ssh/id_rsa"
 
 ssh-keyscan -H -t rsa github.com >> "${HOME}/.ssh/known_hosts"
