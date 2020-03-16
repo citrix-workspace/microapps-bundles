@@ -88,11 +88,11 @@ public class BundlesProcessor {
         logger.info("Building bundle archive: {}", bundle);
         byte[] content = archiver.buildArchive(bundle.getFs());
         Path archivePath = archiver.storeArchive(bundle.getFs(), content);
-        String md5Hex = BundlesArchiver.md5Hex(content);
+        String hash = BundlesArchiver.shaHex(content);
         URI downloadUrl = bundle.getFs().getDownloadUrl(bundlesRepository);
-        logger.info("Bundle archive created: {}, {} B, md5 {}", archivePath, content.length, md5Hex);
+        logger.info("Bundle archive created: {}, {} B, hash {}", archivePath, content.length, hash);
 
-        return new OutMetadata(bundle.getMetadata(), downloadUrl, md5Hex);
+        return new OutMetadata(bundle.getMetadata(), downloadUrl, hash);
     }
 
     public void writeBundlesJson(List<OutMetadata> allBundles, Path bundlesJson) {

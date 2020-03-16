@@ -10,14 +10,14 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 public class OutMetadata {
     private final Metadata metadata;
     private final URI downloadUrl;
-    private final String md5Checksum;
+    private final String hashChecksum;
 
     public OutMetadata(Metadata metadata,
                        URI downloadUrl,
-                       String md5Checksum) {
+                       String hashChecksum) {
         this.metadata = metadata;
         this.downloadUrl = downloadUrl;
-        this.md5Checksum = md5Checksum;
+        this.hashChecksum = hashChecksum;
     }
 
     @JsonUnwrapped
@@ -29,7 +29,7 @@ public class OutMetadata {
         return downloadUrl;
     }
 
-    public String getMd5Checksum() {
-        return md5Checksum;
+    public String getHashChecksum() {
+        return hashChecksum;
     }
 }
