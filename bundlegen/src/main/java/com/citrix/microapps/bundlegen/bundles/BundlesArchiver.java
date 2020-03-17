@@ -107,12 +107,12 @@ public class BundlesArchiver {
         }
     }
 
-    public static String md5Hex(byte[] content) {
+    public static String shaHex(byte[] content) {
         try {
-            byte[] md5 = MessageDigest.getInstance("MD5").digest(content);
-            return Hex.encodeHexString(md5, true);
+            byte[] hash = MessageDigest.getInstance("SHA-256").digest(content);
+            return Hex.encodeHexString(hash, true);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 computation failed");
+            throw new RuntimeException("Hash computation failed");
         }
     }
 }
