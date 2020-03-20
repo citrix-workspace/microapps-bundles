@@ -28,6 +28,8 @@ class BundlesFinderTest {
         List<FsBundle> actual = findBundles(path("src/test/resources/bundles"));
 
         List<FsBundle> expected = Arrays.asList(
+                new FsComingSoonBundle(path("src/test/resources/bundles/coming_soon/vendor3/bundle3"),
+                        Collections.singletonList(Paths.get("metadata.json"))),
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor1/bundle1/0.0.1"),
                         Arrays.asList(
                                 Paths.get("file.sapp"),

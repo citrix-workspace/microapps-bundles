@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toSet;
 public class FsConstants {
     public static final String DIP_DIR = "dip";
     public static final String HTTP_DIR = "http";
+    public static final String COMING_SOON_DIR = "coming_soon";
     public static final String METADATA_FILE = "metadata.json";
     public static final String TEMPLATE_FILE = "file.sapp";
     public static final String TRANSLATIONS_DIR = "i18n";
@@ -33,6 +34,13 @@ public class FsConstants {
             Paths.get(METADATA_FILE),
             Paths.get(TEMPLATE_FILE),
             Paths.get(TRANSLATIONS_DIR, TRANSLATION_DEFAULT_LANGUAGE)
+    )));
+
+    /**
+     * Only these files and directories are allowed in the bundle with coming soon category.
+     */
+    public static final Set<Path> BUNDLE_COMING_SOON_MANDATORY_FILES = Collections.unmodifiableSet(new HashSet<>(asList(
+            Paths.get(METADATA_FILE)
     )));
 
     /**
@@ -58,4 +66,11 @@ public class FsConstants {
                     Paths.get(TEMPLATE_FILE)).stream(),
                     BUNDLE_ALLOWED_TRANSLATIONS.stream())
                     .collect(toSet()));
+    /**
+     * Only these files and directories are allowed in the bundle with coming soon category.
+     */
+    public static final Set<Path> BUNDLE_COMING_SOON_ALLOWED_FILES = Collections.unmodifiableSet(new HashSet<>(asList(
+            Paths.get(METADATA_FILE)
+    )));
+
 }
