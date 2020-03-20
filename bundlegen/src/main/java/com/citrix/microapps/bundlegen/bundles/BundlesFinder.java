@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.COMING_SOON_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.DIP_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.HTTP_DIR;
 
@@ -22,14 +23,16 @@ public class BundlesFinder {
 
     private final Path dipRoot;
     private final Path httpRoot;
+    private final Path comingSoonRoot;
 
     public BundlesFinder(Path bundlesDir) {
         this.dipRoot = bundlesDir.resolve(DIP_DIR);
         this.httpRoot = bundlesDir.resolve(HTTP_DIR);
+        this.comingSoonRoot = bundlesDir.resolve(COMING_SOON_DIR);
     }
 
     public Stream<FsBundle> findBundles() {
-        return Stream.concat(findDipBundles(), findHttpBundles());
+        return Stream.concat(findDipBundles(), Stream.concat(findHttpBundles(), findComingSoonBundles()));
     }
 
     /**
@@ -51,6 +54,16 @@ public class BundlesFinder {
         return listDirectSubdirectories(httpRoot)          // vendor
                 .flatMap(this::listDirectSubdirectories)   // bundle ID
                 .map(path -> new FsHttpBundle(path, listFiles(path)));
+    }
+
+    /**
+     * Coming Soon bundles use 2 levels of directories: vendor - bundle ID.
+     */
+    private Stream<FsBundle> findComingSoonBundles() {
+        logger.info("Searching for all Coming Soon bundles: {}", comingSoonRoot);
+        return listDirectSubdirectories(comingSoonRoot)          // vendor
+                .flatMap(this::listDirectSubdirectories)   // bundle ID
+                .map(path -> new FsComingSoonBundle(path, listFiles(path)));
     }
 
     /**

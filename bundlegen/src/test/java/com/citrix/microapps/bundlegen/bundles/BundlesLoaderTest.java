@@ -23,6 +23,8 @@ import com.citrix.microapps.bundlegen.pojo.Type;
 
 import static com.citrix.microapps.bundlegen.TestUtils.path;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_ALLOWED_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_ALLOWED_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.METADATA_FILE;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TEMPLATE_FILE;
@@ -51,39 +53,62 @@ class BundlesLoaderTest {
         );
     }
 
+    private static Stream<Arguments> checkMandatoryFilesOkProviderForComingSoon() {
+        return Stream.of(
+                Arguments.of(new ArrayList<>(BUNDLE_COMING_SOON_MANDATORY_FILES)),
+                Arguments.of(toPaths(METADATA_FILE))
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
     void checkMandatoryFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input));
+        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, false));
     }
 
+    @ParameterizedTest
+    @MethodSource("checkMandatoryFilesOkProviderForComingSoon")
+    void checkMandatoryFilesOkForComingSoon(List<Path> input) {
+        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
+    }
 
     private static Stream<Arguments> checkMandatoryFilesIssuesProvider() {
         return Stream.of(
                 Arguments.of(toPaths(),
+                        false,
                         Arrays.asList("Missing mandatory file: metadata.json",
                                 "Missing mandatory file: file.sapp",
                                 "Missing mandatory file: i18n/en.json")),
+                Arguments.of(toPaths(),
+                        true,
+                        Arrays.asList("Missing mandatory file: metadata.json")),
 
                 Arguments.of(toPaths(METADATA_FILE),
+                        false,
                         Arrays.asList("Missing mandatory file: file.sapp",
                                 "Missing mandatory file: i18n/en.json")),
 
                 Arguments.of(toPaths(TEMPLATE_FILE),
+                        false,
                         Arrays.asList("Missing mandatory file: metadata.json",
                                 "Missing mandatory file: i18n/en.json")),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
+                        false,
                         Arrays.asList("Missing mandatory file: metadata.json",
                                 "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json"))
+                                "Missing mandatory file: i18n/en.json")),
+                Arguments.of(toPaths("other.txt", "files.bin"),
+                        true,
+                        Arrays.asList("Missing mandatory file: metadata.json"))
+
         );
     }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesIssuesProvider")
-    void checkMandatoryFilesIssues(List<Path> input, List<String> expectedMessages) {
-        List<ValidationException> issues = BundlesLoader.checkMandatoryFiles(input);
+    void checkMandatoryFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
+        List<ValidationException> issues = BundlesLoader.checkMandatoryFiles(input, comingSoonBundleFlag);
         assertThat(toMessages(issues)).containsExactlyInAnyOrder(expectedMessages.toArray(new String[0]));
     }
 
@@ -100,7 +125,7 @@ class BundlesLoaderTest {
                         Paths.get("i18n", "zh-CN.json"),
                         Paths.get("file.sapp")));
 
-        assertEquals(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle));
+        assertEquals(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
     }
 
     @Test
@@ -112,9 +137,24 @@ class BundlesLoaderTest {
                                 Paths.get("i18n", "en.json"),
                                 Paths.get("file.sapp")));
 
-        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle);
+        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
+                false);
         assertEquals(Collections.singletonList("Translation checksum mismatch en.json"),
                 toMessages(validationExceptions));
+    }
+
+    @Test
+    void checkTranslationWithIncreasedNumberOfTranslationKeysForComingSoon() {
+        FsComingSoonBundle fsDipBundle =
+                new FsComingSoonBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0.1"),
+                        Arrays.asList(
+                                Paths.get("i18n", "de.json"),
+                                Paths.get("i18n", "en.json"),
+                                Paths.get("file.sapp")));
+
+        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
+                true);
+        assertEquals(Collections.emptyList(), validationExceptions);
     }
 
     private static Stream<Arguments> checkUnexpectedFilesOkProvider() {
@@ -127,31 +167,57 @@ class BundlesLoaderTest {
         );
     }
 
+    private static Stream<Arguments> checkUnexpectedFilesOkProviderForComingSoon() {
+        return Stream.of(
+                Arguments.of(toPaths()),
+                Arguments.of(new ArrayList<>(BUNDLE_COMING_SOON_ALLOWED_FILES)),
+                Arguments.of(toPaths(METADATA_FILE))
+        );
+    }
+
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesOkProvider")
     void checkUnexpectedFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input));
+        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
+    }
+
+    @ParameterizedTest
+    @MethodSource("checkUnexpectedFilesOkProviderForComingSoon")
+    void checkUnexpectedFilesOkForComingSoon(List<Path> input) {
+        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
     }
 
 
     private static Stream<Arguments> checkUnexpectedFilesIssuesProvider() {
         return Stream.of(
                 Arguments.of(toPaths(METADATA_FILE, "unexpected.txt"),
+                        false,
+                        Collections.singletonList("Unexpected file: unexpected.txt")),
+
+                Arguments.of(toPaths(METADATA_FILE, "unexpected.txt"),
+                        true,
                         Collections.singletonList("Unexpected file: unexpected.txt")),
 
                 Arguments.of(toPaths(TEMPLATE_FILE, "unexpected.txt"),
+                        false,
                         Collections.singletonList("Unexpected file: unexpected.txt")),
+                Arguments.of(toPaths(TEMPLATE_FILE, "unexpected.txt"),
+                        true,
+                        Arrays.asList("Unexpected file: file.sapp", "Unexpected file: unexpected.txt")),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
-                        Arrays.asList("Unexpected file: other.txt",
-                                "Unexpected file: files.bin"))
+                        false,
+                        Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin")),
+                Arguments.of(toPaths("other.txt", "files.bin"),
+                        true,
+                        Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin"))
         );
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesIssuesProvider")
-    void checkUnexpectedFilesIssues(List<Path> input, List<String> expectedMessages) {
-        List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input);
+    void checkUnexpectedFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
+        List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, comingSoonBundleFlag);
         assertEquals(expectedMessages, toMessages(issues));
     }
 

@@ -12,5 +12,6 @@ public enum Category {
     INTERNAL_DEVELOPMENT,
     UPLOADED,
     DEMO,
-    BETA
+    BETA,
+    COMING_SOON
 }

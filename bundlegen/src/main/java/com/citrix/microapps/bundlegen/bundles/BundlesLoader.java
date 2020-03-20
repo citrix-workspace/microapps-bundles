@@ -9,12 +9,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.citrix.microapps.bundlegen.pojo.ComingSoonMetadata;
 import com.citrix.microapps.bundlegen.pojo.DipMetadata;
 import com.citrix.microapps.bundlegen.pojo.HttpMetadata;
 import com.citrix.microapps.bundlegen.pojo.Metadata;
@@ -24,8 +26,14 @@ import com.citrix.microapps.bundlegen.pojo.Type;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_ALLOWED_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_ALLOWED_TRANSLATIONS;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_ALLOWED_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_MANDATORY_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATIONS_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATION_EXTENSION;
+import static com.citrix.microapps.bundlegen.pojo.Category.COMING_SOON;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -52,13 +60,20 @@ public class BundlesLoader {
         logger.info("Loading bundle: {}", bundle);
         List<ValidationException> issues = new ArrayList<>();
 
-        issues.addAll(checkMandatoryFiles(bundle.getFiles()));
-        issues.addAll(checkUnexpectedFiles(bundle.getFiles()));
-        issues.addAll(checkLocalizations(bundle));
-
         Optional<Metadata> metadata = loadAndValidateMetadata(issues, bundle);
+
+        boolean comingSoonBundleFlag = metadata.map(m -> m.getCategories())
+                .filter(c -> c.contains(COMING_SOON))
+                .isPresent();
+
+        issues.addAll(checkMandatoryFiles(bundle.getFiles(), comingSoonBundleFlag));
+        issues.addAll(checkUnexpectedFiles(bundle.getFiles(), comingSoonBundleFlag));
+        issues.addAll(checkLocalizations(bundle, comingSoonBundleFlag));
+
         return new Bundle(bundle, metadata, issues);
     }
+
+
 
     private Optional<Metadata> loadAndValidateMetadata(List<ValidationException> issues, FsBundle bundle) {
         Path metadataPath = bundle.getMetadataPath();
@@ -78,7 +93,12 @@ public class BundlesLoader {
                             .readValue(metadataPath.toFile());
                     issues.addAll(validateHttpMetadata(bundle, httpMetadata));
                     return Optional.of(httpMetadata);
-
+                case COMING_SOON:
+                    ComingSoonMetadata comingSoonMetadata = BUNDLE_DATA_READER
+                            .forType(ComingSoonMetadata.class)
+                            .readValue(metadataPath.toFile());
+                    issues.addAll(validateComingSoonMetadata(bundle, comingSoonMetadata));
+                    return Optional.of(comingSoonMetadata);
                 default:
                     throw new UnsupportedOperationException("Unexpected bundle type: " + bundle.getType());
             }
@@ -118,24 +138,28 @@ public class BundlesLoader {
         }
     }
 
-    static List<ValidationException> checkMandatoryFiles(List<Path> bundleFiles) {
-        return FsConstants.BUNDLE_MANDATORY_FILES
+    static List<ValidationException> checkMandatoryFiles(List<Path> bundleFiles, boolean comingSoonBundleFlag) {
+        Set<Path> mandatoryFiles = comingSoonBundleFlag ? BUNDLE_COMING_SOON_MANDATORY_FILES : BUNDLE_MANDATORY_FILES;
+        return mandatoryFiles
                 .stream()
                 .filter(path -> !bundleFiles.contains(path))
                 .map(path -> new ValidationException("Missing mandatory file: " + path))
                 .collect(toList());
     }
 
-    static List<ValidationException> checkUnexpectedFiles(List<Path> bundleFiles) {
+    static List<ValidationException> checkUnexpectedFiles(List<Path> bundleFiles, boolean comingSoonBundleFlag) {
         HashSet<Path> copy = new HashSet<>(bundleFiles);
-        copy.removeAll(FsConstants.BUNDLE_ALLOWED_FILES);
+        copy.removeAll(comingSoonBundleFlag ? BUNDLE_COMING_SOON_ALLOWED_FILES : BUNDLE_ALLOWED_FILES);
 
         return copy.stream()
                 .map(path -> new ValidationException("Unexpected file: " + path))
                 .collect(toList());
     }
 
-    static List<ValidationException> checkLocalizations(FsBundle bundle) {
+    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean comingSoonBundleFlag) {
+        if (comingSoonBundleFlag) {
+            return Collections.emptyList();
+        }
         List<ValidationException> issues = new ArrayList<>();
         List<ValidationException> checksumIssues = loadAndValidateTemplateFile(issues, bundle).map(template ->
                 bundle.getFiles().stream()
@@ -177,6 +201,11 @@ public class BundlesLoader {
 
         validateLanguages(bundle, metadata.getI18nLanguages()).ifPresent(issues::add);
 
+        if (metadata.getCategories() != null && metadata.getCategories().contains(COMING_SOON)) {
+            issues.add(new ValidationException(
+                    String.format("Invalid category: `%s`", metadata.getType(), Type.COMING_SOON)));
+        }
+
         // TODO: Rules for other validations.
 
         return issues;
@@ -216,6 +245,21 @@ public class BundlesLoader {
         return issues;
     }
 
+    static List<ValidationException> validateComingSoonMetadata(FsBundle bundle, ComingSoonMetadata metadata) {
+        List<ValidationException> issues = new ArrayList<>();
+
+        validateFormat(DATE_PATTERN, "created", metadata.getCreated()).ifPresent(issues::add);
+        validateSync(bundle::getVendor, "vendor", metadata.getVendor()).ifPresent(issues::add);
+        validateSync(bundle::getId, "id", metadata.getId()).ifPresent(issues::add);
+
+        if (metadata.getCategories() == null || !metadata.getCategories().contains(COMING_SOON)) {
+            issues.add(new ValidationException(
+                    String.format("Missing required category: `%s`", metadata.getType(), Type.COMING_SOON)));
+        }
+
+        return issues;
+    }
+
     static Optional<ValidationException> isChecksumEmpty(String fileName, TemplateFile templateFile) {
         return templateFile.getTranslationChecksum() == null || templateFile.getTranslationChecksum().isEmpty() ?
                 Optional.of(new ValidationException(
@@ -248,7 +292,7 @@ public class BundlesLoader {
     }
 
     static Optional<ValidationException> validateLanguages(FsBundle bundle, List<String> languages) {
-        Path transDir = bundle.getPath().resolve(FsConstants.TRANSLATIONS_DIR);
+        Path transDir = bundle.getPath().resolve(TRANSLATIONS_DIR);
 
         List<String> languagesMetadata = languages
                 .stream()
@@ -257,7 +301,7 @@ public class BundlesLoader {
 
         List<String> languagesFs = bundle.getFiles()
                 .stream()
-                .filter(path -> path.startsWith(FsConstants.TRANSLATIONS_DIR))
+                .filter(path -> path.startsWith(TRANSLATIONS_DIR))
                 .map(transDir::relativize)
                 .map(path -> path.getFileName().toString())
                 .filter(fileName -> fileName.endsWith(TRANSLATION_EXTENSION))
