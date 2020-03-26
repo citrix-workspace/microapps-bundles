@@ -1,0 +1,5109 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+      "title" : "b86f65af-d5c0-4570-b6f7-53325f45f91a",
+      "serviceId" : 15,
+      "startPageId" : "3a4060ea-eca0-4332-ba85-881bae5128b7",
+      "pages" : [ {
+        "id" : "3a4060ea-eca0-4332-ba85-881bae5128b7",
+        "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "e4ab79d3-3ae9-42cb-88bb-a5435cfc1b14",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 223,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "30ac5cf1-f2ef-4494-90f6-1cfffb22f6ef",
+              "tableid" : 223,
+              "sqlquery" : {
+                "id" : "d8b243d3-fbf7-4b82-bd1d-99ee2e9824af",
+                "constraints" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 223,
+                      "columnId" : 3611,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "be5c43c1-286b-423b-8194-84035b6a08d8",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  },
+                  "operator" : "OR",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 223,
+                      "columnId" : 3598,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "be5c43c1-286b-423b-8194-84035b6a08d8",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "1",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "e9e7f544-8fb7-497d-9bc8-29e4e0090e01",
+                "id" : "g7mtjz",
+                "tableid" : 223,
+                "columnid" : 3611,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "5e10500e-0339-4258-8943-50ebf2fd5c3e",
+                "id" : "gnehb5",
+                "tableid" : 223,
+                "columnid" : 3598,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "0ba22d8f-2eea-412b-ac64-187859505906",
+                "id" : "adrm70",
+                "tableid" : 223,
+                "columnid" : 3553,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "foreignKeyId" : 250,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "64c7f418-37bb-47d3-863d-16782a939c7a",
+                "id" : "s7xnma",
+                "tableid" : 230,
+                "columnid" : 3664,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "d05a1319-7d59-4c16-89f7-1b930b400c94",
+                "id" : "z2auxy",
+                "tableid" : 223,
+                "columnid" : 3506,
+                "urlTemplate" : null,
+                "format" : "datetime",
+                "tableColumn" : {
+                  "columnType" : "TIMESTAMP"
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "f2e794e8-9ff4-464e-a866-0a2042c08d8b",
+              "hideIfEmpty" : false,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "eaf0d030-8c56-4293-9d39-8919bbfb1f1c",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "69205755-b47a-4ec5-be34-90080cbe8669",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "be5c43c1-286b-423b-8194-84035b6a08d8",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        } ],
+        "title" : "48fa605b-3e2b-4acb-b994-08028c75b93f",
+        "parameters" : { },
+        "tableid" : 223,
+        "datasourceid" : 15,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "f2e794e8-9ff4-464e-a866-0a2042c08d8b",
+        "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3502,
+          "required" : false,
+          "textType" : null,
+          "label" : "815cf270-e267-427f-b844-6ad7860f63e9",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "215320c8-eed0-483f-8eb9-0c89db0a8c06",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "543ddc67-71e5-4897-ad6b-087ebd7692cf",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3544,
+          "required" : false,
+          "textType" : null,
+          "label" : "e804fa4b-46e7-4941-b284-09c08f769c15",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "f7ae23a4-97c4-49cc-be7e-0fb1166e091f",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "64c9298b-8218-49d3-ae5b-1d881deb5c2e",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3553,
+          "required" : false,
+          "textType" : null,
+          "label" : "4b47874f-7683-4ba9-b31f-4bcfa963f755",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "fc88c808-c01d-4e05-8e4f-223e78175c98",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "75a4a7de-968d-4bca-8fb3-7b7a2118367f",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3559,
+          "required" : false,
+          "textType" : null,
+          "label" : "e1f14e0b-5447-42fe-bbee-127f97bd61fd",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "d62f7c88-cd11-49ef-816a-04ac25f7d2ac",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "7a3647c0-f56c-4aa8-b0fa-99e1bb9a1802",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3569,
+          "required" : false,
+          "textType" : null,
+          "label" : "25e950a3-c5fe-4957-ab03-5ae54d742ad6",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "a5dadd16-2d04-4342-a030-10a963650649",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "144f3ba9-652e-4246-96a7-f5d26adf555e",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3580,
+          "required" : false,
+          "textType" : null,
+          "label" : "05ea9e8b-2676-4ff1-8241-a557b24c4538",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "8df9bdd6-32dd-4662-9b33-4f603e9425d5",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "85082aec-876f-4aff-997f-e1ba6680c87e",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3590,
+          "required" : false,
+          "textType" : null,
+          "label" : "1d3da361-4f34-4923-8a93-05db1a654c24",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "0428a46f-ba91-4bf2-ae14-0ff0c1069c61",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "4ef7cd33-6974-4c44-89c3-dfd45c214241",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3598,
+          "required" : false,
+          "textType" : null,
+          "label" : "d68c0487-84d3-4dab-94f2-56ee47054936",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "415d2017-f35d-4fce-835d-17ed8a22b1e8",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "c1a906fc-00b4-4dc7-ba3e-e0806dbcbe97",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3611,
+          "required" : false,
+          "textType" : null,
+          "label" : "c3215cc1-9499-4835-9e26-8ccb3507fdc5",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "a9c497a1-d060-4737-9a6a-9782ccf93082",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "75788b45-a120-4b6e-bd8d-b68a2284a887",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : 3506,
+          "required" : false,
+          "textType" : null,
+          "label" : "717797e0-f403-4c85-9d21-a29f0700577c",
+          "format" : "datetime",
+          "foreignKeyId" : null,
+          "parentComponentId" : "3b71a2a6-ee40-43b4-9281-f19482e8a3a2",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "f51edaba-2cda-454a-88b0-8374d09091b5",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BACK_BUTTON",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "7c7b7ce6-2b30-41e4-a8fe-e47c6b0ad68c",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "STATIC_TEXT",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 1,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "content" : "451c3a5c-6948-49ad-93bc-08da4f748260",
+            "logic" : [ ],
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "font_size" : "1",
+            "query" : null,
+            "prefill" : null,
+            "alignment" : "left",
+            "fontStyle" : [ ],
+            "order" : null
+          },
+          "id" : "e7177669-ffc6-4512-8bd2-760e0c51e5de",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 10,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ],
+            "order" : null
+          },
+          "id" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "defaultvalue" : null,
+          "displayorder" : 3
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "a9c497a1-d060-4737-9a6a-9782ccf93082",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "415d2017-f35d-4fce-835d-17ed8a22b1e8",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "0428a46f-ba91-4bf2-ae14-0ff0c1069c61",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "215320c8-eed0-483f-8eb9-0c89db0a8c06",
+          "defaultvalue" : "",
+          "displayorder" : 4
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "a5dadd16-2d04-4342-a030-10a963650649",
+          "defaultvalue" : "",
+          "displayorder" : 5
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "d62f7c88-cd11-49ef-816a-04ac25f7d2ac",
+          "defaultvalue" : "",
+          "displayorder" : 6
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "fc88c808-c01d-4e05-8e4f-223e78175c98",
+          "defaultvalue" : "",
+          "displayorder" : 7
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "3b71a2a6-ee40-43b4-9281-f19482e8a3a2",
+          "defaultvalue" : "",
+          "displayorder" : 8
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "8df9bdd6-32dd-4662-9b33-4f603e9425d5",
+          "defaultvalue" : "",
+          "displayorder" : 9
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "54c740cd-29fe-4c64-9b83-d299faa2b50e",
+          "parameters" : { },
+          "id" : "f7ae23a4-97c4-49cc-be7e-0fb1166e091f",
+          "defaultvalue" : "",
+          "displayorder" : 10
+        } ],
+        "title" : "cb8c8573-7cf4-49ef-8a9f-2036ceee0b99",
+        "parameters" : { },
+        "tableid" : 223,
+        "datasourceid" : 15,
+        "pagetype" : "Detail"
+      } ],
+      "actionApp" : true,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/ticket_create.3b6869b05e4b803f296cf1883e67c7f3.svg",
+        "description" : "bc2ecb7c-17db-4a38-ae21-29b4dd50f3e7"
+      }
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 15,
+    "uuid" : "5b68dfff-fd97-4593-aaf7-ecafd9b56b23",
+    "version" : 17,
+    "title" : "HTTP JIRA 2",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "microapps_http_integratio_3",
+    "configuration" : {
+      "baseUrl" : "https://iws.atlassian.net/",
+      "security" : {
+        "type" : "BASIC",
+        "username" : "IWS-partners@citrix.com"
+      },
+      "useServiceActionSecurity" : false,
+      "useOnPremProxy" : false,
+      "onPremProxyResource" : "",
+      "dataEndpoints" : [ {
+        "id" : 2,
+        "name" : "labels",
+        "endpoint" : "/rest/api/3/label",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "values",
+        "tables" : [ {
+          "id" : 5,
+          "tableName" : "labels",
+          "path" : "values",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "role" : "PRIMARY_KEY"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "labels",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 3,
+        "name" : "tickets",
+        "endpoint" : "rest/api/3/search",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "issues",
+        "tables" : [ {
+          "id" : 6,
+          "tableName" : "tickets",
+          "path" : "issues",
+          "columns" : [ {
+            "name" : "expand",
+            "path" : "expand",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_aggregateprogr_1",
+            "path" : "fields/aggregateprogress/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_aggregateprogress",
+            "path" : "fields/aggregateprogress/progress",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_aggregatetimeestim",
+            "path" : "fields/aggregatetimeestimate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_aggregatetimeorigi",
+            "path" : "fields/aggregatetimeoriginalestimate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_aggregatetimespent",
+            "path" : "fields/aggregatetimespent",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee",
+            "path" : "fields/assignee",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_account_i",
+            "path" : "fields/assignee/accountId",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_account_t",
+            "path" : "fields/assignee/accountType",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_active",
+            "path" : "fields/assignee/active",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_assignee_avata_1",
+            "path" : "fields/assignee/avatarUrls/48x48",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_avata_2",
+            "path" : "fields/assignee/avatarUrls/32x32",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_avata_3",
+            "path" : "fields/assignee/avatarUrls/16x16",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_avatar_ur",
+            "path" : "fields/assignee/avatarUrls/24x24",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_display_n",
+            "path" : "fields/assignee/displayName",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_email_add",
+            "path" : "fields/assignee/emailAddress",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_self",
+            "path" : "fields/assignee/self",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_assignee_time_zone",
+            "path" : "fields/assignee/timeZone",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_created",
+            "path" : "fields/created",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP"
+          }, {
+            "name" : "fields_creator_account_id",
+            "path" : "fields/creator/accountId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_account_ty",
+            "path" : "fields/creator/accountType",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_active",
+            "path" : "fields/creator/active",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_creator_avatar_1",
+            "path" : "fields/creator/avatarUrls/48x48",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_avatar_2",
+            "path" : "fields/creator/avatarUrls/16x16",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_avatar_3",
+            "path" : "fields/creator/avatarUrls/32x32",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_avatar_url",
+            "path" : "fields/creator/avatarUrls/24x24",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_display_na",
+            "path" : "fields/creator/displayName",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_email_addr",
+            "path" : "fields/creator/emailAddress",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_self",
+            "path" : "fields/creator/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_creator_time_zone",
+            "path" : "fields/creator/timeZone",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10_1",
+            "path" : "fields/customfield_10018/hasEpicLinkFieldDependency",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_customfield_10_2",
+            "path" : "fields/customfield_10018/nonEditableReason/message",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10_3",
+            "path" : "fields/customfield_10018/nonEditableReason/reason",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10000",
+            "path" : "fields/customfield_10000",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10001",
+            "path" : "fields/customfield_10001",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10002",
+            "path" : "fields/customfield_10002",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10003",
+            "path" : "fields/customfield_10003",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10004",
+            "path" : "fields/customfield_10004",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10005",
+            "path" : "fields/customfield_10005",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10006",
+            "path" : "fields/customfield_10006",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10007",
+            "path" : "fields/customfield_10007",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10008",
+            "path" : "fields/customfield_10008",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10009",
+            "path" : "fields/customfield_10009",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10010",
+            "path" : "fields/customfield_10010",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10014",
+            "path" : "fields/customfield_10014",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10015",
+            "path" : "fields/customfield_10015",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10016",
+            "path" : "fields/customfield_10016",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10017",
+            "path" : "fields/customfield_10017",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10018",
+            "path" : "fields/customfield_10018/showField",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_customfield_10019",
+            "path" : "fields/customfield_10019",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10020",
+            "path" : "fields/customfield_10020",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10021",
+            "path" : "fields/customfield_10021",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10022",
+            "path" : "fields/customfield_10022",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10025",
+            "path" : "fields/customfield_10025",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10026",
+            "path" : "fields/customfield_10026",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_customfield_10027",
+            "path" : "fields/customfield_10027",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_description",
+            "path" : "fields/description",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_description_type",
+            "path" : "fields/description/type",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_description_versio",
+            "path" : "fields/description/version",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_duedate",
+            "path" : "fields/duedate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_environment",
+            "path" : "fields/environment",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_issuetype_avatar_i",
+            "path" : "fields/issuetype/avatarId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_issuetype_descript",
+            "path" : "fields/issuetype/description",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_issuetype_icon_url",
+            "path" : "fields/issuetype/iconUrl",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_issuetype_id",
+            "path" : "fields/issuetype/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_issuetype_name",
+            "path" : "fields/issuetype/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_issuetype_self",
+            "path" : "fields/issuetype/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_issuetype_subtask",
+            "path" : "fields/issuetype/subtask",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_last_viewed",
+            "path" : "fields/lastViewed",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_priority_icon_url",
+            "path" : "fields/priority/iconUrl",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_priority_id",
+            "path" : "fields/priority/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_priority_name",
+            "path" : "fields/priority/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_priority_self",
+            "path" : "fields/priority/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_progress_progress",
+            "path" : "fields/progress/progress",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_progress_total",
+            "path" : "fields/progress/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_project_avatar_1",
+            "path" : "fields/project/avatarUrls/16x16",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_avatar_2",
+            "path" : "fields/project/avatarUrls/32x32",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_avatar_3",
+            "path" : "fields/project/avatarUrls/48x48",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_avatar_url",
+            "path" : "fields/project/avatarUrls/24x24",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_id",
+            "path" : "fields/project/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_project_key",
+            "path" : "fields/project/key",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_name",
+            "path" : "fields/project/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_project_ty",
+            "path" : "fields/project/projectTypeKey",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_self",
+            "path" : "fields/project/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_project_simplified",
+            "path" : "fields/project/simplified",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_reporter_account_i",
+            "path" : "fields/reporter/accountId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_account_t",
+            "path" : "fields/reporter/accountType",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_active",
+            "path" : "fields/reporter/active",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_reporter_avata_1",
+            "path" : "fields/reporter/avatarUrls/16x16",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_avata_2",
+            "path" : "fields/reporter/avatarUrls/24x24",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_avata_3",
+            "path" : "fields/reporter/avatarUrls/32x32",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_avatar_ur",
+            "path" : "fields/reporter/avatarUrls/48x48",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_display_n",
+            "path" : "fields/reporter/displayName",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_email_add",
+            "path" : "fields/reporter/emailAddress",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_self",
+            "path" : "fields/reporter/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_reporter_time_zone",
+            "path" : "fields/reporter/timeZone",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_resolution",
+            "path" : "fields/resolution",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_resolutiondate",
+            "path" : "fields/resolutiondate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_security",
+            "path" : "fields/security",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_description",
+            "path" : "fields/status/description",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_icon_url",
+            "path" : "fields/status/iconUrl",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_id",
+            "path" : "fields/status/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_status_name",
+            "path" : "fields/status/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_self",
+            "path" : "fields/status/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_status_1",
+            "path" : "fields/status/statusCategory/colorName",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_status_2",
+            "path" : "fields/status/statusCategory/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_status_status_3",
+            "path" : "fields/status/statusCategory/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_status_4",
+            "path" : "fields/status/statusCategory/key",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_status_status_cate",
+            "path" : "fields/status/statusCategory/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_statuscategorychan",
+            "path" : "fields/statuscategorychangedate",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP"
+          }, {
+            "name" : "fields_summary",
+            "path" : "fields/summary",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_timeestimate",
+            "path" : "fields/timeestimate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_timeoriginalestima",
+            "path" : "fields/timeoriginalestimate",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_timespent",
+            "path" : "fields/timespent",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_updated",
+            "path" : "fields/updated",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP"
+          }, {
+            "name" : "fields_votes_has_voted",
+            "path" : "fields/votes/hasVoted",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_votes_self",
+            "path" : "fields/votes/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_votes_votes",
+            "path" : "fields/votes/votes",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_watches_is_watchin",
+            "path" : "fields/watches/isWatching",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "fields_watches_self",
+            "path" : "fields/watches/self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "fields_watches_watch_coun",
+            "path" : "fields/watches/watchCount",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "fields_workratio",
+            "path" : "fields/workratio",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "key",
+            "path" : "key",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "self",
+            "path" : "self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "issues/fields/description/content", "issues/fields/labels" ]
+        }, {
+          "id" : 7,
+          "tableName" : "tickets_description_conte",
+          "path" : "issues/fields/description/content",
+          "columns" : [ {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PARENT_KEY_REFERENCE",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "tickets",
+            "referenceGroup" : "515de9a6-3daf-4d76-b8e1-88fba4680cde"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "role" : "GENERATED_PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ "issues/fields/description/content/content" ]
+        }, {
+          "id" : 8,
+          "tableName" : "tickets_content_content",
+          "path" : "issues/fields/description/content/content",
+          "columns" : [ {
+            "name" : "text",
+            "path" : "text",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "role" : "PARENT_KEY_REFERENCE",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "tickets_description_conte",
+            "referenceGroup" : "83c0d308-e4d1-443c-98bf-eb050b1756f8"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "role" : "GENERATED_PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ]
+        }, {
+          "id" : 9,
+          "tableName" : "tickets_fields_labels",
+          "path" : "issues/fields/labels",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PARENT_KEY_REFERENCE",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "tickets",
+            "referenceGroup" : "4de9d8a0-b381-49b2-a0b0-f9ab1af07b37"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "role" : "GENERATED_PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ {
+          "valueType" : "LAST_SYNCHRONIZATION",
+          "name" : "jql",
+          "parameterType" : "DATETIME",
+          "dateTimeFormat" : "CUSTOM",
+          "customDateTimeFormat" : "[updated >=] 'YYYY-MM-DD HH:mm'",
+          "timezone" : "Etc/UTC",
+          "required" : false,
+          "uniqueId" : "20a1b7b7-5eac-4e04-9b69-9337d1449b90"
+        } ],
+        "baseTableName" : "tickets",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        }, {
+          "id" : "IncrementalSynchronization",
+          "name" : "Incremental Synchronization",
+          "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
+          "preferredSchedule" : "HOURLY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 4,
+        "name" : "issue type",
+        "endpoint" : "/rest/api/3/issuetype",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 10,
+          "tableName" : "issue_type",
+          "path" : "",
+          "columns" : [ {
+            "name" : "avatar_id",
+            "path" : "avatarId",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "description",
+            "path" : "description",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "icon_url",
+            "path" : "iconUrl",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "self",
+            "path" : "self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "subtask",
+            "path" : "subtask",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "issue type",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 5,
+        "name" : "project",
+        "endpoint" : "/rest/api/3/project",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 11,
+          "tableName" : "project",
+          "path" : "",
+          "columns" : [ {
+            "name" : "avatar_urls_16_x_16",
+            "path" : "avatarUrls/16x16",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "avatar_urls_24_x_24",
+            "path" : "avatarUrls/24x24",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "avatar_urls_32_x_32",
+            "path" : "avatarUrls/32x32",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "avatar_urls_48_x_48",
+            "path" : "avatarUrls/48x48",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "expand",
+            "path" : "expand",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "is_private",
+            "path" : "isPrivate",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "key",
+            "path" : "key",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "project_type_key",
+            "path" : "projectTypeKey",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "self",
+            "path" : "self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "simplified",
+            "path" : "simplified",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "style",
+            "path" : "style",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "project",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 6,
+        "name" : "dasboards",
+        "endpoint" : "/rest/api/3/dashboard",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "dashboards",
+        "tables" : [ {
+          "id" : 12,
+          "tableName" : "dasboard",
+          "path" : "dashboards",
+          "columns" : [ {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "is_favourite",
+            "path" : "isFavourite",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_account_id",
+            "path" : "owner/accountId",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_active",
+            "path" : "owner/active",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "BOOLEAN"
+          }, {
+            "name" : "owner_avatar_urls_16_x_16",
+            "path" : "owner/avatarUrls/16x16",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_avatar_urls_24_x_24",
+            "path" : "owner/avatarUrls/24x24",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_avatar_urls_32_x_32",
+            "path" : "owner/avatarUrls/32x32",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_avatar_urls_48_x_48",
+            "path" : "owner/avatarUrls/48x48",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_display_name",
+            "path" : "owner/displayName",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "owner_self",
+            "path" : "owner/self",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "popularity",
+            "path" : "popularity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "rank",
+            "path" : "rank",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "self",
+            "path" : "self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "view",
+            "path" : "view",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "dashboards/sharePermissions" ]
+        }, {
+          "id" : 13,
+          "tableName" : "dasboard_share_permission",
+          "path" : "dashboards/sharePermissions",
+          "columns" : [ {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PARENT_KEY_REFERENCE",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "dasboard",
+            "referenceGroup" : "5f55be18-8484-4add-aece-74b32dda110f"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "role" : "GENERATED_PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "dasboard",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 7,
+        "name" : "priority",
+        "endpoint" : "/rest/api/3/priority",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 14,
+          "tableName" : "priority",
+          "path" : "",
+          "columns" : [ {
+            "name" : "description",
+            "path" : "description",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "icon_url",
+            "path" : "iconUrl",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "self",
+            "path" : "self",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "status_color",
+            "path" : "statusColor",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "priority",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "invokedByUser" : false,
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      } ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      } ],
+      "serviceActions" : [ ],
+      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/HTTP.b662c61cecf295906ef0af18be93b25a.svg"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 221,
+      "title" : "labels",
+      "displayName" : "Labels",
+      "entityName" : "labels",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3482,
+        "title" : "value",
+        "displayName" : "Value",
+        "attributeName" : "value",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Value",
+        "primaryKey" : true
+      } ]
+    }, {
+      "id" : 222,
+      "title" : "tickets_content_content",
+      "displayName" : "Tickets Content Content",
+      "entityName" : "tickets_content_content",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3483,
+        "title" : "text",
+        "displayName" : "Text",
+        "attributeName" : "text",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Text",
+        "primaryKey" : false
+      }, {
+        "id" : 3484,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3485,
+        "title" : "parent_unique_id",
+        "displayName" : "Parent Unique Id",
+        "attributeName" : "parent_unique_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Unique Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3486,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3487,
+        "title" : "root_id",
+        "displayName" : "Root Id",
+        "attributeName" : "root_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 223,
+      "title" : "tickets",
+      "displayName" : "Tickets",
+      "entityName" : "tickets",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3488,
+        "title" : "expand",
+        "displayName" : "Expand",
+        "attributeName" : "expand",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Expand",
+        "primaryKey" : false
+      }, {
+        "id" : 3489,
+        "title" : "fields_aggregateprogr_1",
+        "displayName" : "Fields Aggregateprogr 1",
+        "attributeName" : "fields_aggregateprogr_1",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Aggregateprogr 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3490,
+        "title" : "fields_aggregateprogress",
+        "displayName" : "Fields Aggregateprogress",
+        "attributeName" : "fields_aggregateprogress",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Aggregateprogress",
+        "primaryKey" : false
+      }, {
+        "id" : 3491,
+        "title" : "fields_aggregatetimeestim",
+        "displayName" : "Fields Aggregatetimeestim",
+        "attributeName" : "fields_aggregatetimeestim",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Aggregatetimeestim",
+        "primaryKey" : false
+      }, {
+        "id" : 3492,
+        "title" : "fields_aggregatetimeorigi",
+        "displayName" : "Fields Aggregatetimeorigi",
+        "attributeName" : "fields_aggregatetimeorigi",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Aggregatetimeorigi",
+        "primaryKey" : false
+      }, {
+        "id" : 3493,
+        "title" : "fields_aggregatetimespent",
+        "displayName" : "Fields Aggregatetimespent",
+        "attributeName" : "fields_aggregatetimespent",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Aggregatetimespent",
+        "primaryKey" : false
+      }, {
+        "id" : 3494,
+        "title" : "fields_assignee",
+        "displayName" : "Fields Assignee",
+        "attributeName" : "fields_assignee",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee",
+        "primaryKey" : false
+      }, {
+        "id" : 3495,
+        "title" : "fields_assignee_account_i",
+        "displayName" : "Fields Assignee Account I",
+        "attributeName" : "fields_assignee_account_i",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Account I",
+        "primaryKey" : false
+      }, {
+        "id" : 3496,
+        "title" : "fields_assignee_account_t",
+        "displayName" : "Fields Assignee Account T",
+        "attributeName" : "fields_assignee_account_t",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Account T",
+        "primaryKey" : false
+      }, {
+        "id" : 3497,
+        "title" : "fields_assignee_active",
+        "displayName" : "Fields Assignee Active",
+        "attributeName" : "fields_assignee_active",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Active",
+        "primaryKey" : false
+      }, {
+        "id" : 3498,
+        "title" : "fields_assignee_avata_1",
+        "displayName" : "Fields Assignee Avata 1",
+        "attributeName" : "fields_assignee_avata_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Avata 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3499,
+        "title" : "fields_assignee_avata_2",
+        "displayName" : "Fields Assignee Avata 2",
+        "attributeName" : "fields_assignee_avata_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Avata 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3500,
+        "title" : "fields_assignee_avata_3",
+        "displayName" : "Fields Assignee Avata 3",
+        "attributeName" : "fields_assignee_avata_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Avata 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3501,
+        "title" : "fields_assignee_avatar_ur",
+        "displayName" : "Fields Assignee Avatar Ur",
+        "attributeName" : "fields_assignee_avatar_ur",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Avatar Ur",
+        "primaryKey" : false
+      }, {
+        "id" : 3502,
+        "title" : "fields_assignee_display_n",
+        "displayName" : "Fields Assignee Display N",
+        "attributeName" : "fields_assignee_display_n",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Display N",
+        "primaryKey" : false
+      }, {
+        "id" : 3503,
+        "title" : "fields_assignee_email_add",
+        "displayName" : "Fields Assignee Email Add",
+        "attributeName" : "fields_assignee_email_add",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Email Add",
+        "primaryKey" : false
+      }, {
+        "id" : 3504,
+        "title" : "fields_assignee_self",
+        "displayName" : "Fields Assignee Self",
+        "attributeName" : "fields_assignee_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3505,
+        "title" : "fields_assignee_time_zone",
+        "displayName" : "Fields Assignee Time Zone",
+        "attributeName" : "fields_assignee_time_zone",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Assignee Time Zone",
+        "primaryKey" : false
+      }, {
+        "id" : 3506,
+        "title" : "fields_created",
+        "displayName" : "Fields Created",
+        "attributeName" : "fields_created",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Created",
+        "primaryKey" : false
+      }, {
+        "id" : 3507,
+        "title" : "fields_creator_account_id",
+        "displayName" : "Fields Creator Account Id",
+        "attributeName" : "fields_creator_account_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Account Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3508,
+        "title" : "fields_creator_account_ty",
+        "displayName" : "Fields Creator Account Ty",
+        "attributeName" : "fields_creator_account_ty",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Account Ty",
+        "primaryKey" : false
+      }, {
+        "id" : 3509,
+        "title" : "fields_creator_active",
+        "displayName" : "Fields Creator Active",
+        "attributeName" : "fields_creator_active",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Active",
+        "primaryKey" : false
+      }, {
+        "id" : 3510,
+        "title" : "fields_creator_avatar_1",
+        "displayName" : "Fields Creator Avatar 1",
+        "attributeName" : "fields_creator_avatar_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Avatar 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3511,
+        "title" : "fields_creator_avatar_2",
+        "displayName" : "Fields Creator Avatar 2",
+        "attributeName" : "fields_creator_avatar_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Avatar 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3512,
+        "title" : "fields_creator_avatar_3",
+        "displayName" : "Fields Creator Avatar 3",
+        "attributeName" : "fields_creator_avatar_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Avatar 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3513,
+        "title" : "fields_creator_avatar_url",
+        "displayName" : "Fields Creator Avatar Url",
+        "attributeName" : "fields_creator_avatar_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Avatar Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3514,
+        "title" : "fields_creator_display_na",
+        "displayName" : "Fields Creator Display Na",
+        "attributeName" : "fields_creator_display_na",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Display Na",
+        "primaryKey" : false
+      }, {
+        "id" : 3515,
+        "title" : "fields_creator_email_addr",
+        "displayName" : "Fields Creator Email Addr",
+        "attributeName" : "fields_creator_email_addr",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Email Addr",
+        "primaryKey" : false
+      }, {
+        "id" : 3516,
+        "title" : "fields_creator_self",
+        "displayName" : "Fields Creator Self",
+        "attributeName" : "fields_creator_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3517,
+        "title" : "fields_creator_time_zone",
+        "displayName" : "Fields Creator Time Zone",
+        "attributeName" : "fields_creator_time_zone",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Creator Time Zone",
+        "primaryKey" : false
+      }, {
+        "id" : 3518,
+        "title" : "fields_customfield_10_1",
+        "displayName" : "Fields Customfield 10 1",
+        "attributeName" : "fields_customfield_10_1",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3519,
+        "title" : "fields_customfield_10_2",
+        "displayName" : "Fields Customfield 10 2",
+        "attributeName" : "fields_customfield_10_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3520,
+        "title" : "fields_customfield_10_3",
+        "displayName" : "Fields Customfield 10 3",
+        "attributeName" : "fields_customfield_10_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3521,
+        "title" : "fields_customfield_10000",
+        "displayName" : "Fields Customfield 10000",
+        "attributeName" : "fields_customfield_10000",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10000",
+        "primaryKey" : false
+      }, {
+        "id" : 3522,
+        "title" : "fields_customfield_10001",
+        "displayName" : "Fields Customfield 10001",
+        "attributeName" : "fields_customfield_10001",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10001",
+        "primaryKey" : false
+      }, {
+        "id" : 3523,
+        "title" : "fields_customfield_10002",
+        "displayName" : "Fields Customfield 10002",
+        "attributeName" : "fields_customfield_10002",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10002",
+        "primaryKey" : false
+      }, {
+        "id" : 3524,
+        "title" : "fields_customfield_10003",
+        "displayName" : "Fields Customfield 10003",
+        "attributeName" : "fields_customfield_10003",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10003",
+        "primaryKey" : false
+      }, {
+        "id" : 3525,
+        "title" : "fields_customfield_10004",
+        "displayName" : "Fields Customfield 10004",
+        "attributeName" : "fields_customfield_10004",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10004",
+        "primaryKey" : false
+      }, {
+        "id" : 3526,
+        "title" : "fields_customfield_10005",
+        "displayName" : "Fields Customfield 10005",
+        "attributeName" : "fields_customfield_10005",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10005",
+        "primaryKey" : false
+      }, {
+        "id" : 3527,
+        "title" : "fields_customfield_10006",
+        "displayName" : "Fields Customfield 10006",
+        "attributeName" : "fields_customfield_10006",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10006",
+        "primaryKey" : false
+      }, {
+        "id" : 3528,
+        "title" : "fields_customfield_10007",
+        "displayName" : "Fields Customfield 10007",
+        "attributeName" : "fields_customfield_10007",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10007",
+        "primaryKey" : false
+      }, {
+        "id" : 3529,
+        "title" : "fields_customfield_10008",
+        "displayName" : "Fields Customfield 10008",
+        "attributeName" : "fields_customfield_10008",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10008",
+        "primaryKey" : false
+      }, {
+        "id" : 3530,
+        "title" : "fields_customfield_10009",
+        "displayName" : "Fields Customfield 10009",
+        "attributeName" : "fields_customfield_10009",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10009",
+        "primaryKey" : false
+      }, {
+        "id" : 3531,
+        "title" : "fields_customfield_10010",
+        "displayName" : "Fields Customfield 10010",
+        "attributeName" : "fields_customfield_10010",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10010",
+        "primaryKey" : false
+      }, {
+        "id" : 3532,
+        "title" : "fields_customfield_10014",
+        "displayName" : "Fields Customfield 10014",
+        "attributeName" : "fields_customfield_10014",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10014",
+        "primaryKey" : false
+      }, {
+        "id" : 3533,
+        "title" : "fields_customfield_10015",
+        "displayName" : "Fields Customfield 10015",
+        "attributeName" : "fields_customfield_10015",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10015",
+        "primaryKey" : false
+      }, {
+        "id" : 3534,
+        "title" : "fields_customfield_10016",
+        "displayName" : "Fields Customfield 10016",
+        "attributeName" : "fields_customfield_10016",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10016",
+        "primaryKey" : false
+      }, {
+        "id" : 3535,
+        "title" : "fields_customfield_10017",
+        "displayName" : "Fields Customfield 10017",
+        "attributeName" : "fields_customfield_10017",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10017",
+        "primaryKey" : false
+      }, {
+        "id" : 3536,
+        "title" : "fields_customfield_10018",
+        "displayName" : "Fields Customfield 10018",
+        "attributeName" : "fields_customfield_10018",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10018",
+        "primaryKey" : false
+      }, {
+        "id" : 3537,
+        "title" : "fields_customfield_10019",
+        "displayName" : "Fields Customfield 10019",
+        "attributeName" : "fields_customfield_10019",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10019",
+        "primaryKey" : false
+      }, {
+        "id" : 3538,
+        "title" : "fields_customfield_10020",
+        "displayName" : "Fields Customfield 10020",
+        "attributeName" : "fields_customfield_10020",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10020",
+        "primaryKey" : false
+      }, {
+        "id" : 3539,
+        "title" : "fields_customfield_10021",
+        "displayName" : "Fields Customfield 10021",
+        "attributeName" : "fields_customfield_10021",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10021",
+        "primaryKey" : false
+      }, {
+        "id" : 3540,
+        "title" : "fields_customfield_10022",
+        "displayName" : "Fields Customfield 10022",
+        "attributeName" : "fields_customfield_10022",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10022",
+        "primaryKey" : false
+      }, {
+        "id" : 3541,
+        "title" : "fields_customfield_10025",
+        "displayName" : "Fields Customfield 10025",
+        "attributeName" : "fields_customfield_10025",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10025",
+        "primaryKey" : false
+      }, {
+        "id" : 3542,
+        "title" : "fields_customfield_10026",
+        "displayName" : "Fields Customfield 10026",
+        "attributeName" : "fields_customfield_10026",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10026",
+        "primaryKey" : false
+      }, {
+        "id" : 3543,
+        "title" : "fields_customfield_10027",
+        "displayName" : "Fields Customfield 10027",
+        "attributeName" : "fields_customfield_10027",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Customfield 10027",
+        "primaryKey" : false
+      }, {
+        "id" : 3544,
+        "title" : "fields_description",
+        "displayName" : "Fields Description",
+        "attributeName" : "fields_description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Description",
+        "primaryKey" : false
+      }, {
+        "id" : 3545,
+        "title" : "fields_description_type",
+        "displayName" : "Fields Description Type",
+        "attributeName" : "fields_description_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Description Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3546,
+        "title" : "fields_description_versio",
+        "displayName" : "Fields Description Versio",
+        "attributeName" : "fields_description_versio",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Description Versio",
+        "primaryKey" : false
+      }, {
+        "id" : 3547,
+        "title" : "fields_duedate",
+        "displayName" : "Fields Duedate",
+        "attributeName" : "fields_duedate",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Duedate",
+        "primaryKey" : false
+      }, {
+        "id" : 3548,
+        "title" : "fields_environment",
+        "displayName" : "Fields Environment",
+        "attributeName" : "fields_environment",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Environment",
+        "primaryKey" : false
+      }, {
+        "id" : 3549,
+        "title" : "fields_issuetype_avatar_i",
+        "displayName" : "Fields Issuetype Avatar I",
+        "attributeName" : "fields_issuetype_avatar_i",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Avatar I",
+        "primaryKey" : false
+      }, {
+        "id" : 3550,
+        "title" : "fields_issuetype_descript",
+        "displayName" : "Fields Issuetype Descript",
+        "attributeName" : "fields_issuetype_descript",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Descript",
+        "primaryKey" : false
+      }, {
+        "id" : 3551,
+        "title" : "fields_issuetype_icon_url",
+        "displayName" : "Fields Issuetype Icon Url",
+        "attributeName" : "fields_issuetype_icon_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Icon Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3552,
+        "title" : "fields_issuetype_id",
+        "displayName" : "Fields Issuetype Id",
+        "attributeName" : "fields_issuetype_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3553,
+        "title" : "fields_issuetype_name",
+        "displayName" : "Fields Issuetype Name",
+        "attributeName" : "fields_issuetype_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3554,
+        "title" : "fields_issuetype_self",
+        "displayName" : "Fields Issuetype Self",
+        "attributeName" : "fields_issuetype_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3555,
+        "title" : "fields_issuetype_subtask",
+        "displayName" : "Fields Issuetype Subtask",
+        "attributeName" : "fields_issuetype_subtask",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Issuetype Subtask",
+        "primaryKey" : false
+      }, {
+        "id" : 3556,
+        "title" : "fields_last_viewed",
+        "displayName" : "Fields Last Viewed",
+        "attributeName" : "fields_last_viewed",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Last Viewed",
+        "primaryKey" : false
+      }, {
+        "id" : 3557,
+        "title" : "fields_priority_icon_url",
+        "displayName" : "Fields Priority Icon Url",
+        "attributeName" : "fields_priority_icon_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Priority Icon Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3558,
+        "title" : "fields_priority_id",
+        "displayName" : "Fields Priority Id",
+        "attributeName" : "fields_priority_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Priority Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3559,
+        "title" : "fields_priority_name",
+        "displayName" : "Fields Priority Name",
+        "attributeName" : "fields_priority_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Priority Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3560,
+        "title" : "fields_priority_self",
+        "displayName" : "Fields Priority Self",
+        "attributeName" : "fields_priority_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Priority Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3561,
+        "title" : "fields_progress_progress",
+        "displayName" : "Fields Progress Progress",
+        "attributeName" : "fields_progress_progress",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Progress Progress",
+        "primaryKey" : false
+      }, {
+        "id" : 3562,
+        "title" : "fields_progress_total",
+        "displayName" : "Fields Progress Total",
+        "attributeName" : "fields_progress_total",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Progress Total",
+        "primaryKey" : false
+      }, {
+        "id" : 3563,
+        "title" : "fields_project_avatar_1",
+        "displayName" : "Fields Project Avatar 1",
+        "attributeName" : "fields_project_avatar_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Avatar 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3564,
+        "title" : "fields_project_avatar_2",
+        "displayName" : "Fields Project Avatar 2",
+        "attributeName" : "fields_project_avatar_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Avatar 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3565,
+        "title" : "fields_project_avatar_3",
+        "displayName" : "Fields Project Avatar 3",
+        "attributeName" : "fields_project_avatar_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Avatar 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3566,
+        "title" : "fields_project_avatar_url",
+        "displayName" : "Fields Project Avatar Url",
+        "attributeName" : "fields_project_avatar_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Avatar Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3567,
+        "title" : "fields_project_id",
+        "displayName" : "Fields Project Id",
+        "attributeName" : "fields_project_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3568,
+        "title" : "fields_project_key",
+        "displayName" : "Fields Project Key",
+        "attributeName" : "fields_project_key",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Key",
+        "primaryKey" : false
+      }, {
+        "id" : 3569,
+        "title" : "fields_project_name",
+        "displayName" : "Fields Project Name",
+        "attributeName" : "fields_project_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3570,
+        "title" : "fields_project_project_ty",
+        "displayName" : "Fields Project Project Ty",
+        "attributeName" : "fields_project_project_ty",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Project Ty",
+        "primaryKey" : false
+      }, {
+        "id" : 3571,
+        "title" : "fields_project_self",
+        "displayName" : "Fields Project Self",
+        "attributeName" : "fields_project_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3572,
+        "title" : "fields_project_simplified",
+        "displayName" : "Fields Project Simplified",
+        "attributeName" : "fields_project_simplified",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Project Simplified",
+        "primaryKey" : false
+      }, {
+        "id" : 3573,
+        "title" : "fields_reporter_account_i",
+        "displayName" : "Fields Reporter Account I",
+        "attributeName" : "fields_reporter_account_i",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Account I",
+        "primaryKey" : false
+      }, {
+        "id" : 3574,
+        "title" : "fields_reporter_account_t",
+        "displayName" : "Fields Reporter Account T",
+        "attributeName" : "fields_reporter_account_t",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Account T",
+        "primaryKey" : false
+      }, {
+        "id" : 3575,
+        "title" : "fields_reporter_active",
+        "displayName" : "Fields Reporter Active",
+        "attributeName" : "fields_reporter_active",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Active",
+        "primaryKey" : false
+      }, {
+        "id" : 3576,
+        "title" : "fields_reporter_avata_1",
+        "displayName" : "Fields Reporter Avata 1",
+        "attributeName" : "fields_reporter_avata_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Avata 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3577,
+        "title" : "fields_reporter_avata_2",
+        "displayName" : "Fields Reporter Avata 2",
+        "attributeName" : "fields_reporter_avata_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Avata 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3578,
+        "title" : "fields_reporter_avata_3",
+        "displayName" : "Fields Reporter Avata 3",
+        "attributeName" : "fields_reporter_avata_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Avata 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3579,
+        "title" : "fields_reporter_avatar_ur",
+        "displayName" : "Fields Reporter Avatar Ur",
+        "attributeName" : "fields_reporter_avatar_ur",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Avatar Ur",
+        "primaryKey" : false
+      }, {
+        "id" : 3580,
+        "title" : "fields_reporter_display_n",
+        "displayName" : "Fields Reporter Display N",
+        "attributeName" : "fields_reporter_display_n",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Display N",
+        "primaryKey" : false
+      }, {
+        "id" : 3581,
+        "title" : "fields_reporter_email_add",
+        "displayName" : "Fields Reporter Email Add",
+        "attributeName" : "fields_reporter_email_add",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Email Add",
+        "primaryKey" : false
+      }, {
+        "id" : 3582,
+        "title" : "fields_reporter_self",
+        "displayName" : "Fields Reporter Self",
+        "attributeName" : "fields_reporter_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3583,
+        "title" : "fields_reporter_time_zone",
+        "displayName" : "Fields Reporter Time Zone",
+        "attributeName" : "fields_reporter_time_zone",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Reporter Time Zone",
+        "primaryKey" : false
+      }, {
+        "id" : 3584,
+        "title" : "fields_resolution",
+        "displayName" : "Fields Resolution",
+        "attributeName" : "fields_resolution",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Resolution",
+        "primaryKey" : false
+      }, {
+        "id" : 3585,
+        "title" : "fields_resolutiondate",
+        "displayName" : "Fields Resolutiondate",
+        "attributeName" : "fields_resolutiondate",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Resolutiondate",
+        "primaryKey" : false
+      }, {
+        "id" : 3586,
+        "title" : "fields_security",
+        "displayName" : "Fields Security",
+        "attributeName" : "fields_security",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Security",
+        "primaryKey" : false
+      }, {
+        "id" : 3587,
+        "title" : "fields_status_description",
+        "displayName" : "Fields Status Description",
+        "attributeName" : "fields_status_description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Description",
+        "primaryKey" : false
+      }, {
+        "id" : 3588,
+        "title" : "fields_status_icon_url",
+        "displayName" : "Fields Status Icon Url",
+        "attributeName" : "fields_status_icon_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Icon Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3589,
+        "title" : "fields_status_id",
+        "displayName" : "Fields Status Id",
+        "attributeName" : "fields_status_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3590,
+        "title" : "fields_status_name",
+        "displayName" : "Fields Status Name",
+        "attributeName" : "fields_status_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3591,
+        "title" : "fields_status_self",
+        "displayName" : "Fields Status Self",
+        "attributeName" : "fields_status_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3592,
+        "title" : "fields_status_status_1",
+        "displayName" : "Fields Status Status 1",
+        "attributeName" : "fields_status_status_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Status 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3593,
+        "title" : "fields_status_status_2",
+        "displayName" : "Fields Status Status 2",
+        "attributeName" : "fields_status_status_2",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Status 2",
+        "primaryKey" : false
+      }, {
+        "id" : 3594,
+        "title" : "fields_status_status_3",
+        "displayName" : "Fields Status Status 3",
+        "attributeName" : "fields_status_status_3",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Status 3",
+        "primaryKey" : false
+      }, {
+        "id" : 3595,
+        "title" : "fields_status_status_4",
+        "displayName" : "Fields Status Status 4",
+        "attributeName" : "fields_status_status_4",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Status 4",
+        "primaryKey" : false
+      }, {
+        "id" : 3596,
+        "title" : "fields_status_status_cate",
+        "displayName" : "Fields Status Status Cate",
+        "attributeName" : "fields_status_status_cate",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Status Status Cate",
+        "primaryKey" : false
+      }, {
+        "id" : 3597,
+        "title" : "fields_statuscategorychan",
+        "displayName" : "Fields Statuscategorychan",
+        "attributeName" : "fields_statuscategorychan",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Statuscategorychan",
+        "primaryKey" : false
+      }, {
+        "id" : 3598,
+        "title" : "fields_summary",
+        "displayName" : "Fields Summary",
+        "attributeName" : "fields_summary",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Summary",
+        "primaryKey" : false
+      }, {
+        "id" : 3599,
+        "title" : "fields_timeestimate",
+        "displayName" : "Fields Timeestimate",
+        "attributeName" : "fields_timeestimate",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Timeestimate",
+        "primaryKey" : false
+      }, {
+        "id" : 3600,
+        "title" : "fields_timeoriginalestima",
+        "displayName" : "Fields Timeoriginalestima",
+        "attributeName" : "fields_timeoriginalestima",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Timeoriginalestima",
+        "primaryKey" : false
+      }, {
+        "id" : 3601,
+        "title" : "fields_timespent",
+        "displayName" : "Fields Timespent",
+        "attributeName" : "fields_timespent",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Timespent",
+        "primaryKey" : false
+      }, {
+        "id" : 3602,
+        "title" : "fields_updated",
+        "displayName" : "Fields Updated",
+        "attributeName" : "fields_updated",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Updated",
+        "primaryKey" : false
+      }, {
+        "id" : 3603,
+        "title" : "fields_votes_has_voted",
+        "displayName" : "Fields Votes Has Voted",
+        "attributeName" : "fields_votes_has_voted",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Votes Has Voted",
+        "primaryKey" : false
+      }, {
+        "id" : 3604,
+        "title" : "fields_votes_self",
+        "displayName" : "Fields Votes Self",
+        "attributeName" : "fields_votes_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Votes Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3605,
+        "title" : "fields_votes_votes",
+        "displayName" : "Fields Votes Votes",
+        "attributeName" : "fields_votes_votes",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Votes Votes",
+        "primaryKey" : false
+      }, {
+        "id" : 3606,
+        "title" : "fields_watches_is_watchin",
+        "displayName" : "Fields Watches Is Watchin",
+        "attributeName" : "fields_watches_is_watchin",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Watches Is Watchin",
+        "primaryKey" : false
+      }, {
+        "id" : 3607,
+        "title" : "fields_watches_self",
+        "displayName" : "Fields Watches Self",
+        "attributeName" : "fields_watches_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Watches Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3608,
+        "title" : "fields_watches_watch_coun",
+        "displayName" : "Fields Watches Watch Coun",
+        "attributeName" : "fields_watches_watch_coun",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Watches Watch Coun",
+        "primaryKey" : false
+      }, {
+        "id" : 3609,
+        "title" : "fields_workratio",
+        "displayName" : "Fields Workratio",
+        "attributeName" : "fields_workratio",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Fields Workratio",
+        "primaryKey" : false
+      }, {
+        "id" : 3610,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3611,
+        "title" : "key",
+        "displayName" : "Key",
+        "attributeName" : "key",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Key",
+        "primaryKey" : false
+      }, {
+        "id" : 3612,
+        "title" : "self",
+        "displayName" : "Self",
+        "attributeName" : "self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Self",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 224,
+      "title" : "tickets_fields_labels",
+      "displayName" : "Tickets Fields Labels",
+      "entityName" : "tickets_fields_labels",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3613,
+        "title" : "value",
+        "displayName" : "Value",
+        "attributeName" : "value",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Value",
+        "primaryKey" : false
+      }, {
+        "id" : 3614,
+        "title" : "parent_id",
+        "displayName" : "Parent Id",
+        "attributeName" : "parent_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3615,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3616,
+        "title" : "root_id",
+        "displayName" : "Root Id",
+        "attributeName" : "root_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 225,
+      "title" : "tickets_description_conte",
+      "displayName" : "Tickets Description Conte",
+      "entityName" : "tickets_description_conte",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3617,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3618,
+        "title" : "parent_id",
+        "displayName" : "Parent Id",
+        "attributeName" : "parent_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3619,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3620,
+        "title" : "root_id",
+        "displayName" : "Root Id",
+        "attributeName" : "root_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 226,
+      "title" : "issue_type",
+      "displayName" : "Issue Type",
+      "entityName" : "issue_type",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3621,
+        "title" : "avatar_id",
+        "displayName" : "Avatar Id",
+        "attributeName" : "avatar_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Avatar Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3622,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 3623,
+        "title" : "icon_url",
+        "displayName" : "Icon Url",
+        "attributeName" : "icon_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Icon Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3624,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3625,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3626,
+        "title" : "self",
+        "displayName" : "Self",
+        "attributeName" : "self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3627,
+        "title" : "subtask",
+        "displayName" : "Subtask",
+        "attributeName" : "subtask",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Subtask",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 227,
+      "title" : "project",
+      "displayName" : "Project",
+      "entityName" : "project",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3628,
+        "title" : "avatar_urls_16_x_16",
+        "displayName" : "Avatar Urls 16 X 16",
+        "attributeName" : "avatar_urls_16_x_16",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Avatar Urls 16 X 16",
+        "primaryKey" : false
+      }, {
+        "id" : 3629,
+        "title" : "avatar_urls_24_x_24",
+        "displayName" : "Avatar Urls 24 X 24",
+        "attributeName" : "avatar_urls_24_x_24",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Avatar Urls 24 X 24",
+        "primaryKey" : false
+      }, {
+        "id" : 3630,
+        "title" : "avatar_urls_32_x_32",
+        "displayName" : "Avatar Urls 32 X 32",
+        "attributeName" : "avatar_urls_32_x_32",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Avatar Urls 32 X 32",
+        "primaryKey" : false
+      }, {
+        "id" : 3631,
+        "title" : "avatar_urls_48_x_48",
+        "displayName" : "Avatar Urls 48 X 48",
+        "attributeName" : "avatar_urls_48_x_48",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Avatar Urls 48 X 48",
+        "primaryKey" : false
+      }, {
+        "id" : 3632,
+        "title" : "expand",
+        "displayName" : "Expand",
+        "attributeName" : "expand",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Expand",
+        "primaryKey" : false
+      }, {
+        "id" : 3633,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3634,
+        "title" : "is_private",
+        "displayName" : "Is Private",
+        "attributeName" : "is_private",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Is Private",
+        "primaryKey" : false
+      }, {
+        "id" : 3635,
+        "title" : "key",
+        "displayName" : "Key",
+        "attributeName" : "key",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Key",
+        "primaryKey" : false
+      }, {
+        "id" : 3636,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3637,
+        "title" : "project_type_key",
+        "displayName" : "Project Type Key",
+        "attributeName" : "project_type_key",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Project Type Key",
+        "primaryKey" : false
+      }, {
+        "id" : 3638,
+        "title" : "self",
+        "displayName" : "Self",
+        "attributeName" : "self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3639,
+        "title" : "simplified",
+        "displayName" : "Simplified",
+        "attributeName" : "simplified",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Simplified",
+        "primaryKey" : false
+      }, {
+        "id" : 3640,
+        "title" : "style",
+        "displayName" : "Style",
+        "attributeName" : "style",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Style",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 228,
+      "title" : "dasboard_share_permission",
+      "displayName" : "Dasboard Share Permission",
+      "entityName" : "dasboard_share_permission",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3641,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3642,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3643,
+        "title" : "parent_id",
+        "displayName" : "Parent Id",
+        "attributeName" : "parent_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3644,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3645,
+        "title" : "root_id",
+        "displayName" : "Root Id",
+        "attributeName" : "root_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 229,
+      "title" : "dasboard",
+      "displayName" : "Dasboard",
+      "entityName" : "dasboard",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3646,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3647,
+        "title" : "is_favourite",
+        "displayName" : "Is Favourite",
+        "attributeName" : "is_favourite",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Is Favourite",
+        "primaryKey" : false
+      }, {
+        "id" : 3648,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3649,
+        "title" : "owner_account_id",
+        "displayName" : "Owner Account Id",
+        "attributeName" : "owner_account_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Account Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3650,
+        "title" : "owner_active",
+        "displayName" : "Owner Active",
+        "attributeName" : "owner_active",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Active",
+        "primaryKey" : false
+      }, {
+        "id" : 3651,
+        "title" : "owner_avatar_urls_16_x_16",
+        "displayName" : "Owner Avatar Urls 16 X 16",
+        "attributeName" : "owner_avatar_urls_16_x_16",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Avatar Urls 16 X 16",
+        "primaryKey" : false
+      }, {
+        "id" : 3652,
+        "title" : "owner_avatar_urls_24_x_24",
+        "displayName" : "Owner Avatar Urls 24 X 24",
+        "attributeName" : "owner_avatar_urls_24_x_24",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Avatar Urls 24 X 24",
+        "primaryKey" : false
+      }, {
+        "id" : 3653,
+        "title" : "owner_avatar_urls_32_x_32",
+        "displayName" : "Owner Avatar Urls 32 X 32",
+        "attributeName" : "owner_avatar_urls_32_x_32",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Avatar Urls 32 X 32",
+        "primaryKey" : false
+      }, {
+        "id" : 3654,
+        "title" : "owner_avatar_urls_48_x_48",
+        "displayName" : "Owner Avatar Urls 48 X 48",
+        "attributeName" : "owner_avatar_urls_48_x_48",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Avatar Urls 48 X 48",
+        "primaryKey" : false
+      }, {
+        "id" : 3655,
+        "title" : "owner_display_name",
+        "displayName" : "Owner Display Name",
+        "attributeName" : "owner_display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3656,
+        "title" : "owner_self",
+        "displayName" : "Owner Self",
+        "attributeName" : "owner_self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3657,
+        "title" : "popularity",
+        "displayName" : "Popularity",
+        "attributeName" : "popularity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Popularity",
+        "primaryKey" : false
+      }, {
+        "id" : 3658,
+        "title" : "rank",
+        "displayName" : "Rank",
+        "attributeName" : "rank",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Rank",
+        "primaryKey" : false
+      }, {
+        "id" : 3659,
+        "title" : "self",
+        "displayName" : "Self",
+        "attributeName" : "self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3660,
+        "title" : "view",
+        "displayName" : "View",
+        "attributeName" : "view",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "View",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 230,
+      "title" : "priority",
+      "displayName" : "Priority",
+      "entityName" : "priority",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 3661,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 3662,
+        "title" : "icon_url",
+        "displayName" : "Icon Url",
+        "attributeName" : "icon_url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Icon Url",
+        "primaryKey" : false
+      }, {
+        "id" : 3663,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3664,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 3665,
+        "title" : "self",
+        "displayName" : "Self",
+        "attributeName" : "self",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Self",
+        "primaryKey" : false
+      }, {
+        "id" : 3666,
+        "title" : "status_color",
+        "displayName" : "Status Color",
+        "attributeName" : "status_color",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Status Color",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ {
+      "id" : 247,
+      "pkTable" : {
+        "id" : 223,
+        "title" : "tickets",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 224,
+        "title" : "tickets_fields_labels",
+        "type" : "TABLE"
+      },
+      "alias" : "t_4de9d8a0_b381_49b2_a0b0",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 247,
+        "pkColumn" : {
+          "id" : 3610,
+          "title" : "id",
+          "displayName" : "Id",
+          "attributeName" : "id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3614,
+          "title" : "parent_id",
+          "displayName" : "Parent Id",
+          "attributeName" : "parent_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 248,
+      "pkTable" : {
+        "id" : 223,
+        "title" : "tickets",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 225,
+        "title" : "tickets_description_conte",
+        "type" : "TABLE"
+      },
+      "alias" : "t_515de9a6_3daf_4d76_b8e1",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 248,
+        "pkColumn" : {
+          "id" : 3610,
+          "title" : "id",
+          "displayName" : "Id",
+          "attributeName" : "id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3618,
+          "title" : "parent_id",
+          "displayName" : "Parent Id",
+          "attributeName" : "parent_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 246,
+      "pkTable" : {
+        "id" : 225,
+        "title" : "tickets_description_conte",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 222,
+        "title" : "tickets_content_content",
+        "type" : "TABLE"
+      },
+      "alias" : "t_83c0d308_e4d1_443c_98bf",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 246,
+        "pkColumn" : {
+          "id" : 3619,
+          "title" : "unique_id",
+          "displayName" : "Unique Id",
+          "attributeName" : "unique_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Unique Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3485,
+          "title" : "parent_unique_id",
+          "displayName" : "Parent Unique Id",
+          "attributeName" : "parent_unique_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Unique Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 249,
+      "pkTable" : {
+        "id" : 229,
+        "title" : "dasboard",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 228,
+        "title" : "dasboard_share_permission",
+        "type" : "TABLE"
+      },
+      "alias" : "t_5f55be18_8484_4add_aece",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 249,
+        "pkColumn" : {
+          "id" : 3646,
+          "title" : "id",
+          "displayName" : "Id",
+          "attributeName" : "id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3643,
+          "title" : "parent_id",
+          "displayName" : "Parent Id",
+          "attributeName" : "parent_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 250,
+      "pkTable" : {
+        "id" : 230,
+        "title" : "priority",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 223,
+        "title" : "tickets",
+        "type" : "TABLE"
+      },
+      "alias" : "ticket_priority_priority",
+      "userDefined" : true,
+      "fkColumnPairs" : [ {
+        "fkId" : 250,
+        "pkColumn" : {
+          "id" : 3663,
+          "title" : "id",
+          "displayName" : "Id",
+          "attributeName" : "id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3558,
+          "title" : "fields_priority_id",
+          "displayName" : "Fields Priority Id",
+          "attributeName" : "fields_priority_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Fields Priority Id",
+          "primaryKey" : false
+        }
+      } ]
+    } ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "5ada5e57-8bd5-4056-abdb-7bbd793906cc" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "89DEBDEB9D6B97B4F49ADAB629A7AD2A",
+  "appliedSappUpgrades" : [ "microapp-6617", "microapp-3580", "microapp-1980", "microapp-7888", "microapp-7290", "microapp-3838", "microapp-6293", "microapp-2450", "microapp-4020", "microapp-6262", "microapp-4666", "microapp-4518", "microapp-6593", "microapp-6790", "microapp-5025", "microapp-5227", "microapp-3548", "microapp-3547", "microapp-7984", "microapp-6853" ],
+  "buildVersion" : "1.7.3-SNAPSHOT.343f86f14dbf3443440ae96000b726e2033c1c5e"
+}
