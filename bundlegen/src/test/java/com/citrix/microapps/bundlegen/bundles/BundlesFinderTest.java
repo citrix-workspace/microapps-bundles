@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import static com.citrix.microapps.bundlegen.TestUtils.path;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BundlesFinderTest {
     private List<FsBundle> findBundles(Path path) {
@@ -62,8 +63,7 @@ class BundlesFinderTest {
 
     @Test
     void directoryDoesNotExist() {
-        assertThatThrownBy(() -> findBundles(path("this/path/does/not/exist")))
-                .isInstanceOf(UncheckedIOException.class)
-                .hasMessageContaining("Listing of directory failed: ");
+        List<FsBundle> bundles = findBundles(path("this/path/does/not/exist"));
+        assertTrue(bundles.isEmpty());
     }
 }

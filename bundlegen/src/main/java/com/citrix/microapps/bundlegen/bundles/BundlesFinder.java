@@ -39,6 +39,10 @@ public class BundlesFinder {
      * DIP bundles use 3 levels of directories: vendor - bundle ID - version.
      */
     private Stream<FsBundle> findDipBundles() {
+        if (!dipRoot.toFile().exists()) {
+            logger.info("DIP bundle root does not exist: {}", httpRoot);
+            return Stream.empty();
+        }
         logger.info("Searching for all DIP bundles: {}", dipRoot);
         return listDirectSubdirectories(dipRoot)          // vendor
                 .flatMap(this::listDirectSubdirectories)  // bundle ID
@@ -50,6 +54,10 @@ public class BundlesFinder {
      * HTTP bundles use 2 levels of directories: vendor - bundle ID.
      */
     private Stream<FsBundle> findHttpBundles() {
+        if (!httpRoot.toFile().exists()) {
+            logger.info("HTTP bundle root does not exist: {}", httpRoot);
+            return Stream.empty();
+        }
         logger.info("Searching for all HTTP bundles: {}", httpRoot);
         return listDirectSubdirectories(httpRoot)          // vendor
                 .flatMap(this::listDirectSubdirectories)   // bundle ID
@@ -60,6 +68,10 @@ public class BundlesFinder {
      * Coming Soon bundles use 2 levels of directories: vendor - bundle ID.
      */
     private Stream<FsBundle> findComingSoonBundles() {
+        if (!comingSoonRoot.toFile().exists()) {
+            logger.info("Coming soon bundle root does not exist: {}", httpRoot);
+            return Stream.empty();
+        }
         logger.info("Searching for all Coming Soon bundles: {}", comingSoonRoot);
         return listDirectSubdirectories(comingSoonRoot)          // vendor
                 .flatMap(this::listDirectSubdirectories)   // bundle ID
