@@ -53,6 +53,7 @@ public class FsConstants {
             Paths.get(TRANSLATIONS_DIR, "fr.json"),
             Paths.get(TRANSLATIONS_DIR, "ja.json"),
             Paths.get(TRANSLATIONS_DIR, "nl.json"),
+            Paths.get(TRANSLATIONS_DIR, "it.json"),
             Paths.get(TRANSLATIONS_DIR, "zh-CN.json"),
             Paths.get(TRANSLATIONS_DIR, "pt-BR.json")
     )));
