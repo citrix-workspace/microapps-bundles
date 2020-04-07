@@ -1,0 +1,36 @@
+{
+  "type" : "DIP",
+  "vendor" : "Citrix",
+  "id" : "com.sapho.services.jira.JiraService",
+  "version" : "0.2.4",
+  "title" : "JIRA integration",
+  "description" : "",
+  "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/JIRA.35cdd2008e8e83479745e5635da3d7f1.svg",
+  "masVersion" : "1.9.16-SNAPSHOT.3e786a3bfa9f489cff0cdd759fe7e7b58b1aec88",
+  "categories" : [ "WEB_SERVICES" ],
+  "created" : "2020-04-06T13:30:30",
+  "supportsOAuthForActions" : true,
+  "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
+  "apps" : [ {
+    "uuid" : "a64f6bda-84b6-4a14-bb72-3da746a63432",
+    "title" : "Tickets",
+    "numberOfEvents" : 11,
+    "action" : true
+  }, {
+    "uuid" : "f3757b98-0752-40cf-8e2c-79277b18b484",
+    "title" : "Create Ticket",
+    "numberOfEvents" : 0,
+    "action" : true
+  } ],
+  "vaResolvers" : [ {
+    "name" : "ServiceDesk Details",
+    "intentName" : "ServiceDesk.Details"
+  }, {
+    "name" : "ServiceDesk Lookup",
+    "intentName" : "ServiceDesk.Lookup"
+  } ],
+  "tags" : [ {
+    "tag" : "helpUrl",
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-jira.html"
+  } ]
+}
