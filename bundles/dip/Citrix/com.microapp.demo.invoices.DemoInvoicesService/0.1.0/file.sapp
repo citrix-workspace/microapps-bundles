@@ -1,0 +1,1028 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "e12dbc49-7677-4762-98a7-785c18cf80fd",
+      "serviceId" : 18,
+      "version" : 1,
+      "parameters" : { },
+      "title" : "44e400ba-5f52-4380-b9c0-9cd4fa42d599",
+      "pages" : [ ],
+      "actionApp" : false
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 18,
+    "uuid" : "703d398a-1d65-4444-b086-c728a3807702",
+    "version" : 0,
+    "title" : "Invoices integration",
+    "serviceType" : "EXTERNAL_SERVICE",
+    "group" : "EXTERNAL_SERVICE:com.microapp.demo.invoices.DemoInvoicesService",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "microapps_invoices_integr",
+    "configuration" : {
+      "configurationParameters" : { },
+      "onPremProxyConfiguration" : {
+        "useOnPremProxy" : false,
+        "resourceLocation" : ""
+      },
+      "entities" : [ {
+        "name" : "invoice",
+        "description" : "Invoice",
+        "attributes" : [ {
+          "name" : "invoice_id",
+          "displayName" : "invoice_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : true,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "customer_id",
+          "displayName" : "customer_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : true,
+          "reference" : {
+            "targetEntityName" : "customer",
+            "targetEntityAttribute" : "customer_id",
+            "referenceGroup" : "invoice_customer"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_num",
+          "displayName" : "invoice_num",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_date",
+          "displayName" : "invoice_date",
+          "type" : {
+            "baseDataType" : "DATE",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        } ]
+      }, {
+        "name" : "invoice_line_item",
+        "description" : "Invoice Line Item",
+        "attributes" : [ {
+          "name" : "item_id",
+          "displayName" : "item_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : true,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_id",
+          "displayName" : "invoice_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : true,
+          "reference" : {
+            "targetEntityName" : "invoice",
+            "targetEntityAttribute" : "invoice_id",
+            "referenceGroup" : "invoice_line_item_invoice"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "product_id",
+          "displayName" : "product_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : true,
+          "reference" : {
+            "targetEntityName" : "product",
+            "targetEntityAttribute" : "product_id",
+            "referenceGroup" : "invoice_line_item_product"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_item_number",
+          "displayName" : "invoice_item_number",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "quantity",
+          "displayName" : "quantity",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "cost",
+          "displayName" : "cost",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "discount",
+          "displayName" : "discount",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ]
+      }, {
+        "name" : "customer",
+        "description" : "Customer",
+        "attributes" : [ {
+          "name" : "customer_id",
+          "displayName" : "Customer Id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : true,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "company_name",
+          "displayName" : "Company Name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "contact_first_name",
+          "displayName" : "contact_first_name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "contact_last_name",
+          "displayName" : "contact_last_name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "phone_number",
+          "displayName" : "phone_number",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "address_line_1",
+          "displayName" : "address_line_1",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "address_line_2",
+          "displayName" : "address_line_2",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "city",
+          "displayName" : "city",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "state",
+          "displayName" : "state",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "zip",
+          "displayName" : "zip",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "postalcode",
+          "displayName" : "postalcode",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        }, {
+          "name" : "country",
+          "displayName" : "country",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : false,
+          "preselected" : false,
+          "sourceId" : false
+        } ]
+      }, {
+        "name" : "product",
+        "description" : "Invoice Line Item",
+        "attributes" : [ {
+          "name" : "product_id",
+          "displayName" : "product_id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : true,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "name",
+          "displayName" : "name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "description",
+          "displayName" : "description",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 2014,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "cost",
+          "displayName" : "cost",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ]
+      } ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      } ],
+      "serviceName" : "Invoices",
+      "serviceKey" : "com.microapp.demo.invoices.DemoInvoicesService",
+      "serviceVersion" : "0.1.0",
+      "idleState" : false,
+      "entityFilters" : { },
+      "serviceType" : "EXTERNAL_SERVICE"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 443,
+      "title" : "product",
+      "entityName" : "product",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 8711,
+        "title" : "product_id",
+        "displayName" : "product_id",
+        "attributeName" : "product_id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "product_id",
+        "primaryKey" : true
+      }, {
+        "id" : 8712,
+        "title" : "name",
+        "displayName" : "name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "name",
+        "primaryKey" : false
+      }, {
+        "id" : 8713,
+        "title" : "description",
+        "displayName" : "description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "description",
+        "primaryKey" : false
+      }, {
+        "id" : 8714,
+        "title" : "cost",
+        "displayName" : "cost",
+        "attributeName" : "cost",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "cost",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 444,
+      "title" : "invoice_line_item",
+      "entityName" : "invoice_line_item",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 8715,
+        "title" : "item_id",
+        "displayName" : "item_id",
+        "attributeName" : "item_id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "item_id",
+        "primaryKey" : true
+      }, {
+        "id" : 8716,
+        "title" : "invoice_id",
+        "displayName" : "invoice_id",
+        "attributeName" : "invoice_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "invoice_id",
+        "primaryKey" : false
+      }, {
+        "id" : 8717,
+        "title" : "product_id",
+        "displayName" : "product_id",
+        "attributeName" : "product_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "product_id",
+        "primaryKey" : false
+      }, {
+        "id" : 8718,
+        "title" : "invoice_item_number",
+        "displayName" : "invoice_item_number",
+        "attributeName" : "invoice_item_number",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "invoice_item_number",
+        "primaryKey" : false
+      }, {
+        "id" : 8719,
+        "title" : "quantity",
+        "displayName" : "quantity",
+        "attributeName" : "quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 8720,
+        "title" : "cost",
+        "displayName" : "cost",
+        "attributeName" : "cost",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "cost",
+        "primaryKey" : false
+      }, {
+        "id" : 8721,
+        "title" : "discount",
+        "displayName" : "discount",
+        "attributeName" : "discount",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "discount",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 445,
+      "title" : "customer",
+      "entityName" : "customer",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 8722,
+        "title" : "customer_id",
+        "displayName" : "Customer Id",
+        "attributeName" : "customer_id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Customer Id",
+        "primaryKey" : true
+      }, {
+        "id" : 8723,
+        "title" : "company_name",
+        "displayName" : "Company Name",
+        "attributeName" : "company_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Company Name",
+        "primaryKey" : false
+      }, {
+        "id" : 8724,
+        "title" : "contact_first_name",
+        "displayName" : "contact_first_name",
+        "attributeName" : "contact_first_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "contact_first_name",
+        "primaryKey" : false
+      }, {
+        "id" : 8725,
+        "title" : "contact_last_name",
+        "displayName" : "contact_last_name",
+        "attributeName" : "contact_last_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "contact_last_name",
+        "primaryKey" : false
+      }, {
+        "id" : 8726,
+        "title" : "phone_number",
+        "displayName" : "phone_number",
+        "attributeName" : "phone_number",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "phone_number",
+        "primaryKey" : false
+      }, {
+        "id" : 8727,
+        "title" : "address_line_1",
+        "displayName" : "address_line_1",
+        "attributeName" : "address_line_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "address_line_1",
+        "primaryKey" : false
+      }, {
+        "id" : 8728,
+        "title" : "address_line_2",
+        "displayName" : "address_line_2",
+        "attributeName" : "address_line_2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "address_line_2",
+        "primaryKey" : false
+      }, {
+        "id" : 8729,
+        "title" : "city",
+        "displayName" : "city",
+        "attributeName" : "city",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "city",
+        "primaryKey" : false
+      }, {
+        "id" : 8730,
+        "title" : "state",
+        "displayName" : "state",
+        "attributeName" : "state",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "state",
+        "primaryKey" : false
+      }, {
+        "id" : 8731,
+        "title" : "zip",
+        "displayName" : "zip",
+        "attributeName" : "zip",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "zip",
+        "primaryKey" : false
+      }, {
+        "id" : 8732,
+        "title" : "postalcode",
+        "displayName" : "postalcode",
+        "attributeName" : "postalcode",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "postalcode",
+        "primaryKey" : false
+      }, {
+        "id" : 8733,
+        "title" : "country",
+        "displayName" : "country",
+        "attributeName" : "country",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "country",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 446,
+      "title" : "invoice",
+      "entityName" : "invoice",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 8734,
+        "title" : "invoice_id",
+        "displayName" : "invoice_id",
+        "attributeName" : "invoice_id",
+        "type" : "INTEGER",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "invoice_id",
+        "primaryKey" : true
+      }, {
+        "id" : 8735,
+        "title" : "customer_id",
+        "displayName" : "customer_id",
+        "attributeName" : "customer_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "customer_id",
+        "primaryKey" : false
+      }, {
+        "id" : 8736,
+        "title" : "invoice_num",
+        "displayName" : "invoice_num",
+        "attributeName" : "invoice_num",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "invoice_num",
+        "primaryKey" : false
+      }, {
+        "id" : 8737,
+        "title" : "invoice_date",
+        "displayName" : "invoice_date",
+        "attributeName" : "invoice_date",
+        "type" : "DATE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "invoice_date",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ {
+      "id" : 557,
+      "pkTable" : {
+        "id" : 443,
+        "title" : "product",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 444,
+        "title" : "invoice_line_item",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_line_item_product",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 557,
+        "pkColumn" : {
+          "id" : 8711,
+          "title" : "product_id",
+          "displayName" : "product_id",
+          "attributeName" : "product_id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "product_id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 8717,
+          "title" : "product_id",
+          "displayName" : "product_id",
+          "attributeName" : "product_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "product_id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 558,
+      "pkTable" : {
+        "id" : 445,
+        "title" : "customer",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 446,
+        "title" : "invoice",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_customer",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 558,
+        "pkColumn" : {
+          "id" : 8722,
+          "title" : "customer_id",
+          "displayName" : "Customer Id",
+          "attributeName" : "customer_id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Customer Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 8735,
+          "title" : "customer_id",
+          "displayName" : "customer_id",
+          "attributeName" : "customer_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "customer_id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 556,
+      "pkTable" : {
+        "id" : 446,
+        "title" : "invoice",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 444,
+        "title" : "invoice_line_item",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_line_item_invoice",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 556,
+        "pkColumn" : {
+          "id" : 8734,
+          "title" : "invoice_id",
+          "displayName" : "invoice_id",
+          "attributeName" : "invoice_id",
+          "type" : "INTEGER",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "invoice_id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 8716,
+          "title" : "invoice_id",
+          "displayName" : "invoice_id",
+          "attributeName" : "invoice_id",
+          "type" : "INTEGER",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "invoice_id",
+          "primaryKey" : false
+        }
+      } ]
+    } ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "e12dbc49-7677-4762-98a7-785c18cf80fd" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "961991F2942DFB5591929AC306C63D42",
+  "appliedSappUpgrades" : [ "microapp-6293", "microapp-7984", "microapp-5227", "microapp-3548", "microapp-4518", "microapp-6262", "microapp-8576", "microapp-7561", "microapp-7888", "microapp-8003", "microapp-4020", "microapp-5025", "microapp-7290", "microapp-6853", "microapp-3838", "microapp-6790", "microapp-3580", "microapp-3547", "microapp-8511", "microapp-4666", "microapp-2450", "microapp-1980", "microapp-6593", "microapp-6617" ],
+  "buildVersion" : "1.9.17-SNAPSHOT"
+}

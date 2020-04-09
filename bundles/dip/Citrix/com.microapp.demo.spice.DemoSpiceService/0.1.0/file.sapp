@@ -1,0 +1,2265 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+      "serviceId" : 21,
+      "version" : 1,
+      "parameters" : {
+        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg",
+        "description" : "0cd8fb24-2c4b-4da5-bb00-19fad59fa214"
+      },
+      "title" : "382ee46b-95a9-45ad-898c-d6c798b071cf",
+      "startPageId" : "90ee1cb3-eb1c-4322-bf30-331210532d32",
+      "pages" : [ {
+        "id" : "90ee1cb3-eb1c-4322-bf30-331210532d32",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "LIST",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "6b1f97b0-6eca-46c6-a860-843c8473ff4b",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 531,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "filterTransition" : {
+                "id" : "9e5fa89e-d923-4a1d-9934-b8cbfb5f7a65",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 531,
+                    "columnId" : 9371,
+                    "valueType" : "COLUMN",
+                    "variableColumn" : 9371,
+                    "value" : "",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                },
+                "autojoins" : false
+              },
+              "noDataText" : "b402a38f-0845-431d-b6d6-8c171bf1ecd7",
+              "tableid" : 531,
+              "sqlorder" : {
+                "id" : "39362523-6671-413b-a232-4fcaff233d4f",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 531,
+                    "columnId" : 9374,
+                    "order" : "DESC",
+                    "ignoredWhenValueIsNull" : false
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "b9ec5641-9139-4738-b023-3e828d5ed044",
+                "id" : "e0db5eb3-8993-4e5a-8330-f61479386b73",
+                "tableid" : 531,
+                "columnid" : 9373,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : null
+                },
+                "conditional_format" : "null"
+              }, {
+                "foreignKeyId" : 704,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "feb71f00-9378-4191-9bc3-e6afa0f00b76",
+                "id" : "84aadcc5-3e86-4bb8-9e7f-c93f3409e8f1",
+                "tableid" : 528,
+                "columnid" : 9349,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : null
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "42cfd83b-9409-4d43-9a05-ada95dc9e7c0",
+                "id" : "9e9ca6bd-4c92-45ad-8518-bf6a1ff4ae83",
+                "tableid" : 531,
+                "columnid" : 9374,
+                "urlTemplate" : null,
+                "format" : "date",
+                "tableColumn" : {
+                  "columnType" : null
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "72140d20-89ee-49e2-96db-aa6276eff0e9",
+              "hideIfEmpty" : true,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "af297c4f-4992-4aa6-afe9-0be89a74b14b",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        } ],
+        "title" : "0f0906dc-7a46-47f8-b568-d6a14c7e5a46",
+        "parameters" : { },
+        "tableid" : 531,
+        "datasourceid" : 21,
+        "pagetype" : "List"
+      }, {
+        "id" : "72140d20-89ee-49e2-96db-aa6276eff0e9",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9349,
+          "required" : false,
+          "textType" : null,
+          "label" : "0db28038-5ed6-4fa7-898d-ba4b156748f5",
+          "format" : "none",
+          "foreignKeyId" : 704,
+          "parentComponentId" : "352ea97a-d8de-46f1-9e63-802508d6fbfe",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "c5ea8805-f6cd-4f7f-85b4-97968cc08700",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9374,
+          "required" : false,
+          "textType" : 0,
+          "label" : "d3fb06e5-6037-49d4-bbe1-b116c3919dab",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "d7b7a106-2c53-47e2-826d-111f6f9bcf54",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "name" : "Invoice Date"
+          },
+          "id" : "96a99bb8-1ce8-4f26-962c-50a58da6ff98",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9373,
+          "required" : false,
+          "textType" : null,
+          "label" : "ad0e2771-13bc-4ae2-b2f3-37414dc2f1f4",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "bd5711f1-236d-44ce-92bd-0bdb8fcb3c3e",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "768cbb2d-ce1a-4bf2-9c63-61e148db2bfa",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9375,
+          "required" : false,
+          "textType" : 0,
+          "label" : "934df03d-1582-4f6e-ac1e-9b5557e46383",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "591b507a-7d15-4d9f-a658-0b5a59703295",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "name" : "Payment Status"
+          },
+          "id" : "85e1fd0e-c706-4d3c-a943-beb35be3a949",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 4,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ],
+            "order" : null
+          },
+          "id" : "7ca7fbce-1521-466a-8ec5-94e021c69e71",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "7ca7fbce-1521-466a-8ec5-94e021c69e71",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "bd5711f1-236d-44ce-92bd-0bdb8fcb3c3e",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "7ca7fbce-1521-466a-8ec5-94e021c69e71",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "352ea97a-d8de-46f1-9e63-802508d6fbfe",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "7ca7fbce-1521-466a-8ec5-94e021c69e71",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "d7b7a106-2c53-47e2-826d-111f6f9bcf54",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "7ca7fbce-1521-466a-8ec5-94e021c69e71",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "591b507a-7d15-4d9f-a658-0b5a59703295",
+          "defaultvalue" : "",
+          "displayorder" : 4
+        }, {
+          "type" : "BUTTON",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "8dbe3100-7c35-4739-89f6-a3b6f51b672e",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_PAGE",
+                "label" : "Go to Page",
+                "id" : "op_w1dzd6",
+                "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+                "pageId" : "a2b8f6db-5394-416c-94a5-342ee695c001"
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : false,
+            "order" : null
+          },
+          "id" : "9160ff1f-60b9-4a6c-a3db-5841c95fef13",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        } ],
+        "title" : "1e721e18-b9fe-4683-afb0-87db37347f9a",
+        "parameters" : { },
+        "tableid" : 531,
+        "datasourceid" : 21,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "a2b8f6db-5394-416c-94a5-342ee695c001",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "BUTTON",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "26539737-7972-45ce-92e3-4ebca899f106",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_x4caui",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "ES",
+                  "id" : "5cf1bef8-9521-4f3a-8c2c-4208e340e484",
+                  "name" : "Invoice Paid",
+                  "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+                  "parameters" : [ {
+                    "id" : "b312244b-1c16-4a5e-87aa-86cd76c8a09a",
+                    "parameterId" : "INVOICE_ID",
+                    "valueType" : "COLUMN",
+                    "columnId" : 9371,
+                    "componentId" : "9c07dda2-41d7-45b7-9b9f-68f623cfd7af"
+                  } ],
+                  "serviceId" : 21
+                },
+                "serviceId" : 21
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "a2bde83f-0eef-48ff-bbf9-fad29409611d",
+          "defaultvalue" : null,
+          "displayorder" : 3
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9371,
+          "required" : false,
+          "textType" : null,
+          "label" : "b889ec92-ac9c-4255-b25d-bed4b467092b",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 0,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "2ee85b25-3c30-4295-9aa8-be03f9c14217",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9373,
+          "required" : false,
+          "textType" : null,
+          "label" : "fb705954-5808-4703-a365-8e748a442048",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "ee0830c4-24d5-4c06-9c45-593eb5dab9f3",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "82ffe29e-d20b-43c4-acb3-fe794cb9fd98",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 2,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ],
+            "order" : null
+          },
+          "id" : "40689571-bb56-4209-ad26-0a795fe86745",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "40689571-bb56-4209-ad26-0a795fe86745",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "ee0830c4-24d5-4c06-9c45-593eb5dab9f3",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "40689571-bb56-4209-ad26-0a795fe86745",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "3feb837d-9b56-43a6-99b8-7e023560029c",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "BUTTON",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "2173e308-4037-42e9-9eec-59cc8eaf34f9",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "BACK",
+                "label" : "Back",
+                "id" : "op_esmz9i"
+              } ]
+            },
+            "tone" : "SECONDARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : false,
+            "order" : null
+          },
+          "id" : "3669fc8d-36b4-4d56-a144-c13cac4693f4",
+          "defaultvalue" : null,
+          "displayorder" : 4
+        }, {
+          "type" : "TEXT",
+          "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+          "columnId" : 9375,
+          "required" : false,
+          "textType" : null,
+          "label" : "e4960c95-d15f-43dc-be55-f16dcea7eafd",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "3feb837d-9b56-43a6-99b8-7e023560029c",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "5cddd89a-bfc3-4a4b-9df4-5afef2f4957a",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        } ],
+        "title" : "cf788e50-0c04-4b70-869e-461596c50f84",
+        "parameters" : { },
+        "tableid" : 531,
+        "datasourceid" : 21,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "5d6fae1e-7e1d-414b-bd3a-70bb12c44513",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "DETAIL",
+        "components" : [ ],
+        "title" : "4c3c8790-fa2c-4629-bdea-587d67529ad7",
+        "parameters" : { },
+        "tableid" : 525,
+        "datasourceid" : 21,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "b82718a0-66dd-4e38-99cd-5493aa913ddf",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "DETAIL",
+        "components" : [ ],
+        "title" : "062b6676-59da-464d-8ebe-7ef991cea1b4",
+        "parameters" : { },
+        "tableid" : 525,
+        "datasourceid" : 21,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "4466ad69-3309-45bc-843f-fd3192836345",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "LIST",
+        "components" : [ ],
+        "title" : "9379060f-594d-497d-870c-3260e24a74f9",
+        "parameters" : { },
+        "tableid" : 525,
+        "datasourceid" : 21,
+        "pagetype" : "List"
+      }, {
+        "id" : "16b92107-487c-4e5b-a716-47fc2c670535",
+        "appId" : "5ed83783-b11f-46dd-85d1-b26cad2ca25e",
+        "type" : "CONTENT",
+        "components" : [ ],
+        "title" : "33a1b232-1fea-4136-80bf-eaac32bffc3f",
+        "parameters" : { },
+        "pagetype" : "Content"
+      } ],
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 21,
+    "uuid" : "036d675b-c770-4d24-a967-9b307d49091a",
+    "version" : 0,
+    "title" : "Spice integration",
+    "serviceType" : "EXTERNAL_SERVICE",
+    "group" : "EXTERNAL_SERVICE:com.microapp.demo.spice.DemoSpiceService",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "microapps_spice_integrati",
+    "configuration" : {
+      "configurationParameters" : { },
+      "onPremProxyConfiguration" : {
+        "useOnPremProxy" : false,
+        "resourceLocation" : ""
+      },
+      "entities" : [ {
+        "name" : "warehouses",
+        "displayName" : "Warehouses",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "warehouse_id",
+          "displayName" : "Warehouse Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "title",
+          "displayName" : "Title",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "location",
+          "displayName" : "Location",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "note",
+          "displayName" : "Note",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "invoice_line_item",
+        "displayName" : "Invoice Line Item",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "item_id",
+          "displayName" : "Item Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_id",
+          "displayName" : "Invoice Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "invoice",
+            "targetEntityAttribute" : "invoice_id",
+            "referenceGroup" : "invoice_line_invoice_id"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_item_number",
+          "displayName" : "Invoice Item Number",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "product_id",
+          "displayName" : "Product Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "product",
+            "targetEntityAttribute" : "product_id",
+            "referenceGroup" : "invoice_line_product_id"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "quantity",
+          "displayName" : "Quantity",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "cost",
+          "displayName" : "Cost",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "discount",
+          "displayName" : "Discount",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "customer",
+        "displayName" : "Customer",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "customer_id",
+          "displayName" : "Customer Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "company_name",
+          "displayName" : "Company Name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "contact_first_name",
+          "displayName" : "Contact First Name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "contact_last_name",
+          "displayName" : "Contact Last Name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "phone_number",
+          "displayName" : "Phone Number",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "address_line_1",
+          "displayName" : "Address Line 1",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "email",
+          "displayName" : "Email",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "city",
+          "displayName" : "City",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "state",
+          "displayName" : "State",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "zip",
+          "displayName" : "Zip",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "postalcode",
+          "displayName" : "Postalcode",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "country",
+          "displayName" : "Country",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "selfie",
+          "displayName" : "Selfie",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "stocks",
+        "displayName" : "Stocks",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "stock_id",
+          "displayName" : "Stock Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "product_id",
+          "displayName" : "Product Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "product",
+            "targetEntityAttribute" : "product_id",
+            "referenceGroup" : "stocks_product_id"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "warehouse_id",
+          "displayName" : "Warehouse Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "warehouses",
+            "targetEntityAttribute" : "warehouse_id",
+            "referenceGroup" : "stocks_warehouse_id"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "quantity",
+          "displayName" : "Quantity",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "invoice",
+        "displayName" : "Invoice",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "invoice_id",
+          "displayName" : "Invoice Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "customer_id",
+          "displayName" : "Customer Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "customer",
+            "targetEntityAttribute" : "customer_id",
+            "referenceGroup" : "invoice_customer_id"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_num",
+          "displayName" : "Invoice Num",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "invoice_date",
+          "displayName" : "Invoice Date",
+          "type" : {
+            "baseDataType" : "DATE",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "payment_status",
+          "displayName" : "Payment Status",
+          "type" : {
+            "baseDataType" : "BOOLEAN",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "product",
+        "displayName" : "Product",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "product_id",
+          "displayName" : "Product Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "name",
+          "displayName" : "Name",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "description",
+          "displayName" : "Description",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 1024,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "cost",
+          "displayName" : "Cost",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 8,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      }, {
+        "name" : "timezone_check",
+        "displayName" : "Timezone Check",
+        "description" : "",
+        "attributes" : [ {
+          "name" : "id",
+          "displayName" : "Id",
+          "type" : {
+            "baseDataType" : "LONG",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "birthdate",
+          "displayName" : "Birthdate",
+          "type" : {
+            "baseDataType" : "DATE",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "updated",
+          "displayName" : "Updated",
+          "type" : {
+            "baseDataType" : "DATETIME",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "created",
+          "displayName" : "Created",
+          "type" : {
+            "baseDataType" : "DATETIME",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "lunchtime",
+          "displayName" : "Lunchtime",
+          "type" : {
+            "baseDataType" : "TIME",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "info",
+          "displayName" : "Info",
+          "type" : {
+            "baseDataType" : "STRING",
+            "size" : 255,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        }
+      } ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      } ],
+      "serviceName" : "Spice",
+      "serviceKey" : "com.microapp.demo.spice.DemoSpiceService",
+      "serviceVersion" : "0.1.0",
+      "idleState" : false,
+      "entityFilters" : { },
+      "serviceType" : "EXTERNAL_SERVICE"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 525,
+      "title" : "product",
+      "displayName" : "Product",
+      "entityName" : "product",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9333,
+        "title" : "product_id",
+        "displayName" : "Product Id",
+        "attributeName" : "product_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9334,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 9335,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 9336,
+        "title" : "cost",
+        "displayName" : "Cost",
+        "attributeName" : "cost",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Cost",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 526,
+      "title" : "warehouses",
+      "displayName" : "Warehouses",
+      "entityName" : "warehouses",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9337,
+        "title" : "warehouse_id",
+        "displayName" : "Warehouse Id",
+        "attributeName" : "warehouse_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Warehouse Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9338,
+        "title" : "title",
+        "displayName" : "Title",
+        "attributeName" : "title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Title",
+        "primaryKey" : false
+      }, {
+        "id" : 9339,
+        "title" : "location",
+        "displayName" : "Location",
+        "attributeName" : "location",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Location",
+        "primaryKey" : false
+      }, {
+        "id" : 9340,
+        "title" : "note",
+        "displayName" : "Note",
+        "attributeName" : "note",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Note",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 527,
+      "title" : "invoice_line_item",
+      "displayName" : "Invoice Line Item",
+      "entityName" : "invoice_line_item",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9341,
+        "title" : "item_id",
+        "displayName" : "Item Id",
+        "attributeName" : "item_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Item Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9342,
+        "title" : "invoice_id",
+        "displayName" : "Invoice Id",
+        "attributeName" : "invoice_id",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Invoice Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9343,
+        "title" : "invoice_item_number",
+        "displayName" : "Invoice Item Number",
+        "attributeName" : "invoice_item_number",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Invoice Item Number",
+        "primaryKey" : false
+      }, {
+        "id" : 9344,
+        "title" : "product_id",
+        "displayName" : "Product Id",
+        "attributeName" : "product_id",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9345,
+        "title" : "quantity",
+        "displayName" : "Quantity",
+        "attributeName" : "quantity",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 9346,
+        "title" : "cost",
+        "displayName" : "Cost",
+        "attributeName" : "cost",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Cost",
+        "primaryKey" : false
+      }, {
+        "id" : 9347,
+        "title" : "discount",
+        "displayName" : "Discount",
+        "attributeName" : "discount",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Discount",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 528,
+      "title" : "customer",
+      "displayName" : "Customer",
+      "entityName" : "customer",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9348,
+        "title" : "customer_id",
+        "displayName" : "Customer Id",
+        "attributeName" : "customer_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Customer Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9349,
+        "title" : "company_name",
+        "displayName" : "Company Name",
+        "attributeName" : "company_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Company Name",
+        "primaryKey" : false
+      }, {
+        "id" : 9350,
+        "title" : "contact_first_name",
+        "displayName" : "Contact First Name",
+        "attributeName" : "contact_first_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Contact First Name",
+        "primaryKey" : false
+      }, {
+        "id" : 9351,
+        "title" : "contact_last_name",
+        "displayName" : "Contact Last Name",
+        "attributeName" : "contact_last_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Contact Last Name",
+        "primaryKey" : false
+      }, {
+        "id" : 9352,
+        "title" : "phone_number",
+        "displayName" : "Phone Number",
+        "attributeName" : "phone_number",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Phone Number",
+        "primaryKey" : false
+      }, {
+        "id" : 9353,
+        "title" : "address_line_1",
+        "displayName" : "Address Line 1",
+        "attributeName" : "address_line_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Address Line 1",
+        "primaryKey" : false
+      }, {
+        "id" : 9354,
+        "title" : "email",
+        "displayName" : "Email",
+        "attributeName" : "email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Email",
+        "primaryKey" : false
+      }, {
+        "id" : 9355,
+        "title" : "city",
+        "displayName" : "City",
+        "attributeName" : "city",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "City",
+        "primaryKey" : false
+      }, {
+        "id" : 9356,
+        "title" : "state",
+        "displayName" : "State",
+        "attributeName" : "state",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "State",
+        "primaryKey" : false
+      }, {
+        "id" : 9357,
+        "title" : "zip",
+        "displayName" : "Zip",
+        "attributeName" : "zip",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Zip",
+        "primaryKey" : false
+      }, {
+        "id" : 9358,
+        "title" : "postalcode",
+        "displayName" : "Postalcode",
+        "attributeName" : "postalcode",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Postalcode",
+        "primaryKey" : false
+      }, {
+        "id" : 9359,
+        "title" : "country",
+        "displayName" : "Country",
+        "attributeName" : "country",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Country",
+        "primaryKey" : false
+      }, {
+        "id" : 9360,
+        "title" : "selfie",
+        "displayName" : "Selfie",
+        "attributeName" : "selfie",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Selfie",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 529,
+      "title" : "stocks",
+      "displayName" : "Stocks",
+      "entityName" : "stocks",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9361,
+        "title" : "stock_id",
+        "displayName" : "Stock Id",
+        "attributeName" : "stock_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Stock Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9362,
+        "title" : "product_id",
+        "displayName" : "Product Id",
+        "attributeName" : "product_id",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9363,
+        "title" : "warehouse_id",
+        "displayName" : "Warehouse Id",
+        "attributeName" : "warehouse_id",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Warehouse Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9364,
+        "title" : "quantity",
+        "displayName" : "Quantity",
+        "attributeName" : "quantity",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 530,
+      "title" : "timezone_check",
+      "displayName" : "Timezone Check",
+      "entityName" : "timezone_check",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9365,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9366,
+        "title" : "birthdate",
+        "displayName" : "Birthdate",
+        "attributeName" : "birthdate",
+        "type" : "DATE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Birthdate",
+        "primaryKey" : false
+      }, {
+        "id" : 9367,
+        "title" : "updated",
+        "displayName" : "Updated",
+        "attributeName" : "updated",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Updated",
+        "primaryKey" : false
+      }, {
+        "id" : 9368,
+        "title" : "created",
+        "displayName" : "Created",
+        "attributeName" : "created",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created",
+        "primaryKey" : false
+      }, {
+        "id" : 9369,
+        "title" : "lunchtime",
+        "displayName" : "Lunchtime",
+        "attributeName" : "lunchtime",
+        "type" : "TIME",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Lunchtime",
+        "primaryKey" : false
+      }, {
+        "id" : 9370,
+        "title" : "info",
+        "displayName" : "Info",
+        "attributeName" : "info",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Info",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 531,
+      "title" : "invoice",
+      "displayName" : "Invoice",
+      "entityName" : "invoice",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9371,
+        "title" : "invoice_id",
+        "displayName" : "Invoice Id",
+        "attributeName" : "invoice_id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Invoice Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9372,
+        "title" : "customer_id",
+        "displayName" : "Customer Id",
+        "attributeName" : "customer_id",
+        "type" : "LONG",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Customer Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9373,
+        "title" : "invoice_num",
+        "displayName" : "Invoice Num",
+        "attributeName" : "invoice_num",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Invoice Num",
+        "primaryKey" : false
+      }, {
+        "id" : 9374,
+        "title" : "invoice_date",
+        "displayName" : "Invoice Date",
+        "attributeName" : "invoice_date",
+        "type" : "DATE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Invoice Date",
+        "primaryKey" : false
+      }, {
+        "id" : 9375,
+        "title" : "payment_status",
+        "displayName" : "Payment Status",
+        "attributeName" : "payment_status",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Payment Status",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ {
+      "id" : 701,
+      "pkTable" : {
+        "id" : 525,
+        "title" : "product",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 527,
+        "title" : "invoice_line_item",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_line_product_id",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 701,
+        "pkColumn" : {
+          "id" : 9333,
+          "title" : "product_id",
+          "displayName" : "Product Id",
+          "attributeName" : "product_id",
+          "type" : "LONG",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Product Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 9344,
+          "title" : "product_id",
+          "displayName" : "Product Id",
+          "attributeName" : "product_id",
+          "type" : "LONG",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Product Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 702,
+      "pkTable" : {
+        "id" : 525,
+        "title" : "product",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 529,
+        "title" : "stocks",
+        "type" : "TABLE"
+      },
+      "alias" : "stocks_product_id",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 702,
+        "pkColumn" : {
+          "id" : 9333,
+          "title" : "product_id",
+          "displayName" : "Product Id",
+          "attributeName" : "product_id",
+          "type" : "LONG",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Product Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 9362,
+          "title" : "product_id",
+          "displayName" : "Product Id",
+          "attributeName" : "product_id",
+          "type" : "LONG",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Product Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 703,
+      "pkTable" : {
+        "id" : 526,
+        "title" : "warehouses",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 529,
+        "title" : "stocks",
+        "type" : "TABLE"
+      },
+      "alias" : "stocks_warehouse_id",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 703,
+        "pkColumn" : {
+          "id" : 9337,
+          "title" : "warehouse_id",
+          "displayName" : "Warehouse Id",
+          "attributeName" : "warehouse_id",
+          "type" : "LONG",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Warehouse Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 9363,
+          "title" : "warehouse_id",
+          "displayName" : "Warehouse Id",
+          "attributeName" : "warehouse_id",
+          "type" : "LONG",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Warehouse Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 704,
+      "pkTable" : {
+        "id" : 528,
+        "title" : "customer",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 531,
+        "title" : "invoice",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_customer_id",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 704,
+        "pkColumn" : {
+          "id" : 9348,
+          "title" : "customer_id",
+          "displayName" : "Customer Id",
+          "attributeName" : "customer_id",
+          "type" : "LONG",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Customer Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 9372,
+          "title" : "customer_id",
+          "displayName" : "Customer Id",
+          "attributeName" : "customer_id",
+          "type" : "LONG",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Customer Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 700,
+      "pkTable" : {
+        "id" : 531,
+        "title" : "invoice",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 527,
+        "title" : "invoice_line_item",
+        "type" : "TABLE"
+      },
+      "alias" : "invoice_line_invoice_id",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 700,
+        "pkColumn" : {
+          "id" : 9371,
+          "title" : "invoice_id",
+          "displayName" : "Invoice Id",
+          "attributeName" : "invoice_id",
+          "type" : "LONG",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Invoice Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 9342,
+          "title" : "invoice_id",
+          "displayName" : "Invoice Id",
+          "attributeName" : "invoice_id",
+          "type" : "LONG",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Invoice Id",
+          "primaryKey" : false
+        }
+      } ]
+    } ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "5ed83783-b11f-46dd-85d1-b26cad2ca25e" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "694A52D1E9FA7942E8FE4557D92AD60B",
+  "appliedSappUpgrades" : [ "microapp-6293", "microapp-7984", "microapp-5227", "microapp-3548", "microapp-4518", "microapp-6262", "microapp-8576", "microapp-7561", "microapp-7888", "microapp-8003", "microapp-4020", "microapp-5025", "microapp-7290", "microapp-6853", "microapp-3838", "microapp-6790", "microapp-3580", "microapp-3547", "microapp-8511", "microapp-4666", "microapp-2450", "microapp-1980", "microapp-6593", "microapp-6617" ],
+  "buildVersion" : "1.9.17-SNAPSHOT"
+}
