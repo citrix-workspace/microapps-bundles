@@ -1,0 +1,45 @@
+{
+  "type" : "DIP",
+  "vendor" : "Citrix",
+  "id" : "com.sapho.services.zendesk.ZendeskService",
+  "version" : "0.1.1",
+  "title" : "Zendesk integration",
+  "description" : "Zendesk",
+  "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/Zendesk.c23ddbbea04b28e5303cb5046b14aa7c.svg",
+  "masVersion" : "1.13.3qgit q-SNAPSHOT",
+  "categories" : [ "WEB_SERVICES" ],
+  "created" : "2020-05-19T15:41:21",
+  "supportsOAuthForActions" : true,
+  "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
+  "apps" : [ {
+    "uuid" : "1da85178-b191-49de-ac8d-5f7cc8b25c52",
+    "title" : "Add Ticket",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "cee67b47-7929-426b-929d-c3be6d86a766",
+    "title" : "Tickets",
+    "numberOfEvents" : 4,
+    "action" : true
+  } ],
+  "vaResolvers" : [ {
+    "name" : "ServiceDesk Details",
+    "intentName" : "ServiceDesk.Details"
+  }, {
+    "name" : "ServiceDesk Lookup",
+    "intentName" : "ServiceDesk.Lookup"
+  }, {
+    "name" : "ServiceDesk Lookup ChangeRequest",
+    "intentName" : "ServiceDesk.Lookup.ChangeRequest"
+  }, {
+    "name" : "ServiceDesk Lookup Incident",
+    "intentName" : "ServiceDesk.Lookup.Incident"
+  }, {
+    "name" : "ServiceDesk Lookup Problem",
+    "intentName" : "ServiceDesk.Lookup.Problem"
+  } ],
+  "tags" : [ {
+    "tag" : "helpUrl",
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-zendesk.html"
+  } ]
+}
