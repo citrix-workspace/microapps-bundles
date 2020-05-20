@@ -13,5 +13,6 @@ public enum Category {
     UPLOADED,
     DEMO,
     BETA,
-    COMING_SOON
+    COMING_SOON,
+    LEGACY
 }
