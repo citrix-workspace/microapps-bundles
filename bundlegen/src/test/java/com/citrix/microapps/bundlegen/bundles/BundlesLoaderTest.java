@@ -137,6 +137,13 @@ class BundlesLoaderTest {
     }
 
     @ParameterizedTest
+    @MethodSource("validateDipMetadataOkMasVersion")
+    void validateCommonMetadataMasVersionOk(FsBundle bundle, DipMetadata metadata) {
+        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
+        assertEquals(Collections.emptyList(), toMessages(issues));
+    }
+
+    @ParameterizedTest
     @MethodSource("validateDipMetadataIssuesProvider")
     void validateDipMetadataIssues(FsBundle bundle, DipMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
@@ -303,29 +310,24 @@ class BundlesLoaderTest {
     }
 
     private static Stream<Arguments> validateDipMetadataOkProvider() {
-        UUID uuid = UUID.randomUUID();
-        System.err.println(uuid);
         return Stream.of(
                 Arguments.of(
-                        new FsDipBundle(
-                                Paths.get("dip", "vendor", "id", "42.42.42"),
-                                toPaths()),
-                        new DipMetadata(Type.DIP,
-                                "vendor",
-                                "id",
-                                "42.42.42",
-                                "title",
-                                "description",
-                                URI.create("https://icon.com/"),
-                                "1.0.0",
-                                Collections.emptyList(),
-                                "2019-12-18T11:36:00",
-                                true,
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList())
+                        getFsDipBundle(),
+                        getDipMetadata()
                 )
+        );
+    }
+
+    private static Stream<Arguments> validateDipMetadataOkMasVersion() {
+        return Stream.of(
+                Arguments.of(getFsDipBundle(), getDipMetadata("1")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2.3")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2.3-SNAPSHOT")),
+                Arguments.of(getFsDipBundle(),
+                        getDipMetadata("1.2.3.7000220123bc7b76717a6be72fc8f8ad47cf216e")),
+                Arguments.of(getFsDipBundle(),
+                        getDipMetadata("1.2.3.7000220123bc7b76717a6be72fc8f8ad47cf216e-SNAPSHOT"))
         );
     }
 
@@ -427,5 +429,47 @@ class BundlesLoaderTest {
                         )
                 )
         );
+    }
+
+    private static FsDipBundle getFsDipBundle() {
+        return new FsDipBundle(
+                Paths.get("dip", "vendor", "id", "42.42.42"),
+                toPaths());
+    }
+
+    private static DipMetadata getDipMetadata(String masVersion) {
+        return new DipMetadata(Type.DIP,
+                "vendor",
+                "id",
+                "42.42.42",
+                "title",
+                "description",
+                URI.create("https://icon.com/"),
+                masVersion,
+                Collections.emptyList(),
+                "2019-12-18T11:36:00",
+                true,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
+    }
+
+    private static DipMetadata getDipMetadata() {
+        return new DipMetadata(Type.DIP,
+                "vendor",
+                "id",
+                "42.42.42",
+                "title",
+                "description",
+                URI.create("https://icon.com/"),
+                "1.0.0",
+                Collections.emptyList(),
+                "2019-12-18T11:36:00",
+                true,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
     }
 }
