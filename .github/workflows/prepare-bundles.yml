@@ -4,6 +4,8 @@ on:
 env:
   AZURE_STORAGE_URL: https://microappsicontest.blob.core.windows.net
   BUNDLES_DIR: bundles
+  BUNDLES_BLOB: bundles
+  BRANCH_BUNDLES_BLOB: branchbundles
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -23,17 +25,31 @@ jobs:
         run: mvn --batch-mode clean package
 
       - name: Prepare temp directory
+        run: echo "::set-env name=TEMP_DIR::$(mktemp -d)"
+
+      - name: Export git branch name
         run: |
-          echo "::set-env name=TEMP_DIR::$(mktemp -d)"
+          echo "::set-env name=BRANCH_NAME::${GITHUB_REF:11}"
+
+      - name: Determine blob container name
+        run: |
+          if [ "${BRANCH_NAME}" = "master" ]; then
+            echo "::set-env name=BLOB_NAME::${BUNDLES_BLOB}"
+          else
+            echo "::set-env name=BLOB_NAME::${BRANCH_BUNDLES_BLOB}"
+          fi
 
       - name: Execute bundlegen
         run: |
-          branch_name=${GITHUB_REF:11}
-          mkdir -p "${TEMP_DIR}/${branch_name}"
-
           main_class="com.citrix.microapps.bundlegen.BundlegenMain"
-          link_bundles="${AZURE_STORAGE_URL}/${BUNDLES_DIR}/${branch_name}/"
-          target_directory="${TEMP_DIR}/${branch_name}"
+
+          if [ "${BRANCH_NAME}" = "master" ]; then
+            link_bundles="${AZURE_STORAGE_URL}/${BLOB_NAME}/"
+            target_directory="${TEMP_DIR}"
+          else
+            link_bundles="${AZURE_STORAGE_URL}/${BLOB_NAME}/${BRANCH_NAME}/"
+            target_directory="${TEMP_DIR}/${BRANCH_NAME}"
+          fi
           args="${BUNDLES_DIR} ${target_directory}/ ${link_bundles}"
 
           mvn --batch-mode exec:java -pl bundlegen -Dexec.mainClass="${main_class}" -Dexec.args="${args}"
@@ -50,4 +66,4 @@ jobs:
           folder: ${{ env.TEMP_DIR }}
           connection-string: ${{ secrets.CONNECTION_STRING }}
           public-access-policy: BlobContainer
-          blob-container-name: ${{ env.BUNDLES_DIR }}
+          blob-container-name: ${{ env.BLOB_NAME }}
