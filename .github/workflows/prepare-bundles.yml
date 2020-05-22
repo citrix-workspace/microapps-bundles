@@ -25,15 +25,15 @@ jobs:
       - name: Prepare temp directory
         run: |
           echo "::set-env name=TEMP_DIR::$(mktemp -d)"
-          echo "::set-env name=BRANCH_NAME::${GITHUB_REF:11}"
 
       - name: Execute bundlegen
         run: |
-          mkdir -p "${TEMP_DIR}/${BRANCH_NAME}/${BUNDLES_DIR}"
+          branch_name=${GITHUB_REF:11}
+          mkdir -p "${TEMP_DIR}/${branch_name}"
 
           main_class="com.citrix.microapps.bundlegen.BundlegenMain"
-          link_bundles="${AZURE_STORAGE_URL}/${BUNDLES_DIR}/${BRANCH_NAME}/"
-          target_directory="${TEMP_DIR}/${BUNDLES_DIR}/${BRANCH_NAME}"
+          link_bundles="${AZURE_STORAGE_URL}/${BUNDLES_DIR}/${branch_name}/"
+          target_directory="${TEMP_DIR}/${branch_name}"
           args="${BUNDLES_DIR} ${target_directory}/ ${link_bundles}"
 
           mvn --batch-mode exec:java -pl bundlegen -Dexec.mainClass="${main_class}" -Dexec.args="${args}"
@@ -50,4 +50,4 @@ jobs:
           folder: ${{ env.TEMP_DIR }}
           connection-string: ${{ secrets.CONNECTION_STRING }}
           public-access-policy: BlobContainer
-          blob-container-name: 'bundles'
+          blob-container-name: ${{ env.BUNDLES_DIR }}
