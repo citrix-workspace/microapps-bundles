@@ -54,7 +54,8 @@ public class BundlesLoader {
 
     // e.g. `version: "2.5.0"`
     // e.g. `masVersion: "0.8.0"`
-    private static final Pattern VERSION_PATTERN = Pattern.compile("[0-9]+(?:\\.[0-9]+)*(-SNAPSHOT)?");
+    private static final Pattern VERSION_PATTERN =
+            Pattern.compile("[0-9]+(?:\\.[0-9]+)*(\\.[0-9a-f]{40})?(-SNAPSHOT)?");
 
     public Bundle loadBundle(FsBundle bundle) {
         logger.info("Loading bundle: {}", bundle);

@@ -338,14 +338,14 @@ class BundlesLoaderTest {
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `DIP` != metadata `HTTP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
                                 "Invalid value: field `type`, value `HTTP`, expecting `DIP`",
                                 "Invalid value: field `id`, value `bad id`, pattern `[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*`",
                                 "Invalid value: field `version`, value `bad 42.42.42`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `id`, filesystem `id` != metadata `bad id`",
                                 "Values mismatch: field `version`, filesystem `42.42.42` != metadata `bad 42.42.42`"
                         )
@@ -417,7 +417,7 @@ class BundlesLoaderTest {
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `HTTP` != metadata `DIP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
