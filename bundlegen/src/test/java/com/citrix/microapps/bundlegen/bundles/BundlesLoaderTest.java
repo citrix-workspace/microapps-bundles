@@ -32,33 +32,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BundlesLoaderTest {
-    private static List<Path> toPaths(String... paths) {
-        return Stream.of(paths)
-                .map(path -> Paths.get(path))
-                .collect(Collectors.toList());
-    }
-
-    private List<String> toMessages(List<ValidationException> issues) {
-        return issues.stream()
-                .map(Throwable::getMessage)
-                .collect(Collectors.toList());
-    }
-
-
-    private static Stream<Arguments> checkMandatoryFilesOkProvider() {
-        return Stream.of(
-                Arguments.of(new ArrayList<>(BUNDLE_MANDATORY_FILES)),
-                Arguments.of(toPaths(METADATA_FILE, TEMPLATE_FILE, "i18n/en.json")),
-                Arguments.of(toPaths(METADATA_FILE, TEMPLATE_FILE, "i18n/en.json", "more.txt", "files.bin"))
-        );
-    }
-
-    private static Stream<Arguments> checkMandatoryFilesOkProviderForComingSoon() {
-        return Stream.of(
-                Arguments.of(new ArrayList<>(BUNDLE_COMING_SOON_MANDATORY_FILES)),
-                Arguments.of(toPaths(METADATA_FILE))
-        );
-    }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
@@ -70,39 +43,6 @@ class BundlesLoaderTest {
     @MethodSource("checkMandatoryFilesOkProviderForComingSoon")
     void checkMandatoryFilesOkForComingSoon(List<Path> input) {
         assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
-    }
-
-    private static Stream<Arguments> checkMandatoryFilesIssuesProvider() {
-        return Stream.of(
-                Arguments.of(toPaths(),
-                        false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
-                Arguments.of(toPaths(),
-                        true,
-                        Arrays.asList("Missing mandatory file: metadata.json")),
-
-                Arguments.of(toPaths(METADATA_FILE),
-                        false,
-                        Arrays.asList("Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
-
-                Arguments.of(toPaths(TEMPLATE_FILE),
-                        false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: i18n/en.json")),
-
-                Arguments.of(toPaths("other.txt", "files.bin"),
-                        false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
-                Arguments.of(toPaths("other.txt", "files.bin"),
-                        true,
-                        Arrays.asList("Missing mandatory file: metadata.json"))
-
-        );
     }
 
     @ParameterizedTest
@@ -157,6 +97,133 @@ class BundlesLoaderTest {
         assertEquals(Collections.emptyList(), validationExceptions);
     }
 
+    @ParameterizedTest
+    @MethodSource("checkUnexpectedFilesOkProvider")
+    void checkUnexpectedFilesOk(List<Path> input) {
+        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
+    }
+
+    @ParameterizedTest
+    @MethodSource("checkUnexpectedFilesOkProviderForComingSoon")
+    void checkUnexpectedFilesOkForComingSoon(List<Path> input) {
+        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
+    }
+
+    @ParameterizedTest
+    @MethodSource("checkUnexpectedFilesIssuesProvider")
+    void checkUnexpectedFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
+        List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, comingSoonBundleFlag);
+        assertEquals(expectedMessages, toMessages(issues));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateLanguagesOkProvider")
+    void validateLanguagesOk(FsBundle bundle, List<String> languages) {
+        assertEquals(Optional.empty(), BundlesLoader.validateLanguages(bundle, languages));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateLanguagesIssuesProvider")
+    void validateLanguagesIssues(FsBundle bundle, List<String> languages, String expectedMessage) {
+        Optional<ValidationException> issue = BundlesLoader.validateLanguages(bundle, languages);
+        assertEquals(Optional.of(expectedMessage), issue.map(Throwable::getMessage));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateDipMetadataOkProvider")
+    void validateCommonMetadataOk(FsBundle bundle, DipMetadata metadata) {
+        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
+        assertEquals(Collections.emptyList(), toMessages(issues));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateDipMetadataOkMasVersion")
+    void validateCommonMetadataMasVersionOk(FsBundle bundle, DipMetadata metadata) {
+        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
+        assertEquals(Collections.emptyList(), toMessages(issues));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateDipMetadataIssuesProvider")
+    void validateDipMetadataIssues(FsBundle bundle, DipMetadata metadata, List<String> expectedMessages) {
+        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
+        assertEquals(expectedMessages, toMessages(issues));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateHttpMetadataOkProvider")
+    void validateHttpMetadataOkOk(FsBundle bundle, HttpMetadata metadata) {
+        List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
+        assertEquals(Collections.emptyList(), toMessages(issues));
+    }
+
+    @ParameterizedTest
+    @MethodSource("validateHttpMetadataIssuesProvider")
+    void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
+        List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
+        assertEquals(expectedMessages, toMessages(issues));
+    }
+
+    private static List<Path> toPaths(String... paths) {
+        return Stream.of(paths)
+                .map(path -> Paths.get(path))
+                .collect(Collectors.toList());
+    }
+
+    private List<String> toMessages(List<ValidationException> issues) {
+        return issues.stream()
+                .map(Throwable::getMessage)
+                .collect(Collectors.toList());
+    }
+
+    private static Stream<Arguments> checkMandatoryFilesOkProvider() {
+        return Stream.of(
+                Arguments.of(new ArrayList<>(BUNDLE_MANDATORY_FILES)),
+                Arguments.of(toPaths(METADATA_FILE, TEMPLATE_FILE, "i18n/en.json")),
+                Arguments.of(toPaths(METADATA_FILE, TEMPLATE_FILE, "i18n/en.json", "more.txt", "files.bin"))
+        );
+    }
+
+    private static Stream<Arguments> checkMandatoryFilesOkProviderForComingSoon() {
+        return Stream.of(
+                Arguments.of(new ArrayList<>(BUNDLE_COMING_SOON_MANDATORY_FILES)),
+                Arguments.of(toPaths(METADATA_FILE))
+        );
+    }
+
+    private static Stream<Arguments> checkMandatoryFilesIssuesProvider() {
+        return Stream.of(
+                Arguments.of(toPaths(),
+                        false,
+                        Arrays.asList("Missing mandatory file: metadata.json",
+                                "Missing mandatory file: file.sapp",
+                                "Missing mandatory file: i18n/en.json")),
+                Arguments.of(toPaths(),
+                        true,
+                        Arrays.asList("Missing mandatory file: metadata.json")),
+
+                Arguments.of(toPaths(METADATA_FILE),
+                        false,
+                        Arrays.asList("Missing mandatory file: file.sapp",
+                                "Missing mandatory file: i18n/en.json")),
+
+                Arguments.of(toPaths(TEMPLATE_FILE),
+                        false,
+                        Arrays.asList("Missing mandatory file: metadata.json",
+                                "Missing mandatory file: i18n/en.json")),
+
+                Arguments.of(toPaths("other.txt", "files.bin"),
+                        false,
+                        Arrays.asList("Missing mandatory file: metadata.json",
+                                "Missing mandatory file: file.sapp",
+                                "Missing mandatory file: i18n/en.json")),
+                Arguments.of(toPaths("other.txt", "files.bin"),
+                        true,
+                        Arrays.asList("Missing mandatory file: metadata.json"))
+
+        );
+    }
+
     private static Stream<Arguments> checkUnexpectedFilesOkProvider() {
         return Stream.of(
                 Arguments.of(toPaths()),
@@ -174,19 +241,6 @@ class BundlesLoaderTest {
                 Arguments.of(toPaths(METADATA_FILE))
         );
     }
-
-    @ParameterizedTest
-    @MethodSource("checkUnexpectedFilesOkProvider")
-    void checkUnexpectedFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
-    }
-
-    @ParameterizedTest
-    @MethodSource("checkUnexpectedFilesOkProviderForComingSoon")
-    void checkUnexpectedFilesOkForComingSoon(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
-    }
-
 
     private static Stream<Arguments> checkUnexpectedFilesIssuesProvider() {
         return Stream.of(
@@ -214,14 +268,6 @@ class BundlesLoaderTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("checkUnexpectedFilesIssuesProvider")
-    void checkUnexpectedFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
-        List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, comingSoonBundleFlag);
-        assertEquals(expectedMessages, toMessages(issues));
-    }
-
-
     private static Stream<Arguments> validateLanguagesOkProvider() {
         return Stream.of(
                 Arguments.of(new FsDipBundle(Paths.get("bundle"), toPaths()),
@@ -234,13 +280,6 @@ class BundlesLoaderTest {
                         Arrays.asList("en", "ja"))
         );
     }
-
-    @ParameterizedTest
-    @MethodSource("validateLanguagesOkProvider")
-    void validateLanguagesOk(FsBundle bundle, List<String> languages) {
-        assertEquals(Optional.empty(), BundlesLoader.validateLanguages(bundle, languages));
-    }
-
 
     private static Stream<Arguments> validateLanguagesIssuesProvider() {
         return Stream.of(
@@ -270,48 +309,27 @@ class BundlesLoaderTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("validateLanguagesIssuesProvider")
-    void validateLanguagesIssues(FsBundle bundle, List<String> languages, String expectedMessage) {
-        Optional<ValidationException> issue = BundlesLoader.validateLanguages(bundle, languages);
-        assertEquals(Optional.of(expectedMessage), issue.map(Throwable::getMessage));
-    }
-
-
     private static Stream<Arguments> validateDipMetadataOkProvider() {
-        UUID uuid = UUID.randomUUID();
-        System.err.println(uuid);
         return Stream.of(
                 Arguments.of(
-                        new FsDipBundle(
-                                Paths.get("dip", "vendor", "id", "42.42.42"),
-                                toPaths()),
-                        new DipMetadata(Type.DIP,
-                                "vendor",
-                                "id",
-                                "42.42.42",
-                                "title",
-                                "description",
-                                URI.create("https://icon.com/"),
-                                "1.0.0",
-                                Collections.emptyList(),
-                                "2019-12-18T11:36:00",
-                                true,
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList())
+                        getFsDipBundle(),
+                        getDipMetadata()
                 )
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("validateDipMetadataOkProvider")
-    void validateCommonMetadataOk(FsBundle bundle, DipMetadata metadata) {
-        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+    private static Stream<Arguments> validateDipMetadataOkMasVersion() {
+        return Stream.of(
+                Arguments.of(getFsDipBundle(), getDipMetadata("1")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2.3")),
+                Arguments.of(getFsDipBundle(), getDipMetadata("1.2.3-SNAPSHOT")),
+                Arguments.of(getFsDipBundle(),
+                        getDipMetadata("1.2.3.7000220123bc7b76717a6be72fc8f8ad47cf216e")),
+                Arguments.of(getFsDipBundle(),
+                        getDipMetadata("1.2.3.7000220123bc7b76717a6be72fc8f8ad47cf216e-SNAPSHOT"))
+        );
     }
-
 
     private static Stream<Arguments> validateDipMetadataIssuesProvider() {
         return Stream.of(
@@ -338,28 +356,20 @@ class BundlesLoaderTest {
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `DIP` != metadata `HTTP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
                                 "Invalid value: field `type`, value `HTTP`, expecting `DIP`",
                                 "Invalid value: field `id`, value `bad id`, pattern `[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*`",
                                 "Invalid value: field `version`, value `bad 42.42.42`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `id`, filesystem `id` != metadata `bad id`",
                                 "Values mismatch: field `version`, filesystem `42.42.42` != metadata `bad 42.42.42`"
                         )
                 )
         );
     }
-
-    @ParameterizedTest
-    @MethodSource("validateDipMetadataIssuesProvider")
-    void validateDipMetadataIssues(FsBundle bundle, DipMetadata metadata, List<String> expectedMessages) {
-        List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
-    }
-
 
     private static Stream<Arguments> validateHttpMetadataOkProvider() {
         return Stream.of(
@@ -385,14 +395,6 @@ class BundlesLoaderTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("validateHttpMetadataOkProvider")
-    void validateHttpMetadataOkOk(FsBundle bundle, HttpMetadata metadata) {
-        List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
-    }
-
-
     private static Stream<Arguments> validateHttpMetadataIssuesProvider() {
         return Stream.of(
                 Arguments.of(
@@ -417,7 +419,7 @@ class BundlesLoaderTest {
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
-                                        "(-SNAPSHOT)?`",
+                                        "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `HTTP` != metadata `DIP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
@@ -429,10 +431,45 @@ class BundlesLoaderTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("validateHttpMetadataIssuesProvider")
-    void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
-        List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
+    private static FsDipBundle getFsDipBundle() {
+        return new FsDipBundle(
+                Paths.get("dip", "vendor", "id", "42.42.42"),
+                toPaths());
+    }
+
+    private static DipMetadata getDipMetadata(String masVersion) {
+        return new DipMetadata(Type.DIP,
+                "vendor",
+                "id",
+                "42.42.42",
+                "title",
+                "description",
+                URI.create("https://icon.com/"),
+                masVersion,
+                Collections.emptyList(),
+                "2019-12-18T11:36:00",
+                true,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
+    }
+
+    private static DipMetadata getDipMetadata() {
+        return new DipMetadata(Type.DIP,
+                "vendor",
+                "id",
+                "42.42.42",
+                "title",
+                "description",
+                URI.create("https://icon.com/"),
+                "1.0.0",
+                Collections.emptyList(),
+                "2019-12-18T11:36:00",
+                true,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList(),
+                Collections.emptyList());
     }
 }
