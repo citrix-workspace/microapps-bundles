@@ -1,10 +1,346 @@
 {
-  "applications" : [ ],
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+      "serviceId" : 12,
+      "version" : 74,
+      "title" : "3c3491cc-b888-478d-b84f-e79410dd188b",
+      "startPageId" : "923382d0-a816-4047-8e81-a61575c8da40",
+      "pages" : [ {
+        "id" : "923382d0-a816-4047-8e81-a61575c8da40",
+        "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+        "type" : "LIST",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 227,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "84d232ff-876c-416f-b2de-b9ef230bdab9",
+              "tableid" : 227,
+              "sqlquery" : {
+                "id" : "91217d8d-d191-444f-bb04-ffa2f42db20b",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 227,
+                    "columnId" : 5023,
+                    "valueType" : "COMPONENT",
+                    "variableComponent" : "9093fffd-b421-447a-bc66-b67e0194683a",
+                    "ignoredWhenValueIsNull" : true,
+                    "action" : "LIKE"
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "fcc770d9-ceaa-430d-a25a-bdad9cb124af",
+                "id" : "m367mi",
+                "tableid" : 227,
+                "columnid" : 5023,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "82988f3a-f723-4144-b031-edc97ac126bf",
+              "hideIfEmpty" : true,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "23addaa0-2835-4a6b-8c45-0ffb4ed2b53a",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "5fff755e-31ea-4827-933a-e34d4541eb01",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "9093fffd-b421-447a-bc66-b67e0194683a",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        } ],
+        "title" : "c6d7e917-bfad-4b65-b85d-1b6ca7d8e439",
+        "parameters" : { },
+        "tableid" : 227,
+        "datasourceid" : 12,
+        "pagetype" : "List"
+      }, {
+        "id" : "82988f3a-f723-4144-b031-edc97ac126bf",
+        "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 4,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ],
+            "order" : null
+          },
+          "id" : "2d362d1d-9f8b-4102-921b-dd4a27da1d12",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2d362d1d-9f8b-4102-921b-dd4a27da1d12",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "576488ab-f631-4ab3-96c2-1020f1d7dc1a",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2d362d1d-9f8b-4102-921b-dd4a27da1d12",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "2b0e6e4e-13d1-4645-9109-583c09b18c75",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2d362d1d-9f8b-4102-921b-dd4a27da1d12",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "518fc82d-6d8d-4547-96b4-27dba3b89595",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2d362d1d-9f8b-4102-921b-dd4a27da1d12",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "4e94bbc3-6d39-472a-8e05-71a6bd61bcd5",
+          "defaultvalue" : "",
+          "displayorder" : 4
+        }, {
+          "type" : "TEXT",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : 5023,
+          "required" : false,
+          "textType" : null,
+          "label" : "9b706491-bc72-4dd4-a268-4fc7237de99a",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "576488ab-f631-4ab3-96c2-1020f1d7dc1a",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "555c773c-0485-42a1-bd8d-a5dfaad39cbd",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : 5024,
+          "required" : false,
+          "textType" : null,
+          "label" : "76b38db1-7756-4831-808e-e4cfb6e8ebb0",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2b0e6e4e-13d1-4645-9109-583c09b18c75",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "aaebed03-3568-4f9a-8316-98aa77f4be12",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : 5022,
+          "required" : false,
+          "textType" : null,
+          "label" : "5f97cf94-ec9e-4c1d-9fa6-fa027d0074f9",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "518fc82d-6d8d-4547-96b4-27dba3b89595",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "4e69bd0c-80e0-4325-a598-81545c919af1",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BACK_BUTTON",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "ec3c5258-38c3-48f1-bb1c-2d7e1a9ced74",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "3f0a059c-4aea-453f-9e09-e4120006fb10",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "template" : "7a040d6a-8f08-4108-b896-5123830ab5f1",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_nwyq2u"
+              } ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "d0292672-ea26-4b74-9a5c-a5968ca58929",
+          "defaultvalue" : null,
+          "displayorder" : 3
+        } ],
+        "title" : "71db0c2f-8853-4efc-90dd-4ba6621744ad",
+        "parameters" : { },
+        "tableid" : 227,
+        "datasourceid" : 12,
+        "pagetype" : "Detail"
+      } ],
+      "actionApp" : true,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/ms-powerbi.394a2264d9f5fd50df5b617ca3a0a5ce.svg"
+      }
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
   "services" : [ {
-    "id" : 3,
-    "uuid" : "7da37e64-5472-41fc-b86d-8923dafe00e5",
-    "version" : 63,
-    "title" : "HTTP Power BI",
+    "id" : 12,
+    "uuid" : "383568f8-b02e-4c33-9c47-25a371bb3ce0",
+    "version" : 66,
+    "title" : "Power BI HTTP",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "updatePending" : false,
@@ -17,11 +353,9 @@
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
         "authorizationURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/authorize",
-        "clientId" : "313f9f2e-99fa-4d87-8013-818115f28208",
         "scope" : " Tenant.Read.All",
         "tokenURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
-        "username" : "manager@citrixiwsdev.onmicrosoft.com",
         "customAccessTokenParameters" : [ {
           "name" : "resource",
           "value" : "https://analysis.windows.net/powerbi/api"
@@ -30,7 +364,6 @@
       },
       "useServiceActionSecurity" : false,
       "useOnPremProxy" : false,
-      "onPremProxyResource" : "",
       "dataEndpoints" : [ {
         "id" : 2,
         "name" : "reports",
@@ -819,18 +1152,18 @@
         "schedule" : "MANUALLY"
       } ],
       "serviceActions" : [ ],
-      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/HTTP.b662c61cecf295906ef0af18be93b25a.svg"
+      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/ms-powerbi.394a2264d9f5fd50df5b617ca3a0a5ce.svg"
     },
     "context" : { },
     "tables" : [ {
-      "id" : 28,
+      "id" : 219,
       "title" : "groups_users",
       "displayName" : "Groups Users",
       "entityName" : "groups_users",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 449,
+        "id" : 4952,
         "title" : "group_user_access_right",
         "displayName" : "Group User Access Right",
         "attributeName" : "group_user_access_right",
@@ -844,7 +1177,7 @@
         "defaultLabel" : "Group User Access Right",
         "primaryKey" : false
       }, {
-        "id" : 450,
+        "id" : 4953,
         "title" : "identifier",
         "displayName" : "Identifier",
         "attributeName" : "identifier",
@@ -858,7 +1191,7 @@
         "defaultLabel" : "Identifier",
         "primaryKey" : false
       }, {
-        "id" : 451,
+        "id" : 4954,
         "title" : "email_address",
         "displayName" : "Email Address",
         "attributeName" : "email_address",
@@ -872,7 +1205,7 @@
         "defaultLabel" : "Email Address",
         "primaryKey" : false
       }, {
-        "id" : 452,
+        "id" : 4955,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -886,7 +1219,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 453,
+        "id" : 4956,
         "title" : "principal_type",
         "displayName" : "Principal Type",
         "attributeName" : "principal_type",
@@ -900,7 +1233,7 @@
         "defaultLabel" : "Principal Type",
         "primaryKey" : false
       }, {
-        "id" : 454,
+        "id" : 4957,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -914,7 +1247,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 455,
+        "id" : 4958,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -928,7 +1261,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 456,
+        "id" : 4959,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -943,14 +1276,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 29,
+      "id" : 220,
       "title" : "groups_datasets",
       "displayName" : "Groups Datasets",
       "entityName" : "groups_datasets",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 457,
+        "id" : 4960,
         "title" : "is_refreshable",
         "displayName" : "Is Refreshable",
         "attributeName" : "is_refreshable",
@@ -964,7 +1297,7 @@
         "defaultLabel" : "Is Refreshable",
         "primaryKey" : false
       }, {
-        "id" : 458,
+        "id" : 4961,
         "title" : "created_date",
         "displayName" : "Created Date",
         "attributeName" : "created_date",
@@ -978,7 +1311,7 @@
         "defaultLabel" : "Created Date",
         "primaryKey" : false
       }, {
-        "id" : 459,
+        "id" : 4962,
         "title" : "is_effective_identity_req",
         "displayName" : "Is Effective Identity Req",
         "attributeName" : "is_effective_identity_req",
@@ -992,7 +1325,7 @@
         "defaultLabel" : "Is Effective Identity Req",
         "primaryKey" : false
       }, {
-        "id" : 460,
+        "id" : 4963,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -1006,7 +1339,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 461,
+        "id" : 4964,
         "title" : "is_effective_identity_rol",
         "displayName" : "Is Effective Identity Rol",
         "attributeName" : "is_effective_identity_rol",
@@ -1020,7 +1353,7 @@
         "defaultLabel" : "Is Effective Identity Rol",
         "primaryKey" : false
       }, {
-        "id" : 462,
+        "id" : 4965,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1034,7 +1367,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : false
       }, {
-        "id" : 463,
+        "id" : 4966,
         "title" : "content_provider_type",
         "displayName" : "Content Provider Type",
         "attributeName" : "content_provider_type",
@@ -1048,7 +1381,7 @@
         "defaultLabel" : "Content Provider Type",
         "primaryKey" : false
       }, {
-        "id" : 464,
+        "id" : 4967,
         "title" : "configured_by",
         "displayName" : "Configured By",
         "attributeName" : "configured_by",
@@ -1062,7 +1395,7 @@
         "defaultLabel" : "Configured By",
         "primaryKey" : false
       }, {
-        "id" : 465,
+        "id" : 4968,
         "title" : "is_on_prem_gateway_requir",
         "displayName" : "Is on Prem Gateway Requir",
         "attributeName" : "is_on_prem_gateway_requir",
@@ -1076,7 +1409,7 @@
         "defaultLabel" : "Is on Prem Gateway Requir",
         "primaryKey" : false
       }, {
-        "id" : 466,
+        "id" : 4969,
         "title" : "target_storage_mode",
         "displayName" : "Target Storage Mode",
         "attributeName" : "target_storage_mode",
@@ -1090,7 +1423,7 @@
         "defaultLabel" : "Target Storage Mode",
         "primaryKey" : false
       }, {
-        "id" : 467,
+        "id" : 4970,
         "title" : "add_rows_api_enabled",
         "displayName" : "Add Rows Api Enabled",
         "attributeName" : "add_rows_api_enabled",
@@ -1104,7 +1437,7 @@
         "defaultLabel" : "Add Rows Api Enabled",
         "primaryKey" : false
       }, {
-        "id" : 468,
+        "id" : 4971,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -1118,7 +1451,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 469,
+        "id" : 4972,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -1132,7 +1465,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 470,
+        "id" : 4973,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -1147,14 +1480,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 30,
+      "id" : 221,
       "title" : "groups_dashboards",
       "displayName" : "Groups Dashboards",
       "entityName" : "groups_dashboards",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 471,
+        "id" : 4974,
         "title" : "is_read_only",
         "displayName" : "Is Read Only",
         "attributeName" : "is_read_only",
@@ -1168,7 +1501,7 @@
         "defaultLabel" : "Is Read Only",
         "primaryKey" : false
       }, {
-        "id" : 472,
+        "id" : 4975,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -1182,7 +1515,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 473,
+        "id" : 4976,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1196,7 +1529,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : false
       }, {
-        "id" : 474,
+        "id" : 4977,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -1210,7 +1543,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 475,
+        "id" : 4978,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -1224,7 +1557,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 476,
+        "id" : 4979,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -1239,14 +1572,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 31,
+      "id" : 222,
       "title" : "groups",
       "displayName" : "Groups",
       "entityName" : "groups",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 477,
+        "id" : 4980,
         "title" : "is_read_only",
         "displayName" : "Is Read Only",
         "attributeName" : "is_read_only",
@@ -1260,7 +1593,7 @@
         "defaultLabel" : "Is Read Only",
         "primaryKey" : false
       }, {
-        "id" : 478,
+        "id" : 4981,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -1274,7 +1607,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 479,
+        "id" : 4982,
         "title" : "description",
         "displayName" : "Description",
         "attributeName" : "description",
@@ -1288,7 +1621,7 @@
         "defaultLabel" : "Description",
         "primaryKey" : false
       }, {
-        "id" : 480,
+        "id" : 4983,
         "title" : "state",
         "displayName" : "State",
         "attributeName" : "state",
@@ -1302,7 +1635,7 @@
         "defaultLabel" : "State",
         "primaryKey" : false
       }, {
-        "id" : 481,
+        "id" : 4984,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1316,7 +1649,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 482,
+        "id" : 4985,
         "title" : "type",
         "displayName" : "Type",
         "attributeName" : "type",
@@ -1330,7 +1663,7 @@
         "defaultLabel" : "Type",
         "primaryKey" : false
       }, {
-        "id" : 483,
+        "id" : 4986,
         "title" : "is_on_dedicated_capacity",
         "displayName" : "Is on Dedicated Capacity",
         "attributeName" : "is_on_dedicated_capacity",
@@ -1344,7 +1677,7 @@
         "defaultLabel" : "Is on Dedicated Capacity",
         "primaryKey" : false
       }, {
-        "id" : 484,
+        "id" : 4987,
         "title" : "capacity_migration_status",
         "displayName" : "Capacity Migration Status",
         "attributeName" : "capacity_migration_status",
@@ -1359,14 +1692,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 32,
+      "id" : 223,
       "title" : "groups_workbooks",
       "displayName" : "Groups Workbooks",
       "entityName" : "groups_workbooks",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 485,
+        "id" : 4988,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -1380,7 +1713,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 486,
+        "id" : 4989,
         "title" : "dataset_id",
         "displayName" : "Dataset Id",
         "attributeName" : "dataset_id",
@@ -1394,7 +1727,7 @@
         "defaultLabel" : "Dataset Id",
         "primaryKey" : false
       }, {
-        "id" : 487,
+        "id" : 4990,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -1408,7 +1741,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 488,
+        "id" : 4991,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -1422,7 +1755,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 489,
+        "id" : 4992,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -1437,14 +1770,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 33,
+      "id" : 224,
       "title" : "groups_reports",
       "displayName" : "Groups Reports",
       "entityName" : "groups_reports",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 490,
+        "id" : 4993,
         "title" : "report_type",
         "displayName" : "Report Type",
         "attributeName" : "report_type",
@@ -1458,7 +1791,7 @@
         "defaultLabel" : "Report Type",
         "primaryKey" : false
       }, {
-        "id" : 491,
+        "id" : 4994,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -1472,7 +1805,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 492,
+        "id" : 4995,
         "title" : "created_date_time",
         "displayName" : "Created Date Time",
         "attributeName" : "created_date_time",
@@ -1486,7 +1819,7 @@
         "defaultLabel" : "Created Date Time",
         "primaryKey" : false
       }, {
-        "id" : 493,
+        "id" : 4996,
         "title" : "dataset_id",
         "displayName" : "Dataset Id",
         "attributeName" : "dataset_id",
@@ -1500,7 +1833,7 @@
         "defaultLabel" : "Dataset Id",
         "primaryKey" : false
       }, {
-        "id" : 494,
+        "id" : 4997,
         "title" : "modified_date_time",
         "displayName" : "Modified Date Time",
         "attributeName" : "modified_date_time",
@@ -1514,7 +1847,7 @@
         "defaultLabel" : "Modified Date Time",
         "primaryKey" : false
       }, {
-        "id" : 495,
+        "id" : 4998,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1528,7 +1861,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : false
       }, {
-        "id" : 496,
+        "id" : 4999,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -1542,7 +1875,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 497,
+        "id" : 5000,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -1556,7 +1889,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 498,
+        "id" : 5001,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -1571,14 +1904,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 34,
+      "id" : 225,
       "title" : "reports",
       "displayName" : "Reports",
       "entityName" : "reports",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 499,
+        "id" : 5002,
         "title" : "embed_url",
         "displayName" : "Embed Url",
         "attributeName" : "embed_url",
@@ -1592,7 +1925,7 @@
         "defaultLabel" : "Embed Url",
         "primaryKey" : false
       }, {
-        "id" : 500,
+        "id" : 5003,
         "title" : "report_type",
         "displayName" : "Report Type",
         "attributeName" : "report_type",
@@ -1606,7 +1939,7 @@
         "defaultLabel" : "Report Type",
         "primaryKey" : false
       }, {
-        "id" : 501,
+        "id" : 5004,
         "title" : "web_url",
         "displayName" : "Web Url",
         "attributeName" : "web_url",
@@ -1620,7 +1953,7 @@
         "defaultLabel" : "Web Url",
         "primaryKey" : false
       }, {
-        "id" : 502,
+        "id" : 5005,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -1634,7 +1967,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 503,
+        "id" : 5006,
         "title" : "created_date_time",
         "displayName" : "Created Date Time",
         "attributeName" : "created_date_time",
@@ -1648,7 +1981,7 @@
         "defaultLabel" : "Created Date Time",
         "primaryKey" : false
       }, {
-        "id" : 504,
+        "id" : 5007,
         "title" : "dataset_id",
         "displayName" : "Dataset Id",
         "attributeName" : "dataset_id",
@@ -1662,7 +1995,7 @@
         "defaultLabel" : "Dataset Id",
         "primaryKey" : false
       }, {
-        "id" : 505,
+        "id" : 5008,
         "title" : "modified_date_time",
         "displayName" : "Modified Date Time",
         "attributeName" : "modified_date_time",
@@ -1676,7 +2009,7 @@
         "defaultLabel" : "Modified Date Time",
         "primaryKey" : false
       }, {
-        "id" : 506,
+        "id" : 5009,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1691,14 +2024,14 @@
         "primaryKey" : true
       } ]
     }, {
-      "id" : 35,
+      "id" : 226,
       "title" : "dashboards_tiles",
       "displayName" : "Dashboards Tiles",
       "entityName" : "dashboards_tiles",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 507,
+        "id" : 5010,
         "title" : "row_span",
         "displayName" : "Row Span",
         "attributeName" : "row_span",
@@ -1712,7 +2045,7 @@
         "defaultLabel" : "Row Span",
         "primaryKey" : false
       }, {
-        "id" : 508,
+        "id" : 5011,
         "title" : "embed_url",
         "displayName" : "Embed Url",
         "attributeName" : "embed_url",
@@ -1726,7 +2059,7 @@
         "defaultLabel" : "Embed Url",
         "primaryKey" : false
       }, {
-        "id" : 509,
+        "id" : 5012,
         "title" : "sub_title",
         "displayName" : "Sub Title",
         "attributeName" : "sub_title",
@@ -1740,7 +2073,7 @@
         "defaultLabel" : "Sub Title",
         "primaryKey" : false
       }, {
-        "id" : 510,
+        "id" : 5013,
         "title" : "report_id",
         "displayName" : "Report Id",
         "attributeName" : "report_id",
@@ -1754,7 +2087,7 @@
         "defaultLabel" : "Report Id",
         "primaryKey" : false
       }, {
-        "id" : 511,
+        "id" : 5014,
         "title" : "col_span",
         "displayName" : "Col Span",
         "attributeName" : "col_span",
@@ -1768,7 +2101,7 @@
         "defaultLabel" : "Col Span",
         "primaryKey" : false
       }, {
-        "id" : 512,
+        "id" : 5015,
         "title" : "dataset_id",
         "displayName" : "Dataset Id",
         "attributeName" : "dataset_id",
@@ -1782,7 +2115,7 @@
         "defaultLabel" : "Dataset Id",
         "primaryKey" : false
       }, {
-        "id" : 513,
+        "id" : 5016,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1796,7 +2129,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : false
       }, {
-        "id" : 514,
+        "id" : 5017,
         "title" : "title",
         "displayName" : "Title",
         "attributeName" : "title",
@@ -1810,7 +2143,7 @@
         "defaultLabel" : "Title",
         "primaryKey" : false
       }, {
-        "id" : 515,
+        "id" : 5018,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -1824,7 +2157,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 516,
+        "id" : 5019,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -1838,7 +2171,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 517,
+        "id" : 5020,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -1853,14 +2186,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 36,
+      "id" : 227,
       "title" : "dashboards",
       "displayName" : "Dashboards",
       "entityName" : "dashboards",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 518,
+        "id" : 5021,
         "title" : "embed_url",
         "displayName" : "Embed Url",
         "attributeName" : "embed_url",
@@ -1874,7 +2207,7 @@
         "defaultLabel" : "Embed Url",
         "primaryKey" : false
       }, {
-        "id" : 519,
+        "id" : 5022,
         "title" : "is_read_only",
         "displayName" : "Is Read Only",
         "attributeName" : "is_read_only",
@@ -1888,7 +2221,7 @@
         "defaultLabel" : "Is Read Only",
         "primaryKey" : false
       }, {
-        "id" : 520,
+        "id" : 5023,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -1902,7 +2235,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 521,
+        "id" : 5024,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1918,23 +2251,23 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 15,
+      "id" : 311,
       "pkTable" : {
-        "id" : 31,
+        "id" : 222,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 28,
+        "id" : 219,
         "title" : "groups_users",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 15,
+        "fkId" : 311,
         "pkColumn" : {
-          "id" : 481,
+          "id" : 4984,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1949,7 +2282,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 454,
+          "id" : 4957,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -1965,23 +2298,23 @@
         }
       } ]
     }, {
-      "id" : 16,
+      "id" : 312,
       "pkTable" : {
-        "id" : 31,
+        "id" : 222,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 29,
+        "id" : 220,
         "title" : "groups_datasets",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 16,
+        "fkId" : 312,
         "pkColumn" : {
-          "id" : 481,
+          "id" : 4984,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1996,7 +2329,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 468,
+          "id" : 4971,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -2012,23 +2345,23 @@
         }
       } ]
     }, {
-      "id" : 17,
+      "id" : 313,
       "pkTable" : {
-        "id" : 31,
+        "id" : 222,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 30,
+        "id" : 221,
         "title" : "groups_dashboards",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 17,
+        "fkId" : 313,
         "pkColumn" : {
-          "id" : 481,
+          "id" : 4984,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -2043,7 +2376,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 474,
+          "id" : 4977,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -2059,23 +2392,23 @@
         }
       } ]
     }, {
-      "id" : 18,
+      "id" : 314,
       "pkTable" : {
-        "id" : 31,
+        "id" : 222,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 32,
+        "id" : 223,
         "title" : "groups_workbooks",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 18,
+        "fkId" : 314,
         "pkColumn" : {
-          "id" : 481,
+          "id" : 4984,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -2090,7 +2423,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 487,
+          "id" : 4990,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -2106,23 +2439,23 @@
         }
       } ]
     }, {
-      "id" : 19,
+      "id" : 315,
       "pkTable" : {
-        "id" : 31,
+        "id" : 222,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 33,
+        "id" : 224,
         "title" : "groups_reports",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 19,
+        "fkId" : 315,
         "pkColumn" : {
-          "id" : 481,
+          "id" : 4984,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -2137,7 +2470,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 496,
+          "id" : 4999,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -2153,23 +2486,23 @@
         }
       } ]
     }, {
-      "id" : 20,
+      "id" : 316,
       "pkTable" : {
-        "id" : 36,
+        "id" : 227,
         "title" : "dashboards",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 35,
+        "id" : 226,
         "title" : "dashboards_tiles",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 20,
+        "fkId" : 316,
         "pkColumn" : {
-          "id" : 521,
+          "id" : 5024,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -2184,7 +2517,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 515,
+          "id" : 5018,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -2204,7 +2537,13 @@
   } ],
   "notifications" : [ ],
   "resolvers" : [ ],
-  "modelConfiguration" : { },
-  "appliedSappUpgrades" : [ "microapp-6790", "microapp-3580", "microapp-3547", "microapp-4666", "microapp-6293", "microapp-8511", "microapp-6617", "microapp-8576", "microapp-8950", "microapp-7290", "microapp-7888", "microapp-6593", "microapp-3548", "microapp-4020", "microapp-1980", "microapp-8892", "microapp-7984", "microapp-6853", "microapp-2450", "microapp-4518", "microapp-5025", "microapp-6262", "microapp-8003", "microapp-8921", "microapp-3838", "microapp-7561", "microapp-5227" ],
-  "buildVersion" : "1.11.5.1f3db2f4e74dd763745c54fbb413dbf6346f2a0e"
+  "modelConfiguration" : {
+    "appIds" : [ "dfd179ed-bddd-4c9b-a269-2ebeb6a797e0" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "Power BI integration based on power-bi admin API",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "3B5BBB25C9CC12F42ABE96302F79E1E0",
+  "appliedSappUpgrades" : [ "microapp-6790", "microapp-3547", "microapp-4666", "microapp-5025", "microapp-6593", "microapp-6617", "microapp-5227", "microapp-8892", "microapp-6853", "microapp-8950", "microapp-8003", "microapp-6293", "microapp-8576", "microapp-8921", "microapp-7961", "microapp-7888", "microapp-2450", "microapp-8511", "microapp-7561", "microapp-6264", "microapp-7290", "microapp-4518", "microapp-3580", "microapp-4020", "microapp-6262", "microapp-7984", "microapp-3548", "microapp-3838", "microapp-1980" ],
+  "buildVersion" : "1.14.0-SNAPSHOT.fea8fd8cb33e34ee9328b1281791d3667802d83d"
 }
