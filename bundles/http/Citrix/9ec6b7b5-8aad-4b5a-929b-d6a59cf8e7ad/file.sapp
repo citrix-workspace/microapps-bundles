@@ -10650,13 +10650,13 @@
     "secretsMissing" : false,
     "schemaName" : "microapps_http_servicenow",
     "configuration" : {
-      "baseUrl" : "your.url",
+      "baseUrl" : "https://{customer-id}.service-now.com",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "RESOURCE_OWNER_PASSWORD",
         "authorizationURL" : "",
         "scope" : "",
-        "tokenURL" : "",
+        "tokenURL" : "https://{customer-id}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
@@ -10664,9 +10664,9 @@
       "serviceActionSecurity" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
-        "authorizationURL" : "",
+        "authorizationURL" : "https://{customer-id}.service-now.com/oauth_auth.do",
         "scope" : "",
-        "tokenURL" : "",
+        "tokenURL" : "https://{customer-id}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
@@ -30227,19 +30227,7 @@
           "dataEndpointId" : 3,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : true,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/incident",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "f79b8517-a0f4-423b-b2e7-1d3fa2876a0e",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "f79b8517-a0f4-423b-b2e7-1d3fa2876a0e"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
@@ -30535,19 +30523,7 @@
           "dataEndpointId" : 3,
           "endpointSuffix" : "",
           "callChainEnabled" : true,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/incident",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "f79b8517-a0f4-423b-b2e7-1d3fa2876a0e",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "f79b8517-a0f4-423b-b2e7-1d3fa2876a0e"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ ],
           "headerParameters" : [ ],
           "bodyParameters" : [ ]
@@ -30917,19 +30893,7 @@
           "dataEndpointId" : 1,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : false,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/change_request",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "2c0e543b-6031-4cbd-9dce-74b21fab7729",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "2c0e543b-6031-4cbd-9dce-74b21fab7729"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
@@ -31051,19 +31015,7 @@
           "dataEndpointId" : 4,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : true,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/problem",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "a953c416-3648-4084-91b8-01a05895cc9d",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "a953c416-3648-4084-91b8-01a05895cc9d"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
@@ -31147,19 +31099,7 @@
           "dataEndpointId" : 65,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : true,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/sysapproval_approver",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "0a9d8e39-34ea-4654-a343-d3c7eb19e0ab",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "0a9d8e39-34ea-4654-a343-d3c7eb19e0ab"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
@@ -31215,19 +31155,7 @@
           "dataEndpointId" : 65,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : true,
-          "endpoint" : "https://ven01956.service-now.com/api/now/table/sysapproval_approver",
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "queryParameters" : [ {
-            "name" : "sysparm_query",
-            "defaultValue" : "active=true",
-            "parameterType" : "STRING",
-            "required" : false,
-            "uniqueId" : "0a9d8e39-34ea-4654-a343-d3c7eb19e0ab",
-            "editMode" : "READ_ONLY_ALL",
-            "valueMapping" : "DEFAULT_VALUE",
-            "endpointParameterUniqueId" : "0a9d8e39-34ea-4654-a343-d3c7eb19e0ab"
-          } ],
+          "queryParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
