@@ -1,0 +1,46 @@
+{
+  "type" : "DIP",
+  "vendor" : "Citrix",
+  "id" : "com.sapho.services.concur.ConcurService",
+  "version" : "0.7.7",
+  "title" : "SAP Concur",
+  "description" : "",
+  "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/Concur.7f4236c35298ebbe5598db9a66e70273.svg",
+  "masVersion" : "1.9.17-SNAPSHOT",
+  "categories" : [ "WEB_SERVICES" ],
+  "created" : "2020-04-07T13:53:01",
+  "supportsOAuthForActions" : true,
+  "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
+  "apps" : [ {
+    "uuid" : "79addaa5-54de-465b-b4bb-499db938e831",
+    "title" : "Approvals",
+    "numberOfEvents" : 3,
+    "action" : true
+  }, {
+    "uuid" : "8bf15221-a61d-4ed5-a1cb-48b1a09de390",
+    "title" : "Expenses",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "cbded95a-366d-4ad7-80a4-addbbbe71bae",
+    "title" : "Itineraries",
+    "numberOfEvents" : 2,
+    "action" : true
+  }, {
+    "uuid" : "ee2a227d-6bb6-4679-8aa8-b74880291175",
+    "title" : "Reports",
+    "numberOfEvents" : 2,
+    "action" : true
+  } ],
+  "vaResolvers" : [ {
+    "name" : "ExpenseReport Details",
+    "intentName" : "ExpenseReport.Details"
+  }, {
+    "name" : "ExpenseReport Lookup",
+    "intentName" : "ExpenseReport.Lookup"
+  } ],
+  "tags" : [ {
+    "tag" : "helpUrl",
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-concur.html"
+  } ]
+}
