@@ -1,30 +1,157 @@
 {
   "type" : "DIP",
   "vendor" : "Citrix",
-  "id" : "com.microapp.demo.salesforce.DemoSalesforceService",
-  "version" : "0.1.0",
-  "title" : "Demo Salesforce",
+  "id" : "com.sapho.services.salesforce.SalesforceService",
+  "version" : "0.1.9",
+  "title" : "Salesforce integration 9956",
   "description" : "",
   "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/Salesforce.43b28006ce57d083904eaa95297a166d.svg",
-  "masVersion" : "1.9.17-SNAPSHOT",
-  "categories" : [ "DEMO" ],
-  "created" : "2020-04-09T07:12:16",
-  "supportsOAuthForActions" : false,
-  "i18nLanguages" : [ "de", "en", "es", "fr", "ja", "nl", "pt-BR", "zh-CN" ],
+  "masVersion" : "1.15.0-SNAPSHOT",
+  "categories" : [ "WEB_SERVICES" ],
+  "created" : "2020-06-01T11:17:55",
+  "supportsOAuthForActions" : true,
+  "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
   "apps" : [ {
-    "uuid" : "1d6abde8-cec4-4a60-a390-e6b85e0dc946",
-    "title" : "Approvals (Demo)",
-    "numberOfEvents" : 3,
-    "action" : false
+    "uuid" : "112f1ba6-6d5e-45ea-ba3e-93927c501f2d",
+    "title" : "Create Account",
+    "numberOfEvents" : 0,
+    "action" : true
   }, {
-    "uuid" : "dcac6581-11b8-46c9-bcf3-f014ec4f93bb",
-    "title" : "My Opportunities (Demo)",
+    "uuid" : "16c07be0-8257-41dd-8013-f57c7449b2fe",
+    "title" : "Contracts",
+    "numberOfEvents" : 3,
+    "action" : true
+  }, {
+    "uuid" : "2b36766f-b855-4c99-9da2-dfe722535b5e",
+    "title" : "Create Contract",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "2c33442d-b9ab-4e0f-a772-8883f0d359a5",
+    "title" : "Create Contact",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "2d999cba-0985-4cf9-bb28-7a7a3effc1a7",
+    "title" : "Create Opportunity",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "498fce9b-3928-4022-86c4-d397f574fdd7",
+    "title" : "Tasks",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "4d2f2fc9-f4ba-4293-864f-c797ebb91697",
+    "title" : "Opportunities",
     "numberOfEvents" : 2,
     "action" : true
+  }, {
+    "uuid" : "5d8dcdaa-ad6c-404e-807f-8bfe23173c6b",
+    "title" : "Create Case",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "6aa5f405-b9c6-4fa8-9284-89cdcb4d3652",
+    "title" : "Create Lead",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "6e78f8e2-8ff0-489a-9052-a40674174d23",
+    "title" : "Cases",
+    "numberOfEvents" : 3,
+    "action" : true
+  }, {
+    "uuid" : "7f41499d-92c5-4386-b133-d4c616f17eb6",
+    "title" : "Accounts",
+    "numberOfEvents" : 2,
+    "action" : true
+  }, {
+    "uuid" : "8db77684-3280-45d8-8f2e-7e655f622aa9",
+    "title" : "Pending Account Approvals",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "ae1b1e67-7179-42c4-966a-81dd64c87355",
+    "title" : "Contacts",
+    "numberOfEvents" : 2,
+    "action" : true
+  }, {
+    "uuid" : "bae66629-7b86-4de4-9379-5c8e96f127ad",
+    "title" : "Leads",
+    "numberOfEvents" : 2,
+    "action" : true
+  }, {
+    "uuid" : "bc0128b5-aed6-47e7-9558-a510552a4bbe",
+    "title" : "Create Event",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "cbf290ae-724f-4480-a1cb-71db431b7eca",
+    "title" : "Pending Contract Approvals",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "d3f3f334-ad0b-4a2c-b48b-685be94b8924",
+    "title" : "Create Task",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "dcf25a10-8e2f-41cf-b790-f464d58dd902",
+    "title" : "Events",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "f4aa1365-a195-4784-801a-68fb60c3eb02",
+    "title" : "Pending Contact Approvals",
+    "numberOfEvents" : 1,
+    "action" : true
   } ],
-  "vaResolvers" : [ ],
+  "vaResolvers" : [ {
+    "name" : "CRM Account Details",
+    "intentName" : "CRM.Account.Details"
+  }, {
+    "name" : "CRM Account Lookup",
+    "intentName" : "CRM.Account.Lookup"
+  }, {
+    "name" : "CRM Contract Details",
+    "intentName" : "CRM.Contract.Details"
+  }, {
+    "name" : "CRM Contract Lookup",
+    "intentName" : "CRM.Contract.Lookup"
+  }, {
+    "name" : "CRM Contract Question Status",
+    "intentName" : "CRM.Contract.Question.Status"
+  }, {
+    "name" : "CRM Lead Details",
+    "intentName" : "CRM.Lead.Details"
+  }, {
+    "name" : "CRM Lead Lookup",
+    "intentName" : "CRM.Lead.Lookup"
+  }, {
+    "name" : "CRM Lead Question Source",
+    "intentName" : "CRM.Lead.Question.Source"
+  }, {
+    "name" : "CRM Lead Question Status",
+    "intentName" : "CRM.Lead.Question.Status"
+  }, {
+    "name" : "CRM Opportunity Details",
+    "intentName" : "CRM.Opportunity.Details"
+  }, {
+    "name" : "CRM Opportunity Lookup",
+    "intentName" : "CRM.Opportunity.Lookup"
+  }, {
+    "name" : "CRM Opportunity Question ModificationTime",
+    "intentName" : "CRM.Opportunity.Question.ModificationTime"
+  }, {
+    "name" : "CRM Opportunity Question Owner",
+    "intentName" : "CRM.Opportunity.Question.Owner"
+  }, {
+    "name" : "CRM Opportunity Question Stage",
+    "intentName" : "CRM.Opportunity.Question.Stage"
+  } ],
   "tags" : [ {
     "tag" : "helpUrl",
-    "value" : "help.html"
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-salesforce.html"
   } ]
 }
