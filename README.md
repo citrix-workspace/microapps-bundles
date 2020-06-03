@@ -1,7 +1,7 @@
 Citrix Workspace Microapps
 ==========================
 
-*Catalog of [Microapp][microapps] bundles for [Citrix Workspace][workspace].*
+* Test Bundle Repository of [Microapp][microapps] bundles for [Citrix Workspace][workspace].*
 
 - Source repository: https://github.com/michaltc/workspace-microapps/
 - Generated destination repository: https://github.com/michaltc/workspace-microapps-bundles/
