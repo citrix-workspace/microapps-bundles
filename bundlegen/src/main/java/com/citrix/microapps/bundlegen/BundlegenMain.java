@@ -20,7 +20,7 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.ARCHIVES_DIR;
 /**
  * Application runner with `main()`.
  */
-class BundlegenMain {
+public class BundlegenMain {
     private static final Logger logger = LoggerFactory.getLogger(BundlegenMain.class);
 
     public static void main(String[] args) {
