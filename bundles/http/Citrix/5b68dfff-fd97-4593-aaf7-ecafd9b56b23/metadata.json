@@ -3,16 +3,26 @@
   "vendor" : "Citrix",
   "id" : "5b68dfff-fd97-4593-aaf7-ecafd9b56b23",
   "title" : "JIRA HTTP",
-  "description" : "",
-  "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/HTTP.b662c61cecf295906ef0af18be93b25a.svg",
-  "masVersion" : "1.7.3",
+  "description" : "Integration is based on cloud JIRA API version 3. For more information see https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-jira.html",
+  "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/JIRA.35cdd2008e8e83479745e5635da3d7f1.svg",
+  "masVersion" : "1.17.1",
   "categories" : [ "INTERNAL_DEVELOPMENT" ],
-  "created" : "2020-03-03T15:58:12",
-  "supportsOAuthForActions" : false,
-  "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
+  "created" : "2020-06-22T11:41:16",
+  "supportsOAuthForActions" : true,
+  "i18nLanguages" : [ "en" ],
   "apps" : [ {
-    "uuid" : "5ada5e57-8bd5-4056-abdb-7bbd793906cc",
+    "uuid" : "3991abc2-d4dd-48aa-81cd-1719265d38b4",
+    "title" : "Create Epic",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "b0c8da9a-00e9-46a6-9fb0-f1710f4cde33",
     "title" : "Tickets",
+    "numberOfEvents" : 11,
+    "action" : true
+  }, {
+    "uuid" : "c999a767-eb3b-428b-b721-1b9dee3c6bab",
+    "title" : "Create Ticket",
     "numberOfEvents" : 0,
     "action" : true
   } ],
