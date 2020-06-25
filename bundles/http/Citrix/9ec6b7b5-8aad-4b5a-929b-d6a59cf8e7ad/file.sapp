@@ -10643,7 +10643,7 @@
     "id" : 6,
     "uuid" : "fbe9b20f-2047-4c36-8fd6-353d2b741d18",
     "version" : 394,
-    "title" : "ServiceNow HTTP = MH-246 + MA-10149/10325 + RemHTTP",
+    "title" : "ServiceNow",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "updatePending" : false,
@@ -10651,13 +10651,13 @@
     "secretsMissing" : false,
     "schemaName" : "microapps_servicenow_http",
     "configuration" : {
-      "baseUrl" : "https://ven01956.service-now.com",
+      "baseUrl" : "https://{customer-id}.service-now.com",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "RESOURCE_OWNER_PASSWORD",
         "authorizationURL" : "",
         "scope" : "",
-        "tokenURL" : "https://ven01956.service-now.com/oauth_token.do",
+        "tokenURL" : "https://{customer-id}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
@@ -10665,9 +10665,9 @@
       "serviceActionSecurity" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
-        "authorizationURL" : "https://ven01956.service-now.com/oauth_auth.do",
+        "authorizationURL" : "https://{customer-id}.service-now.com/oauth_auth.do",
         "scope" : "",
-        "tokenURL" : "https://ven01956.service-now.com/oauth_token.do",
+        "tokenURL" : "https://{customer-id}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
