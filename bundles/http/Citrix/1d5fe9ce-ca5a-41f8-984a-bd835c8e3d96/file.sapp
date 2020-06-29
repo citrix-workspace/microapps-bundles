@@ -1,0 +1,2650 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+      "serviceId" : 29,
+      "version" : 258,
+      "pages" : [ {
+        "id" : "73a028ec-b8dc-4cad-ab0d-e2f4bc0512ff",
+        "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT_INPUT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "dc10eaa2-4a2a-4730-8387-316990a919aa",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "e8725c31-a5c0-4507-8838-26737fc55063",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "TABLE",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "d2746279-98fc-4a74-a644-e87b76eae2a3",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 417,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "4e477b17-1058-4108-a202-3f63bd7bba3b",
+              "tableid" : 417,
+              "sqlquery" : {
+                "id" : "483fe008-e26d-4493-a76b-2382fa5ffe75",
+                "constraints" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "EXPRESSION",
+                    "left" : {
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 417,
+                        "columnId" : 3005,
+                        "valueType" : "COMPONENT",
+                        "variableComponent" : "e8725c31-a5c0-4507-8838-26737fc55063",
+                        "ignoredWhenValueIsNull" : true,
+                        "action" : "LIKE"
+                      }
+                    },
+                    "operator" : "OR",
+                    "right" : {
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 417,
+                        "columnId" : 3010,
+                        "valueType" : "COMPONENT",
+                        "variableComponent" : "e8725c31-a5c0-4507-8838-26737fc55063",
+                        "ignoredWhenValueIsNull" : true,
+                        "action" : "EQUALS_TO"
+                      }
+                    }
+                  },
+                  "operator" : "OR",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 417,
+                      "columnId" : 3006,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "e8725c31-a5c0-4507-8838-26737fc55063",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "EQUALS_TO"
+                    }
+                  }
+                },
+                "autojoins" : false
+              },
+              "personalize" : {
+                "id" : "d68ac105-59b9-4c05-8f7a-46b5a63e19b3",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 410,
+                    "columnId" : 2978,
+                    "foreignKeyId" : 428,
+                    "valueType" : "USER_EMAIL",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "dc52d605-6670-43a1-90fa-bbc126ebb8e7",
+                "id" : "hf0kbh",
+                "tableid" : 417,
+                "columnid" : 3005,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "5cf5d678-f2a6-44ae-80e8-91a781ffa737",
+                "id" : "wa8k0z",
+                "tableid" : 417,
+                "columnid" : 3006,
+                "urlTemplate" : null,
+                "format" : "integer",
+                "tableColumn" : {
+                  "columnType" : "INTEGER"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "ee071af6-36d5-4796-801a-b4376fbe0a3d",
+                "id" : "1cyhsi",
+                "tableid" : 417,
+                "columnid" : 3010,
+                "urlTemplate" : null,
+                "format" : "integer",
+                "tableColumn" : {
+                  "columnType" : "INTEGER"
+                },
+                "conditional_format" : "null"
+              }, {
+                "foreignKeyId" : 425,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "57ab8223-097d-449f-b523-4de4a0d2356e",
+                "id" : "chlaia",
+                "tableid" : 418,
+                "columnid" : 3017,
+                "urlTemplate" : null,
+                "format" : "datetime",
+                "tableColumn" : {
+                  "columnType" : "TIMESTAMP"
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "2452303c-0bf9-4667-8ada-9fa7f15f6823",
+              "hideIfEmpty" : false,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "57527a88-2bf3-473e-a083-e6367b79151a",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        } ],
+        "query" : {
+          "id" : "9ef09cbf-209b-4ad0-a1b9-26fd7b2ede17",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 410,
+              "columnId" : 2978,
+              "foreignKeyId" : 428,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "ccda2f13-c6d3-4400-9fc9-f4e7442ef7fa",
+        "parameters" : { },
+        "tableid" : 417,
+        "datasourceid" : 29,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "2452303c-0bf9-4667-8ada-9fa7f15f6823",
+        "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "BACK_BUTTON",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "56ed872c-ff18-438b-a257-35b8129bb4b9",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 8,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ],
+            "order" : null
+          },
+          "id" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "84f6c29a-e5ec-4582-88d7-7ad5820f90ee",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "40897ad5-0d2b-4946-877a-f0159749ffd9",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "2f88eb62-6202-4f99-984d-e4edd5f13e90",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "e8df2863-3b7c-4e82-93c0-9189c8a62e4e",
+          "defaultvalue" : "",
+          "displayorder" : 4
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : { },
+          "id" : "ebf3c531-1052-49ef-a7f3-14c3b0d1e997",
+          "defaultvalue" : "",
+          "displayorder" : 5
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : { },
+          "id" : "2277c71d-ee57-4822-a00f-668085a3e9e8",
+          "defaultvalue" : "",
+          "displayorder" : 6
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : { },
+          "id" : "1a0e18d3-c081-43be-acd2-87b3f489fde0",
+          "defaultvalue" : "",
+          "displayorder" : 7
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c2634e29-345b-4758-a215-7c8b4229331a",
+          "parameters" : { },
+          "id" : "965ee5f2-6e73-4ba2-b4c1-18d69c3368e9",
+          "defaultvalue" : "",
+          "displayorder" : 8
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3007,
+          "required" : false,
+          "textType" : null,
+          "label" : "d46e0c72-f9fc-4e3b-afdb-ab73cb70da49",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "84f6c29a-e5ec-4582-88d7-7ad5820f90ee",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "48d7504c-f42f-4901-9990-b7922aa1d9fb",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3005,
+          "required" : false,
+          "textType" : null,
+          "label" : "d7120eae-ddf2-45ce-9d4c-71e3600c6de3",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "40897ad5-0d2b-4946-877a-f0159749ffd9",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "7c8ab1a4-9e18-4f29-9fa5-a4470c1c58aa",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3015,
+          "required" : false,
+          "textType" : null,
+          "label" : "8d9fe71b-fb78-435a-860d-49f94da41636",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2f88eb62-6202-4f99-984d-e4edd5f13e90",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "d0e359de-e845-4c59-8c44-9cd4e70b65b6",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3011,
+          "required" : false,
+          "textType" : null,
+          "label" : "9773b215-8f73-4929-9c8d-e455f019dd5a",
+          "format" : "datetime",
+          "foreignKeyId" : null,
+          "parentComponentId" : "e8df2863-3b7c-4e82-93c0-9189c8a62e4e",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "3b72fd5a-95db-49d6-9a3f-c7f900aa9a99",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3006,
+          "required" : false,
+          "textType" : null,
+          "label" : "5b1c329b-1f4d-4ff3-b343-e724b33f2aae",
+          "format" : "integer",
+          "foreignKeyId" : null,
+          "parentComponentId" : "ebf3c531-1052-49ef-a7f3-14c3b0d1e997",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "89a9dde7-5636-4721-b5ae-ab8171f7b8f4",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3010,
+          "required" : false,
+          "textType" : null,
+          "label" : "9b38689f-3a1e-4053-a356-249ee83865d4",
+          "format" : "integer",
+          "foreignKeyId" : null,
+          "parentComponentId" : "2277c71d-ee57-4822-a00f-668085a3e9e8",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "0f390c69-2e8e-4821-ae8e-473897cdd6f1",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "9fa5fbc3-c9ac-42aa-8f7a-4d1452452edb",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "1a0e18d3-c081-43be-acd2-87b3f489fde0",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_5ea47b",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "4813af3e-ec1e-4d86-9de8-df236ce6a902",
+                  "name" : "Time Off Request Inbox Approval",
+                  "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+                  "parameters" : [ {
+                    "parameterId" : "created_by_id",
+                    "valueType" : "COLUMN",
+                    "columnId" : 3014
+                  }, {
+                    "parameterId" : "inbox_task_id",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "14aa5e22-1d75-47d9-a862-82d83081ff92"
+                  } ],
+                  "flatDataServiceActionId" : 1,
+                  "serviceId" : 29
+                },
+                "serviceId" : 29
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "13e10f21-707e-4e3f-b44a-347f1612aa1e",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "4362b291-c4cd-4720-a636-d2996d06b878",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "965ee5f2-6e73-4ba2-b4c1-18d69c3368e9",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_o80ana",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "b7cd0693-7e99-4a94-b368-764101836978",
+                  "name" : "Time Off Request Inbox Denial",
+                  "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+                  "parameters" : [ {
+                    "parameterId" : "inbox_task_id",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "14aa5e22-1d75-47d9-a862-82d83081ff92"
+                  } ],
+                  "flatDataServiceActionId" : 2,
+                  "serviceId" : 29
+                },
+                "serviceId" : 29
+              } ]
+            },
+            "tone" : "SECONDARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "95954718-2946-4ee3-b348-4b8f7205053d",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+          "columnId" : 3018,
+          "required" : false,
+          "textType" : null,
+          "label" : "8b8e6c95-822a-44d0-bc3b-03e013197443",
+          "format" : "none",
+          "foreignKeyId" : 425,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 0,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "14aa5e22-1d75-47d9-a862-82d83081ff92",
+          "defaultvalue" : null,
+          "displayorder" : 3
+        } ],
+        "query" : {
+          "id" : "065e7c35-5382-436b-99c4-a6c75b0dd34d",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 410,
+              "columnId" : 2978,
+              "foreignKeyId" : 428,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "e9e79c6b-530b-4343-9df0-a120a341b9d8",
+        "parameters" : { },
+        "tableid" : 417,
+        "datasourceid" : 29,
+        "pagetype" : "Detail"
+      } ],
+      "title" : "edf1c022-629c-4081-a5fd-aaefaef83414",
+      "startPageId" : "73a028ec-b8dc-4cad-ab0d-e2f4bc0512ff",
+      "actionApp" : true,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/approval_delete.2c1b56597b7318f2bb6de2325c5fe8b0.svg",
+        "description" : "795b9989-bc9c-41ce-9e1f-27404d0e233e"
+      }
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 29,
+    "uuid" : "1d5fe9ce-ca5a-41f8-984a-bd835c8e3d96",
+    "version" : 40,
+    "title" : "Workday HTTP",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "microapps_workday_http",
+    "configuration" : {
+      "baseUrl" : "https://wd2-impl-services1.workday.com/",
+      "security" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "authorizationURL" : "https://impl.workday.com/citrix_gms2/authorize",
+        "scope" : "",
+        "tokenURL" : "https://wd2-impl-services1.workday.com/ccx/oauth2/citrix_gms2/token",
+        "tokenAuthorization" : "AUTHORIZATION_HEADER",
+        "authHeaderPrefix" : ""
+      },
+      "useServiceActionSecurity" : true,
+      "serviceActionSecurity" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "authorizationURL" : "https://impl.workday.com/citrix_gms2/authorize",
+        "scope" : "",
+        "tokenURL" : "https://wd2-impl-services1.workday.com/ccx/oauth2/citrix_gms2/token",
+        "tokenAuthorization" : "AUTHORIZATION_HEADER",
+        "authHeaderPrefix" : ""
+      },
+      "useOnPremProxy" : false,
+      "dataEndpoints" : [ {
+        "id" : 1,
+        "name" : "worker",
+        "endpoint" : "/ccx/service/customreport2/citrix_gms2/AdamM@wwco.net/Worker",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 1,
+          "tableName" : "worker",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "full_name",
+            "path" : "Full_Name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "user_name",
+            "path" : "User_Name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "workday_id",
+            "path" : "workdayID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "employee_id",
+            "path" : "Employee_ID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_work_email",
+            "path" : "primaryWorkEmail",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/Organization_Membership_group", "Report_Entry/All_Worker_s_Manager_s__group" ],
+          "detailEndpointIds" : [ 2, 4 ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 2,
+          "tableName" : "worker_all_worker_s_manag",
+          "path" : "Report_Entry/All_Worker_s_Manager_s__group",
+          "columns" : [ {
+            "name" : "workday_id_1",
+            "path" : "workdayID1",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : false,
+          "ignored" : true,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 3,
+          "tableName" : "worker_organization_membe",
+          "path" : "Report_Entry/Organization_Membership_group",
+          "columns" : [ {
+            "name" : "workday_id_2",
+            "path" : "workdayID2",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "account_posting_rule_cond",
+            "path" : "Account_Posting_Rule_Condition_Dimension",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : false,
+          "ignored" : true,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "worker",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "65581a18-eacd-44d1-8080-b326d717bb57"
+        } ],
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ],
+        "bodyParameters" : [ ]
+      }, {
+        "id" : 4,
+        "name" : "all time off",
+        "endpoint" : "ccx/service/customreport2/{{tenant}}/jsandoval/MicroApp_All_Time_Offs_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "DETAIL",
+        "parentTable" : "worker",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 10,
+          "tableName" : "all_time_off_user",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "user_id",
+            "path" : "user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/All_Eligible_Time_Off_Plans_for_Worker_group", "Report_Entry/All_Eligible_Time_Offs_for_Worker_group" ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 11,
+          "tableName" : "all_time_off_plan",
+          "path" : "Report_Entry/All_Eligible_Time_Off_Plans_for_Worker_group",
+          "columns" : [ {
+            "name" : "default_daily_quantity",
+            "path" : "Default_Daily_Quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan_id",
+            "path" : "time_off_plan_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan_1",
+            "path" : "Time_Off_Plan1",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "user_id",
+            "parentTableReference" : "all_time_off_user",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "user_id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 12,
+          "tableName" : "all_time_off_type",
+          "path" : "Report_Entry/All_Eligible_Time_Offs_for_Worker_group",
+          "columns" : [ {
+            "name" : "time_off_type_id",
+            "path" : "time_off_type_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan",
+            "path" : "Time_Off_Plan",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "unit_of_time",
+            "path" : "Unit_of_Time",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_type",
+            "path" : "Time_Off_Type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "user_id",
+            "parentTableReference" : "all_time_off_user",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "user_id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "all time offs",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "b7b8c488-4c8a-4d48-9d3e-df325c858058"
+        }, {
+          "valueType" : "PARENT_DATA",
+          "name" : "Worker!WID",
+          "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "aa504434-47e1-4b7f-8a40-01b8a1d0db2e",
+          "columnName" : "workday_id"
+        } ],
+        "pathParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "tenant",
+          "defaultValue" : "citrix_gms2",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "0b086537-1422-420a-9a73-280c66f0aa21"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ],
+        "bodyParameters" : [ ]
+      }, {
+        "id" : 3,
+        "name" : "time off request",
+        "endpoint" : "ccx/service/customreport2/citrix_gms2/jsandoval/Event_Records_For_Time_Off_Requests_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 8,
+          "tableName" : "time_off_request",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "assigned_to_id",
+            "path" : "assignedToId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "business_process_type",
+            "path" : "businessProcessType",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "created_by_id",
+            "path" : "createdById",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "due",
+            "path" : "due",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DATE",
+            "source" : "RECORD"
+          }, {
+            "name" : "effective",
+            "path" : "effective",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "event_id",
+            "path" : "eventId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "for",
+            "path" : "for",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_work_email",
+            "path" : "primaryWorkEmail",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "process_id",
+            "path" : "processId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "status",
+            "path" : "status",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_event",
+            "path" : "timeOffEvent",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "total_days",
+            "path" : "totalDays",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "total_hours",
+            "path" : "totalHours",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/eventRecordsAwaitingActionGroup" ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 9,
+          "tableName" : "time_off_request_event_re",
+          "path" : "Report_Entry/eventRecordsAwaitingActionGroup",
+          "columns" : [ {
+            "name" : "created_moment",
+            "path" : "createdMoment",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "event_record",
+            "path" : "eventRecord",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "record_id",
+            "path" : "RecordId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "transaction",
+            "path" : "transaction",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "worker",
+            "path" : "worker",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_event_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "event_id",
+            "parentTableReference" : "time_off_request",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_event_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "event_id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ {
+          "valueType" : "LAST_SYNCHRONIZATION",
+          "name" : "Initiated_Date_On_or_After",
+          "parameterType" : "DATETIME",
+          "dateTimeFormat" : "ISO_LOCAL_DATE_TIME",
+          "timezone" : "America/Los_Angeles",
+          "required" : false,
+          "uniqueId" : "37efd599-9d2b-4908-a2f0-68f061dc1e4e"
+        } ],
+        "baseTableName" : "time off request",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "aad237cd-c805-42e9-a970-e81397f3ef65"
+        }, {
+          "name" : "Initiated_Date_On_or_After",
+          "defaultValue" : "2020-04-30T21:00:00.000-07:00",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "199abe1d-f556-4452-8858-e882b89b3124"
+        } ],
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        }, {
+          "id" : "IncrementalSynchronization",
+          "name" : "Incremental Synchronization",
+          "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
+          "preferredSchedule" : "HOURLY"
+        } ],
+        "headerParameters" : [ ],
+        "bodyParameters" : [ ]
+      }, {
+        "id" : 2,
+        "name" : "time off balance",
+        "endpoint" : "ccx/service/customreport2/{{tenant}}/jsandoval/TimeOff_Balance_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "DETAIL",
+        "parentTable" : "worker",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 6,
+          "tableName" : "time_off_balance",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "user_id",
+            "path" : "user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "Test2",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/All_Eligible_Time_Off_Plans_for_Worker_group" ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 7,
+          "tableName" : "time_off_balance_all_elig",
+          "path" : "Report_Entry/All_Eligible_Time_Off_Plans_for_Worker_group",
+          "columns" : [ {
+            "name" : "ending_amount",
+            "path" : "ending_amount",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan_descriptor",
+            "path" : "time_off_plan_descriptor",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan_id",
+            "path" : "time_off_plan_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "unit",
+            "path" : "unit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "user_id",
+            "parentTableReference" : "time_off_balance",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "user_id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "time off balance",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "b06850c1-09f1-4908-9ab6-f9121cf2a8d6"
+        }, {
+          "valueType" : "PARENT_DATA",
+          "name" : "Worker!WID",
+          "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "2e70d376-25b2-44c1-a977-9df7687e9a87",
+          "columnName" : "workday_id"
+        } ],
+        "pathParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "tenant",
+          "defaultValue" : "citrix_gms2",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "1979d6ca-1e47-4a1c-8ae4-826ea1f103c1"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ],
+        "bodyParameters" : [ ]
+      } ],
+      "webhookListeners" : [ ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
+      } ],
+      "serviceActions" : [ {
+        "id" : 2,
+        "name" : "Time Off Request Inbox Denial",
+        "endpoint" : "ccx/api/v1/{{tenant}}/inboxTasks/{{inboxTaskId}}",
+        "requestMethod" : "PUT",
+        "postMode" : "JSON",
+        "body" : "{}",
+        "actionParameters" : [ {
+          "name" : "inbox_task_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
+        }, {
+          "name" : "type",
+          "dataType" : "STRING",
+          "defaultValue" : "denial",
+          "required" : false,
+          "uniqueId" : "8254c075-38e9-4196-9d07-c94b16b42a83"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ ],
+        "queryParameters" : [ {
+          "name" : "type",
+          "required" : false,
+          "uniqueId" : "bed8d9cf-1dba-4129-8dd0-b2ce077f97ed",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "8254c075-38e9-4196-9d07-c94b16b42a83"
+        } ],
+        "pathParameters" : [ {
+          "name" : "tenant",
+          "defaultValue" : "citrix_gms2",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "3d01c40a-aeda-4fc4-a7c9-dd1f75bc138a",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        }, {
+          "name" : "inboxTaskId",
+          "required" : false,
+          "uniqueId" : "015c99a3-f68f-427c-b00c-9affc19395bb",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
+        } ],
+        "headerParameters" : [ {
+          "name" : "User-Agent",
+          "defaultValue" : "Citrix Workspace Microapps Workday Connector",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "05905d24-e505-48bc-94f8-ba2ea8c73265",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        }, {
+          "name" : "Content-Type",
+          "defaultValue" : "application/json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "2b1ad9fa-8a1a-4953-93b0-b3faf780d8c8",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        } ],
+        "bodyParameters" : [ ]
+      }, {
+        "id" : 1,
+        "name" : "Time Off Request Inbox Approval",
+        "endpoint" : "ccx/api/v1/{{tenant}}/inboxTasks/{{inboxTaskId}}",
+        "requestMethod" : "PUT",
+        "postMode" : "JSON",
+        "body" : "{}",
+        "actionParameters" : [ {
+          "name" : "inbox_task_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
+        }, {
+          "name" : "type",
+          "dataType" : "STRING",
+          "defaultValue" : "approval",
+          "required" : false,
+          "uniqueId" : "c04159bd-3b58-44ec-9df8-ae2520fe2c38"
+        }, {
+          "name" : "created_by_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "9cbe8550-610b-411f-82df-b9f36fcf214b"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ {
+          "uniqueId" : "4f6a88ce-4004-4763-a166-47a433a0bf2c",
+          "dataEndpointId" : 2,
+          "endpointSuffix" : "",
+          "callChainEnabled" : false,
+          "queryParameters" : [ {
+            "name" : "Worker!WID",
+            "required" : false,
+            "uniqueId" : "d72a51f7-6a48-410c-b36c-77a74ddbfbe6",
+            "editMode" : "READ_ONLY_NAME",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "9cbe8550-610b-411f-82df-b9f36fcf214b",
+            "endpointParameterUniqueId" : "2e70d376-25b2-44c1-a977-9df7687e9a87"
+          } ],
+          "pathParameters" : [ ],
+          "headerParameters" : [ ],
+          "bodyParameters" : [ ]
+        } ],
+        "queryParameters" : [ {
+          "name" : "type",
+          "required" : false,
+          "uniqueId" : "313bcec4-2314-45f6-9019-158c974ab4be",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "c04159bd-3b58-44ec-9df8-ae2520fe2c38"
+        } ],
+        "pathParameters" : [ {
+          "name" : "tenant",
+          "defaultValue" : "citrix_gms2",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "2ac0627e-fc02-4b98-9d42-78d0fec53940",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        }, {
+          "name" : "inboxTaskId",
+          "required" : false,
+          "uniqueId" : "cbb82195-6672-4422-b67d-8a040413aeb2",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
+        } ],
+        "headerParameters" : [ {
+          "name" : "User-Agent",
+          "defaultValue" : "Citrix Workspace Microapps Workday Connector",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "7130b1b8-dcc9-4980-ac5f-584e04f21654",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        }, {
+          "name" : "Content-Type",
+          "defaultValue" : "application/json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "abcaf04f-693f-4e33-afb5-2f1e28ee8e63",
+          "editMode" : "FULL",
+          "valueMapping" : "DEFAULT_VALUE"
+        } ],
+        "bodyParameters" : [ ]
+      } ],
+      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/HTTP.b662c61cecf295906ef0af18be93b25a.svg"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 410,
+      "title" : "worker",
+      "displayName" : "Worker",
+      "entityName" : "worker",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 2974,
+        "title" : "full_name",
+        "displayName" : "Full Name",
+        "attributeName" : "full_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Full Name",
+        "primaryKey" : false
+      }, {
+        "id" : 2975,
+        "title" : "user_name",
+        "displayName" : "User Name",
+        "attributeName" : "user_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Name",
+        "primaryKey" : false
+      }, {
+        "id" : 2976,
+        "title" : "workday_id",
+        "displayName" : "Workday Id",
+        "attributeName" : "workday_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Workday Id",
+        "primaryKey" : true
+      }, {
+        "id" : 2977,
+        "title" : "employee_id",
+        "displayName" : "Employee Id",
+        "attributeName" : "employee_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Employee Id",
+        "primaryKey" : false
+      }, {
+        "id" : 2978,
+        "title" : "primary_work_email",
+        "displayName" : "Primary Work Email",
+        "attributeName" : "primary_work_email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Primary Work Email",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 415,
+      "title" : "time_off_balance",
+      "displayName" : "Time off Balance",
+      "entityName" : "time_off_balance",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 2995,
+        "title" : "user_id",
+        "displayName" : "User Id",
+        "attributeName" : "user_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3061,
+        "title" : "test2",
+        "displayName" : "Test 2",
+        "attributeName" : "Test2",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Test 2",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 416,
+      "title" : "time_off_balance_all_elig",
+      "displayName" : "Time off Balance All Elig",
+      "entityName" : "time_off_balance_all_elig",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 2996,
+        "title" : "unit",
+        "displayName" : "Unit",
+        "attributeName" : "unit",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unit",
+        "primaryKey" : false
+      }, {
+        "id" : 2997,
+        "title" : "time_off_plan_descriptor",
+        "displayName" : "Time off Plan Descriptor",
+        "attributeName" : "time_off_plan_descriptor",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Plan Descriptor",
+        "primaryKey" : false
+      }, {
+        "id" : 2998,
+        "title" : "ending_amount",
+        "displayName" : "Ending Amount",
+        "attributeName" : "ending_amount",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Ending Amount",
+        "primaryKey" : false
+      }, {
+        "id" : 2999,
+        "title" : "time_off_plan_id",
+        "displayName" : "Time off Plan Id",
+        "attributeName" : "time_off_plan_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Plan Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3000,
+        "title" : "parent_user_id",
+        "displayName" : "Parent User Id",
+        "attributeName" : "parent_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent User Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3001,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3002,
+        "title" : "root_user_id",
+        "displayName" : "Root User Id",
+        "attributeName" : "root_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root User Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 417,
+      "title" : "time_off_request",
+      "displayName" : "Time off Request",
+      "entityName" : "time_off_request",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 3003,
+        "title" : "assigned_to_id",
+        "displayName" : "Assigned to Id",
+        "attributeName" : "assigned_to_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Assigned to Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3004,
+        "title" : "event_id",
+        "displayName" : "Event Id",
+        "attributeName" : "event_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Event Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3005,
+        "title" : "time_off_event",
+        "displayName" : "Time off Event",
+        "attributeName" : "time_off_event",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Event",
+        "primaryKey" : false
+      }, {
+        "id" : 3006,
+        "title" : "total_hours",
+        "displayName" : "Total Hours",
+        "attributeName" : "total_hours",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Total Hours",
+        "primaryKey" : false
+      }, {
+        "id" : 3007,
+        "title" : "for",
+        "displayName" : "For",
+        "attributeName" : "for",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "For",
+        "primaryKey" : false
+      }, {
+        "id" : 3008,
+        "title" : "primary_work_email",
+        "displayName" : "Primary Work Email",
+        "attributeName" : "primary_work_email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Primary Work Email",
+        "primaryKey" : false
+      }, {
+        "id" : 3009,
+        "title" : "effective",
+        "displayName" : "Effective",
+        "attributeName" : "effective",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Effective",
+        "primaryKey" : false
+      }, {
+        "id" : 3010,
+        "title" : "total_days",
+        "displayName" : "Total Days",
+        "attributeName" : "total_days",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Total Days",
+        "primaryKey" : false
+      }, {
+        "id" : 3011,
+        "title" : "due",
+        "displayName" : "Due",
+        "attributeName" : "due",
+        "type" : "DATE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Due",
+        "primaryKey" : false
+      }, {
+        "id" : 3012,
+        "title" : "process_id",
+        "displayName" : "Process Id",
+        "attributeName" : "process_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Process Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3013,
+        "title" : "business_process_type",
+        "displayName" : "Business Process Type",
+        "attributeName" : "business_process_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Business Process Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3014,
+        "title" : "created_by_id",
+        "displayName" : "Created by Id",
+        "attributeName" : "created_by_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created by Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3015,
+        "title" : "status",
+        "displayName" : "Status",
+        "attributeName" : "status",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Status",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 418,
+      "title" : "time_off_request_event_re",
+      "displayName" : "Time off Request Event Re",
+      "entityName" : "time_off_request_event_re",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 3016,
+        "title" : "event_record",
+        "displayName" : "Event Record",
+        "attributeName" : "event_record",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Event Record",
+        "primaryKey" : false
+      }, {
+        "id" : 3017,
+        "title" : "created_moment",
+        "displayName" : "Created Moment",
+        "attributeName" : "created_moment",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created Moment",
+        "primaryKey" : false
+      }, {
+        "id" : 3018,
+        "title" : "record_id",
+        "displayName" : "Record Id",
+        "attributeName" : "record_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Record Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3019,
+        "title" : "worker",
+        "displayName" : "Worker",
+        "attributeName" : "worker",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Worker",
+        "primaryKey" : false
+      }, {
+        "id" : 3020,
+        "title" : "transaction",
+        "displayName" : "Transaction",
+        "attributeName" : "transaction",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Transaction",
+        "primaryKey" : false
+      }, {
+        "id" : 3021,
+        "title" : "parent_event_id",
+        "displayName" : "Parent Event Id",
+        "attributeName" : "parent_event_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Event Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3022,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3023,
+        "title" : "root_event_id",
+        "displayName" : "Root Event Id",
+        "attributeName" : "root_event_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Event Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 419,
+      "title" : "all_time_off_type",
+      "displayName" : "All Time off Type",
+      "entityName" : "all_time_off_type",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 3024,
+        "title" : "time_off_type_id",
+        "displayName" : "Time off Type Id",
+        "attributeName" : "time_off_type_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Type Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3025,
+        "title" : "time_off_plan",
+        "displayName" : "Time off Plan",
+        "attributeName" : "time_off_plan",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Plan",
+        "primaryKey" : false
+      }, {
+        "id" : 3026,
+        "title" : "unit_of_time",
+        "displayName" : "Unit of Time",
+        "attributeName" : "unit_of_time",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unit of Time",
+        "primaryKey" : false
+      }, {
+        "id" : 3027,
+        "title" : "time_off_type",
+        "displayName" : "Time off Type",
+        "attributeName" : "time_off_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Type",
+        "primaryKey" : false
+      }, {
+        "id" : 3028,
+        "title" : "parent_user_id",
+        "displayName" : "Parent User Id",
+        "attributeName" : "parent_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent User Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3029,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3030,
+        "title" : "root_user_id",
+        "displayName" : "Root User Id",
+        "attributeName" : "root_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root User Id",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 420,
+      "title" : "all_time_off_user",
+      "displayName" : "All Time off User",
+      "entityName" : "all_time_off_user",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 3031,
+        "title" : "user_id",
+        "displayName" : "User Id",
+        "attributeName" : "user_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Id",
+        "primaryKey" : true
+      } ]
+    }, {
+      "id" : 421,
+      "title" : "all_time_off_plan",
+      "displayName" : "All Time off Plan",
+      "entityName" : "all_time_off_plan",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 3032,
+        "title" : "default_daily_quantity",
+        "displayName" : "Default Daily Quantity",
+        "attributeName" : "default_daily_quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Default Daily Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 3033,
+        "title" : "time_off_plan_id",
+        "displayName" : "Time off Plan Id",
+        "attributeName" : "time_off_plan_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Plan Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3034,
+        "title" : "time_off_plan_1",
+        "displayName" : "Time off Plan 1",
+        "attributeName" : "time_off_plan_1",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Time off Plan 1",
+        "primaryKey" : false
+      }, {
+        "id" : 3035,
+        "title" : "parent_user_id",
+        "displayName" : "Parent User Id",
+        "attributeName" : "parent_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent User Id",
+        "primaryKey" : false
+      }, {
+        "id" : 3036,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 3037,
+        "title" : "root_user_id",
+        "displayName" : "Root User Id",
+        "attributeName" : "root_user_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root User Id",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ {
+      "id" : 428,
+      "pkTable" : {
+        "id" : 410,
+        "title" : "worker",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 417,
+        "title" : "time_off_request",
+        "type" : "TABLE"
+      },
+      "alias" : "time_off_assigned_to",
+      "userDefined" : true,
+      "fkColumnPairs" : [ {
+        "fkId" : 428,
+        "pkColumn" : {
+          "id" : 2976,
+          "title" : "workday_id",
+          "displayName" : "Workday Id",
+          "attributeName" : "workday_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Workday Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3003,
+          "title" : "assigned_to_id",
+          "displayName" : "Assigned to Id",
+          "attributeName" : "assigned_to_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Assigned to Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 429,
+      "pkTable" : {
+        "id" : 410,
+        "title" : "worker",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 417,
+        "title" : "time_off_request",
+        "type" : "TABLE"
+      },
+      "alias" : "time_off_created_by",
+      "userDefined" : true,
+      "fkColumnPairs" : [ {
+        "fkId" : 429,
+        "pkColumn" : {
+          "id" : 2976,
+          "title" : "workday_id",
+          "displayName" : "Workday Id",
+          "attributeName" : "workday_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Workday Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3014,
+          "title" : "created_by_id",
+          "displayName" : "Created by Id",
+          "attributeName" : "created_by_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Created by Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 424,
+      "pkTable" : {
+        "id" : 415,
+        "title" : "time_off_balance",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 416,
+        "title" : "time_off_balance_all_elig",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 424,
+        "pkColumn" : {
+          "id" : 2995,
+          "title" : "user_id",
+          "displayName" : "User Id",
+          "attributeName" : "user_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "User Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3000,
+          "title" : "parent_user_id",
+          "displayName" : "Parent User Id",
+          "attributeName" : "parent_user_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent User Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 425,
+      "pkTable" : {
+        "id" : 417,
+        "title" : "time_off_request",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 418,
+        "title" : "time_off_request_event_re",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 425,
+        "pkColumn" : {
+          "id" : 3004,
+          "title" : "event_id",
+          "displayName" : "Event Id",
+          "attributeName" : "event_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Event Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3021,
+          "title" : "parent_event_id",
+          "displayName" : "Parent Event Id",
+          "attributeName" : "parent_event_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Event Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 426,
+      "pkTable" : {
+        "id" : 420,
+        "title" : "all_time_off_user",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 419,
+        "title" : "all_time_off_type",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 426,
+        "pkColumn" : {
+          "id" : 3031,
+          "title" : "user_id",
+          "displayName" : "User Id",
+          "attributeName" : "user_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "User Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3028,
+          "title" : "parent_user_id",
+          "displayName" : "Parent User Id",
+          "attributeName" : "parent_user_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent User Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 427,
+      "pkTable" : {
+        "id" : 420,
+        "title" : "all_time_off_user",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 421,
+        "title" : "all_time_off_plan",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 427,
+        "pkColumn" : {
+          "id" : 3031,
+          "title" : "user_id",
+          "displayName" : "User Id",
+          "attributeName" : "user_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "User Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 3035,
+          "title" : "parent_user_id",
+          "displayName" : "Parent User Id",
+          "attributeName" : "parent_user_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent User Id",
+          "primaryKey" : false
+        }
+      } ]
+    } ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ {
+    "id" : "20d29909-7153-4aa2-a692-60159f550efa",
+    "legacyId" : 87,
+    "appId" : "0f88e998-6409-44f6-991f-4526d3f91da2",
+    "version" : 2,
+    "eventType" : "NEW",
+    "serviceId" : 29,
+    "tableId" : 417,
+    "label" : "ed7d115b-101d-4515-a088-80eab166343c",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "runTimezone" : "UTC"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 410,
+      "columnId" : 2978,
+      "foreignKeyId" : 428,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "df901419-8d9c-4891-8a58-0e80208be53f",
+      "body" : "20681498-3d79-4ff9-8db4-c9f69b182117",
+      "url" : "",
+      "gotoAppPageId" : "2452303c-0bf9-4667-8ada-9fa7f15f6823",
+      "configuration" : {
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ "13e10f21-707e-4e3f-b44a-347f1612aa1e", "95954718-2946-4ee3-b348-4b8f7205053d" ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  } ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "0f88e998-6409-44f6-991f-4526d3f91da2" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "1EF2D83347E55ADCCB394CB3E9C1B218",
+  "appliedSappUpgrades" : [ "microapp-7561", "microapp-7961", "microapp-6593", "microapp-6264", "microapp-6790", "microapp-6262", "microapp-1980", "microapp-8003", "microapp-8576", "microapp-8511", "microapp-7984", "microapp-4020", "microapp-5227", "microapp-3580", "microapp-7888", "microapp-6293", "microapp-6853", "microapp-3547", "microapp-4518", "microapp-8892", "microapp-7290", "microapp-6617", "microapp-2450", "microapp-3548", "microapp-8950", "microapp-8921", "microapp-4666", "microapp-5025", "microapp-3838" ],
+  "buildVersion" : "1.16.0-SNAPSHOT.6fd2be4c66044555f9b682c2e643460c5578ae3d"
+}
