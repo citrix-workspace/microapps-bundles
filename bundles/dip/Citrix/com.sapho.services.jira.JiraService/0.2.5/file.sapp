@@ -2786,6 +2786,7 @@
               "columns" : [ {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
+				"label" : "9a5df93e-4150-4fd8-a9eb-c1cf12b25bb4",
                 "id" : "7qe5xj",
                 "tableid" : 883,
                 "columnid" : 17556,
@@ -2798,6 +2799,7 @@
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
+				"label" : "1aa9e071-0d58-4f2b-82b4-009bba1a6d14",
                 "id" : "l342fd",
                 "tableid" : 883,
                 "columnid" : 17559,
@@ -3231,26 +3233,41 @@
               "constraints" : {
                 "type" : "EXPRESSION",
                 "left" : {
-                  "type" : "TERM",
-                  "constraint" : {
-                    "tableId" : 885,
-                    "columnId" : 17596,
-                    "valueType" : "VAL_FALSE",
-                    "ignoredWhenValueIsNull" : false,
-                    "action" : "EQUALS_TO"
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 885,
+                      "columnId" : 17596,
+                      "valueType" : "VAL_FALSE",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
+                    }
+                  },
+                  "operator" : "AND",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 891,
+                      "columnId" : 17628,
+                      "foreignKeyId" : 723,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "42b45c6b-59d5-43c9-815b-9b70ff5b29c4",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
+                    }
                   }
                 },
                 "operator" : "AND",
                 "right" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 891,
-                    "columnId" : 17628,
-                    "foreignKeyId" : 723,
-                    "valueType" : "COMPONENT",
-                    "variableComponent" : "42b45c6b-59d5-43c9-815b-9b70ff5b29c4",
+                    "tableId" : 885,
+                    "columnId" : 17595,
+                    "valueType" : "VALUE",
+                    "value" : "Epic",
                     "ignoredWhenValueIsNull" : false,
-                    "action" : "EQUALS_TO"
+                    "action" : "NOT_EQUAL_TO"
                   }
                 }
               },
