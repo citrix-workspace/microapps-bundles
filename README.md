@@ -39,7 +39,7 @@ For the GitHub action job to be able to upload integration bundles to a specific
 the repository configuration should contain proper connection string. To configure it, go to the "Secrets" 
 section of the repository settings, and add a new secret with name CONNECTION_STRING and value which is equal 
 to the connection string of the target Storage account. It can be found in the Azure Storage account settings, 
-under "Access keys
+under "Access keys".
 
 ### Links to GitHub repositories
 
