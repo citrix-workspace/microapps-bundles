@@ -6,10 +6,6 @@ Citrix Workspace Microapps
 - Source repository: https://github.com/citrix-workspace/microapps-bundles
 - Generated destination for Azure storage: https://microappsbundles.blob.core.windows.net/
 
-![](https://github.com/michaltc/workspace-microapps/workflows/Prepare%20bundles/badge.svg)
-![](https://github.com/michaltc/workspace-microapps/workflows/Delete%20obsolete%20branches/badge.svg)
-
-
 High level design
 -----------------
 
@@ -38,6 +34,12 @@ preferably after rebase.
 
 Configuration, deployment
 -------------------------
+
+For the GitHub action job to be able to upload integration bundles to a specific Azure Storage account, 
+the repository configuration should contain proper connection string. To configure it, go to the "Secrets" 
+section of the repository settings, and add a new secret with name CONNECTION_STRING and value which is equal 
+to the connection string of the target Storage account. It can be found in the Azure Storage account settings, 
+under "Access keys
 
 ### Links to GitHub repositories
 
