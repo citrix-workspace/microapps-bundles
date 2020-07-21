@@ -1,10 +1,10 @@
 Citrix Workspace Microapps
 ==========================
 
-* Test Bundle Repository of [Microapp][microapps] bundles for [Citrix Workspace][workspace].*
+* Production Bundle Repository of [Microapp][microapps] bundles for [Citrix Workspace][workspace].*
 
-- Source repository: https://github.com/michaltc/workspace-microapps/
-- Generated destination repository: https://github.com/michaltc/workspace-microapps-bundles/
+- Source repository: https://github.com/citrix-workspace/microapps-bundles
+- Generated destination for Azure storage: https://microappsbundles.blob.core.windows.net/
 
 ![](https://github.com/michaltc/workspace-microapps/workflows/Prepare%20bundles/badge.svg)
 ![](https://github.com/michaltc/workspace-microapps/workflows/Delete%20obsolete%20branches/badge.svg)
@@ -42,22 +42,6 @@ Configuration, deployment
 ### Links to GitHub repositories
 
 Edit config/env variables at the top of `.github/workflows/*.yml` GitHub actions.
-
-
-### Pushing to the destination repository from GitHub actions
-
-Generate a new pair of SSH keys.
-
-    ssh-keygen
-
-https://github.com/michaltc/workspace-microapps/settings/secrets/
-
-- Add **private key** to the **source repository** that executes GitHub action, name it `DEST_REPO_SSH_KEY`.
-
-https://github.com/michaltc/workspace-microapps-bundles/settings/keys/
-
-- Add **public key** to the **destination repository** and enable `Allow write access` option.
-
 
 ### Protect `master` branch
 
