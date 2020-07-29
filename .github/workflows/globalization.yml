@@ -1,0 +1,19 @@
+name: Globalization
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+      - name: G11n Radar
+        uses: citrix-workspace/g11n-scan@master
+        with:
+          repoToken: ${{secrets.GITHUB_TOKEN}}
+          skip: 'bundles/coming_soon/'
