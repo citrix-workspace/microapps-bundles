@@ -11878,13 +11878,26 @@
     "id" : "5ae1797c-26fb-4232-b45c-8b804f9a6c6c",
     "legacyId" : 112,
     "appId" : "b37d73b4-0384-47ed-8489-c7de964910e2",
-    "version" : 0,
+    "version" : 1,
     "eventType" : "NEW",
     "serviceId" : 37,
     "tableId" : 535,
     "linkedServiceId" : 37,
     "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
       "reminderPeriod" : 0
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 535,
+        "columnId" : 4144,
+        "columnType" : "STRING",
+        "action" : "CHANGES",
+        "comparator" : "EQUALS_TO",
+        "valueType" : "VALUE"
+      }
     },
     "expirationDelete" : false,
     "label" : "8eafe09f-27fd-4ceb-8bc2-4435d30f812e",
@@ -11905,7 +11918,6 @@
       "body" : "68c17d3a-af20-4443-82b9-06e567d39750",
       "url" : "",
       "gotoAppPageId" : "ce20a14b-eb55-48dd-830d-20c6df785973",
-      "imageUrl" : "",
       "configuration" : {
         "color" : "",
         "highPriority" : false,
