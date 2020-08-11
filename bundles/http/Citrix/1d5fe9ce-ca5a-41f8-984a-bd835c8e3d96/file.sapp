@@ -1,16 +1,1155 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-      "serviceId" : 36,
-      "version" : 259,
+      "id" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+      "serviceId" : 42,
+      "version" : 258,
+      "parameters" : {
+        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/approval.e3915915749269cd3811020bc04d9751.svg",
+        "description" : "876a79cf-e569-4f09-a2a4-149fcd183ee0"
+      },
+      "title" : "6e4fd7c9-6a73-4209-91c1-877e6e89afad",
+      "startPageId" : "cf2742a4-578c-474b-af83-df663f3bfe55",
       "pages" : [ {
-        "id" : "bd758c73-967b-4dec-9268-3841bbffe434",
-        "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+        "id" : "cf2742a4-578c-474b-af83-df663f3bfe55",
+        "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "372c8c84-54cc-48da-9d0a-02bbaaa4bdda",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 609,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "4d15a1cb-20c2-4caf-86f9-bf1fa63f619d",
+              "tableid" : 609,
+              "sqlquery" : {
+                "id" : "664e51f7-92aa-4628-8840-370270d93d7d",
+                "constraints" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 609,
+                      "columnId" : 4753,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "89f5bdd7-34fe-46d2-93be-8ef39b77eaa3",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  },
+                  "operator" : "OR",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 609,
+                      "columnId" : 4751,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "89f5bdd7-34fe-46d2-93be-8ef39b77eaa3",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  }
+                },
+                "autojoins" : false
+              },
+              "personalize" : {
+                "id" : "42009ed3-da2e-4077-96c2-14c7bb28a720",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 599,
+                    "columnId" : 4677,
+                    "foreignKeyId" : 618,
+                    "valueType" : "USER_EMAIL",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "1",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "4d52999d-7ded-4d00-8194-5c69c54ff450",
+                "id" : "evzjyx",
+                "tableid" : 609,
+                "columnid" : 4753,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : null
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "6ca7681b-526c-4295-af7e-9cf82fc5f3bc",
+                "id" : "h0jq29",
+                "tableid" : 609,
+                "columnid" : 4751,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : null
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "2c87657b-490d-4737-b68a-186e338943ce",
+                "id" : "h92xmv",
+                "tableid" : 609,
+                "columnid" : 4750,
+                "urlTemplate" : null,
+                "format" : "datetime",
+                "tableColumn" : {
+                  "columnType" : "TIMESTAMP"
+                },
+                "conditional_format" : null
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+              "hideIfEmpty" : false,
+              "sortable" : 1,
+              "alignment" : "left"
+            }
+          },
+          "id" : "a4711aa9-b18b-4ff6-a4f7-0c109582fe76",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "rowAction" : { },
+          "cssclass" : "",
+          "defaultLimit" : 20,
+          "icon" : "",
+          "tableid" : 609,
+          "sortable" : false,
+          "pageId" : "cf2742a4-578c-474b-af83-df663f3bfe55"
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "b26b9fb0-55ba-442c-a3fb-dd852ab7d7e4",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "disabled" : 0
+          },
+          "id" : "89f5bdd7-34fe-46d2-93be-8ef39b77eaa3",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : "",
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "cf2742a4-578c-474b-af83-df663f3bfe55"
+        } ],
+        "query" : {
+          "id" : "fa4ac77b-013f-4a95-9ea7-ba728fa7a930",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 599,
+              "columnId" : 4677,
+              "foreignKeyId" : 618,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "c81b9950-6c60-4bdc-bd01-94773e0a47a5",
+        "parameters" : { },
+        "tableid" : 609,
+        "datasourceid" : 42,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      }, {
+        "id" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+        "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "BACK_BUTTON",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "a197ffd3-fcdd-4e2b-8145-7fe82fbce4fa",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 2,
+            "visible" : 1,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ]
+          },
+          "id" : "541f00e7-eabf-4b86-be45-c01e0d551c0e",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "components" : [ {
+            "id" : "0e0ed838-8c00-4b64-955e-cba1b7bed959",
+            "typeId" : "GRID_ITEM",
+            "components" : [ {
+              "id" : "ce735ee8-ae68-41b2-9d71-682140959e57",
+              "typeId" : "TEXT",
+              "format" : "none",
+              "label" : "Description",
+              "actions" : [ ],
+              "tableColumn" : {
+                "tableId" : 609,
+                "columnId" : 4753,
+                "foreignKeyId" : null,
+                "columnType" : "STRING"
+              },
+              "hideIfEmpty" : false,
+              "visible" : true,
+              "conditionalFormat" : {
+                "bgColor" : null,
+                "condition" : "none",
+                "option" : null,
+                "optionValue" : null,
+                "textColor" : null,
+                "formatStyle" : null
+              },
+              "sourceType" : "SIMPLE",
+              "template" : ""
+            } ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "885fbfdc-b84d-4278-a09f-96939148844f",
+            "typeId" : "GRID_ITEM",
+            "components" : [ {
+              "id" : "d7077858-4f85-4da8-95de-af056c7166ae",
+              "typeId" : "TEXT",
+              "format" : "datetime",
+              "label" : "Created",
+              "actions" : [ ],
+              "tableColumn" : {
+                "tableId" : 609,
+                "columnId" : 4750,
+                "foreignKeyId" : null,
+                "columnType" : "TIMESTAMP"
+              },
+              "hideIfEmpty" : false,
+              "visible" : true,
+              "conditionalFormat" : {
+                "bgColor" : null,
+                "condition" : "none",
+                "option" : null,
+                "optionValue" : null,
+                "textColor" : null,
+                "formatStyle" : null
+              },
+              "sourceType" : "SIMPLE",
+              "template" : ""
+            } ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "1f5ed86a-106e-4542-b387-fc8c281c9815",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "1a212b84-2897-41c1-abbf-b13a2bd601e7",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          } ],
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "541f00e7-eabf-4b86-be45-c01e0d551c0e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "0e0ed838-8c00-4b64-955e-cba1b7bed959",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "541f00e7-eabf-4b86-be45-c01e0d551c0e",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "885fbfdc-b84d-4278-a09f-96939148844f",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : 4753,
+          "required" : false,
+          "textType" : 0,
+          "label" : "b23c1aed-cdab-49db-85cc-41f01079961e",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "0e0ed838-8c00-4b64-955e-cba1b7bed959",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "ce735ee8-ae68-41b2-9d71-682140959e57",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 609,
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : 4750,
+          "required" : false,
+          "textType" : 0,
+          "label" : "eea77149-d526-4c4f-8941-2b6c74fb9b37",
+          "format" : "datetime",
+          "foreignKeyId" : null,
+          "parentComponentId" : "885fbfdc-b84d-4278-a09f-96939148844f",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "d7077858-4f85-4da8-95de-af056c7166ae",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "columnType" : null,
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 609,
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "STATIC_TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 1,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "content" : "2dffd5bd-df39-44f3-86cd-3ddac8df0141",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "font_size" : "1",
+            "alignment" : "left",
+            "fontStyle" : [ ]
+          },
+          "id" : "c8223ed6-8a36-423f-ba0b-d1a2d5a596d7",
+          "defaultvalue" : "",
+          "displayorder" : 3,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 10,
+            "visible" : 1,
+            "columnCount" : 2,
+            "columnWidths" : [ 1, 1 ]
+          },
+          "id" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "defaultvalue" : "",
+          "displayorder" : 4,
+          "filter" : "",
+          "val" : "",
+          "components" : [ {
+            "id" : "b7905f9e-cc88-4fa3-8637-3d9d717f5eda",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "1b5d5d18-efbd-44eb-af9e-b118b4ee60b6",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "81e4f4e2-db35-42d2-b97f-fb63f1f9d4c6",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          }, {
+            "id" : "95a92c67-341e-45ef-ae0b-e8b3e63e5859",
+            "typeId" : "GRID_ITEM",
+            "components" : [ ],
+            "vAlign" : "TOP",
+            "hAlign" : "STRETCH"
+          } ],
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "b7905f9e-cc88-4fa3-8637-3d9d717f5eda",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "1b5d5d18-efbd-44eb-af9e-b118b4ee60b6",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "81e4f4e2-db35-42d2-b97f-fb63f1f9d4c6",
+          "defaultvalue" : "",
+          "displayorder" : 3,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "95a92c67-341e-45ef-ae0b-e8b3e63e5859",
+          "defaultvalue" : "",
+          "displayorder" : 4,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "a08229a3-5536-4059-b44f-7ec6f3f6e1ac",
+          "defaultvalue" : "",
+          "displayorder" : 5,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "49793e38-49a5-4597-bb40-e27baf8c75ce",
+          "defaultvalue" : "",
+          "displayorder" : 6,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "9d2f494c-696f-4448-ad14-251fe0754edc",
+          "defaultvalue" : "",
+          "displayorder" : 7,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "c89c8bd3-7815-4a2c-81c3-9c151c1f2391",
+          "defaultvalue" : "",
+          "displayorder" : 8,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "8939d58c-75af-4fca-9e62-a8b3548747f7",
+          "defaultvalue" : "",
+          "displayorder" : 9,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "dd4c8338-bb6b-464d-b6d0-337129c6585c",
+          "parameters" : { },
+          "id" : "734d945d-e45b-4d48-bb8a-baa9326fb734",
+          "defaultvalue" : "",
+          "displayorder" : 10,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "0c9b59e9-dec8-4bb2-a6fa-966ec15db05e",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "b7905f9e-cc88-4fa3-8637-3d9d717f5eda",
+          "parameters" : {
+            "template" : "72faf34a-5cb6-44b9-a0bc-42f3d1e257ce",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "5b8a2938-1460-4bff-b988-c976bac827ca",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "110fed81-830c-41a0-9ecb-d96b6b31cb36",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "1b5d5d18-efbd-44eb-af9e-b118b4ee60b6",
+          "parameters" : {
+            "template" : "8738bd73-5883-4fb1-bdf3-2c7d2860a9a8",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "42e5a9a1-de56-496b-8fa0-f2dd915a5a7e",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "ee749717-7aa4-48a0-8354-d8522eaabc76",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "81e4f4e2-db35-42d2-b97f-fb63f1f9d4c6",
+          "parameters" : {
+            "template" : "60946caa-28ae-4b01-8bad-e915438ecb87",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "1ad2b80a-8820-4b03-8a31-76907dbcfc55",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "e8f20bf1-ee05-4a9d-b0d8-45812604c2c5",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "95a92c67-341e-45ef-ae0b-e8b3e63e5859",
+          "parameters" : {
+            "template" : "688d47cd-de95-41e0-935e-28bc709a436c",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "889bd17f-e9f0-4ebf-b3e7-f109ca8abcf9",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "03b11024-955d-40da-b186-220d9b6cb0c1",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "a08229a3-5536-4059-b44f-7ec6f3f6e1ac",
+          "parameters" : {
+            "template" : "a44da759-54df-47cd-982e-43eb82bc8e03",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "9b75431a-f1ba-408c-aae4-142a5dd5a07c",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "be3f34fb-ff82-4043-88f3-821b153670e9",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "49793e38-49a5-4597-bb40-e27baf8c75ce",
+          "parameters" : {
+            "template" : "f2e050fe-1604-4dd5-b35d-21e02dd3b957",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "918f1309-ef65-4313-9408-1242db592204",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "TEXT",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "e512fd00-3abd-4ec0-a726-fbae7b43f5a7",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9d2f494c-696f-4448-ad14-251fe0754edc",
+          "parameters" : {
+            "template" : "03fc372a-a59b-4145-9e2d-ec4d86c46a1f",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "7c8ec500-2d16-414f-99aa-3ec85a444102",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "54e456c9-2832-416f-8c51-c9377ffcc16d",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "8939d58c-75af-4fca-9e62-a8b3548747f7",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_4kyhlb",
+                "urlTemplate" : "https://your_domain/your_tenant/d/unifiedinbox/initialinbox/2998$17139.htmld",
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "valueCalendarEvent" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "fetchLimit" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "valueMail" : null,
+                "children" : null,
+                "appId" : null,
+                "tableId" : null,
+                "linkType" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "b290cd02-6192-434d-9f61-eb90e41a3116",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "5d46cf74-3b9b-4f90-b890-ad7155262c74",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "734d945d-e45b-4d48-bb8a-baa9326fb734",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_g6ir41",
+                "urlTemplate" : "https://your_domain/your_tenant/d/unifiedinbox/initialinbox/2998$17139.htmld",
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "valueCalendarEvent" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "fetchLimit" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "valueMail" : null,
+                "children" : null,
+                "appId" : null,
+                "tableId" : null,
+                "linkType" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "SECONDARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "5099a2bb-580a-4bb5-94da-fab2331b5045",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+          "actions" : [ ]
+        } ],
+        "query" : {
+          "id" : "31fcae95-3409-472a-925b-8e279ff4db57",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 599,
+              "columnId" : 4677,
+              "foreignKeyId" : 618,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "22f5ab4c-b6db-4e20-a471-a078d730a60f",
+        "parameters" : { },
+        "tableid" : 609,
+        "datasourceid" : 42,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      } ],
+      "trackingUuid" : "4ee52630-bbd7-47b6-9045-94c32b0a3917",
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  }, {
+    "appVersion" : {
+      "id" : "52c310ef-c34a-4177-879b-e58243008179",
+      "serviceId" : 42,
+      "version" : 262,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/approval_delete.2c1b56597b7318f2bb6de2325c5fe8b0.svg",
+        "description" : "795b9989-bc9c-41ce-9e1f-27404d0e233e"
+      },
+      "title" : "edf1c022-629c-4081-a5fd-aaefaef83414",
+      "startPageId" : "2d0f2828-b295-4556-b2a6-1e901ff5eb6a",
+      "pages" : [ {
+        "id" : "2d0f2828-b295-4556-b2a6-1e901ff5eb6a",
+        "appId" : "52c310ef-c34a-4177-879b-e58243008179",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TEXT_INPUT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -22,17 +1161,15 @@
             "field_width" : "large",
             "visible" : 1,
             "mapToDataColumn" : true,
-            "query" : null,
-            "prefill" : null,
-            "disabled" : 0,
-            "order" : null
+            "disabled" : 0
           },
-          "id" : "43b1cbdf-bda0-4e3c-a8cf-c6365c68dc1a",
+          "id" : "0ab1056e-18b5-4651-8a89-97f3820be869",
           "defaultvalue" : "",
-          "displayorder" : 1
+          "displayorder" : 1,
+          "prefillValue" : ""
         }, {
           "type" : "TABLE",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -40,14 +1177,14 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 520,
+          "componentTableId" : 600,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "4e477b17-1058-4108-a202-3f63bd7bba3b",
-              "tableid" : 520,
+              "tableid" : 600,
               "sqlquery" : {
-                "id" : "d414dda7-7f97-481d-8c35-0c21140b2a42",
+                "id" : "2e7769d8-0c86-495a-aed5-8632e7f96177",
                 "constraints" : {
                   "type" : "EXPRESSION",
                   "left" : {
@@ -55,10 +1192,10 @@
                     "left" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 520,
-                        "columnId" : 4030,
+                        "tableId" : 600,
+                        "columnId" : 4680,
                         "valueType" : "COMPONENT",
-                        "variableComponent" : "43b1cbdf-bda0-4e3c-a8cf-c6365c68dc1a",
+                        "variableComponent" : "0ab1056e-18b5-4651-8a89-97f3820be869",
                         "ignoredWhenValueIsNull" : true,
                         "action" : "LIKE"
                       }
@@ -67,10 +1204,10 @@
                     "right" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 520,
-                        "columnId" : 4035,
+                        "tableId" : 600,
+                        "columnId" : 4685,
                         "valueType" : "COMPONENT",
-                        "variableComponent" : "43b1cbdf-bda0-4e3c-a8cf-c6365c68dc1a",
+                        "variableComponent" : "0ab1056e-18b5-4651-8a89-97f3820be869",
                         "ignoredWhenValueIsNull" : true,
                         "action" : "EQUALS_TO"
                       }
@@ -80,10 +1217,10 @@
                   "right" : {
                     "type" : "TERM",
                     "constraint" : {
-                      "tableId" : 520,
-                      "columnId" : 4031,
+                      "tableId" : 600,
+                      "columnId" : 4681,
                       "valueType" : "COMPONENT",
-                      "variableComponent" : "43b1cbdf-bda0-4e3c-a8cf-c6365c68dc1a",
+                      "variableComponent" : "0ab1056e-18b5-4651-8a89-97f3820be869",
                       "ignoredWhenValueIsNull" : true,
                       "action" : "EQUALS_TO"
                     }
@@ -92,13 +1229,13 @@
                 "autojoins" : false
               },
               "personalize" : {
-                "id" : "5dc85a96-8c88-40d4-ae0e-ebc8dad23ce1",
+                "id" : "b5dc1a6d-b58b-4119-99ae-455e53524696",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 517,
-                    "columnId" : 4018,
-                    "foreignKeyId" : 522,
+                    "tableId" : 599,
+                    "columnId" : 4677,
+                    "foreignKeyId" : 609,
                     "valueType" : "USER_EMAIL",
                     "ignoredWhenValueIsNull" : false,
                     "action" : "EQUALS_TO"
@@ -112,78 +1249,80 @@
                 "aggregation" : "NONE",
                 "label" : "dc52d605-6670-43a1-90fa-bbc126ebb8e7",
                 "id" : "hf0kbh",
-                "tableid" : 520,
-                "columnid" : 4030,
+                "tableid" : 600,
+                "columnid" : 4680,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
                   "columnType" : "STRING"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "5cf5d678-f2a6-44ae-80e8-91a781ffa737",
                 "id" : "wa8k0z",
-                "tableid" : 520,
-                "columnid" : 4031,
+                "tableid" : 600,
+                "columnid" : 4681,
                 "urlTemplate" : null,
                 "format" : "integer",
                 "tableColumn" : {
                   "columnType" : "INTEGER"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "ee071af6-36d5-4796-801a-b4376fbe0a3d",
                 "id" : "1cyhsi",
-                "tableid" : 520,
-                "columnid" : 4035,
+                "tableid" : 600,
+                "columnid" : 4685,
                 "urlTemplate" : null,
                 "format" : "integer",
                 "tableColumn" : {
                   "columnType" : "INTEGER"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
-                "foreignKeyId" : 525,
+                "foreignKeyId" : 612,
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "57ab8223-097d-449f-b523-4de4a0d2356e",
                 "id" : "chlaia",
-                "tableid" : 521,
-                "columnid" : 4042,
+                "tableid" : 601,
+                "columnid" : 4692,
                 "urlTemplate" : null,
                 "format" : "datetime",
                 "tableColumn" : {
                   "columnType" : "TIMESTAMP"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
-              "linkpageid" : "e33539de-7aaa-46b4-a556-7ad5a9f21280",
+              "linkpageid" : "e9170c2a-e1b7-4a4c-bcc0-07892949a7de",
               "hideIfEmpty" : false,
               "sortable" : 1,
               "alignment" : "left"
-            },
-            "query" : null,
-            "prefill" : null,
-            "order" : null
+            }
           },
-          "id" : "493b7c86-9340-4bb4-8187-1c57248edbd8",
+          "id" : "0de122af-32ad-40d0-b3f6-08d542b558b6",
           "defaultvalue" : null,
-          "displayorder" : 2
+          "displayorder" : 2,
+          "prefillValue" : null,
+          "rowAction" : { },
+          "defaultLimit" : 20,
+          "tableid" : 600,
+          "pageId" : "2d0f2828-b295-4556-b2a6-1e901ff5eb6a"
         } ],
         "query" : {
-          "id" : "379add35-04c9-45c8-bb78-a55c03d2ae90",
+          "id" : "e28ed36c-9d22-4425-864a-b72eaa3c1aa5",
           "constraints" : {
             "type" : "TERM",
             "constraint" : {
-              "tableId" : 517,
-              "columnId" : 4018,
-              "foreignKeyId" : 522,
+              "tableId" : 599,
+              "columnId" : 4677,
+              "foreignKeyId" : 609,
               "valueType" : "USER_EMAIL",
               "ignoredWhenValueIsNull" : false,
               "action" : "EQUALS_TO"
@@ -193,16 +1332,17 @@
         },
         "title" : "ccda2f13-c6d3-4400-9fc9-f4e7442ef7fa",
         "parameters" : { },
-        "tableid" : 520,
-        "datasourceid" : 36,
+        "tableid" : 600,
+        "datasourceid" : 42,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       }, {
-        "id" : "e33539de-7aaa-46b4-a556-7ad5a9f21280",
-        "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+        "id" : "e9170c2a-e1b7-4a4c-bcc0-07892949a7de",
+        "appId" : "52c310ef-c34a-4177-879b-e58243008179",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "BACK_BUTTON",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -215,12 +1355,12 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "38ffbbb8-30cf-43a4-bca4-1f9728eb8370",
+          "id" : "f7e62fee-38ea-4f3a-895a-c11b4dc2e7a9",
           "defaultvalue" : "",
           "displayorder" : 1
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -237,147 +1377,147 @@
             "columnWidths" : [ 1, 1 ],
             "order" : null
           },
-          "id" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "id" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "defaultvalue" : null,
           "displayorder" : 2
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "79c8ee9b-1bab-4d59-aa42-d804ca06e3e5",
+          "id" : "7a56cbdf-53a6-43e9-8c03-6c896bcc0ba8",
           "defaultvalue" : "",
           "displayorder" : 1
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "81710d7d-6bfa-4ba2-9455-4e0edc0d2710",
+          "id" : "6b14db72-23ef-4610-a438-fa123d9e9211",
           "defaultvalue" : "",
           "displayorder" : 2
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "377a883a-2476-42fe-b8f4-20e36db69351",
+          "id" : "b68ba9e4-6302-4de9-b250-46ce2ac873c5",
           "defaultvalue" : "",
           "displayorder" : 3
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "3f72320b-b90d-4431-b14c-e7bcace0b7ca",
+          "id" : "eaf1201e-9a20-4072-925a-11440dd1828f",
           "defaultvalue" : "",
           "displayorder" : 4
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : { },
-          "id" : "500e2656-4ce4-4db9-9ed1-f9db19663a7e",
+          "id" : "da534d53-214d-47f4-bd8f-e9ed46db7547",
           "defaultvalue" : "",
           "displayorder" : 5
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : { },
-          "id" : "d7392453-af99-4ee4-93ab-d64b52336e7c",
+          "id" : "4419bc9e-5ac8-49ab-8b5c-9e79e02a2b56",
           "defaultvalue" : "",
           "displayorder" : 6
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : { },
-          "id" : "8bd2c468-0517-42d8-83be-29c21c9a3c5d",
+          "id" : "47f6376d-12ca-49c4-b91b-522943dd7edf",
           "defaultvalue" : "",
           "displayorder" : 7
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "fc12aff5-f11c-41a4-a563-2fea43bde253",
+          "parentComponentId" : "7de79d1a-7a1f-47d3-a9db-128d87a954b9",
           "parameters" : { },
-          "id" : "c4b87924-54f4-4eb2-bb33-9e8689ce4b3f",
+          "id" : "e34d704a-0f84-4496-a5e1-53ed959fa661",
           "defaultvalue" : "",
           "displayorder" : 8
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4032,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4682,
           "required" : false,
           "textType" : null,
           "label" : "d46e0c72-f9fc-4e3b-afdb-ab73cb70da49",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "79c8ee9b-1bab-4d59-aa42-d804ca06e3e5",
+          "parentComponentId" : "7a56cbdf-53a6-43e9-8c03-6c896bcc0ba8",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -390,19 +1530,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "13ba656a-869f-4b9c-a2e6-a7d4dbbb7b35",
+          "id" : "9d44cf39-26a5-487e-8048-131c991445b9",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4030,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4680,
           "required" : false,
           "textType" : null,
           "label" : "d7120eae-ddf2-45ce-9d4c-71e3600c6de3",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "81710d7d-6bfa-4ba2-9455-4e0edc0d2710",
+          "parentComponentId" : "6b14db72-23ef-4610-a438-fa123d9e9211",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -415,19 +1555,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "12e33b36-d23d-4870-b47d-b23984634afc",
+          "id" : "39c09cd5-90fa-40ef-b6e7-efe5a16b6ea8",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4040,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4690,
           "required" : false,
           "textType" : null,
           "label" : "8d9fe71b-fb78-435a-860d-49f94da41636",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "377a883a-2476-42fe-b8f4-20e36db69351",
+          "parentComponentId" : "b68ba9e4-6302-4de9-b250-46ce2ac873c5",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -440,19 +1580,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "6866037c-f6af-42d9-87a3-c99418c99f8f",
+          "id" : "b5914cbc-7daa-42f3-a29c-0c7318c24629",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4036,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4686,
           "required" : false,
           "textType" : null,
           "label" : "9773b215-8f73-4929-9c8d-e455f019dd5a",
           "format" : "datetime",
           "foreignKeyId" : null,
-          "parentComponentId" : "3f72320b-b90d-4431-b14c-e7bcace0b7ca",
+          "parentComponentId" : "eaf1201e-9a20-4072-925a-11440dd1828f",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -465,19 +1605,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "16beadfe-ca3d-457a-8ec1-57d80719cba1",
+          "id" : "378a69db-6d03-494d-867a-50085dca01fa",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4031,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4681,
           "required" : false,
           "textType" : null,
           "label" : "5b1c329b-1f4d-4ff3-b343-e724b33f2aae",
           "format" : "integer",
           "foreignKeyId" : null,
-          "parentComponentId" : "500e2656-4ce4-4db9-9ed1-f9db19663a7e",
+          "parentComponentId" : "da534d53-214d-47f4-bd8f-e9ed46db7547",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -490,19 +1630,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "ab220f25-b855-408b-8259-753a58b3fbd8",
+          "id" : "12c041dd-478c-46e2-9f31-1660e2436363",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4035,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4685,
           "required" : false,
           "textType" : null,
           "label" : "9b38689f-3a1e-4053-a356-249ee83865d4",
           "format" : "integer",
           "foreignKeyId" : null,
-          "parentComponentId" : "d7392453-af99-4ee4-93ab-d64b52336e7c",
+          "parentComponentId" : "4419bc9e-5ac8-49ab-8b5c-9e79e02a2b56",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -515,19 +1655,19 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "bd2c7282-fd62-4eb6-b1c6-ad82fcd443b6",
+          "id" : "55f42213-fcd2-44ef-aa3e-d07fc1ed7e38",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "BUTTON",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : "9fa5fbc3-c9ac-42aa-8f7a-4d1452452edb",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "8bd2c468-0517-42d8-83be-29c21c9a3c5d",
+          "parentComponentId" : "47f6376d-12ca-49c4-b91b-522943dd7edf",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
@@ -537,24 +1677,24 @@
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "b7e4579f-701a-4587-aa03-c669bf5c9d66",
+                  "id" : "c29465f3-871b-41cc-b0a1-bc9a04f639b1",
                   "name" : "Time Off Request Inbox Approval",
-                  "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+                  "appId" : "52c310ef-c34a-4177-879b-e58243008179",
                   "parameters" : [ {
-                    "id" : "499f3e4e-1101-4325-a0a9-e930c7a2c9ef",
+                    "id" : "b934747c-ec37-4489-bb76-56081f510500",
                     "parameterId" : "created_by_id",
                     "valueType" : "COLUMN",
-                    "columnId" : 4039
+                    "columnId" : 4689
                   }, {
-                    "id" : "4802ea24-6f8d-4bec-bf5d-003aea0c48b3",
+                    "id" : "0b3735e1-8237-49e2-89a3-659108556eb7",
                     "parameterId" : "inbox_task_id",
                     "valueType" : "COMPONENT",
-                    "componentId" : "a6a631f9-1f34-4f28-b3a3-3c4010acae78"
+                    "componentId" : "86395882-17f1-4880-8a2e-8de80b67325a"
                   } ],
                   "flatDataServiceActionId" : 1,
-                  "serviceId" : 36
+                  "serviceId" : 42
                 },
-                "serviceId" : 36
+                "serviceId" : 42
               } ]
             },
             "tone" : "PRIMARY",
@@ -565,19 +1705,19 @@
             "showInBladeFooter" : true,
             "order" : null
           },
-          "id" : "32d02a53-f07d-49ac-ab7e-f8c7d7d49fef",
+          "id" : "2e896d50-b7fd-44ad-8852-8c1d17ea7f27",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "BUTTON",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : "4362b291-c4cd-4720-a636-d2996d06b878",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "c4b87924-54f4-4eb2-bb33-9e8689ce4b3f",
+          "parentComponentId" : "e34d704a-0f84-4496-a5e1-53ed959fa661",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
@@ -587,19 +1727,19 @@
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "21d387cf-b9d9-4d69-8d2e-fc1980284f80",
+                  "id" : "ed2ad2d1-0b6a-4aed-b143-c3a9082dd3d6",
                   "name" : "Time Off Request Inbox Denial",
-                  "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+                  "appId" : "52c310ef-c34a-4177-879b-e58243008179",
                   "parameters" : [ {
-                    "id" : "104ef727-b478-4f72-b5cc-6b4a81ef7281",
+                    "id" : "3c175d43-f486-44a4-a197-fd03d73f0d60",
                     "parameterId" : "inbox_task_id",
                     "valueType" : "COMPONENT",
-                    "componentId" : "a6a631f9-1f34-4f28-b3a3-3c4010acae78"
+                    "componentId" : "86395882-17f1-4880-8a2e-8de80b67325a"
                   } ],
                   "flatDataServiceActionId" : 2,
-                  "serviceId" : 36
+                  "serviceId" : 42
                 },
-                "serviceId" : 36
+                "serviceId" : 42
               } ]
             },
             "tone" : "SECONDARY",
@@ -610,18 +1750,18 @@
             "showInBladeFooter" : true,
             "order" : null
           },
-          "id" : "1df255ec-b953-41d9-8997-f9e674c3a378",
+          "id" : "99820b58-96a4-49c6-b874-84bd20635564",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TEXT",
-          "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
-          "columnId" : 4043,
+          "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+          "columnId" : 4693,
           "required" : false,
           "textType" : null,
           "label" : "8b8e6c95-822a-44d0-bc3b-03e013197443",
           "format" : "none",
-          "foreignKeyId" : 525,
+          "foreignKeyId" : 612,
           "parentComponentId" : null,
           "parameters" : {
             "type" : "SIMPLE",
@@ -635,18 +1775,18 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "a6a631f9-1f34-4f28-b3a3-3c4010acae78",
+          "id" : "86395882-17f1-4880-8a2e-8de80b67325a",
           "defaultvalue" : null,
           "displayorder" : 3
         } ],
         "query" : {
-          "id" : "9c0a7002-ab1b-4f4a-9f2a-fbffa5a20bd4",
+          "id" : "e519b973-334c-41fe-b41a-3dd213a939ac",
           "constraints" : {
             "type" : "TERM",
             "constraint" : {
-              "tableId" : 517,
-              "columnId" : 4018,
-              "foreignKeyId" : 522,
+              "tableId" : 599,
+              "columnId" : 4677,
+              "foreignKeyId" : 609,
               "valueType" : "USER_EMAIL",
               "ignoredWhenValueIsNull" : false,
               "action" : "EQUALS_TO"
@@ -656,16 +1796,11 @@
         },
         "title" : "e9e79c6b-530b-4343-9df0-a120a341b9d8",
         "parameters" : { },
-        "tableid" : 520,
-        "datasourceid" : 36,
+        "tableid" : 600,
+        "datasourceid" : 42,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "bd758c73-967b-4dec-9268-3841bbffe434",
-      "parameters" : {
-        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/approval_delete.2c1b56597b7318f2bb6de2325c5fe8b0.svg",
-        "description" : "795b9989-bc9c-41ce-9e1f-27404d0e233e"
-      },
-      "title" : "edf1c022-629c-4081-a5fd-aaefaef83414",
       "trackingUuid" : "0f88e998-6409-44f6-991f-4526d3f91da2",
       "actionApp" : true
     },
@@ -675,16 +1810,22 @@
     }
   }, {
     "appVersion" : {
-      "id" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
-      "serviceId" : 36,
-      "version" : 99,
+      "id" : "742b3100-8c57-4039-965b-f8fe2f01161a",
+      "serviceId" : 42,
+      "version" : 100,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg",
+        "description" : "322915cf-25ff-4c4b-9d78-b527a3152db0"
+      },
+      "title" : "d2ddfc66-78df-4339-bf66-06a0cf33e210",
+      "startPageId" : "463bcfcc-6d9e-455a-8547-9168b85b0ab1",
       "pages" : [ {
-        "id" : "fb72bc88-abdb-4a02-8a20-61ceecb0d534",
-        "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+        "id" : "463bcfcc-6d9e-455a-8547-9168b85b0ab1",
+        "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "SELECT",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -694,13 +1835,13 @@
           "parentComponentId" : null,
           "parameters" : {
             "query" : {
-              "id" : "02c4565f-f8e6-4902-b5ea-521745569e5a",
+              "id" : "f759d935-9925-4650-9917-c026510ad052",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 517,
-                  "columnId" : 4018,
-                  "foreignKeyId" : 529,
+                  "tableId" : 599,
+                  "columnId" : 4677,
+                  "foreignKeyId" : 611,
                   "valueType" : "USER_EMAIL",
                   "ignoredWhenValueIsNull" : false,
                   "action" : "EQUALS_TO"
@@ -713,10 +1854,10 @@
             "manualOptions" : [ ],
             "mapToDataColumn" : false,
             "field_width" : "large",
-            "fill_serviceId" : 36,
-            "fill_tableid" : 526,
-            "fill_columnid_value" : 4069,
-            "fill_columnid_display" : 4068,
+            "fill_serviceId" : 42,
+            "fill_tableid" : 603,
+            "fill_columnid_value" : 4705,
+            "fill_columnid_display" : 4704,
             "visible" : 1,
             "defaultValue" : null,
             "optionLabelColumnType" : "STRING",
@@ -724,12 +1865,12 @@
             "autoload" : 0,
             "disabled" : 0
           },
-          "id" : "7e89a828-68da-407b-a916-4518581b0873",
+          "id" : "dc5353fe-1106-410a-9e2c-552c1094da1f",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "TABLE",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -737,21 +1878,21 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 526,
+          "componentTableId" : 603,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "f3235835-6732-4a18-a0c0-feab669f2f5b",
-              "tableid" : 526,
+              "tableid" : 603,
               "sqlquery" : {
-                "id" : "7ff3c8dc-e726-4179-a2ff-092a6a151427",
+                "id" : "5c6f1651-bad3-4ce5-a75a-fe23e869aca3",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 526,
-                    "columnId" : 4069,
+                    "tableId" : 603,
+                    "columnId" : 4705,
                     "valueType" : "COMPONENT",
-                    "variableComponent" : "7e89a828-68da-407b-a916-4518581b0873",
+                    "variableComponent" : "dc5353fe-1106-410a-9e2c-552c1094da1f",
                     "ignoredWhenValueIsNull" : false,
                     "action" : "EQUALS_TO"
                   }
@@ -759,13 +1900,13 @@
                 "autojoins" : false
               },
               "personalize" : {
-                "id" : "b70f9791-4c19-4caa-a746-f2d28d9e7bee",
+                "id" : "db1ee9e7-7398-47f9-8766-e399ea62ac8b",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 517,
-                    "columnId" : 4018,
-                    "foreignKeyId" : 529,
+                    "tableId" : 599,
+                    "columnId" : 4677,
+                    "foreignKeyId" : 611,
                     "valueType" : "USER_EMAIL",
                     "ignoredWhenValueIsNull" : false,
                     "action" : "EQUALS_TO"
@@ -779,8 +1920,8 @@
                 "aggregation" : "NONE",
                 "label" : "15b460ff-57cb-4374-b2fd-23be75a2304b",
                 "id" : "b77nsr",
-                "tableid" : 526,
-                "columnid" : 4066,
+                "tableid" : 603,
+                "columnid" : 4702,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -792,8 +1933,8 @@
                 "aggregation" : "NONE",
                 "label" : "6ed2e1c8-6b42-43c9-95e9-b4814a781fd7",
                 "id" : "qethwl",
-                "tableid" : 526,
-                "columnid" : 4065,
+                "tableid" : 603,
+                "columnid" : 4701,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -805,8 +1946,8 @@
                 "aggregation" : "NONE",
                 "label" : "0566f1e6-333b-40f5-bc5e-0cb8a222eeef",
                 "id" : "uczd00",
-                "tableid" : 526,
-                "columnid" : 4070,
+                "tableid" : 603,
+                "columnid" : 4706,
                 "format" : "none",
                 "tableColumn" : { }
               } ],
@@ -820,12 +1961,13 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "4bffd1b0-43b4-4386-8037-0c78a33c8410",
+          "id" : "eba0cc83-7963-4344-83a6-c53ded6163c4",
           "defaultvalue" : null,
-          "displayorder" : 2
+          "displayorder" : 2,
+          "defaultLimit" : 20
         }, {
           "type" : "DIVIDER",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -838,12 +1980,12 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "0343d356-a605-4377-86cb-7a889c7e5aee",
+          "id" : "e9800469-09d0-4c8f-aa2c-772e78605dd7",
           "defaultvalue" : "",
           "displayorder" : 3
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -860,55 +2002,55 @@
             "columnWidths" : [ 1, 1 ],
             "order" : null
           },
-          "id" : "6104e223-eccb-4199-8766-d8b5f8738ff6",
+          "id" : "97d5e48d-512d-47c2-a4b6-ed68c9ccdccc",
           "defaultvalue" : null,
           "displayorder" : 4
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "6104e223-eccb-4199-8766-d8b5f8738ff6",
+          "parentComponentId" : "97d5e48d-512d-47c2-a4b6-ed68c9ccdccc",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "3f7c8d64-5929-414b-86bb-ff57aa66cf04",
+          "id" : "3d4d0d37-5a66-47f3-a8d7-a799bf37a7e2",
           "defaultvalue" : "",
           "displayorder" : 1
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "6104e223-eccb-4199-8766-d8b5f8738ff6",
+          "parentComponentId" : "97d5e48d-512d-47c2-a4b6-ed68c9ccdccc",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "19d0c25c-41cb-49ff-8e9d-71c0dbae92a2",
+          "id" : "ed930f15-42de-44ff-a4a6-e676232c36c0",
           "defaultvalue" : "",
           "displayorder" : 2
         }, {
           "type" : "DATETIME",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : true,
           "textType" : null,
           "label" : "02c317fd-38ab-4085-b5ae-1018d779e243",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "3f7c8d64-5929-414b-86bb-ff57aa66cf04",
+          "parentComponentId" : "3d4d0d37-5a66-47f3-a8d7-a799bf37a7e2",
           "parameters" : {
             "pickerType" : "DATE",
             "useComponentValueAsMinimum" : false,
@@ -922,19 +2064,19 @@
             "timeFormat" : "BROWSER",
             "order" : null
           },
-          "id" : "bcd2ba16-7789-4225-8bad-c9fb1d1c4fd3",
+          "id" : "0bea667d-4041-4c76-ad81-54177e599f6f",
           "defaultvalue" : "CURRENT_TIMESTAMP",
           "displayorder" : 1
         }, {
           "type" : "DATETIME",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : true,
           "textType" : null,
           "label" : "98d5256f-9588-4d55-a957-0a2d3aa0c683",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "19d0c25c-41cb-49ff-8e9d-71c0dbae92a2",
+          "parentComponentId" : "ed930f15-42de-44ff-a4a6-e676232c36c0",
           "parameters" : {
             "pickerType" : "DATE",
             "useComponentValueAsMinimum" : false,
@@ -948,12 +2090,12 @@
             "timeFormat" : "BROWSER",
             "order" : null
           },
-          "id" : "9829ddf6-29ad-4683-adac-5796bca902d9",
+          "id" : "38c97361-63e8-4db4-80b6-b6ca050cf70e",
           "defaultvalue" : "CURRENT_TIMESTAMP",
           "displayorder" : 1
         }, {
           "type" : "NUMBER",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : true,
           "textType" : null,
@@ -973,12 +2115,12 @@
             "disabled" : 0,
             "order" : null
           },
-          "id" : "de619dd3-7ab0-47dc-8656-4b86645408e4",
+          "id" : "4add52fa-0f4a-46a4-bdc6-528027ce1e52",
           "defaultvalue" : "",
           "displayorder" : 5
         }, {
           "type" : "STATIC_TEXT",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -998,12 +2140,12 @@
             "fontStyle" : [ ],
             "order" : null
           },
-          "id" : "83e99938-90d4-4b4f-94e5-23640b7096b6",
+          "id" : "6bda3ac6-7767-45bb-b870-aa6b91008453",
           "defaultvalue" : null,
           "displayorder" : 6
         }, {
           "type" : "TEXT_AREA",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -1020,12 +2162,12 @@
             "disabled" : 0,
             "order" : null
           },
-          "id" : "7bab8963-693c-4487-92ee-d1fd9f228e9a",
+          "id" : "5b821dd0-2be1-4dc1-a042-c2b0bbed39a8",
           "defaultvalue" : "",
           "displayorder" : 7
         }, {
           "type" : "BUTTON",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -1045,12 +2187,12 @@
             "showInBladeFooter" : true,
             "order" : null
           },
-          "id" : "1852360e-dde2-4090-8344-2a0c0ba7084e",
+          "id" : "1a1a391e-1dbc-49d8-ba33-c560f8205432",
           "defaultvalue" : null,
           "displayorder" : 8
         }, {
           "type" : "SELECT",
-          "appId" : "bfdfa861-efe2-4933-9cce-08a80fac0923",
+          "appId" : "742b3100-8c57-4039-965b-f8fe2f01161a",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -1060,12 +2202,12 @@
           "parentComponentId" : null,
           "parameters" : {
             "query" : {
-              "id" : "26a199ea-9533-4d46-bded-3b7fb51d1c33",
+              "id" : "2cafb009-048e-4594-b39e-2a4ee1702d16",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 517,
-                  "columnId" : 4018,
+                  "tableId" : 599,
+                  "columnId" : 4677,
                   "valueType" : "USER_EMAIL",
                   "ignoredWhenValueIsNull" : false,
                   "action" : "EQUALS_TO"
@@ -1078,10 +2220,10 @@
             "manualOptions" : [ ],
             "mapToDataColumn" : false,
             "field_width" : "large",
-            "fill_serviceId" : 36,
-            "fill_tableid" : 517,
-            "fill_columnid_value" : 4016,
-            "fill_columnid_display" : 4014,
+            "fill_serviceId" : 42,
+            "fill_tableid" : 599,
+            "fill_columnid_value" : 4675,
+            "fill_columnid_display" : 4673,
             "visible" : 1,
             "defaultValue" : null,
             "optionLabelColumnType" : "STRING",
@@ -1089,7 +2231,7 @@
             "autoload" : 1,
             "disabled" : 0
           },
-          "id" : "c49dc758-5daa-4353-bd6f-ffbd4a56e01c",
+          "id" : "066b15ec-1d4f-4219-99e2-5ab481e9ce91",
           "defaultvalue" : null,
           "displayorder" : 9
         } ],
@@ -1097,7 +2239,7 @@
         "logicConfiguration" : [ {
           "constraints" : [ ],
           "children" : [ {
-            "targetComponentId" : "c49dc758-5daa-4353-bd6f-ffbd4a56e01c",
+            "targetComponentId" : "066b15ec-1d4f-4219-99e2-5ab481e9ce91",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -1119,16 +2261,11 @@
           "group" : null
         } ],
         "parameters" : { },
-        "tableid" : 526,
-        "datasourceid" : 36,
+        "tableid" : 603,
+        "datasourceid" : 42,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "fb72bc88-abdb-4a02-8a20-61ceecb0d534",
-      "parameters" : {
-        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg",
-        "description" : "322915cf-25ff-4c4b-9d78-b527a3152db0"
-      },
-      "title" : "d2ddfc66-78df-4339-bf66-06a0cf33e210",
       "trackingUuid" : "f2744d92-09dd-48b4-a03d-4cda73f7d507",
       "actionApp" : true
     },
@@ -1138,17 +2275,13 @@
     }
   } ],
   "services" : [ {
-    "id" : 36,
-    "uuid" : "2c3f7427-7942-43f8-a6c9-099097b98d29",
-    "version" : 52,
+    "id" : 42,
+    "uuid" : "15c42d1c-448f-49da-a5ce-7e438dc20606",
+    "version" : 82,
     "title" : "Workday HTTP",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
-    "updatePending" : false,
-    "configurationPending" : false,
-    "secretsMissing" : false,
-    "configMissing" : false,
-    "schemaName" : "microapps_workday_http_2",
+    "schemaName" : "microapps_workday_http_2_2",
     "configuration" : {
       "trackingUuid" : "1d5fe9ce-ca5a-41f8-984a-bd835c8e3d96",
       "baseUrl" : "https://wd2-impl-services1.workday.com/",
@@ -1156,6 +2289,7 @@
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
         "authorizationURL" : "https://impl.workday.com/citrix_gms2/authorize",
+        "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "scope" : "",
         "tokenURL" : "https://wd2-impl-services1.workday.com/ccx/oauth2/citrix_gms2/token",
         "tokenAuthorization" : "AUTHORIZATION_HEADER",
@@ -1166,6 +2300,7 @@
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
         "authorizationURL" : "https://impl.workday.com/citrix_gms2/authorize",
+        "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "scope" : "",
         "tokenURL" : "https://wd2-impl-services1.workday.com/ccx/oauth2/citrix_gms2/token",
         "tokenAuthorization" : "AUTHORIZATION_HEADER",
@@ -1277,7 +2412,6 @@
         "incrementalSyncQueryParameters" : [ ],
         "baseTableName" : "worker",
         "mergeStrategy" : "NONE",
-        "bodyParameters" : [ ],
         "queryParameters" : [ {
           "name" : "format",
           "defaultValue" : "json",
@@ -1286,13 +2420,14 @@
           "uniqueId" : "65581a18-eacd-44d1-8080-b326d717bb57"
         } ],
         "pathParameters" : [ ],
-        "headerParameters" : [ ],
+        "bodyParameters" : [ ],
         "synchronizationTypes" : [ {
           "id" : "FullSynchronization",
           "name" : "Full Synchronization",
           "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
           "preferredSchedule" : "DAILY"
-        } ]
+        } ],
+        "headerParameters" : [ ]
       }, {
         "id" : 3,
         "name" : "time off request",
@@ -1501,7 +2636,6 @@
         } ],
         "baseTableName" : "time off request",
         "mergeStrategy" : "NONE",
-        "bodyParameters" : [ ],
         "queryParameters" : [ {
           "name" : "format",
           "defaultValue" : "json",
@@ -1516,7 +2650,7 @@
           "uniqueId" : "199abe1d-f556-4452-8858-e882b89b3124"
         } ],
         "pathParameters" : [ ],
-        "headerParameters" : [ ],
+        "bodyParameters" : [ ],
         "synchronizationTypes" : [ {
           "id" : "FullSynchronization",
           "name" : "Full Synchronization",
@@ -1527,7 +2661,8 @@
           "name" : "Incremental Synchronization",
           "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
           "preferredSchedule" : "HOURLY"
-        } ]
+        } ],
+        "headerParameters" : [ ]
       }, {
         "id" : 4,
         "name" : "all time off",
@@ -1650,7 +2785,6 @@
         "incrementalSyncQueryParameters" : [ ],
         "baseTableName" : "all time off",
         "mergeStrategy" : "NONE",
-        "bodyParameters" : [ ],
         "queryParameters" : [ {
           "valueType" : "VALUE",
           "name" : "format",
@@ -1675,13 +2809,404 @@
           "required" : true,
           "uniqueId" : "52f6267b-73bd-4f50-ad17-99b364af1253"
         } ],
-        "headerParameters" : [ ],
+        "bodyParameters" : [ ],
         "synchronizationTypes" : [ {
           "id" : "FullSynchronization",
           "name" : "Full Synchronization",
           "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
           "preferredSchedule" : "DAILY"
-        } ]
+        } ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 6,
+        "name" : "change job detail",
+        "endpoint" : "/ccx/service/customreport2/citrix_gms2/jsandoval/Staffing_Activities_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "DETAIL",
+        "parentTable" : "change_job_request",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 14,
+          "tableName" : "change_job_detail",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "action_event",
+            "path" : "actionEvent",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_company",
+            "path" : "currentCompany",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_cost_center",
+            "path" : "currentCostCenter",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_job_profile",
+            "path" : "currentJobProfile",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_job_title",
+            "path" : "currentJobTitle",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_location",
+            "path" : "currentLocation",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_position",
+            "path" : "currentPosition",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_region",
+            "path" : "currentRegion",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "current_weekly_scheduled",
+            "path" : "currentWeeklyScheduledHours",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "event_records_awaiting_ac",
+            "path" : "eventRecordsAwaitingAction",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "event_workday_id",
+            "path" : "eventWorkdayID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_company",
+            "path" : "proposedCompany",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_cost_center",
+            "path" : "proposedCostCenter",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_job_profile",
+            "path" : "proposedJobProfile",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_job_title",
+            "path" : "proposedJobTitle",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_location",
+            "path" : "proposedLocation",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_position",
+            "path" : "proposedPosition",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "proposed_region",
+            "path" : "proposedRegion",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "staffing_event_reason_sub",
+            "path" : "staffingEventReasonSubcategory",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "transaction_effective_mom",
+            "path" : "transactionEffectiveMoment",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "transaction_status",
+            "path" : "transactionStatus",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "workday_id",
+            "path" : "workdayID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "worker",
+            "path" : "worker",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "change job detail",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "0e40a33d-80a9-451a-b059-12d0c00d8a3d"
+        }, {
+          "valueType" : "PARENT_DATA",
+          "name" : "workdayID",
+          "defaultValue" : "b8b33ba3f8c5814c3d028ed39e01aa0e",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "e25e5235-a68d-41ec-91d8-507908b3f959",
+          "columnName" : "workday_id"
+        } ],
+        "pathParameters" : [ ],
+        "bodyParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 5,
+        "name" : "change job",
+        "endpoint" : "/ccx/service/customreport2/citrix_gms2/AdamM@wwco.net/Event_Records_For_Change_Job_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 12,
+          "tableName" : "change_job",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "business_process_type",
+            "path" : "businessProcessType",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "for",
+            "path" : "for",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/eventRecordsAwaitingActionGroup" ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 13,
+          "tableName" : "change_job_request",
+          "path" : "Report_Entry/eventRecordsAwaitingActionGroup",
+          "columns" : [ {
+            "name" : "created_moment",
+            "path" : "createdMoment",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "event_record",
+            "path" : "eventRecord",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "step_type",
+            "path" : "stepType",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "transaction",
+            "path" : "transaction",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "workday_id",
+            "path" : "workdayID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "worker",
+            "path" : "worker",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BINARY",
+            "source" : "RECORD"
+          }, {
+            "name" : "worker_id",
+            "path" : "workerID",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_business_process_t",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "business_process_type",
+            "parentTableReference" : "change_job",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_business_process_typ",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "business_process_type"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ 6 ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ {
+          "valueType" : "LAST_SYNCHRONIZATION",
+          "name" : "Initiated_Date_On_or_After",
+          "dateTimeFormat" : "ISO_LOCAL_DATE_TIME",
+          "timezone" : "America/Los_Angeles",
+          "required" : false,
+          "uniqueId" : "229a860e-b321-4716-bd3d-04a14af35b7d"
+        } ],
+        "baseTableName" : "change job",
+        "mergeStrategy" : "NONE",
+        "queryParameters" : [ {
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "bc4624e6-6a97-41cd-a352-8b9705f118cb"
+        } ],
+        "pathParameters" : [ ],
+        "bodyParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        }, {
+          "id" : "IncrementalSynchronization",
+          "name" : "Incremental Synchronization",
+          "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
+          "preferredSchedule" : "HOURLY"
+        } ],
+        "headerParameters" : [ ]
       } ],
       "webhookListeners" : [ ],
       "schedule" : [ {
@@ -1715,7 +3240,6 @@
         } ],
         "preActionDataUpdates" : [ ],
         "postActionDataUpdates" : [ ],
-        "bodyParameters" : [ ],
         "queryParameters" : [ {
           "name" : "type",
           "required" : false,
@@ -1740,6 +3264,7 @@
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
         } ],
+        "bodyParameters" : [ ],
         "headerParameters" : [ {
           "name" : "User-Agent",
           "defaultValue" : "Citrix Workspace Microapps Workday Connector",
@@ -1789,7 +3314,6 @@
           "dataEndpointId" : 2,
           "endpointSuffix" : "",
           "callChainEnabled" : false,
-          "bodyParameters" : [ ],
           "queryParameters" : [ {
             "name" : "Worker!WID",
             "required" : false,
@@ -1800,9 +3324,9 @@
             "endpointParameterUniqueId" : "2e70d376-25b2-44c1-a977-9df7687e9a87"
           } ],
           "pathParameters" : [ ],
+          "bodyParameters" : [ ],
           "headerParameters" : [ ]
         } ],
-        "bodyParameters" : [ ],
         "queryParameters" : [ {
           "name" : "type",
           "required" : false,
@@ -1827,6 +3351,7 @@
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "962d14fd-58e0-4f1f-9f90-6fd77e00184d"
         } ],
+        "bodyParameters" : [ ],
         "headerParameters" : [ {
           "name" : "User-Agent",
           "defaultValue" : "Citrix Workspace Microapps Workday Connector",
@@ -1849,14 +3374,14 @@
     },
     "context" : { },
     "tables" : [ {
-      "id" : 517,
+      "id" : 599,
       "title" : "worker",
       "displayName" : "Worker",
       "entityName" : "worker",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 4014,
+        "id" : 4673,
         "title" : "full_name",
         "displayName" : "Full Name",
         "attributeName" : "full_name",
@@ -1870,7 +3395,7 @@
         "defaultLabel" : "Full Name",
         "primaryKey" : false
       }, {
-        "id" : 4015,
+        "id" : 4674,
         "title" : "user_name",
         "displayName" : "User Name",
         "attributeName" : "user_name",
@@ -1884,7 +3409,7 @@
         "defaultLabel" : "User Name",
         "primaryKey" : false
       }, {
-        "id" : 4016,
+        "id" : 4675,
         "title" : "workday_id",
         "displayName" : "Workday Id",
         "attributeName" : "workday_id",
@@ -1898,7 +3423,7 @@
         "defaultLabel" : "Workday Id",
         "primaryKey" : true
       }, {
-        "id" : 4017,
+        "id" : 4676,
         "title" : "employee_id",
         "displayName" : "Employee Id",
         "attributeName" : "employee_id",
@@ -1912,7 +3437,7 @@
         "defaultLabel" : "Employee Id",
         "primaryKey" : false
       }, {
-        "id" : 4018,
+        "id" : 4677,
         "title" : "primary_work_email",
         "displayName" : "Primary Work Email",
         "attributeName" : "primary_work_email",
@@ -1927,14 +3452,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 520,
+      "id" : 600,
       "title" : "time_off_request",
       "displayName" : "Time off Request",
       "entityName" : "time_off_request",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 4028,
+        "id" : 4678,
         "title" : "assigned_to_id",
         "displayName" : "Assigned to Id",
         "attributeName" : "assigned_to_id",
@@ -1948,7 +3473,7 @@
         "defaultLabel" : "Assigned to Id",
         "primaryKey" : false
       }, {
-        "id" : 4029,
+        "id" : 4679,
         "title" : "event_id",
         "displayName" : "Event Id",
         "attributeName" : "event_id",
@@ -1962,7 +3487,7 @@
         "defaultLabel" : "Event Id",
         "primaryKey" : true
       }, {
-        "id" : 4030,
+        "id" : 4680,
         "title" : "time_off_event",
         "displayName" : "Time off Event",
         "attributeName" : "time_off_event",
@@ -1976,7 +3501,7 @@
         "defaultLabel" : "Time off Event",
         "primaryKey" : false
       }, {
-        "id" : 4031,
+        "id" : 4681,
         "title" : "total_hours",
         "displayName" : "Total Hours",
         "attributeName" : "total_hours",
@@ -1990,7 +3515,7 @@
         "defaultLabel" : "Total Hours",
         "primaryKey" : false
       }, {
-        "id" : 4032,
+        "id" : 4682,
         "title" : "for",
         "displayName" : "For",
         "attributeName" : "for",
@@ -2004,7 +3529,7 @@
         "defaultLabel" : "For",
         "primaryKey" : false
       }, {
-        "id" : 4033,
+        "id" : 4683,
         "title" : "primary_work_email",
         "displayName" : "Primary Work Email",
         "attributeName" : "primary_work_email",
@@ -2018,7 +3543,7 @@
         "defaultLabel" : "Primary Work Email",
         "primaryKey" : false
       }, {
-        "id" : 4034,
+        "id" : 4684,
         "title" : "effective",
         "displayName" : "Effective",
         "attributeName" : "effective",
@@ -2032,7 +3557,7 @@
         "defaultLabel" : "Effective",
         "primaryKey" : false
       }, {
-        "id" : 4035,
+        "id" : 4685,
         "title" : "total_days",
         "displayName" : "Total Days",
         "attributeName" : "total_days",
@@ -2046,7 +3571,7 @@
         "defaultLabel" : "Total Days",
         "primaryKey" : false
       }, {
-        "id" : 4036,
+        "id" : 4686,
         "title" : "due",
         "displayName" : "Due",
         "attributeName" : "due",
@@ -2060,7 +3585,7 @@
         "defaultLabel" : "Due",
         "primaryKey" : false
       }, {
-        "id" : 4037,
+        "id" : 4687,
         "title" : "process_id",
         "displayName" : "Process Id",
         "attributeName" : "process_id",
@@ -2074,7 +3599,7 @@
         "defaultLabel" : "Process Id",
         "primaryKey" : false
       }, {
-        "id" : 4038,
+        "id" : 4688,
         "title" : "business_process_type",
         "displayName" : "Business Process Type",
         "attributeName" : "business_process_type",
@@ -2088,7 +3613,7 @@
         "defaultLabel" : "Business Process Type",
         "primaryKey" : false
       }, {
-        "id" : 4039,
+        "id" : 4689,
         "title" : "created_by_id",
         "displayName" : "Created by Id",
         "attributeName" : "created_by_id",
@@ -2102,7 +3627,7 @@
         "defaultLabel" : "Created by Id",
         "primaryKey" : false
       }, {
-        "id" : 4040,
+        "id" : 4690,
         "title" : "status",
         "displayName" : "Status",
         "attributeName" : "status",
@@ -2117,14 +3642,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 521,
+      "id" : 601,
       "title" : "time_off_request_event_re",
       "displayName" : "Time off Request Event Re",
       "entityName" : "time_off_request_event_re",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 4041,
+        "id" : 4691,
         "title" : "event_record",
         "displayName" : "Event Record",
         "attributeName" : "event_record",
@@ -2138,7 +3663,7 @@
         "defaultLabel" : "Event Record",
         "primaryKey" : false
       }, {
-        "id" : 4042,
+        "id" : 4692,
         "title" : "created_moment",
         "displayName" : "Created Moment",
         "attributeName" : "created_moment",
@@ -2152,7 +3677,7 @@
         "defaultLabel" : "Created Moment",
         "primaryKey" : false
       }, {
-        "id" : 4043,
+        "id" : 4693,
         "title" : "record_id",
         "displayName" : "Record Id",
         "attributeName" : "record_id",
@@ -2166,7 +3691,7 @@
         "defaultLabel" : "Record Id",
         "primaryKey" : false
       }, {
-        "id" : 4044,
+        "id" : 4694,
         "title" : "worker",
         "displayName" : "Worker",
         "attributeName" : "worker",
@@ -2180,7 +3705,7 @@
         "defaultLabel" : "Worker",
         "primaryKey" : false
       }, {
-        "id" : 4045,
+        "id" : 4695,
         "title" : "transaction",
         "displayName" : "Transaction",
         "attributeName" : "transaction",
@@ -2194,7 +3719,7 @@
         "defaultLabel" : "Transaction",
         "primaryKey" : false
       }, {
-        "id" : 4046,
+        "id" : 4696,
         "title" : "parent_event_id",
         "displayName" : "Parent Event Id",
         "attributeName" : "parent_event_id",
@@ -2208,7 +3733,7 @@
         "defaultLabel" : "Parent Event Id",
         "primaryKey" : false
       }, {
-        "id" : 4047,
+        "id" : 4697,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -2222,7 +3747,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 4048,
+        "id" : 4698,
         "title" : "root_event_id",
         "displayName" : "Root Event Id",
         "attributeName" : "root_event_id",
@@ -2237,14 +3762,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 525,
+      "id" : 602,
       "title" : "all_time_off_user",
       "displayName" : "All Time off User",
       "entityName" : "all_time_off_user\t",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 4063,
+        "id" : 4699,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -2259,14 +3784,14 @@
         "primaryKey" : true
       } ]
     }, {
-      "id" : 526,
+      "id" : 603,
       "title" : "all_time_off",
       "displayName" : "All Time Off",
       "entityName" : "all_time_off",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 4064,
+        "id" : 4700,
         "title" : "default_quantity",
         "displayName" : "Default Quantity",
         "attributeName" : "default_quantity",
@@ -2280,7 +3805,7 @@
         "defaultLabel" : "Default Quantity",
         "primaryKey" : false
       }, {
-        "id" : 4065,
+        "id" : 4701,
         "title" : "time_off_balance",
         "displayName" : "Time off Balance",
         "attributeName" : "time_off_balance",
@@ -2294,7 +3819,7 @@
         "defaultLabel" : "Time off Balance",
         "primaryKey" : false
       }, {
-        "id" : 4066,
+        "id" : 4702,
         "title" : "time_off_plan",
         "displayName" : "Time off Plan",
         "attributeName" : "time_off_plan",
@@ -2308,7 +3833,7 @@
         "defaultLabel" : "Time off Plan",
         "primaryKey" : false
       }, {
-        "id" : 4067,
+        "id" : 4703,
         "title" : "time_off_plan_id",
         "displayName" : "Time off Plan Id",
         "attributeName" : "time_off_plan_id",
@@ -2322,7 +3847,7 @@
         "defaultLabel" : "Time off Plan Id",
         "primaryKey" : false
       }, {
-        "id" : 4068,
+        "id" : 4704,
         "title" : "time_off_type",
         "displayName" : "Time off Type",
         "attributeName" : "time_off_type",
@@ -2336,7 +3861,7 @@
         "defaultLabel" : "Time off Type",
         "primaryKey" : false
       }, {
-        "id" : 4069,
+        "id" : 4705,
         "title" : "time_off_type_id",
         "displayName" : "Time off Type Id",
         "attributeName" : "time_off_type_id",
@@ -2350,7 +3875,7 @@
         "defaultLabel" : "Time off Type Id",
         "primaryKey" : false
       }, {
-        "id" : 4070,
+        "id" : 4706,
         "title" : "unit_of_time",
         "displayName" : "Unit of Time",
         "attributeName" : "unit_of_time",
@@ -2364,7 +3889,7 @@
         "defaultLabel" : "Unit of Time",
         "primaryKey" : false
       }, {
-        "id" : 4071,
+        "id" : 4707,
         "title" : "parent_user_id",
         "displayName" : "Parent User Id",
         "attributeName" : "parent_user_id",
@@ -2378,7 +3903,7 @@
         "defaultLabel" : "Parent User Id",
         "primaryKey" : false
       }, {
-        "id" : 4072,
+        "id" : 4708,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -2392,7 +3917,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 4073,
+        "id" : 4709,
         "title" : "root_user_id",
         "displayName" : "Root User Id",
         "attributeName" : "root_user_id",
@@ -2406,25 +3931,539 @@
         "defaultLabel" : "Root User Id",
         "primaryKey" : false
       } ]
+    }, {
+      "id" : 608,
+      "title" : "change_job",
+      "displayName" : "Change Job",
+      "entityName" : "change_job",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 4748,
+        "title" : "business_process_type",
+        "displayName" : "Business Process Type",
+        "attributeName" : "business_process_type",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Business Process Type",
+        "primaryKey" : true
+      }, {
+        "id" : 4749,
+        "title" : "for",
+        "displayName" : "For",
+        "attributeName" : "for",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "For",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 609,
+      "title" : "change_job_request",
+      "displayName" : "Change Job Request",
+      "entityName" : "change_job_request",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 4750,
+        "title" : "created_moment",
+        "displayName" : "Created Moment",
+        "attributeName" : "created_moment",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created Moment",
+        "primaryKey" : false
+      }, {
+        "id" : 4751,
+        "title" : "event_record",
+        "displayName" : "Event Record",
+        "attributeName" : "event_record",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Event Record",
+        "primaryKey" : false
+      }, {
+        "id" : 4752,
+        "title" : "step_type",
+        "displayName" : "Step Type",
+        "attributeName" : "step_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Step Type",
+        "primaryKey" : false
+      }, {
+        "id" : 4753,
+        "title" : "transaction",
+        "displayName" : "Transaction",
+        "attributeName" : "transaction",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Transaction",
+        "primaryKey" : false
+      }, {
+        "id" : 4754,
+        "title" : "workday_id",
+        "displayName" : "Workday Id",
+        "attributeName" : "workday_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Workday Id",
+        "primaryKey" : false
+      }, {
+        "id" : 4755,
+        "title" : "worker",
+        "displayName" : "Worker",
+        "attributeName" : "worker",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Worker",
+        "primaryKey" : false
+      }, {
+        "id" : 4756,
+        "title" : "worker_id",
+        "displayName" : "Worker Id",
+        "attributeName" : "worker_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Worker Id",
+        "primaryKey" : false
+      }, {
+        "id" : 4757,
+        "title" : "parent_business_process_t",
+        "displayName" : "Parent Business Process T",
+        "attributeName" : "parent_business_process_t",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Business Process T",
+        "primaryKey" : false
+      }, {
+        "id" : 4758,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 4759,
+        "title" : "root_business_process_typ",
+        "displayName" : "Root Business Process Typ",
+        "attributeName" : "root_business_process_typ",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Business Process Typ",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 623,
+      "title" : "change_job_detail",
+      "displayName" : "Change Job Detail",
+      "entityName" : "change_job_detail",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 4907,
+        "title" : "action_event",
+        "displayName" : "Action Event",
+        "attributeName" : "action_event",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Action Event",
+        "primaryKey" : false
+      }, {
+        "id" : 4908,
+        "title" : "current_company",
+        "displayName" : "Current Company",
+        "attributeName" : "current_company",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Company",
+        "primaryKey" : false
+      }, {
+        "id" : 4909,
+        "title" : "current_cost_center",
+        "displayName" : "Current Cost Center",
+        "attributeName" : "current_cost_center",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Cost Center",
+        "primaryKey" : false
+      }, {
+        "id" : 4910,
+        "title" : "current_job_profile",
+        "displayName" : "Current Job Profile",
+        "attributeName" : "current_job_profile",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Job Profile",
+        "primaryKey" : false
+      }, {
+        "id" : 4911,
+        "title" : "current_job_title",
+        "displayName" : "Current Job Title",
+        "attributeName" : "current_job_title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Job Title",
+        "primaryKey" : false
+      }, {
+        "id" : 4912,
+        "title" : "current_location",
+        "displayName" : "Current Location",
+        "attributeName" : "current_location",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Location",
+        "primaryKey" : false
+      }, {
+        "id" : 4913,
+        "title" : "current_position",
+        "displayName" : "Current Position",
+        "attributeName" : "current_position",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Position",
+        "primaryKey" : false
+      }, {
+        "id" : 4914,
+        "title" : "current_region",
+        "displayName" : "Current Region",
+        "attributeName" : "current_region",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Region",
+        "primaryKey" : false
+      }, {
+        "id" : 4915,
+        "title" : "current_weekly_scheduled",
+        "displayName" : "Current Weekly Scheduled",
+        "attributeName" : "current_weekly_scheduled",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Current Weekly Scheduled",
+        "primaryKey" : false
+      }, {
+        "id" : 4916,
+        "title" : "event_records_awaiting_ac",
+        "displayName" : "Event Records Awaiting Ac",
+        "attributeName" : "event_records_awaiting_ac",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Event Records Awaiting Ac",
+        "primaryKey" : false
+      }, {
+        "id" : 4917,
+        "title" : "event_workday_id",
+        "displayName" : "Event Workday Id",
+        "attributeName" : "event_workday_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Event Workday Id",
+        "primaryKey" : false
+      }, {
+        "id" : 4918,
+        "title" : "proposed_company",
+        "displayName" : "Proposed Company",
+        "attributeName" : "proposed_company",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Company",
+        "primaryKey" : false
+      }, {
+        "id" : 4919,
+        "title" : "proposed_cost_center",
+        "displayName" : "Proposed Cost Center",
+        "attributeName" : "proposed_cost_center",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Cost Center",
+        "primaryKey" : false
+      }, {
+        "id" : 4920,
+        "title" : "proposed_job_profile",
+        "displayName" : "Proposed Job Profile",
+        "attributeName" : "proposed_job_profile",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Job Profile",
+        "primaryKey" : false
+      }, {
+        "id" : 4921,
+        "title" : "proposed_job_title",
+        "displayName" : "Proposed Job Title",
+        "attributeName" : "proposed_job_title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Job Title",
+        "primaryKey" : false
+      }, {
+        "id" : 4922,
+        "title" : "proposed_location",
+        "displayName" : "Proposed Location",
+        "attributeName" : "proposed_location",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Location",
+        "primaryKey" : false
+      }, {
+        "id" : 4923,
+        "title" : "proposed_position",
+        "displayName" : "Proposed Position",
+        "attributeName" : "proposed_position",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Position",
+        "primaryKey" : false
+      }, {
+        "id" : 4924,
+        "title" : "proposed_region",
+        "displayName" : "Proposed Region",
+        "attributeName" : "proposed_region",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Proposed Region",
+        "primaryKey" : false
+      }, {
+        "id" : 4925,
+        "title" : "staffing_event_reason_sub",
+        "displayName" : "Staffing Event Reason Sub",
+        "attributeName" : "staffing_event_reason_sub",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Staffing Event Reason Sub",
+        "primaryKey" : false
+      }, {
+        "id" : 4926,
+        "title" : "transaction_effective_mom",
+        "displayName" : "Transaction Effective Mom",
+        "attributeName" : "transaction_effective_mom",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Transaction Effective Mom",
+        "primaryKey" : false
+      }, {
+        "id" : 4927,
+        "title" : "transaction_status",
+        "displayName" : "Transaction Status",
+        "attributeName" : "transaction_status",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Transaction Status",
+        "primaryKey" : false
+      }, {
+        "id" : 4928,
+        "title" : "workday_id",
+        "displayName" : "Workday Id",
+        "attributeName" : "workday_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Workday Id",
+        "primaryKey" : true
+      }, {
+        "id" : 4929,
+        "title" : "worker",
+        "displayName" : "Worker",
+        "attributeName" : "worker",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Worker",
+        "primaryKey" : false
+      } ]
     } ],
     "relationships" : [ {
-      "id" : 522,
+      "id" : 609,
       "pkTable" : {
-        "id" : 517,
+        "id" : 599,
         "title" : "worker",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 520,
+        "id" : 600,
         "title" : "time_off_request",
         "type" : "TABLE"
       },
       "alias" : "time_off_assigned_to",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 522,
+        "fkId" : 609,
         "pkColumn" : {
-          "id" : 4016,
+          "id" : 4675,
           "title" : "workday_id",
           "displayName" : "Workday Id",
           "attributeName" : "workday_id",
@@ -2439,7 +4478,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 4028,
+          "id" : 4678,
           "title" : "assigned_to_id",
           "displayName" : "Assigned to Id",
           "attributeName" : "assigned_to_id",
@@ -2455,23 +4494,23 @@
         }
       } ]
     }, {
-      "id" : 523,
+      "id" : 610,
       "pkTable" : {
-        "id" : 517,
+        "id" : 599,
         "title" : "worker",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 520,
+        "id" : 600,
         "title" : "time_off_request",
         "type" : "TABLE"
       },
       "alias" : "time_off_created_by",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 523,
+        "fkId" : 610,
         "pkColumn" : {
-          "id" : 4016,
+          "id" : 4675,
           "title" : "workday_id",
           "displayName" : "Workday Id",
           "attributeName" : "workday_id",
@@ -2486,7 +4525,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 4039,
+          "id" : 4689,
           "title" : "created_by_id",
           "displayName" : "Created by Id",
           "attributeName" : "created_by_id",
@@ -2502,23 +4541,23 @@
         }
       } ]
     }, {
-      "id" : 529,
+      "id" : 611,
       "pkTable" : {
-        "id" : 517,
+        "id" : 599,
         "title" : "worker",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 526,
+        "id" : 603,
         "title" : "all_time_off",
         "type" : "TABLE"
       },
       "alias" : "root_user_id",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 529,
+        "fkId" : 611,
         "pkColumn" : {
-          "id" : 4016,
+          "id" : 4675,
           "title" : "workday_id",
           "displayName" : "Workday Id",
           "attributeName" : "workday_id",
@@ -2533,7 +4572,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 4073,
+          "id" : 4709,
           "title" : "root_user_id",
           "displayName" : "Root User Id",
           "attributeName" : "root_user_id",
@@ -2549,23 +4588,70 @@
         }
       } ]
     }, {
-      "id" : 525,
+      "id" : 618,
       "pkTable" : {
-        "id" : 520,
+        "id" : 599,
+        "title" : "worker",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 609,
+        "title" : "change_job_request",
+        "type" : "TABLE"
+      },
+      "alias" : "change_job_assigned_to",
+      "userDefined" : true,
+      "fkColumnPairs" : [ {
+        "fkId" : 618,
+        "pkColumn" : {
+          "id" : 4675,
+          "title" : "workday_id",
+          "displayName" : "Workday Id",
+          "attributeName" : "workday_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Workday Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 4756,
+          "title" : "worker_id",
+          "displayName" : "Worker Id",
+          "attributeName" : "worker_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Worker Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 612,
+      "pkTable" : {
+        "id" : 600,
         "title" : "time_off_request",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 521,
+        "id" : 601,
         "title" : "time_off_request_event_re",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 525,
+        "fkId" : 612,
         "pkColumn" : {
-          "id" : 4029,
+          "id" : 4679,
           "title" : "event_id",
           "displayName" : "Event Id",
           "attributeName" : "event_id",
@@ -2580,7 +4666,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 4046,
+          "id" : 4696,
           "title" : "parent_event_id",
           "displayName" : "Parent Event Id",
           "attributeName" : "parent_event_id",
@@ -2596,23 +4682,23 @@
         }
       } ]
     }, {
-      "id" : 528,
+      "id" : 613,
       "pkTable" : {
-        "id" : 525,
+        "id" : 602,
         "title" : "all_time_off_user",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 526,
+        "id" : 603,
         "title" : "all_time_off",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 528,
+        "fkId" : 613,
         "pkColumn" : {
-          "id" : 4063,
+          "id" : 4699,
           "title" : "user_id",
           "displayName" : "User Id",
           "attributeName" : "user_id",
@@ -2627,7 +4713,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 4071,
+          "id" : 4707,
           "title" : "parent_user_id",
           "displayName" : "Parent User Id",
           "attributeName" : "parent_user_id",
@@ -2642,17 +4728,155 @@
           "primaryKey" : false
         }
       } ]
+    }, {
+      "id" : 616,
+      "pkTable" : {
+        "id" : 608,
+        "title" : "change_job",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 609,
+        "title" : "change_job_request",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table",
+      "userDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 616,
+        "pkColumn" : {
+          "id" : 4748,
+          "title" : "business_process_type",
+          "displayName" : "Business Process Type",
+          "attributeName" : "business_process_type",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Business Process Type",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 4757,
+          "title" : "parent_business_process_t",
+          "displayName" : "Parent Business Process T",
+          "attributeName" : "parent_business_process_t",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Business Process T",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 631,
+      "pkTable" : {
+        "id" : 609,
+        "title" : "change_job_request",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 623,
+        "title" : "change_job_detail",
+        "type" : "TABLE"
+      },
+      "alias" : "change_job_request_detail",
+      "userDefined" : true,
+      "fkColumnPairs" : [ {
+        "fkId" : 631,
+        "pkColumn" : {
+          "id" : 4754,
+          "title" : "workday_id",
+          "displayName" : "Workday Id",
+          "attributeName" : "workday_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Workday Id",
+          "primaryKey" : false
+        },
+        "fkColumn" : {
+          "id" : 4917,
+          "title" : "event_workday_id",
+          "displayName" : "Event Workday Id",
+          "attributeName" : "event_workday_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Event Workday Id",
+          "primaryKey" : false
+        }
+      } ]
     } ],
-    "fullyConfigured" : true
+    "fullyConfigured" : false,
+    "oauthLoginNeeded" : true
   } ],
   "notifications" : [ {
-    "id" : "1219c2a3-abee-4ba1-aadb-0715f86735fb",
-    "legacyId" : 110,
-    "appId" : "9445db5b-3ecf-4b60-9232-93bcf944c0a9",
+    "id" : "621f62d2-7835-4b06-93ad-39ae6b718e2a",
+    "legacyId" : 128,
+    "appId" : "0bece9ef-faa7-4225-b5df-93ef1f2646a8",
     "version" : 2,
     "eventType" : "NEW",
-    "serviceId" : 36,
-    "tableId" : 520,
+    "serviceId" : 42,
+    "tableId" : 609,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "label" : "8817181f-8ab6-4103-878d-585aaafeb462",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "runTimezone" : "UTC",
+      "scheduleDescription" : "Manually"
+    },
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 599,
+      "columnId" : 4677,
+      "foreignKeyId" : 618,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "05f19956-63f6-42ea-baba-202ff21733d6",
+      "body" : "5d18597f-c854-48c0-854e-726d67bacece",
+      "url" : "",
+      "gotoAppPageId" : "d870065e-a85f-4522-b31a-080ad0892ae7",
+      "configuration" : {
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "f4a11033-2800-465d-a8d4-434a5071998d",
+    "legacyId" : 127,
+    "appId" : "52c310ef-c34a-4177-879b-e58243008179",
+    "version" : 2,
+    "eventType" : "NEW",
+    "serviceId" : 42,
+    "tableId" : 600,
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -2666,16 +4890,16 @@
     },
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
-      "tableId" : 517,
-      "columnId" : 4018,
-      "foreignKeyId" : 522,
+      "tableId" : 599,
+      "columnId" : 4677,
+      "foreignKeyId" : 609,
       "variable" : "USER_EMAIL"
     },
     "messageDefinition" : {
       "title" : "df901419-8d9c-4891-8a58-0e80208be53f",
       "body" : "20681498-3d79-4ff9-8db4-c9f69b182117",
       "url" : "",
-      "gotoAppPageId" : "e33539de-7aaa-46b4-a556-7ad5a9f21280",
+      "gotoAppPageId" : "e9170c2a-e1b7-4a4c-bcc0-07892949a7de",
       "configuration" : {
         "highPriority" : false,
         "cardIcon" : {
@@ -2683,7 +4907,7 @@
           "type" : "LIBRARY"
         }
       },
-      "actionButtonIds" : [ "32d02a53-f07d-49ac-ab7e-f8c7d7d49fef", "1df255ec-b953-41d9-8997-f9e674c3a378" ],
+      "actionButtonIds" : [ "2e896d50-b7fd-44ad-8852-8c1d17ea7f27", "99820b58-96a4-49c6-b874-84bd20635564" ],
       "task" : false
     },
     "skipAlreadyProcessedEvents" : false,
@@ -2691,12 +4915,12 @@
   } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
-    "appIds" : [ "bfdfa861-efe2-4933-9cce-08a80fac0923", "9445db5b-3ecf-4b60-9232-93bcf944c0a9" ],
+    "appIds" : [ "0bece9ef-faa7-4225-b5df-93ef1f2646a8", "742b3100-8c57-4039-965b-f8fe2f01161a", "52c310ef-c34a-4177-879b-e58243008179" ],
     "resolverIds" : [ ],
     "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "0B1A1CD3E9EB0E9C3049EB27A920C505",
-  "appliedSappUpgrades" : [ "microapp-6617", "microapp-6853", "microapp-7888", "microapp-8921", "microapp-8576", "microapp-3838", "microapp-6293", "microapp-6593", "microapp-7290", "microapp-9597", "microapp-3548", "microapp-6264", "microapp-3580", "microapp-2450", "microapp-4518", "microapp-8950", "microapp-7561", "microapp-5025", "microapp-8892", "microapp-6262", "microapp-1980", "microapp-7984", "microapp-4666", "microapp-8511", "microapp-7961", "microapp-8003", "microapp-3547", "microapp-5227", "microapp-6790", "microapp-4020" ],
-  "buildVersion" : "1.21.0-SNAPSHOT.bc48a2c2babaef28745fbfaafffd3bb5acb74968"
+  "translationChecksum" : "BFC9F05E49D350C813FA8B8DC96A60DE",
+  "appliedSappUpgrades" : [ "microapp-6264", "microapp-9597", "microapp-8576", "microapp-7984", "microapp-9702", "microapp-3547", "microapp-6617", "microapp-8950", "microapp-8892", "microapp-6293", "microapp-3838", "microapp-6853", "microapp-9701", "microapp-5025", "microapp-7888", "microapp-8003", "microapp-7961", "microapp-2450", "microapp-3548", "microapp-4518", "microapp-8511", "microapp-6262", "microapp-7561", "microapp-4666", "microapp-3580", "microapp-4020", "microapp-1980", "microapp-8921", "microapp-6593", "microapp-7290", "microapp-6790", "microapp-5227" ],
+  "buildVersion" : "1.22.0-SNAPSHOT.ce5b2a7e2210f6c7cc7a14c0702db2060d075ce3"
 }
