@@ -1,0 +1,1076 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+      "serviceId" : 27,
+      "version" : 153,
+      "pages" : [ {
+        "id" : "6905db64-692f-43f9-b74f-9d58cc90a2b0",
+        "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "57b30829-fd37-40b8-8048-e1993f015baf",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 486,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "64b38863-8765-404d-8eb6-6653d8a0f4cd",
+              "tableid" : 486,
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "fa1bb5c0-be01-4db1-966f-91b2256dc660",
+                "id" : "etlb1r",
+                "tableid" : 486,
+                "columnid" : 9231,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "LONG"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "e65663a4-59bc-4780-8db7-cf1692a725a2",
+                "id" : "9rdi3c",
+                "tableid" : 486,
+                "columnid" : 9235,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "c450d8c3-56c0-47b4-9e3f-802e79c418f8",
+                "id" : "ghecuv",
+                "tableid" : 486,
+                "columnid" : 9230,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "087fb60c-d105-49da-a643-7349f726fe83",
+              "hideIfEmpty" : true,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "a43e133e-5b54-4d8f-9a74-71d9ca6127dd",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "93379770-da25-4bcc-9444-1382b647e294",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_PAGE",
+                "label" : "Go to Page",
+                "id" : "op_elmk1h",
+                "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+                "pageId" : "087fb60c-d105-49da-a643-7349f726fe83",
+                "clearRecord" : true
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : false,
+            "order" : null
+          },
+          "id" : "a943741a-e65e-4946-a27a-e514b442d6c3",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        } ],
+        "title" : "ada30791-077e-4b99-99d5-2b7acaf0e3e1",
+        "parameters" : { },
+        "tableid" : 485,
+        "datasourceid" : 27,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "087fb60c-d105-49da-a643-7349f726fe83",
+        "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT_INPUT",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : 9230,
+          "required" : false,
+          "textType" : 0,
+          "label" : "ae7e9195-65ae-4f83-b77c-90c79e251626",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "name" : "Email"
+          },
+          "id" : "06355cf9-03b9-451b-a760-a361272969ab",
+          "defaultvalue" : null,
+          "displayorder" : 3
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : 9235,
+          "required" : false,
+          "textType" : 0,
+          "label" : "791f38ad-e776-4f22-986e-c09bdf468855",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "name" : "Name"
+          },
+          "id" : "c59124d9-55aa-4a82-b526-9ff72667a6ba",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : 9231,
+          "required" : false,
+          "textType" : null,
+          "label" : "8e0e861a-96d3-4e41-aa18-daf1c4213754",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "query" : null,
+            "prefill" : null,
+            "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
+            "order" : null
+          },
+          "id" : "9ba3a79b-c46a-4c74-bec1-a4a8b98331ad",
+          "defaultvalue" : null,
+          "displayorder" : 1
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "69224281-d40c-4336-87c8-a5138fd16003",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_w3dqew",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "effbd011-901c-48f9-9b3e-f984b3e5844d",
+                  "name" : "Add Record",
+                  "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+                  "parameters" : [ {
+                    "id" : "75badd7e-9537-45b0-8c14-e6b6069dcf1d",
+                    "parameterId" : "email",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "06355cf9-03b9-451b-a760-a361272969ab"
+                  }, {
+                    "id" : "2af42b38-3e3b-4620-b0d7-9a425fd4a12e",
+                    "parameterId" : "id",
+                    "valueType" : "NOW"
+                  }, {
+                    "id" : "b87ccfa3-a06c-45da-85b9-c2ce8216e1a9",
+                    "parameterId" : "name",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "c59124d9-55aa-4a82-b526-9ff72667a6ba"
+                  } ],
+                  "flatDataServiceActionId" : 1,
+                  "serviceId" : 27
+                },
+                "serviceId" : 27
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "788e96a7-90f3-454a-a040-5c6717cd876e",
+          "defaultvalue" : null,
+          "displayorder" : 4
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "c8f38c66-c81f-495e-a0fc-e45c306f4dbb",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_qlmuq7",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "acc9d0a9-a4b6-4efa-a1c5-ff67bbdf76c9",
+                  "name" : "Update Record",
+                  "appId" : "0f05a575-b92f-4bdd-8016-57248037f12e",
+                  "parameters" : [ {
+                    "id" : "1d1dfed4-1045-407d-80d6-be3f7ebad0cc",
+                    "parameterId" : "id",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "9ba3a79b-c46a-4c74-bec1-a4a8b98331ad"
+                  }, {
+                    "id" : "6d2892e0-dba7-4321-b50b-38bb56f81928",
+                    "parameterId" : "name",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "c59124d9-55aa-4a82-b526-9ff72667a6ba"
+                  }, {
+                    "id" : "24b962f5-3af2-4da5-95be-c4e914df3584",
+                    "parameterId" : "email",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "06355cf9-03b9-451b-a760-a361272969ab"
+                  } ],
+                  "flatDataServiceActionId" : 2,
+                  "serviceId" : 27
+                },
+                "serviceId" : 27
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "7ee8d57d-a59b-4890-bd71-3c3bf0f36ab1",
+          "defaultvalue" : null,
+          "displayorder" : 5
+        } ],
+        "title" : "cb760149-439a-4435-9924-e2ffd423cb69",
+        "logicConfiguration" : [ {
+          "constraints" : [ {
+            "targetComponentId" : "9ba3a79b-c46a-4c74-bec1-a4a8b98331ad",
+            "comparison" : "BLANK",
+            "id" : "3d08a71b-484b-48fb-9f4b-4b30bf76068c",
+            "equality" : "IS"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "788e96a7-90f3-454a-a040-5c6717cd876e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "27cf5499-650f-4986-a79a-9762e410a283",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "7ee8d57d-a59b-4890-bd71-3c3bf0f36ab1",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "f9964f59-591d-456e-b14d-523b5c1dfc54",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "7ee8d57d-a59b-4890-bd71-3c3bf0f36ab1",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "5511d19e-5863-46f4-a3b3-733444923205",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          }, {
+            "targetComponentId" : "788e96a7-90f3-454a-a040-5c6717cd876e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "16ba7069-adad-4a59-9c1e-3642a864776e",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Create or Update",
+          "id" : "6ab42a83-8577-4b0f-906e-f28c073bcbfa",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
+        } ],
+        "parameters" : { },
+        "tableid" : 486,
+        "datasourceid" : 27,
+        "pagetype" : "Detail"
+      } ],
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/contact.643448c098889351971cece0494ac171.svg"
+      },
+      "title" : "34eff43f-423e-4bc2-b097-b55a614adc6b",
+      "startPageId" : "6905db64-692f-43f9-b74f-9d58cc90a2b0",
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  }, {
+    "appVersion" : {
+      "id" : "d2e43d6b-614d-44ca-8551-cdcc6b5657f0",
+      "serviceId" : 27,
+      "version" : 4,
+      "pages" : [ ],
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/change_request.c49eec041e302f4ce0e34491526b5afe.svg"
+      },
+      "title" : "f07572d9-1d83-4818-9f20-802100af418f",
+      "actionApp" : false
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 27,
+    "uuid" : "020a0317-da25-4829-ae83-efd5b764aa12",
+    "version" : 30,
+    "title" : "Webhook Self Store Demo",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "s_qabpwt9fjpf6_webhook_se",
+    "configuration" : {
+      "baseUrl" : "https://qabpwt9fjpf6.us.iws.cloudburrito.com",
+      "useServiceActionSecurity" : true,
+      "serviceActionSecurity" : {
+        "type" : "APIKEY",
+        "apiKeys" : [ {
+          "key" : "IWS",
+          "authenticationMethod" : "AUTHORIZATION_HEADER"
+        } ]
+      },
+      "useOnPremProxy" : false,
+      "dataEndpoints" : [ {
+        "id" : 1,
+        "name" : "status_up",
+        "endpoint" : "/status/up",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 1,
+          "tableName" : "status_up",
+          "path" : "",
+          "columns" : [ {
+            "name" : "branch",
+            "path" : "branch",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "build_timestamp",
+            "path" : "buildTimestamp",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "commit",
+            "path" : "commit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "component",
+            "path" : "component",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "deployment_timestamp",
+            "path" : "deploymentTimestamp",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "product",
+            "path" : "product",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "schema_version",
+            "path" : "schemaVersion",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "server_timestamp",
+            "path" : "serverTimestamp",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "timestamp",
+            "path" : "timestamp",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "version",
+            "path" : "version",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "status_up",
+        "mergeStrategy" : "NONE",
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ ],
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ]
+      } ],
+      "webhookListeners" : [ {
+        "id" : 1,
+        "uuid" : "d360dea4-5003-4ca5-a41d-b1fdccbcfd4c",
+        "name" : "employee",
+        "securityConfiguration" : {
+          "type" : "TOKEN",
+          "tokens" : [ {
+            "id" : 2,
+            "hash" : "$2a$10$QtLpwFPUKgllu0KQAP0uv.IHBLC6TocWRMSjZoYasKQyXRtIzT/OC",
+            "preview" : "************cXVs",
+            "createdBy" : "Greg Hayes",
+            "created" : "2020-06-16T17:56:59.546243Z"
+          } ],
+          "tokenSource" : {
+            "type" : "AUTHORIZATION_HEADER",
+            "prefix" : "IWS"
+          }
+        },
+        "baseTableName" : "employee",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 3,
+          "tableName" : "employee",
+          "path" : "",
+          "columns" : [ {
+            "name" : "email",
+            "path" : "email",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "LONG",
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "last_modified",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "GENERATED",
+            "columnRole" : "LAST_MODIFIED"
+          }, {
+            "name" : "lat",
+            "path" : "lat",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DOUBLE",
+            "precision" : 20,
+            "scale" : 5,
+            "source" : "RECORD"
+          }, {
+            "name" : "lng",
+            "path" : "lng",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DOUBLE",
+            "precision" : 20,
+            "scale" : 5,
+            "source" : "RECORD"
+          }, {
+            "name" : "manager_id",
+            "path" : "managerId",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "visit_count",
+            "path" : "visitCount",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "zip_code",
+            "path" : "zipCode",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PUSH"
+        } ],
+        "mergeStrategy" : "NONE"
+      } ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "TWELVE_HOURS"
+      } ],
+      "serviceActions" : [ {
+        "id" : 1,
+        "name" : "Add Record",
+        "endpoint" : "api/webhook-listener/020a0317-da25-4829-ae83-efd5b764aa12/d360dea4-5003-4ca5-a41d-b1fdccbcfd4c",
+        "requestMethod" : "POST",
+        "postMode" : "JSON",
+        "body" : "",
+        "actionParameters" : [ {
+          "name" : "id",
+          "dataType" : "DATETIME",
+          "defaultValue" : "",
+          "dateTimeFormat" : "CUSTOM",
+          "customDateTimeFormat" : "x",
+          "timezone" : "Etc/UTC",
+          "required" : true,
+          "uniqueId" : "fe0cf887-923f-4db2-9687-a63358742a60"
+        }, {
+          "name" : "name",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "98a08aba-9420-47ca-8fcf-dc94d46814b1"
+        }, {
+          "name" : "email",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "311d97e0-68e3-49f8-8741-b9fc13dd57f3"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "_id",
+          "required" : false,
+          "uniqueId" : "feff9333-54e5-4d51-b75c-c4e0248f301e",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "fe0cf887-923f-4db2-9687-a63358742a60"
+        }, {
+          "name" : "name",
+          "required" : false,
+          "uniqueId" : "c2987c40-02d6-450e-bd4d-29f07038e6d1",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "98a08aba-9420-47ca-8fcf-dc94d46814b1"
+        }, {
+          "name" : "email",
+          "required" : false,
+          "uniqueId" : "5888d5d0-b1bd-45cf-9ce1-01f8698c5f43",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "311d97e0-68e3-49f8-8741-b9fc13dd57f3"
+        } ],
+        "headerParameters" : [ ]
+      }, {
+        "id" : 2,
+        "name" : "Update Record",
+        "endpoint" : "api/webhook-listener/020a0317-da25-4829-ae83-efd5b764aa12/d360dea4-5003-4ca5-a41d-b1fdccbcfd4c",
+        "requestMethod" : "PATCH",
+        "postMode" : "JSON",
+        "body" : "",
+        "actionParameters" : [ {
+          "name" : "id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "fe0cf887-923f-4db2-9687-a63358742a60"
+        }, {
+          "name" : "name",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "766e2d96-17a8-42df-a232-3bb23942d647"
+        }, {
+          "name" : "email",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "d61021a6-ad19-4c10-a549-a3e23db7be7f"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "_id",
+          "required" : false,
+          "uniqueId" : "f9ad3e89-59bf-440b-bc73-4b60ba49d67d",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "fe0cf887-923f-4db2-9687-a63358742a60"
+        }, {
+          "name" : "name",
+          "required" : false,
+          "uniqueId" : "dcbcfb92-80c8-44c3-86aa-2a0bc732b236",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "766e2d96-17a8-42df-a232-3bb23942d647"
+        }, {
+          "name" : "email",
+          "required" : false,
+          "uniqueId" : "954d2352-cceb-4eac-884f-48a1fd9ccab5",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "d61021a6-ad19-4c10-a549-a3e23db7be7f"
+        } ],
+        "headerParameters" : [ ]
+      } ],
+      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/HTTP.b662c61cecf295906ef0af18be93b25a.svg"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 485,
+      "title" : "status_up",
+      "displayName" : "Status Up",
+      "entityName" : "status_up",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 9220,
+        "title" : "branch",
+        "displayName" : "Branch",
+        "attributeName" : "branch",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Branch",
+        "primaryKey" : false
+      }, {
+        "id" : 9221,
+        "title" : "build_timestamp",
+        "displayName" : "Build Timestamp",
+        "attributeName" : "build_timestamp",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Build Timestamp",
+        "primaryKey" : false
+      }, {
+        "id" : 9222,
+        "title" : "commit",
+        "displayName" : "Commit",
+        "attributeName" : "commit",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Commit",
+        "primaryKey" : true
+      }, {
+        "id" : 9223,
+        "title" : "component",
+        "displayName" : "Component",
+        "attributeName" : "component",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Component",
+        "primaryKey" : false
+      }, {
+        "id" : 9224,
+        "title" : "deployment_timestamp",
+        "displayName" : "Deployment Timestamp",
+        "attributeName" : "deployment_timestamp",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Deployment Timestamp",
+        "primaryKey" : false
+      }, {
+        "id" : 9225,
+        "title" : "product",
+        "displayName" : "Product",
+        "attributeName" : "product",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product",
+        "primaryKey" : false
+      }, {
+        "id" : 9226,
+        "title" : "schema_version",
+        "displayName" : "Schema Version",
+        "attributeName" : "schema_version",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Schema Version",
+        "primaryKey" : false
+      }, {
+        "id" : 9227,
+        "title" : "server_timestamp",
+        "displayName" : "Server Timestamp",
+        "attributeName" : "server_timestamp",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Server Timestamp",
+        "primaryKey" : false
+      }, {
+        "id" : 9228,
+        "title" : "timestamp",
+        "displayName" : "Timestamp",
+        "attributeName" : "timestamp",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Timestamp",
+        "primaryKey" : false
+      }, {
+        "id" : 9229,
+        "title" : "version",
+        "displayName" : "Version",
+        "attributeName" : "version",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Version",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 486,
+      "title" : "employee",
+      "displayName" : "Employee",
+      "entityName" : "employee",
+      "type" : "TABLE",
+      "loadingType" : "PUSH",
+      "columns" : [ {
+        "id" : 9230,
+        "title" : "email",
+        "displayName" : "Email",
+        "attributeName" : "email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Email",
+        "primaryKey" : false
+      }, {
+        "id" : 9231,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "LONG",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 9232,
+        "title" : "lat",
+        "displayName" : "Lat",
+        "attributeName" : "lat",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Lat",
+        "primaryKey" : false
+      }, {
+        "id" : 9233,
+        "title" : "lng",
+        "displayName" : "Lng",
+        "attributeName" : "lng",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Lng",
+        "primaryKey" : false
+      }, {
+        "id" : 9234,
+        "title" : "manager_id",
+        "displayName" : "Manager Id",
+        "attributeName" : "manager_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Manager Id",
+        "primaryKey" : false
+      }, {
+        "id" : 9235,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 9236,
+        "title" : "visit_count",
+        "displayName" : "Visit Count",
+        "attributeName" : "visit_count",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Visit Count",
+        "primaryKey" : false
+      }, {
+        "id" : 9237,
+        "title" : "zip_code",
+        "displayName" : "Zip Code",
+        "attributeName" : "zip_code",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Zip Code",
+        "primaryKey" : false
+      }, {
+        "id" : 9238,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ {
+    "id" : "b9476c2b-a1ac-41f7-8dd7-a4173692d0bc",
+    "legacyId" : 121,
+    "appId" : "d2e43d6b-614d-44ca-8551-cdcc6b5657f0",
+    "version" : 1,
+    "eventType" : "NEW",
+    "serviceId" : 27,
+    "tableId" : 485,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "label" : "2a262557-e1f6-4c98-872c-de8864806130",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "runTimezone" : "GMT"
+    },
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "219d2587-12c1-4744-9b36-593858453a25",
+      "body" : "94f13648-4b14-45ba-9c3c-7d9940cc7cff",
+      "url" : "",
+      "configuration" : {
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  } ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "0f05a575-b92f-4bdd-8016-57248037f12e", "d2e43d6b-614d-44ca-8551-cdcc6b5657f0" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "A74C6CA0028422C09DA99B09DB74A300",
+  "appliedSappUpgrades" : [ "microapp-8003", "microapp-7290", "microapp-6264", "microapp-6790", "microapp-6853", "microapp-6262", "microapp-4518", "microapp-6617", "microapp-6293", "microapp-2450", "microapp-1980", "microapp-8892", "microapp-3547", "microapp-8511", "microapp-3838", "microapp-7561", "microapp-3548", "microapp-5025", "microapp-4666", "microapp-8921", "microapp-7984", "microapp-8576", "microapp-5227", "microapp-6593", "microapp-7888", "microapp-4020", "microapp-8950", "microapp-7961", "microapp-3580" ],
+  "buildVersion" : "1.16.5.0e5617ca6c560d3753d212336ec34946898a64a3"
+}
