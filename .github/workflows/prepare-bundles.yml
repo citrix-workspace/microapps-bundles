@@ -2,7 +2,6 @@ name: Prepare bundles
 on:
   push
 env:
-  AZURE_STORAGE_URL: https://microappsicontest.blob.core.windows.net
   BUNDLES_DIR: bundles
   BUNDLES_BLOB: bundles
   BRANCH_BUNDLES_BLOB: branchbundles
@@ -44,10 +43,10 @@ jobs:
           main_class="com.citrix.microapps.bundlegen.BundlegenMain"
 
           if [ "${BRANCH_NAME}" = "master" ]; then
-            link_bundles="${AZURE_STORAGE_URL}/${BLOB_NAME}/"
+            link_bundles="${{secrets.AZURE_STORAGE_URL}}/${BLOB_NAME}/"
             target_directory="${TEMP_DIR}"
           else
-            link_bundles="${AZURE_STORAGE_URL}/${BLOB_NAME}/${BRANCH_NAME}/"
+            link_bundles="${{secrets.AZURE_STORAGE_URL}}/${BLOB_NAME}/${BRANCH_NAME}/"
             target_directory="${TEMP_DIR}/${BRANCH_NAME}"
           fi
           args="${BUNDLES_DIR} ${target_directory}/ ${link_bundles}"
