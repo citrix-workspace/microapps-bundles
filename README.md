@@ -11,7 +11,7 @@ Citrix Workspace Microapps
 
 
 High level design
------------------
+------------------
 
 The source repository consists of three main directories.
 
