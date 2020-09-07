@@ -17,3 +17,10 @@ jobs:
         with:
           repoToken: ${{secrets.GITHUB_TOKEN}}
           skip: 'bundles/coming_soon/'
+      - name: Slack Notification        
+        if: ${{ failure() }}        
+        uses: archive/github-actions-slack@master        
+        with:          
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACKBOT_TOKEN }}        
+          slack-channel: g11n-scanner-microapps         
+          slack-text: Globalization scan failed due to g11n issues have been found, refer to <https://github.com/${{ github.repository }}/actions| github actoins> for more details.
