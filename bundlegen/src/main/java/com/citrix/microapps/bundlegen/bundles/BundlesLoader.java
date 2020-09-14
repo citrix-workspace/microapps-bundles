@@ -204,7 +204,9 @@ public class BundlesLoader {
 
         if (metadata.getCategories() != null && metadata.getCategories().contains(COMING_SOON)) {
             issues.add(new ValidationException(
-                    String.format("Invalid category: `%s`", metadata.getType(), Type.COMING_SOON)));
+                    String.format("Category COMING_SOON is not allowed in directory: `%s`. " +
+                            "Please move it to comming_soon dir or remove the category from bundle ",
+                            metadata.getType())));
         }
 
         // TODO: Rules for other validations.

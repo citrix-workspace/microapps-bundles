@@ -7,7 +7,7 @@ Citrix Workspace Microapps
 - Generated destination for Azure storage: https://microappsbundles.blob.core.windows.net/
 
 High level design
------------------
+------------------
 
 The source repository consists of three main directories.
 
