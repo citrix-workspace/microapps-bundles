@@ -11412,7 +11412,7 @@
   "services" : [ {
     "id" : 5,
     "uuid" : "b1cd22ce-9720-43d9-9c0f-33ff24455d26",
-    "version" : 931,
+    "version" : 940,
     "title" : "ServiceNow",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -20139,129 +20139,6 @@
         "pathParameters" : [ ]
       }, {
         "id" : 0,
-        "name" : "Comment Change Request",
-        "endpoint" : "/api/now/table/change_request/{{sys_id}}",
-        "requestMethod" : "PUT",
-        "postMode" : "JSON",
-        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
-        "serviceActionId" : "3d137993-a929-484d-bbe5-21ef2b2caf8b",
-        "actionParameters" : [ {
-          "name" : "sys_id",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        }, {
-          "name" : "comments",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "151d92f7-ea4b-4595-bc75-0c17f5b13e1e"
-        } ],
-        "preActionDataUpdates" : [ ],
-        "postActionDataUpdates" : [ ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "bodyParameters" : [ {
-          "name" : "comments",
-          "required" : false,
-          "uniqueId" : "506f719a-3855-4624-965b-23cf5b50bebe",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "151d92f7-ea4b-4595-bc75-0c17f5b13e1e"
-        } ],
-        "pathParameters" : [ {
-          "name" : "sys_id",
-          "required" : false,
-          "uniqueId" : "edae432f-0787-4a25-af39-2e53bb381619",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        } ]
-      }, {
-        "id" : 0,
-        "name" : "Comment Incident",
-        "endpoint" : "/api/now/table/incident/{{sys_id}}",
-        "requestMethod" : "PUT",
-        "postMode" : "JSON",
-        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
-        "serviceActionId" : "70033058-d2d9-4013-b874-f606f8d08573",
-        "actionParameters" : [ {
-          "name" : "sys_id",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        }, {
-          "name" : "comments",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "c3ec9126-fa86-4cc3-acc1-a2b8cce74578"
-        } ],
-        "preActionDataUpdates" : [ ],
-        "postActionDataUpdates" : [ ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "bodyParameters" : [ {
-          "name" : "comments",
-          "required" : false,
-          "uniqueId" : "5a5b8445-ade1-4d9d-83fc-7bb4ca610182",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "c3ec9126-fa86-4cc3-acc1-a2b8cce74578"
-        } ],
-        "pathParameters" : [ {
-          "name" : "sys_id",
-          "required" : false,
-          "uniqueId" : "f231621f-11bf-4133-8d9b-05cfa159934e",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        } ]
-      }, {
-        "id" : 0,
-        "name" : "Comment Problem",
-        "endpoint" : "/api/now/table/problem/{{sys_id}}",
-        "requestMethod" : "PUT",
-        "postMode" : "JSON",
-        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
-        "serviceActionId" : "15d6eab1-7783-44f8-8d46-858ece5b339a",
-        "actionParameters" : [ {
-          "name" : "sys_id",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        }, {
-          "name" : "comments",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "f22cfe2d-0b69-4745-89f2-42b54921e358"
-        } ],
-        "preActionDataUpdates" : [ ],
-        "postActionDataUpdates" : [ ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "bodyParameters" : [ {
-          "name" : "comments",
-          "required" : false,
-          "uniqueId" : "f5bf7937-4f9d-4eb1-9590-a1f838c50a8d",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "f22cfe2d-0b69-4745-89f2-42b54921e358"
-        } ],
-        "pathParameters" : [ {
-          "name" : "sys_id",
-          "required" : false,
-          "uniqueId" : "37e33dea-5d4d-4001-a6d6-b1e04269e419",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
-        } ]
-      }, {
-        "id" : 0,
         "name" : "Create Incident",
         "endpoint" : "api/now/table/incident",
         "requestMethod" : "POST",
@@ -20361,6 +20238,79 @@
         "pathParameters" : [ ]
       }, {
         "id" : 0,
+        "name" : "Approve Request",
+        "endpoint" : "/api/now/table/sysapproval_approver/{{sys_id}}",
+        "requestMethod" : "PATCH",
+        "postMode" : "JSON",
+        "body" : "{\n  \"state\": \"approved\",\n  \"comments\": \"{{comments}}\"\n}",
+        "serviceActionId" : "c0fc3b37-fa75-40f1-8df2-6eaf25f07a99",
+        "actionParameters" : [ {
+          "name" : "comments",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "ee3562fa-acd6-420d-83ab-63d7a4dd268f"
+        }, {
+          "name" : "sys_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+        } ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "4b4acc06-8c86-46a6-aa26-cb345f24f16f",
+          "dataEndpointId" : 65,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : true,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "bc3adb2a-4588-4362-a737-a293094f1972",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+          } ]
+        } ],
+        "postActionDataUpdates" : [ {
+          "uniqueId" : "d67a28c3-ae31-48be-a8f1-546b5c83b141",
+          "dataEndpointId" : 65,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : true,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "5998299e-75ea-40cb-9ea3-f3997c657c14",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+          } ]
+        } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "comments",
+          "required" : false,
+          "uniqueId" : "849d3b63-6908-40df-819c-dfb8e02aa790",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "ee3562fa-acd6-420d-83ab-63d7a4dd268f"
+        } ],
+        "pathParameters" : [ {
+          "name" : "sys_id",
+          "required" : false,
+          "uniqueId" : "72c45cb5-be37-4b98-b9f7-19e6a2af2bb3",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+        } ]
+      }, {
+        "id" : 0,
         "name" : "Reject Request",
         "endpoint" : "/api/now/table/sysapproval_approver/{{sys_id}}",
         "requestMethod" : "PATCH",
@@ -20380,7 +20330,23 @@
           "required" : true,
           "uniqueId" : "d57dc763-be55-43a0-a4fe-10a937a2e88c"
         } ],
-        "preActionDataUpdates" : [ ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "b9ebfdb2-0095-47c2-8d10-c2ba2acd7727",
+          "dataEndpointId" : 65,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : true,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "98b4f335-371f-49d5-a20b-68977e582246",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "d57dc763-be55-43a0-a4fe-10a937a2e88c"
+          } ]
+        } ],
         "postActionDataUpdates" : [ {
           "uniqueId" : "2f08c669-3f95-407a-92d4-340cead32da6",
           "dataEndpointId" : 65,
@@ -20418,65 +20384,52 @@
         } ]
       }, {
         "id" : 0,
-        "name" : "Update Change Request",
-        "endpoint" : "/api/now/table/change_request/{{sys_id}}",
+        "name" : "Update Problem",
+        "endpoint" : "/api/now/table/problem/{{sys_id}}",
         "requestMethod" : "PUT",
         "postMode" : "JSON",
-        "body" : "{\n\"assignment_group\": \"{{assignment_group}}\",\n\"category\": \"{{category}}\",\n\"description\": \"{{description}}\",\n\"impact\": \"{{impact}}\",\n\"priority\": \"{{priority}}\",\n\"risk\": \"{{risk}}\",\n\"short_description\": \"{{short_description}}\"\n}",
-        "serviceActionId" : "626194f8-ad3b-40e7-bacb-062fbeb076b2",
+        "body" : "{\n\"state\": \"{{state}}\",\n\"assignment_group\": \"{{assignment_group}}\",\n\"priority\": \"{{priority}}\",\n\"short_description\": \"{{short_description}}\",\n\"description\": \"{{description}}\"\n}",
+        "serviceActionId" : "26296021-a0bb-4ac8-9e6d-22e9b8ffd28a",
         "actionParameters" : [ {
           "name" : "sys_id",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : true,
-          "uniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+          "uniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
+        }, {
+          "name" : "state",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "7de47f2b-db8f-4df6-94fb-0f53fad2bdb1"
         }, {
           "name" : "assignment_group",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "2a2932ec-9351-452c-b35d-70d73de1cbf7"
-        }, {
-          "name" : "category",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "e281dae0-767b-45d7-8dd8-c27a6c6b1c91"
-        }, {
-          "name" : "description",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "4585b5f3-1eb1-46d0-bb57-70fc22bf9b3a"
-        }, {
-          "name" : "impact",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "78bf8c1f-b9b5-4b78-b099-4b94c3b851d9"
+          "uniqueId" : "e202373c-dd5e-47c8-a593-6dfb46ba96db"
         }, {
           "name" : "priority",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "ed6172b9-a90c-4bbb-997e-fde82c25e817"
-        }, {
-          "name" : "risk",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "0ffe15ff-6302-43ef-aeda-5cc12e8059d5"
+          "uniqueId" : "e5cf93e9-f05a-4923-9ed4-83b0370a685c"
         }, {
           "name" : "short_description",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "354cf2a2-f918-4e65-b094-762a25238aa9"
+          "uniqueId" : "5fde1989-e3fa-4978-86b9-9ef82e513c64"
+        }, {
+          "name" : "description",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "e148dd0b-1f49-4df6-9aaa-5dd82b1939e8"
         } ],
-        "preActionDataUpdates" : [ ],
-        "postActionDataUpdates" : [ {
-          "uniqueId" : "326e3a3e-2517-447f-b322-22e239356901",
-          "dataEndpointId" : 1,
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "8bb8101f-5a6c-4e3e-b4af-4ada6e7be36f",
+          "dataEndpointId" : 4,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : false,
           "headerParameters" : [ ],
@@ -20485,71 +20438,74 @@
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
-            "uniqueId" : "9d207960-f9b4-4660-aed7-c9733dea99fc",
+            "uniqueId" : "ffb28f0b-e4ff-41f2-a892-2472b1abee7f",
             "editMode" : "FULL",
             "valueMapping" : "ACTION_PARAMETER",
-            "actionParameterUniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+            "actionParameterUniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
+          } ]
+        } ],
+        "postActionDataUpdates" : [ {
+          "uniqueId" : "8da430f0-500b-4b32-90a7-1e30fd16b0c2",
+          "dataEndpointId" : 4,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "eaff66a9-5c5b-4c10-b75f-545d6fa0f51b",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
           } ]
         } ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
         "bodyParameters" : [ {
+          "name" : "state",
+          "required" : false,
+          "uniqueId" : "0021d1b5-7256-4a4e-8b1c-4b731942205a",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "7de47f2b-db8f-4df6-94fb-0f53fad2bdb1"
+        }, {
           "name" : "assignment_group",
           "required" : false,
-          "uniqueId" : "fdbb3f92-0130-485a-8e8f-a59a7cfce51c",
+          "uniqueId" : "c1ff640e-b3cb-4bfb-97fd-f3db2a9cd18a",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "2a2932ec-9351-452c-b35d-70d73de1cbf7"
-        }, {
-          "name" : "category",
-          "required" : false,
-          "uniqueId" : "a3299e19-6b95-4901-9829-c3723ef82449",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "e281dae0-767b-45d7-8dd8-c27a6c6b1c91"
-        }, {
-          "name" : "description",
-          "required" : false,
-          "uniqueId" : "ab17e429-0248-48cf-9f33-6ad35f6dccaf",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "4585b5f3-1eb1-46d0-bb57-70fc22bf9b3a"
-        }, {
-          "name" : "impact",
-          "required" : false,
-          "uniqueId" : "e26a6217-2a3e-41f3-af98-1f009174eeda",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "78bf8c1f-b9b5-4b78-b099-4b94c3b851d9"
+          "actionParameterUniqueId" : "e202373c-dd5e-47c8-a593-6dfb46ba96db"
         }, {
           "name" : "priority",
           "required" : false,
-          "uniqueId" : "01f51999-0b40-48dd-b281-25d61fb73801",
+          "uniqueId" : "2cb6c231-8031-4b2b-b0d9-06d4345eccf8",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "ed6172b9-a90c-4bbb-997e-fde82c25e817"
-        }, {
-          "name" : "risk",
-          "required" : false,
-          "uniqueId" : "613a839b-1127-42b4-9d98-23c18cb01fc7",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "0ffe15ff-6302-43ef-aeda-5cc12e8059d5"
+          "actionParameterUniqueId" : "e5cf93e9-f05a-4923-9ed4-83b0370a685c"
         }, {
           "name" : "short_description",
           "required" : false,
-          "uniqueId" : "f6149bb9-135e-4366-9c01-6ffa99a507b6",
+          "uniqueId" : "1713320f-efa7-4855-8af8-e705f07da5ed",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "354cf2a2-f918-4e65-b094-762a25238aa9"
+          "actionParameterUniqueId" : "5fde1989-e3fa-4978-86b9-9ef82e513c64"
+        }, {
+          "name" : "description",
+          "required" : false,
+          "uniqueId" : "dd5f7153-e99c-4c5f-9add-58b795ed8f0f",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "e148dd0b-1f49-4df6-9aaa-5dd82b1939e8"
         } ],
         "pathParameters" : [ {
           "name" : "sys_id",
           "required" : false,
-          "uniqueId" : "e424eefe-007b-4a8a-afac-b472b6eda064",
+          "uniqueId" : "7c281419-15b6-4261-8bfe-5302b1a370d7",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+          "actionParameterUniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
         } ]
       }, {
         "id" : 0,
@@ -20626,7 +20582,23 @@
           "required" : false,
           "uniqueId" : "62e3a931-2d2a-4ce6-b746-592a79bcd43f"
         } ],
-        "preActionDataUpdates" : [ ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "360245e6-e585-4768-a47c-1b0438b2e26d",
+          "dataEndpointId" : 3,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "6011d220-7732-4afa-9113-f63621539e93",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "af9f267a-537b-480d-b800-aca2fc8d5dfb"
+          } ]
+        } ],
         "postActionDataUpdates" : [ {
           "uniqueId" : "858d6882-195e-4b3e-9505-1f1ce890bf04",
           "dataEndpointId" : 3,
@@ -20727,52 +20699,251 @@
         } ]
       }, {
         "id" : 0,
-        "name" : "Update Problem",
-        "endpoint" : "/api/now/table/problem/{{sys_id}}",
+        "name" : "Update Change Request",
+        "endpoint" : "/api/now/table/change_request/{{sys_id}}",
         "requestMethod" : "PUT",
         "postMode" : "JSON",
-        "body" : "{\n\"state\": \"{{state}}\",\n\"assignment_group\": \"{{assignment_group}}\",\n\"priority\": \"{{priority}}\",\n\"short_description\": \"{{short_description}}\",\n\"description\": \"{{description}}\"\n}",
-        "serviceActionId" : "26296021-a0bb-4ac8-9e6d-22e9b8ffd28a",
+        "body" : "{\n\"assignment_group\": \"{{assignment_group}}\",\n\"category\": \"{{category}}\",\n\"description\": \"{{description}}\",\n\"impact\": \"{{impact}}\",\n\"priority\": \"{{priority}}\",\n\"risk\": \"{{risk}}\",\n\"short_description\": \"{{short_description}}\"\n}",
+        "serviceActionId" : "626194f8-ad3b-40e7-bacb-062fbeb076b2",
         "actionParameters" : [ {
           "name" : "sys_id",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : true,
-          "uniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
-        }, {
-          "name" : "state",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "7de47f2b-db8f-4df6-94fb-0f53fad2bdb1"
+          "uniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
         }, {
           "name" : "assignment_group",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "e202373c-dd5e-47c8-a593-6dfb46ba96db"
+          "uniqueId" : "2a2932ec-9351-452c-b35d-70d73de1cbf7"
         }, {
-          "name" : "priority",
+          "name" : "category",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "e5cf93e9-f05a-4923-9ed4-83b0370a685c"
-        }, {
-          "name" : "short_description",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "5fde1989-e3fa-4978-86b9-9ef82e513c64"
+          "uniqueId" : "e281dae0-767b-45d7-8dd8-c27a6c6b1c91"
         }, {
           "name" : "description",
           "dataType" : "STRING",
           "defaultValue" : "",
           "required" : false,
-          "uniqueId" : "e148dd0b-1f49-4df6-9aaa-5dd82b1939e8"
+          "uniqueId" : "4585b5f3-1eb1-46d0-bb57-70fc22bf9b3a"
+        }, {
+          "name" : "impact",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "78bf8c1f-b9b5-4b78-b099-4b94c3b851d9"
+        }, {
+          "name" : "priority",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "ed6172b9-a90c-4bbb-997e-fde82c25e817"
+        }, {
+          "name" : "risk",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "0ffe15ff-6302-43ef-aeda-5cc12e8059d5"
+        }, {
+          "name" : "short_description",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : false,
+          "uniqueId" : "354cf2a2-f918-4e65-b094-762a25238aa9"
         } ],
-        "preActionDataUpdates" : [ ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "6412a3b7-5929-4541-b426-61070efa1e41",
+          "dataEndpointId" : 1,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "683d839e-27e6-4dba-b363-afb198ad34e5",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+          } ]
+        } ],
         "postActionDataUpdates" : [ {
-          "uniqueId" : "8da430f0-500b-4b32-90a7-1e30fd16b0c2",
+          "uniqueId" : "326e3a3e-2517-447f-b322-22e239356901",
+          "dataEndpointId" : 1,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "9d207960-f9b4-4660-aed7-c9733dea99fc",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+          } ]
+        } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "assignment_group",
+          "required" : false,
+          "uniqueId" : "fdbb3f92-0130-485a-8e8f-a59a7cfce51c",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "2a2932ec-9351-452c-b35d-70d73de1cbf7"
+        }, {
+          "name" : "category",
+          "required" : false,
+          "uniqueId" : "a3299e19-6b95-4901-9829-c3723ef82449",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "e281dae0-767b-45d7-8dd8-c27a6c6b1c91"
+        }, {
+          "name" : "description",
+          "required" : false,
+          "uniqueId" : "ab17e429-0248-48cf-9f33-6ad35f6dccaf",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "4585b5f3-1eb1-46d0-bb57-70fc22bf9b3a"
+        }, {
+          "name" : "impact",
+          "required" : false,
+          "uniqueId" : "e26a6217-2a3e-41f3-af98-1f009174eeda",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "78bf8c1f-b9b5-4b78-b099-4b94c3b851d9"
+        }, {
+          "name" : "priority",
+          "required" : false,
+          "uniqueId" : "01f51999-0b40-48dd-b281-25d61fb73801",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "ed6172b9-a90c-4bbb-997e-fde82c25e817"
+        }, {
+          "name" : "risk",
+          "required" : false,
+          "uniqueId" : "613a839b-1127-42b4-9d98-23c18cb01fc7",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "0ffe15ff-6302-43ef-aeda-5cc12e8059d5"
+        }, {
+          "name" : "short_description",
+          "required" : false,
+          "uniqueId" : "f6149bb9-135e-4366-9c01-6ffa99a507b6",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "354cf2a2-f918-4e65-b094-762a25238aa9"
+        } ],
+        "pathParameters" : [ {
+          "name" : "sys_id",
+          "required" : false,
+          "uniqueId" : "e424eefe-007b-4a8a-afac-b472b6eda064",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "94bdc66f-cc81-49cc-a45e-885e716679ae"
+        } ]
+      }, {
+        "id" : 0,
+        "name" : "Comment Change Request",
+        "endpoint" : "/api/now/table/change_request/{{sys_id}}",
+        "requestMethod" : "PUT",
+        "postMode" : "JSON",
+        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
+        "serviceActionId" : "3d137993-a929-484d-bbe5-21ef2b2caf8b",
+        "actionParameters" : [ {
+          "name" : "sys_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+        }, {
+          "name" : "comments",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "151d92f7-ea4b-4595-bc75-0c17f5b13e1e"
+        } ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "299c5ab1-ad58-4b74-8911-a6c4a31d0cbb",
+          "dataEndpointId" : 1,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "b01c7982-701f-49b5-9b93-d618aa4bcae1",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+          } ]
+        } ],
+        "postActionDataUpdates" : [ {
+          "uniqueId" : "7c39bdd4-729a-458a-a486-b8698f5fdf62",
+          "dataEndpointId" : 1,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "204ff529-eee2-4f3a-8fe8-2b8bd3a4e474",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+          } ]
+        } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "comments",
+          "required" : false,
+          "uniqueId" : "506f719a-3855-4624-965b-23cf5b50bebe",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "151d92f7-ea4b-4595-bc75-0c17f5b13e1e"
+        } ],
+        "pathParameters" : [ {
+          "name" : "sys_id",
+          "required" : false,
+          "uniqueId" : "edae432f-0787-4a25-af39-2e53bb381619",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+        } ]
+      }, {
+        "id" : 0,
+        "name" : "Comment Problem",
+        "endpoint" : "/api/now/table/problem/{{sys_id}}",
+        "requestMethod" : "PUT",
+        "postMode" : "JSON",
+        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
+        "serviceActionId" : "15d6eab1-7783-44f8-8d46-858ece5b339a",
+        "actionParameters" : [ {
+          "name" : "sys_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+        }, {
+          "name" : "comments",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "f22cfe2d-0b69-4745-89f2-42b54921e358"
+        } ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "7fd2962b-2f3b-4af3-bab2-16a49cc880e2",
           "dataEndpointId" : 4,
           "endpointSuffix" : "/{{sys_id}}",
           "callChainEnabled" : false,
@@ -20782,95 +20953,27 @@
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
-            "uniqueId" : "eaff66a9-5c5b-4c10-b75f-545d6fa0f51b",
+            "uniqueId" : "d48939b3-c717-4cdd-8150-1069382c0f11",
             "editMode" : "FULL",
             "valueMapping" : "ACTION_PARAMETER",
-            "actionParameterUniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
           } ]
         } ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "bodyParameters" : [ {
-          "name" : "state",
-          "required" : false,
-          "uniqueId" : "0021d1b5-7256-4a4e-8b1c-4b731942205a",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "7de47f2b-db8f-4df6-94fb-0f53fad2bdb1"
-        }, {
-          "name" : "assignment_group",
-          "required" : false,
-          "uniqueId" : "c1ff640e-b3cb-4bfb-97fd-f3db2a9cd18a",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "e202373c-dd5e-47c8-a593-6dfb46ba96db"
-        }, {
-          "name" : "priority",
-          "required" : false,
-          "uniqueId" : "2cb6c231-8031-4b2b-b0d9-06d4345eccf8",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "e5cf93e9-f05a-4923-9ed4-83b0370a685c"
-        }, {
-          "name" : "short_description",
-          "required" : false,
-          "uniqueId" : "1713320f-efa7-4855-8af8-e705f07da5ed",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "5fde1989-e3fa-4978-86b9-9ef82e513c64"
-        }, {
-          "name" : "description",
-          "required" : false,
-          "uniqueId" : "dd5f7153-e99c-4c5f-9add-58b795ed8f0f",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "e148dd0b-1f49-4df6-9aaa-5dd82b1939e8"
-        } ],
-        "pathParameters" : [ {
-          "name" : "sys_id",
-          "required" : false,
-          "uniqueId" : "7c281419-15b6-4261-8bfe-5302b1a370d7",
-          "editMode" : "FULL",
-          "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "4361d182-1b8e-4ac7-8b38-b47ff7f745b5"
-        } ]
-      }, {
-        "id" : 0,
-        "name" : "Approve Request",
-        "endpoint" : "/api/now/table/sysapproval_approver/{{sys_id}}",
-        "requestMethod" : "PATCH",
-        "postMode" : "JSON",
-        "body" : "{\n  \"state\": \"approved\",\n  \"comments\": \"{{comments}}\"\n}",
-        "serviceActionId" : "c0fc3b37-fa75-40f1-8df2-6eaf25f07a99",
-        "actionParameters" : [ {
-          "name" : "comments",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : false,
-          "uniqueId" : "ee3562fa-acd6-420d-83ab-63d7a4dd268f"
-        }, {
-          "name" : "sys_id",
-          "dataType" : "STRING",
-          "defaultValue" : "",
-          "required" : true,
-          "uniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
-        } ],
-        "preActionDataUpdates" : [ ],
         "postActionDataUpdates" : [ {
-          "uniqueId" : "d67a28c3-ae31-48be-a8f1-546b5c83b141",
-          "dataEndpointId" : 65,
+          "uniqueId" : "70da7327-1215-4619-8678-af0e35a70bdb",
+          "dataEndpointId" : 4,
           "endpointSuffix" : "/{{sys_id}}",
-          "callChainEnabled" : true,
+          "callChainEnabled" : false,
           "headerParameters" : [ ],
           "queryParameters" : [ ],
           "bodyParameters" : [ ],
           "pathParameters" : [ {
             "name" : "sys_id",
             "required" : false,
-            "uniqueId" : "5998299e-75ea-40cb-9ea3-f3997c657c14",
+            "uniqueId" : "20f3d9c7-2b65-4c6e-b59e-00341569c459",
             "editMode" : "FULL",
             "valueMapping" : "ACTION_PARAMETER",
-            "actionParameterUniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
           } ]
         } ],
         "headerParameters" : [ ],
@@ -20878,18 +20981,91 @@
         "bodyParameters" : [ {
           "name" : "comments",
           "required" : false,
-          "uniqueId" : "849d3b63-6908-40df-819c-dfb8e02aa790",
+          "uniqueId" : "f5bf7937-4f9d-4eb1-9590-a1f838c50a8d",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "ee3562fa-acd6-420d-83ab-63d7a4dd268f"
+          "actionParameterUniqueId" : "f22cfe2d-0b69-4745-89f2-42b54921e358"
         } ],
         "pathParameters" : [ {
           "name" : "sys_id",
           "required" : false,
-          "uniqueId" : "72c45cb5-be37-4b98-b9f7-19e6a2af2bb3",
+          "uniqueId" : "37e33dea-5d4d-4001-a6d6-b1e04269e419",
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
-          "actionParameterUniqueId" : "bbffb23e-7b1d-436a-b804-13d76202dde6"
+          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+        } ]
+      }, {
+        "id" : 0,
+        "name" : "Comment Incident",
+        "endpoint" : "/api/now/table/incident/{{sys_id}}",
+        "requestMethod" : "PUT",
+        "postMode" : "JSON",
+        "body" : "{\n\"comments\": \"{{comments}}\"\n}",
+        "serviceActionId" : "70033058-d2d9-4013-b874-f606f8d08573",
+        "actionParameters" : [ {
+          "name" : "sys_id",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+        }, {
+          "name" : "comments",
+          "dataType" : "STRING",
+          "defaultValue" : "",
+          "required" : true,
+          "uniqueId" : "c3ec9126-fa86-4cc3-acc1-a2b8cce74578"
+        } ],
+        "preActionDataUpdates" : [ {
+          "uniqueId" : "db85bcb2-7f58-4854-9be8-985ed9ddaf0a",
+          "dataEndpointId" : 3,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "589966e1-a2f7-40a2-a843-b5156cb93ea7",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+          } ]
+        } ],
+        "postActionDataUpdates" : [ {
+          "uniqueId" : "110ef79d-6a34-49ee-b3f3-7d7438e3379c",
+          "dataEndpointId" : 3,
+          "endpointSuffix" : "/{{sys_id}}",
+          "callChainEnabled" : false,
+          "headerParameters" : [ ],
+          "queryParameters" : [ ],
+          "bodyParameters" : [ ],
+          "pathParameters" : [ {
+            "name" : "sys_id",
+            "required" : false,
+            "uniqueId" : "eed5ed0d-de4f-43de-936a-4279ced1bc82",
+            "editMode" : "FULL",
+            "valueMapping" : "ACTION_PARAMETER",
+            "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
+          } ]
+        } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
+        "bodyParameters" : [ {
+          "name" : "comments",
+          "required" : false,
+          "uniqueId" : "5a5b8445-ade1-4d9d-83fc-7bb4ca610182",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "c3ec9126-fa86-4cc3-acc1-a2b8cce74578"
+        } ],
+        "pathParameters" : [ {
+          "name" : "sys_id",
+          "required" : false,
+          "uniqueId" : "f231621f-11bf-4133-8d9b-05cfa159934e",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "45a7dbf1-7cfc-4d44-97ad-7b1ca56a5d26"
         } ]
       } ],
       "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/ServiceNow.9a68dd66918b05acfbe29ac251e33a8d.svg",
@@ -45128,7 +45304,7 @@
   "modelConfiguration" : {
     "appIds" : [ "70b49194-e1a1-4a6e-b1b6-79b91b24741a", "34e8699d-e7e7-4dcf-80ef-6feb9e7c5391", "4269530c-d34f-4e52-b242-6df60efb281f", "7b86eb98-f08c-4673-870b-6e66bd3706ca", "104728a5-1870-4467-b263-b7e50c665457", "b4d571f2-cf89-4bff-9ec2-1da9c899c236", "0e42d5cb-1863-4e13-b575-42279351729f", "4e2c9354-4791-4d9b-bb30-da216695206e" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "ServiceNow microapps enable notifications and workflows for ServiceNow approvals, requests, change requests, delegates, incidents, and problems",
+    "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "862BF45B1B75F9EE2887E65AB49943E2",
