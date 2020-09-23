@@ -11419,7 +11419,7 @@
     "schemaName" : "microapps_servicenow_http_4",
     "configuration" : {
       "trackingUuid" : "fbe9b20f-2047-4c36-8fd6-353d2b741d18",
-      "baseUrl" : "https://ven01956.service-now.com/",
+      "baseUrl" : "https://{customerID}.service-now.com/",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "RESOURCE_OWNER_PASSWORD",
@@ -11427,7 +11427,7 @@
         "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "password" : "{{secret \"dataEndpoint.password\"}}",
         "scope" : "",
-        "tokenURL" : "https://ven01956.service-now.com/oauth_token.do",
+        "tokenURL" : "https://{customerID}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
@@ -11435,10 +11435,10 @@
       "serviceActionSecurity" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
-        "authorizationURL" : "https://ven01956.service-now.com/oauth_auth.do",
+        "authorizationURL" : "https://{customerID}.service-now.com/oauth_auth.do",
         "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "scope" : "",
-        "tokenURL" : "https://ven01956.service-now.com/oauth_token.do",
+        "tokenURL" : "https://{customerID}.service-now.com/oauth_token.do",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : ""
       },
