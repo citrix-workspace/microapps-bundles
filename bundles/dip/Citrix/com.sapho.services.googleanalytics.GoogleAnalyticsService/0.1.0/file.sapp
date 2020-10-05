@@ -1,17 +1,22 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
-      "serviceId" : 1,
-      "version" : 1,
+      "id" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
+      "serviceId" : 2,
+      "version" : 3,
+      "parameters" : {
+        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg",
+        "description" : "15ff4f5c-ccac-471c-9e4d-c188a7187a9f"
+      },
       "title" : "bd8e8932-e234-44f7-826a-19b6824e0eda",
+      "startPageId" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
       "pages" : [ {
-        "id" : "6953f74d-4d3e-46dd-9b08-e34dc78ee7a7",
-        "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
+        "id" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
+        "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TABLE",
-          "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
+          "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -19,19 +24,19 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 1,
+          "componentTableId" : 5,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "72e92de9-ea60-4dc8-8477-fa274413db5d",
-              "tableid" : 1,
+              "tableid" : 5,
               "sqlorder" : {
-                "id" : "3dc6e6b2-328b-4898-90b9-f00ec0e23ed4",
+                "id" : "57d1f4c2-5bca-40ee-b0ac-f2a93f42ba15",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 1,
-                    "columnId" : 7,
+                    "tableId" : 5,
+                    "columnId" : 38,
                     "order" : "DESC",
                     "ignoredWhenValueIsNull" : false
                   }
@@ -44,8 +49,8 @@
                 "aggregation" : "NONE",
                 "label" : "ad1ae6a7-b0dc-4f53-ab10-89692b81847d",
                 "id" : "crfdv7",
-                "tableid" : 1,
-                "columnid" : 7,
+                "tableid" : 5,
+                "columnid" : 38,
                 "urlTemplate" : null,
                 "format" : "date",
                 "tableColumn" : {
@@ -57,8 +62,8 @@
                 "aggregation" : "NONE",
                 "label" : "7ed90735-d80b-431b-94f8-052be4119ea4",
                 "id" : "a8ydzh",
-                "tableid" : 1,
-                "columnid" : 2,
+                "tableid" : 5,
+                "columnid" : 33,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -70,8 +75,8 @@
                 "aggregation" : "NONE",
                 "label" : "a6745e4b-85f3-4575-bb7f-f1cc3c712e6b",
                 "id" : "flml1l",
-                "tableid" : 1,
-                "columnid" : 3,
+                "tableid" : 5,
+                "columnid" : 34,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -83,8 +88,8 @@
                 "aggregation" : "NONE",
                 "label" : "acf53fad-c7ab-40bd-a36c-2676e548bf6d",
                 "id" : "147gsr",
-                "tableid" : 1,
-                "columnid" : 4,
+                "tableid" : 5,
+                "columnid" : 35,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -96,8 +101,8 @@
                 "aggregation" : "NONE",
                 "label" : "d7b2843c-7167-4383-b0f2-8c470de81ee5",
                 "id" : "yd4uvm",
-                "tableid" : 1,
-                "columnid" : 6,
+                "tableid" : 5,
+                "columnid" : 37,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -109,8 +114,8 @@
                 "aggregation" : "NONE",
                 "label" : "0c08d439-c1db-46ac-af73-58c0b4863a9c",
                 "id" : "t61iq2",
-                "tableid" : 1,
-                "columnid" : 5,
+                "tableid" : 5,
+                "columnid" : 36,
                 "urlTemplate" : null,
                 "format" : "decimal",
                 "tableColumn" : {
@@ -128,22 +133,22 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "f59ac72f-0300-4aca-b834-0b78b26d68e8",
+          "id" : "fee3cebc-4bfb-452b-833f-e6933c5186b6",
           "defaultvalue" : null,
-          "displayorder" : 1
+          "displayorder" : 1,
+          "prefillValue" : null,
+          "defaultLimit" : 20
         } ],
         "title" : "cfaa4e3d-90c7-4f9b-a538-fc1990702e44",
         "logicConfiguration" : [ ],
         "parameters" : { },
-        "tableid" : 1,
-        "datasourceid" : 1,
+        "tableid" : 5,
+        "datasourceid" : 2,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "actionApp" : false,
-      "parameters" : {
-        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg",
-        "description" : "15ff4f5c-ccac-471c-9e4d-c188a7187a9f"
-      }
+      "trackingUuid" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -151,17 +156,23 @@
     }
   }, {
     "appVersion" : {
-      "id" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
-      "serviceId" : 1,
-      "version" : 1,
+      "id" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
+      "serviceId" : 2,
+      "version" : 3,
+      "parameters" : {
+        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg",
+        "description" : "99dda5e0-ff89-44d2-8d78-0c4dde89d72e",
+        "forcedImport" : true
+      },
       "title" : "edfbbc10-3fc0-49ce-85c8-1c2f16e835e5",
+      "startPageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
       "pages" : [ {
-        "id" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
-        "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
+        "id" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
+        "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TABLE",
-          "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
+          "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -169,133 +180,130 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 4,
+          "componentTableId" : 8,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "5f6585f1-e67b-4174-84a7-d4a35bcc2adb",
-              "tableid" : 4,
+              "tableid" : 8,
               "sqlorder" : {
-                "id" : "7c63760a-ce1d-4797-9780-bc688ba9a4a5",
+                "id" : "96241833-aef3-4d4e-9b63-a91d9972d761",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 4,
-                    "columnId" : 23,
+                    "tableId" : 8,
+                    "columnId" : 54,
                     "order" : "DESC",
                     "ignoredWhenValueIsNull" : false
                   }
                 },
                 "autojoins" : false
               },
-              "show_1_to_n" : "1",
+              "show_1_to_n" : "0",
               "columns" : [ {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "6c670daf-03d6-4349-9ce6-5de832686241",
                 "id" : "og9bml",
-                "tableid" : 4,
-                "columnid" : 23,
+                "tableid" : 8,
+                "columnid" : 54,
                 "urlTemplate" : null,
                 "format" : "date",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "DATE"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "0844a997-12da-4de4-9579-63adaf14f997",
                 "id" : "607hwt",
-                "tableid" : 4,
-                "columnid" : 18,
+                "tableid" : 8,
+                "columnid" : 49,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "INTEGER"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "a2d5d3b0-34a8-4920-8d1d-6b98fd52d222",
                 "id" : "1bo06q",
-                "tableid" : 4,
-                "columnid" : 21,
+                "tableid" : 8,
+                "columnid" : 52,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "DOUBLE"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "448ad332-eec2-4537-8fe2-7f2801f93b77",
                 "id" : "jzawre",
-                "tableid" : 4,
-                "columnid" : 19,
+                "tableid" : 8,
+                "columnid" : 50,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "INTEGER"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "bbf0be96-762b-4f4a-8b79-5373abe426ab",
                 "id" : "e8fr0r",
-                "tableid" : 4,
-                "columnid" : 20,
+                "tableid" : 8,
+                "columnid" : 51,
                 "urlTemplate" : null,
                 "format" : "decimal",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "DOUBLE"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "827ffc98-d9e6-4028-8ec3-9c7e24781060",
                 "id" : "rd2ic4",
-                "tableid" : 4,
-                "columnid" : 22,
+                "tableid" : 8,
+                "columnid" : 53,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "INTEGER"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
               "hideIfEmpty" : false,
               "sortable" : 1,
               "alignment" : "left"
-            },
-            "query" : null,
-            "prefill" : null,
-            "order" : null
+            }
           },
-          "id" : "1892c789-ea7d-44ff-970d-bc403bf0fe3c",
+          "id" : "943bb481-72cd-425a-b6ee-649dfbd9c5f8",
           "defaultvalue" : null,
-          "displayorder" : 2
+          "displayorder" : 1,
+          "prefillValue" : null,
+          "defaultLimit" : 20,
+          "tableid" : 8,
+          "pageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63"
         } ],
         "title" : "c009a88a-d954-4c1a-83e7-7aa03c5f0600",
         "logicConfiguration" : [ ],
         "parameters" : { },
-        "tableid" : 4,
-        "datasourceid" : 1,
+        "tableid" : 8,
+        "datasourceid" : 2,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
-      "actionApp" : true,
-      "parameters" : {
-        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg",
-        "description" : "99dda5e0-ff89-44d2-8d78-0c4dde89d72e",
-        "forcedImport" : true
-      }
+      "trackingUuid" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -303,123 +311,16 @@
     }
   } ],
   "services" : [ {
-    "id" : 1,
-    "uuid" : "ddec3707-1ea6-48ee-97ea-bbe5fa70309c",
-    "version" : 0,
+    "id" : 2,
+    "uuid" : "94ed59bb-aa29-4cac-a27b-49e720bf75d3",
+    "version" : 2,
     "title" : "Google Analytics integration",
     "serviceType" : "EXTERNAL_SERVICE",
     "group" : "EXTERNAL_SERVICE:com.sapho.services.googleanalytics.GoogleAnalyticsService",
-    "updatePending" : false,
-    "configurationPending" : false,
-    "secretsMissing" : false,
     "schemaName" : "microapps_google_analytic",
     "configuration" : {
+      "trackingUuid" : "3bdc3a91-0b56-41d1-bed3-6faf3f5f4b2e",
       "entities" : [ {
-        "name" : "PageTrackingMetrics",
-        "displayName" : "Page Tracking Metrics",
-        "description" : "Page tracking metrics per day",
-        "attributes" : [ {
-          "name" : "id",
-          "displayName" : "Id",
-          "type" : {
-            "baseDataType" : "INTEGER",
-            "bitSize" : "x32",
-            "size" : 0,
-            "precision" : 0,
-            "scale" : 0
-          },
-          "primaryKey" : true,
-          "indexed" : false,
-          "reference" : {
-            "targetEntityName" : "SessionMetrics",
-            "targetEntityAttribute" : "id",
-            "referenceGroup" : "page_tracking_metrics_id_session_metrics"
-          },
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        }, {
-          "name" : "page_views",
-          "displayName" : "Page Views",
-          "type" : {
-            "baseDataType" : "INTEGER",
-            "bitSize" : "x32",
-            "size" : 0,
-            "precision" : 0,
-            "scale" : 0
-          },
-          "primaryKey" : false,
-          "indexed" : false,
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        }, {
-          "name" : "unique_page_views",
-          "displayName" : "Unique Page Views",
-          "type" : {
-            "baseDataType" : "INTEGER",
-            "bitSize" : "x32",
-            "size" : 0,
-            "precision" : 0,
-            "scale" : 0
-          },
-          "primaryKey" : false,
-          "indexed" : false,
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        }, {
-          "name" : "page_views_per_session",
-          "displayName" : "Page Views Per Session",
-          "type" : {
-            "baseDataType" : "FLOAT",
-            "size" : 0,
-            "precision" : 6,
-            "scale" : 2
-          },
-          "primaryKey" : false,
-          "indexed" : false,
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        }, {
-          "name" : "avg_time_on_page",
-          "displayName" : "Avg Time on Page",
-          "type" : {
-            "baseDataType" : "FLOAT",
-            "size" : 0,
-            "precision" : 10,
-            "scale" : 2
-          },
-          "primaryKey" : false,
-          "indexed" : false,
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        }, {
-          "name" : "day",
-          "displayName" : "Day",
-          "type" : {
-            "baseDataType" : "DATE",
-            "size" : 0,
-            "precision" : 0,
-            "scale" : 0
-          },
-          "primaryKey" : false,
-          "indexed" : true,
-          "mandatory" : true,
-          "preselected" : true,
-          "sourceId" : false
-        } ],
-        "filterSettings" : {
-          "predefinedLoadFilters" : [ ],
-          "preselected" : true,
-          "filterable" : false,
-          "selectableAttributes" : false,
-          "mandatory" : true
-        },
-        "loadingType" : "PULL"
-      }, {
         "name" : "SessionMetrics",
         "displayName" : "Session Metrics",
         "description" : "Session metrics per day",
@@ -716,11 +617,119 @@
           "mandatory" : true
         },
         "loadingType" : "PULL"
+      }, {
+        "name" : "PageTrackingMetrics",
+        "displayName" : "Page Tracking Metrics",
+        "description" : "Page tracking metrics per day",
+        "attributes" : [ {
+          "name" : "id",
+          "displayName" : "Id",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : true,
+          "indexed" : false,
+          "reference" : {
+            "targetEntityName" : "SessionMetrics",
+            "targetEntityAttribute" : "id",
+            "referenceGroup" : "page_tracking_metrics_id_session_metrics"
+          },
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "page_views",
+          "displayName" : "Page Views",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "unique_page_views",
+          "displayName" : "Unique Page Views",
+          "type" : {
+            "baseDataType" : "INTEGER",
+            "bitSize" : "x32",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "page_views_per_session",
+          "displayName" : "Page Views Per Session",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 6,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "avg_time_on_page",
+          "displayName" : "Avg Time on Page",
+          "type" : {
+            "baseDataType" : "FLOAT",
+            "size" : 0,
+            "precision" : 10,
+            "scale" : 2
+          },
+          "primaryKey" : false,
+          "indexed" : false,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        }, {
+          "name" : "day",
+          "displayName" : "Day",
+          "type" : {
+            "baseDataType" : "DATE",
+            "size" : 0,
+            "precision" : 0,
+            "scale" : 0
+          },
+          "primaryKey" : false,
+          "indexed" : true,
+          "mandatory" : true,
+          "preselected" : true,
+          "sourceId" : false
+        } ],
+        "filterSettings" : {
+          "predefinedLoadFilters" : [ ],
+          "preselected" : true,
+          "filterable" : false,
+          "selectableAttributes" : false,
+          "mandatory" : true
+        },
+        "loadingType" : "PULL"
       } ],
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
         "useTimeRange" : false,
-        "schedule" : "DAILY"
+        "schedule" : "DAILY",
+        "linkedServiceId" : null,
+        "id" : "FullSynchronization",
+        "timeRange" : "00:00-04:00"
       } ],
       "serviceName" : "Google Analytics",
       "serviceKey" : "com.sapho.services.googleanalytics.GoogleAnalyticsService",
@@ -731,14 +740,14 @@
     },
     "context" : { },
     "tables" : [ {
-      "id" : 1,
+      "id" : 5,
       "title" : "usermetrics",
       "displayName" : "User Metrics",
       "entityName" : "UserMetrics",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1,
+        "id" : 32,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -752,7 +761,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 2,
+        "id" : 33,
         "title" : "users",
         "displayName" : "Users",
         "attributeName" : "users",
@@ -766,7 +775,7 @@
         "defaultLabel" : "Users",
         "primaryKey" : false
       }, {
-        "id" : 3,
+        "id" : 34,
         "title" : "new_users",
         "displayName" : "New Users",
         "attributeName" : "new_users",
@@ -780,7 +789,7 @@
         "defaultLabel" : "New Users",
         "primaryKey" : false
       }, {
-        "id" : 4,
+        "id" : 35,
         "title" : "returning_users",
         "displayName" : "Returning Users",
         "attributeName" : "returning_users",
@@ -794,7 +803,7 @@
         "defaultLabel" : "Returning Users",
         "primaryKey" : false
       }, {
-        "id" : 5,
+        "id" : 36,
         "title" : "new_sessions_percent",
         "displayName" : "New Sessions Percent",
         "attributeName" : "new_sessions_percent",
@@ -808,7 +817,7 @@
         "defaultLabel" : "New Sessions Percent",
         "primaryKey" : false
       }, {
-        "id" : 6,
+        "id" : 37,
         "title" : "sessions_per_user",
         "displayName" : "Sessions Per User",
         "attributeName" : "sessions_per_user",
@@ -822,7 +831,7 @@
         "defaultLabel" : "Sessions Per User",
         "primaryKey" : false
       }, {
-        "id" : 7,
+        "id" : 38,
         "title" : "day",
         "displayName" : "Day",
         "attributeName" : "day",
@@ -837,14 +846,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 2,
+      "id" : 6,
       "title" : "pagetrackingmetrics",
       "displayName" : "Page Tracking Metrics",
       "entityName" : "PageTrackingMetrics",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 8,
+        "id" : 39,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -858,7 +867,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 9,
+        "id" : 40,
         "title" : "page_views",
         "displayName" : "Page Views",
         "attributeName" : "page_views",
@@ -872,7 +881,7 @@
         "defaultLabel" : "Page Views",
         "primaryKey" : false
       }, {
-        "id" : 10,
+        "id" : 41,
         "title" : "unique_page_views",
         "displayName" : "Unique Page Views",
         "attributeName" : "unique_page_views",
@@ -886,7 +895,7 @@
         "defaultLabel" : "Unique Page Views",
         "primaryKey" : false
       }, {
-        "id" : 11,
+        "id" : 42,
         "title" : "page_views_per_session",
         "displayName" : "Page Views Per Session",
         "attributeName" : "page_views_per_session",
@@ -900,7 +909,7 @@
         "defaultLabel" : "Page Views Per Session",
         "primaryKey" : false
       }, {
-        "id" : 12,
+        "id" : 43,
         "title" : "avg_time_on_page",
         "displayName" : "Avg Time on Page",
         "attributeName" : "avg_time_on_page",
@@ -914,7 +923,7 @@
         "defaultLabel" : "Avg Time on Page",
         "primaryKey" : false
       }, {
-        "id" : 13,
+        "id" : 44,
         "title" : "day",
         "displayName" : "Day",
         "attributeName" : "day",
@@ -929,14 +938,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 3,
+      "id" : 7,
       "title" : "userdaymetrics",
       "displayName" : "User Day Metrics",
       "entityName" : "UserDayMetrics",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 14,
+        "id" : 45,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -950,7 +959,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 15,
+        "id" : 46,
         "title" : "day_users_30",
         "displayName" : "Day Users 30",
         "attributeName" : "day_users_30",
@@ -964,7 +973,7 @@
         "defaultLabel" : "Day Users 30",
         "primaryKey" : false
       }, {
-        "id" : 16,
+        "id" : 47,
         "title" : "day",
         "displayName" : "Day",
         "attributeName" : "day",
@@ -979,14 +988,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 4,
+      "id" : 8,
       "title" : "sessionmetrics",
       "displayName" : "Session Metrics",
       "entityName" : "SessionMetrics",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 17,
+        "id" : 48,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -1000,7 +1009,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 18,
+        "id" : 49,
         "title" : "sessions",
         "displayName" : "Sessions",
         "attributeName" : "sessions",
@@ -1014,7 +1023,7 @@
         "defaultLabel" : "Sessions",
         "primaryKey" : false
       }, {
-        "id" : 19,
+        "id" : 50,
         "title" : "bounces",
         "displayName" : "Bounces",
         "attributeName" : "bounces",
@@ -1028,7 +1037,7 @@
         "defaultLabel" : "Bounces",
         "primaryKey" : false
       }, {
-        "id" : 20,
+        "id" : 51,
         "title" : "bounce_rate_percent",
         "displayName" : "Bounce Rate Percent",
         "attributeName" : "bounce_rate_percent",
@@ -1042,7 +1051,7 @@
         "defaultLabel" : "Bounce Rate Percent",
         "primaryKey" : false
       }, {
-        "id" : 21,
+        "id" : 52,
         "title" : "avg_session_duration",
         "displayName" : "Avg Session Duration",
         "attributeName" : "avg_session_duration",
@@ -1056,7 +1065,7 @@
         "defaultLabel" : "Avg Session Duration",
         "primaryKey" : false
       }, {
-        "id" : 22,
+        "id" : 53,
         "title" : "hits",
         "displayName" : "Hits",
         "attributeName" : "hits",
@@ -1070,7 +1079,7 @@
         "defaultLabel" : "Hits",
         "primaryKey" : false
       }, {
-        "id" : 23,
+        "id" : 54,
         "title" : "day",
         "displayName" : "Day",
         "attributeName" : "day",
@@ -1086,23 +1095,23 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 1,
+      "id" : 5,
       "pkTable" : {
-        "id" : 4,
+        "id" : 8,
         "title" : "sessionmetrics",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 1,
+        "id" : 5,
         "title" : "usermetrics",
         "type" : "TABLE"
       },
       "alias" : "user_metrics_id_session_m",
       "userDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 1,
+        "fkId" : 5,
         "pkColumn" : {
-          "id" : 17,
+          "id" : 48,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1117,7 +1126,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1,
+          "id" : 32,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1133,23 +1142,23 @@
         }
       } ]
     }, {
-      "id" : 2,
+      "id" : 6,
       "pkTable" : {
-        "id" : 4,
+        "id" : 8,
         "title" : "sessionmetrics",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 2,
+        "id" : 6,
         "title" : "pagetrackingmetrics",
         "type" : "TABLE"
       },
       "alias" : "page_tracking_metrics_id",
       "userDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 2,
+        "fkId" : 6,
         "pkColumn" : {
-          "id" : 17,
+          "id" : 48,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1164,7 +1173,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 8,
+          "id" : 39,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1180,23 +1189,23 @@
         }
       } ]
     }, {
-      "id" : 3,
+      "id" : 7,
       "pkTable" : {
-        "id" : 4,
+        "id" : 8,
         "title" : "sessionmetrics",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 3,
+        "id" : 7,
         "title" : "userdaymetrics",
         "type" : "TABLE"
       },
       "alias" : "user_day_metrics_id_sessi",
       "userDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 3,
+        "fkId" : 7,
         "pkColumn" : {
-          "id" : 17,
+          "id" : 48,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1211,7 +1220,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 14,
+          "id" : 45,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -1227,39 +1236,28 @@
         }
       } ]
     } ],
+    "oauthLoginNeeded" : false,
     "fullyConfigured" : true
   } ],
   "notifications" : [ {
-    "id" : "1393e96f-721b-489d-a174-ba934c0bc712",
-    "legacyId" : 8,
-    "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
+    "id" : "8c9e88b2-bb8e-4270-9693-150021183935",
+    "legacyId" : 5,
+    "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
     "version" : 1,
     "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 1,
-    "schedule" : {
-      "jobSchedule" : "WEEKLY",
-      "scheduleDOW" : "MON",
-      "useTimeRange" : false,
-      "runOnWeekdays" : false,
-      "runFrom" : "00:00",
-      "runTo" : "00:00",
-      "scheduleLean" : "FIRST",
-      "scheduleTime" : "14:09",
-      "runTimezone" : "Etc/UTC"
-    },
-    "label" : "717b2c0a-0a2e-4976-86c9-a6710266d890",
+    "serviceId" : 2,
+    "tableId" : 5,
     "periodicDefinition" : {
-      "groupByDataUsed" : "LAST",
-      "groupByDateColumnId" : 7,
-      "groupByDatePeriod" : "WEEK",
+      "groupByDataUsed" : "SAME",
+      "groupByDateColumnId" : 38,
+      "groupByDatePeriod" : "DAY",
       "reminderPeriod" : 0
     },
     "messageConditions" : {
       "type" : "TERM",
       "constraint" : {
-        "tableId" : 1,
-        "columnId" : 2,
+        "tableId" : 5,
+        "columnId" : 33,
         "columnType" : "INTEGER",
         "conditionType" : "SUM",
         "action" : "INC_BY",
@@ -1271,94 +1269,7 @@
       }
     },
     "expirationDelete" : false,
-    "audience" : "ALL",
-    "messageDefinition" : {
-      "title" : "0daf167c-9a7c-4211-a766-4d2082c6fd7b",
-      "body" : "4a09ae8a-de76-48e1-a19a-c4c35a4b0bec",
-      "url" : "",
-      "gotoAppPageId" : "6953f74d-4d3e-46dd-9b08-e34dc78ee7a7",
-      "configuration" : {
-        "color" : "",
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
-  }, {
-    "id" : "c5ed4621-76d6-4201-a170-73d3d3c44f65",
-    "legacyId" : 5,
-    "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
-    "version" : 1,
-    "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 1,
-    "schedule" : {
-      "jobSchedule" : "DAILY",
-      "scheduleDOW" : "SUN",
-      "useTimeRange" : false,
-      "runOnWeekdays" : true,
-      "runFrom" : "00:00",
-      "runTo" : "00:00",
-      "scheduleLean" : "FIRST",
-      "scheduleTime" : "13:40",
-      "runTimezone" : "Etc/UTC"
-    },
-    "label" : "683fdff5-3acc-45a5-987c-4197dfbb834b",
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDateColumnId" : 7,
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "messageConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 1,
-        "columnId" : 2,
-        "columnType" : "INTEGER",
-        "conditionType" : "SUM",
-        "action" : "DEC_BY",
-        "comparator" : "EQUALS_TO",
-        "value" : "10%",
-        "valueType" : "VALUE",
-        "rangeIncrement" : "",
-        "format" : ""
-      }
-    },
-    "expirationDelete" : false,
-    "audience" : "ALL",
-    "messageDefinition" : {
-      "title" : "3333e76a-33ac-4b62-8611-20cf736d32ec",
-      "body" : "674496b7-a104-409d-bc85-d7bd0301094b",
-      "url" : "",
-      "gotoAppPageId" : "6953f74d-4d3e-46dd-9b08-e34dc78ee7a7",
-      "configuration" : {
-        "color" : "",
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
-  }, {
-    "id" : "e17592f5-e106-43cf-b319-13075c3e9166",
-    "legacyId" : 6,
-    "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
-    "version" : 1,
-    "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 1,
+    "label" : "b9e9fa84-c84d-4450-b2a5-51b916bb11d8",
     "schedule" : {
       "jobSchedule" : "DAILY",
       "scheduleDOW" : "SUN",
@@ -1370,35 +1281,12 @@
       "scheduleTime" : "14:07",
       "runTimezone" : "Etc/UTC"
     },
-    "label" : "b9e9fa84-c84d-4450-b2a5-51b916bb11d8",
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDateColumnId" : 7,
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "messageConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 1,
-        "columnId" : 2,
-        "columnType" : "INTEGER",
-        "conditionType" : "SUM",
-        "action" : "INC_BY",
-        "comparator" : "EQUALS_TO",
-        "value" : "10%",
-        "valueType" : "VALUE",
-        "rangeIncrement" : "",
-        "format" : ""
-      }
-    },
-    "expirationDelete" : false,
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "1f1da185-553a-48e0-b964-4038c8b094dc",
       "body" : "5e3f6332-abef-42c9-9ede-a6c9a4fc873b",
       "url" : "",
-      "gotoAppPageId" : "6953f74d-4d3e-46dd-9b08-e34dc78ee7a7",
+      "gotoAppPageId" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
       "configuration" : {
         "color" : "",
         "highPriority" : false,
@@ -1413,13 +1301,158 @@
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
   }, {
-    "id" : "fb04d688-db5e-4364-a43d-538fc0b06c02",
-    "legacyId" : 7,
-    "appId" : "63e5fe70-6d40-41f2-9785-6db79149f5d6",
+    "id" : "a62f8332-f8d1-42eb-9421-9195138af76b",
+    "legacyId" : 3,
+    "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
     "version" : 1,
     "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 1,
+    "serviceId" : 2,
+    "tableId" : 5,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "LAST",
+      "groupByDateColumnId" : 38,
+      "groupByDatePeriod" : "WEEK",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 5,
+        "columnId" : 33,
+        "columnType" : "INTEGER",
+        "conditionType" : "SUM",
+        "action" : "INC_BY",
+        "comparator" : "EQUALS_TO",
+        "value" : "10%",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "label" : "717b2c0a-0a2e-4976-86c9-a6710266d890",
+    "schedule" : {
+      "jobSchedule" : "WEEKLY",
+      "scheduleDOW" : "MON",
+      "useTimeRange" : false,
+      "runOnWeekdays" : false,
+      "runFrom" : "00:00",
+      "runTo" : "00:00",
+      "scheduleLean" : "FIRST",
+      "scheduleTime" : "14:09",
+      "runTimezone" : "Etc/UTC"
+    },
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "0daf167c-9a7c-4211-a766-4d2082c6fd7b",
+      "body" : "4a09ae8a-de76-48e1-a19a-c4c35a4b0bec",
+      "url" : "",
+      "gotoAppPageId" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "db8d38ab-a64f-4967-b231-9ea2b0a16faa",
+    "legacyId" : 4,
+    "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
+    "version" : 1,
+    "eventType" : "PERIODIC",
+    "serviceId" : 2,
+    "tableId" : 5,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDateColumnId" : 38,
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 5,
+        "columnId" : 33,
+        "columnType" : "INTEGER",
+        "conditionType" : "SUM",
+        "action" : "DEC_BY",
+        "comparator" : "EQUALS_TO",
+        "value" : "10%",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "label" : "683fdff5-3acc-45a5-987c-4197dfbb834b",
+    "schedule" : {
+      "jobSchedule" : "DAILY",
+      "scheduleDOW" : "SUN",
+      "useTimeRange" : false,
+      "runOnWeekdays" : true,
+      "runFrom" : "00:00",
+      "runTo" : "00:00",
+      "scheduleLean" : "FIRST",
+      "scheduleTime" : "13:40",
+      "runTimezone" : "Etc/UTC"
+    },
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "3333e76a-33ac-4b62-8611-20cf736d32ec",
+      "body" : "674496b7-a104-409d-bc85-d7bd0301094b",
+      "url" : "",
+      "gotoAppPageId" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "e36d87ff-d405-4d1d-899e-3b4d312bf7f9",
+    "legacyId" : 6,
+    "appId" : "2cc99482-d9f7-4148-87bf-efc3b595791e",
+    "version" : 1,
+    "eventType" : "PERIODIC",
+    "serviceId" : 2,
+    "tableId" : 5,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "LAST",
+      "groupByDateColumnId" : 38,
+      "groupByDatePeriod" : "WEEK",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 5,
+        "columnId" : 33,
+        "columnType" : "INTEGER",
+        "conditionType" : "SUM",
+        "action" : "DEC_BY",
+        "comparator" : "EQUALS_TO",
+        "value" : "10%",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "label" : "1032ddce-30c8-4c35-8ac5-a6e7e1bf8420",
     "schedule" : {
       "jobSchedule" : "WEEKLY",
       "scheduleDOW" : "MON",
@@ -1431,18 +1464,44 @@
       "scheduleTime" : "14:08",
       "runTimezone" : "Etc/UTC"
     },
-    "label" : "1032ddce-30c8-4c35-8ac5-a6e7e1bf8420",
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "9f155c8f-fd25-4dad-b6e7-95ec18b4c950",
+      "body" : "433caec0-7e18-4769-aff9-4da56e2e81a6",
+      "url" : "",
+      "gotoAppPageId" : "a1ffcaf5-5174-4bd9-9a2a-db8a78ea2b49",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "384565ac-2300-48e7-ab12-31e1b48b0c78",
+    "legacyId" : 8,
+    "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
+    "version" : 1,
+    "eventType" : "PERIODIC",
+    "serviceId" : 2,
+    "tableId" : 8,
     "periodicDefinition" : {
       "groupByDataUsed" : "LAST",
-      "groupByDateColumnId" : 7,
+      "groupByDateColumnId" : 54,
       "groupByDatePeriod" : "WEEK",
       "reminderPeriod" : 0
     },
     "messageConditions" : {
       "type" : "TERM",
       "constraint" : {
-        "tableId" : 1,
-        "columnId" : 2,
+        "tableId" : 8,
+        "columnId" : 49,
         "columnType" : "INTEGER",
         "conditionType" : "SUM",
         "action" : "DEC_BY",
@@ -1454,94 +1513,7 @@
       }
     },
     "expirationDelete" : false,
-    "audience" : "ALL",
-    "messageDefinition" : {
-      "title" : "9f155c8f-fd25-4dad-b6e7-95ec18b4c950",
-      "body" : "433caec0-7e18-4769-aff9-4da56e2e81a6",
-      "url" : "",
-      "gotoAppPageId" : "6953f74d-4d3e-46dd-9b08-e34dc78ee7a7",
-      "configuration" : {
-        "color" : "",
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
-  }, {
-    "id" : "547e150f-7719-4398-92a0-96a08ab1a2f6",
-    "legacyId" : 1,
-    "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
-    "version" : 1,
-    "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 4,
-    "schedule" : {
-      "jobSchedule" : "DAILY",
-      "scheduleDOW" : "SUN",
-      "useTimeRange" : false,
-      "runOnWeekdays" : true,
-      "runFrom" : "00:00",
-      "runTo" : "00:00",
-      "scheduleLean" : "FIRST",
-      "scheduleTime" : "01:00",
-      "runTimezone" : "Europe/Prague"
-    },
-    "label" : "d601808d-62bf-433b-9a76-0445ff6be967",
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDateColumnId" : 23,
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "messageConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 4,
-        "columnId" : 18,
-        "columnType" : "INTEGER",
-        "conditionType" : "SUM",
-        "action" : "DEC_BY",
-        "comparator" : "EQUALS_TO",
-        "value" : "10%",
-        "valueType" : "VALUE",
-        "rangeIncrement" : "",
-        "format" : ""
-      }
-    },
-    "expirationDelete" : false,
-    "audience" : "ALL",
-    "messageDefinition" : {
-      "title" : "e1c7835f-ee3e-4f50-b981-7f86b405d3f9",
-      "body" : "0986579d-4627-4a7b-a1f2-10dcb8ba2894",
-      "url" : "",
-      "gotoAppPageId" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
-      "configuration" : {
-        "color" : "",
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
-  }, {
-    "id" : "a9226f43-bcd4-4c24-b787-1608d2add241",
-    "legacyId" : 3,
-    "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
-    "version" : 1,
-    "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 4,
+    "label" : "de869ec7-5fa5-4d2b-bde6-4e99cf1b5270",
     "schedule" : {
       "jobSchedule" : "WEEKLY",
       "scheduleDOW" : "MON",
@@ -1553,18 +1525,44 @@
       "scheduleTime" : "15:00",
       "runTimezone" : "Etc/UTC"
     },
-    "label" : "de869ec7-5fa5-4d2b-bde6-4e99cf1b5270",
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "90c65455-d00f-4630-9b11-7baa6a28199a",
+      "body" : "526f0574-9718-42dc-851a-7ea984b99f6b",
+      "url" : "",
+      "gotoAppPageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/report_reminder.7b0df40fee34cc6e26cf6bb9c3a0cb76.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "bbbf1a4c-a446-449c-89f5-5f4590202ef1",
+    "legacyId" : 7,
+    "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
+    "version" : 1,
+    "eventType" : "PERIODIC",
+    "serviceId" : 2,
+    "tableId" : 8,
     "periodicDefinition" : {
-      "groupByDataUsed" : "LAST",
-      "groupByDateColumnId" : 23,
-      "groupByDatePeriod" : "WEEK",
+      "groupByDataUsed" : "SAME",
+      "groupByDateColumnId" : 54,
+      "groupByDatePeriod" : "DAY",
       "reminderPeriod" : 0
     },
     "messageConditions" : {
       "type" : "TERM",
       "constraint" : {
-        "tableId" : 4,
-        "columnId" : 18,
+        "tableId" : 8,
+        "columnId" : 49,
         "columnType" : "INTEGER",
         "conditionType" : "SUM",
         "action" : "DEC_BY",
@@ -1576,12 +1574,24 @@
       }
     },
     "expirationDelete" : false,
+    "label" : "d601808d-62bf-433b-9a76-0445ff6be967",
+    "schedule" : {
+      "jobSchedule" : "DAILY",
+      "scheduleDOW" : "SUN",
+      "useTimeRange" : false,
+      "runOnWeekdays" : true,
+      "runFrom" : "00:00",
+      "runTo" : "00:00",
+      "scheduleLean" : "FIRST",
+      "scheduleTime" : "01:00",
+      "runTimezone" : "Europe/Prague"
+    },
     "audience" : "ALL",
     "messageDefinition" : {
-      "title" : "90c65455-d00f-4630-9b11-7baa6a28199a",
-      "body" : "526f0574-9718-42dc-851a-7ea984b99f6b",
+      "title" : "e1c7835f-ee3e-4f50-b981-7f86b405d3f9",
+      "body" : "0986579d-4627-4a7b-a1f2-10dcb8ba2894",
       "url" : "",
-      "gotoAppPageId" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
+      "gotoAppPageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
       "configuration" : {
         "color" : "",
         "highPriority" : false,
@@ -1596,13 +1606,36 @@
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
   }, {
-    "id" : "b7aae117-6d01-417e-b927-70ef21ae4a3f",
-    "legacyId" : 2,
-    "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
+    "id" : "e4628a73-9b3a-40d4-9964-ba493d6cc955",
+    "legacyId" : 9,
+    "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
     "version" : 1,
     "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 4,
+    "serviceId" : 2,
+    "tableId" : 8,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDateColumnId" : 54,
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 8,
+        "columnId" : 49,
+        "columnType" : "INTEGER",
+        "conditionType" : "SUM",
+        "action" : "INC_BY",
+        "comparator" : "EQUALS_TO",
+        "value" : "10%",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "label" : "04827c5e-4f74-4db1-bcb2-76db2aaa816c",
     "schedule" : {
       "jobSchedule" : "DAILY",
       "scheduleDOW" : "SUN",
@@ -1614,35 +1647,12 @@
       "scheduleTime" : "13:12",
       "runTimezone" : "Europe/Belgrade"
     },
-    "label" : "04827c5e-4f74-4db1-bcb2-76db2aaa816c",
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDateColumnId" : 23,
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "messageConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 4,
-        "columnId" : 18,
-        "columnType" : "INTEGER",
-        "conditionType" : "SUM",
-        "action" : "INC_BY",
-        "comparator" : "EQUALS_TO",
-        "value" : "10%",
-        "valueType" : "VALUE",
-        "rangeIncrement" : "",
-        "format" : ""
-      }
-    },
-    "expirationDelete" : false,
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "a0668b61-e6fb-4acd-9fd9-857d28d8c76c",
       "body" : "7f1ff3e8-e85b-4fa9-b448-5e886af87fa0",
       "url" : "",
-      "gotoAppPageId" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
+      "gotoAppPageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
       "configuration" : {
         "color" : "",
         "highPriority" : false,
@@ -1657,36 +1667,24 @@
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
   }, {
-    "id" : "d77d8a6a-d90a-412f-bca3-b39393832b18",
-    "legacyId" : 4,
-    "appId" : "c6d5feee-44f8-4b32-8941-81064e9f8f64",
+    "id" : "f64c1503-0c0f-45cd-829b-310baa5c024b",
+    "legacyId" : 10,
+    "appId" : "43ee7ee5-c659-47e9-ae47-3b93ddac5163",
     "version" : 1,
     "eventType" : "PERIODIC",
-    "serviceId" : 1,
-    "tableId" : 4,
-    "schedule" : {
-      "jobSchedule" : "WEEKLY",
-      "scheduleDOW" : "MON",
-      "useTimeRange" : false,
-      "runOnWeekdays" : false,
-      "runFrom" : "00:00",
-      "runTo" : "00:00",
-      "scheduleLean" : "FIRST",
-      "scheduleTime" : "13:20",
-      "runTimezone" : "Etc/UTC"
-    },
-    "label" : "ff5c8b40-0156-4fd7-8f01-e3cd7a405dbf",
+    "serviceId" : 2,
+    "tableId" : 8,
     "periodicDefinition" : {
       "groupByDataUsed" : "LAST",
-      "groupByDateColumnId" : 23,
+      "groupByDateColumnId" : 54,
       "groupByDatePeriod" : "WEEK",
       "reminderPeriod" : 0
     },
     "messageConditions" : {
       "type" : "TERM",
       "constraint" : {
-        "tableId" : 4,
-        "columnId" : 18,
+        "tableId" : 8,
+        "columnId" : 49,
         "columnType" : "INTEGER",
         "conditionType" : "SUM",
         "action" : "INC_BY",
@@ -1698,12 +1696,24 @@
       }
     },
     "expirationDelete" : false,
+    "label" : "ff5c8b40-0156-4fd7-8f01-e3cd7a405dbf",
+    "schedule" : {
+      "jobSchedule" : "WEEKLY",
+      "scheduleDOW" : "MON",
+      "useTimeRange" : false,
+      "runOnWeekdays" : false,
+      "runFrom" : "00:00",
+      "runTo" : "00:00",
+      "scheduleLean" : "FIRST",
+      "scheduleTime" : "13:20",
+      "runTimezone" : "Etc/UTC"
+    },
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "9d42dae3-9fa9-4ec9-9c92-7369762d8afa",
       "body" : "b92fa172-3332-4d8c-a08b-a37313424545",
       "url" : "",
-      "gotoAppPageId" : "ca14d9f8-717e-4b0d-82e0-aecdd0deb0b4",
+      "gotoAppPageId" : "09d8c770-4a58-4d30-9cea-b59e8d343d63",
       "configuration" : {
         "color" : "",
         "highPriority" : false,
@@ -1720,12 +1730,12 @@
   } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
-    "appIds" : [ "c6d5feee-44f8-4b32-8941-81064e9f8f64", "63e5fe70-6d40-41f2-9785-6db79149f5d6" ],
+    "appIds" : [ "43ee7ee5-c659-47e9-ae47-3b93ddac5163", "2cc99482-d9f7-4148-87bf-efc3b595791e" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "",
+    "bundleDescription" : "Integrate with Google Analytics to monitor traffic via your configured microapps.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "2EDC20DC49BBC64A0DE54400B3684A0C",
-  "appliedSappUpgrades" : [ "microapp-7961", "microapp-4518", "microapp-3580", "microapp-7888", "microapp-7561", "microapp-7290", "microapp-8003", "microapp-5227", "microapp-8576", "microapp-6790", "microapp-7984", "microapp-6853", "microapp-4020", "microapp-8892", "microapp-8511", "microapp-8950", "microapp-6617", "microapp-6293", "microapp-1980", "microapp-6262", "microapp-3547", "microapp-3548", "microapp-8921", "microapp-5025", "microapp-2450", "microapp-3838", "microapp-4666", "microapp-6264", "microapp-6593" ],
-  "buildVersion" : "1.13.0-SNAPSHOT.4c0888628b439b85be1261ba37b8cdea173eecc7"
+  "translationChecksum" : "EBB0FE5E683E4242B07F514B20915E69",
+  "appliedSappUpgrades" : [ "microapp-8511", "microapp-7290", "microapp-4666", "microapp-7961", "microapp-6790", "microapp-6617", "microapp-8003", "microapp-2450", "microapp-8921", "microapp-9702", "microapp-3580", "microapp-3548", "microapp-6262", "microapp-4020", "microapp-8892", "microapp-10856", "microapp-1980", "microapp-3838", "microapp-6264", "microapp-7984", "microapp-8950", "microapp-7561", "microapp-11349", "microapp-6593", "microapp-6853", "microapp-5227", "microapp-7888", "microapp-9701", "microapp-9597", "microapp-10421", "microapp-8576", "microapp-5025", "microapp-4518", "microapp-10420", "microapp-10549", "microapp-3547", "microapp-6293" ],
+  "buildVersion" : "1.30.3.2c27f9a925ef73fa296c31772ba925fe93bf8bd3"
 }
