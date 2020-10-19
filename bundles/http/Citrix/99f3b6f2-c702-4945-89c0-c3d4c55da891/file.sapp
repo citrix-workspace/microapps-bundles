@@ -4101,7 +4101,7 @@
     "appVersion" : {
       "id" : "f56ac3e4-8bd4-44fb-a890-e692258015a7",
       "serviceId" : 2,
-      "version" : 149,
+      "version" : 156,
       "parameters" : {
         "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg",
         "description" : "322915cf-25ff-4c4b-9d78-b527a3152db0"
@@ -4583,7 +4583,7 @@
   "services" : [ {
     "id" : 2,
     "uuid" : "0a63474d-d9dd-4bc7-9325-1b97467f1784",
-    "version" : 209,
+    "version" : 217,
     "title" : "Workday HTTP",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -4742,170 +4742,6 @@
           "parameterType" : "STRING",
           "required" : true,
           "uniqueId" : "2eda0576-c5df-4ebf-a937-7d89f1dc2849"
-        } ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ]
-      }, {
-        "name" : "all time off",
-        "endpoint" : "ccx/service/customreport2/{{tenant}}/{{user}}/MicroApp_All_Time_Offs_and_Balance_HTTP",
-        "requestMethod" : "GET",
-        "postMode" : "FORMDATA",
-        "body" : "",
-        "id" : 4,
-        "type" : "DETAIL",
-        "parentTable" : "worker",
-        "rootPath" : "Report_Entry",
-        "tables" : [ {
-          "id" : 10,
-          "tableName" : "all_time_off_user\t",
-          "path" : "Report_Entry",
-          "columns" : [ {
-            "name" : "user_id",
-            "path" : "user_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          } ],
-          "root" : true,
-          "ignored" : false,
-          "childTables" : [ "Report_Entry/All_Eligible_Time_Offs_for_Worker_group" ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 11,
-          "tableName" : "all_time_off",
-          "path" : "Report_Entry/All_Eligible_Time_Offs_for_Worker_group",
-          "columns" : [ {
-            "name" : "default_quantity",
-            "path" : "default_quantity",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "time_off_balance",
-            "path" : "time_off_balance",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "time_off_plan",
-            "path" : "time_off_plan",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "time_off_plan_id",
-            "path" : "time_off_plan_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "time_off_type",
-            "path" : "time_off_type",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "time_off_type_id",
-            "path" : "time_off_type_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "unit_of_time",
-            "path" : "unit_of_time",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "parent_user_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "PARENT_RECORD",
-            "parentColumnReference" : "user_id",
-            "parentTableReference" : "all_time_off_user\t",
-            "referenceGroup" : "nested_table_1"
-          }, {
-            "name" : "unique_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 36,
-            "source" : "GENERATED",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "root_user_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "ROOT_RECORD",
-            "columnRole" : "ROOT_KEY_REFERENCE",
-            "parentColumnReference" : "user_id"
-          } ],
-          "root" : false,
-          "ignored" : false,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        } ],
-        "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "all time off",
-        "paginationEnabled" : true,
-        "mergeStrategy" : "NONE",
-        "bodyParameters" : [ ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ {
-          "valueType" : "VALUE",
-          "name" : "format",
-          "defaultValue" : "json",
-          "parameterType" : "STRING",
-          "required" : false,
-          "uniqueId" : "2a5d5942-ac7d-4915-8f95-eded431d88a8"
-        }, {
-          "valueType" : "PARENT_DATA",
-          "name" : "Worker!WID",
-          "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b",
-          "parameterType" : "STRING",
-          "required" : false,
-          "uniqueId" : "6ee90381-b7eb-4f07-8879-abeeccc6bcfc",
-          "columnName" : "workday_id"
-        } ],
-        "pathParameters" : [ {
-          "valueType" : "VALUE",
-          "name" : "tenant",
-          "defaultValue" : "citrix_gms2",
-          "parameterType" : "STRING",
-          "required" : true,
-          "uniqueId" : "52f6267b-73bd-4f50-ad17-99b364af1253"
-        }, {
-          "valueType" : "VALUE",
-          "name" : "user",
-          "defaultValue" : "jsandoval",
-          "parameterType" : "STRING",
-          "required" : true,
-          "uniqueId" : "db1555e3-4358-473e-bf00-eeb92f8d6c2f"
         } ],
         "synchronizationTypes" : [ {
           "id" : "FullSynchronization",
@@ -5878,6 +5714,170 @@
           "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
           "preferredSchedule" : "HOURLY"
         } ]
+      }, {
+        "name" : "all time off",
+        "endpoint" : "ccx/service/customreport2/{{tenant}}/{{user}}/MicroApp_All_Time_Offs_and_Balance_HTTP",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "id" : 4,
+        "type" : "DETAIL",
+        "parentTable" : "worker",
+        "rootPath" : "Report_Entry",
+        "tables" : [ {
+          "id" : 10,
+          "tableName" : "all_time_off_user\t",
+          "path" : "Report_Entry",
+          "columns" : [ {
+            "name" : "user_id",
+            "path" : "user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "Report_Entry/All_Eligible_Time_Offs_for_Worker_group" ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 11,
+          "tableName" : "all_time_off",
+          "path" : "Report_Entry/All_Eligible_Time_Offs_for_Worker_group",
+          "columns" : [ {
+            "name" : "default_quantity",
+            "path" : "default_quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_balance",
+            "path" : "time_off_balance",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DOUBLE",
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan",
+            "path" : "time_off_plan",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_plan_id",
+            "path" : "time_off_plan_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_type",
+            "path" : "time_off_type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "time_off_type_id",
+            "path" : "time_off_type_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "unit_of_time",
+            "path" : "unit_of_time",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "user_id",
+            "parentTableReference" : "all_time_off_user\t",
+            "referenceGroup" : "nested_table"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_user_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "user_id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "all time off",
+        "paginationEnabled" : true,
+        "mergeStrategy" : "NONE",
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "format",
+          "defaultValue" : "json",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "2a5d5942-ac7d-4915-8f95-eded431d88a8"
+        }, {
+          "valueType" : "PARENT_DATA",
+          "name" : "Worker!WID",
+          "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "6ee90381-b7eb-4f07-8879-abeeccc6bcfc",
+          "columnName" : "workday_id"
+        } ],
+        "pathParameters" : [ {
+          "valueType" : "VALUE",
+          "name" : "tenant",
+          "defaultValue" : "citrix_gms2",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "52f6267b-73bd-4f50-ad17-99b364af1253"
+        }, {
+          "valueType" : "VALUE",
+          "name" : "user",
+          "defaultValue" : "jsandoval",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "db1555e3-4358-473e-bf00-eeb92f8d6c2f"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ]
       } ],
       "webhookListeners" : [ ],
       "schedule" : [ {
@@ -6074,7 +6074,7 @@
       } ],
       "endpoints" : [ {
         "legacyEndpointId" : 1,
-        "uniqueId" : "c26b28d6-cfe5-4302-a785-d6562f572c87",
+        "uniqueId" : "d89a354b-7049-4043-bb39-a9e77af969d0",
         "name" : "worker",
         "type" : "LIST",
         "parameters" : [ ],
@@ -6086,7 +6086,7 @@
         },
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
-          "uniqueId" : "e99eef17-9e38-449e-9071-475fd44ba642",
+          "uniqueId" : "be65ae20-60a0-4556-a2de-fb028bc00f73",
           "baseTableName" : "worker",
           "rootPath" : "Report_Entry",
           "tables" : [ {
@@ -6187,150 +6187,8 @@
           "mergeStrategy" : "NONE"
         }
       }, {
-        "legacyEndpointId" : 4,
-        "uniqueId" : "b4f6eeab-9f6a-430e-996a-88b61eb43516",
-        "name" : "all time off",
-        "type" : "DETAIL",
-        "parentTable" : "worker",
-        "parameters" : [ {
-          "uniqueId" : "6ee90381-b7eb-4f07-8879-abeeccc6bcfc",
-          "name" : "Worker!WID",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "PARENT_DATA",
-            "parentColumn" : "workday_id",
-            "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b"
-          }
-        } ],
-        "fullSynchronization" : {
-          "method" : "GET",
-          "uri" : "ccx/service/customreport2/citrix_gms2/jsandoval/MicroApp_All_Time_Offs_and_Balance_HTTP?format=json&Worker!WID={{Worker!WID}}",
-          "headers" : [ ],
-          "bodyParameters" : [ ]
-        },
-        "incrementalSyncEnabled" : false,
-        "dataStructure" : {
-          "uniqueId" : "7d5f9dfd-9a90-408c-9294-d4090e912656",
-          "baseTableName" : "all time off",
-          "rootPath" : "Report_Entry",
-          "tables" : [ {
-            "id" : 10,
-            "tableName" : "all_time_off_user\t",
-            "path" : "Report_Entry",
-            "columns" : [ {
-              "name" : "user_id",
-              "path" : "user_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD",
-              "columnRole" : "PRIMARY_KEY"
-            } ],
-            "root" : true,
-            "ignored" : false,
-            "childTables" : [ "Report_Entry/All_Eligible_Time_Offs_for_Worker_group" ],
-            "detailEndpointIds" : [ ],
-            "loadingType" : "PULL"
-          }, {
-            "id" : 11,
-            "tableName" : "all_time_off",
-            "path" : "Report_Entry/All_Eligible_Time_Offs_for_Worker_group",
-            "columns" : [ {
-              "name" : "default_quantity",
-              "path" : "default_quantity",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "INTEGER",
-              "source" : "RECORD"
-            }, {
-              "name" : "time_off_balance",
-              "path" : "time_off_balance",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "INTEGER",
-              "source" : "RECORD"
-            }, {
-              "name" : "time_off_plan",
-              "path" : "time_off_plan",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "time_off_plan_id",
-              "path" : "time_off_plan_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "time_off_type",
-              "path" : "time_off_type",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "time_off_type_id",
-              "path" : "time_off_type_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "unit_of_time",
-              "path" : "unit_of_time",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "parent_user_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "PARENT_RECORD",
-              "parentColumnReference" : "user_id",
-              "parentTableReference" : "all_time_off_user\t",
-              "referenceGroup" : "nested_table_1"
-            }, {
-              "name" : "unique_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 36,
-              "source" : "GENERATED",
-              "columnRole" : "PRIMARY_KEY"
-            }, {
-              "name" : "root_user_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "ROOT_RECORD",
-              "columnRole" : "ROOT_KEY_REFERENCE",
-              "parentColumnReference" : "user_id"
-            } ],
-            "root" : false,
-            "ignored" : false,
-            "childTables" : [ ],
-            "detailEndpointIds" : [ ],
-            "loadingType" : "PULL"
-          } ],
-          "mergeStrategy" : "NONE"
-        }
-      }, {
         "legacyEndpointId" : 6,
-        "uniqueId" : "4e459b4e-c1e7-4e3c-a1da-d1780a735a67",
+        "uniqueId" : "68d366be-c9f6-4921-a5fc-0de37b80577b",
         "name" : "change job detail",
         "type" : "DETAIL",
         "parentTable" : "change_job_request",
@@ -6354,7 +6212,7 @@
         },
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
-          "uniqueId" : "8473cbf2-c97e-45b0-844b-c8ab1410d0e5",
+          "uniqueId" : "69be0a6e-9e1c-43c6-8b31-01f09cae0d55",
           "baseTableName" : "change job detail",
           "rootPath" : "Report_Entry",
           "tables" : [ {
@@ -6555,7 +6413,7 @@
         }
       }, {
         "legacyEndpointId" : 11,
-        "uniqueId" : "187204b1-5bfe-4544-8002-e360feec5114",
+        "uniqueId" : "bcb0e8fd-1a6c-43e2-b797-7773ffe8e2e8",
         "name" : "time_off_request_details",
         "type" : "DETAIL",
         "parentTable" : "time_off_request",
@@ -6579,7 +6437,7 @@
         },
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
-          "uniqueId" : "3a04e7d5-02a9-4933-931c-320aae3d74e5",
+          "uniqueId" : "2bc276f9-b6ea-4452-9ec9-954bf8f0a2a5",
           "baseTableName" : "time_off_request_details",
           "rootPath" : "Report_Entry",
           "tables" : [ {
@@ -6863,7 +6721,7 @@
         }
       }, {
         "legacyEndpointId" : 5,
-        "uniqueId" : "7fc8cead-9354-435c-ab76-e8a3152012a0",
+        "uniqueId" : "2c517a7b-13f0-40ce-b563-4465f5427647",
         "name" : "change job",
         "type" : "LIST",
         "parameters" : [ {
@@ -6901,7 +6759,7 @@
           "bodyParameters" : [ ]
         },
         "dataStructure" : {
-          "uniqueId" : "398a3b18-e583-40a6-8d43-3175afdb3009",
+          "uniqueId" : "cc713915-90c0-4ceb-ab84-a678755e1b8e",
           "baseTableName" : "change job",
           "rootPath" : "Report_Entry",
           "tables" : [ {
@@ -7027,7 +6885,7 @@
         }
       }, {
         "legacyEndpointId" : 10,
-        "uniqueId" : "5f77d48b-3bb1-405a-a272-9f6774f803ee",
+        "uniqueId" : "fcef2e27-8abd-4fe0-bb76-9a7e51ca1d2e",
         "name" : "time off request",
         "type" : "LIST",
         "parameters" : [ {
@@ -7065,7 +6923,7 @@
           "bodyParameters" : [ ]
         },
         "dataStructure" : {
-          "uniqueId" : "132dd703-718c-4196-803a-16a7e1fa7f21",
+          "uniqueId" : "0f64828c-c50c-46b4-9632-f38f5258a7df",
           "baseTableName" : "time off request",
           "rootPath" : "Report_Entry",
           "tables" : [ {
@@ -7207,6 +7065,148 @@
           } ],
           "mergeStrategy" : "NONE"
         }
+      }, {
+        "legacyEndpointId" : 4,
+        "uniqueId" : "b906474b-435e-4c66-baef-f736eb5afc4c",
+        "name" : "all time off",
+        "type" : "DETAIL",
+        "parentTable" : "worker",
+        "parameters" : [ {
+          "uniqueId" : "6ee90381-b7eb-4f07-8879-abeeccc6bcfc",
+          "name" : "Worker!WID",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "PARENT_DATA",
+            "parentColumn" : "workday_id",
+            "defaultValue" : "0078218f3ff41047b077ce5cdb051d0b"
+          }
+        } ],
+        "fullSynchronization" : {
+          "method" : "GET",
+          "uri" : "ccx/service/customreport2/citrix_gms2/jsandoval/MicroApp_All_Time_Offs_and_Balance_HTTP?format=json&Worker!WID={{Worker!WID}}",
+          "headers" : [ ],
+          "bodyParameters" : [ ]
+        },
+        "incrementalSyncEnabled" : false,
+        "dataStructure" : {
+          "uniqueId" : "6e3d1e55-7240-4e56-8e29-88a505e1b465",
+          "baseTableName" : "all time off",
+          "rootPath" : "Report_Entry",
+          "tables" : [ {
+            "id" : 10,
+            "tableName" : "all_time_off_user\t",
+            "path" : "Report_Entry",
+            "columns" : [ {
+              "name" : "user_id",
+              "path" : "user_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            } ],
+            "root" : true,
+            "ignored" : false,
+            "childTables" : [ "Report_Entry/All_Eligible_Time_Offs_for_Worker_group" ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 11,
+            "tableName" : "all_time_off",
+            "path" : "Report_Entry/All_Eligible_Time_Offs_for_Worker_group",
+            "columns" : [ {
+              "name" : "default_quantity",
+              "path" : "default_quantity",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "time_off_balance",
+              "path" : "time_off_balance",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "DOUBLE",
+              "source" : "RECORD"
+            }, {
+              "name" : "time_off_plan",
+              "path" : "time_off_plan",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "time_off_plan_id",
+              "path" : "time_off_plan_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "time_off_type",
+              "path" : "time_off_type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "time_off_type_id",
+              "path" : "time_off_type_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "unit_of_time",
+              "path" : "unit_of_time",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_user_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "user_id",
+              "parentTableReference" : "all_time_off_user\t",
+              "referenceGroup" : "nested_table"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_user_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "user_id"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          } ],
+          "mergeStrategy" : "NONE"
+        }
       } ],
       "actions" : [ {
         "uniqueId" : "4fbd705c-a629-4ccc-8698-e2ff07919d94",
@@ -7276,10 +7276,10 @@
         "postActionUpdates" : [ {
           "uniqueId" : "8c67dd77-e877-4b22-9c2b-51a580c8fb5e",
           "endpointLegacyId" : 10,
-          "endpointId" : "7696b0cf-2842-4f56-9cb0-21ca58d0d85b",
+          "endpointId" : "81e309b4-21ae-45e4-9922-7be89244c61e",
           "request" : {
             "method" : "GET",
-            "uri" : "/ccx/service/customreport2/citrix_gms2/jsandoval/Event_Records_For_Time_Off_Requests_HTTP?format=json&Initiated_Date_On_or_After=2020-09-21T00:00:00.000-07:00&Completed_Date_On_or_After={{timestamp}}",
+            "uri" : "/ccx/service/customreport2/citrix_gms1/jsandoval/Event_Records_For_Time_Off_Requests_HTTP?format=json&Initiated_Date_On_or_After=2020-09-01T00:00:00.000-07:00&Completed_Date_On_or_After={{timestamp}}",
             "headers" : [ ],
             "bodyParameters" : [ ]
           },
@@ -7342,10 +7342,10 @@
         "postActionUpdates" : [ {
           "uniqueId" : "898016f8-1a10-4038-a6a2-6a3ba9d295e8",
           "endpointLegacyId" : 10,
-          "endpointId" : "7696b0cf-2842-4f56-9cb0-21ca58d0d85b",
+          "endpointId" : "81e309b4-21ae-45e4-9922-7be89244c61e",
           "request" : {
             "method" : "GET",
-            "uri" : "/ccx/service/customreport2/citrix_gms2/jsandoval/Event_Records_For_Time_Off_Requests_HTTP?format=json&Initiated_Date_On_or_After=2020-09-21T00:00:00.000-07:00&Completed_Date_On_or_After={{timestamp}}",
+            "uri" : "/ccx/service/customreport2/citrix_gms1/jsandoval/Event_Records_For_Time_Off_Requests_HTTP?format=json&Initiated_Date_On_or_After=2020-09-01T00:00:00.000-07:00&Completed_Date_On_or_After={{timestamp}}",
             "headers" : [ ],
             "bodyParameters" : [ ]
           },
@@ -7482,7 +7482,7 @@
         "title" : "time_off_balance",
         "displayName" : "Time off Balance",
         "attributeName" : "time_off_balance",
-        "type" : "INTEGER",
+        "type" : "DOUBLE",
         "nullable" : true,
         "autoIncrement" : false,
         "roleType" : "DB_COLUMN",
@@ -8697,7 +8697,7 @@
         "title" : "all_time_off",
         "type" : "TABLE"
       },
-      "alias" : "nested_table_1",
+      "alias" : "nested_table",
       "userDefined" : false,
       "fkColumnPairs" : [ {
         "fkId" : 61,
@@ -8921,8 +8921,8 @@
         }
       } ]
     } ],
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "oauthLoginNeeded" : true,
+    "fullyConfigured" : false
   } ],
   "notifications" : [ {
     "id" : "5a845d9e-1eb9-441a-b34d-2b67fcdccbd0",
