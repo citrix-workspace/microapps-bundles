@@ -1016,12 +1016,6 @@
         },
         "paginationEnabled" : true,
         "mergeStrategy" : "SUBLIST",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
         "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
@@ -1033,6 +1027,12 @@
           "required" : true,
           "uniqueId" : "b58c317c-a53a-4130-84f7-b103f8037476",
           "columnName" : "id"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
         } ]
       }, {
         "name" : "group_dashboards_full",
@@ -1175,12 +1175,6 @@
         },
         "paginationEnabled" : true,
         "mergeStrategy" : "SUBLIST",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
         "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
@@ -1192,6 +1186,12 @@
           "required" : true,
           "uniqueId" : "3950714c-b4fe-4379-a749-dc4ac76f1fba",
           "columnName" : "id"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
         } ]
       }, {
         "name" : "dashboard_tiles",
@@ -1418,12 +1418,6 @@
         },
         "paginationEnabled" : true,
         "mergeStrategy" : "SUBLIST",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
         "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
@@ -1435,6 +1429,12 @@
           "required" : true,
           "uniqueId" : "497b70f1-6058-463e-802d-42a9ddf6da5d",
           "columnName" : "id"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
         } ]
       }, {
         "name" : "groups",
@@ -1605,12 +1605,6 @@
         },
         "paginationEnabled" : true,
         "mergeStrategy" : "NONE",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
         "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ {
@@ -1620,7 +1614,13 @@
           "required" : false,
           "uniqueId" : "4ce54e62-7ffa-4069-9908-36a619984665"
         } ],
-        "pathParameters" : [ ]
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ]
       } ],
       "webhookListeners" : [ ],
       "schedule" : [ {
@@ -4087,8 +4087,8 @@
         }
       } ]
     } ],
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
     "id" : "af588df2-f6fa-45ae-b8a3-9e5eee31bd1f",
@@ -4140,10 +4140,10 @@
   "modelConfiguration" : {
     "appIds" : [ "45237c54-84d1-4cd1-afea-42f8728fa107", "013c91ca-8fed-4f33-891d-a08948c5336b" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Integrate with Power BI to receive automated notifications for important reporting changes in Citrix Workspace.",
+    "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "281EC5BB8FE44C0C3C6AAD7B03DD4C03",
-  "appliedSappUpgrades" : [ "microapp-10421", "microapp-7888", "microapp-6593", "microapp-7561", "microapp-10856", "microapp-1980", "microapp-2450", "microapp-6617", "microapp-5025", "microapp-9702", "microapp-8511", "microapp-6790", "microapp-11349", "microapp-8921", "microapp-6853", "microapp-7290", "microapp-6262", "microapp-7961", "microapp-7984", "microapp-9597", "microapp-5227", "microapp-3548", "microapp-3580", "microapp-4518", "microapp-8003", "microapp-8950", "microapp-10420", "microapp-9701", "microapp-10549", "microapp-6293", "microapp-3838", "microapp-3547", "microapp-8892", "microapp-4020", "microapp-8576", "microapp-4666", "microapp-6264" ],
-  "buildVersion" : "1.34.1.ddee688e5ad16d11005f993fd48bb9d6068bf103"
+  "appliedSappUpgrades" : [ "microapp-3547", "microapp-7984", "microapp-9597", "microapp-6790", "microapp-7561", "microapp-8511", "microapp-11349", "microapp-8950", "microapp-8576", "microapp-8003", "microapp-7888", "microapp-10420", "microapp-10421", "microapp-8892", "microapp-2450", "microapp-4020", "microapp-3580", "microapp-10856", "microapp-6853", "microapp-6617", "microapp-9701", "microapp-9702", "microapp-6262", "microapp-6293", "microapp-5227", "microapp-5025", "microapp-3838", "microapp-6264", "microapp-7961", "microapp-8921", "microapp-10549", "microapp-4666", "microapp-1980", "microapp-6593", "microapp-3548", "microapp-4518", "microapp-7290" ],
+  "buildVersion" : "1.37.0-SNAPSHOT.3a6037a70f76ca61b1077187f5867e6b2c17af33"
 }
