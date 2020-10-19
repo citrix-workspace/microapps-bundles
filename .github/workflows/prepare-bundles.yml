@@ -57,7 +57,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.0.100'
+          dotnet-version: '3.1.x' # Use latest version of the 3.1 channel
 
       - name: Upload bundles to Azure storage
         uses: lauchacarro/Azure-Storage-Action@master
