@@ -24,18 +24,18 @@ jobs:
         run: mvn --batch-mode clean package
 
       - name: Prepare temp directory
-        run: echo "::set-env name=TEMP_DIR::$(mktemp -d)"
+        run: echo "TEMP_DIR=$(mktemp -d)" >> $GITHUB_ENV
 
       - name: Export git branch name
         run: |
-          echo "::set-env name=BRANCH_NAME::${GITHUB_REF:11}"
+          echo "BRANCH_NAME=${GITHUB_REF:11}" >> $GITHUB_ENV
 
       - name: Determine blob container name
         run: |
           if [ "${BRANCH_NAME}" = "master" ]; then
-            echo "::set-env name=BLOB_NAME::${BUNDLES_BLOB}"
+            echo "BLOB_NAME=${BUNDLES_BLOB}" >> $GITHUB_ENV
           else
-            echo "::set-env name=BLOB_NAME::${BRANCH_BUNDLES_BLOB}"
+            echo "BLOB_NAME=${BRANCH_BUNDLES_BLOB}" >> $GITHUB_ENV
           fi
 
       - name: Execute bundlegen
@@ -57,7 +57,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.0.100'
+          dotnet-version: '3.1.x' # Use latest version of the 3.1 channel
 
       - name: Upload bundles to Azure storage
         uses: lauchacarro/Azure-Storage-Action@master
