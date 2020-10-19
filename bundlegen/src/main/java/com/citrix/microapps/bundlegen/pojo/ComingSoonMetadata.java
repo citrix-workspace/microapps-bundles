@@ -2,8 +2,10 @@ package com.citrix.microapps.bundlegen.pojo;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -22,6 +24,8 @@ public class ComingSoonMetadata extends Metadata {
     public ComingSoonMetadata(
             @JsonProperty(value = "type", required = true) Type type,
             @JsonProperty(value = "vendor", required = true) String vendor,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty(value = "trackingUuid") UUID trackingUuid,
             @JsonProperty(value = "id", required = true) String id,
             @JsonProperty(value = "version") String version,
             @JsonProperty(value = "title", required = true) String title,
@@ -29,16 +33,20 @@ public class ComingSoonMetadata extends Metadata {
             @JsonProperty(value = "iconUrl", required = true) URI iconUrl,
             @JsonProperty(value = "categories") List<Category> categories,
             @JsonProperty(value = "created") String created,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty(value = "deprecatedDate") String deprecatedDate,
             @JsonProperty(value = "tags") List<Tag> tags
     ) {
         super(type,
                 vendor,
+                trackingUuid,
                 title,
                 description,
                 iconUrl,
                 null,
                 categories,
                 created,
+                deprecatedDate,
                 false,
                 null,
                 null,
