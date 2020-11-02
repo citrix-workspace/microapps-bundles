@@ -3,8 +3,13 @@
     "appVersion" : {
       "id" : "22ee4231-d9f1-44d5-8a1d-1310bd79fad3",
       "serviceId" : 154,
-      "version" : 730,
+      "version" : 736,
       "actionApp" : true,
+      "startPageId" : "affc81b0-6dd7-440f-814f-fb6da0324d73",
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg"
+      },
+      "title" : "8597f94b-016c-471f-ba2c-7c92ecbd65f8",
       "pages" : [ {
         "id" : "affc81b0-6dd7-440f-814f-fb6da0324d73",
         "appId" : "22ee4231-d9f1-44d5-8a1d-1310bd79fad3",
@@ -518,7 +523,6 @@
                     "componentId" : "a52b5ea6-8d0e-471c-b05a-72a49cc403da",
                     "type" : "GWSCP"
                   } ],
-                  "flatDataServiceActionId" : 8,
                   "serviceActionId" : "9fdd6728-7857-4d6b-8cd6-e2a6a23e9269",
                   "serviceId" : 154
                 },
@@ -676,7 +680,6 @@
                     "componentId" : "a52b5ea6-8d0e-471c-b05a-72a49cc403da",
                     "type" : "GWSCP"
                   } ],
-                  "flatDataServiceActionId" : 9,
                   "serviceActionId" : "3fec15a8-d396-408a-9063-c22e58c9cb98",
                   "serviceId" : 154
                 },
@@ -1863,11 +1866,6 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "affc81b0-6dd7-440f-814f-fb6da0324d73",
-      "parameters" : {
-        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/event_create.a85e9a348953bb92199284b82d4f7aa3.svg"
-      },
-      "title" : "8597f94b-016c-471f-ba2c-7c92ecbd65f8",
       "trackingUuid" : "2b8b6cb1-bdf1-4ce2-a753-66c940602ea1"
     },
     "outboundLinks" : {
@@ -1878,7 +1876,7 @@
   "services" : [ {
     "id" : 154,
     "uuid" : "0d3ef29e-5088-445f-855d-a5fe42523b89",
-    "version" : 446,
+    "version" : 452,
     "title" : "GoToMeeting",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1889,9 +1887,9 @@
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
-        "authorizationURL" : "https://api.getgo.com/oauth/v2/authorize",
         "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "scope" : "",
+        "authorizationURL" : "https://api.getgo.com/oauth/v2/authorize",
         "tokenURL" : "https://api.getgo.com/oauth/v2/token",
         "tokenAuthorization" : "AUTHORIZATION_HEADER",
         "authHeaderPrefix" : ""
@@ -1900,21 +1898,21 @@
       "serviceActionSecurity" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
-        "authorizationURL" : "https://api.getgo.com/oauth/v2/authorize",
         "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "scope" : "",
+        "authorizationURL" : "https://api.getgo.com/oauth/v2/authorize",
         "tokenURL" : "https://api.getgo.com/oauth/v2/token",
         "tokenAuthorization" : "AUTHORIZATION_HEADER",
         "authHeaderPrefix" : ""
       },
       "useOnPremProxy" : false,
       "dataEndpoints" : [ {
-        "id" : 2,
         "name" : "Upcoming Meetings",
         "endpoint" : "G2M/rest/organizers/{{organizerKey}}/upcomingMeetings",
         "requestMethod" : "GET",
         "postMode" : "FORMDATA",
         "body" : "",
+        "id" : 2,
         "type" : "DETAIL",
         "parentTable" : "all_organizers",
         "rootPath" : "",
@@ -2042,15 +2040,9 @@
         "baseTableName" : "Upcoming Meetings",
         "paginationEnabled" : true,
         "mergeStrategy" : "NONE",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
-        "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
+        "bodyParameters" : [ ],
         "pathParameters" : [ {
           "valueType" : "PARENT_DATA",
           "name" : "organizerKey",
@@ -2059,14 +2051,20 @@
           "required" : true,
           "uniqueId" : "9baa483b-3336-490a-9a77-52f6b18fa5e4",
           "columnName" : "key"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
         } ]
       }, {
-        "id" : 1,
         "name" : "All Organizers",
         "endpoint" : "admin/rest/v1/accounts/{{accountKey}}/users",
         "requestMethod" : "GET",
         "postMode" : "FORMDATA",
         "body" : "",
+        "id" : 1,
         "type" : "LIST",
         "rootPath" : "results",
         "tables" : [ {
@@ -2455,21 +2453,21 @@
         },
         "paginationEnabled" : true,
         "mergeStrategy" : "NONE",
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
-        "bodyParameters" : [ ],
         "headerParameters" : [ ],
         "queryParameters" : [ ],
+        "bodyParameters" : [ ],
         "pathParameters" : [ {
           "name" : "accountKey",
           "defaultValue" : "8248472868070122502",
           "parameterType" : "STRING",
           "required" : true,
           "uniqueId" : "da1303f1-b17b-4571-b17a-a63de9afe31d"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
         } ]
       } ],
       "webhookListeners" : [ ],
@@ -2479,7 +2477,6 @@
         "schedule" : "HOURLY"
       } ],
       "serviceActions" : [ {
-        "id" : 8,
         "name" : "Create Meeting with co-organizer",
         "endpoint" : "G2M/rest/meetings",
         "requestMethod" : "POST",
@@ -2545,9 +2542,9 @@
           "dataEndpointId" : 2,
           "endpointSuffix" : "",
           "callChainEnabled" : true,
-          "bodyParameters" : [ ],
           "headerParameters" : [ ],
           "queryParameters" : [ ],
+          "bodyParameters" : [ ],
           "pathParameters" : [ {
             "name" : "organizerKey",
             "required" : false,
@@ -2558,6 +2555,8 @@
             "endpointParameterUniqueId" : "9baa483b-3336-490a-9a77-52f6b18fa5e4"
           } ]
         } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
         "bodyParameters" : [ {
           "name" : "subject",
           "required" : false,
@@ -2608,11 +2607,8 @@
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "2beb5e1a-97c9-406d-aae7-70e633ac3a13"
         } ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
         "pathParameters" : [ ]
       }, {
-        "id" : 9,
         "name" : "Create Meeting without Co-organizer",
         "endpoint" : "G2M/rest/meetings",
         "requestMethod" : "POST",
@@ -2672,9 +2668,9 @@
           "dataEndpointId" : 2,
           "endpointSuffix" : "",
           "callChainEnabled" : true,
-          "bodyParameters" : [ ],
           "headerParameters" : [ ],
           "queryParameters" : [ ],
+          "bodyParameters" : [ ],
           "pathParameters" : [ {
             "name" : "organizerKey",
             "required" : false,
@@ -2685,6 +2681,8 @@
             "endpointParameterUniqueId" : "9baa483b-3336-490a-9a77-52f6b18fa5e4"
           } ]
         } ],
+        "headerParameters" : [ ],
+        "queryParameters" : [ ],
         "bodyParameters" : [ {
           "name" : "subject",
           "required" : false,
@@ -2728,11 +2726,786 @@
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "84875e32-2e0e-4dbd-9219-a17f7c4851a4"
         } ],
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
         "pathParameters" : [ ]
       } ],
-      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/zX5ShmfyQsVi1c3GaPwOPJo4YLwKh4Aw.png",
+      "endpoints" : [ {
+        "legacyEndpointId" : 2,
+        "uniqueId" : "6ce53c9b-6910-42df-987b-86f2d1973fe9",
+        "name" : "Upcoming Meetings",
+        "type" : "DETAIL",
+        "parentTable" : "all_organizers",
+        "parameters" : [ {
+          "uniqueId" : "9baa483b-3336-490a-9a77-52f6b18fa5e4",
+          "name" : "organizerKey",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "PARENT_DATA",
+            "parentColumn" : "key",
+            "defaultValue" : "867445813382958085"
+          }
+        } ],
+        "fullSynchronization" : {
+          "method" : "GET",
+          "uri" : "G2M/rest/organizers/{{organizerKey}}/upcomingMeetings",
+          "headers" : [ ],
+          "bodyParameters" : [ ]
+        },
+        "incrementalSyncEnabled" : false,
+        "dataStructure" : {
+          "uniqueId" : "9f2a2477-c30b-4cae-a0b9-1a9f43971644",
+          "baseTableName" : "Upcoming Meetings",
+          "rootPath" : "",
+          "tables" : [ {
+            "id" : 2,
+            "tableName" : "upcoming_meetings",
+            "path" : "",
+            "columns" : [ {
+              "name" : "account_key",
+              "path" : "accountKey",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "LONG",
+              "source" : "RECORD"
+            }, {
+              "name" : "conference_call_info",
+              "path" : "conferenceCallInfo",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "email",
+              "path" : "email",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "end_time",
+              "path" : "endTime",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "first_name",
+              "path" : "firstName",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "last_name",
+              "path" : "lastName",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "locale",
+              "path" : "locale",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "meeting_id",
+              "path" : "meetingId",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "meeting_type",
+              "path" : "meetingType",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "organizer_key",
+              "path" : "organizerKey",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "LONG",
+              "source" : "RECORD"
+            }, {
+              "name" : "password_required",
+              "path" : "passwordRequired",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "start_time",
+              "path" : "startTime",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "status",
+              "path" : "status",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "subject",
+              "path" : "subject",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            } ],
+            "root" : true,
+            "ignored" : false,
+            "childTables" : [ ],
+            "loadingType" : "PULL"
+          } ],
+          "mergeStrategy" : "NONE"
+        }
+      }, {
+        "legacyEndpointId" : 1,
+        "uniqueId" : "ced501e9-7cbf-4a4b-bf68-4106d0c0e747",
+        "name" : "All Organizers",
+        "type" : "LIST",
+        "parameters" : [ ],
+        "fullSynchronization" : {
+          "method" : "GET",
+          "uri" : "admin/rest/v1/accounts/8248472868070122502/users",
+          "headers" : [ ],
+          "bodyParameters" : [ ],
+          "pagination" : {
+            "type" : "OFFSET",
+            "limitParameter" : "pageSize",
+            "limit" : 20,
+            "offsetParameter" : "offset"
+          }
+        },
+        "incrementalSyncEnabled" : false,
+        "dataStructure" : {
+          "uniqueId" : "7c417e23-42f5-45f3-b371-d9e2e2603966",
+          "baseTableName" : "All Organizers",
+          "rootPath" : "results",
+          "tables" : [ {
+            "id" : 1,
+            "tableName" : "all_organizers",
+            "path" : "results",
+            "columns" : [ {
+              "name" : "can_authenticate",
+              "path" : "canAuthenticate",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "email",
+              "path" : "email",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "email_locked",
+              "path" : "emailLocked",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "first_name",
+              "path" : "firstName",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "identity_read_only",
+              "path" : "identityReadOnly",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "invite_count",
+              "path" : "inviteCount",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "invited_date",
+              "path" : "invitedDate",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "LONG",
+              "source" : "RECORD"
+            }, {
+              "name" : "key",
+              "path" : "key",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "last_name",
+              "path" : "lastName",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "locale",
+              "path" : "locale",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "name_locked",
+              "path" : "nameLocked",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "password_created",
+              "path" : "passwordCreated",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_attendee_l",
+              "path" : "settings/G2M/attendeeListEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_chat_enabl",
+              "path" : "settings/G2M/chatEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_chroma_cam",
+              "path" : "settings/G2M/chromaCamEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_dial_out_a",
+              "path" : "settings/G2M/dialOutAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_dial_out_e",
+              "path" : "settings/G2M/dialOutEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_enabled_da",
+              "path" : "settings/G2M/enabledDate",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "LONG",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_keyboard_m",
+              "path" : "settings/G2M/keyboardMouseControlEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_meetin_1",
+              "path" : "settings/G2M/meetingHubEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_meeting_hu",
+              "path" : "settings/G2M/meetingHubAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_npa_confir",
+              "path" : "settings/G2M/npaConfirmationDialogEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_npa_enable",
+              "path" : "settings/G2M/npaEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_npa_same_a",
+              "path" : "settings/G2M/npaSameAccountRestrictionEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_online_1",
+              "path" : "settings/G2M/onlineRecordingAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_online_2",
+              "path" : "settings/G2M/onlineRecordingTranscriptsAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_online_3",
+              "path" : "settings/G2M/onlineRecordingTranscriptsEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_online_rec",
+              "path" : "settings/G2M/onlineRecordingEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_open_m_1",
+              "path" : "settings/G2M/openMeetingsAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_open_meeti",
+              "path" : "settings/G2M/openMeetingsEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_privat_1",
+              "path" : "settings/G2M/privateConfCallEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_private_co",
+              "path" : "settings/G2M/privateConfCallAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_recording",
+              "path" : "settings/G2M/recordingEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_room_syste",
+              "path" : "settings/G2M/roomSystemDualDisplayEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_standa_1",
+              "path" : "settings/G2M/standaloneAudioAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_standalone",
+              "path" : "settings/G2M/standaloneAudioEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_toll_acces",
+              "path" : "settings/G2M/tollAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_toll_enabl",
+              "path" : "settings/G2M/tollEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_toll_f_1",
+              "path" : "settings/G2M/tollFreeEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_toll_free",
+              "path" : "settings/G2M/tollFreeAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_ux_2019_ac",
+              "path" : "settings/G2M/ux2019Accessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_ux_2019_en",
+              "path" : "settings/G2M/ux2019Enabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_voip_acces",
+              "path" : "settings/G2M/voipAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_voip_enabl",
+              "path" : "settings/G2M/voipEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_web_vi_1",
+              "path" : "settings/G2M/webViewerAccessible",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_web_viewer",
+              "path" : "settings/G2M/webViewerEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_m_webcam_ena",
+              "path" : "settings/G2M/webcamEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_mfree_attend",
+              "path" : "settings/G2MFREE/attendeeListEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "settings_g_2_mfree_chat_e",
+              "path" : "settings/G2MFREE/chatEnabled",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "status",
+              "path" : "status",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "time_zone",
+              "path" : "timeZone",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            } ],
+            "root" : true,
+            "ignored" : false,
+            "childTables" : [ "results/licenseKeys", "results/products", "results/settings/G2M/tollCountries", "results/settings/G2M/allowedTollCountries", "results/settings/G2M/tollFreeCountries", "results/settings/G2M/allowedTollFreeCountries", "results/settings/G2M/dialOutCountries", "results/settings/G2M/allowedDialOutCountries", "results/adminRoles" ],
+            "detailEndpointIds" : [ 2 ],
+            "loadingType" : "PULL"
+          } ],
+          "mergeStrategy" : "NONE"
+        }
+      } ],
+      "actions" : [ {
+        "uniqueId" : "9fdd6728-7857-4d6b-8cd6-e2a6a23e9269",
+        "name" : "Create Meeting with co-organizer",
+        "parameters" : [ {
+          "uniqueId" : "996e3dc0-089b-460b-8fa6-b5415a3a2506",
+          "name" : "meetingtype",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "d282b622-9f73-471f-9a09-87fac982497e",
+          "name" : "coorganizerKeys1",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "a232ce0c-a361-441c-a34e-5ffc8554fece",
+          "name" : "coorganizerKeys2",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "c17f72cb-ca08-47cd-9b50-48e16a61a333",
+          "name" : "subject",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "0520edfa-f8ee-4a3b-a9ec-63a7a070cde7",
+          "name" : "start",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "ISO_INSTANT",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "2beb5e1a-97c9-406d-aae7-70e633ac3a13",
+          "name" : "end",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "ISO_INSTANT",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "25fb451d-e49b-4cdd-9c60-a84f189e6d28",
+          "name" : "passwordrequired",
+          "type" : {
+            "dataType" : "BOOLEAN"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "a91b1793-499d-4f45-96f9-81129969f6a7",
+          "name" : "conferencecallinfo",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "G2M/rest/meetings",
+          "headers" : [ ],
+          "postMode" : "JSON",
+          "body" : "{\n\"subject\": \"{{subject}}\",\n\"starttime\": \"{{start}}\",\n\"endtime\":\"{{end}}\",\n\"passwordrequired\":\"{{passwordrequired}}\",\n\"conferencecallinfo\": \"{{conferencecallinfo}}\",\n\"meetingtype\": \"{{meetingtype}}\",\n\"coorganizerKeys\": [\n\"{{coorganizerKeys2}}\"\n]\n}",
+          "bodyParameters" : [ ]
+        },
+        "preActionUpdates" : [ ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "88370b28-8ec2-41c8-9e30-775d4d006af4",
+          "endpointLegacyId" : 2,
+          "endpointId" : "6ce53c9b-6910-42df-987b-86f2d1973fe9",
+          "request" : {
+            "method" : "GET",
+            "uri" : "G2M/rest/organizers/{{coorganizerKeys1}}/upcomingMeetings",
+            "headers" : [ ],
+            "bodyParameters" : [ ]
+          },
+          "callChainEnabled" : true
+        } ]
+      }, {
+        "uniqueId" : "3fec15a8-d396-408a-9063-c22e58c9cb98",
+        "name" : "Create Meeting without Co-organizer",
+        "parameters" : [ {
+          "uniqueId" : "f2ded202-baea-482e-be9e-547c19d7d5d0",
+          "name" : "co-organizer",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "7b18ade5-54e1-4fc6-bb5d-0210a11fb3ff",
+          "name" : "meetingtype",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "644804f7-28d8-46ec-b8ba-1b8afbaef503",
+          "name" : "subject",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "5287cb53-7c4b-45ae-94fa-6f23323211c7",
+          "name" : "start",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "ISO_INSTANT",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "c17e58d5-1ce4-4491-81d1-2e7c109b8654",
+          "name" : "passwordrequired",
+          "type" : {
+            "dataType" : "BOOLEAN"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "84875e32-2e0e-4dbd-9219-a17f7c4851a4",
+          "name" : "end",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "ISO_INSTANT",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        }, {
+          "uniqueId" : "f943e043-1076-43a6-bc7e-340246e8520a",
+          "name" : "conferencecallinfo",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : ""
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "G2M/rest/meetings",
+          "headers" : [ ],
+          "postMode" : "JSON",
+          "body" : "{\n\"subject\": \"{{subject}}\",\n\"starttime\": \"{{start}}\",\n\"endtime\":\"{{end}}\",\n\"passwordrequired\":\"{{passwordrequired}}\",\n\"conferencecallinfo\": \"{{conferencecallinfo}}\",\n\"meetingtype\": \"{{meetingtype}}\"\n}",
+          "bodyParameters" : [ ]
+        },
+        "preActionUpdates" : [ ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "81d6c133-0169-4e2b-96d1-3a465d33cbe3",
+          "endpointLegacyId" : 2,
+          "endpointId" : "6ce53c9b-6910-42df-987b-86f2d1973fe9",
+          "request" : {
+            "method" : "GET",
+            "uri" : "G2M/rest/organizers/{{co-organizer}}/upcomingMeetings",
+            "headers" : [ ],
+            "bodyParameters" : [ ]
+          },
+          "callChainEnabled" : true
+        } ]
+      } ],
+      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/MXccS6cm2PdalcmXSR7Ah41qYso4sEFY.png",
       "iconType" : "CUSTOM_IMAGE",
       "rateLimitConfiguration" : {
         "timeWindow" : {
@@ -3671,18 +4444,18 @@
       } ]
     } ],
     "relationships" : [ ],
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "oauthLoginNeeded" : true,
+    "fullyConfigured" : false
   } ],
   "notifications" : [ ],
   "resolvers" : [ ],
   "modelConfiguration" : {
     "appIds" : [ "22ee4231-d9f1-44d5-8a1d-1310bd79fad3" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "",
+    "bundleDescription" : "GoToMeeting Integration Logo Change request.",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "2F857B6FB51DB69405CC067568B037A5",
-  "appliedSappUpgrades" : [ "microapp-4666", "microapp-6790", "microapp-3547", "microapp-10549", "microapp-6264", "microapp-7984", "microapp-5025", "microapp-7561", "microapp-8511", "microapp-3580", "microapp-3548", "microapp-7290", "microapp-4020", "microapp-2450", "microapp-3838", "microapp-11349", "microapp-5227", "microapp-4518", "microapp-1980", "microapp-6617", "microapp-8950", "microapp-6293", "microapp-8576", "microapp-7888", "microapp-10420", "microapp-9701", "microapp-8921", "microapp-9702", "microapp-6853", "microapp-8892", "microapp-8003", "microapp-6262", "microapp-7961", "microapp-9597", "microapp-6593" ],
-  "buildVersion" : "1.27.2.12da060ed855db57227cb1483857d42bc330ea5f"
+  "appliedSappUpgrades" : [ "microapp-6262", "microapp-10856", "microapp-3580", "microapp-7290", "microapp-3547", "microapp-8003", "microapp-5025", "microapp-8921", "microapp-9702", "microapp-3548", "microapp-4666", "microapp-11349", "microapp-8892", "microapp-7984", "microapp-4020", "microapp-10421", "microapp-8950", "microapp-7561", "microapp-2450", "microapp-9701", "microapp-6617", "microapp-7961", "microapp-3838", "microapp-7888", "microapp-6264", "microapp-5227", "microapp-6853", "microapp-6790", "microapp-6593", "microapp-10549", "microapp-1980", "microapp-9597", "microapp-4518", "microapp-8511", "microapp-10420", "microapp-8576", "microapp-6293" ],
+  "buildVersion" : "1.37.3.c05258560b15810ceb9900cb0855f9f98ee8c7be"
 }
