@@ -1303,8 +1303,8 @@
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "scope" : " Tenant.Read.All",
-        "authorizationURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/authorize",
-        "tokenURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/token",
+        "authorizationURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/authorize",
+        "tokenURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
@@ -1320,8 +1320,8 @@
         "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "password" : "",
         "scope" : " Tenant.Read.All",
-        "authorizationURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/authorize",
-        "tokenURL" : "https://login.microsoftonline.com/6ec32273-dccb-4522-8c42-a29aee1bad2d/oauth2/token",
+        "authorizationURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/authorize",
+        "tokenURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
