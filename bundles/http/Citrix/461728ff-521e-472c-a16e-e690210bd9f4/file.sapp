@@ -1523,7 +1523,7 @@
         "pathParameters" : [ ],
         "headerParameters" : [ ]
       }, {
-        "name" : "group_reports_full",
+        "name" : "reports",
         "endpoint" : "/admin/groups/{{groupId}}/reports",
         "requestMethod" : "GET",
         "postMode" : "FORMDATA",
@@ -1534,7 +1534,7 @@
         "rootPath" : "value",
         "tables" : [ {
           "id" : 13,
-          "tableName" : "group_reports_full",
+          "tableName" : "reports",
           "path" : "value",
           "columns" : [ {
             "name" : "created_by",
@@ -1700,7 +1700,7 @@
           "loadingType" : "PULL"
         } ],
         "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "group_reports_full",
+        "baseTableName" : "reports",
         "paginationMethod" : {
           "type" : "OFFSET",
           "limitParameter" : "$top",
@@ -1728,7 +1728,7 @@
         } ],
         "headerParameters" : [ ]
       }, {
-        "name" : "group_dashboards_full",
+        "name" : "dashboards",
         "endpoint" : "/admin/groups/{{groupId}}/dashboards",
         "requestMethod" : "GET",
         "postMode" : "FORMDATA",
@@ -1739,7 +1739,7 @@
         "rootPath" : "value",
         "tables" : [ {
           "id" : 14,
-          "tableName" : "group_dashboards_full",
+          "tableName" : "dashboards",
           "path" : "value",
           "columns" : [ {
             "name" : "display_name",
@@ -1859,7 +1859,7 @@
           "loadingType" : "PULL"
         } ],
         "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "group_dashboards_full",
+        "baseTableName" : "dashboards",
         "paginationMethod" : {
           "type" : "OFFSET",
           "limitParameter" : "$top",
@@ -2208,7 +2208,7 @@
       }, {
         "legacyEndpointId" : 5,
         "uniqueId" : "b93eac2c-a2e6-49c1-8e12-f127d4966af7",
-        "name" : "group_reports_full",
+        "name" : "reports",
         "type" : "DETAIL",
         "parentTable" : "groups",
         "parameters" : [ {
@@ -2238,11 +2238,11 @@
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
           "uniqueId" : "0f9af994-d4e9-4808-b9ae-1a6847dc9174",
-          "baseTableName" : "group_reports_full",
+          "baseTableName" : "reports",
           "rootPath" : "value",
           "tables" : [ {
             "id" : 13,
-            "tableName" : "group_reports_full",
+            "tableName" : "reports",
             "path" : "value",
             "columns" : [ {
               "name" : "created_by",
@@ -2412,7 +2412,7 @@
       }, {
         "legacyEndpointId" : 6,
         "uniqueId" : "ead25ac3-b6d9-454c-851e-e88f4e34b590",
-        "name" : "group_dashboards_full",
+        "name" : "dashboards",
         "type" : "DETAIL",
         "parentTable" : "groups",
         "parameters" : [ {
@@ -2442,11 +2442,11 @@
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
           "uniqueId" : "11c335cb-d445-400e-af17-842cda864d36",
-          "baseTableName" : "group_dashboards_full",
+          "baseTableName" : "dashboards",
           "rootPath" : "value",
           "tables" : [ {
             "id" : 14,
-            "tableName" : "group_dashboards_full",
+            "tableName" : "dashboards",
             "path" : "value",
             "columns" : [ {
               "name" : "display_name",
@@ -2899,9 +2899,9 @@
       } ]
     }, {
       "id" : 3,
-      "title" : "group_reports_full",
-      "displayName" : "Group Reports Full",
-      "entityName" : "group_reports_full",
+      "title" : "reports",
+      "displayName" : "Reports",
+      "entityName" : "reports",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
@@ -3075,9 +3075,9 @@
       } ]
     }, {
       "id" : 4,
-      "title" : "group_dashboards_full",
-      "displayName" : "Group Dashboards Full",
-      "entityName" : "group_dashboards_full",
+      "title" : "dashboards",
+      "displayName" : "Dashboards",
+      "entityName" : "dashboards",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
@@ -3161,7 +3161,7 @@
       },
       "fkTable" : {
         "id" : 3,
-        "title" : "group_reports_full",
+        "title" : "reports",
         "type" : "TABLE"
       },
       "alias" : "users__reports",
@@ -3208,7 +3208,7 @@
       },
       "fkTable" : {
         "id" : 4,
-        "title" : "group_dashboards_full",
+        "title" : "dashboards",
         "type" : "TABLE"
       },
       "alias" : "users__dashboards",
@@ -3344,7 +3344,7 @@
       "id" : 6,
       "pkTable" : {
         "id" : 3,
-        "title" : "group_reports_full",
+        "title" : "reports",
         "type" : "TABLE"
       },
       "fkTable" : {
@@ -3391,7 +3391,7 @@
       "id" : 7,
       "pkTable" : {
         "id" : 4,
-        "title" : "group_dashboards_full",
+        "title" : "dashboards",
         "type" : "TABLE"
       },
       "fkTable" : {
