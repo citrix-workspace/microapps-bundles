@@ -1,17 +1,22 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
-      "serviceId" : 1,
-      "version" : 162,
-      "actionApp" : true,
+      "id" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
+      "serviceId" : 4,
+      "version" : 190,
+      "parameters" : {
+        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/task.56dcb3449373f1d0a934b32cddd69fdf.svg",
+        "description" : "d748fed4-31a6-49ce-9f45-ff7e029dabab"
+      },
+      "title" : "5819b9c0-d38d-4e17-ad9f-1099e477ddb5",
+      "startPageId" : "d3806a09-ce96-434e-aacc-0ac57ea6ff47",
       "pages" : [ {
-        "id" : "de50bd54-5ea9-4b7f-b9c9-c5e5f661f25d",
-        "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+        "id" : "d3806a09-ce96-434e-aacc-0ac57ea6ff47",
+        "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
         "type" : "LIST",
         "components" : [ {
           "type" : "TABLE",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -19,22 +24,22 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 3,
+          "componentTableId" : 64,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "5f19e548-6745-4993-831d-9e67df71fb34",
-              "tableid" : 3,
+              "tableid" : 64,
               "sqlquery" : {
-                "id" : "d64c139b-a83a-46ae-bc79-8397bb9fa478",
+                "id" : "e83752a1-6998-4c1c-83fd-815d9c5058e8",
                 "constraints" : {
                   "type" : "EXPRESSION",
                   "left" : {
                     "type" : "TERM",
                     "constraint" : {
-                      "tableId" : 1,
-                      "columnId" : 3,
-                      "foreignKeyId" : 1,
+                      "tableId" : 62,
+                      "columnId" : 786,
+                      "foreignKeyId" : 108,
                       "valueType" : "USER_EMAIL",
                       "ignoredWhenValueIsNull" : false,
                       "action" : "EQUALS_TO"
@@ -44,10 +49,10 @@
                   "right" : {
                     "type" : "TERM",
                     "constraint" : {
-                      "tableId" : 3,
-                      "columnId" : 32,
+                      "tableId" : 64,
+                      "columnId" : 806,
                       "valueType" : "COMPONENT",
-                      "variableComponent" : "55ed1a72-6b60-4cbb-bef6-5ee3a465f6cb",
+                      "variableComponent" : "7f39a171-a841-450f-8763-2bb311e770bf",
                       "ignoredWhenValueIsNull" : true,
                       "action" : "LIKE"
                     }
@@ -61,8 +66,8 @@
                 "aggregation" : "NONE",
                 "label" : "3f1ef9e0-8320-4634-831b-7d5a383430ad",
                 "id" : "efnwr9",
-                "tableid" : 3,
-                "columnid" : 32,
+                "tableid" : 64,
+                "columnid" : 806,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -74,8 +79,8 @@
                 "aggregation" : "NONE",
                 "label" : "8db5bd01-526a-45e2-9bb4-a381e0fe14c7",
                 "id" : "0dpuhw",
-                "tableid" : 3,
-                "columnid" : 26,
+                "tableid" : 64,
+                "columnid" : 802,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -85,7 +90,7 @@
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
-              "linkpageid" : "251074d9-12b8-415f-9251-11b6eadda23d",
+              "linkpageid" : "ed141088-ad9e-49b0-8006-3fe01e5c26fe",
               "hideIfEmpty" : false,
               "limit" : "20",
               "sortable" : 1,
@@ -97,7 +102,7 @@
             "font_size" : "0",
             "enabled" : "1"
           },
-          "id" : "a46d020b-ce47-4872-bc87-3b9ba0d074e9",
+          "id" : "0a35ac8e-ff8f-4df2-a6ec-47688a8a6373",
           "defaultvalue" : null,
           "displayorder" : 2,
           "prefillValue" : null,
@@ -107,7 +112,7 @@
           "pageId" : "de50bd54-5ea9-4b7f-b9c9-c5e5f661f25d"
         }, {
           "type" : "TEXT_INPUT",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -121,7 +126,7 @@
             "mapToDataColumn" : false,
             "disabled" : 0
           },
-          "id" : "55ed1a72-6b60-4cbb-bef6-5ee3a465f6cb",
+          "id" : "7f39a171-a841-450f-8763-2bb311e770bf",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -135,17 +140,17 @@
         } ],
         "title" : "c51f1068-751d-417e-acec-7017979e3732",
         "parameters" : { },
-        "tableid" : 3,
-        "datasourceid" : 1,
+        "tableid" : 64,
+        "datasourceid" : 4,
         "pagetype" : "List",
         "pagetype" : "List"
       }, {
-        "id" : "251074d9-12b8-415f-9251-11b6eadda23d",
-        "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+        "id" : "ed141088-ad9e-49b0-8006-3fe01e5c26fe",
+        "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "BACK_BUTTON",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -158,7 +163,7 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "b23244b6-8d14-467e-b37a-51c1d2021cee",
+          "id" : "bd0f81a9-a22c-4e13-ba36-6a510b38af5f",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -172,14 +177,14 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "TEXT",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
-          "columnId" : 32,
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
+          "columnId" : 806,
           "required" : false,
           "textType" : 0,
           "label" : "de970d61-6357-472e-9cc6-f545cfdeb33b",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "a873c0ef-8924-40ff-8a3d-f056e8e2516f",
+          "parentComponentId" : "a9b3820e-5ed1-46df-a426-3ba668573377",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -191,7 +196,7 @@
               "condition" : "none"
             }
           },
-          "id" : "e48e4470-e1d4-431a-944f-d25320a3bd27",
+          "id" : "dad54719-8556-4f66-8bf4-4919aa8b330d",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -206,8 +211,8 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "POWER_BI",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
-          "columnId" : 20,
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
+          "columnId" : 800,
           "required" : false,
           "textType" : 0,
           "label" : null,
@@ -226,25 +231,25 @@
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "6b202844-6235-4b71-8af1-20925184a35f",
+                  "id" : "2d9f9a9a-13c5-4cb1-9674-aebb95f4b03a",
                   "name" : "Generate Group Report Embed Token",
                   "parameters" : [ {
-                    "id" : "c1e0533b-ec33-48a5-bf86-784be3d99b9a",
+                    "id" : "88b4fd2a-3825-4f02-92f4-798989be00bd",
                     "parameterId" : "groupId",
                     "valueType" : "COLUMN",
-                    "columnId" : 23,
+                    "columnId" : 801,
                     "type" : "GWSCP"
                   }, {
-                    "id" : "6ad4b14e-6266-4fb3-8f04-cca0905e9eb7",
+                    "id" : "1ecac34a-5d78-41d6-9c9d-9e0717c9f0b3",
                     "parameterId" : "reportId",
                     "valueType" : "COLUMN",
-                    "columnId" : 29,
+                    "columnId" : 803,
                     "type" : "GWSCP"
                   } ],
                   "serviceActionId" : "addc58ae-3273-42e4-9fb4-24801bd6768f",
-                  "serviceId" : 1
+                  "serviceId" : 4
                 },
-                "serviceId" : 1,
+                "serviceId" : 4,
                 "notes" : null,
                 "componentId" : null,
                 "subject" : null,
@@ -269,7 +274,7 @@
               } ]
             }
           },
-          "id" : "d2602ac3-075b-4d6e-b4e8-78548bd24371",
+          "id" : "326b6693-f295-427d-ad48-d6eba1c1f71d",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
@@ -284,7 +289,7 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -301,7 +306,7 @@
             "defaultVerticalAlign" : "TOP",
             "mobileWrappingMode" : "Row"
           },
-          "id" : "2a734c37-1457-4253-acd4-b70760561e93",
+          "id" : "bddd6f95-eef3-40e4-8e64-0eb7a73ac327",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -508,24 +513,25 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "2a734c37-1457-4253-acd4-b70760561e93",
+          "parentComponentId" : "bddd6f95-eef3-40e4-8e64-0eb7a73ac327",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "a873c0ef-8924-40ff-8a3d-f056e8e2516f",
+          "id" : "a9b3820e-5ed1-46df-a426-3ba668573377",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
           "val" : "",
+          "prefillValue" : null,
           "helptext" : "",
           "cssclass" : "",
           "icon" : "",
@@ -534,24 +540,25 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "2a734c37-1457-4253-acd4-b70760561e93",
+          "parentComponentId" : "bddd6f95-eef3-40e4-8e64-0eb7a73ac327",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "e899204a-1b17-4dd9-bb99-854ebe550837",
+          "id" : "530e75ac-73b7-4386-b7ec-3b8ffac457fe",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
           "val" : "",
+          "prefillValue" : null,
           "helptext" : "",
           "cssclass" : "",
           "icon" : "",
@@ -560,14 +567,14 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "BUTTON",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : "47db0b05-7570-4dba-ba97-61b006112450",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "e899204a-1b17-4dd9-bb99-854ebe550837",
+          "parentComponentId" : "530e75ac-73b7-4386-b7ec-3b8ffac457fe",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
@@ -582,7 +589,7 @@
             "disabled" : 0,
             "showInBladeFooter" : false
           },
-          "id" : "fde4fc5e-4390-42d1-bf2f-9389205dc1bc",
+          "id" : "61162908-d9ff-4860-955e-cfd8b2fe1263",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -596,20 +603,21 @@
           "pageId" : "d8d867aa-14a2-4ec2-9782-a1b3d444f570"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "2a734c37-1457-4253-acd4-b70760561e93",
+          "parentComponentId" : "bddd6f95-eef3-40e4-8e64-0eb7a73ac327",
           "parameters" : { },
-          "id" : "aff7ebbe-2509-4e58-acae-833e170e39ed",
+          "id" : "b6121f31-df73-41c8-abda-0d751707af99",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
           "val" : "",
+          "prefillValue" : null,
           "helptext" : "",
           "cssclass" : "",
           "icon" : "",
@@ -617,20 +625,21 @@
           "sortable" : false
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "2a734c37-1457-4253-acd4-b70760561e93",
+          "parentComponentId" : "bddd6f95-eef3-40e4-8e64-0eb7a73ac327",
           "parameters" : { },
-          "id" : "d30d8e02-2054-45b0-a7d4-8d982b98d6f1",
+          "id" : "f5ee5cb2-7317-4c0c-9204-0fa1ac7a748f",
           "defaultvalue" : "",
           "displayorder" : 4,
           "filter" : "",
           "val" : "",
+          "prefillValue" : null,
           "helptext" : "",
           "cssclass" : "",
           "icon" : "",
@@ -638,14 +647,14 @@
           "sortable" : false
         }, {
           "type" : "TEXT",
-          "appId" : "263f4bc6-db53-4c49-acee-2b1bd52104f4",
-          "columnId" : 26,
+          "appId" : "9dc642fb-57e3-4af7-8308-264e0b3fe440",
+          "columnId" : 802,
           "required" : false,
           "textType" : 0,
           "label" : "51610f0b-dae6-4e3f-accb-9221936c565b",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "aff7ebbe-2509-4e58-acae-833e170e39ed",
+          "parentComponentId" : "b6121f31-df73-41c8-abda-0d751707af99",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -657,7 +666,7 @@
               "condition" : "none"
             }
           },
-          "id" : "5a72caa1-c381-4c10-8266-c0a95e2d6189",
+          "id" : "95d31962-8472-4082-b8fa-a17beb41f7b0",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -671,13 +680,13 @@
           "pageId" : "251074d9-12b8-415f-9251-11b6eadda23d"
         } ],
         "query" : {
-          "id" : "5d9f9864-d293-4618-b805-97dad689bb0b",
+          "id" : "6cc8a3b6-a7d3-4e96-ab37-b3ff3cc6c924",
           "constraints" : {
             "type" : "TERM",
             "constraint" : {
-              "tableId" : 1,
-              "columnId" : 3,
-              "foreignKeyId" : 1,
+              "tableId" : 62,
+              "columnId" : 786,
+              "foreignKeyId" : 108,
               "valueType" : "USER_EMAIL",
               "ignoredWhenValueIsNull" : false,
               "action" : "EQUALS_TO"
@@ -687,18 +696,13 @@
         },
         "title" : "ea8fe878-a227-46cb-8e63-1f1eecc82814",
         "parameters" : { },
-        "tableid" : 3,
-        "datasourceid" : 1,
+        "tableid" : 64,
+        "datasourceid" : 4,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "de50bd54-5ea9-4b7f-b9c9-c5e5f661f25d",
-      "parameters" : {
-        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/task.56dcb3449373f1d0a934b32cddd69fdf.svg",
-        "description" : "d748fed4-31a6-49ce-9f45-ff7e029dabab"
-      },
-      "title" : "5819b9c0-d38d-4e17-ad9f-1099e477ddb5",
-      "trackingUuid" : "890ca50d-deda-4546-8084-c1666f1dd0d1"
+      "trackingUuid" : "890ca50d-deda-4546-8084-c1666f1dd0d1",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -706,17 +710,22 @@
     }
   }, {
     "appVersion" : {
-      "id" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
-      "serviceId" : 1,
-      "version" : 202,
-      "actionApp" : true,
+      "id" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
+      "serviceId" : 4,
+      "version" : 218,
+      "parameters" : {
+        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/no-icon.991041efe28007c4e6f67651fa5131f4.svg",
+        "description" : "644933cc-5623-48db-a92d-cc5fb2942983"
+      },
+      "title" : "3c3491cc-b888-478d-b84f-e79410dd188b",
+      "startPageId" : "0b58d329-fb02-4c09-bf0a-daac2ebb30fd",
       "pages" : [ {
-        "id" : "63285c95-cc33-48ff-a29a-6009a9f76e2e",
-        "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+        "id" : "0b58d329-fb02-4c09-bf0a-daac2ebb30fd",
+        "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
         "type" : "LIST",
         "components" : [ {
           "type" : "TABLE",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -724,23 +733,23 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 4,
+          "componentTableId" : 65,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "57e23bf6-3ece-4cff-b5d0-85499de78960",
-              "tableid" : 4,
+              "tableid" : 65,
               "sqlquery" : {
-                "id" : "9522651f-1010-446e-992f-7adc9a5857d0",
+                "id" : "f37b556d-4928-4f44-b5ec-c73eab0b0a87",
                 "constraints" : {
                   "type" : "EXPRESSION",
                   "left" : {
                     "type" : "TERM",
                     "constraint" : {
-                      "tableId" : 4,
-                      "columnId" : 35,
+                      "tableId" : 65,
+                      "columnId" : 809,
                       "valueType" : "COMPONENT",
-                      "variableComponent" : "a255a7a6-4e3d-46a8-a30f-5db0e23e5e8b",
+                      "variableComponent" : "d88d7a64-1936-483d-a667-798f33ecf22c",
                       "ignoredWhenValueIsNull" : true,
                       "action" : "LIKE"
                     }
@@ -749,21 +758,13 @@
                   "right" : {
                     "type" : "TERM",
                     "constraint" : {
-                      "tableId" : 1,
-                      "columnId" : 3,
-                      "foreignKeyId" : 2,
+                      "tableId" : 62,
+                      "columnId" : 786,
+                      "foreignKeyId" : 109,
                       "valueType" : "USER_EMAIL",
                       "ignoredWhenValueIsNull" : false,
                       "action" : "EQUALS_TO"
                     }
-                  },
-                  "constraint" : {
-                    "tableId" : 4,
-                    "columnId" : 35,
-                    "valueType" : "COMPONENT",
-                    "variableComponent" : "a255a7a6-4e3d-46a8-a30f-5db0e23e5e8b",
-                    "ignoredWhenValueIsNull" : true,
-                    "action" : "LIKE"
                   }
                 },
                 "autojoins" : false
@@ -774,8 +775,8 @@
                 "aggregation" : "NONE",
                 "label" : "efbc57dd-0495-46ed-a255-4b211f5ed39a",
                 "id" : "s83kk3",
-                "tableid" : 4,
-                "columnid" : 35,
+                "tableid" : 65,
+                "columnid" : 809,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -787,8 +788,8 @@
                 "aggregation" : "NONE",
                 "label" : "a75ddfde-3b6f-4dfa-9833-6e17b5729309",
                 "id" : "5o9dqb",
-                "tableid" : 4,
-                "columnid" : 42,
+                "tableid" : 65,
+                "columnid" : 812,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -798,7 +799,7 @@
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
-              "linkpageid" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3",
+              "linkpageid" : "330ab89f-22a4-458d-a415-5cb16d112808",
               "hideIfEmpty" : false,
               "limit" : "20",
               "sortable" : 1,
@@ -810,7 +811,7 @@
             "font_size" : "0",
             "enabled" : "1"
           },
-          "id" : "cea2c0e4-5cd9-4c6f-ab35-c2111e610c2e",
+          "id" : "c8a0e52a-e4c8-4ab5-82c0-e1322ccd9b6e",
           "defaultvalue" : null,
           "displayorder" : 2,
           "prefillValue" : null,
@@ -820,7 +821,7 @@
           "pageId" : "63285c95-cc33-48ff-a29a-6009a9f76e2e"
         }, {
           "type" : "TEXT_INPUT",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -834,7 +835,7 @@
             "mapToDataColumn" : false,
             "disabled" : 0
           },
-          "id" : "a255a7a6-4e3d-46a8-a30f-5db0e23e5e8b",
+          "id" : "d88d7a64-1936-483d-a667-798f33ecf22c",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -848,17 +849,17 @@
         } ],
         "title" : "2a1f71a1-21f0-46d8-90dc-93671ad28cfb",
         "parameters" : { },
-        "tableid" : 4,
-        "datasourceid" : 1,
+        "tableid" : 65,
+        "datasourceid" : 4,
         "pagetype" : "List",
         "pagetype" : "List"
       }, {
-        "id" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3",
-        "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+        "id" : "330ab89f-22a4-458d-a415-5cb16d112808",
+        "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "BACK_BUTTON",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -871,7 +872,7 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "041ac743-3974-45df-b538-ec562371373c",
+          "id" : "b3d6e616-20f4-4c51-8775-cdf30c14075f",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -885,14 +886,14 @@
           "pageId" : "5a63d7b5-1670-43e8-9937-abb62d5975ea"
         }, {
           "type" : "TEXT",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
-          "columnId" : 35,
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
+          "columnId" : 809,
           "required" : false,
           "textType" : 0,
           "label" : "8e53a6d2-58b2-4979-9ecf-78230080bb15",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "221b3626-a0db-48e4-a967-8f17d62ef9c3",
+          "parentComponentId" : "12337b23-a0c7-4251-8c2b-42122ea1c9df",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -904,7 +905,7 @@
               "condition" : "none"
             }
           },
-          "id" : "8f5a5f96-829c-4f2f-aac4-7228949035ea",
+          "id" : "6d6c1672-1223-4519-975a-d3df9c0b3f2d",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -919,8 +920,8 @@
           "pageId" : "5a63d7b5-1670-43e8-9937-abb62d5975ea"
         }, {
           "type" : "POWER_BI",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
-          "columnId" : 36,
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
+          "columnId" : 810,
           "required" : false,
           "textType" : 0,
           "label" : null,
@@ -939,25 +940,25 @@
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "598c77c9-a570-4664-b6a1-c7acade3f657",
+                  "id" : "e3201a32-6a0b-4f90-9b25-513436dcd51a",
                   "name" : "Generate Group Dashboard Embed Token",
                   "parameters" : [ {
-                    "id" : "8f4349bc-b1fd-4906-8347-fed8c19a2332",
+                    "id" : "0f1f5064-fe73-407f-9f86-0e9ca28a37a1",
                     "parameterId" : "dashboardId",
                     "valueType" : "COLUMN",
-                    "columnId" : 45,
+                    "columnId" : 813,
                     "type" : "GWSCP"
                   }, {
-                    "id" : "bb94d7a3-2b55-47cf-ba4c-1e133c04b96e",
+                    "id" : "3836c3d5-8b2c-4508-8867-cfeca5934dd3",
                     "parameterId" : "groupId",
                     "valueType" : "COLUMN",
-                    "columnId" : 39,
+                    "columnId" : 811,
                     "type" : "GWSCP"
                   } ],
                   "serviceActionId" : "cd321fce-385d-4924-9f90-22a3291cb895",
-                  "serviceId" : 1
+                  "serviceId" : 4
                 },
-                "serviceId" : 1,
+                "serviceId" : 4,
                 "notes" : null,
                 "componentId" : null,
                 "subject" : null,
@@ -982,7 +983,7 @@
               } ]
             }
           },
-          "id" : "44a1cdcb-fa98-4efd-9246-c3942ed7bee0",
+          "id" : "05577297-8dbb-4dea-8fa4-1906ac98585b",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
@@ -997,14 +998,14 @@
           "pageId" : "5a63d7b5-1670-43e8-9937-abb62d5975ea"
         }, {
           "type" : "TEXT",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
-          "columnId" : 42,
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
+          "columnId" : 812,
           "required" : false,
           "textType" : 0,
           "label" : "dfaf19b2-afbc-408b-9d64-afe1be088551",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "9b22c699-4151-4a55-a918-ee0962f93cda",
+          "parentComponentId" : "ac38a588-55cf-44ff-b5be-59b4ee3422d3",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -1016,7 +1017,7 @@
               "condition" : "none"
             }
           },
-          "id" : "78c3bf2c-e9e3-4067-ad13-d81a7c15a74a",
+          "id" : "a270c471-e436-46a3-891d-6c58f4710ba9",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -1030,7 +1031,7 @@
           "pageId" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1047,7 +1048,7 @@
             "defaultVerticalAlign" : "TOP",
             "mobileWrappingMode" : "Row"
           },
-          "id" : "99a6f16d-3992-4b66-8fcb-1dbc0271cccc",
+          "id" : "b16b467b-398c-404a-80ad-0246152da4e2",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -1199,20 +1200,20 @@
           "pageId" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "99a6f16d-3992-4b66-8fcb-1dbc0271cccc",
+          "parentComponentId" : "b16b467b-398c-404a-80ad-0246152da4e2",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "221b3626-a0db-48e4-a967-8f17d62ef9c3",
+          "id" : "12337b23-a0c7-4251-8c2b-42122ea1c9df",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -1226,20 +1227,20 @@
           "pageId" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "a64e042f-10c4-4a44-bafe-6ac6b61256f1",
+          "appId" : "e5b144d5-b376-41ec-93f8-de35398b5e80",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "99a6f16d-3992-4b66-8fcb-1dbc0271cccc",
+          "parentComponentId" : "b16b467b-398c-404a-80ad-0246152da4e2",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "9b22c699-4151-4a55-a918-ee0962f93cda",
+          "id" : "ac38a588-55cf-44ff-b5be-59b4ee3422d3",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -1253,13 +1254,13 @@
           "pageId" : "e4db3388-cc8c-4a8f-96fd-b7189943d9d3"
         } ],
         "query" : {
-          "id" : "d798b3e2-dd66-471d-b578-f087ca91bf88",
+          "id" : "66eb3f91-66bf-4bc2-9cc9-d2f45a23bce1",
           "constraints" : {
             "type" : "TERM",
             "constraint" : {
-              "tableId" : 1,
-              "columnId" : 3,
-              "foreignKeyId" : 2,
+              "tableId" : 62,
+              "columnId" : 786,
+              "foreignKeyId" : 109,
               "valueType" : "USER_EMAIL",
               "ignoredWhenValueIsNull" : false,
               "action" : "EQUALS_TO"
@@ -1269,18 +1270,13 @@
         },
         "title" : "e38ad952-0292-4120-a011-f13d8a31f5e0",
         "parameters" : { },
-        "tableid" : 4,
-        "datasourceid" : 1,
+        "tableid" : 65,
+        "datasourceid" : 4,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "63285c95-cc33-48ff-a29a-6009a9f76e2e",
-      "parameters" : {
-        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/no-icon.991041efe28007c4e6f67651fa5131f4.svg",
-        "description" : "644933cc-5623-48db-a92d-cc5fb2942983"
-      },
-      "title" : "3c3491cc-b888-478d-b84f-e79410dd188b",
-      "trackingUuid" : "d5f847ab-b0fc-4f6b-9523-1eaf380a48ba"
+      "trackingUuid" : "d5f847ab-b0fc-4f6b-9523-1eaf380a48ba",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -1288,9 +1284,9 @@
     }
   } ],
   "services" : [ {
-    "id" : 1,
-    "uuid" : "5e91c276-b3e7-4a97-b2a4-5356191b368a",
-    "version" : 144,
+    "id" : 4,
+    "uuid" : "df94e2f5-66f1-4ba9-81b1-f2ed16e8e4a8",
+    "version" : 145,
     "title" : "Power BI HTTP",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1303,8 +1299,8 @@
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "scope" : " Tenant.Read.All",
-        "authorizationURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/authorize",
-        "tokenURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/token",
+        "authorizationURL" : "https://login.microsoftonline.com/{tenant_id}/oauth2/authorize",
+        "tokenURL" : "https://login.microsoftonline.com/{tenant_id}/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
@@ -1320,8 +1316,8 @@
         "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "password" : "",
         "scope" : " Tenant.Read.All",
-        "authorizationURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/authorize",
-        "tokenURL" : "https://login.microsoftonline.com/{tenantID}/oauth2/token",
+        "authorizationURL" : "https://login.microsoftonline.com/{tenant_id}/oauth2/authorize",
+        "tokenURL" : "https://login.microsoftonline.com/{tenant_id}/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
@@ -1501,12 +1497,7 @@
         "paginationEnabled" : true,
         "mergeStrategy" : "NONE",
         "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
+        "headerParameters" : [ ],
         "queryParameters" : [ {
           "name" : "$expand",
           "defaultValue" : "users",
@@ -1521,7 +1512,12 @@
           "uniqueId" : "ebbfd6de-ccde-4f48-98ce-983ba97785b1"
         } ],
         "pathParameters" : [ ],
-        "headerParameters" : [ ]
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ]
       }, {
         "name" : "reports",
         "endpoint" : "/admin/groups/{{groupId}}/reports",
@@ -1710,12 +1706,7 @@
         "paginationEnabled" : true,
         "mergeStrategy" : "SUBLIST",
         "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
+        "headerParameters" : [ ],
         "queryParameters" : [ ],
         "pathParameters" : [ {
           "valueType" : "PARENT_DATA",
@@ -1726,7 +1717,12 @@
           "uniqueId" : "b58c317c-a53a-4130-84f7-b103f8037476",
           "columnName" : "id"
         } ],
-        "headerParameters" : [ ]
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ]
       }, {
         "name" : "dashboards",
         "endpoint" : "/admin/groups/{{groupId}}/dashboards",
@@ -1869,12 +1865,7 @@
         "paginationEnabled" : true,
         "mergeStrategy" : "SUBLIST",
         "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ],
+        "headerParameters" : [ ],
         "queryParameters" : [ ],
         "pathParameters" : [ {
           "valueType" : "PARENT_DATA",
@@ -1885,7 +1876,12 @@
           "uniqueId" : "3950714c-b4fe-4379-a749-dc4ac76f1fba",
           "columnName" : "id"
         } ],
-        "headerParameters" : [ ]
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ]
       } ],
       "webhookListeners" : [ ],
       "schedule" : [ {
@@ -1918,6 +1914,7 @@
         "preActionDataUpdates" : [ ],
         "postActionDataUpdates" : [ ],
         "bodyParameters" : [ ],
+        "headerParameters" : [ ],
         "queryParameters" : [ ],
         "pathParameters" : [ {
           "name" : "groupId",
@@ -1933,8 +1930,7 @@
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "a1810e05-ee07-4fa2-a1d2-de11fa37b28e"
-        } ],
-        "headerParameters" : [ ]
+        } ]
       }, {
         "name" : "Generate Group Dashboard Embed Token",
         "endpoint" : "/groups/{{groupId}}/dashboards/{{dashboardId}}/GenerateToken",
@@ -1958,6 +1954,7 @@
         "preActionDataUpdates" : [ ],
         "postActionDataUpdates" : [ ],
         "bodyParameters" : [ ],
+        "headerParameters" : [ ],
         "queryParameters" : [ ],
         "pathParameters" : [ {
           "name" : "groupId",
@@ -1973,8 +1970,7 @@
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "59d7d2bc-1f9b-4ca9-b114-1d7b4e608843"
-        } ],
-        "headerParameters" : [ ]
+        } ]
       }, {
         "name" : "Generate Group Tile Embed Token",
         "endpoint" : "groups/{{groupId}}/dashboards/{{dashboardId}}/tiles/{{tileId}}/GenerateToken",
@@ -2004,6 +2000,7 @@
         "preActionDataUpdates" : [ ],
         "postActionDataUpdates" : [ ],
         "bodyParameters" : [ ],
+        "headerParameters" : [ ],
         "queryParameters" : [ ],
         "pathParameters" : [ {
           "name" : "groupId",
@@ -2026,8 +2023,7 @@
           "editMode" : "FULL",
           "valueMapping" : "ACTION_PARAMETER",
           "actionParameterUniqueId" : "f33a91c7-414a-4dc9-966f-0c710053179f"
-        } ],
-        "headerParameters" : [ ]
+        } ]
       } ],
       "endpoints" : [ {
         "legacyEndpointId" : 4,
@@ -2700,14 +2696,14 @@
     },
     "context" : { },
     "tables" : [ {
-      "id" : 1,
+      "id" : 62,
       "title" : "groups_users",
       "displayName" : "Groups Users",
       "entityName" : "groups_users",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1,
+        "id" : 784,
         "title" : "group_user_access_right",
         "displayName" : "Group User Access Right",
         "attributeName" : "group_user_access_right",
@@ -2721,7 +2717,7 @@
         "defaultLabel" : "Group User Access Right",
         "primaryKey" : false
       }, {
-        "id" : 2,
+        "id" : 785,
         "title" : "identifier",
         "displayName" : "Identifier",
         "attributeName" : "identifier",
@@ -2735,7 +2731,7 @@
         "defaultLabel" : "Identifier",
         "primaryKey" : false
       }, {
-        "id" : 3,
+        "id" : 786,
         "title" : "email_address",
         "displayName" : "Email Address",
         "attributeName" : "email_address",
@@ -2749,7 +2745,7 @@
         "defaultLabel" : "Email Address",
         "primaryKey" : false
       }, {
-        "id" : 4,
+        "id" : 787,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -2763,7 +2759,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 5,
+        "id" : 788,
         "title" : "principal_type",
         "displayName" : "Principal Type",
         "attributeName" : "principal_type",
@@ -2777,7 +2773,7 @@
         "defaultLabel" : "Principal Type",
         "primaryKey" : false
       }, {
-        "id" : 6,
+        "id" : 789,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -2791,7 +2787,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 7,
+        "id" : 790,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -2805,7 +2801,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 8,
+        "id" : 791,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -2820,14 +2816,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 2,
+      "id" : 63,
       "title" : "groups",
       "displayName" : "Groups",
       "entityName" : "groups",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 10,
+        "id" : 792,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -2841,7 +2837,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 11,
+        "id" : 793,
         "title" : "description",
         "displayName" : "Description",
         "attributeName" : "description",
@@ -2855,7 +2851,7 @@
         "defaultLabel" : "Description",
         "primaryKey" : false
       }, {
-        "id" : 12,
+        "id" : 794,
         "title" : "state",
         "displayName" : "State",
         "attributeName" : "state",
@@ -2869,7 +2865,7 @@
         "defaultLabel" : "State",
         "primaryKey" : false
       }, {
-        "id" : 13,
+        "id" : 795,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -2883,7 +2879,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 14,
+        "id" : 796,
         "title" : "type",
         "displayName" : "Type",
         "attributeName" : "type",
@@ -2898,14 +2894,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 3,
+      "id" : 64,
       "title" : "reports",
       "displayName" : "Reports",
       "entityName" : "reports",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 17,
+        "id" : 797,
         "title" : "created_by",
         "displayName" : "Created By",
         "attributeName" : "created_by",
@@ -2919,7 +2915,7 @@
         "defaultLabel" : "Created By",
         "primaryKey" : false
       }, {
-        "id" : 18,
+        "id" : 798,
         "title" : "created_date_time",
         "displayName" : "Created Date Time",
         "attributeName" : "created_date_time",
@@ -2933,7 +2929,7 @@
         "defaultLabel" : "Created Date Time",
         "primaryKey" : false
       }, {
-        "id" : 19,
+        "id" : 799,
         "title" : "dataset_id",
         "displayName" : "Dataset Id",
         "attributeName" : "dataset_id",
@@ -2947,7 +2943,7 @@
         "defaultLabel" : "Dataset Id",
         "primaryKey" : false
       }, {
-        "id" : 20,
+        "id" : 800,
         "title" : "embed_url",
         "displayName" : "Embed Url",
         "attributeName" : "embed_url",
@@ -2961,7 +2957,7 @@
         "defaultLabel" : "Embed Url",
         "primaryKey" : false
       }, {
-        "id" : 23,
+        "id" : 801,
         "title" : "groups_id",
         "displayName" : "Groups Id",
         "attributeName" : "groups_id",
@@ -2975,7 +2971,7 @@
         "defaultLabel" : "Groups Id",
         "primaryKey" : false
       }, {
-        "id" : 26,
+        "id" : 802,
         "title" : "groups_name",
         "displayName" : "Groups Name",
         "attributeName" : "groups_name",
@@ -2989,7 +2985,7 @@
         "defaultLabel" : "Groups Name",
         "primaryKey" : false
       }, {
-        "id" : 29,
+        "id" : 803,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -3003,7 +2999,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 30,
+        "id" : 804,
         "title" : "modified_by",
         "displayName" : "Modified By",
         "attributeName" : "modified_by",
@@ -3017,7 +3013,7 @@
         "defaultLabel" : "Modified By",
         "primaryKey" : false
       }, {
-        "id" : 31,
+        "id" : 805,
         "title" : "modified_date_time",
         "displayName" : "Modified Date Time",
         "attributeName" : "modified_date_time",
@@ -3031,7 +3027,7 @@
         "defaultLabel" : "Modified Date Time",
         "primaryKey" : false
       }, {
-        "id" : 32,
+        "id" : 806,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -3045,7 +3041,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 33,
+        "id" : 807,
         "title" : "report_type",
         "displayName" : "Report Type",
         "attributeName" : "report_type",
@@ -3059,7 +3055,7 @@
         "defaultLabel" : "Report Type",
         "primaryKey" : false
       }, {
-        "id" : 34,
+        "id" : 808,
         "title" : "web_url",
         "displayName" : "Web Url",
         "attributeName" : "web_url",
@@ -3074,14 +3070,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 4,
+      "id" : 65,
       "title" : "dashboards",
       "displayName" : "Dashboards",
       "entityName" : "dashboards",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 35,
+        "id" : 809,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -3095,7 +3091,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 36,
+        "id" : 810,
         "title" : "embed_url",
         "displayName" : "Embed Url",
         "attributeName" : "embed_url",
@@ -3109,7 +3105,7 @@
         "defaultLabel" : "Embed Url",
         "primaryKey" : false
       }, {
-        "id" : 39,
+        "id" : 811,
         "title" : "groups_id",
         "displayName" : "Groups Id",
         "attributeName" : "groups_id",
@@ -3123,7 +3119,7 @@
         "defaultLabel" : "Groups Id",
         "primaryKey" : false
       }, {
-        "id" : 42,
+        "id" : 812,
         "title" : "groups_name",
         "displayName" : "Groups Name",
         "attributeName" : "groups_name",
@@ -3137,7 +3133,7 @@
         "defaultLabel" : "Groups Name",
         "primaryKey" : false
       }, {
-        "id" : 45,
+        "id" : 813,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -3153,23 +3149,23 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 1,
+      "id" : 108,
       "pkTable" : {
-        "id" : 1,
+        "id" : 62,
         "title" : "groups_users",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 3,
+        "id" : 64,
         "title" : "reports",
         "type" : "TABLE"
       },
       "alias" : "users__reports",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 1,
+        "fkId" : 108,
         "pkColumn" : {
-          "id" : 6,
+          "id" : 789,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -3184,7 +3180,7 @@
           "primaryKey" : false
         },
         "fkColumn" : {
-          "id" : 23,
+          "id" : 801,
           "title" : "groups_id",
           "displayName" : "Groups Id",
           "attributeName" : "groups_id",
@@ -3200,23 +3196,23 @@
         }
       } ]
     }, {
-      "id" : 2,
+      "id" : 109,
       "pkTable" : {
-        "id" : 1,
+        "id" : 62,
         "title" : "groups_users",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 4,
+        "id" : 65,
         "title" : "dashboards",
         "type" : "TABLE"
       },
       "alias" : "users__dashboards",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 2,
+        "fkId" : 109,
         "pkColumn" : {
-          "id" : 6,
+          "id" : 789,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -3231,7 +3227,7 @@
           "primaryKey" : false
         },
         "fkColumn" : {
-          "id" : 39,
+          "id" : 811,
           "title" : "groups_id",
           "displayName" : "Groups Id",
           "attributeName" : "groups_id",
@@ -3247,23 +3243,23 @@
         }
       } ]
     }, {
-      "id" : 4,
+      "id" : 110,
       "pkTable" : {
-        "id" : 1,
+        "id" : 62,
         "title" : "groups_users",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 2,
+        "id" : 63,
         "title" : "groups",
         "type" : "TABLE"
       },
       "alias" : "users__groups",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 4,
+        "fkId" : 110,
         "pkColumn" : {
-          "id" : 6,
+          "id" : 789,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -3278,7 +3274,7 @@
           "primaryKey" : false
         },
         "fkColumn" : {
-          "id" : 13,
+          "id" : 795,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -3294,23 +3290,23 @@
         }
       } ]
     }, {
-      "id" : 5,
+      "id" : 111,
       "pkTable" : {
-        "id" : 2,
+        "id" : 63,
         "title" : "groups",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 1,
+        "id" : 62,
         "title" : "groups_users",
         "type" : "TABLE"
       },
       "alias" : "nested_table",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 5,
+        "fkId" : 111,
         "pkColumn" : {
-          "id" : 13,
+          "id" : 795,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -3325,7 +3321,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 6,
+          "id" : 789,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -3341,23 +3337,23 @@
         }
       } ]
     }, {
-      "id" : 6,
+      "id" : 112,
       "pkTable" : {
-        "id" : 3,
+        "id" : 64,
         "title" : "reports",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 2,
+        "id" : 63,
         "title" : "groups",
         "type" : "TABLE"
       },
       "alias" : "reports__groups",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 6,
+        "fkId" : 112,
         "pkColumn" : {
-          "id" : 23,
+          "id" : 801,
           "title" : "groups_id",
           "displayName" : "Groups Id",
           "attributeName" : "groups_id",
@@ -3372,7 +3368,7 @@
           "primaryKey" : false
         },
         "fkColumn" : {
-          "id" : 13,
+          "id" : 795,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -3388,23 +3384,23 @@
         }
       } ]
     }, {
-      "id" : 7,
+      "id" : 113,
       "pkTable" : {
-        "id" : 4,
+        "id" : 65,
         "title" : "dashboards",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 2,
+        "id" : 63,
         "title" : "groups",
         "type" : "TABLE"
       },
       "alias" : "dashboards__groups",
       "userDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 7,
+        "fkId" : 113,
         "pkColumn" : {
-          "id" : 39,
+          "id" : 811,
           "title" : "groups_id",
           "displayName" : "Groups Id",
           "attributeName" : "groups_id",
@@ -3419,7 +3415,7 @@
           "primaryKey" : false
         },
         "fkColumn" : {
-          "id" : 13,
+          "id" : 795,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -3435,18 +3431,18 @@
         }
       } ]
     } ],
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : true,
+    "fullyConfigured" : false
   } ],
   "notifications" : [ ],
   "resolvers" : [ ],
   "modelConfiguration" : {
-    "appIds" : [ "a64e042f-10c4-4a44-bafe-6ac6b61256f1", "263f4bc6-db53-4c49-acee-2b1bd52104f4" ],
+    "appIds" : [ "e5b144d5-b376-41ec-93f8-de35398b5e80", "9dc642fb-57e3-4af7-8308-264e0b3fe440" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Integrate with Power BI to receive automated notifications for important reporting changes in Citrix Workspace.",
+    "bundleDescription" : "Integrate with Power BI to track important reports and dashboards in Citrix Workspace.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "CA914C7F87031EDDAA84A04186047682",
-  "appliedSappUpgrades" : [ "microapp-9702", "microapp-4666", "microapp-3548", "microapp-3547", "microapp-8003", "microapp-10856", "microapp-8511", "microapp-7984", "microapp-11340", "microapp-10421", "microapp-8921", "microapp-10858", "microapp-3580", "microapp-9701", "microapp-3838", "microapp-10420", "microapp-6593", "microapp-9597", "microapp-8892", "microapp-7290", "microapp-5025", "microapp-6790", "microapp-8950", "microapp-10549", "microapp-6264", "microapp-7561", "microapp-7961", "microapp-2450", "microapp-7888", "microapp-6853", "microapp-4518", "microapp-6617", "microapp-6293", "microapp-8576", "microapp-11349", "microapp-11136", "microapp-5227", "microapp-1980", "microapp-6262", "microapp-4020" ],
-  "buildVersion" : "1.40.1.9261d76480273febab26205b66db33e54845a4e9"
+  "translationChecksum" : "77AEA03B65325515549A28786BE646A8",
+  "appliedSappUpgrades" : [ "microapp-6293", "microapp-7961", "microapp-6262", "microapp-5227", "microapp-8921", "microapp-8511", "microapp-4518", "microapp-8003", "microapp-4020", "microapp-6853", "microapp-6617", "microapp-9597", "microapp-10421", "microapp-7561", "microapp-5025", "microapp-3838", "microapp-11349", "microapp-8950", "microapp-3548", "microapp-6264", "microapp-10856", "microapp-1980", "microapp-6593", "microapp-7984", "microapp-2450", "microapp-7888", "microapp-7290", "microapp-6790", "microapp-3580", "microapp-9702", "microapp-8576", "microapp-3547", "microapp-8892", "microapp-10549", "microapp-10420", "microapp-4666", "microapp-9701", "microapp-11136" ],
+  "buildVersion" : "1.39.0.32bd2e736f308d3dfd0fa5fe5f05170b6c317faa"
 }
