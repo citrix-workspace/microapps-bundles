@@ -23,6 +23,7 @@ public abstract class Metadata {
     private final List<App> apps;
     private final List<VaResolver> vaResolvers;
     private final List<Tag> tags;
+    private final ScriptMetadata scriptMetadata;
 
     public Metadata(
             Type type,
@@ -37,7 +38,8 @@ public abstract class Metadata {
             List<String> i18nLanguages,
             List<App> apps,
             List<VaResolver> vaResolvers,
-            List<Tag> tags
+            List<Tag> tags,
+            ScriptMetadata scriptMetadata
     ) {
         this.type = type;
         this.vendor = vendor;
@@ -52,6 +54,7 @@ public abstract class Metadata {
         this.apps = ofNullable(apps).orElse(emptyList());
         this.vaResolvers = ofNullable(vaResolvers).orElse(emptyList());
         this.tags = ofNullable(tags).orElse(emptyList());
+        this.scriptMetadata = scriptMetadata;
     }
 
     public Type getType() {
@@ -104,5 +107,9 @@ public abstract class Metadata {
 
     public List<Tag> getTags() {
         return tags;
+    }
+
+    public ScriptMetadata getScriptMetadata() {
+        return scriptMetadata;
     }
 }

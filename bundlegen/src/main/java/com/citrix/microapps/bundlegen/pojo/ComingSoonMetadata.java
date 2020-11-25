@@ -25,7 +25,8 @@ public class ComingSoonMetadata extends Metadata {
             @JsonProperty(value = "iconUrl", required = true) URI iconUrl,
             @JsonProperty(value = "categories") List<Category> categories,
             @JsonProperty(value = "created") String created,
-            @JsonProperty(value = "tags") List<Tag> tags
+            @JsonProperty(value = "tags") List<Tag> tags,
+            @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata
     ) {
         super(type,
                 vendor,
@@ -39,7 +40,8 @@ public class ComingSoonMetadata extends Metadata {
                 null,
                 null,
                 null,
-                tags);
+                tags,
+                scriptMetadata);
         this.id = id;
         this.version = version;
     }
