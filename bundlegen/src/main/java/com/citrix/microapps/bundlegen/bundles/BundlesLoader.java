@@ -213,7 +213,7 @@ public class BundlesLoader {
         validateFormat(VERSION_PATTERN, "masVersion", metadata.getMasVersion()).ifPresent(issues::add);
 
         if (metadata.getDeprecatedDate() != null) {
-            isTimestampValid("deprecatedDate", metadata.getDeprecatedDate()).ifPresent(issues::add);
+            validateDeprecatedDate(metadata.getDeprecatedDate()).ifPresent(issues::add);
         }
         validateSync(bundle::getType, "type", metadata.getType()).ifPresent(issues::add);
         validateSync(bundle::getVendor, "vendor", metadata.getVendor()).ifPresent(issues::add);
@@ -287,13 +287,13 @@ public class BundlesLoader {
                         String.format("Missing the translation checksum %s", fileName))) : Optional.empty();
     }
 
-    static Optional<ValidationException> isTimestampValid(String field, String timestamp) {
+    static Optional<ValidationException> validateDeprecatedDate(String timestamp) {
         try {
             Instant.parse(timestamp);
             return Optional.empty();
         } catch (DateTimeParseException e) {
             return Optional.of(new ValidationException(
-                    String.format("Invalid UTC timestamp format: field `%s`, value `%s`", field, timestamp)));
+                    String.format("Invalid UTC timestamp format: field `deprecatedDate`, value `%s`", timestamp)));
         }
     }
 
