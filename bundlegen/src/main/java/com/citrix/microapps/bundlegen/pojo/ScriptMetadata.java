@@ -2,7 +2,14 @@ package com.citrix.microapps.bundlegen.pojo;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
+/**
+ * Script metadata properties loaded from `metadata.json` for HTTP integrations.
+ */
+@Getter
+@SuperBuilder(toBuilder = true)
 public class ScriptMetadata {
 
     private final String originalFileName;
@@ -20,22 +27,6 @@ public class ScriptMetadata {
         this.storedFileName = storedFileName;
         this.checksum = checksum;
         this.apiVersion = apiVersion;
-    }
-
-    public String getOriginalFileName() {
-        return originalFileName;
-    }
-
-    public String getStoredFileName() {
-        return storedFileName;
-    }
-
-    public String getChecksum() {
-        return checksum;
-    }
-
-    public String getApiVersion() {
-        return apiVersion;
     }
 }
 

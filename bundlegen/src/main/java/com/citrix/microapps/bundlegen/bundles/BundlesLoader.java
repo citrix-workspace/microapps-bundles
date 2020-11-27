@@ -2,6 +2,7 @@ package com.citrix.microapps.bundlegen.bundles;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
@@ -74,7 +76,6 @@ public class BundlesLoader {
 
         return new Bundle(bundle, metadata, issues);
     }
-
 
 
     private Optional<Metadata> loadAndValidateMetadata(List<ValidationException> issues, FsBundle bundle) {
@@ -152,12 +153,16 @@ public class BundlesLoader {
     static List<ValidationException> checkUnexpectedFiles(List<Path> bundleFiles, boolean comingSoonBundleFlag) {
         HashSet<Path> copy = new HashSet<>(bundleFiles);
         copy.removeAll(comingSoonBundleFlag ? BUNDLE_COMING_SOON_ALLOWED_FILES : BUNDLE_ALLOWED_FILES);
-        // FIXME make proper validation of bundled Javascript files
+        // check presence of just one or none Javascript file containing synchronization code
+        PathMatcher scriptPathMatcher = FileSystems.getDefault().getPathMatcher("glob:*.js");
+        AtomicBoolean scriptRemoved = new AtomicBoolean(false);
         copy.removeIf(file -> {
-            // TODO use PathMatcher?
-            boolean result = file.toFile().getName().toLowerCase().endsWith(".js");
-            System.out.printf("Testing %s, result=%s\n", file, result);
-            return result;
+            if (scriptPathMatcher.matches(file) && !scriptRemoved.get()) {
+                scriptRemoved.set(true);
+                return true;
+            } else {
+                return false;
+            }
         });
 
         return copy.stream()

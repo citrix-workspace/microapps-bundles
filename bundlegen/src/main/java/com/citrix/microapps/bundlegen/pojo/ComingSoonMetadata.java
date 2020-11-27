@@ -5,10 +5,14 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Metadata loaded from `metadata.json` for Coming Soon integrations.
  */
+@Getter
+@SuperBuilder(toBuilder = true)
 public class ComingSoonMetadata extends Metadata {
 
     private final String id;
@@ -25,8 +29,7 @@ public class ComingSoonMetadata extends Metadata {
             @JsonProperty(value = "iconUrl", required = true) URI iconUrl,
             @JsonProperty(value = "categories") List<Category> categories,
             @JsonProperty(value = "created") String created,
-            @JsonProperty(value = "tags") List<Tag> tags,
-            @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata
+            @JsonProperty(value = "tags") List<Tag> tags
     ) {
         super(type,
                 vendor,
@@ -40,17 +43,8 @@ public class ComingSoonMetadata extends Metadata {
                 null,
                 null,
                 null,
-                tags,
-                scriptMetadata);
+                tags);
         this.id = id;
         this.version = version;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getVersion() {
-        return version;
     }
 }

@@ -1,5 +1,8 @@
 package com.citrix.microapps.bundlegen.pojo;
 
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
 import java.net.URI;
 import java.util.List;
 
@@ -9,7 +12,11 @@ import static java.util.Optional.ofNullable;
 /**
  * Metadata of a bundle loaded from `metadata.json`, common parts.
  */
+
+@Getter
+@SuperBuilder(toBuilder = true)
 public abstract class Metadata {
+
     private final Type type;
     private final String vendor;
     private final String title;
@@ -23,7 +30,6 @@ public abstract class Metadata {
     private final List<App> apps;
     private final List<VaResolver> vaResolvers;
     private final List<Tag> tags;
-    private final ScriptMetadata scriptMetadata;
 
     public Metadata(
             Type type,
@@ -38,8 +44,7 @@ public abstract class Metadata {
             List<String> i18nLanguages,
             List<App> apps,
             List<VaResolver> vaResolvers,
-            List<Tag> tags,
-            ScriptMetadata scriptMetadata
+            List<Tag> tags
     ) {
         this.type = type;
         this.vendor = vendor;
@@ -54,62 +59,5 @@ public abstract class Metadata {
         this.apps = ofNullable(apps).orElse(emptyList());
         this.vaResolvers = ofNullable(vaResolvers).orElse(emptyList());
         this.tags = ofNullable(tags).orElse(emptyList());
-        this.scriptMetadata = scriptMetadata;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getVendor() {
-        return vendor;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public URI getIconUrl() {
-        return iconUrl;
-    }
-
-    public String getMasVersion() {
-        return masVersion;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public boolean isSupportsOAuthForActions() {
-        return supportsOAuthForActions;
-    }
-
-    public List<String> getI18nLanguages() {
-        return i18nLanguages;
-    }
-
-    public List<App> getApps() {
-        return apps;
-    }
-
-    public List<VaResolver> getVaResolvers() {
-        return vaResolvers;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public ScriptMetadata getScriptMetadata() {
-        return scriptMetadata;
     }
 }
