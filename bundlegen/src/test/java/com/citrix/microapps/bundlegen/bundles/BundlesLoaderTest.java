@@ -36,20 +36,20 @@ class BundlesLoaderTest {
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
     void checkMandatoryFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, false));
     }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProviderForComingSoon")
     void checkMandatoryFilesOkForComingSoon(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
     }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesIssuesProvider")
     void checkMandatoryFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.checkMandatoryFiles(input, comingSoonBundleFlag);
-        assertThat(toMessages(issues)).containsExactlyInAnyOrder(expectedMessages.toArray(new String[0]));
+        assertListEqualsInAnyOrder(toMessages(issues), expectedMessages);
     }
 
     @Test
@@ -65,7 +65,7 @@ class BundlesLoaderTest {
                         Paths.get("i18n", "zh-CN.json"),
                         Paths.get("file.sapp")));
 
-        assertEquals(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
     }
 
     @Test
@@ -79,7 +79,7 @@ class BundlesLoaderTest {
 
         List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
                 false);
-        assertEquals(Collections.singletonList("Translation checksum mismatch en.json"),
+        assertListEqualsInAnyOrder(Collections.singletonList("Translation checksum mismatch en.json"),
                 toMessages(validationExceptions));
     }
 
@@ -94,26 +94,26 @@ class BundlesLoaderTest {
 
         List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
                 true);
-        assertEquals(Collections.emptyList(), validationExceptions);
+        assertListEqualsInAnyOrder(Collections.emptyList(), validationExceptions);
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesOkProvider")
     void checkUnexpectedFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesOkProviderForComingSoon")
     void checkUnexpectedFilesOkForComingSoon(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesIssuesProvider")
     void checkUnexpectedFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, comingSoonBundleFlag);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
     }
 
     @ParameterizedTest
@@ -133,35 +133,35 @@ class BundlesLoaderTest {
     @MethodSource("validateDipMetadataOkProvider")
     void validateCommonMetadataOk(FsBundle bundle, DipMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateDipMetadataOkMasVersion")
     void validateCommonMetadataMasVersionOk(FsBundle bundle, DipMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateDipMetadataIssuesProvider")
     void validateDipMetadataIssues(FsBundle bundle, DipMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateHttpMetadataOkProvider")
     void validateHttpMetadataOkOk(FsBundle bundle, HttpMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateHttpMetadataIssuesProvider")
     void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
     }
 
     private static List<Path> toPaths(String... paths) {
@@ -195,32 +195,33 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(toPaths(),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
+
                 Arguments.of(toPaths(),
                         true,
-                        Arrays.asList("Missing mandatory file: metadata.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"))),
 
                 Arguments.of(toPaths(METADATA_FILE),
                         false,
-                        Arrays.asList("Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths(TEMPLATE_FILE),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
+
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         true,
-                        Arrays.asList("Missing mandatory file: metadata.json"))
-
+                        Arrays.asList(missingMandatoryFile("metadata.json")))
         );
     }
 
@@ -471,5 +472,24 @@ class BundlesLoaderTest {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
+    }
+
+    private static <T> void assertListEqualsInAnyOrder(List<T> arg1, List<T> arg2) {
+        assertThat(arg1).containsExactlyInAnyOrderElementsOf(arg2);
+    }
+
+    private static String buildFileName(String ...parts) {
+        if (parts == null || parts.length == 0) {
+            throw new IllegalArgumentException("Filename path parts cannot be empty or null");
+        }
+        if (parts.length == 1) {
+            return Paths.get(parts[0]).toString();
+        } else {
+            return Paths.get(parts[0], Arrays.copyOfRange(parts, 1, parts.length)).toString();
+        }
+    }
+
+    private static String missingMandatoryFile(String... paths) {
+        return String.format("Missing mandatory file: %s", buildFileName(paths));
     }
 }
