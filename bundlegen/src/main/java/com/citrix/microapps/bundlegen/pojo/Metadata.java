@@ -1,5 +1,8 @@
 package com.citrix.microapps.bundlegen.pojo;
 
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
 import java.net.URI;
 import java.util.List;
 
@@ -9,7 +12,11 @@ import static java.util.Optional.ofNullable;
 /**
  * Metadata of a bundle loaded from `metadata.json`, common parts.
  */
+
+@Getter
+@SuperBuilder(toBuilder = true)
 public abstract class Metadata {
+
     private final Type type;
     private final String vendor;
     private final String title;
@@ -52,57 +59,5 @@ public abstract class Metadata {
         this.apps = ofNullable(apps).orElse(emptyList());
         this.vaResolvers = ofNullable(vaResolvers).orElse(emptyList());
         this.tags = ofNullable(tags).orElse(emptyList());
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getVendor() {
-        return vendor;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public URI getIconUrl() {
-        return iconUrl;
-    }
-
-    public String getMasVersion() {
-        return masVersion;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public boolean isSupportsOAuthForActions() {
-        return supportsOAuthForActions;
-    }
-
-    public List<String> getI18nLanguages() {
-        return i18nLanguages;
-    }
-
-    public List<App> getApps() {
-        return apps;
-    }
-
-    public List<VaResolver> getVaResolvers() {
-        return vaResolvers;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
     }
 }
