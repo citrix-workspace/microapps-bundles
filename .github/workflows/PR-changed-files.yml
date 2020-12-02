@@ -11,6 +11,8 @@ jobs:
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
       - name: Check Changed Files
         id: changed
         uses: citrix-workspace/g11n-PR-changed-files@master
