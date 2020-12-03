@@ -1,17 +1,16 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
-      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
-      "serviceId" : 1,
-      "startPageId" : "481b3709-9eb0-4119-a049-30e56ed29894",
+      "id" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
+      "serviceId" : 23,
+      "version" : 2,
       "pages" : [ {
-        "id" : "481b3709-9eb0-4119-a049-30e56ed29894",
-        "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+        "id" : "1cbb0194-c766-4190-9a06-63cc22b5d498",
+        "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TEXT_INPUT",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -20,8 +19,6 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : {
-            "logic" : [ ],
-            "defaultValue" : "",
             "field_width" : "large",
             "visible" : 1,
             "query" : null,
@@ -29,34 +26,34 @@
             "disabled" : 0,
             "order" : null
           },
-          "id" : "e515eb80-4bf1-4344-b54e-38c6b99b704e",
-          "defaultvalue" : null,
+          "id" : "36ec0e86-9f51-4833-abac-37d28de87835",
+          "defaultvalue" : "",
           "displayorder" : 1
         }, {
           "type" : "TABLE",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : null,
           "label" : "46726e57-f88e-44ee-92cf-1bf4473fc255",
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 1,
+          "componentTableId" : 305,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "6055b42e-d34f-43fc-abf7-10845b0bcdc2",
-              "tableid" : 1,
+              "tableid" : 305,
               "sqlquery" : {
-                "id" : "52939f7b-1e9f-48e9-914c-b8ac4a686858",
+                "id" : "4b002418-b69f-4d40-89c2-628f70feee56",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 1,
-                    "columnId" : 9,
+                    "tableId" : 305,
+                    "columnId" : 5439,
                     "valueType" : "COMPONENT",
-                    "variableComponent" : "e515eb80-4bf1-4344-b54e-38c6b99b704e",
+                    "variableComponent" : "36ec0e86-9f51-4833-abac-37d28de87835",
                     "value" : "",
                     "ignoredWhenValueIsNull" : true,
                     "action" : "LIKE"
@@ -65,96 +62,102 @@
                 "autojoins" : false
               },
               "sqlorder" : {
-                "id" : "4607ebda-e502-4572-aac9-d3d33df64aa2",
+                "id" : "2c8fe9bb-def8-4c25-9d50-2d2520f409fa",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 1,
-                    "columnId" : 6,
+                    "tableId" : 305,
+                    "columnId" : 5436,
                     "order" : "DESC",
                     "ignoredWhenValueIsNull" : false
                   }
                 },
                 "autojoins" : false
               },
-              "show_1_to_n" : "1",
+              "show_1_to_n" : "0",
               "columns" : [ {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "96816455-dcf4-4667-bc69-d4046e7b8a61",
                 "id" : "cblxu9",
-                "tableid" : 1,
-                "columnid" : 3,
+                "tableid" : 305,
+                "columnid" : 5433,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "STRING"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "828f5a2c-be59-4464-bad2-c67f010f3460",
                 "id" : "iscbma",
-                "tableid" : 1,
-                "columnid" : 8,
+                "tableid" : 305,
+                "columnid" : 5438,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "STRING"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               }, {
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "3ba12b46-205b-418c-bd4c-e30a90d99521",
                 "id" : "ozt1jt",
-                "tableid" : 1,
-                "columnid" : 6,
+                "tableid" : 305,
+                "columnid" : 5436,
                 "urlTemplate" : null,
-                "format" : "default_date",
+                "format" : "date",
                 "tableColumn" : {
-                  "columnType" : null
+                  "columnType" : "TIMESTAMP"
                 },
-                "conditional_format" : "null"
+                "conditional_format" : null
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
-              "linkpageid" : "6e6ae6f2-0f63-42e3-af8e-a88d42135167",
+              "linkpageid" : "b12d7142-4e36-4bfd-a156-a696acd19356",
               "hideIfEmpty" : true,
               "sortable" : 1,
               "alignment" : "left"
-            },
-            "query" : null,
-            "prefill" : null,
-            "order" : null
+            }
           },
-          "id" : "1272b821-50c5-4a1c-affc-e100d7158793",
+          "id" : "5d90a072-24d9-4ca9-a37b-48d00ba6938d",
           "defaultvalue" : null,
-          "displayorder" : 2
+          "displayorder" : 2,
+          "rowAction" : { },
+          "defaultLimit" : 20,
+          "tableid" : 305,
+          "pageId" : "1cbb0194-c766-4190-9a06-63cc22b5d498"
         } ],
         "title" : "84d91351-175f-4799-9258-505698a99faa",
+        "logicConfiguration" : [ ],
         "parameters" : { },
-        "tableid" : 1,
-        "datasourceid" : 1,
+        "tableid" : 305,
+        "datasourceid" : 23,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       }, {
-        "id" : "6e6ae6f2-0f63-42e3-af8e-a88d42135167",
-        "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+        "id" : "b12d7142-4e36-4bfd-a156-a696acd19356",
+        "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TEXT",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
-          "columnId" : 8,
-          "required" : null,
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
+          "columnId" : 5438,
+          "required" : false,
           "textType" : null,
-          "label" : "",
+          "label" : null,
           "format" : "none",
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : {
             "template" : "2201ce1b-4d00-4d58-87b2-64ba5e064edc",
             "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
             "hideIfEmpty" : true,
             "visible" : 1,
             "query" : null,
@@ -162,16 +165,16 @@
             "conditional_format" : "{\"backcolor\":null,\"condition\":null,\"fillWholeRow\":null,\"option\":null,\"optionValue\":null,\"textcolor\":null}",
             "order" : null
           },
-          "id" : "76694d82-8e14-41ed-8bb9-5de32c3df6d6",
+          "id" : "57998f2d-6d6a-49dd-8d5e-a81bd3439708",
           "defaultvalue" : null,
           "displayorder" : 2
         }, {
           "type" : "HTML_CONTENT",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
-          "columnId" : 9,
-          "required" : null,
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
+          "columnId" : 5439,
+          "required" : false,
           "textType" : null,
-          "label" : "",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
@@ -180,16 +183,16 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "a866a7f2-c4f4-44f3-b9ac-a473a91c29c8",
+          "id" : "074dd1ec-3c73-4534-b099-e721306fae65",
           "defaultvalue" : null,
           "displayorder" : 3
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : null,
-          "label" : "Flexible Grid",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
@@ -202,57 +205,56 @@
             "columnWidths" : [ 1, 1 ],
             "order" : null
           },
-          "id" : "b434fe6d-679e-472f-b4f7-d3c568a4f696",
+          "id" : "a3cec53c-2a76-4ba2-b16d-a8a07e36fb77",
           "defaultvalue" : null,
           "displayorder" : 4
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : 0,
-          "label" : "Untitled",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "b434fe6d-679e-472f-b4f7-d3c568a4f696",
+          "parentComponentId" : "a3cec53c-2a76-4ba2-b16d-a8a07e36fb77",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "9d0b0320-8590-401f-aa94-917d2d839d1d",
+          "id" : "507f5a71-96f1-45bb-86f7-4808c816377d",
           "defaultvalue" : "",
           "displayorder" : 1
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : 0,
-          "label" : "Untitled",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "b434fe6d-679e-472f-b4f7-d3c568a4f696",
+          "parentComponentId" : "a3cec53c-2a76-4ba2-b16d-a8a07e36fb77",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "050b6eae-6adb-4f30-beaa-a2b66ed48319",
+          "id" : "545d3ebf-11a3-4fb4-aeba-e4ea41bc51e9",
           "defaultvalue" : "",
           "displayorder" : 2
         }, {
           "type" : "BUTTON",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : null,
           "label" : "3686a1bb-a89a-49f5-9aea-293ebd68d5d7",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "9d0b0320-8590-401f-aa94-917d2d839d1d",
+          "parentComponentId" : "507f5a71-96f1-45bb-86f7-4808c816377d",
           "parameters" : {
-            "logic" : [ ],
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_URL",
@@ -269,21 +271,20 @@
             "showInBladeFooter" : false,
             "order" : null
           },
-          "id" : "89528854-6f50-4a3b-9a2e-4f10da6ac015",
+          "id" : "567cb89a-53c0-4709-9d4f-bfbad893d678",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "BUTTON",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : null,
           "label" : "e933ed63-6942-4e05-b19e-c5a7fa3a4417",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "050b6eae-6adb-4f30-beaa-a2b66ed48319",
+          "parentComponentId" : "545d3ebf-11a3-4fb4-aeba-e4ea41bc51e9",
           "parameters" : {
-            "logic" : [ ],
             "operationStack" : {
               "operations" : [ {
                 "type" : "SEND_EMAIL",
@@ -302,16 +303,16 @@
             "showInBladeFooter" : false,
             "order" : null
           },
-          "id" : "c5d1ccbf-4b97-4d49-900f-9729cbb5decd",
+          "id" : "90588b25-b3be-4c41-83d3-c26b8aa8786d",
           "defaultvalue" : null,
           "displayorder" : 1
         }, {
           "type" : "BACK_BUTTON",
-          "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+          "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
           "columnId" : null,
-          "required" : null,
+          "required" : false,
           "textType" : null,
-          "label" : "Untitled",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
@@ -321,21 +322,26 @@
             "prefill" : null,
             "order" : null
           },
-          "id" : "3bc4abe7-2aad-4a23-9e99-792fe4b2ca23",
+          "id" : "68327b19-5714-437d-87eb-58afe07dbe47",
           "defaultvalue" : null,
           "displayorder" : 1
         } ],
         "title" : "f94b8d1a-34df-499f-a6c2-2934ff404400",
+        "logicConfiguration" : [ ],
         "parameters" : { },
-        "tableid" : 1,
-        "datasourceid" : 1,
+        "tableid" : 305,
+        "datasourceid" : 23,
+        "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
       "actionApp" : true,
+      "startPageId" : "1cbb0194-c766-4190-9a06-63cc22b5d498",
       "parameters" : {
-        "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
+        "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
         "description" : "058ea0cb-2d30-4611-8f8d-436682643c30"
-      }
+      },
+      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
+      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18"
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -343,21 +349,15 @@
     }
   } ],
   "services" : [ {
-    "id" : 1,
-    "uuid" : "e104034d-898f-4f7a-929d-e059fbc7894e",
+    "id" : 23,
+    "uuid" : "1937dfce-b379-4982-b4bd-16b9c96d1b46",
     "version" : 0,
     "title" : "RSS",
     "serviceType" : "EXTERNAL_SERVICE",
     "group" : "EXTERNAL_SERVICE:com.sapho.services.rss.RssService",
-    "updatePending" : false,
-    "configurationPending" : false,
-    "schemaName" : "t_0microapps_rss",
+    "schemaName" : "microapps_rss",
     "configuration" : {
-      "configurationParameters" : { },
-      "onPremProxyConfiguration" : {
-        "useOnPremProxy" : false,
-        "resourceLocation" : ""
-      },
+      "trackingUuid" : "39f6dadd-8ef0-4158-a8c5-9d1fa1d5aa6c",
       "entities" : [ {
         "name" : "items",
         "displayName" : "Items",
@@ -479,7 +479,7 @@
           "displayName" : "Description",
           "type" : {
             "baseDataType" : "STRING",
-            "size" : 2000,
+            "size" : -1,
             "precision" : 0,
             "scale" : 0
           },
@@ -495,7 +495,8 @@
           "filterable" : false,
           "selectableAttributes" : false,
           "mandatory" : true
-        }
+        },
+        "loadingType" : "PULL"
       }, {
         "name" : "categories",
         "displayName" : "Categories",
@@ -540,27 +541,34 @@
           "filterable" : false,
           "selectableAttributes" : false,
           "mandatory" : true
-        }
+        },
+        "loadingType" : "PULL"
       } ],
       "schedule" : [ {
-        "schedule" : "MANUALLY"
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "DAILY",
+        "linkedServiceId" : null,
+        "id" : "FullSynchronization",
+        "timeRange" : "00:00-04:00"
       } ],
       "serviceName" : "RSS",
       "serviceKey" : "com.sapho.services.rss.RssService",
-      "serviceVersion" : "0.2.0",
+      "serviceVersion" : "0.2.1",
       "idleState" : false,
       "entityFilters" : { },
       "serviceType" : "EXTERNAL_SERVICE"
     },
     "context" : { },
     "tables" : [ {
-      "id" : 1,
+      "id" : 305,
       "title" : "items",
       "displayName" : "Items",
       "entityName" : "items",
       "type" : "TABLE",
+      "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1,
+        "id" : 5431,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -574,7 +582,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 2,
+        "id" : 5432,
         "title" : "guid",
         "displayName" : "Guid",
         "attributeName" : "guid",
@@ -588,7 +596,7 @@
         "defaultLabel" : "Guid",
         "primaryKey" : false
       }, {
-        "id" : 3,
+        "id" : 5433,
         "title" : "title",
         "displayName" : "Title",
         "attributeName" : "title",
@@ -602,7 +610,7 @@
         "defaultLabel" : "Title",
         "primaryKey" : false
       }, {
-        "id" : 4,
+        "id" : 5434,
         "title" : "url",
         "displayName" : "Url",
         "attributeName" : "url",
@@ -616,7 +624,7 @@
         "defaultLabel" : "Url",
         "primaryKey" : false
       }, {
-        "id" : 5,
+        "id" : 5435,
         "title" : "comments_url",
         "displayName" : "Comments Url",
         "attributeName" : "comments_url",
@@ -630,7 +638,7 @@
         "defaultLabel" : "Comments Url",
         "primaryKey" : false
       }, {
-        "id" : 6,
+        "id" : 5436,
         "title" : "published_at",
         "displayName" : "Published At",
         "attributeName" : "published_at",
@@ -644,7 +652,7 @@
         "defaultLabel" : "Published At",
         "primaryKey" : false
       }, {
-        "id" : 7,
+        "id" : 5437,
         "title" : "updated_at",
         "displayName" : "Updated At",
         "attributeName" : "updated_at",
@@ -658,7 +666,7 @@
         "defaultLabel" : "Updated At",
         "primaryKey" : false
       }, {
-        "id" : 8,
+        "id" : 5438,
         "title" : "author",
         "displayName" : "Author",
         "attributeName" : "author",
@@ -672,7 +680,7 @@
         "defaultLabel" : "Author",
         "primaryKey" : false
       }, {
-        "id" : 9,
+        "id" : 5439,
         "title" : "description",
         "displayName" : "Description",
         "attributeName" : "description",
@@ -687,13 +695,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 2,
+      "id" : 306,
       "title" : "categories",
       "displayName" : "Categories",
       "entityName" : "categories",
       "type" : "TABLE",
+      "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 10,
+        "id" : 5440,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -707,7 +716,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 11,
+        "id" : 5441,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -723,23 +732,24 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 1,
+      "id" : 421,
       "pkTable" : {
-        "id" : 1,
+        "id" : 305,
         "title" : "items",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 2,
+        "id" : 306,
         "title" : "categories",
         "type" : "TABLE"
       },
       "alias" : "categories_id_items",
       "userDefined" : false,
+      "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 1,
+        "fkId" : 421,
         "pkColumn" : {
-          "id" : 1,
+          "id" : 5431,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -754,7 +764,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 10,
+          "id" : 5440,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -769,49 +779,57 @@
           "primaryKey" : true
         }
       } ]
-    } ]
+    } ],
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
-    "id" : "4bf69a83-4d02-4aae-8f13-d399539a3a5a",
-    "legacyId" : 1,
-    "appId" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+    "id" : "04090169-f1f4-4582-ba20-0de0e5c6c84f",
+    "legacyId" : 120,
+    "appId" : "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d",
     "version" : 2,
     "eventType" : "NEW",
-    "serviceId" : 1,
-    "tableId" : 1,
-    "linkedServiceId" : 1,
+    "serviceId" : 23,
+    "tableId" : 305,
+    "linkedServiceId" : 23,
     "label" : "d9af827a-9300-4b3e-b3c0-60135e1d424f",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "UTC"
     },
-    "messageDefinition" : {
-      "title" : "0ca73546-c717-4e22-b723-32a672e30ac8",
-      "body" : "dd857e18-0194-4806-bf98-cc9eb3d3d858",
-      "url" : "",
-      "gotoAppPageId" : "6e6ae6f2-0f63-42e3-af8e-a88d42135167",
-      "configuration" : {
-        "color" : "",
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://sf-region.sharefilestaging.com/assets/microapps/exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ "89528854-6f50-4a3b-9a2e-4f10da6ac015" ],
-      "task" : false
-    },
     "periodicDefinition" : {
       "reminderPeriod" : 0
     },
     "expirationDelete" : true,
     "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "0ca73546-c717-4e22-b723-32a672e30ac8",
+      "body" : "dd857e18-0194-4806-bf98-cc9eb3d3d858",
+      "gotoAppPageId" : "b12d7142-4e36-4bfd-a156-a696acd19356",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ "567cb89a-53c0-4709-9d4f-bfbad893d678" ],
+      "task" : false,
+      "url" : ""
+    },
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
   } ],
-  "modelConfiguration" : { },
-  "translationChecksum" : "4AA96D38F948AB3387E746905268AED1",
-  "appliedSappUpgrades" : [ "microapp-6262", "microapp-4666", "microapp-1980", "microapp-3548", "microapp-3838", "microapp-3580", "microapp-5025", "microapp-4020", "microapp-5227", "microapp-2450", "microapp-3547" ],
-  "buildVersion" : "0.9.14-SNAPSHOT.fe7b7797f785112d8bdb45c373bf99c015728c31"
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "d96e657c-bdbe-48fd-bdc7-3315a9c2ed7d" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "1736B46B31A019D0C48961EA7698663D",
+  "appliedSappUpgrades" : [ "microapp-5025", "microapp-3547", "microapp-7561", "microapp-4518", "microapp-9597", "microapp-6790", "microapp-8892", "microapp-2450", "microapp-8921", "microapp-10856", "microapp-4666", "microapp-1980", "microapp-11349", "microapp-3548", "microapp-7961", "microapp-6264", "microapp-6262", "microapp-8003", "microapp-10858", "microapp-10549", "microapp-4020", "microapp-7888", "microapp-6293", "microapp-7290", "microapp-11340", "microapp-5227", "microapp-8950", "microapp-10876", "microapp-10421", "microapp-10420", "microapp-7984", "microapp-6593", "microapp-9701", "microapp-8576", "microapp-3580", "microapp-11136", "microapp-3838", "microapp-6853", "microapp-6617", "microapp-9702", "microapp-8511" ],
+  "buildVersion" : "1.48.0-SNAPSHOT.b5cf49440d8ef526f5825672df6bceba9404f32a"
 }
