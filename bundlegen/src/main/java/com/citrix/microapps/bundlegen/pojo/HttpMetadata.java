@@ -6,12 +6,18 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Metadata loaded from `metadata.json` for HTTP integrations.
  */
+@Getter
+@SuperBuilder(toBuilder = true)
 public class HttpMetadata extends Metadata {
+
     private final UUID id;  // TODO: Remove it from source json?
+    private final ScriptMetadata scriptMetadata;
 
     @JsonCreator
     public HttpMetadata(
@@ -28,7 +34,8 @@ public class HttpMetadata extends Metadata {
             @JsonProperty(value = "i18nLanguages") List<String> i18nLanguages,
             @JsonProperty(value = "apps") List<App> apps,
             @JsonProperty(value = "vaResolvers") List<VaResolver> vaResolvers,
-            @JsonProperty(value = "tags") List<Tag> tags
+            @JsonProperty(value = "tags") List<Tag> tags,
+            @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata
     ) {
         super(type,
                 vendor,
@@ -45,9 +52,6 @@ public class HttpMetadata extends Metadata {
                 tags);
 
         this.id = id;
-    }
-
-    public UUID getId() {
-        return id;
+        this.scriptMetadata = scriptMetadata;
     }
 }

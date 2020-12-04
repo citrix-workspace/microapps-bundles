@@ -19,6 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.citrix.microapps.bundlegen.pojo.DipMetadata;
 import com.citrix.microapps.bundlegen.pojo.HttpMetadata;
+import com.citrix.microapps.bundlegen.pojo.ScriptMetadata;
 import com.citrix.microapps.bundlegen.pojo.Type;
 
 import static com.citrix.microapps.bundlegen.TestUtils.path;
@@ -36,20 +37,20 @@ class BundlesLoaderTest {
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
     void checkMandatoryFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, false));
     }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProviderForComingSoon")
     void checkMandatoryFilesOkForComingSoon(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkMandatoryFiles(input, true));
     }
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesIssuesProvider")
     void checkMandatoryFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.checkMandatoryFiles(input, comingSoonBundleFlag);
-        assertThat(toMessages(issues)).containsExactlyInAnyOrder(expectedMessages.toArray(new String[0]));
+        assertListEqualsInAnyOrder(toMessages(issues), expectedMessages);
     }
 
     @Test
@@ -65,7 +66,7 @@ class BundlesLoaderTest {
                         Paths.get("i18n", "zh-CN.json"),
                         Paths.get("file.sapp")));
 
-        assertEquals(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
     }
 
     @Test
@@ -79,7 +80,7 @@ class BundlesLoaderTest {
 
         List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
                 false);
-        assertEquals(Collections.singletonList("Translation checksum mismatch en.json"),
+        assertListEqualsInAnyOrder(Collections.singletonList("Translation checksum mismatch en.json"),
                 toMessages(validationExceptions));
     }
 
@@ -94,26 +95,37 @@ class BundlesLoaderTest {
 
         List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
                 true);
-        assertEquals(Collections.emptyList(), validationExceptions);
+        assertListEqualsInAnyOrder(Collections.emptyList(), validationExceptions);
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesOkProvider")
     void checkUnexpectedFilesOk(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, false));
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesOkProviderForComingSoon")
     void checkUnexpectedFilesOkForComingSoon(List<Path> input) {
-        assertEquals(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkUnexpectedFiles(input, true));
     }
 
     @ParameterizedTest
     @MethodSource("checkUnexpectedFilesIssuesProvider")
     void checkUnexpectedFilesIssues(List<Path> input, boolean comingSoonBundleFlag, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, comingSoonBundleFlag);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
+    }
+
+    @Test
+    void checkUnexpectedScriptFilesIssues() {
+        // quick test for unexpected JS file, can't be part of parameterized checkUnexpectedFilesIssues because
+        // can't distinguish between valid and invalid file on different OS/environments
+        List<Path> input = toPaths("script1.js", "script2.js");
+        List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, false);
+        assertThat(toMessages(issues))
+                .containsAnyElementsOf(Arrays.asList("Unexpected file: script1.js", "Unexpected file: script2.js"));
+        assertEquals(issues.size(), 1);
     }
 
     @ParameterizedTest
@@ -133,40 +145,40 @@ class BundlesLoaderTest {
     @MethodSource("validateDipMetadataOkProvider")
     void validateCommonMetadataOk(FsBundle bundle, DipMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateDipMetadataOkMasVersion")
     void validateCommonMetadataMasVersionOk(FsBundle bundle, DipMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateDipMetadataIssuesProvider")
     void validateDipMetadataIssues(FsBundle bundle, DipMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateDipMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
     }
 
     @ParameterizedTest
     @MethodSource("validateHttpMetadataOkProvider")
     void validateHttpMetadataOkOk(FsBundle bundle, HttpMetadata metadata) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(Collections.emptyList(), toMessages(issues));
+        assertListEqualsInAnyOrder(Collections.emptyList(), issues);
     }
 
     @ParameterizedTest
     @MethodSource("validateHttpMetadataIssuesProvider")
     void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
-        assertEquals(expectedMessages, toMessages(issues));
+        assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
     }
 
     private static List<Path> toPaths(String... paths) {
         return Stream.of(paths)
-                .map(path -> Paths.get(path))
+                .map(Paths::get)
                 .collect(Collectors.toList());
     }
 
@@ -174,6 +186,25 @@ class BundlesLoaderTest {
         return issues.stream()
                 .map(Throwable::getMessage)
                 .collect(Collectors.toList());
+    }
+
+    private static <T> void assertListEqualsInAnyOrder(List<T> arg1, List<T> arg2) {
+        assertThat(arg1).containsExactlyInAnyOrderElementsOf(arg2);
+    }
+
+    private static String buildFileName(String ...parts) {
+        if (parts == null || parts.length == 0) {
+            throw new IllegalArgumentException("Filename path parts cannot be empty or null");
+        }
+        if (parts.length == 1) {
+            return Paths.get(parts[0]).toString();
+        } else {
+            return Paths.get(parts[0], Arrays.copyOfRange(parts, 1, parts.length)).toString();
+        }
+    }
+
+    private static String missingMandatoryFile(String... paths) {
+        return String.format("Missing mandatory file: %s", buildFileName(paths));
     }
 
     private static Stream<Arguments> checkMandatoryFilesOkProvider() {
@@ -195,32 +226,33 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(toPaths(),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
+
                 Arguments.of(toPaths(),
                         true,
-                        Arrays.asList("Missing mandatory file: metadata.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"))),
 
                 Arguments.of(toPaths(METADATA_FILE),
                         false,
-                        Arrays.asList("Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths(TEMPLATE_FILE),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         false,
-                        Arrays.asList("Missing mandatory file: metadata.json",
-                                "Missing mandatory file: file.sapp",
-                                "Missing mandatory file: i18n/en.json")),
+                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                                missingMandatoryFile("file.sapp"),
+                                missingMandatoryFile("i18n", "en.json"))),
+
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         true,
-                        Arrays.asList("Missing mandatory file: metadata.json"))
-
+                        Arrays.asList(missingMandatoryFile("metadata.json")))
         );
     }
 
@@ -255,6 +287,7 @@ class BundlesLoaderTest {
                 Arguments.of(toPaths(TEMPLATE_FILE, "unexpected.txt"),
                         false,
                         Collections.singletonList("Unexpected file: unexpected.txt")),
+
                 Arguments.of(toPaths(TEMPLATE_FILE, "unexpected.txt"),
                         true,
                         Arrays.asList("Unexpected file: file.sapp", "Unexpected file: unexpected.txt")),
@@ -262,6 +295,7 @@ class BundlesLoaderTest {
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         false,
                         Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin")),
+
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         true,
                         Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin"))
@@ -370,6 +404,21 @@ class BundlesLoaderTest {
                 )
         );
     }
+    private static final HttpMetadata defaultHttpMetadata = new HttpMetadata(Type.HTTP,
+            "vendor",
+            UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+            "title",
+            "description",
+            URI.create("https://icon.com/"),
+            "1.0.0",
+            Collections.emptyList(),
+            "2019-12-18T11:36:00",
+            true,
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            null);
 
     private static Stream<Arguments> validateHttpMetadataOkProvider() {
         return Stream.of(
@@ -377,20 +426,20 @@ class BundlesLoaderTest {
                         new FsHttpBundle(
                                 Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
                                 toPaths()),
-                        new HttpMetadata(Type.HTTP,
-                                "vendor",
-                                UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
-                                "title",
-                                "description",
-                                URI.create("https://icon.com/"),
-                                "1.0.0",
-                                Collections.emptyList(),
-                                "2019-12-18T11:36:00",
-                                true,
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList())
+                       defaultHttpMetadata
+                ),
+                Arguments.of(
+                        new FsHttpBundle(
+                                Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                toPaths()),
+                        defaultHttpMetadata
+                                .toBuilder()
+                                .scriptMetadata(new ScriptMetadata(
+                                        "jira.js",
+                                        "433debf6-c450-4a95-9a6f-901932fac76d.js",
+                                        "4F3E7A9EB4B76C8B8E5841BFC6D75030",
+                                        "1.0"))
+                                .build()
                 )
         );
     }
@@ -401,20 +450,16 @@ class BundlesLoaderTest {
                         new FsHttpBundle(
                                 Paths.get("http", "vendor", "bad 00b31529-bc3f-4dab-84c9-b0a539d51d73"),
                                 toPaths()),
-                        new HttpMetadata(Type.DIP, // bad
-                                "bad vendor",
-                                UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
-                                "bad title",
-                                "bad description",
-                                URI.create("https://icon.com/"),
-                                "bad 1.0.0",
-                                Collections.emptyList(),
-                                "bad 2019-12-18T11:36:00",
-                                true,
-                                Collections.singletonList("bad"),
-                                Collections.emptyList(),
-                                Collections.emptyList(),
-                                Collections.emptyList()),
+                        defaultHttpMetadata
+                                .toBuilder()
+                                .type(Type.DIP)
+                                .vendor("bad vendor")
+                                .title("bad title")
+                                .description("bad description")
+                                .masVersion("bad 1.0.0")
+                                .created("bad 2019-12-18T11:36:00")
+                                .i18nLanguages(Collections.singletonList("bad"))
+                                .build(),
                         Arrays.asList(
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
