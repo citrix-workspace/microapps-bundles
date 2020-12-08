@@ -374,12 +374,14 @@ class BundlesLoaderTest {
                         new DipMetadata(Type.HTTP, // bad
                                 "bad vendor",
                                 "bad id",
+                                null,
                                 "bad 42.42.42",
                                 "bad title",
                                 "bad description",
                                 URI.create("https://icon.com/"),
                                 "bad 1.0.0",
                                 Collections.emptyList(),
+                                "bad 2019-12-18T11:36:00",
                                 "bad 2019-12-18T11:36:00",
                                 true,
                                 Collections.singletonList("bad"),
@@ -391,6 +393,7 @@ class BundlesLoaderTest {
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
+                                "Invalid UTC timestamp format: field `deprecatedDate`, value `bad 2019-12-18T11:36:00`",
                                 "Values mismatch: field `type`, filesystem `DIP` != metadata `HTTP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
@@ -407,12 +410,14 @@ class BundlesLoaderTest {
     private static final HttpMetadata defaultHttpMetadata = new HttpMetadata(Type.HTTP,
             "vendor",
             UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+            UUID.fromString("e555da00-55f8-4275-878e-d2facae817f5"),
             "title",
             "description",
             URI.create("https://icon.com/"),
             "1.0.0",
             Collections.emptyList(),
             "2019-12-18T11:36:00",
+            "2020-12-09T06:39:48.517497Z",
             true,
             Collections.emptyList(),
             Collections.emptyList(),
@@ -452,12 +457,14 @@ class BundlesLoaderTest {
                                 toPaths()),
                         defaultHttpMetadata
                                 .toBuilder()
+                                .trackingUuid(UUID.fromString("332d82b2-12cb-480d-8edb-9b9bca59a8c9"))
                                 .type(Type.DIP)
                                 .vendor("bad vendor")
                                 .title("bad title")
                                 .description("bad description")
                                 .masVersion("bad 1.0.0")
                                 .created("bad 2019-12-18T11:36:00")
+                                .deprecatedDate("2020-10-09T06:39:48.517497Z")
                                 .i18nLanguages(Collections.singletonList("bad"))
                                 .build(),
                         Arrays.asList(
@@ -486,6 +493,7 @@ class BundlesLoaderTest {
         return new DipMetadata(Type.DIP,
                 "vendor",
                 "id",
+                UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d74"),
                 "42.42.42",
                 "title",
                 "description",
@@ -493,6 +501,7 @@ class BundlesLoaderTest {
                 masVersion,
                 Collections.emptyList(),
                 "2019-12-18T11:36:00",
+                "2020-10-09T06:39:48.517497Z",
                 true,
                 Collections.emptyList(),
                 Collections.emptyList(),
@@ -504,6 +513,7 @@ class BundlesLoaderTest {
         return new DipMetadata(Type.DIP,
                 "vendor",
                 "id",
+                UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d74"),
                 "42.42.42",
                 "title",
                 "description",
@@ -511,6 +521,7 @@ class BundlesLoaderTest {
                 "1.0.0",
                 Collections.emptyList(),
                 "2019-12-18T11:36:00",
+                null,
                 true,
                 Collections.emptyList(),
                 Collections.emptyList(),
