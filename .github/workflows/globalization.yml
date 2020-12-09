@@ -13,7 +13,7 @@ jobs:
       - name: Checkout source repository
         uses: actions/checkout@v2
       - name: G11n Radar
-        uses: citrix-workspace/g11n-scan@master
+        uses: citrix-workspace/g11n-scan@add_g11nscan_scope
         with:
           repoToken: ${{secrets.GITHUB_TOKEN}}
           skip: 'bundles/coming_soon/'
