@@ -1,0 +1,439 @@
+{
+  "applications" : [ ],
+  "services" : [ {
+    "id" : 22,
+    "uuid" : "75225bba-2199-4f39-8616-4f74cce6090c",
+    "version" : 5,
+    "title" : "HTTP as Identity Provider2",
+    "serviceType" : "IDENTITY_PROVIDER",
+    "group" : "GWSC:JSON",
+    "schemaName" : "microapps_http_as_identit_2",
+    "configuration" : {
+      "trackingUuid" : "28671917-dcc1-4157-8d9d-bef00dce25eb",
+      "baseUrl" : "https://ven01956.service-now.com",
+      "security" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
+        "password" : "",
+        "scope" : "",
+        "authorizationURL" : "https://ven01956.service-now.com/oauth_auth.do",
+        "tokenURL" : "https://ven01956.service-now.com/oauth_token.do",
+        "tokenAuthorization" : "REQUEST_BODY",
+        "authHeaderPrefix" : "",
+        "customAccessTokenParameters" : [ ],
+        "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
+      },
+      "useServiceActionSecurity" : false,
+      "serviceActionSecurity" : {
+        "type" : "NONE"
+      },
+      "useOnPremProxy" : false,
+      "dataEndpoints" : [ ],
+      "webhookListeners" : [ ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY",
+        "linkedServiceId" : null,
+        "id" : "FullSynchronization",
+        "timeRange" : "00:00-04:00"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY",
+        "linkedServiceId" : null,
+        "id" : "IncrementalSynchronization",
+        "timeRange" : "00:00-04:00"
+      } ],
+      "serviceActions" : [ ],
+      "endpoints" : [ ],
+      "actions" : [ ],
+      "iconUrl" : "http://localhost:8080/build/exported/HTTP.9b81384ab8a11658b635e7542ff6416c.svg",
+      "iconType" : "LIBRARY",
+      "scriptConfiguration" : {
+        "id" : "31cae55e-69f0-4615-bd04-abf09d32e79c",
+        "model" : {
+          "tables" : [ {
+            "name" : "User",
+            "columns" : [ {
+              "name" : "account_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "display_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "email",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "domain",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "user_principal_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "provider_uuid",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            } ]
+          }, {
+            "name" : "Group",
+            "columns" : [ {
+              "name" : "account_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "display_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "domain",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "user_principal_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "provider_uuid",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            }, {
+              "name" : "parent_provider_uuid",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : false
+            } ]
+          }, {
+            "name" : "UserGroupMapping",
+            "columns" : [ {
+              "name" : "user_provider_uuid",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            }, {
+              "name" : "group_provider_uuid",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            } ]
+          } ],
+          "relationships" : [ ]
+        },
+        "synchronizations" : [ {
+          "name" : "snowUserGroups",
+          "fullSyncConfigured" : true,
+          "incrementalSyncConfigured" : false
+        } ],
+        "actions" : [ ],
+        "webhookListeners" : [ ]
+      }
+    },
+    "context" : {
+      "synchronizationContexts" : {
+        "snowUserGroups" : { }
+      }
+    },
+    "tables" : [ {
+      "id" : 37,
+      "title" : "group",
+      "displayName" : "Group",
+      "entityName" : "Group",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 795,
+        "title" : "account_name",
+        "displayName" : "Account Name",
+        "attributeName" : "account_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Account Name",
+        "primaryKey" : false
+      }, {
+        "id" : 796,
+        "title" : "display_name",
+        "displayName" : "Display Name",
+        "attributeName" : "display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 797,
+        "title" : "domain",
+        "displayName" : "Domain",
+        "attributeName" : "domain",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Domain",
+        "primaryKey" : false
+      }, {
+        "id" : 798,
+        "title" : "user_principal_name",
+        "displayName" : "User Principal Name",
+        "attributeName" : "user_principal_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Principal Name",
+        "primaryKey" : false
+      }, {
+        "id" : 799,
+        "title" : "provider_uuid",
+        "displayName" : "Provider Uuid",
+        "attributeName" : "provider_uuid",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Provider Uuid",
+        "primaryKey" : true
+      }, {
+        "id" : 800,
+        "title" : "parent_provider_uuid",
+        "displayName" : "Parent Provider Uuid",
+        "attributeName" : "parent_provider_uuid",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Provider Uuid",
+        "primaryKey" : false
+      }, {
+        "id" : 801,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 38,
+      "title" : "user",
+      "displayName" : "User",
+      "entityName" : "User",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 802,
+        "title" : "account_name",
+        "displayName" : "Account Name",
+        "attributeName" : "account_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Account Name",
+        "primaryKey" : false
+      }, {
+        "id" : 803,
+        "title" : "display_name",
+        "displayName" : "Display Name",
+        "attributeName" : "display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 804,
+        "title" : "email",
+        "displayName" : "Email",
+        "attributeName" : "email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Email",
+        "primaryKey" : false
+      }, {
+        "id" : 805,
+        "title" : "domain",
+        "displayName" : "Domain",
+        "attributeName" : "domain",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Domain",
+        "primaryKey" : false
+      }, {
+        "id" : 806,
+        "title" : "user_principal_name",
+        "displayName" : "User Principal Name",
+        "attributeName" : "user_principal_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Principal Name",
+        "primaryKey" : false
+      }, {
+        "id" : 807,
+        "title" : "provider_uuid",
+        "displayName" : "Provider Uuid",
+        "attributeName" : "provider_uuid",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Provider Uuid",
+        "primaryKey" : true
+      }, {
+        "id" : 808,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 39,
+      "title" : "usergroupmapping",
+      "displayName" : "User Group Mapping",
+      "entityName" : "UserGroupMapping",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 809,
+        "title" : "user_provider_uuid",
+        "displayName" : "User Provider Uuid",
+        "attributeName" : "user_provider_uuid",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Provider Uuid",
+        "primaryKey" : true
+      }, {
+        "id" : 810,
+        "title" : "group_provider_uuid",
+        "displayName" : "Group Provider Uuid",
+        "attributeName" : "group_provider_uuid",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Group Provider Uuid",
+        "primaryKey" : true
+      }, {
+        "id" : 811,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ ],
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ ],
+  "resolvers" : [ ],
+  "modelConfiguration" : { },
+  "appliedSappUpgrades" : [ "microapp-4518", "microapp-6262", "microapp-7290", "microapp-6617", "microapp-6264", "microapp-7888", "microapp-3838", "microapp-3548", "microapp-7561", "microapp-3547", "microapp-10420", "microapp-8511", "microapp-5025", "microapp-3580", "microapp-8892", "microapp-8003", "microapp-7961", "microapp-1980", "microapp-8950", "microapp-10858", "microapp-8576", "microapp-6293", "microapp-11340", "microapp-6853", "microapp-10856", "microapp-12525", "microapp-6593", "microapp-4020", "microapp-10876", "microapp-9597", "microapp-9701", "microapp-10549", "microapp-2450", "microapp-6790", "microapp-5227", "microapp-7984", "microapp-8921", "microapp-10421", "microapp-11136", "microapp-11349", "microapp-9702", "microapp-4666" ],
+  "buildVersion" : "1.0.0-SNAPSHOT."
+}
