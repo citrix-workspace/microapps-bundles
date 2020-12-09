@@ -93,6 +93,7 @@ public class BundlesLoader {
                     return Optional.of(dipMetadata);
 
                 case HTTP:
+                case IDENTITY_PROVIDER:
                     HttpMetadata httpMetadata = BUNDLE_DATA_READER
                             .forType(HttpMetadata.class)
                             .readValue(metadataPath.toFile());
@@ -255,7 +256,7 @@ public class BundlesLoader {
     static List<ValidationException> validateHttpMetadata(FsBundle bundle, HttpMetadata metadata) {
         List<ValidationException> issues = validateCommonMetadata(bundle, metadata);
 
-        if (metadata.getType() != Type.HTTP) {
+        if (!(metadata.getType() == Type.HTTP || metadata.getType() == Type.IDENTITY_PROVIDER)) {
             issues.add(new ValidationException(
                     String.format("Invalid value: field `type`, value `%s`, expecting `%s`",
                             metadata.getType(), Type.HTTP)));
