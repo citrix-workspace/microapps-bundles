@@ -6,84 +6,84 @@
   "title" : "ServiceNow",
   "description" : "Integrate with ServiceNow to submit and monitor requests, and take action from any device, intranet, or messenger.",
   "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/ServiceNow.9a68dd66918b05acfbe29ac251e33a8d.svg",
-  "masVersion" : "1.20.5",
+  "masVersion" : "1.48.0-SNAPSHOT",
   "categories" : ["LEGACY"],
-  "created" : "2020-07-24T12:22:18",
+  "created" : "2020-12-04T12:55:37",
   "supportsOAuthForActions" : true,
   "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
   "apps" : [ {
-    "uuid" : "0d23e25d-8a23-48c4-aa91-4a318848e862",
-    "title" : "Submit Delegate",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "2e767fc3-e8fe-4cc9-adb1-475c9938541d",
-    "title" : "Approvals",
-    "numberOfEvents" : 1,
-    "action" : true
-  }, {
-    "uuid" : "2fc31ed4-29af-4010-892d-bf7690936893",
-    "title" : "Submit Incident",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "5cd0206a-ab39-4393-8aaa-697bd24ac986",
-    "title" : "Submit Catalog Request",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "754fff4d-1d06-48a5-8213-475690738821",
-    "title" : "Problems",
-    "numberOfEvents" : 4,
-    "action" : true
-  }, {
-    "uuid" : "9648403f-82ce-41c6-aa59-db42df97d92c",
-    "title" : "Submit Problem",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "98969f1e-c144-4516-a246-18fc7596a128",
+    "uuid" : "0ae475cd-f1f2-4e8d-9161-534c7c3168f8",
     "title" : "Change Requests",
     "numberOfEvents" : 4,
     "action" : true
   }, {
-    "uuid" : "d6311e66-e4fd-48ca-a8bf-5d2afef4809a",
+    "uuid" : "17ff7645-7ae2-4d89-bc4b-e5e1be521401",
+    "title" : "Approvals",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "3dbe1646-e0a2-4496-aa6a-205950e8d8a6",
+    "title" : "Incidents",
+    "numberOfEvents" : 4,
+    "action" : true
+  }, {
+    "uuid" : "453f7753-389f-4d72-8c12-6220a56fc939",
+    "title" : "Submit Incident",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "672d5c99-def4-41c9-8d75-287cf65647a0",
+    "title" : "Submit Problem",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "752e4192-1c00-4b9a-a572-81167572725e",
+    "title" : "Submit Catalog Request",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "834e7163-f1be-4dc4-a10d-e71708e8ea3a",
     "title" : "Submit Change Request",
     "numberOfEvents" : 0,
     "action" : true
   }, {
-    "uuid" : "dd8d791f-e0da-4b3b-bd9c-d25b8a7b8df5",
-    "title" : "Incidents",
+    "uuid" : "97f323eb-2119-4d74-892e-d5de2223457b",
+    "title" : "Problems",
     "numberOfEvents" : 4,
     "action" : true
-  } ],
-  "vaResolvers" : [ {
-    "name" : "ServiceDesk Details",
-    "intentName" : "ServiceDesk.Details"
   }, {
-    "name" : "ServiceDesk Details Change Request",
-    "intentName" : "ServiceDesk.Details.ChangeRequest"
-  }, {
-    "name" : "ServiceDesk Details Incident",
-    "intentName" : "ServiceDesk.Details.Incident"
-  }, {
-    "name" : "ServiceDesk Details Problem",
-    "intentName" : "ServiceDesk.Details.Problem"
-  }, {
-    "name" : "ServiceDesk Lookup",
-    "intentName" : "ServiceDesk.Lookup"
-  }, {
-    "name" : "ServiceDesk Lookup Change Request",
-    "intentName" : "ServiceDesk.Lookup.ChangeRequest"
-  }, {
-    "name" : "ServiceDesk Lookup Incident",
-    "intentName" : "ServiceDesk.Lookup.Incident"
-  }, {
-    "name" : "ServiceDesk Lookup Problem",
-    "intentName" : "ServiceDesk.Lookup.Problem"
-  } ],
-  "tags" : [ {
-    "tag" : "helpUrl",
-    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-servicenow.html"
-  } ]
-}
+    "uuid" : "a38423e6-3284-4a98-8a83-6479d80c3ba2",
+    "title" : "Submit Delegate",
+    "numberOfEvents" : 0,
+    "action" : true
+        } ],
+        "vaResolvers" : [ {
+          "name" : "ServiceDesk Details",
+          "intentName" : "ServiceDesk.Details"
+        }, {
+          "name" : "ServiceDesk Details Change Request",
+          "intentName" : "ServiceDesk.Details.ChangeRequest"
+        }, {
+          "name" : "ServiceDesk Details Incident",
+          "intentName" : "ServiceDesk.Details.Incident"
+        }, {
+          "name" : "ServiceDesk Details Problem",
+          "intentName" : "ServiceDesk.Details.Problem"
+        }, {
+          "name" : "ServiceDesk Lookup",
+          "intentName" : "ServiceDesk.Lookup"
+        }, {
+          "name" : "ServiceDesk Lookup Change Request",
+          "intentName" : "ServiceDesk.Lookup.ChangeRequest"
+        }, {
+          "name" : "ServiceDesk Lookup Incident",
+          "intentName" : "ServiceDesk.Lookup.Incident"
+        }, {
+          "name" : "ServiceDesk Lookup Problem",
+          "intentName" : "ServiceDesk.Lookup.Problem"
+        } ],
+        "tags" : [ {
+          "tag" : "helpUrl",
+          "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-servicenow.html"
+        } ]
+      }

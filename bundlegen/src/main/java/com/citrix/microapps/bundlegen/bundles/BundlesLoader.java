@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -210,6 +212,9 @@ public class BundlesLoader {
         validateFormat(DATE_PATTERN, "created", metadata.getCreated()).ifPresent(issues::add);
         validateFormat(VERSION_PATTERN, "masVersion", metadata.getMasVersion()).ifPresent(issues::add);
 
+        if (metadata.getDeprecatedDate() != null) {
+            validateDeprecatedDate(metadata.getDeprecatedDate()).ifPresent(issues::add);
+        }
         validateSync(bundle::getType, "type", metadata.getType()).ifPresent(issues::add);
         validateSync(bundle::getVendor, "vendor", metadata.getVendor()).ifPresent(issues::add);
 
@@ -218,7 +223,7 @@ public class BundlesLoader {
         if (metadata.getCategories() != null && metadata.getCategories().contains(COMING_SOON)) {
             issues.add(new ValidationException(
                     String.format("Category COMING_SOON is not allowed in directory: `%s`. " +
-                            "Please move it to comming_soon dir or remove the category from bundle ",
+                                    "Please move it to comming_soon dir or remove the category from bundle ",
                             metadata.getType())));
         }
 
@@ -280,6 +285,16 @@ public class BundlesLoader {
         return templateFile.getTranslationChecksum() == null || templateFile.getTranslationChecksum().isEmpty() ?
                 Optional.of(new ValidationException(
                         String.format("Missing the translation checksum %s", fileName))) : Optional.empty();
+    }
+
+    static Optional<ValidationException> validateDeprecatedDate(String timestamp) {
+        try {
+            Instant.parse(timestamp);
+            return Optional.empty();
+        } catch (DateTimeParseException e) {
+            return Optional.of(new ValidationException(
+                    String.format("Invalid UTC timestamp format: field `deprecatedDate`, value `%s`", timestamp)));
+        }
     }
 
     /**
