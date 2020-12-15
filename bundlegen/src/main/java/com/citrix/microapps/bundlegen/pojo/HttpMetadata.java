@@ -40,7 +40,8 @@ public class HttpMetadata extends Metadata {
             @JsonProperty(value = "apps") List<App> apps,
             @JsonProperty(value = "vaResolvers") List<VaResolver> vaResolvers,
             @JsonProperty(value = "tags") List<Tag> tags,
-            @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata
+            @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata,
+            @JsonProperty(value = "hideAddButton") boolean hideAddButton
     ) {
         super(type,
                 vendor,
@@ -56,7 +57,8 @@ public class HttpMetadata extends Metadata {
                 i18nLanguages,
                 apps,
                 vaResolvers,
-                tags);
+                tags,
+                hideAddButton);
 
         this.id = id;
         this.scriptMetadata = scriptMetadata;

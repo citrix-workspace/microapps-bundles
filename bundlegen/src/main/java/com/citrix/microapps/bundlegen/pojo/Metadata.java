@@ -33,6 +33,7 @@ public abstract class Metadata {
     private final List<App> apps;
     private final List<VaResolver> vaResolvers;
     private final List<Tag> tags;
+    private final boolean hideAddButton;
 
     public Metadata(
             Type type,
@@ -49,7 +50,8 @@ public abstract class Metadata {
             List<String> i18nLanguages,
             List<App> apps,
             List<VaResolver> vaResolvers,
-            List<Tag> tags
+            List<Tag> tags,
+            boolean hideAddButton
     ) {
         this.type = type;
         this.vendor = vendor;
@@ -66,5 +68,6 @@ public abstract class Metadata {
         this.apps = ofNullable(apps).orElse(emptyList());
         this.vaResolvers = ofNullable(vaResolvers).orElse(emptyList());
         this.tags = ofNullable(tags).orElse(emptyList());
+        this.hideAddButton = ofNullable(hideAddButton).orElse(false);
     }
 }
