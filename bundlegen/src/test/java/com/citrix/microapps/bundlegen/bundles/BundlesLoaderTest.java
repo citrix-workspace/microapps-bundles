@@ -423,7 +423,8 @@ class BundlesLoaderTest {
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
-            null);
+            null,
+            false);
 
     private static Stream<Arguments> validateHttpMetadataOkProvider() {
         return Stream.of(
