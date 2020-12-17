@@ -3,5 +3,6 @@ package com.citrix.microapps.bundlegen.pojo;
 public enum Type {
     DIP,
     HTTP,
-    COMING_SOON
+    COMING_SOON,
+    IDENTITY_PROVIDER
 }

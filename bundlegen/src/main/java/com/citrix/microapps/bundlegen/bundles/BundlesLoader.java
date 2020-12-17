@@ -72,9 +72,13 @@ public class BundlesLoader {
                 .filter(c -> c.contains(COMING_SOON))
                 .isPresent();
 
+        boolean idpBundleFlag = metadata.map(m -> m.getType())
+                .filter(t -> t == Type.IDENTITY_PROVIDER)
+                .isPresent();
+
         issues.addAll(checkMandatoryFiles(bundle.getFiles(), comingSoonBundleFlag));
         issues.addAll(checkUnexpectedFiles(bundle.getFiles(), comingSoonBundleFlag));
-        issues.addAll(checkLocalizations(bundle, comingSoonBundleFlag));
+        issues.addAll(checkLocalizations(bundle, comingSoonBundleFlag || idpBundleFlag));
 
         return new Bundle(bundle, metadata, issues);
     }
@@ -104,6 +108,12 @@ public class BundlesLoader {
                             .readValue(metadataPath.toFile());
                     issues.addAll(validateComingSoonMetadata(bundle, comingSoonMetadata));
                     return Optional.of(comingSoonMetadata);
+                case IDENTITY_PROVIDER:
+                    HttpMetadata idpMetadata = BUNDLE_DATA_READER
+                            .forType(HttpMetadata.class)
+                            .readValue(metadataPath.toFile());
+                    issues.addAll(validateHttpMetadata(bundle, idpMetadata, Type.IDENTITY_PROVIDER));
+                    return Optional.of(idpMetadata);
                 default:
                     throw new UnsupportedOperationException("Unexpected bundle type: " + bundle.getType());
             }
@@ -172,8 +182,8 @@ public class BundlesLoader {
                 .collect(toList());
     }
 
-    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean comingSoonBundleFlag) {
-        if (comingSoonBundleFlag) {
+    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean skipCheck) {
+        if (skipCheck) {
             return Collections.emptyList();
         }
         List<ValidationException> issues = new ArrayList<>();
@@ -252,18 +262,22 @@ public class BundlesLoader {
         return issues;
     }
 
-    static List<ValidationException> validateHttpMetadata(FsBundle bundle, HttpMetadata metadata) {
+    static List<ValidationException> validateHttpMetadata(FsBundle bundle, HttpMetadata metadata, Type expectedType) {
         List<ValidationException> issues = validateCommonMetadata(bundle, metadata);
 
-        if (metadata.getType() != Type.HTTP) {
+        if (metadata.getType() != expectedType) {
             issues.add(new ValidationException(
                     String.format("Invalid value: field `type`, value `%s`, expecting `%s`",
-                            metadata.getType(), Type.HTTP)));
+                            metadata.getType(), expectedType)));
         }
 
         validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
 
         return issues;
+    }
+
+    static List<ValidationException> validateHttpMetadata(FsBundle bundle, HttpMetadata metadata) {
+        return validateHttpMetadata(bundle, metadata, Type.HTTP);
     }
 
     static List<ValidationException> validateComingSoonMetadata(FsBundle bundle, ComingSoonMetadata metadata) {

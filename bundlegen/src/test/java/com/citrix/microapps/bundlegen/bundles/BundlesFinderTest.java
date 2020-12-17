@@ -48,6 +48,8 @@ class BundlesFinderTest {
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor2/bundle1/0.0.1"),
                         Collections.singletonList(Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendor2/bundle2"),
+                        Collections.singletonList(Paths.get("metadata.json"))),
+                new FsIdpBundle(path("src/test/resources/bundles/identity_provider/vendor1/bundle1"),
                         Collections.singletonList(Paths.get("metadata.json")))
         );
 

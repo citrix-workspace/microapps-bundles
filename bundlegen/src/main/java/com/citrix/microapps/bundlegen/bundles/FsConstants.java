@@ -17,10 +17,12 @@ public class FsConstants {
     public static final String DIP_DIR = "dip";
     public static final String HTTP_DIR = "http";
     public static final String COMING_SOON_DIR = "coming_soon";
+    public static final String IDENTITY_PROVIDER_DIR = "identity_provider";
     public static final String METADATA_FILE = "metadata.json";
     public static final String TEMPLATE_FILE = "file.sapp";
     public static final String TRANSLATIONS_DIR = "i18n";
     public static final String TRANSLATION_EXTENSION = ".json";
+    public static final String JAVA_SCRIPT_EXTENSION = ".js";
     public static final String TRANSLATION_DEFAULT_LANGUAGE = "en.json";
 
     public static final String ARCHIVES_DIR = "archives";

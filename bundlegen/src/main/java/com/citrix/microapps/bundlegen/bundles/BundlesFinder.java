@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.COMING_SOON_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.DIP_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.HTTP_DIR;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.IDENTITY_PROVIDER_DIR;
 
 /**
  * Find all bundles in a directory tree with the standard structure.
@@ -24,15 +25,18 @@ public class BundlesFinder {
     private final Path dipRoot;
     private final Path httpRoot;
     private final Path comingSoonRoot;
+    private final Path identityProviderRoot;
 
     public BundlesFinder(Path bundlesDir) {
         this.dipRoot = bundlesDir.resolve(DIP_DIR);
         this.httpRoot = bundlesDir.resolve(HTTP_DIR);
         this.comingSoonRoot = bundlesDir.resolve(COMING_SOON_DIR);
+        this.identityProviderRoot = bundlesDir.resolve(IDENTITY_PROVIDER_DIR);
     }
 
     public Stream<FsBundle> findBundles() {
-        return Stream.concat(findDipBundles(), Stream.concat(findHttpBundles(), findComingSoonBundles()));
+        return Stream.concat(Stream.concat(findDipBundles(), findIdpBundles()),
+                             Stream.concat(findHttpBundles(), findComingSoonBundles()));
     }
 
     /**
@@ -62,6 +66,20 @@ public class BundlesFinder {
         return listDirectSubdirectories(httpRoot)          // vendor
                 .flatMap(this::listDirectSubdirectories)   // bundle ID
                 .map(path -> new FsHttpBundle(path, listFiles(path)));
+    }
+
+    /**
+     * IDENTITY PROVIDER bundles use 2 levels of directories: vendor - bundle ID.
+     */
+    private Stream<FsBundle> findIdpBundles() {
+        if (!identityProviderRoot.toFile().exists()) {
+            logger.info("IDENTITY PROVIDER bundle root does not exist: {}", identityProviderRoot);
+            return Stream.empty();
+        }
+        logger.info("Searching for all IDENTITY PROVIDER bundles: {}", identityProviderRoot);
+        return listDirectSubdirectories(identityProviderRoot)          // vendor
+                .flatMap(this::listDirectSubdirectories)   // bundle ID
+                .map(path -> new FsIdpBundle(path, listFiles(path)));
     }
 
     /**
