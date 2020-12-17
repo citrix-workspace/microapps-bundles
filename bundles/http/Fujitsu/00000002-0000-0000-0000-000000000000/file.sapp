@@ -1,0 +1,1514 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+      "title" : "6d85e28d-09c3-4a3f-a41a-4a11b9178a8f",
+      "serviceId" : 18,
+      "pages" : [ {
+        "id" : "fbf632d5-cc6e-4cee-85fa-a770b48138d5",
+        "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT_INPUT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1778,
+          "required" : true,
+          "textType" : null,
+          "label" : "2bf59aa5-02d1-4bc2-b9f7-4a83a6809563",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "edc3271f-ec2f-4479-8ed3-acac9fae067b",
+          "defaultvalue" : "",
+          "displayorder" : 1
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1776,
+          "required" : true,
+          "textType" : null,
+          "label" : "4b14527f-691a-47e7-b7ff-6c193c1020db",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "29374da5-2bed-432d-a0ce-872cf2976e71",
+          "defaultvalue" : "",
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1770,
+          "required" : true,
+          "textType" : null,
+          "label" : "e887949f-c74c-46fd-865c-741a68bc44f3",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "4a83d46e-7aad-480a-b79f-33d638a2909c",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1775,
+          "required" : true,
+          "textType" : null,
+          "label" : "485a6608-a520-4b29-9fae-b4ab24b6d234",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 0,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "f0cd5168-7752-4a5d-94bf-1596a16979ec",
+          "defaultvalue" : "",
+          "displayorder" : 8
+        }, {
+          "type" : "NUMBER",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1773,
+          "required" : true,
+          "textType" : null,
+          "label" : "41a5ce12-efde-4a94-9f10-41a175d1a9c2",
+          "format" : "integer",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "counter" : false,
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "5d707c8c-f35b-46b8-a526-528de45189a6",
+          "defaultvalue" : "",
+          "displayorder" : 6
+        }, {
+          "type" : "BUTTON",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "98ecdfbb-3547-4b02-bad4-0d592729c883",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run Service Action",
+                "id" : "op_mymfxu",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "fdf73a56-f9e7-4a0b-886a-8686c7710efa",
+                  "name" : "Restock Inventory",
+                  "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+                  "parameters" : [ {
+                    "type" : "GWSCP",
+                    "parameterId" : "P_mode",
+                    "valueType" : "VALUE",
+                    "value" : "LIVE"
+                  }, {
+                    "type" : "GWSCP",
+                    "parameterId" : "quantity_to_order",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "5d707c8c-f35b-46b8-a526-528de45189a6"
+                  }, {
+                    "type" : "GWSCP",
+                    "parameterId" : "request_id",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "f0cd5168-7752-4a5d-94bf-1596a16979ec"
+                  }, {
+                    "type" : "GWSCP",
+                    "parameterId" : "restaurant_to_destock",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "0e1f4d94-6a53-467c-a5db-d423221ce229"
+                  } ],
+                  "flatDataServiceActionId" : 1,
+                  "serviceId" : 18
+                },
+                "serviceId" : 18
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "showInBladeFooter" : true,
+            "order" : null
+          },
+          "id" : "0854b5df-01ff-4cb5-980a-5a80d6392f9a",
+          "defaultvalue" : null,
+          "displayorder" : 7
+        }, {
+          "type" : "TABLE",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "0292b452-e016-4d38-933a-91aaa05b18ac",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 154,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "4b75c5bb-d590-4b73-b53c-41c9839eea6a",
+              "tableid" : 154,
+              "sqlquery" : {
+                "id" : "bbca61cf-89f3-4608-bc24-97bf3bd74acd",
+                "constraints" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 154,
+                      "columnId" : 1778,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "edc3271f-ec2f-4479-8ed3-acac9fae067b",
+                      "value" : "",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
+                    }
+                  },
+                  "operator" : "AND",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 154,
+                      "columnId" : 1767,
+                      "valueType" : "VALUE",
+                      "variableComponent" : "e6252ae2-534f-4b60-8099-e3f7e2751628",
+                      "value" : "no",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
+                    }
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "3cd6c9e4-21d7-4ac3-99e0-78ccf3fcd317",
+                "id" : "m7t11l",
+                "tableid" : 154,
+                "columnid" : 1776,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "b374a155-25ad-4a48-b624-caf43fe72329",
+                "id" : "oqphl4",
+                "tableid" : 154,
+                "columnid" : 1772,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "INTEGER"
+                },
+                "conditional_format" : "{\"backcolor\":\"\",\"condition\":\"none\",\"fillWholeRow\":\"0\",\"option\":\"\",\"optionValue\":null,\"textcolor\":\"000000\"}"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "cc5d3fde-e260-4e21-886b-25f2788c843f",
+                "id" : "snh2lo",
+                "tableid" : 154,
+                "columnid" : 1768,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "INTEGER"
+                },
+                "conditional_format" : "null"
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "hideIfEmpty" : false,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "1941e6e8-edcf-4fee-9dcf-a8b9ecf03742",
+          "defaultvalue" : null,
+          "displayorder" : 4
+        }, {
+          "type" : "SELECT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : null,
+          "required" : true,
+          "textType" : null,
+          "label" : "763c0a96-90da-492f-940c-e316be5e4735",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "fillType" : "MANUAL",
+            "customFilterItems" : [ ],
+            "manualOptions" : [ {
+              "id" : "Bryan Restaurant",
+              "label" : "f2126785-14dd-45bf-834a-9bba8a6d08f1",
+              "value" : "Bryan Restaurant"
+            }, {
+              "id" : "Severin Restaurant",
+              "label" : "49a1af0a-26bd-40e1-9a56-efef31524035",
+              "value" : "Severin Restaurant"
+            }, {
+              "id" : "Tien Restaurant",
+              "label" : "c80e1671-883c-43dc-bfc5-19ad463a0e5e",
+              "value" : "Tien Restaurant"
+            } ],
+            "mapToDataColumn" : true,
+            "field_width" : "large",
+            "visible" : 1,
+            "defaultValue" : null,
+            "optionLabelColumnType" : null,
+            "prefill" : null,
+            "autoload" : 0,
+            "disabled" : 0
+          },
+          "id" : "0e1f4d94-6a53-467c-a5db-d423221ce229",
+          "defaultvalue" : null,
+          "displayorder" : 5
+        } ],
+        "title" : "85488e35-0cd6-4ecc-a106-1a311e8caee3",
+        "parameters" : { },
+        "tableid" : 154,
+        "datasourceid" : 18,
+        "pagetype" : "Detail"
+      }, {
+        "id" : "f80fe051-52ee-4ad3-b253-bdaff22c798a",
+        "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "987e15b1-bdde-4999-8bef-d1c19bad0b4f",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 154,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "15a5da0f-ba32-4455-a5e5-9aeb98d76ffe",
+              "tableid" : 154,
+              "sqlquery" : {
+                "id" : "a6184b6e-0193-4fa6-b3d0-63457189d073",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 154,
+                    "columnId" : 1778,
+                    "valueType" : "COMPONENT",
+                    "variableComponent" : "ead51cdd-f457-4e1d-aff2-59b07b711ff8",
+                    "value" : "",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "1",
+              "columns" : [ {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "9b2ebb86-2c84-4218-bf7f-c7f07338d124",
+                "id" : "leb2bo",
+                "tableid" : 154,
+                "columnid" : 1776,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : "null"
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "8d84027e-007d-4f30-97b2-955aea8eb607",
+                "id" : "pxquon",
+                "tableid" : 154,
+                "columnid" : 1772,
+                "format" : "none",
+                "tableColumn" : { }
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "hideIfEmpty" : true,
+              "sortable" : 1,
+              "alignment" : "left"
+            },
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "7f8c2e86-629c-4059-a258-f0bf79b4a4b5",
+          "defaultvalue" : null,
+          "displayorder" : 2
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+          "columnId" : 1778,
+          "required" : true,
+          "textType" : null,
+          "label" : "96f1e8a5-3bbd-46ed-8575-3b2528f848b7",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "logic" : [ ],
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : true,
+            "query" : null,
+            "prefill" : null,
+            "disabled" : 0,
+            "order" : null
+          },
+          "id" : "ead51cdd-f457-4e1d-aff2-59b07b711ff8",
+          "defaultvalue" : "",
+          "displayorder" : 3
+        } ],
+        "title" : "e3c56332-93f0-4a53-bf49-74e168709d1a",
+        "parameters" : { },
+        "tableid" : 154,
+        "datasourceid" : 18,
+        "pagetype" : "Detail"
+      } ],
+      "actionApp" : false,
+      "parameters" : {
+        "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/default-broken.228ee7a7d194b827137f3208c5468ba7.svg",
+        "description" : "9045be19-1974-491e-80ca-4fc9b5015c11"
+      }
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 18,
+    "uuid" : "69b38bff-f475-4de8-b59d-273b26e1d7ab",
+    "version" : 35,
+    "title" : "Inventory MGT Tasks 1.3",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "updatePending" : false,
+    "configurationPending" : false,
+    "secretsMissing" : false,
+    "schemaName" : "jiyzjxeipy9q_inventory_mg",
+    "configuration" : {
+      "baseUrl" : "https://live.runmyprocess.com/live/",
+      "security" : {
+        "type" : "BASIC",
+        "username" : "rmanga+rmpus@runmyprocess.com"
+      },
+      "useServiceActionSecurity" : false,
+      "useOnPremProxy" : false,
+      "onPremProxyResource" : "",
+      "dataEndpoints" : [ {
+        "id" : 1,
+        "name" : "Get Inventory Alert Tasks",
+        "endpoint" : "118401446853930907/host/135327/service/322178",
+        "requestMethod" : "POST",
+        "postMode" : "JSON",
+        "body" : "{}",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 1,
+          "tableName" : "get_inventory_alert_tasks",
+          "path" : "result",
+          "columns" : [ {
+            "name" : "assignee",
+            "path" : "assignee",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "created_on",
+            "path" : "created_on",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "created_string",
+            "path" : "created_string",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "notification",
+            "path" : "notification",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "price",
+            "path" : "price",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "process_status",
+            "path" : "process_status",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "product",
+            "path" : "product",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "product_price",
+            "path" : "product_price",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "quantity",
+            "path" : "quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "quantity_to_order",
+            "path" : "quantity_to_order",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "remaining_quantity",
+            "path" : "remaining_quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "request_id",
+            "path" : "request_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "restaurant",
+            "path" : "restaurant",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "task_id",
+            "path" : "task_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "title",
+            "path" : "title",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "true_index",
+            "path" : "true_index",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "updated",
+            "path" : "updated",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "Get Inventory Alert Tasks",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ {
+          "name" : "P_mode",
+          "defaultValue" : "LIVE",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "da2bd676-7961-45ed-b724-f430d72b1ec1"
+        } ],
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ],
+        "invokedByUser" : false
+      }, {
+        "id" : 2,
+        "name" : "Trigger Process",
+        "endpoint" : "118401446853930907/host/135327/service/322241",
+        "requestMethod" : "POST",
+        "postMode" : "JSON",
+        "body" : "{}",
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 2,
+          "tableName" : "trigger_process_result",
+          "path" : "result",
+          "columns" : [ {
+            "name" : "assignee",
+            "path" : "assignee",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "created_on",
+            "path" : "created_on",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "created_string",
+            "path" : "created_string",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "notification",
+            "path" : "notification",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "price",
+            "path" : "price",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "process_status",
+            "path" : "process_status",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "product",
+            "path" : "product",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "product_price",
+            "path" : "product_price",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "quantity",
+            "path" : "quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "quantity_to_order",
+            "path" : "quantity_to_order",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "remaining_quantity",
+            "path" : "remaining_quantity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "request_id",
+            "path" : "request_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "role" : "PRIMARY_KEY"
+          }, {
+            "name" : "restaurant",
+            "path" : "restaurant",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "task_id",
+            "path" : "task_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "title",
+            "path" : "title",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          }, {
+            "name" : "true_index",
+            "path" : "true_index",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER"
+          }, {
+            "name" : "updated",
+            "path" : "updated",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ ]
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "Trigger Process",
+        "pathParameters" : [ ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "queryParameters" : [ {
+          "name" : "P_mode",
+          "defaultValue" : "LIVE",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "3df77c0f-cf34-489c-8b59-b732bb2931c1"
+        } ],
+        "bodyParameters" : [ ],
+        "headerParameters" : [ ],
+        "invokedByUser" : false
+      } ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "MINUTE"
+      } ],
+      "serviceActions" : [ {
+        "id" : 1,
+        "name" : "Restock Inventory",
+        "endpoint" : "118401446853930907/host/135327/service/322138",
+        "requestMethod" : "POST",
+        "postMode" : "JSON",
+        "body" : "{\n  \"quantity_to_order\": {{quantity_to_order}},\n  \"request_id\": {{request_id}},\n  \"restaurant_to_destock\": {{restaurant_to_destock}}\n}",
+        "postActionDataUpdates" : [ ],
+        "pathParameters" : [ ],
+        "queryParameters" : [ {
+          "name" : "P_mode",
+          "defaultValue" : "LIVE",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "161f10f7-ad7f-4313-8b42-50646a1c5b8b",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "161f10f7-ad7f-4313-8b42-50646a1c5b8b"
+        } ],
+        "bodyParameters" : [ {
+          "name" : "quantity_to_order",
+          "parameterType" : "INTEGER",
+          "required" : false,
+          "uniqueId" : "b97e5dd6-d602-46e6-9d6f-e65204413b09",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "b97e5dd6-d602-46e6-9d6f-e65204413b09"
+        }, {
+          "name" : "request_id",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "498a38aa-dfff-48fd-9cbd-2123f2e3819a",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "498a38aa-dfff-48fd-9cbd-2123f2e3819a"
+        }, {
+          "name" : "restaurant_to_destock",
+          "parameterType" : "STRING",
+          "required" : false,
+          "uniqueId" : "5de7f31b-214d-4ec4-bf26-a4824cf2c91e",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "5de7f31b-214d-4ec4-bf26-a4824cf2c91e"
+        } ],
+        "headerParameters" : [ ],
+        "invokedByUser" : true,
+        "actionParameters" : [ {
+          "dataType" : "INTEGER",
+          "required" : false,
+          "name" : "quantity_to_order",
+          "uniqueId" : "b97e5dd6-d602-46e6-9d6f-e65204413b09"
+        }, {
+          "dataType" : "STRING",
+          "required" : false,
+          "name" : "request_id",
+          "uniqueId" : "498a38aa-dfff-48fd-9cbd-2123f2e3819a"
+        }, {
+          "dataType" : "STRING",
+          "required" : false,
+          "name" : "restaurant_to_destock",
+          "uniqueId" : "5de7f31b-214d-4ec4-bf26-a4824cf2c91e"
+        }, {
+          "dataType" : "STRING",
+          "required" : false,
+          "name" : "P_mode",
+          "uniqueId" : "161f10f7-ad7f-4313-8b42-50646a1c5b8b",
+          "defaultValue" : "LIVE"
+        } ]
+      } ],
+      "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/report_add.37600e49f597a98234f003045b9fdfe9.svg"
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 154,
+      "title" : "get_inventory_alert_tasks",
+      "displayName" : "Get Inventory Alert Tasks",
+      "entityName" : "get_inventory_alert_tasks",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 1764,
+        "title" : "assignee",
+        "displayName" : "Assignee",
+        "attributeName" : "assignee",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Assignee",
+        "primaryKey" : false
+      }, {
+        "id" : 1765,
+        "title" : "created_on",
+        "displayName" : "Created On",
+        "attributeName" : "created_on",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created On",
+        "primaryKey" : false
+      }, {
+        "id" : 1766,
+        "title" : "created_string",
+        "displayName" : "Created String",
+        "attributeName" : "created_string",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created String",
+        "primaryKey" : false
+      }, {
+        "id" : 1767,
+        "title" : "notification",
+        "displayName" : "Notification",
+        "attributeName" : "notification",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Notification",
+        "primaryKey" : false
+      }, {
+        "id" : 1768,
+        "title" : "price",
+        "displayName" : "Price",
+        "attributeName" : "price",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Price",
+        "primaryKey" : false
+      }, {
+        "id" : 1769,
+        "title" : "process_status",
+        "displayName" : "Process Status",
+        "attributeName" : "process_status",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Process Status",
+        "primaryKey" : false
+      }, {
+        "id" : 1770,
+        "title" : "product",
+        "displayName" : "Product",
+        "attributeName" : "product",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product",
+        "primaryKey" : false
+      }, {
+        "id" : 1771,
+        "title" : "product_price",
+        "displayName" : "Product Price",
+        "attributeName" : "product_price",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product Price",
+        "primaryKey" : false
+      }, {
+        "id" : 1772,
+        "title" : "quantity",
+        "displayName" : "Quantity",
+        "attributeName" : "quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 1773,
+        "title" : "quantity_to_order",
+        "displayName" : "Quantity to Order",
+        "attributeName" : "quantity_to_order",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity to Order",
+        "primaryKey" : false
+      }, {
+        "id" : 1774,
+        "title" : "remaining_quantity",
+        "displayName" : "Remaining Quantity",
+        "attributeName" : "remaining_quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Remaining Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 1775,
+        "title" : "request_id",
+        "displayName" : "Request Id",
+        "attributeName" : "request_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Request Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1776,
+        "title" : "restaurant",
+        "displayName" : "Restaurant",
+        "attributeName" : "restaurant",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Restaurant",
+        "primaryKey" : false
+      }, {
+        "id" : 1777,
+        "title" : "task_id",
+        "displayName" : "Task Id",
+        "attributeName" : "task_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Task Id",
+        "primaryKey" : false
+      }, {
+        "id" : 1778,
+        "title" : "title",
+        "displayName" : "Title",
+        "attributeName" : "title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Title",
+        "primaryKey" : false
+      }, {
+        "id" : 1779,
+        "title" : "true_index",
+        "displayName" : "True Index",
+        "attributeName" : "true_index",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "True Index",
+        "primaryKey" : false
+      }, {
+        "id" : 1780,
+        "title" : "updated",
+        "displayName" : "Updated",
+        "attributeName" : "updated",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Updated",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 155,
+      "title" : "trigger_process_result",
+      "displayName" : "Trigger Process Result",
+      "entityName" : "trigger_process_result",
+      "type" : "TABLE",
+      "columns" : [ {
+        "id" : 1781,
+        "title" : "assignee",
+        "displayName" : "Assignee",
+        "attributeName" : "assignee",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Assignee",
+        "primaryKey" : false
+      }, {
+        "id" : 1782,
+        "title" : "created_on",
+        "displayName" : "Created On",
+        "attributeName" : "created_on",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created On",
+        "primaryKey" : false
+      }, {
+        "id" : 1783,
+        "title" : "created_string",
+        "displayName" : "Created String",
+        "attributeName" : "created_string",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Created String",
+        "primaryKey" : false
+      }, {
+        "id" : 1784,
+        "title" : "notification",
+        "displayName" : "Notification",
+        "attributeName" : "notification",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Notification",
+        "primaryKey" : false
+      }, {
+        "id" : 1785,
+        "title" : "price",
+        "displayName" : "Price",
+        "attributeName" : "price",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Price",
+        "primaryKey" : false
+      }, {
+        "id" : 1786,
+        "title" : "process_status",
+        "displayName" : "Process Status",
+        "attributeName" : "process_status",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Process Status",
+        "primaryKey" : false
+      }, {
+        "id" : 1787,
+        "title" : "product",
+        "displayName" : "Product",
+        "attributeName" : "product",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product",
+        "primaryKey" : false
+      }, {
+        "id" : 1788,
+        "title" : "product_price",
+        "displayName" : "Product Price",
+        "attributeName" : "product_price",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Product Price",
+        "primaryKey" : false
+      }, {
+        "id" : 1789,
+        "title" : "quantity",
+        "displayName" : "Quantity",
+        "attributeName" : "quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 1790,
+        "title" : "quantity_to_order",
+        "displayName" : "Quantity to Order",
+        "attributeName" : "quantity_to_order",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Quantity to Order",
+        "primaryKey" : false
+      }, {
+        "id" : 1791,
+        "title" : "remaining_quantity",
+        "displayName" : "Remaining Quantity",
+        "attributeName" : "remaining_quantity",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Remaining Quantity",
+        "primaryKey" : false
+      }, {
+        "id" : 1792,
+        "title" : "request_id",
+        "displayName" : "Request Id",
+        "attributeName" : "request_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Request Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1793,
+        "title" : "restaurant",
+        "displayName" : "Restaurant",
+        "attributeName" : "restaurant",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Restaurant",
+        "primaryKey" : false
+      }, {
+        "id" : 1794,
+        "title" : "task_id",
+        "displayName" : "Task Id",
+        "attributeName" : "task_id",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Task Id",
+        "primaryKey" : false
+      }, {
+        "id" : 1795,
+        "title" : "title",
+        "displayName" : "Title",
+        "attributeName" : "title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Title",
+        "primaryKey" : false
+      }, {
+        "id" : 1796,
+        "title" : "true_index",
+        "displayName" : "True Index",
+        "attributeName" : "true_index",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "True Index",
+        "primaryKey" : false
+      }, {
+        "id" : 1797,
+        "title" : "updated",
+        "displayName" : "Updated",
+        "attributeName" : "updated",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Updated",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ ],
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ {
+    "id" : "02bd3d9c-75ae-4580-ba33-85accdf94c3c",
+    "legacyId" : 51,
+    "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+    "version" : 20,
+    "eventType" : "NEW",
+    "serviceId" : 18,
+    "tableId" : 154,
+    "linkedServiceId" : 18,
+    "label" : "d082e0b7-6d5f-4273-a41f-3062fc9f55b8",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "GMT"
+    },
+    "messageDefinition" : {
+      "title" : "195b8cd6-7505-4be1-98d6-f58f9a6e2c5c",
+      "body" : "262085b0-2d77-408c-9b39-ed53ca42c72e",
+      "url" : "",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/account.08aa0fd648f3b14cfbd896a7088c64ad.svg",
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "periodicDefinition" : {
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 154,
+        "columnId" : 1767,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "Manager Alert",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "audience" : "ALL",
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "84b2837e-7b5a-449c-b605-bc697a6e7f34",
+    "legacyId" : 52,
+    "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+    "version" : 11,
+    "eventType" : "NEW",
+    "serviceId" : 18,
+    "tableId" : 154,
+    "label" : "2c6deccb-ab6f-498a-bb38-ee45094494b1",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "GMT"
+    },
+    "messageDefinition" : {
+      "title" : "a8a4a7c7-e313-4729-89d9-e8030c8f80a3",
+      "body" : "651c40ab-6633-451a-9d15-cb53e905d01f",
+      "url" : "",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/account.08aa0fd648f3b14cfbd896a7088c64ad.svg",
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "periodicDefinition" : {
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 154,
+        "columnId" : 1767,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "Manager Alert - Restaurant - Product",
+        "valueType" : "VALUE",
+        "rangeIncrement" : "",
+        "format" : ""
+      }
+    },
+    "expirationDelete" : false,
+    "audience" : "ALL",
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "c16330a2-68c9-4af9-b8c0-d4ca83d34e17",
+    "legacyId" : 50,
+    "appId" : "556cdfc6-c52c-44c1-a7c7-db51656a200f",
+    "version" : 44,
+    "eventType" : "NEW",
+    "serviceId" : 18,
+    "tableId" : 154,
+    "linkedServiceId" : 18,
+    "label" : "601e6535-8385-440f-af62-a57da5a5a4a2",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "GMT"
+    },
+    "messageDefinition" : {
+      "title" : "07dd4cb9-76f9-40b2-abeb-7ffec28ae8f8",
+      "body" : "2635d71c-e5c9-4b71-9c49-f69354e36b8b",
+      "url" : "",
+      "gotoAppPageId" : "fbf632d5-cc6e-4cee-85fa-a770b48138d5",
+      "configuration" : {
+        "color" : "",
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/problem.bb48428c93d55b524ddd13e289c7fbd2.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "periodicDefinition" : {
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "EXPRESSION",
+      "left" : {
+        "type" : "TERM",
+        "constraint" : {
+          "tableId" : 154,
+          "columnId" : 1769,
+          "columnType" : "STRING",
+          "action" : "BECOMES",
+          "comparator" : "EQUALS_TO",
+          "value" : "Pending",
+          "valueType" : "VALUE",
+          "rangeIncrement" : "",
+          "format" : ""
+        }
+      },
+      "operator" : "AND",
+      "right" : {
+        "type" : "TERM",
+        "constraint" : {
+          "tableId" : 154,
+          "columnId" : 1767,
+          "columnType" : "STRING",
+          "action" : "BECOMES",
+          "comparator" : "EQUALS_TO",
+          "value" : "yes",
+          "valueType" : "VALUE",
+          "rangeIncrement" : "",
+          "format" : ""
+        }
+      }
+    },
+    "expirationDelete" : false,
+    "audience" : "ALL",
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  } ],
+  "resolvers" : [ ],
+  "modelConfiguration" : { },
+  "translationChecksum" : "B5D4E94B2EE16A3B61E8A1B786B449F9",
+  "appliedSappUpgrades" : [ "microapp-4518", "microapp-6853", "microapp-6593", "microapp-1980", "microapp-6262", "microapp-3548", "microapp-2450", "microapp-6790", "microapp-7984", "microapp-6617", "microapp-3547", "microapp-6293", "microapp-5227", "microapp-4020", "microapp-5025", "microapp-4666", "microapp-3580", "microapp-3838", "microapp-7290" ],
+  "buildVersion" : "1.7.6.fc52c11c71df3f2e85d3c1a2762b3445a5dfc622"
+}
