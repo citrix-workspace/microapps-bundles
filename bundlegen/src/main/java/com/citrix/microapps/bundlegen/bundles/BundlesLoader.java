@@ -182,8 +182,8 @@ public class BundlesLoader {
                 .collect(toList());
     }
 
-    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean skippCHeck) {
-        if (skippCHeck) {
+    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean skipCheck) {
+        if (skipCheck) {
             return Collections.emptyList();
         }
         List<ValidationException> issues = new ArrayList<>();
