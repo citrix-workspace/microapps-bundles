@@ -1,11 +1,11 @@
 package com.citrix.microapps.bundlegen.pojo;
 
-import lombok.Getter;
-import lombok.experimental.SuperBuilder;
-
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
+
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import static java.util.Collections.emptyList;
 import static java.util.Optional.ofNullable;

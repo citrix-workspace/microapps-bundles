@@ -8,7 +8,6 @@ import java.time.Instant;
 import java.time.format.DateTimeParseException;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +16,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +28,10 @@ import com.citrix.microapps.bundlegen.pojo.Metadata;
 import com.citrix.microapps.bundlegen.pojo.ModelTranslation;
 import com.citrix.microapps.bundlegen.pojo.TemplateFile;
 import com.citrix.microapps.bundlegen.pojo.Type;
+import com.citrix.microapps.bundlegen.pojo.template.Endpoint;
+import com.citrix.microapps.bundlegen.pojo.template.EndpointParameter;
+import com.citrix.microapps.bundlegen.pojo.template.ServiceAction;
+import com.citrix.microapps.bundlegen.pojo.template.ServiceConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
@@ -38,8 +42,13 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_S
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATIONS_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATION_EXTENSION;
+import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.WARNING;
 import static com.citrix.microapps.bundlegen.pojo.Category.COMING_SOON;
+import static com.citrix.microapps.bundlegen.pojo.template.SecurityType.NONE;
+import static java.lang.String.format;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Stream.concat;
 
 /**
  * Loader and validator of bundles.
@@ -62,6 +71,9 @@ public class BundlesLoader {
     private static final Pattern VERSION_PATTERN =
             Pattern.compile("[0-9]+(?:\\.[0-9]+)*(\\.[0-9a-f]{40})?(-SNAPSHOT)?");
 
+    private static final String TOKEN_PARAMETER_NAME = "token";
+    private static final String BEARER_PARAMETER_NAME = "bearer";
+
     public Bundle loadBundle(FsBundle bundle) {
         logger.info("Loading bundle: {}", bundle);
         List<ValidationException> issues = new ArrayList<>();
@@ -78,7 +90,12 @@ public class BundlesLoader {
 
         issues.addAll(checkMandatoryFiles(bundle.getFiles(), comingSoonBundleFlag));
         issues.addAll(checkUnexpectedFiles(bundle.getFiles(), comingSoonBundleFlag));
-        issues.addAll(checkLocalizations(bundle, comingSoonBundleFlag || idpBundleFlag));
+
+        issues.addAll(checkLocalizations(
+                bundle,
+                loadAndValidateTemplateFile(issues, bundle, comingSoonBundleFlag)
+                        .map(template -> template.getTranslationChecksum()),
+                comingSoonBundleFlag || idpBundleFlag));
 
         return new Bundle(bundle, metadata, issues);
     }
@@ -124,7 +141,11 @@ public class BundlesLoader {
     }
 
     private static Optional<TemplateFile> loadAndValidateTemplateFile(List<ValidationException> issues,
-                                                                      FsBundle bundle) {
+                                                                      FsBundle bundle, boolean comingSoonBundleFlag) {
+        if (comingSoonBundleFlag) {
+            return Optional.empty();
+        }
+
         Path templateFilePath = bundle.getTemplatePath();
 
         try {
@@ -132,12 +153,28 @@ public class BundlesLoader {
             TemplateFile templateFile = BUNDLE_DATA_READER
                     .forType(TemplateFile.class)
                     .readValue(file);
-            isChecksumEmpty(file.getName(), templateFile).ifPresent(issues::add);
+
+            Optional<ServiceConfiguration> serviceConfiguration = getServiceConfiguration(templateFile);
+
+            validateTranslationChecksum(file.getName(), templateFile).ifPresent(issues::add);
+            validateConfigurationIsUsingAuthentication(serviceConfiguration).ifPresent(issues::add);
+            validateEndpoints(serviceConfiguration).forEach(issues::add);
+            validateServiceActions(serviceConfiguration).forEach(issues::add);
+
             return Optional.of(templateFile);
         } catch (IOException e) {
             issues.add(new ValidationException("Loading of template file failed: " + templateFilePath, e));
             return Optional.empty();
         }
+    }
+
+    private static Optional<ServiceConfiguration> getServiceConfiguration(TemplateFile templateFile) {
+        Optional<ServiceConfiguration> serviceConfiguration = Optional.ofNullable(templateFile.getServices())
+                .filter(services -> !services.isEmpty())
+                .map(service -> service.get(0))
+                .filter(service -> service.getConfiguration() != null)
+                .map(service -> service.getConfiguration());
+        return serviceConfiguration;
     }
 
     private static Optional<ModelTranslation> loadTranslationFile(List<ValidationException> issues,
@@ -182,37 +219,40 @@ public class BundlesLoader {
                 .collect(toList());
     }
 
-    static List<ValidationException> checkLocalizations(FsBundle bundle, boolean skipCheck) {
+    static List<ValidationException> checkLocalizations(FsBundle bundle,
+                                                        Optional<String> translationChecksum,
+                                                        boolean skipCheck) {
         if (skipCheck) {
-            return Collections.emptyList();
+            return emptyList();
         }
         List<ValidationException> issues = new ArrayList<>();
-        List<ValidationException> checksumIssues = loadAndValidateTemplateFile(issues, bundle).map(template ->
+
+        List<ValidationException> checksumIssues = translationChecksum.map(checksum ->
                 bundle.getFiles().stream()
                         .filter(path -> BUNDLE_ALLOWED_TRANSLATIONS.contains(path))
-                        .map(path -> toValidationException(bundle, template, issues, path))
+                        .map(path -> toValidationException(bundle, checksum, issues, path))
                         .filter(Optional::isPresent)
                         .map(Optional::get)
                         .collect(toList())
-        ).orElse(Collections.emptyList());
+        ).orElse(emptyList());
 
         issues.addAll(checksumIssues);
         return issues;
     }
 
     private static Optional<ValidationException> toValidationException(FsBundle bundle,
-                                                                       TemplateFile template,
+                                                                       String translationChecksum,
                                                                        List<ValidationException> issues,
                                                                        Path path) {
         return loadTranslationFile(issues, bundle.getPath().resolve(path))
-                .filter(modelTranslation -> isTranslationValid(template, modelTranslation))
+                .filter(modelTranslation -> isTranslationValid(translationChecksum, modelTranslation))
                 .map(modelTranslation ->
-                        new ValidationException(String.format("Translation checksum mismatch %s", path.getFileName())));
+                        new ValidationException(format("Translation checksum mismatch %s", path.getFileName())));
     }
 
-    private static boolean isTranslationValid(TemplateFile template, ModelTranslation modelTranslation) {
+    private static boolean isTranslationValid(String translationChecksum, ModelTranslation modelTranslation) {
         return new TranslationValidator(modelTranslation).checksum()
-                .map(checksum -> !Objects.equals(checksum, template.getTranslationChecksum()))
+                .map(checksum -> !Objects.equals(checksum, translationChecksum))
                 .orElse(false);
     }
 
@@ -230,9 +270,11 @@ public class BundlesLoader {
 
         validateLanguages(bundle, metadata.getI18nLanguages()).ifPresent(issues::add);
 
+        validateSupportsOAuthForActions(metadata.getSupportsOAuthForActions()).ifPresent(issues::add);
+
         if (metadata.getCategories() != null && metadata.getCategories().contains(COMING_SOON)) {
             issues.add(new ValidationException(
-                    String.format("Category COMING_SOON is not allowed in directory: `%s`. " +
+                    format("Category COMING_SOON is not allowed in directory: `%s`. " +
                                     "Please move it to comming_soon dir or remove the category from bundle ",
                             metadata.getType())));
         }
@@ -240,6 +282,12 @@ public class BundlesLoader {
         // TODO: Rules for other validations.
 
         return issues;
+    }
+
+    private static Optional<ValidationException> validateSupportsOAuthForActions(Boolean supportsOAuthForActions) {
+        return supportsOAuthForActions == null || !supportsOAuthForActions
+                ? optionalValidationWarning("Integration does not use OAuth for writeback actions")
+                : Optional.empty();
     }
 
     static List<ValidationException> validateDipMetadata(FsBundle bundle, DipMetadata metadata) {
@@ -295,10 +343,92 @@ public class BundlesLoader {
         return issues;
     }
 
-    static Optional<ValidationException> isChecksumEmpty(String fileName, TemplateFile templateFile) {
+    static Optional<ValidationException> validateTranslationChecksum(String fileName, TemplateFile templateFile) {
         return templateFile.getTranslationChecksum() == null || templateFile.getTranslationChecksum().isEmpty() ?
                 Optional.of(new ValidationException(
-                        String.format("Missing the translation checksum %s", fileName))) : Optional.empty();
+                        format("Missing the translation checksum %s", fileName))) : Optional.empty();
+    }
+
+    static Optional<ValidationException> validateConfigurationIsUsingAuthentication(
+            Optional<ServiceConfiguration> serviceConfiguration) {
+        return serviceConfiguration
+                .filter(configuration -> configuration.getSecurity() != null)
+                .map(configuration -> configuration.getSecurity())
+                .map(security -> security.getType())
+                .filter(type -> NONE.name().equals(type))
+                .map(type -> validationWarning(
+                        "Integration configuration is not using an authentication method"));
+    }
+
+    private static Stream<ValidationException> validateEndpoints(Optional<ServiceConfiguration> serviceConfiguration) {
+
+        List<Endpoint> endpointStream = serviceConfiguration
+                .map(configuration -> configuration.getDataEndpoints())
+                .orElse(emptyList());
+
+        Stream<ValidationException> noPaginationWarnings = endpointStream.stream()
+                .filter(BundlesLoader::useNoPagination)
+                .map(endpoint -> validationWarning(
+                        format("Endpoint `%s` does not use pagination", endpoint.getName())));
+
+        Stream<ValidationException> noIncrementalSynchronizationWarnings = endpointStream.stream()
+                .filter(BundlesLoader::checkIncrementalSync)
+                .map(endpoint -> validationWarning(
+                        format("Endpoint `%s` does not use incremental syncs", endpoint.getName())));
+
+        Stream<ValidationException> noTokenWarnings = endpointStream.stream()
+                .filter(BundlesLoader::checkNoToken)
+                .map(endpoint -> validationWarning(
+                        format("Endpoint `%s` appears to implement a secret in plaintext", endpoint.getName())));
+
+        return concat(concat(noPaginationWarnings, noIncrementalSynchronizationWarnings), noTokenWarnings);
+    }
+
+    private static boolean checkNoToken(Endpoint endpoint) {
+        return Stream.of(
+                endpoint.getQueryParameters(),
+                endpoint.getPathParameters(),
+                endpoint.getHeaderParameters(),
+                endpoint.getBodyParameters())
+                .flatMap(list -> list.stream())
+                .filter(BundlesLoader::filterTokenNames)
+                .findAny()
+                .isPresent();
+    }
+
+    private static boolean filterTokenNames(EndpointParameter parameter) {
+        String name = parameter.getName();
+        return name != null && name.contains(TOKEN_PARAMETER_NAME) || name.contains(BEARER_PARAMETER_NAME);
+    }
+
+    private static boolean checkIncrementalSync(Endpoint endpoint) {
+        return endpoint.getIncrementalSyncQueryParameters() == null
+                || endpoint.getIncrementalSyncQueryParameters().isEmpty();
+    }
+
+    private static boolean useNoPagination(Endpoint endpoint) {
+        return endpoint.getPaginationMethod() == null;
+    }
+
+    private static Stream<ValidationException> validateServiceActions(
+            Optional<ServiceConfiguration> serviceConfiguration) {
+        List<ServiceAction> serviceActions = serviceConfiguration
+                .map(c -> c.getServiceActions())
+                .orElse(emptyList());
+
+        Stream<ValidationException> preActionWarnings = serviceActions.stream()
+                .filter(a -> a.getPreActionDataUpdates() == null || a.getPreActionDataUpdates().isEmpty())
+                .map(serviceAction -> validationWarning(
+                        format("Service action `%s` does not use update before action",
+                                serviceAction.getName())));
+
+        Stream<ValidationException> postActionWarnings = serviceActions.stream()
+                .filter(a -> a.getPostActionDataUpdates() == null || a.getPostActionDataUpdates().isEmpty())
+                .map(serviceAction -> validationWarning(
+                        format("Service action `%s` does not use update after action",
+                                serviceAction.getName())));
+
+        return concat(preActionWarnings, postActionWarnings);
     }
 
     static Optional<ValidationException> validateDeprecatedDate(String timestamp) {
@@ -320,7 +450,7 @@ public class BundlesLoader {
         }
 
         return validationIssue(
-                String.format("Invalid value: field `%s`, value `%s`, pattern `%s`", field, value, pattern));
+                format("Invalid value: field `%s`, value `%s`, pattern `%s`", field, value, pattern));
     }
 
     /**
@@ -333,7 +463,7 @@ public class BundlesLoader {
         }
 
         return validationIssue(
-                String.format("Values mismatch: field `%s`, filesystem `%s` != metadata `%s`", field, fsValue, value));
+                format("Values mismatch: field `%s`, filesystem `%s` != metadata `%s`", field, fsValue, value));
     }
 
     static Optional<ValidationException> validateLanguages(FsBundle bundle, List<String> languages) {
@@ -355,7 +485,7 @@ public class BundlesLoader {
 
         if (!languagesMetadata.equals(languagesFs)) {
             return validationIssue(
-                    String.format("Values mismatch: field `i18nLanguages`, filesystem `%s` != metadata `%s`",
+                    format("Values mismatch: field `i18nLanguages`, filesystem `%s` != metadata `%s`",
                             languagesFs, languagesMetadata));
         }
 
@@ -365,4 +495,13 @@ public class BundlesLoader {
     private static Optional<ValidationException> validationIssue(String message) {
         return Optional.of(new ValidationException(message));
     }
+
+    private static Optional<ValidationException> optionalValidationWarning(String message) {
+        return Optional.of(validationWarning(message));
+    }
+
+    private static ValidationException validationWarning(String message) {
+        return new ValidationException(message, WARNING);
+    }
+
 }

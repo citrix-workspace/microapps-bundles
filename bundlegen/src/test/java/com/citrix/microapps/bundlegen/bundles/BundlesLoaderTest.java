@@ -66,7 +66,10 @@ class BundlesLoaderTest {
                         Paths.get("i18n", "zh-CN.json"),
                         Paths.get("file.sapp")));
 
-        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkLocalizations(fsDipBundle, false));
+        assertListEqualsInAnyOrder(Collections.emptyList(), BundlesLoader.checkLocalizations(
+                fsDipBundle,
+                Optional.of("C0F2F04FD59370AC01C7525DAB3163D7"),
+                false));
     }
 
     @Test
@@ -78,7 +81,9 @@ class BundlesLoaderTest {
                                 Paths.get("i18n", "en.json"),
                                 Paths.get("file.sapp")));
 
-        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
+        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(
+                fsDipBundle,
+                Optional.of("C0F2F04FD59370AC01C7525DAB3163D7"),
                 false);
         assertListEqualsInAnyOrder(Collections.singletonList("Translation checksum mismatch en.json"),
                 toMessages(validationExceptions));
@@ -87,13 +92,16 @@ class BundlesLoaderTest {
     @Test
     void checkTranslationWithIncreasedNumberOfTranslationKeysForComingSoon() {
         FsComingSoonBundle fsDipBundle =
-                new FsComingSoonBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0.1"),
+                new FsComingSoonBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0" +
+                        ".1"),
                         Arrays.asList(
                                 Paths.get("i18n", "de.json"),
                                 Paths.get("i18n", "en.json"),
                                 Paths.get("file.sapp")));
 
-        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(fsDipBundle,
+        List<ValidationException> validationExceptions = BundlesLoader.checkLocalizations(
+                fsDipBundle,
+                Optional.of("C0F2F04FD59370AC01C7525DAB3163D7"),
                 true);
         assertListEqualsInAnyOrder(Collections.emptyList(), validationExceptions);
     }
@@ -192,7 +200,7 @@ class BundlesLoaderTest {
         assertThat(arg1).containsExactlyInAnyOrderElementsOf(arg2);
     }
 
-    private static String buildFileName(String ...parts) {
+    private static String buildFileName(String... parts) {
         if (parts == null || parts.length == 0) {
             throw new IllegalArgumentException("Filename path parts cannot be empty or null");
         }
@@ -407,6 +415,7 @@ class BundlesLoaderTest {
                 )
         );
     }
+
     private static final HttpMetadata defaultHttpMetadata = new HttpMetadata(Type.HTTP,
             "vendor",
             UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
@@ -432,7 +441,7 @@ class BundlesLoaderTest {
                         new FsHttpBundle(
                                 Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
                                 toPaths()),
-                       defaultHttpMetadata
+                        defaultHttpMetadata
                 ),
                 Arguments.of(
                         new FsHttpBundle(

@@ -36,7 +36,7 @@ public class Bundle {
             return Collections.emptyList();
         } else {
             return issues.stream()
-                    .map(e -> new BundleIssue(fs, e))
+                    .map(e -> new BundleIssue(fs, e, e.getIssueSeverity()))
                     .collect(Collectors.toList());
         }
     }
