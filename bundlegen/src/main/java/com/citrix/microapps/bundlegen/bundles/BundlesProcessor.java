@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URI;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Comparator;
 import java.util.List;
 
@@ -29,23 +33,33 @@ public class BundlesProcessor {
     private static final ObjectWriter METADATA_WRITER = new ObjectMapper()
             .writerWithDefaultPrettyPrinter();
 
+    private static final DateTimeFormatter CREATION_DATETIME_FORMATTER = new DateTimeFormatterBuilder()
+            .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            .optionalStart()
+            .appendOffsetId()
+            .toFormatter()
+            .withZone(ZoneOffset.UTC);
+
     private final BundlesFinder finder;
     private final BundlesLoader loader;
     private final BundlesArchiver archiver;
 
     private final Path distDir;
     private final URI bundlesRepository;
+    private final Instant bestPractisesValidationLimit;
 
     public BundlesProcessor(BundlesFinder finder,
                             BundlesLoader loader,
                             BundlesArchiver archiver,
                             Path distDir,
-                            URI bundlesRepository) {
+                            URI bundlesRepository,
+                            Instant bestPractisesValidationLimit) {
         this.finder = finder;
         this.loader = loader;
         this.archiver = archiver;
         this.distDir = distDir;
         this.bundlesRepository = bundlesRepository;
+        this.bestPractisesValidationLimit = bestPractisesValidationLimit;
     }
 
     public boolean processAllBundles() {
@@ -55,7 +69,8 @@ public class BundlesProcessor {
                 .collect(toList());
 
         List<BundleIssue> issues = allBundles.stream()
-                .flatMap(bundle -> bundle.getIssues().stream())
+                .flatMap(bundle -> bundle.getIssues().stream()
+                        .filter(issue -> getWarningIssueOnlyForValidatedBundle(bundle, issue)))
                 .collect(toList());
 
         List<BundleIssue> errors = getIssuesByType(issues, ERROR);
@@ -81,6 +96,13 @@ public class BundlesProcessor {
 
         writeBundlesJson(archivedBundles, distDir.resolve(BUNDLES_JSON));
         return true;
+    }
+
+    private boolean getWarningIssueOnlyForValidatedBundle(Bundle bundle, BundleIssue issue) {
+        return (issue.getSeverity() == WARNING
+                && Instant.from(CREATION_DATETIME_FORMATTER.parse(bundle.getMetadata().getCreated()))
+                .isAfter(bestPractisesValidationLimit))
+                || issue.getSeverity() == ERROR;
     }
 
     private List<BundleIssue> getIssuesByType(List<BundleIssue> issues, IssueSeverity severity) {

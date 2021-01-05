@@ -19,7 +19,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.citrix.microapps.bundlegen.pojo.DipMetadata;
 import com.citrix.microapps.bundlegen.pojo.HttpMetadata;
+import com.citrix.microapps.bundlegen.pojo.Metadata;
 import com.citrix.microapps.bundlegen.pojo.ScriptMetadata;
+import com.citrix.microapps.bundlegen.pojo.TemplateFile;
 import com.citrix.microapps.bundlegen.pojo.Type;
 
 import static com.citrix.microapps.bundlegen.TestUtils.path;
@@ -29,8 +31,10 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_S
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.METADATA_FILE;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TEMPLATE_FILE;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class BundlesLoaderTest {
 
@@ -56,7 +60,7 @@ class BundlesLoaderTest {
     @Test
     void checkTranslationChecksumOk() {
         FsDipBundle fsDipBundle = new FsDipBundle(path("src/test/resources/bundles/dip/vendor1/bundle1/0.0.1"),
-                Arrays.asList(
+                asList(
                         Paths.get("i18n", "de.json"),
                         Paths.get("i18n", "en.json"),
                         Paths.get("i18n", "es.json"),
@@ -76,7 +80,7 @@ class BundlesLoaderTest {
     void checkTranslationWithIncreasedNumberOfTranslationKeys() {
         FsDipBundle fsDipBundle =
                 new FsDipBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0.1"),
-                        Arrays.asList(
+                        asList(
                                 Paths.get("i18n", "de.json"),
                                 Paths.get("i18n", "en.json"),
                                 Paths.get("file.sapp")));
@@ -94,7 +98,7 @@ class BundlesLoaderTest {
         FsComingSoonBundle fsDipBundle =
                 new FsComingSoonBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0" +
                         ".1"),
-                        Arrays.asList(
+                        asList(
                                 Paths.get("i18n", "de.json"),
                                 Paths.get("i18n", "en.json"),
                                 Paths.get("file.sapp")));
@@ -104,6 +108,41 @@ class BundlesLoaderTest {
                 Optional.of("C0F2F04FD59370AC01C7525DAB3163D7"),
                 true);
         assertListEqualsInAnyOrder(Collections.emptyList(), validationExceptions);
+    }
+
+    @Test
+    void checkBestPractisesMetadataFile() {
+        FsHttpBundle bundle =
+                new FsHttpBundle(
+                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        asList(Paths.get("metadata.json")));
+        List<ValidationException> validationWarnings = new ArrayList<>();
+        Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
+
+        assertNotNull(metadata.get());
+        assertListEqualsInAnyOrder(Collections.singletonList("Integration does not use OAuth for writeback actions"),
+                toMessages(validationWarnings));
+    }
+
+    @Test
+    void checkBestPractisesTemplateFile() {
+        FsHttpBundle bundle =
+                new FsHttpBundle(
+                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        asList(Paths.get("file.sapp")));
+        List<ValidationException> validationWarnings = new ArrayList<>();
+        Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
+                bundle);
+
+        assertNotNull(templateFile.get());
+        assertListEqualsInAnyOrder(asList(
+                "Integration configuration is not using an authentication method",
+                "Endpoint `testEndpoint` does not use pagination",
+                "Endpoint `testEndpoint` does not use incremental syncs",
+                "Endpoint `testEndpoint` appears to implement a secret in plaintext",
+                "Service action `testAction` does not use update before action",
+                "Service action `testAction` does not use update after action"),
+                toMessages(validationWarnings));
     }
 
     @ParameterizedTest
@@ -132,7 +171,7 @@ class BundlesLoaderTest {
         List<Path> input = toPaths("script1.js", "script2.js");
         List<ValidationException> issues = BundlesLoader.checkUnexpectedFiles(input, false);
         assertThat(toMessages(issues))
-                .containsAnyElementsOf(Arrays.asList("Unexpected file: script1.js", "Unexpected file: script2.js"));
+                .containsAnyElementsOf(asList("Unexpected file: script1.js", "Unexpected file: script2.js"));
         assertEquals(issues.size(), 1);
     }
 
@@ -234,33 +273,33 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(toPaths(),
                         false,
-                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                        asList(missingMandatoryFile("metadata.json"),
                                 missingMandatoryFile("file.sapp"),
                                 missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths(),
                         true,
-                        Arrays.asList(missingMandatoryFile("metadata.json"))),
+                        asList(missingMandatoryFile("metadata.json"))),
 
                 Arguments.of(toPaths(METADATA_FILE),
                         false,
-                        Arrays.asList(missingMandatoryFile("file.sapp"),
+                        asList(missingMandatoryFile("file.sapp"),
                                 missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths(TEMPLATE_FILE),
                         false,
-                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                        asList(missingMandatoryFile("metadata.json"),
                                 missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         false,
-                        Arrays.asList(missingMandatoryFile("metadata.json"),
+                        asList(missingMandatoryFile("metadata.json"),
                                 missingMandatoryFile("file.sapp"),
                                 missingMandatoryFile("i18n", "en.json"))),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         true,
-                        Arrays.asList(missingMandatoryFile("metadata.json")))
+                        asList(missingMandatoryFile("metadata.json")))
         );
     }
 
@@ -298,15 +337,15 @@ class BundlesLoaderTest {
 
                 Arguments.of(toPaths(TEMPLATE_FILE, "unexpected.txt"),
                         true,
-                        Arrays.asList("Unexpected file: file.sapp", "Unexpected file: unexpected.txt")),
+                        asList("Unexpected file: file.sapp", "Unexpected file: unexpected.txt")),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         false,
-                        Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin")),
+                        asList("Unexpected file: other.txt", "Unexpected file: files.bin")),
 
                 Arguments.of(toPaths("other.txt", "files.bin"),
                         true,
-                        Arrays.asList("Unexpected file: other.txt", "Unexpected file: files.bin"))
+                        asList("Unexpected file: other.txt", "Unexpected file: files.bin"))
         );
     }
 
@@ -319,7 +358,7 @@ class BundlesLoaderTest {
                         Collections.singletonList("en")),
 
                 Arguments.of(new FsDipBundle(Paths.get("bundle"), toPaths("i18n/en.json", "i18n/ja.json")),
-                        Arrays.asList("en", "ja"))
+                        asList("en", "ja"))
         );
     }
 
@@ -336,17 +375,17 @@ class BundlesLoaderTest {
 
                 // `en.json` instead of `i18n/en.json`
                 Arguments.of(new FsDipBundle(Paths.get("bundle"), toPaths("en.json", "i18n/ja.json")),
-                        Arrays.asList("en", "ja"),
+                        asList("en", "ja"),
                         "Values mismatch: field `i18nLanguages`, filesystem `[ja]` != metadata `[en, ja]`"),
 
                 // `lang` instead of `i18n`
                 Arguments.of(new FsDipBundle(Paths.get("bundle"), toPaths("lang/en.json", "i18n/ja.json")),
-                        Arrays.asList("en", "ja"),
+                        asList("en", "ja"),
                         "Values mismatch: field `i18nLanguages`, filesystem `[ja]` != metadata `[en, ja]`"),
 
                 // `.csv` instead of `.json`
                 Arguments.of(new FsDipBundle(Paths.get("bundle"), toPaths("i18n/en.csv", "i18n/ja.json")),
-                        Arrays.asList("en", "ja"),
+                        asList("en", "ja"),
                         "Values mismatch: field `i18nLanguages`, filesystem `[ja]` != metadata `[en, ja]`")
         );
     }
@@ -396,7 +435,7 @@ class BundlesLoaderTest {
                                 Collections.emptyList(),
                                 Collections.emptyList(),
                                 Collections.emptyList()),
-                        Arrays.asList(
+                        asList(
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
@@ -477,7 +516,7 @@ class BundlesLoaderTest {
                                 .deprecatedDate("2020-10-09T06:39:48.517497Z")
                                 .i18nLanguages(Collections.singletonList("bad"))
                                 .build(),
-                        Arrays.asList(
+                        asList(
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +

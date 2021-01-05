@@ -5,6 +5,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ import com.citrix.microapps.bundlegen.bundles.BundlesLoader;
 import com.citrix.microapps.bundlegen.bundles.BundlesProcessor;
 
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.ARCHIVES_DIR;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.DEFAULT_BEST_PRACTICES_VALIDATION_LIMIT_PERIOD;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Application runner with `main()`.
@@ -31,9 +34,9 @@ public class BundlegenMain {
         Thread.setDefaultUncaughtExceptionHandler((thread, e) -> logger.error("Uncaught exception: {}", thread, e));
 
         if (args.length < 3) {
-            logger.info("Usage:   bundlegen bundles-dir dist-dir link-bundles");
+            logger.info("Usage:   bundlegen bundles-dir dist-dir link-bundles [validation-day-limit]");
             logger.info("Example: bundlegen bundles bundles-dist https://github" +
-                    ".com/michaltc/workspace-microapps-bundles/tree/master/bundles/");
+                    ".com/michaltc/workspace-microapps-bundles/tree/master/bundles/ 2");
 
             logger.error("Missing mandatory arguments");
             System.exit(1);
@@ -46,9 +49,21 @@ public class BundlegenMain {
                 args[2].endsWith("/")
                         ? args[2] + ARCHIVES_DIR
                         : args[2] + "/" + ARCHIVES_DIR);
+        Instant bestPractisesValidationLimit;
+
+        if (args.length > 3) {
+            bestPractisesValidationLimit = parseBestPractisesValidationLimit(args[3]);
+        } else {
+            bestPractisesValidationLimit = Instant.now().minus(DEFAULT_BEST_PRACTICES_VALIDATION_LIMIT_PERIOD);
+        }
 
         if (!Files.isDirectory(bundlesDir) || !Files.isReadable(bundlesDir)) {
             logger.error("Input path with bundles does not exist or is not a readable directory: {}", bundlesDir);
+            System.exit(1);
+        }
+
+        if (bestPractisesValidationLimit == null) {
+            logger.error("Optional input parameter validation-day-limit '{}' can't be parsed", args[3]);
             System.exit(1);
         }
 
@@ -58,7 +73,13 @@ public class BundlegenMain {
         BundlesFinder finder = new BundlesFinder(bundlesDir);
         BundlesLoader loader = new BundlesLoader();
         BundlesArchiver archiver = new BundlesArchiver(archivesDir);
-        BundlesProcessor processor = new BundlesProcessor(finder, loader, archiver, distDir, bundlesRepository);
+        BundlesProcessor processor = new BundlesProcessor(
+                finder,
+                loader,
+                archiver,
+                distDir,
+                bundlesRepository,
+                bestPractisesValidationLimit);
 
         if (!processor.processAllBundles()) {
             logger.error("Bundles processing failed");
@@ -68,6 +89,15 @@ public class BundlegenMain {
         logLifeCycleEvent("APPLICATION STOPPED");
         logger.debug("Stopping logging subsystem");
         ((LoggerContext) LoggerFactory.getILoggerFactory()).stop();
+    }
+
+    private static Instant parseBestPractisesValidationLimit(String validationDayLimitArgument) {
+        try {
+            return Instant.now().minus(Integer.valueOf(validationDayLimitArgument), DAYS);
+        } catch (NumberFormatException e) {
+            logger.warn("Unparseable validation day limit argument", e);
+            return null;
+        }
     }
 
     private static void createDirectories(Path directory) {

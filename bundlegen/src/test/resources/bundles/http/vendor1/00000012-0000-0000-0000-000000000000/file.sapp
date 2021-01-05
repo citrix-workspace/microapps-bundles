@@ -1,0 +1,262 @@
+{
+  "applications": [
+    {
+      "appVersion": {
+        "id": "85d29cf7-07e2-40bb-9a0c-f0a3498020c6",
+        "serviceId": 5,
+        "version": 69,
+        "parameters": {
+          "imageUrl": "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/lead.78a3e549cded3d7e42b47ab8a358d765.svg",
+          "description": "63737269-29c6-4e3b-9242-f8191cf65197"
+        },
+        "title": "0ac1743a-b6f1-4c9d-81a0-3bf129987276",
+        "startPageId": "61b854ba-a99d-4197-be3a-4a2d80342514",
+        "pages": [],
+        "trackingUuid": "88560529-8282-4f74-b1b4-3db934776c1e",
+        "actionApp": true
+      },
+      "outboundLinks": {
+        "page": [],
+        "notification": []
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": 5,
+      "uuid": "c3d1490e-c2c8-4c60-9fbe-dcd1cc154f37",
+      "version": 53,
+      "title": "SAP SuccessFactors EC",
+      "serviceType": "GWSC",
+      "group": "GWSC:JSON",
+      "schemaName": "microapps_http_integratio",
+      "configuration": {
+        "trackingUuid": "85ac5e73-840c-44aa-8681-52ab85d8d547",
+        "baseUrl": "https://apisalesdemo2.successfactors.eu/odata/v2",
+        "security": {
+          "type": "NONE"
+        },
+        "useServiceActionSecurity": false,
+        "serviceActionSecurity": {
+          "type": "NONE"
+        },
+        "useOnPremProxy": false,
+        "dataEndpoints": [
+          {
+            "id": 2,
+            "name": "testEndpoint",
+            "endpoint": "Test",
+            "requestMethod": "GET",
+            "postMode": "FORMDATA",
+            "body": "",
+            "type": "LIST",
+            "rootPath": "d/results",
+            "tables": [],
+            "incrementalSyncQueryParameters": [],
+            "baseTableName": "currencyexchangerate",
+            "paginationEnabled": true,
+            "mergeStrategy": "NONE",
+            "queryParameters": [
+              {
+                "name": "token",
+                "defaultValue": "lastModifiedDateTime gt '2015-12-30T23:59:59'",
+                "parameterType": "STRING",
+                "required": false,
+                "uniqueId": "b2b7f6c4-5ca5-4c89-bf8e-5451ce18f813"
+              }
+            ],
+            "pathParameters": [],
+            "headerParameters": [],
+            "bodyParameters": [],
+            "synchronizationTypes": [
+              {
+                "id": "FullSynchronization",
+                "name": "Full Synchronization",
+                "description": "Full synchronization drops the local cache and pulls all data from the source system again.",
+                "preferredSchedule": "DAILY"
+              },
+              {
+                "id": "IncrementalSynchronization",
+                "name": "Incremental Synchronization",
+                "description": "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
+                "preferredSchedule": "HOURLY"
+              }
+            ]
+          }
+        ],
+        "webhookListeners": [],
+        "schedule": [
+          {
+            "synchronizationTypeId": "FullSynchronization",
+            "useTimeRange": false,
+            "schedule": "MANUALLY"
+          },
+          {
+            "synchronizationTypeId": "IncrementalSynchronization",
+            "useTimeRange": false,
+            "schedule": "MANUALLY"
+          }
+        ],
+        "serviceActions": [
+          {
+            "name": "testAction",
+            "endpoint": "/operations/rest/requisitions/{{action}}",
+            "requestMethod": "POST",
+            "postMode": "JSON",
+            "body": "{\n\"approvableId\": \"{{approvableId}}\",\n\"comment\": \"{{comment}}\",\n\"visibleToSupplier\": \"{{visibleToSupplier}}\"\n}\n",
+            "serviceActionId": "ebe64b60-6b19-41b3-a5d4-202d2321f279",
+            "actionParameters": [
+              {
+                "name": "approvableId",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "472b137c-2057-43ff-b667-bc965c0767fc"
+              },
+              {
+                "name": "comment",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "9b865434-3f9a-4776-aba2-d09c6bdb6488"
+              },
+              {
+                "name": "visibleToSupplier",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "f76be295-81e4-4ba3-8889-25ed8aa10565"
+              },
+              {
+                "name": "action",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "1acd3d76-8e1e-4d8a-ad3e-809106268e08"
+              },
+              {
+                "name": "user",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "80321007-7af0-458e-b27e-d08bbc03eb45"
+              },
+              {
+                "name": "passwordadapter",
+                "dataType": "STRING",
+                "defaultValue": "",
+                "required": true,
+                "uniqueId": "a89ec747-43ea-475a-a4c7-92462b7cf7d1"
+              }
+            ],
+            "preActionDataUpdates": [],
+            "postActionDataUpdates": [],
+            "headerParameters": [
+              {
+                "name": "apikey",
+                "defaultValue": "MUoj9GyLeQYmImDtli805eZOK7a8wk8W",
+                "parameterType": "STRING",
+                "required": false,
+                "uniqueId": "b1774004-fda8-43bb-be57-80b640f2268c",
+                "editMode": "FULL",
+                "valueMapping": "DEFAULT_VALUE"
+              }
+            ],
+            "bodyParameters": [
+              {
+                "name": "approvableId",
+                "required": false,
+                "uniqueId": "89531d11-b1aa-4fb3-ba63-dcc1f26d3496",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "472b137c-2057-43ff-b667-bc965c0767fc"
+              },
+              {
+                "name": "comment",
+                "required": false,
+                "uniqueId": "c219f1d4-9da0-4242-9c6c-be6db4c2c1ca",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "9b865434-3f9a-4776-aba2-d09c6bdb6488"
+              },
+              {
+                "name": "visibleToSupplier",
+                "required": false,
+                "uniqueId": "3834da10-eea3-42a4-abdd-18fdb7dd056a",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "f76be295-81e4-4ba3-8889-25ed8aa10565"
+              }
+            ],
+            "queryParameters": [
+              {
+                "name": "realm",
+                "defaultValue": "citrix-T",
+                "parameterType": "STRING",
+                "required": false,
+                "uniqueId": "e9a46780-433f-4096-9c6f-bf095d294927",
+                "editMode": "FULL",
+                "valueMapping": "DEFAULT_VALUE"
+              },
+              {
+                "name": "user",
+                "required": false,
+                "uniqueId": "d0a9379b-6107-4ff8-a523-1faeddf2098c",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "80321007-7af0-458e-b27e-d08bbc03eb45"
+              },
+              {
+                "name": "passwordadapter",
+                "required": false,
+                "uniqueId": "a6dbfeaa-0444-48b9-b11f-35440c51b9f5",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "a89ec747-43ea-475a-a4c7-92462b7cf7d1"
+              }
+            ],
+            "pathParameters": [
+              {
+                "name": "action",
+                "required": false,
+                "uniqueId": "8387d5ee-2df0-4f4b-aa5f-ef802b4408bc",
+                "editMode": "FULL",
+                "valueMapping": "ACTION_PARAMETER",
+                "actionParameterUniqueId": "1acd3d76-8e1e-4d8a-ad3e-809106268e08"
+              }
+            ]
+          }
+        ],
+        "iconUrl": "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/SuccessFactors.833a1da8b80b77391f222cbc6210e98c.svg",
+        "iconType": "LIBRARY",
+        "rateLimitConfiguration": {
+          "timeWindow": {
+            "unit": "SECONDS",
+            "amount": 1
+          },
+          "requestsPerWindow": 1
+        }
+      },
+      "context": {},
+      "tables": [],
+      "relationships": [],
+      "oauthLoginNeeded": false,
+      "fullyConfigured": true
+    }
+  ],
+  "notifications": [],
+  "resolvers": [],
+  "modelConfiguration": {
+    "appIds": [
+      "85d29cf7-07e2-40bb-9a0c-f0a3498020c6"
+    ],
+    "resolverIds": [],
+    "bundleDescription": "SAP SuccessFactors Employee Central",
+    "bundleVendor": "Citrix"
+  },
+  "translationChecksum": "2A9A89F9DF3A416DB4053D066B93583A",
+  "appliedSappUpgrades": [
+    "microapp-3838"
+  ],
+  "buildVersion": "1.27.4.bc36d831cc182bffd17f5429cabf495c1755bf2b"
+}

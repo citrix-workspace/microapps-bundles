@@ -1,10 +1,7 @@
 package com.citrix.microapps.bundlegen.bundles;
 
-import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +9,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import static com.citrix.microapps.bundlegen.TestUtils.path;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,11 +27,11 @@ class BundlesFinderTest {
     void findBundles() {
         List<FsBundle> actual = findBundles(path("src/test/resources/bundles"));
 
-        List<FsBundle> expected = Arrays.asList(
+        List<FsBundle> expected = asList(
                 new FsComingSoonBundle(path("src/test/resources/bundles/coming_soon/vendor3/bundle3"),
-                        Collections.singletonList(Paths.get("metadata.json"))),
+                        singletonList(Paths.get("metadata.json"))),
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor1/bundle1/0.0.1"),
-                        Arrays.asList(
+                        asList(
                                 Paths.get("file.sapp"),
                                 Paths.get("i18n", "de.json"),
                                 Paths.get("i18n", "en.json"),
@@ -41,16 +40,21 @@ class BundlesFinderTest {
                                 Paths.get("i18n", "ja.json"),
                                 Paths.get("i18n", "nl.json"),
                                 Paths.get("i18n", "zh-CN.json"),
-                                Paths.get("metadata.json")
-                        )),
+                                Paths.get("metadata.json"))),
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor1/bundle2/0.0.1"),
-                        Collections.singletonList(Paths.get("metadata.json"))),
+                        singletonList(Paths.get("metadata.json"))),
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor2/bundle1/0.0.1"),
-                        Collections.singletonList(Paths.get("metadata.json"))),
+                        singletonList(Paths.get("metadata.json"))),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/0.0.1"),
+                        singletonList(Paths.get("metadata.json"))),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        asList(
+                                Paths.get("file.sapp"),
+                                Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendor2/bundle2"),
-                        Collections.singletonList(Paths.get("metadata.json"))),
+                        singletonList(Paths.get("metadata.json"))),
                 new FsIdpBundle(path("src/test/resources/bundles/identity_provider/vendor1/bundle1"),
-                        Collections.singletonList(Paths.get("metadata.json")))
+                        singletonList(Paths.get("metadata.json")))
         );
 
         assertEquals(expected, actual);

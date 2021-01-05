@@ -2,6 +2,7 @@ package com.citrix.microapps.bundlegen.bundles;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Period;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +29,11 @@ public class FsConstants {
     public static final String ARCHIVES_DIR = "archives";
     public static final String ARCHIVE_EXTENSION = ".zip";
     public static final String BUNDLES_JSON = "bundles.json";
+
+    /**
+     * Validate best practises only for bundles created in last days defined in validation period
+     */
+    public static final Period DEFAULT_BEST_PRACTICES_VALIDATION_LIMIT_PERIOD = Period.ofDays(5);
 
     /**
      * Only these files and directories are allowed in the bundle.

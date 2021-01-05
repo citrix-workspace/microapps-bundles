@@ -93,7 +93,7 @@ public class BundlesLoader {
 
         issues.addAll(checkLocalizations(
                 bundle,
-                loadAndValidateTemplateFile(issues, bundle, comingSoonBundleFlag)
+                loadAndValidateTemplateFile(issues, bundle)
                         .map(template -> template.getTranslationChecksum()),
                 comingSoonBundleFlag || idpBundleFlag));
 
@@ -101,7 +101,7 @@ public class BundlesLoader {
     }
 
 
-    private Optional<Metadata> loadAndValidateMetadata(List<ValidationException> issues, FsBundle bundle) {
+    static Optional<Metadata> loadAndValidateMetadata(List<ValidationException> issues, FsBundle bundle) {
         Path metadataPath = bundle.getMetadataPath();
 
         try {
@@ -140,28 +140,37 @@ public class BundlesLoader {
         }
     }
 
-    private static Optional<TemplateFile> loadAndValidateTemplateFile(List<ValidationException> issues,
-                                                                      FsBundle bundle, boolean comingSoonBundleFlag) {
-        if (comingSoonBundleFlag) {
-            return Optional.empty();
-        }
-
+    static Optional<TemplateFile> loadAndValidateTemplateFile(List<ValidationException> issues,
+                                                              FsBundle bundle) {
         Path templateFilePath = bundle.getTemplatePath();
 
         try {
-            File file = templateFilePath.toFile();
-            TemplateFile templateFile = BUNDLE_DATA_READER
-                    .forType(TemplateFile.class)
-                    .readValue(file);
+            switch (bundle.getType()) {
+                case DIP:
+                    File dipFile = templateFilePath.toFile();
+                    TemplateFile dipTemplateFile = BUNDLE_DATA_READER
+                            .forType(TemplateFile.class)
+                            .readValue(dipFile);
+                    validateTranslationChecksum(dipFile.getName(), dipTemplateFile).ifPresent(issues::add);
+                    return Optional.of(dipTemplateFile);
+                case HTTP:
+                    File httpFile = templateFilePath.toFile();
+                    TemplateFile httpTemplateFile = BUNDLE_DATA_READER
+                            .forType(TemplateFile.class)
+                            .readValue(httpFile);
+                    validateTranslationChecksum(httpFile.getName(), httpTemplateFile).ifPresent(issues::add);
 
-            Optional<ServiceConfiguration> serviceConfiguration = getServiceConfiguration(templateFile);
+                    Optional<ServiceConfiguration> serviceConfiguration = getServiceConfiguration(httpTemplateFile);
 
-            validateTranslationChecksum(file.getName(), templateFile).ifPresent(issues::add);
-            validateConfigurationIsUsingAuthentication(serviceConfiguration).ifPresent(issues::add);
-            validateEndpoints(serviceConfiguration).forEach(issues::add);
-            validateServiceActions(serviceConfiguration).forEach(issues::add);
-
-            return Optional.of(templateFile);
+                    validateConfigurationIsUsingAuthentication(serviceConfiguration).ifPresent(issues::add);
+                    validateEndpoints(serviceConfiguration).forEach(issues::add);
+                    validateServiceActions(serviceConfiguration).forEach(issues::add);
+                    return Optional.of(httpTemplateFile);
+                case COMING_SOON:
+                    return Optional.empty();
+                default:
+                    throw new UnsupportedOperationException("Unexpected bundle type: " + bundle.getType());
+            }
         } catch (IOException e) {
             issues.add(new ValidationException("Loading of template file failed: " + templateFilePath, e));
             return Optional.empty();
@@ -270,8 +279,6 @@ public class BundlesLoader {
 
         validateLanguages(bundle, metadata.getI18nLanguages()).ifPresent(issues::add);
 
-        validateSupportsOAuthForActions(metadata.getSupportsOAuthForActions()).ifPresent(issues::add);
-
         if (metadata.getCategories() != null && metadata.getCategories().contains(COMING_SOON)) {
             issues.add(new ValidationException(
                     format("Category COMING_SOON is not allowed in directory: `%s`. " +
@@ -320,6 +327,7 @@ public class BundlesLoader {
         }
 
         validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
+        validateSupportsOAuthForActions(metadata.getSupportsOAuthForActions()).ifPresent(issues::add);
 
         return issues;
     }
@@ -367,24 +375,24 @@ public class BundlesLoader {
                 .orElse(emptyList());
 
         Stream<ValidationException> noPaginationWarnings = endpointStream.stream()
-                .filter(BundlesLoader::useNoPagination)
+                .filter(BundlesLoader::hasPagination)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` does not use pagination", endpoint.getName())));
 
         Stream<ValidationException> noIncrementalSynchronizationWarnings = endpointStream.stream()
-                .filter(BundlesLoader::checkIncrementalSync)
+                .filter(BundlesLoader::hasIncrementalSync)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` does not use incremental syncs", endpoint.getName())));
 
         Stream<ValidationException> noTokenWarnings = endpointStream.stream()
-                .filter(BundlesLoader::checkNoToken)
+                .filter(BundlesLoader::hasNoToken)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` appears to implement a secret in plaintext", endpoint.getName())));
 
         return concat(concat(noPaginationWarnings, noIncrementalSynchronizationWarnings), noTokenWarnings);
     }
 
-    private static boolean checkNoToken(Endpoint endpoint) {
+    private static boolean hasNoToken(Endpoint endpoint) {
         return Stream.of(
                 endpoint.getQueryParameters(),
                 endpoint.getPathParameters(),
@@ -401,12 +409,12 @@ public class BundlesLoader {
         return name != null && name.contains(TOKEN_PARAMETER_NAME) || name.contains(BEARER_PARAMETER_NAME);
     }
 
-    private static boolean checkIncrementalSync(Endpoint endpoint) {
+    private static boolean hasIncrementalSync(Endpoint endpoint) {
         return endpoint.getIncrementalSyncQueryParameters() == null
                 || endpoint.getIncrementalSyncQueryParameters().isEmpty();
     }
 
-    private static boolean useNoPagination(Endpoint endpoint) {
+    private static boolean hasPagination(Endpoint endpoint) {
         return endpoint.getPaginationMethod() == null;
     }
 
