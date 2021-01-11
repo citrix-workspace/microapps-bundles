@@ -8,11 +8,10 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EndpointParameter {
+    private final String name;
 
     @JsonCreator
     public EndpointParameter(@JsonProperty(value = "name") String name) {
         this.name = name;
     }
-
-    private final String name;
 }

@@ -70,7 +70,7 @@ public class BundlesProcessor {
 
         List<BundleIssue> issues = allBundles.stream()
                 .flatMap(bundle -> bundle.getIssues().stream()
-                        .filter(issue -> getWarningIssueOnlyForValidatedBundle(bundle, issue)))
+                        .filter(issue -> isWarningIssueOnlyForValidatedBundle(bundle, issue)))
                 .collect(toList());
 
         List<BundleIssue> errors = getIssuesByType(issues, ERROR);
@@ -98,7 +98,7 @@ public class BundlesProcessor {
         return true;
     }
 
-    private boolean getWarningIssueOnlyForValidatedBundle(Bundle bundle, BundleIssue issue) {
+    private boolean isWarningIssueOnlyForValidatedBundle(Bundle bundle, BundleIssue issue) {
         return (issue.getSeverity() == WARNING
                 && Instant.from(CREATION_DATETIME_FORMATTER.parse(bundle.getMetadata().getCreated()))
                 .isAfter(bestPractisesValidationLimit))

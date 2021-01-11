@@ -9,7 +9,6 @@ import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.ERROR;
  */
 @Getter
 public class ValidationException extends RuntimeException {
-
     private IssueSeverity issueSeverity;
 
     public ValidationException(String message, IssueSeverity severity) {

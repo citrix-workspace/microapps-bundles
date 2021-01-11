@@ -8,11 +8,10 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SecurityConfiguration {
+    private final String type;
 
     @JsonCreator
     public SecurityConfiguration(@JsonProperty(value = "type") String type) {
         this.type = type;
     }
-
-    private final String type;
 }

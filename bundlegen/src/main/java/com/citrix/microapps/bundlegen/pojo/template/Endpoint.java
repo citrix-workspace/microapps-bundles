@@ -10,6 +10,13 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Endpoint {
+    private final String name;
+    private final PaginationMethod paginationMethod;
+    private final List<IncrementalSyncQueryParameter> incrementalSyncQueryParameters;
+    private final List<EndpointParameter> queryParameters;
+    private final List<EndpointParameter> pathParameters;
+    private final List<EndpointParameter> headerParameters;
+    private final List<EndpointParameter> bodyParameters;
 
     @JsonCreator
     public Endpoint(@JsonProperty(value = "name") String name,
@@ -28,12 +35,4 @@ public class Endpoint {
         this.headerParameters = headerParameters;
         this.bodyParameters = bodyParameters;
     }
-
-    private final String name;
-    private final PaginationMethod paginationMethod;
-    private final List<IncrementalSyncQueryParameter> incrementalSyncQueryParameters;
-    private final List<EndpointParameter> queryParameters;
-    private final List<EndpointParameter> pathParameters;
-    private final List<EndpointParameter> headerParameters;
-    private final List<EndpointParameter> bodyParameters;
 }

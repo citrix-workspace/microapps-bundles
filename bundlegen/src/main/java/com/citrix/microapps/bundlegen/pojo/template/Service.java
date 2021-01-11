@@ -8,11 +8,10 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Service {
+    private final ServiceConfiguration configuration;
 
     @JsonCreator
     public Service(@JsonProperty(value = "configuration") ServiceConfiguration configuration) {
         this.configuration = configuration;
     }
-
-    private final ServiceConfiguration configuration;
 }

@@ -11,9 +11,7 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TemplateFile {
-
     private final String translationChecksum;
-
     private final List<Service> services;
 
     @JsonCreator

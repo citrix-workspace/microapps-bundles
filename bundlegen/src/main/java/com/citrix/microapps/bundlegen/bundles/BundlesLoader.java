@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.nio.file.PathMatcher;
 import java.time.Instant;
 import java.time.format.DateTimeParseException;
-import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -147,25 +147,16 @@ public class BundlesLoader {
         try {
             switch (bundle.getType()) {
                 case DIP:
-                    File dipFile = templateFilePath.toFile();
-                    TemplateFile dipTemplateFile = BUNDLE_DATA_READER
-                            .forType(TemplateFile.class)
-                            .readValue(dipFile);
-                    validateTranslationChecksum(dipFile.getName(), dipTemplateFile).ifPresent(issues::add);
-                    return Optional.of(dipTemplateFile);
+                    return Optional.of(loadTemplateFileAndValidateChecksum(issues, templateFilePath));
                 case HTTP:
-                    File httpFile = templateFilePath.toFile();
-                    TemplateFile httpTemplateFile = BUNDLE_DATA_READER
-                            .forType(TemplateFile.class)
-                            .readValue(httpFile);
-                    validateTranslationChecksum(httpFile.getName(), httpTemplateFile).ifPresent(issues::add);
+                    TemplateFile httpTemplateFile = loadTemplateFileAndValidateChecksum(issues, templateFilePath);
 
                     Optional<ServiceConfiguration> serviceConfiguration = getServiceConfiguration(httpTemplateFile);
-
                     validateConfigurationIsUsingAuthentication(serviceConfiguration).ifPresent(issues::add);
                     validateEndpoints(serviceConfiguration).forEach(issues::add);
                     validateServiceActions(serviceConfiguration).forEach(issues::add);
                     return Optional.of(httpTemplateFile);
+                case IDENTITY_PROVIDER:
                 case COMING_SOON:
                     return Optional.empty();
                 default:
@@ -175,6 +166,16 @@ public class BundlesLoader {
             issues.add(new ValidationException("Loading of template file failed: " + templateFilePath, e));
             return Optional.empty();
         }
+    }
+
+    private static TemplateFile loadTemplateFileAndValidateChecksum(List<ValidationException> issues,
+                                                                    Path templateFilePath) throws IOException {
+        File file = templateFilePath.toFile();
+        TemplateFile templateFile = BUNDLE_DATA_READER
+                .forType(TemplateFile.class)
+                .readValue(file);
+        validateTranslationChecksum(file.getName(), templateFile).ifPresent(issues::add);
+        return templateFile;
     }
 
     private static Optional<ServiceConfiguration> getServiceConfiguration(TemplateFile templateFile) {
@@ -291,8 +292,8 @@ public class BundlesLoader {
         return issues;
     }
 
-    private static Optional<ValidationException> validateSupportsOAuthForActions(Boolean supportsOAuthForActions) {
-        return supportsOAuthForActions == null || !supportsOAuthForActions
+    private static Optional<ValidationException> validateSupportsOAuthForActions(boolean supportsOAuthForActions) {
+        return !supportsOAuthForActions
                 ? optionalValidationWarning("Integration does not use OAuth for writeback actions")
                 : Optional.empty();
     }
@@ -327,7 +328,7 @@ public class BundlesLoader {
         }
 
         validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
-        validateSupportsOAuthForActions(metadata.getSupportsOAuthForActions()).ifPresent(issues::add);
+        validateSupportsOAuthForActions(metadata.isSupportsOAuthForActions()).ifPresent(issues::add);
 
         return issues;
     }
@@ -375,24 +376,24 @@ public class BundlesLoader {
                 .orElse(emptyList());
 
         Stream<ValidationException> noPaginationWarnings = endpointStream.stream()
-                .filter(BundlesLoader::hasPagination)
+                .filter(BundlesLoader::useNoPagination)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` does not use pagination", endpoint.getName())));
 
         Stream<ValidationException> noIncrementalSynchronizationWarnings = endpointStream.stream()
-                .filter(BundlesLoader::hasIncrementalSync)
+                .filter(BundlesLoader::useNoIncrementalSync)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` does not use incremental syncs", endpoint.getName())));
 
         Stream<ValidationException> noTokenWarnings = endpointStream.stream()
-                .filter(BundlesLoader::hasNoToken)
+                .filter(BundlesLoader::useNoToken)
                 .map(endpoint -> validationWarning(
                         format("Endpoint `%s` appears to implement a secret in plaintext", endpoint.getName())));
 
         return concat(concat(noPaginationWarnings, noIncrementalSynchronizationWarnings), noTokenWarnings);
     }
 
-    private static boolean hasNoToken(Endpoint endpoint) {
+    private static boolean useNoToken(Endpoint endpoint) {
         return Stream.of(
                 endpoint.getQueryParameters(),
                 endpoint.getPathParameters(),
@@ -409,12 +410,12 @@ public class BundlesLoader {
         return name != null && name.contains(TOKEN_PARAMETER_NAME) || name.contains(BEARER_PARAMETER_NAME);
     }
 
-    private static boolean hasIncrementalSync(Endpoint endpoint) {
+    private static boolean useNoIncrementalSync(Endpoint endpoint) {
         return endpoint.getIncrementalSyncQueryParameters() == null
                 || endpoint.getIncrementalSyncQueryParameters().isEmpty();
     }
 
-    private static boolean hasPagination(Endpoint endpoint) {
+    private static boolean useNoPagination(Endpoint endpoint) {
         return endpoint.getPaginationMethod() == null;
     }
 

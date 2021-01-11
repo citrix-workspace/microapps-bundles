@@ -10,6 +10,9 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceAction {
+    private final String name;
+    private final List<PreActionDataUpdate> preActionDataUpdates;
+    private final List<PostActionDataUpdate> postActionDataUpdates;
 
     @JsonCreator
     public ServiceAction(@JsonProperty(value = "name") String name,
@@ -20,8 +23,4 @@ public class ServiceAction {
         this.preActionDataUpdates = preActionDataUpdates;
         this.postActionDataUpdates = postActionDataUpdates;
     }
-
-    private final String name;
-    private final List<PreActionDataUpdate> preActionDataUpdates;
-    private final List<PostActionDataUpdate> postActionDataUpdates;
 }

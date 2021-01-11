@@ -3,9 +3,10 @@ package com.citrix.microapps.bundlegen.bundles;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.citrix.microapps.bundlegen.pojo.Metadata;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Bundle with all information from filesystem and metadata file.
@@ -37,7 +38,7 @@ public class Bundle {
         } else {
             return issues.stream()
                     .map(e -> new BundleIssue(fs, e, e.getIssueSeverity()))
-                    .collect(Collectors.toList());
+                    .collect(toList());
         }
     }
 

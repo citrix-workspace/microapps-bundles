@@ -96,8 +96,8 @@ class BundlesLoaderTest {
     @Test
     void checkTranslationWithIncreasedNumberOfTranslationKeysForComingSoon() {
         FsComingSoonBundle fsDipBundle =
-                new FsComingSoonBundle(path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0" +
-                        ".1"),
+                new FsComingSoonBundle(
+                        path("src/test/resources/bundles_broken_translation_keys/dip/vendor/bundle/0.0.1"),
                         asList(
                                 Paths.get("i18n", "de.json"),
                                 Paths.get("i18n", "en.json"),

@@ -10,6 +10,9 @@ import lombok.Getter;
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceConfiguration {
+    private final SecurityConfiguration security;
+    private final List<Endpoint> dataEndpoints;
+    private final List<ServiceAction> serviceActions;
 
     @JsonCreator
     public ServiceConfiguration(@JsonProperty(value = "security") SecurityConfiguration security,
@@ -19,8 +22,4 @@ public class ServiceConfiguration {
         this.dataEndpoints = dataEndpoints;
         this.serviceActions = serviceActions;
     }
-
-    private final SecurityConfiguration security;
-    private final List<Endpoint> dataEndpoints;
-    private final List<ServiceAction> serviceActions;
 }
