@@ -6,18 +6,16 @@ import java.util.stream.Collectors;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.citrix.microapps.bundlegen.pojo.ModelTranslation;
+import lombok.AllArgsConstructor;
 
 import static java.lang.String.format;
 
+@AllArgsConstructor
 public class TranslationValidator {
 
     private static final String TRANSLATION_CHECKSUM_PAD = "Citrix";
 
     private ModelTranslation modelTranslation;
-
-    public TranslationValidator(ModelTranslation modelTranslation) {
-        this.modelTranslation = modelTranslation;
-    }
 
     // Sonar: Hashing data is security-sensitive.
     // MD5 is used only to create a checksum of keys in translation files
