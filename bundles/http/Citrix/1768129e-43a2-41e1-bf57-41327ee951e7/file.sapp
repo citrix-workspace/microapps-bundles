@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "697ccedb-412e-4e7c-85d2-bdcd399cd0fd",
       "serviceId" : 17,
-      "version" : 699,
+      "version" : 702,
       "actionApp" : true,
       "parameters" : {
         "imageUrl" : "exported/opportunity.0c540a511c468189e370aec2529cbe8b.svg",
@@ -4418,18 +4418,6 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "3b164e39-6895-4d60-b05f-3e05e1ab8e2e",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "c4987bf5-bbcd-4b46-b1ef-9e44db487498",
-            "type" : "HIDE",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "TRUE"
-          }, {
             "targetComponentId" : "ab528827-4fab-41da-ba92-dd9de824c5e3",
             "constraints" : [ ],
             "children" : [ ],
@@ -4489,6 +4477,18 @@
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
+          }, {
+            "targetComponentId" : "3b164e39-6895-4d60-b05f-3e05e1ab8e2e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "5cf91cc0-5381-42bf-bc2c-88cf90c9481d",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
           } ],
           "execution" : "AND",
           "valueType" : null,
@@ -4613,7 +4613,7 @@
     "appVersion" : {
       "id" : "b53a8b6f-0d93-46f9-871d-d741aa3ee4de",
       "serviceId" : 17,
-      "version" : 445,
+      "version" : 447,
       "actionApp" : true,
       "parameters" : {
         "imageUrl" : "exported/appointment.c117668c85459b8f05ff47018f14ab5a.svg",
@@ -5114,7 +5114,7 @@
             "operationStack" : {
               "operations" : [ ]
             },
-            "hideIfEmpty" : true,
+            "hideIfEmpty" : false,
             "visible" : 1,
             "name" : "Machine Session Count",
             "conditional_format" : {
@@ -5126,7 +5126,7 @@
           "displayorder" : 1,
           "columnType" : "STRING",
           "prefillValue" : null,
-          "tableid" : 9
+          "tableid" : 160
         }, {
           "type" : "TEXT",
           "appId" : "b53a8b6f-0d93-46f9-871d-d741aa3ee4de",
@@ -7004,6 +7004,37 @@
           "autojoins" : false
         },
         "title" : "c7ab5ab9-3367-426b-a5bc-83d4008bdbe4",
+        "logicConfiguration" : [ {
+          "constraints" : [ {
+            "targetComponentId" : "7b986127-ac98-4afc-871b-0dac73ae6136",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "VALUE",
+            "id" : "f30e7ebf-5384-4f6b-8a20-ae6e3046aa91",
+            "equality" : "IS",
+            "value" : "MultiSession"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "54e72808-237b-4f33-a3f7-d8dc98b98b6e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "c45fab81-c045-44b7-ac27-05518e8dafd6",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "MultiSession",
+          "id" : "8ed826c2-e279-4362-9604-efe3730c7668",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
+        } ],
         "parameters" : { },
         "tableid" : 160,
         "datasourceid" : 17,
@@ -7022,7 +7053,7 @@
     "appVersion" : {
       "id" : "c42a168d-713e-4d78-825b-1b2b2293f0cc",
       "serviceId" : 17,
-      "version" : 525,
+      "version" : 528,
       "actionApp" : true,
       "parameters" : {
         "imageUrl" : "exported/account.7e6a4a82a354a98226bc0c0b4ec9039b.svg",
@@ -9090,7 +9121,7 @@
             "valueType" : null,
             "label" : "",
             "id" : "601f2597-ec19-420e-8921-0e23df70543c",
-            "type" : "DISABLE",
+            "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
@@ -9102,7 +9133,7 @@
             "valueType" : null,
             "label" : "",
             "id" : "12148bf6-321b-4bd9-bc26-e09b99e73b5b",
-            "type" : "DISABLE",
+            "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
@@ -9126,18 +9157,6 @@
             "valueType" : null,
             "label" : "",
             "id" : "c6598068-3f44-4d3b-bb68-a9b99e518940",
-            "type" : "HIDE",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "TRUE"
-          }, {
-            "targetComponentId" : "66460443-21a3-4435-b7dd-d35b15ce4a8b",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "0aa281fe-7283-4d69-bb85-ed1d2e534252",
             "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
@@ -9202,6 +9221,18 @@
             "customExecution" : "",
             "value" : "",
             "group" : "FALSE"
+          }, {
+            "targetComponentId" : "66460443-21a3-4435-b7dd-d35b15ce4a8b",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "b7669203-0f93-4d7c-9a95-0893a176825b",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
           } ],
           "execution" : "AND",
           "valueType" : null,
@@ -9228,7 +9259,7 @@
             "valueType" : null,
             "label" : "",
             "id" : "682763ba-1267-4085-84a9-10aa91fd82f8",
-            "type" : "DISABLE",
+            "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
@@ -9240,7 +9271,7 @@
             "valueType" : null,
             "label" : "",
             "id" : "676f5da5-2431-4687-832e-b1f8d42929f0",
-            "type" : "DISABLE",
+            "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
@@ -9284,7 +9315,7 @@
   "services" : [ {
     "id" : 17,
     "uuid" : "de454c44-3615-44e6-b5ff-bd5dd363b3a1",
-    "version" : 104,
+    "version" : 105,
     "title" : "CVADs",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -13371,7 +13402,7 @@
           "uri" : "/Sessions/$search?fields={{fields}}",
           "headers" : [ ],
           "postMode" : "JSON",
-          "body" : "{\n    \"SearchFilters\":[\n        {\n            \"Property\": \"SessionStateChangeTime\",\n            \"Value\":\"LastMonth\",\n            \"Operator\":\"IsWithin\"\n        },\n        {\n            \"Property\":\"SessionState\",\n            \"Value\":\"Active\",\n            \"Operator\":\"Equals\"\n        }\n    ]\n}\n",
+          "body" : "{\n    \"SearchFilters\":[\n        {\n            \"Property\": \"SessionStateChangeTime\",\n            \"Value\":\"LastMonth\",\n            \"Operator\":\"IsWithin\"\n        }\n    ]\n}\n",
           "bodyParameters" : [ ],
           "pagination" : {
             "type" : "CURSOR",
@@ -13388,7 +13419,7 @@
           "uri" : "/Sessions/$search?fields={{fields}}",
           "headers" : [ ],
           "postMode" : "JSON",
-          "body" : "{\n    \"SearchFilters\":[\n        {\n            \"Property\": \"SessionStateChangeTime\",\n            \"Value\":\"Last30Minutes\",\n            \"Operator\":\"IsWithin\"\n        },\n        {\n            \"Property\":\"SessionState\",\n            \"Value\":\"Active\",\n            \"Operator\":\"Equals\"\n        }\n    ]\n}\n",
+          "body" : "{\n    \"SearchFilters\":[\n        {\n            \"Property\": \"SessionStateChangeTime\",\n            \"Value\":\"Last30Minutes\",\n            \"Operator\":\"IsWithin\"\n        }\n    ]\n}\n",
           "bodyParameters" : [ ],
           "pagination" : {
             "type" : "CURSOR",
