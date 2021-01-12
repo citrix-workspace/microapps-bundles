@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,12 +50,13 @@ public class BundlegenMain {
                 args[2].endsWith("/")
                         ? args[2] + ARCHIVES_DIR
                         : args[2] + "/" + ARCHIVES_DIR);
-        Instant bestPractisesValidationLimit;
+        Optional<Instant> bestPractisesValidationLimit;
 
         if (args.length > 3) {
             bestPractisesValidationLimit = parseBestPractisesValidationLimit(args[3]);
         } else {
-            bestPractisesValidationLimit = Instant.now().minus(DEFAULT_BEST_PRACTICES_VALIDATION_LIMIT_PERIOD);
+            bestPractisesValidationLimit =
+                    Optional.of(Instant.now().minus(DEFAULT_BEST_PRACTICES_VALIDATION_LIMIT_PERIOD));
         }
 
         if (!Files.isDirectory(bundlesDir) || !Files.isReadable(bundlesDir)) {
@@ -62,7 +64,7 @@ public class BundlegenMain {
             System.exit(1);
         }
 
-        if (bestPractisesValidationLimit == null) {
+        if (!bestPractisesValidationLimit.isPresent()) {
             logger.error("Optional input parameter validation-day-limit '{}' can't be parsed", args[3]);
             System.exit(1);
         }
@@ -79,7 +81,7 @@ public class BundlegenMain {
                 archiver,
                 distDir,
                 bundlesRepository,
-                bestPractisesValidationLimit);
+                bestPractisesValidationLimit.get());
 
         if (!processor.processAllBundles()) {
             logger.error("Bundles processing failed");
@@ -91,12 +93,12 @@ public class BundlegenMain {
         ((LoggerContext) LoggerFactory.getILoggerFactory()).stop();
     }
 
-    private static Instant parseBestPractisesValidationLimit(String validationDayLimitArgument) {
+    private static Optional<Instant> parseBestPractisesValidationLimit(String validationDayLimitArgument) {
         try {
-            return Instant.now().minus(Integer.valueOf(validationDayLimitArgument), DAYS);
+            return Optional.of(Instant.now().minus(Integer.valueOf(validationDayLimitArgument), DAYS));
         } catch (NumberFormatException e) {
             logger.warn("Unparseable validation day limit argument", e);
-            return null;
+            return Optional.empty();
         }
     }
 
