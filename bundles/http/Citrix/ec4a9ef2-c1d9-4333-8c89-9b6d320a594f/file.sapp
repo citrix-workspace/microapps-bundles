@@ -17983,25 +17983,25 @@
     "id" : 50,
     "uuid" : "8e87fee7-9037-4f8d-b9e4-66de4c258253",
     "version" : 466,
-    "title" : "Salesforce HTTP",
+    "title" : "ec4a9ef2-c1d9-4333-8c89-9b6d320a594f",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "microapps_salesforce_http_2",
     "configuration" : {
       "trackingUuid" : "8aae6ef4-bed3-4f54-8dfd-594dba062130",
-      "baseUrl" : "https://citrite--sapho.my.salesforce.com",
+      "baseUrl" : "https://{yoursalesforceurl}.my.salesforce.com",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
         "scope" : "",
-        "authorizationURL" : "https://test.salesforce.com/services/oauth2/authorize",
-        "tokenURL" : "https://test.salesforce.com/services/oauth2/token",
+        "authorizationURL" : "https://login.salesforce.com/services/oauth2/authorize",
+        "tokenURL" : "https://login.salesforce.com/services/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
           "name" : "Token",
-          "value" : "ujbx5wK9G0SXwvtrxEU1CbTlq"
+          "value" : "{yoursecuritytoken}"
         } ],
         "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
       },
@@ -18011,13 +18011,13 @@
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
         "scope" : "",
-        "authorizationURL" : "https://test.salesforce.com/services/oauth2/authorize",
-        "tokenURL" : "https://test.salesforce.com/services/oauth2/token",
+        "authorizationURL" : "https://login.salesforce.com/services/oauth2/authorize",
+        "tokenURL" : "https://login.salesforce.com/services/oauth2/token",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
           "name" : "Token",
-          "value" : "ujbx5wK9G0SXwvtrxEU1CbTlq"
+          "value" : "{yoursecuritytoken}"
         } ],
         "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
       },
