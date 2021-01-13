@@ -442,7 +442,7 @@ class BundlesLoaderTest {
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Invalid UTC timestamp format: field `deprecatedDate`, value `bad 2019-12-18T11:36:00`",
                                 "Values mismatch: field `type`, filesystem `DIP` != metadata `HTTP`",
-                                "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
+                                "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad_vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
                                 "Invalid value: field `type`, value `HTTP`, expecting `DIP`",
                                 "Invalid value: field `id`, value `bad id`, pattern `[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*`",
@@ -502,13 +502,16 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(
                         new FsHttpBundle(
-                                Paths.get("http", "vendor", "bad 00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                Paths.get(
+                                        "http",
+                                        "Vendor_Name_With_Whitespaces",
+                                        "bad 00b31529-bc3f-4dab-84c9-b0a539d51d73"),
                                 toPaths()),
                         defaultHttpMetadata
                                 .toBuilder()
                                 .trackingUuid(UUID.fromString("332d82b2-12cb-480d-8edb-9b9bca59a8c9"))
                                 .type(Type.DIP)
-                                .vendor("bad vendor")
+                                .vendor("Vendor Name With Whitespaces")
                                 .title("bad title")
                                 .description("bad description")
                                 .masVersion("bad 1.0.0")
@@ -522,7 +525,6 @@ class BundlesLoaderTest {
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `HTTP` != metadata `DIP`",
-                                "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad vendor`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
                                 "Invalid value: field `type`, value `DIP`, expecting `HTTP`",
                                 "Values mismatch: field `id`, filesystem `bad 00b31529-bc3f-4dab-84c9-b0a539d51d73` " +
