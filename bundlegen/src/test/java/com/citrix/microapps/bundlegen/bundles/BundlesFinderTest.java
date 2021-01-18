@@ -53,6 +53,12 @@ class BundlesFinderTest {
                                 Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendor2/bundle2"),
                         singletonList(Paths.get("metadata.json"))),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendorForIconUrlTest" +
+                        "/00000012-0000-0000-0000-000000000000"),
+                        asList(Paths.get("file.sapp"), Paths.get("metadata.json"))),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendorForIconUrlTest" +
+                        "/00000012-0000-0000-0000-000000000002"),
+                        asList(Paths.get("file.sapp"), Paths.get("metadata.json"))),
                 new FsIdpBundle(path("src/test/resources/bundles/identity_provider/vendor1/bundle1"),
                         singletonList(Paths.get("metadata.json")))
         );

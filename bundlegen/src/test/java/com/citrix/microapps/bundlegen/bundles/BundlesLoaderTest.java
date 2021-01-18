@@ -129,10 +129,11 @@ class BundlesLoaderTest {
         FsHttpBundle bundle =
                 new FsHttpBundle(
                         path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
-                        asList(Paths.get("file.sapp")));
+                        asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
+        Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
-                bundle);
+                bundle, metadata);
 
         assertNotNull(templateFile.get());
         assertListEqualsInAnyOrder(asList(
@@ -141,7 +142,48 @@ class BundlesLoaderTest {
                 "Endpoint `testEndpoint` does not use incremental syncs",
                 "Endpoint `testEndpoint` appears to implement a secret in plaintext",
                 "Service action `testAction` does not use update before action",
-                "Service action `testAction` does not use update after action"),
+                "Service action `testAction` does not use update after action",
+                "Integration does not use OAuth for writeback actions"),
+                toMessages(validationWarnings));
+    }
+
+    @Test
+    void checkAbsoluteUrlForLibraryIcon() {
+        FsHttpBundle bundle =
+                new FsHttpBundle(
+                        path("src/test/resources/bundles/http/vendorForIconUrlTest/00000012-0000-0000-0000-000000000000"),
+                        asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
+        List<ValidationException> validationWarnings = new ArrayList<>();
+        Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
+        Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
+                bundle, metadata);
+
+        assertNotNull(templateFile.get());
+        assertListEqualsInAnyOrder(asList(
+                "LIBRARY type iconUrl must be relative and start with `exported/`",
+                "Same iconUrl must be specified in both metadata.json and service configuration"),
+                toMessages(validationWarnings));
+    }
+
+    @Test
+    void checkIconTypeMissing() {
+        FsHttpBundle bundle =
+                new FsHttpBundle(
+                        path("src/test/resources/bundles/http/vendorForIconUrlTest" +
+                                "/00000012-0000-0000-0000-000000000002"),
+                        asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
+        List<ValidationException> validationWarnings = new ArrayList<>();
+        Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
+        Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
+                bundle, metadata);
+
+        assertNotNull(templateFile.get());
+        assertListEqualsInAnyOrder(asList(
+                "Loading of bundle metadata failed: src/test/resources/bundles/http/vendorForIconUrlTest" +
+                        "/00000012-0000-0000-0000-000000000002/metadata.json",
+                "Both iconUrl and iconType have to be specified",
+                "Unsupported iconType: null",
+                "Same iconUrl must be specified in both metadata.json and service configuration"),
                 toMessages(validationWarnings));
     }
 
