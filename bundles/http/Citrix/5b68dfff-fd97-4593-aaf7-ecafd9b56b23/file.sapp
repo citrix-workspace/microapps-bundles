@@ -8,7 +8,8 @@
         "imageUrl" : "exported/ticket_create.d666c139f82e62a3394ccff26852dd92.svg",
         "description" : "62e35554-aab0-4740-a759-4b5543e8478d"
       },
-      "actionApp" : true,
+      "startPageId" : "2029f56c-c6e8-4927-80b5-0c21f8240d56",
+      "title" : "de071595-2e81-4687-88a9-ae7488593c8f",
       "pages" : [ {
         "id" : "2029f56c-c6e8-4927-80b5-0c21f8240d56",
         "appId" : "728f5abf-8e68-4862-884a-2e971d3111d5",
@@ -1991,9 +1992,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "de071595-2e81-4687-88a9-ae7488593c8f",
       "trackingUuid" : "946840d9-dbd0-49b7-ab68-a4b665ff27b2",
-      "startPageId" : "2029f56c-c6e8-4927-80b5-0c21f8240d56"
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -2008,7 +2008,8 @@
         "imageUrl" : "exported/ticket_create.d666c139f82e62a3394ccff26852dd92.svg",
         "description" : "802d1429-7669-4f2c-9264-65d50c787597"
       },
-      "actionApp" : true,
+      "startPageId" : "f0b0de32-8c16-4c2b-9b5e-5c00c4e112a4",
+      "title" : "e07cf29e-c079-452e-b9f3-560ffaa641e4",
       "pages" : [ {
         "id" : "f0b0de32-8c16-4c2b-9b5e-5c00c4e112a4",
         "appId" : "856e7c83-8704-49fa-8c70-e7a518807e1d",
@@ -3925,9 +3926,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "e07cf29e-c079-452e-b9f3-560ffaa641e4",
       "trackingUuid" : "48fe11ef-2119-49e6-a46c-540a9482b817",
-      "startPageId" : "f0b0de32-8c16-4c2b-9b5e-5c00c4e112a4"
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -3942,7 +3942,8 @@
         "imageUrl" : "exported/ticket.c5845ed40605cc628a7bd89f963601b1.svg",
         "description" : "3af9db10-6112-4db8-96a1-627a1a5b2a46"
       },
-      "actionApp" : true,
+      "startPageId" : "3f8eeafd-1b5f-4642-ba06-2231bbbf8b01",
+      "title" : "e0149c2b-6acd-45e1-bd34-8a29650aa16b",
       "pages" : [ {
         "id" : "3f8eeafd-1b5f-4642-ba06-2231bbbf8b01",
         "appId" : "d61dfba8-4677-4cc5-b8cf-e9182ffefb03",
@@ -13569,9 +13570,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "e0149c2b-6acd-45e1-bd34-8a29650aa16b",
       "trackingUuid" : "f1a52f73-b87d-4158-9b44-9f77056b3a81",
-      "startPageId" : "3f8eeafd-1b5f-4642-ba06-2231bbbf8b01"
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -13581,7 +13581,7 @@
   "services" : [ {
     "id" : 18,
     "uuid" : "b4a59350-e4b8-4479-800c-5cdeb57d29ae",
-    "version" : 458,
+    "version" : 463,
     "title" : "Jira",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -22287,366 +22287,6 @@
           }
         } ]
       }, {
-        "uniqueId" : "b648b206-edce-4bf0-b052-a2f080bea6f3",
-        "name" : "Create Epic",
-        "parameters" : [ {
-          "uniqueId" : "d3e86d2b-34dd-446d-bb7f-318d80251b16",
-          "name" : "issue_type",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "issue_type"
-          }
-        }, {
-          "uniqueId" : "dc1ea62c-0367-499f-9f3b-ad00c74e61ac",
-          "name" : "project",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "project"
-          }
-        }, {
-          "uniqueId" : "f7c9519e-622b-4cb7-b7f4-a48e0c4f8451",
-          "name" : "description",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "description"
-          }
-        }, {
-          "uniqueId" : "524a0c19-8699-4aaf-a16e-5c1e172e0c78",
-          "name" : "assignee",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "assignee"
-          }
-        }, {
-          "uniqueId" : "a23733c4-e42d-4eb4-a487-964c995256d5",
-          "name" : "customFieldsForEpicName",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "customFieldsForEpicName"
-          }
-        }, {
-          "uniqueId" : "712bcb4d-da69-4f77-92fa-9c898c066c78",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        }, {
-          "uniqueId" : "5fbe0726-62d2-42bb-9bde-8e5fa4ada04a",
-          "name" : "fields",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "*all,-comment"
-          }
-        }, {
-          "uniqueId" : "167b0203-f62c-4d27-9b28-ccba18e44d71",
-          "name" : "expand",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "transitions,renderedFields"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "/rest/api/2/issue",
-          "headers" : [ ],
-          "postMode" : "JSON",
-          "body" : "{\n  \"update\": {},\n  \"fields\": {\n    \"customfield_10011\":{{customFieldsForEpicName}},\n    \"summary\":{{title}},\n    \"issuetype\":{\"id\":{{issue_type}}},\n    \"project\":{\"id\":{{project}}},\n    \"description\": \"{{description}}\",\n    \"assignee\": {\"id\":{{assignee}}}\n  }\n}",
-          "bodyParameters" : [ ]
-        },
-        "preActionUpdates" : [ ],
-        "postActionUpdates" : [ {
-          "uniqueId" : "e3acd2a6-8d29-4019-9901-fd02516916d6",
-          "endpointLegacyId" : 16,
-          "endpointId" : "c961fafa-6c69-4e85-b154-03f5f577e29f",
-          "request" : {
-            "method" : "GET",
-            "uri" : "rest/api/2/search?fields={{fields}}&expand={{expand}}&jql=created>=-1m",
-            "headers" : [ ],
-            "postMode" : "FORMDATA",
-            "body" : "",
-            "bodyParameters" : [ ]
-          },
-          "callChainEnabled" : true
-        } ],
-        "actionParameters" : [ {
-          "uniqueId" : "d3e86d2b-34dd-446d-bb7f-318d80251b16",
-          "name" : "issue_type",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "issue_type"
-          }
-        }, {
-          "uniqueId" : "dc1ea62c-0367-499f-9f3b-ad00c74e61ac",
-          "name" : "project",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "project"
-          }
-        }, {
-          "uniqueId" : "f7c9519e-622b-4cb7-b7f4-a48e0c4f8451",
-          "name" : "description",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "description"
-          }
-        }, {
-          "uniqueId" : "524a0c19-8699-4aaf-a16e-5c1e172e0c78",
-          "name" : "assignee",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "assignee"
-          }
-        }, {
-          "uniqueId" : "a23733c4-e42d-4eb4-a487-964c995256d5",
-          "name" : "customFieldsForEpicName",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "customFieldsForEpicName"
-          }
-        }, {
-          "uniqueId" : "712bcb4d-da69-4f77-92fa-9c898c066c78",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        } ]
-      }, {
-        "uniqueId" : "754cf21d-e9af-435e-9151-605eda9b8c8a",
-        "name" : "Create Epic wo Assignee",
-        "parameters" : [ {
-          "uniqueId" : "e77245ca-32cc-4b75-9ecb-ee98db745282",
-          "name" : "issue_type",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "issue_type"
-          }
-        }, {
-          "uniqueId" : "aac014cb-f53a-4b0b-b11d-ac30d32a16f1",
-          "name" : "project",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "project"
-          }
-        }, {
-          "uniqueId" : "9532291e-f70f-4b7c-9132-777dc9dc6a46",
-          "name" : "description",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "description"
-          }
-        }, {
-          "uniqueId" : "802a188a-b4bf-45c6-a4aa-5dfa84f2d1b5",
-          "name" : "customFieldsForEpicName",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "customFieldsForEpicName"
-          }
-        }, {
-          "uniqueId" : "5c39aa1b-7c0f-42d0-816d-66bbe74c1754",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        }, {
-          "uniqueId" : "78005217-42dc-44f9-bcca-8c906660d131",
-          "name" : "fields",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "*all,-comment"
-          }
-        }, {
-          "uniqueId" : "749c7636-a5ab-42be-8ea6-c994f2705469",
-          "name" : "expand",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "transitions,renderedFields"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "/rest/api/2/issue",
-          "headers" : [ ],
-          "postMode" : "JSON",
-          "body" : "{\n  \"update\": {},\n  \"fields\": {\n    \"customfield_10011\":{{customFieldsForEpicName}},\n    \"summary\":{{title}},\n    \"issuetype\":{\"id\":{{issue_type}}},\n    \"project\":{\"id\":{{project}}},\n    \"description\": \"{{description}}\"\n  }\n}",
-          "bodyParameters" : [ ]
-        },
-        "preActionUpdates" : [ ],
-        "postActionUpdates" : [ {
-          "uniqueId" : "64ff26fe-54db-44f9-8284-92ade75668e1",
-          "endpointLegacyId" : 16,
-          "endpointId" : "c961fafa-6c69-4e85-b154-03f5f577e29f",
-          "request" : {
-            "method" : "GET",
-            "uri" : "rest/api/2/search?fields={{fields}}&expand={{expand}}&jql=created>=-1m",
-            "headers" : [ ],
-            "postMode" : "FORMDATA",
-            "body" : "",
-            "bodyParameters" : [ ]
-          },
-          "callChainEnabled" : true
-        } ],
-        "actionParameters" : [ {
-          "uniqueId" : "e77245ca-32cc-4b75-9ecb-ee98db745282",
-          "name" : "issue_type",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "issue_type"
-          }
-        }, {
-          "uniqueId" : "aac014cb-f53a-4b0b-b11d-ac30d32a16f1",
-          "name" : "project",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "project"
-          }
-        }, {
-          "uniqueId" : "9532291e-f70f-4b7c-9132-777dc9dc6a46",
-          "name" : "description",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "",
-            "actionParameterName" : "description"
-          }
-        }, {
-          "uniqueId" : "802a188a-b4bf-45c6-a4aa-5dfa84f2d1b5",
-          "name" : "customFieldsForEpicName",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "customFieldsForEpicName"
-          }
-        }, {
-          "uniqueId" : "5c39aa1b-7c0f-42d0-816d-66bbe74c1754",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        } ]
-      }, {
         "uniqueId" : "257e86a4-705f-44a9-a225-3176a2cad080",
         "name" : "Create Subtask",
         "parameters" : [ {
@@ -23304,6 +22944,386 @@
             "required" : false,
             "defaultValue" : "",
             "actionParameterName" : "description"
+          }
+        }, {
+          "uniqueId" : "5c39aa1b-7c0f-42d0-816d-66bbe74c1754",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        } ]
+      }, {
+        "uniqueId" : "b648b206-edce-4bf0-b052-a2f080bea6f3",
+        "name" : "Create Epic",
+        "parameters" : [ {
+          "uniqueId" : "d3e86d2b-34dd-446d-bb7f-318d80251b16",
+          "name" : "issue_type",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "issue_type"
+          }
+        }, {
+          "uniqueId" : "dc1ea62c-0367-499f-9f3b-ad00c74e61ac",
+          "name" : "project",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "project"
+          }
+        }, {
+          "uniqueId" : "f7c9519e-622b-4cb7-b7f4-a48e0c4f8451",
+          "name" : "description",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "description"
+          }
+        }, {
+          "uniqueId" : "524a0c19-8699-4aaf-a16e-5c1e172e0c78",
+          "name" : "assignee",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "assignee"
+          }
+        }, {
+          "uniqueId" : "a23733c4-e42d-4eb4-a487-964c995256d5",
+          "name" : "customFieldsForEpicName",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "customFieldsForEpicName"
+          }
+        }, {
+          "uniqueId" : "712bcb4d-da69-4f77-92fa-9c898c066c78",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        }, {
+          "uniqueId" : "5fbe0726-62d2-42bb-9bde-8e5fa4ada04a",
+          "name" : "fields",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "*all,-comment"
+          }
+        }, {
+          "uniqueId" : "167b0203-f62c-4d27-9b28-ccba18e44d71",
+          "name" : "expand",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "transitions,renderedFields"
+          }
+        }, {
+          "uniqueId" : "c5fc6573-99a6-4f02-9f54-4c8ac3d2c59b",
+          "name" : "EpicFieldId",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "{Epic-Name-customFieldId}"
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "/rest/api/2/issue",
+          "headers" : [ ],
+          "postMode" : "JSON",
+          "body" : "{\n  \"update\": {},\n  \"fields\": {\n    \"customfield_{{EpicFieldId}}\":{{customFieldsForEpicName}},\n    \"summary\":{{title}},\n    \"issuetype\":{\"id\":{{issue_type}}},\n    \"project\":{\"id\":{{project}}},\n    \"description\": \"{{description}}\",\n    \"assignee\": {\"id\":{{assignee}}}\n  }\n}",
+          "bodyParameters" : [ ]
+        },
+        "preActionUpdates" : [ ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "e3acd2a6-8d29-4019-9901-fd02516916d6",
+          "endpointLegacyId" : 16,
+          "endpointId" : "c961fafa-6c69-4e85-b154-03f5f577e29f",
+          "request" : {
+            "method" : "GET",
+            "uri" : "rest/api/2/search?fields={{fields}}&expand={{expand}}&jql=created>=-1m",
+            "headers" : [ ],
+            "postMode" : "FORMDATA",
+            "body" : "",
+            "bodyParameters" : [ ]
+          },
+          "callChainEnabled" : true
+        } ],
+        "actionParameters" : [ {
+          "uniqueId" : "d3e86d2b-34dd-446d-bb7f-318d80251b16",
+          "name" : "issue_type",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "issue_type"
+          }
+        }, {
+          "uniqueId" : "dc1ea62c-0367-499f-9f3b-ad00c74e61ac",
+          "name" : "project",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "project"
+          }
+        }, {
+          "uniqueId" : "f7c9519e-622b-4cb7-b7f4-a48e0c4f8451",
+          "name" : "description",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "description"
+          }
+        }, {
+          "uniqueId" : "524a0c19-8699-4aaf-a16e-5c1e172e0c78",
+          "name" : "assignee",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "assignee"
+          }
+        }, {
+          "uniqueId" : "a23733c4-e42d-4eb4-a487-964c995256d5",
+          "name" : "customFieldsForEpicName",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "customFieldsForEpicName"
+          }
+        }, {
+          "uniqueId" : "712bcb4d-da69-4f77-92fa-9c898c066c78",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        } ]
+      }, {
+        "uniqueId" : "754cf21d-e9af-435e-9151-605eda9b8c8a",
+        "name" : "Create Epic wo Assignee",
+        "parameters" : [ {
+          "uniqueId" : "e77245ca-32cc-4b75-9ecb-ee98db745282",
+          "name" : "issue_type",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "issue_type"
+          }
+        }, {
+          "uniqueId" : "aac014cb-f53a-4b0b-b11d-ac30d32a16f1",
+          "name" : "project",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "project"
+          }
+        }, {
+          "uniqueId" : "9532291e-f70f-4b7c-9132-777dc9dc6a46",
+          "name" : "description",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "description"
+          }
+        }, {
+          "uniqueId" : "802a188a-b4bf-45c6-a4aa-5dfa84f2d1b5",
+          "name" : "customFieldsForEpicName",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "customFieldsForEpicName"
+          }
+        }, {
+          "uniqueId" : "5c39aa1b-7c0f-42d0-816d-66bbe74c1754",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        }, {
+          "uniqueId" : "78005217-42dc-44f9-bcca-8c906660d131",
+          "name" : "fields",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "*all,-comment"
+          }
+        }, {
+          "uniqueId" : "749c7636-a5ab-42be-8ea6-c994f2705469",
+          "name" : "expand",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "transitions,renderedFields"
+          }
+        }, {
+          "uniqueId" : "e7c4bb55-9b01-49f3-8a85-6f6692f529d4",
+          "name" : "EpicFieldId",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "{Epic-Name-customFieldId}"
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "/rest/api/2/issue",
+          "headers" : [ ],
+          "postMode" : "JSON",
+          "body" : "{\n  \"update\": {},\n  \"fields\": {\n    \"customfield_{{EpicFieldId}}\":{{customFieldsForEpicName}},\n    \"summary\":{{title}},\n    \"issuetype\":{\"id\":{{issue_type}}},\n    \"project\":{\"id\":{{project}}},\n    \"description\": \"{{description}}\"\n  }\n}",
+          "bodyParameters" : [ ]
+        },
+        "preActionUpdates" : [ ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "64ff26fe-54db-44f9-8284-92ade75668e1",
+          "endpointLegacyId" : 16,
+          "endpointId" : "c961fafa-6c69-4e85-b154-03f5f577e29f",
+          "request" : {
+            "method" : "GET",
+            "uri" : "rest/api/2/search?fields={{fields}}&expand={{expand}}&jql=created>=-1m",
+            "headers" : [ ],
+            "postMode" : "FORMDATA",
+            "body" : "",
+            "bodyParameters" : [ ]
+          },
+          "callChainEnabled" : true
+        } ],
+        "actionParameters" : [ {
+          "uniqueId" : "e77245ca-32cc-4b75-9ecb-ee98db745282",
+          "name" : "issue_type",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "issue_type"
+          }
+        }, {
+          "uniqueId" : "aac014cb-f53a-4b0b-b11d-ac30d32a16f1",
+          "name" : "project",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "project"
+          }
+        }, {
+          "uniqueId" : "9532291e-f70f-4b7c-9132-777dc9dc6a46",
+          "name" : "description",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "",
+            "actionParameterName" : "description"
+          }
+        }, {
+          "uniqueId" : "802a188a-b4bf-45c6-a4aa-5dfa84f2d1b5",
+          "name" : "customFieldsForEpicName",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "customFieldsForEpicName"
           }
         }, {
           "uniqueId" : "5c39aa1b-7c0f-42d0-816d-66bbe74c1754",
@@ -30126,8 +30146,8 @@
         }
       } ]
     } ],
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
     "id" : "02651035-442c-4852-8702-a4dff8f653e3",
@@ -30799,6 +30819,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "5C4E140A316F947D38544C61B1ACA535",
-  "appliedSappUpgrades" : [ "microapp-4518", "microapp-10420", "microapp-8576", "microapp-9597", "microapp-3838", "microapp-3548", "microapp-8921", "microapp-9701", "microapp-7961", "microapp-4020", "microapp-7888", "microapp-6617", "microapp-8003", "microapp-10421", "microapp-7561", "microapp-5025", "microapp-5227", "microapp-6264", "microapp-10876", "microapp-10860", "microapp-11340", "microapp-10856", "microapp-12427", "microapp-8950", "microapp-6593", "microapp-1980", "microapp-11136", "microapp-11349", "microapp-10858", "microapp-7984", "microapp-8892", "microapp-6293", "microapp-3547", "microapp-6262", "microapp-11836", "microapp-8511", "microapp-12505", "microapp-6790", "microapp-10549", "microapp-9702", "microapp-6853", "microapp-4666", "microapp-3580", "microapp-2450", "microapp-7290", "microapp-12525" ],
-  "buildVersion" : "1.56.0.780c39df1de647de85e1d298caea5626e413cb81"
+  "appliedSappUpgrades" : [ "microapp-3838", "microapp-4666", "microapp-6262", "microapp-12525", "microapp-10421", "microapp-12505", "microapp-10858", "microapp-9702", "microapp-11340", "microapp-6617", "microapp-8511", "microapp-3580", "microapp-4020", "microapp-2450", "microapp-10856", "microapp-8950", "microapp-7984", "microapp-12427", "microapp-11836", "microapp-8921", "microapp-6293", "microapp-11349", "microapp-10860", "microapp-7290", "microapp-3547", "microapp-8576", "microapp-5227", "microapp-6593", "microapp-10876", "microapp-7961", "microapp-1980", "microapp-9701", "microapp-7888", "microapp-6790", "microapp-10420", "microapp-9597", "microapp-6264", "microapp-10549", "microapp-7561", "microapp-3548", "microapp-5025", "microapp-8892", "microapp-11136", "microapp-4518", "microapp-6853", "microapp-8003" ],
+  "buildVersion" : "1.57.0.c96b970ea1ed697e385a7e1087d99fa2a71e78e0"
 }
