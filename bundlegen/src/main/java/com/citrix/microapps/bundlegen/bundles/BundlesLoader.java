@@ -506,7 +506,7 @@ public class BundlesLoader {
     }
 
     private static String replaceWhitespacesWithUnderscores(String text) {
-        return text.replaceAll(" ", WORD_SEPARATOR);
+        return text != null && !text.isEmpty() ? text.replaceAll("\\s", WORD_SEPARATOR) : text;
     }
 
     private static Optional<ValidationException> validationIssue(String message) {
