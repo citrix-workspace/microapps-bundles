@@ -2,35 +2,40 @@
   "type" : "DIP",
   "vendor" : "Citrix",
   "id" : "com.sapho.services.jira.JiraService",
+  "trackingUuid" : "02996e45-00c9-43a5-8522-dbf7fbab65d1",
   "version" : "0.2.5",
   "title" : "Jira",
   "description" : "Integrate with Jira to track issues and get automated updates about tasks on any device, intranet, or messenger.",
   "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/JIRA.35cdd2008e8e83479745e5635da3d7f1.svg",
-  "masVersion" : "1.48.0-SNAPSHOT",
+  "masVersion" : "1.58.2.cc76979da2388bf0a5ad9ed01a94a0b7eefb97f8",
   "categories" : [ "LEGACY" ],
-  "created" : "2020-12-03T12:10:57",
+  "created" : "2021-02-01T13:14:59",
+  "deprecatedDate": "2021-05-15T00:00:00Z",
   "supportsOAuthForActions" : true,
   "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
   "apps" : [ {
-    "uuid" : "64b369b6-76e8-4708-b3c6-e926010f5397",
+    "uuid" : "4892a45e-4492-41d2-b355-38d53f009ee5",
+    "trackingUuid" : "8aba5088-fda6-4cb1-b482-a59926c0a198",
     "title" : "Create Ticket",
     "numberOfEvents" : 0,
     "action" : true
   }, {
-    "uuid" : "9aba66f7-6609-4e8d-b7bc-3e9a3fcf3601",
+    "uuid" : "940820a3-1e1e-4dac-8ec1-683c534d7d28",
+    "trackingUuid" : "5643d0d2-073f-45c0-9f71-851f168e1616",
     "title" : "Tickets",
     "numberOfEvents" : 9,
     "action" : true
-        } ],
-        "vaResolvers" : [ {
-          "name" : "ServiceDesk Details",
-          "intentName" : "ServiceDesk.Details"
-        }, {
-          "name" : "ServiceDesk Lookup",
-          "intentName" : "ServiceDesk.Lookup"
-        } ],
-        "tags" : [ {
-          "tag" : "helpUrl",
-          "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-jira.html"
-        } ]
-      }
+  } ],
+  "vaResolvers" : [ {
+	"name" : "ServiceDesk Details",
+	"intentName" : "ServiceDesk.Details"
+	}, {
+	"name" : "ServiceDesk Lookup",
+	"intentName" : "ServiceDesk.Lookup"
+	} ],
+  "tags" : [ {
+    "tag" : "helpUrl",
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-jira.html"
+  } ],
+  "hideAddButton" : false
+}
