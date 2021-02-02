@@ -1,1152 +1,21 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-      "serviceId" : 18,
-      "version" : 1269,
-      "parameters" : {
-        "imageUrl" : "exported/approval_change.44b65a0479ebafd66ab7c949e10687f6.svg",
-        "description" : "e2b9de14-3ff2-482a-87c8-49f7663a1628"
-      },
-      "title" : "9ec3a17b-9d8c-4fb9-a99e-ad41b6bacbcc",
-      "startPageId" : "7ffc6731-46b7-4a79-96df-2fd8e6dbc16a",
-      "pages" : [ {
-        "id" : "7ffc6731-46b7-4a79-96df-2fd8e6dbc16a",
-        "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-        "type" : "DETAIL",
-        "components" : [ {
-          "type" : "TABLE",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "componentTableId" : 102,
-          "defaultLimit" : 20,
-          "parameters" : {
-            "tableconfig" : {
-              "noDataText" : "b3a99278-2e6c-403c-8c91-afa6623342f1",
-              "tableid" : 102,
-              "sqlquery" : {
-                "id" : "61674ae4-261f-48ab-8006-774f0395b8e2",
-                "constraints" : {
-                  "type" : "EXPRESSION",
-                  "left" : {
-                    "type" : "EXPRESSION",
-                    "left" : {
-                      "type" : "EXPRESSION",
-                      "left" : {
-                        "type" : "EXPRESSION",
-                        "left" : {
-                          "type" : "EXPRESSION",
-                          "left" : {
-                            "type" : "EXPRESSION",
-                            "left" : {
-                              "type" : "TERM",
-                              "constraint" : {
-                                "tableId" : 101,
-                                "columnId" : 1313,
-                                "foreignKeyId" : 80,
-                                "valueType" : "VALUE",
-                                "value" : "published",
-                                "ignoredWhenValueIsNull" : false,
-                                "action" : "EQUALS_TO"
-                              }
-                            },
-                            "operator" : "AND",
-                            "right" : {
-                              "type" : "TERM",
-                              "constraint" : {
-                                "tableId" : 101,
-                                "columnId" : 1311,
-                                "foreignKeyId" : 80,
-                                "valueType" : "TODAY_MINUS_N",
-                                "value" : "7",
-                                "ignoredWhenValueIsNull" : false,
-                                "action" : "GREATER_OR_EQUAL"
-                              }
-                            }
-                          },
-                          "operator" : "AND",
-                          "right" : {
-                            "type" : "EXPRESSION",
-                            "left" : {
-                              "type" : "EXPRESSION",
-                              "left" : {
-                                "type" : "TERM",
-                                "constraint" : {
-                                  "tableId" : 101,
-                                  "columnId" : 1305,
-                                  "foreignKeyId" : 80,
-                                  "valueType" : "COMPONENT",
-                                  "variableComponent" : "6e69664d-6529-4758-9448-cab8cbc4c4c3",
-                                  "ignoredWhenValueIsNull" : true,
-                                  "action" : "LIKE"
-                                }
-                              },
-                              "operator" : "OR",
-                              "right" : {
-                                "type" : "TERM",
-                                "constraint" : {
-                                  "tableId" : 101,
-                                  "columnId" : 1315,
-                                  "foreignKeyId" : 80,
-                                  "valueType" : "COMPONENT",
-                                  "variableComponent" : "6e69664d-6529-4758-9448-cab8cbc4c4c3",
-                                  "ignoredWhenValueIsNull" : true,
-                                  "action" : "LIKE"
-                                }
-                              }
-                            },
-                            "operator" : "OR",
-                            "right" : {
-                              "type" : "TERM",
-                              "constraint" : {
-                                "tableId" : 102,
-                                "columnId" : 1318,
-                                "valueType" : "COMPONENT",
-                                "variableComponent" : "6e69664d-6529-4758-9448-cab8cbc4c4c3",
-                                "ignoredWhenValueIsNull" : true,
-                                "action" : "LIKE"
-                              }
-                            }
-                          }
-                        },
-                        "operator" : "AND",
-                        "right" : {
-                          "type" : "EXPRESSION",
-                          "left" : {
-                            "type" : "TERM",
-                            "constraint" : {
-                              "tableId" : 101,
-                              "columnId" : 1312,
-                              "foreignKeyId" : 79,
-                              "valueType" : "VALUE",
-                              "value" : "studio",
-                              "ignoredWhenValueIsNull" : false,
-                              "action" : "EQUALS_TO"
-                            }
-                          },
-                          "operator" : "OR",
-                          "right" : {
-                            "type" : "TERM",
-                            "constraint" : {
-                              "tableId" : 101,
-                              "columnId" : 1312,
-                              "foreignKeyId" : 79,
-                              "valueType" : "VALUE",
-                              "value" : "submitted",
-                              "ignoredWhenValueIsNull" : false,
-                              "action" : "EQUALS_TO"
-                            }
-                          }
-                        }
-                      },
-                      "operator" : "AND",
-                      "right" : {
-                        "type" : "TERM",
-                        "constraint" : {
-                          "tableId" : 102,
-                          "columnId" : 1317,
-                          "valueType" : "COMPONENT",
-                          "variableComponent" : "4663ce01-1e12-489a-ba1d-36ba2e63cdfb",
-                          "ignoredWhenValueIsNull" : true,
-                          "action" : "EQUALS_TO"
-                        }
-                      }
-                    },
-                    "operator" : "AND",
-                    "right" : {
-                      "type" : "TERM",
-                      "constraint" : {
-                        "tableId" : 100,
-                        "columnId" : 1304,
-                        "foreignKeyId" : 81,
-                        "valueType" : "VALUE",
-                        "value" : "published",
-                        "ignoredWhenValueIsNull" : false,
-                        "action" : "EQUALS_TO"
-                      }
-                    }
-                  },
-                  "operator" : "AND",
-                  "right" : {
-                    "type" : "TERM",
-                    "constraint" : {
-                      "tableId" : 104,
-                      "columnId" : 1326,
-                      "foreignKeyId" : 82,
-                      "valueType" : "USER_EMAIL",
-                      "ignoredWhenValueIsNull" : false,
-                      "action" : "EQUALS_TO"
-                    }
-                  }
-                },
-                "autojoins" : false
-              },
-              "sqlorder" : {
-                "id" : "37506269-b448-4eae-8707-dd85e2d5ddfb",
-                "constraints" : {
-                  "type" : "TERM",
-                  "constraint" : {
-                    "tableId" : 101,
-                    "columnId" : 1311,
-                    "foreignKeyId" : 80,
-                    "order" : "DESC",
-                    "ignoredWhenValueIsNull" : false
-                  }
-                },
-                "autojoins" : false
-              },
-              "show_1_to_n" : "0",
-              "columns" : [ {
-                "foreignKeyId" : 80,
-                "type" : "SIMPLE",
-                "aggregation" : "NONE",
-                "label" : "6f0e3d4d-b075-4253-ab05-a1ac3774880b",
-                "id" : "yspqbc",
-                "tableid" : 101,
-                "columnid" : 1315,
-                "urlTemplate" : null,
-                "format" : "none",
-                "tableColumn" : {
-                  "columnType" : "STRING"
-                },
-                "conditional_format" : null
-              }, {
-                "type" : "SIMPLE",
-                "aggregation" : "NONE",
-                "label" : "40302ff6-5f9d-4c51-aef3-8d3103e994f6",
-                "id" : "6g3lnb",
-                "tableid" : 102,
-                "columnid" : 1318,
-                "urlTemplate" : null,
-                "format" : "none",
-                "tableColumn" : {
-                  "columnType" : "STRING"
-                },
-                "conditional_format" : null
-              }, {
-                "foreignKeyId" : 80,
-                "type" : "SIMPLE",
-                "aggregation" : "NONE",
-                "label" : "8a928b3d-d6cb-4606-8a84-3a7b5dbf848a",
-                "id" : "yojgof",
-                "tableid" : 101,
-                "columnid" : 1305,
-                "urlTemplate" : null,
-                "format" : "none",
-                "tableColumn" : {
-                  "columnType" : "STRING"
-                },
-                "conditional_format" : null
-              }, {
-                "foreignKeyId" : 80,
-                "type" : "SIMPLE",
-                "aggregation" : "NONE",
-                "label" : "9d87617a-ab8b-4d33-ab12-918928e497e0",
-                "id" : "src0ax",
-                "tableid" : 101,
-                "columnid" : 1308,
-                "urlTemplate" : null,
-                "format" : "yes-no",
-                "tableColumn" : {
-                  "columnType" : "BOOLEAN"
-                },
-                "conditional_format" : null
-              }, {
-                "foreignKeyId" : 80,
-                "type" : "SIMPLE",
-                "aggregation" : "NONE",
-                "label" : "d7b77c88-3c92-4239-88d5-840106599c1e",
-                "id" : "6qtq4f",
-                "tableid" : 101,
-                "columnid" : 1311,
-                "urlTemplate" : null,
-                "format" : "datetime",
-                "tableColumn" : {
-                  "columnType" : "TIMESTAMP"
-                },
-                "conditional_format" : null
-              } ],
-              "images" : [ ],
-              "groupByColumns" : [ ],
-              "linkpageid" : "9f159b29-63e5-4109-8be8-c9e967ee2513",
-              "hideIfEmpty" : false,
-              "sortable" : 1,
-              "alignment" : "left"
-            }
-          },
-          "id" : "b5cfd261-f377-49bc-b08b-80f88ea6f228",
-          "defaultvalue" : "",
-          "displayorder" : 3,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "rowAction" : { },
-          "cssclass" : "",
-          "defaultLimit" : 20,
-          "icon" : "",
-          "tableid" : 10554,
-          "sortable" : false,
-          "pageId" : "ee5675d3-f311-4504-a9c9-adeee0c2469a"
-        }, {
-          "type" : "TEXT_INPUT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : "d3efd98c-be2d-4949-874e-4cfecbb1c016",
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "field_width" : "large",
-            "visible" : 1,
-            "mapToDataColumn" : false,
-            "disabled" : 0
-          },
-          "id" : "6e69664d-6529-4758-9448-cab8cbc4c4c3",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : "",
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "sortable" : false,
-          "pageId" : "8d00a704-4bc2-4364-9a1c-4b1711f94e38"
-        }, {
-          "type" : "SELECT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : "689d716b-f02b-4e83-b4df-815314db42f8",
-          "format" : "none",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "query" : {
-              "id" : "b0f92ae1-9deb-4615-9511-8f5ea40c1415",
-              "constraints" : {
-                "type" : "EXPRESSION",
-                "left" : {
-                  "type" : "TERM",
-                  "constraint" : {
-                    "tableId" : 104,
-                    "columnId" : 1326,
-                    "foreignKeyId" : 84,
-                    "valueType" : "USER_EMAIL",
-                    "ignoredWhenValueIsNull" : false,
-                    "action" : "EQUALS_TO"
-                  }
-                },
-                "operator" : "AND",
-                "right" : {
-                  "type" : "TERM",
-                  "constraint" : {
-                    "tableId" : 105,
-                    "columnId" : 1339,
-                    "valueType" : "VALUE",
-                    "value" : "published",
-                    "ignoredWhenValueIsNull" : false,
-                    "action" : "EQUALS_TO"
-                  }
-                }
-              },
-              "autojoins" : false
-            },
-            "order" : {
-              "id" : "a05313d6-83ae-4e33-bf97-b7e978741c0e",
-              "constraints" : {
-                "type" : "TERM",
-                "constraint" : {
-                  "tableId" : 105,
-                  "columnId" : 1334,
-                  "order" : "ASC",
-                  "ignoredWhenValueIsNull" : false
-                }
-              },
-              "autojoins" : false
-            },
-            "fillType" : "DATABASE",
-            "customFilterItems" : [ ],
-            "manualOptions" : [ ],
-            "mapToDataColumn" : false,
-            "matchOptions" : "STARTS_WITH",
-            "field_width" : "medium",
-            "fill_serviceId" : 18,
-            "fill_tableid" : 105,
-            "fill_columnid_value" : 1333,
-            "fill_columnid_display" : 1334,
-            "visible" : 1,
-            "optionLabelColumnType" : "STRING",
-            "autoload" : 0,
-            "disabled" : 0
-          },
-          "id" : "4663ce01-1e12-489a-ba1d-36ba2e63cdfb",
-          "defaultvalue" : "",
-          "displayorder" : 2,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "sortable" : false,
-          "pageId" : "8e3f357c-d050-4a35-bf73-be28e1a40789"
-        } ],
-        "query" : {
-          "id" : "67d7d33f-b954-4e72-b8b3-d4dd127015e7",
-          "constraints" : {
-            "type" : "TERM",
-            "constraint" : {
-              "tableId" : 104,
-              "columnId" : 1326,
-              "foreignKeyId" : 82,
-              "valueType" : "USER_EMAIL",
-              "ignoredWhenValueIsNull" : false,
-              "action" : "EQUALS_TO"
-            }
-          },
-          "autojoins" : false
-        },
-        "title" : "8180cc42-b2cd-4e6b-895a-777579d628ef",
-        "logicConfiguration" : [ ],
-        "parameters" : { },
-        "tableid" : 102,
-        "datasourceid" : 18,
-        "pagetype" : "Detail",
-        "pagetype" : "Detail"
-      }, {
-        "id" : "9f159b29-63e5-4109-8be8-c9e967ee2513",
-        "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-        "type" : "DETAIL",
-        "components" : [ {
-          "type" : "BACK_BUTTON",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : { },
-          "id" : "793416df-4a8a-4299-b675-703755b409c3",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
-        }, {
-          "type" : "TEXT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : 1314,
-          "required" : false,
-          "textType" : 0,
-          "label" : "dbdaab06-901e-46df-8a5b-1b30a7e375e3",
-          "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "550af4c1-0dbf-4535-a438-69351ed79f5d",
-          "parameters" : {
-            "type" : "SIMPLE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : false,
-            "visible" : 1,
-            "conditional_format" : {
-              "condition" : "none"
-            }
-          },
-          "id" : "27679754-82b2-445b-9afe-d7532b747049",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : 8011,
-          "sortable" : false,
-          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
-        }, {
-          "type" : "BUTTON",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : "158efedb-5723-4f12-80e4-abd7722d03a2",
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "operationStack" : {
-              "operations" : [ {
-                "type" : "GOTO_URL",
-                "label" : "Go to URL",
-                "id" : "op_8fjtt8",
-                "urlTemplate" : "{{get_channel_content.permalink_url}}",
-                "notes" : null,
-                "componentId" : null,
-                "subject" : null,
-                "columnId" : null,
-                "valueCalendarEvent" : null,
-                "message" : null,
-                "pageId" : null,
-                "body" : null,
-                "title" : null,
-                "fetchLimit" : null,
-                "foreignKeyId" : null,
-                "clearRecord" : null,
-                "valueMail" : null,
-                "children" : null,
-                "appId" : null,
-                "tableId" : null,
-                "linkType" : null,
-                "style" : null,
-                "to" : null,
-                "serviceId" : null,
-                "value" : null,
-                "events" : null
-              } ]
-            },
-            "tone" : "PRIMARY",
-            "size" : "STANDARD",
-            "disabled" : 0,
-            "showInBladeFooter" : true
-          },
-          "id" : "40b60de2-0df8-4005-bd0b-08f2a14a69e0",
-          "defaultvalue" : "",
-          "displayorder" : 3,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
-        }, {
-          "type" : "TEXT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : 1311,
-          "required" : false,
-          "textType" : 0,
-          "label" : "299bb4ea-2ad0-4eb4-92ca-70e698e484c3",
-          "format" : "datetime",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "48f6b1ec-5ed7-4ea9-acf9-9be6bf4104d4",
-          "parameters" : {
-            "type" : "SIMPLE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : false,
-            "visible" : 1,
-            "conditional_format" : {
-              "condition" : "none"
-            }
-          },
-          "id" : "3f4a318e-d9f9-48ee-9507-c0216452f6e9",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "columnType" : "TIMESTAMP",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : 9447,
-          "sortable" : false,
-          "pageId" : "57a2ad59-706d-4742-aa2e-4319d276cf25"
-        }, {
-          "type" : "TEXT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : 1305,
-          "required" : false,
-          "textType" : 0,
-          "label" : "17d0a350-842f-417f-814f-ab6e96687233",
-          "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "9e0a429a-83ec-4983-a902-6c314f38cfcc",
-          "parameters" : {
-            "type" : "SIMPLE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : false,
-            "visible" : 1,
-            "conditional_format" : {
-              "condition" : "none"
-            }
-          },
-          "id" : "fc5a8ba1-09cf-4f91-b56f-184e084dfafd",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "columnType" : "STRING",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : 8235,
-          "sortable" : false,
-          "pageId" : "57a2ad59-706d-4742-aa2e-4319d276cf25"
-        }, {
-          "type" : "TEXT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : 1315,
-          "required" : false,
-          "textType" : 0,
-          "label" : "72d4a362-8460-447c-996d-439ea739318b",
-          "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "509d6f32-13b2-4126-ac75-5eaae997cd0d",
-          "parameters" : {
-            "type" : "SIMPLE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : false,
-            "visible" : 1,
-            "conditional_format" : {
-              "condition" : "none"
-            }
-          },
-          "id" : "43477a11-9e95-4aed-aed5-041d0f0f079b",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : 8235,
-          "sortable" : false,
-          "pageId" : "70d4ecf2-dd9e-4445-85b0-99ed85449ce3"
-        }, {
-          "type" : "DIVIDER",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "8b9044ce-8e0d-44e6-939f-caae5f54ec77",
-          "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "caf9999f-17a9-4154-a9c5-ccd181007db0",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        }, {
-          "type" : "HTML_CONTENT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : 1306,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "8b9044ce-8e0d-44e6-939f-caae5f54ec77",
-          "parameters" : { },
-          "id" : "009c8eaa-9af8-443d-9cb5-b7d9f8b12222",
-          "defaultvalue" : "",
-          "displayorder" : 2,
-          "filter" : "",
-          "val" : "",
-          "columnType" : "STRING",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : 8855,
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        }, {
-          "type" : "FLEXIBLE_GRID",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "cellCount" : 5,
-            "columnCountMobile" : 1,
-            "visible" : 1,
-            "defaultHorizontalAlign" : "STRETCH",
-            "columnCount" : 1,
-            "defaultVerticalAlign" : "TOP",
-            "mobileWrappingMode" : "Row"
-          },
-          "id" : "2556e34f-cbac-446e-a666-897306efae41",
-          "defaultvalue" : "",
-          "displayorder" : 2,
-          "filter" : "",
-          "val" : "",
-          "components" : [ {
-            "type" : "GRID_ITEM",
-            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
-            "columnId" : null,
-            "required" : false,
-            "textType" : 0,
-            "label" : null,
-            "format" : "",
-            "queryDependsOn" : [ ],
-            "foreignKeyId" : null,
-            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
-            "prefillValue" : null,
-            "parameters" : {
-              "query" : null,
-              "prefill" : null,
-              "order" : null
-            },
-            "id" : "4cf575b6-d0c0-4274-8a5a-893a2af45cb1",
-            "defaultvalue" : "",
-            "displayorder" : 1,
-            "filterConstraints" : [ ],
-            "prefillConstraints" : [ ],
-            "filter" : "",
-            "val" : "",
-            "helptext" : "",
-            "cssclass" : "",
-            "icon" : "",
-            "tableid" : "0",
-            "sortable" : false,
-            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6",
-            "components" : [ ]
-          }, {
-            "type" : "GRID_ITEM",
-            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
-            "columnId" : null,
-            "required" : false,
-            "textType" : 0,
-            "label" : null,
-            "format" : "",
-            "queryDependsOn" : [ ],
-            "foreignKeyId" : null,
-            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
-            "prefillValue" : null,
-            "parameters" : {
-              "query" : null,
-              "prefill" : null,
-              "order" : null
-            },
-            "id" : "b9bbed34-c871-4959-8460-84fee9bd6dc3",
-            "defaultvalue" : "",
-            "displayorder" : 3,
-            "filterConstraints" : [ ],
-            "prefillConstraints" : [ ],
-            "filter" : "",
-            "val" : "",
-            "helptext" : "",
-            "cssclass" : "",
-            "icon" : "",
-            "tableid" : "0",
-            "sortable" : false,
-            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6",
-            "components" : [ ]
-          }, {
-            "type" : "GRID_ITEM",
-            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
-            "columnId" : null,
-            "required" : false,
-            "textType" : 0,
-            "label" : null,
-            "format" : "",
-            "queryDependsOn" : [ ],
-            "foreignKeyId" : null,
-            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
-            "prefillValue" : null,
-            "parameters" : { },
-            "id" : "d725eabd-01ca-4c59-8bb9-dce9cbfb9e7d",
-            "defaultvalue" : "",
-            "displayorder" : 4,
-            "filterConstraints" : [ ],
-            "prefillConstraints" : [ ],
-            "filter" : "",
-            "val" : "",
-            "helptext" : "",
-            "cssclass" : "",
-            "icon" : "",
-            "tableid" : "0",
-            "sortable" : false,
-            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-          }, {
-            "type" : "GRID_ITEM",
-            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
-            "columnId" : null,
-            "required" : false,
-            "textType" : 0,
-            "label" : null,
-            "format" : "",
-            "queryDependsOn" : [ ],
-            "foreignKeyId" : null,
-            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
-            "prefillValue" : null,
-            "parameters" : { },
-            "id" : "937aa137-7dd3-4c01-8b6e-31fe8688663b",
-            "defaultvalue" : "",
-            "displayorder" : 5,
-            "filterConstraints" : [ ],
-            "prefillConstraints" : [ ],
-            "filter" : "",
-            "val" : "",
-            "helptext" : "",
-            "cssclass" : "",
-            "icon" : "",
-            "tableid" : "0",
-            "sortable" : false,
-            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-          }, {
-            "type" : "GRID_ITEM",
-            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
-            "columnId" : null,
-            "required" : false,
-            "textType" : 0,
-            "label" : null,
-            "format" : "",
-            "queryDependsOn" : [ ],
-            "foreignKeyId" : null,
-            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
-            "prefillValue" : null,
-            "parameters" : { },
-            "id" : "a55ab9d4-0a07-4c5d-b0f3-9e5b9af34590",
-            "defaultvalue" : "",
-            "displayorder" : 6,
-            "filterConstraints" : [ ],
-            "prefillConstraints" : [ ],
-            "filter" : "",
-            "val" : "",
-            "helptext" : "",
-            "cssclass" : "",
-            "icon" : "",
-            "tableid" : "0",
-            "sortable" : false,
-            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-          } ],
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "2556e34f-cbac-446e-a666-897306efae41",
-          "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "509d6f32-13b2-4126-ac75-5eaae997cd0d",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "2556e34f-cbac-446e-a666-897306efae41",
-          "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "550af4c1-0dbf-4535-a438-69351ed79f5d",
-          "defaultvalue" : "",
-          "displayorder" : 2,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "2556e34f-cbac-446e-a666-897306efae41",
-          "parameters" : { },
-          "id" : "9e0a429a-83ec-4983-a902-6c314f38cfcc",
-          "defaultvalue" : "",
-          "displayorder" : 3,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "2556e34f-cbac-446e-a666-897306efae41",
-          "parameters" : { },
-          "id" : "48f6b1ec-5ed7-4ea9-acf9-9be6bf4104d4",
-          "defaultvalue" : "",
-          "displayorder" : 4,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "2556e34f-cbac-446e-a666-897306efae41",
-          "parameters" : { },
-          "id" : "8b9044ce-8e0d-44e6-939f-caae5f54ec77",
-          "defaultvalue" : "",
-          "displayorder" : 5,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "tableid" : "0",
-          "sortable" : false
-        }, {
-          "type" : "TEXT",
-          "appId" : "41a5692e-947e-4038-a08a-5118f81e35dc",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : "a6dde381-a55d-430c-971c-fb34eb568bbf",
-          "format" : "none",
-          "foreignKeyId" : null,
-          "parentComponentId" : "9e0a429a-83ec-4983-a902-6c314f38cfcc",
-          "parameters" : {
-            "template" : "be8628d5-5bfa-4e16-a3f2-0b3132efa1b2",
-            "type" : "TEMPLATE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : false,
-            "visible" : 1
-          },
-          "id" : "197f7f0f-788e-4021-aaab-01a239a94994",
-          "defaultvalue" : "",
-          "displayorder" : 2,
-          "filter" : "",
-          "val" : "",
-          "prefillValue" : null,
-          "helptext" : "",
-          "cssclass" : "",
-          "icon" : "",
-          "sortable" : false,
-          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
-        } ],
-        "query" : {
-          "id" : "392581c1-9636-411b-8af9-6ab24037257f",
-          "constraints" : {
-            "type" : "EXPRESSION",
-            "left" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 104,
-                "columnId" : 1326,
-                "foreignKeyId" : 82,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
-            },
-            "operator" : "AND",
-            "right" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 101,
-                "columnId" : 1309,
-                "foreignKeyId" : 79,
-                "valueType" : "COLUMN",
-                "variableColumn" : 1319,
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
-            }
-          },
-          "autojoins" : false
-        },
-        "title" : "cfc661dd-27d5-4815-b2fc-7c7d848b4611",
-        "logicConfiguration" : [ {
-          "constraints" : [ {
-            "targetComponentId" : "fc5a8ba1-09cf-4f91-b56f-184e084dfafd",
-            "comparison" : "BLANK",
-            "valueType" : null,
-            "id" : "5eb2a285-7df6-4c35-8686-ffa4d8c927e8",
-            "equality" : "IS",
-            "value" : null
-          } ],
-          "children" : [ {
-            "targetComponentId" : "197f7f0f-788e-4021-aaab-01a239a94994",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "4adfe80b-e04f-4744-bc15-ac6a1888cd5e",
-            "type" : "SHOW",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "TRUE"
-          }, {
-            "targetComponentId" : "fc5a8ba1-09cf-4f91-b56f-184e084dfafd",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "c4c718e7-e712-4b83-8e73-c379fe6fd342",
-            "type" : "HIDE",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "TRUE"
-          }, {
-            "targetComponentId" : "197f7f0f-788e-4021-aaab-01a239a94994",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "bf4e31b7-a4ed-4215-8193-94b78db1ad4d",
-            "type" : "HIDE",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "FALSE"
-          }, {
-            "targetComponentId" : "fc5a8ba1-09cf-4f91-b56f-184e084dfafd",
-            "constraints" : [ ],
-            "children" : [ ],
-            "execution" : null,
-            "valueType" : null,
-            "label" : "",
-            "id" : "e367dd24-b0d6-495a-b2b5-45ca449e9bd6",
-            "type" : "SHOW",
-            "customExecution" : "",
-            "value" : "",
-            "group" : "FALSE"
-          } ],
-          "execution" : "AND",
-          "valueType" : null,
-          "label" : "Not Defined Author",
-          "id" : "6fcc1e78-034b-4ab5-80dd-bd534ce9a9c5",
-          "type" : "CONDITION",
-          "customExecution" : "",
-          "value" : null,
-          "group" : null
-        } ],
-        "parameters" : { },
-        "tableid" : 102,
-        "datasourceid" : 18,
-        "pagetype" : "Detail",
-        "pagetype" : "Detail"
-      } ],
-      "trackingUuid" : "e431eaa0-9cca-47b9-9489-fa7897e60936",
-      "actionApp" : true
-    },
-    "outboundLinks" : {
-      "page" : [ ],
-      "notification" : [ ]
-    }
-  }, {
-    "appVersion" : {
-      "id" : "5911664e-1609-48c7-8455-60bcca86fe15",
-      "serviceId" : 18,
-      "version" : 1672,
+      "id" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+      "serviceId" : 4382,
+      "version" : 1673,
       "parameters" : {
         "imageUrl" : "exported/approval_add.894183fdbfb06e9beeaab30d4fb52771.svg",
         "description" : "5c698550-bdaa-4e36-9f98-c3431b8ef920"
       },
-      "title" : "9143396a-4262-4de5-976c-5780fe6b3f5b",
-      "startPageId" : "f95f34fb-a1ec-4318-a844-d5200fbf3ac7",
+      "startPageId" : "7bb83b27-9b36-48f0-82df-1f359537d823",
       "pages" : [ {
-        "id" : "f95f34fb-a1ec-4318-a844-d5200fbf3ac7",
-        "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+        "id" : "7bb83b27-9b36-48f0-82df-1f359537d823",
+        "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TABLE",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1154,14 +23,14 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 102,
+          "componentTableId" : 44755,
           "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "e61cb925-ab54-4556-9ad5-609dff5785d8",
-              "tableid" : 102,
+              "tableid" : 44755,
               "sqlquery" : {
-                "id" : "a8efcac7-4877-42b6-8815-d290c1542c16",
+                "id" : "452833a6-8c04-4907-b59e-bfb4bcb43893",
                 "constraints" : {
                   "type" : "EXPRESSION",
                   "left" : {
@@ -1179,9 +48,9 @@
                               "left" : {
                                 "type" : "TERM",
                                 "constraint" : {
-                                  "tableId" : 101,
-                                  "columnId" : 1313,
-                                  "foreignKeyId" : 80,
+                                  "tableId" : 44754,
+                                  "columnId" : 550107,
+                                  "foreignKeyId" : 62826,
                                   "valueType" : "VALUE",
                                   "value" : "published",
                                   "ignoredWhenValueIsNull" : false,
@@ -1192,9 +61,9 @@
                               "right" : {
                                 "type" : "TERM",
                                 "constraint" : {
-                                  "tableId" : 101,
-                                  "columnId" : 1311,
-                                  "foreignKeyId" : 80,
+                                  "tableId" : 44754,
+                                  "columnId" : 550105,
+                                  "foreignKeyId" : 62826,
                                   "valueType" : "TODAY_MINUS_N",
                                   "value" : "7",
                                   "ignoredWhenValueIsNull" : false,
@@ -1210,11 +79,11 @@
                                 "left" : {
                                   "type" : "TERM",
                                   "constraint" : {
-                                    "tableId" : 101,
-                                    "columnId" : 1305,
-                                    "foreignKeyId" : 80,
+                                    "tableId" : 44754,
+                                    "columnId" : 550099,
+                                    "foreignKeyId" : 62826,
                                     "valueType" : "COMPONENT",
-                                    "variableComponent" : "e4cf738a-5557-46ed-9ea7-6afb9263c99f",
+                                    "variableComponent" : "febc4623-1f8a-4d01-ba66-022b3d791212",
                                     "ignoredWhenValueIsNull" : true,
                                     "action" : "LIKE"
                                   }
@@ -1223,11 +92,11 @@
                                 "right" : {
                                   "type" : "TERM",
                                   "constraint" : {
-                                    "tableId" : 101,
-                                    "columnId" : 1315,
-                                    "foreignKeyId" : 80,
+                                    "tableId" : 44754,
+                                    "columnId" : 550109,
+                                    "foreignKeyId" : 62826,
                                     "valueType" : "COMPONENT",
-                                    "variableComponent" : "e4cf738a-5557-46ed-9ea7-6afb9263c99f",
+                                    "variableComponent" : "febc4623-1f8a-4d01-ba66-022b3d791212",
                                     "ignoredWhenValueIsNull" : true,
                                     "action" : "LIKE"
                                   }
@@ -1237,10 +106,10 @@
                               "right" : {
                                 "type" : "TERM",
                                 "constraint" : {
-                                  "tableId" : 102,
-                                  "columnId" : 1318,
+                                  "tableId" : 44755,
+                                  "columnId" : 550112,
                                   "valueType" : "COMPONENT",
-                                  "variableComponent" : "e4cf738a-5557-46ed-9ea7-6afb9263c99f",
+                                  "variableComponent" : "febc4623-1f8a-4d01-ba66-022b3d791212",
                                   "ignoredWhenValueIsNull" : true,
                                   "action" : "LIKE"
                                 }
@@ -1253,9 +122,9 @@
                             "left" : {
                               "type" : "TERM",
                               "constraint" : {
-                                "tableId" : 101,
-                                "columnId" : 1312,
-                                "foreignKeyId" : 79,
+                                "tableId" : 44754,
+                                "columnId" : 550106,
+                                "foreignKeyId" : 62825,
                                 "valueType" : "VALUE",
                                 "value" : "studio",
                                 "ignoredWhenValueIsNull" : false,
@@ -1266,9 +135,9 @@
                             "right" : {
                               "type" : "TERM",
                               "constraint" : {
-                                "tableId" : 101,
-                                "columnId" : 1312,
-                                "foreignKeyId" : 79,
+                                "tableId" : 44754,
+                                "columnId" : 550106,
+                                "foreignKeyId" : 62825,
                                 "valueType" : "VALUE",
                                 "value" : "submitted",
                                 "ignoredWhenValueIsNull" : false,
@@ -1281,10 +150,10 @@
                         "right" : {
                           "type" : "TERM",
                           "constraint" : {
-                            "tableId" : 102,
-                            "columnId" : 1317,
+                            "tableId" : 44755,
+                            "columnId" : 550111,
                             "valueType" : "COMPONENT",
-                            "variableComponent" : "0935d780-0186-4985-a8bb-64170e62602c",
+                            "variableComponent" : "ba65a63e-945d-4af4-a8e0-05db8d109cce",
                             "ignoredWhenValueIsNull" : true,
                             "action" : "EQUALS_TO"
                           }
@@ -1294,9 +163,9 @@
                       "right" : {
                         "type" : "TERM",
                         "constraint" : {
-                          "tableId" : 100,
-                          "columnId" : 1303,
-                          "foreignKeyId" : 81,
+                          "tableId" : 44753,
+                          "columnId" : 550097,
+                          "foreignKeyId" : 62827,
                           "valueType" : "VALUE",
                           "value" : "true",
                           "ignoredWhenValueIsNull" : false,
@@ -1308,11 +177,11 @@
                     "right" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 101,
-                        "columnId" : 1308,
-                        "foreignKeyId" : 80,
+                        "tableId" : 44754,
+                        "columnId" : 550102,
+                        "foreignKeyId" : 62826,
                         "valueType" : "COMPONENT",
-                        "variableComponent" : "fadd4034-f4f7-4e9a-bb96-9bd5d53e9961",
+                        "variableComponent" : "5099acfb-760e-4468-bb5b-b66619206431",
                         "value" : "true",
                         "ignoredWhenValueIsNull" : true,
                         "action" : "EQUALS_TO"
@@ -1325,10 +194,10 @@
                     "left" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 102,
-                        "columnId" : 1317,
+                        "tableId" : 44755,
+                        "columnId" : 550111,
                         "valueType" : "COLUMN",
-                        "variableColumn" : 1317,
+                        "variableColumn" : 550111,
                         "ignoredWhenValueIsNull" : false,
                         "action" : "EQUALS_TO"
                       }
@@ -1337,9 +206,9 @@
                     "right" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 104,
-                        "columnId" : 1326,
-                        "foreignKeyId" : 82,
+                        "tableId" : 44757,
+                        "columnId" : 550120,
+                        "foreignKeyId" : 62828,
                         "valueType" : "USER_EMAIL",
                         "ignoredWhenValueIsNull" : false,
                         "action" : "EQUALS_TO"
@@ -1350,13 +219,13 @@
                 "autojoins" : false
               },
               "sqlorder" : {
-                "id" : "05a239e6-99e9-47d7-bc06-9d36b3dc4b2c",
+                "id" : "e877f60a-b0a3-4732-b7da-0416b65cf12e",
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 101,
-                    "columnId" : 1311,
-                    "foreignKeyId" : 80,
+                    "tableId" : 44754,
+                    "columnId" : 550105,
+                    "foreignKeyId" : 62826,
                     "order" : "DESC",
                     "ignoredWhenValueIsNull" : false
                   }
@@ -1365,13 +234,13 @@
               },
               "show_1_to_n" : "0",
               "columns" : [ {
-                "foreignKeyId" : 80,
+                "foreignKeyId" : 62826,
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "e6cdaeeb-6066-4ca2-a934-bba6d11e12a1",
                 "id" : "z71617",
-                "tableid" : 101,
-                "columnid" : 1315,
+                "tableid" : 44754,
+                "columnid" : 550109,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -1383,8 +252,8 @@
                 "aggregation" : "NONE",
                 "label" : "c3316362-67b3-4256-99af-4ee00754e6a4",
                 "id" : "gbxuj0",
-                "tableid" : 102,
-                "columnid" : 1318,
+                "tableid" : 44755,
+                "columnid" : 550112,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -1392,13 +261,13 @@
                 },
                 "conditional_format" : null
               }, {
-                "foreignKeyId" : 80,
+                "foreignKeyId" : 62826,
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "61f518d8-9a06-472c-86e2-204b899a5ae7",
                 "id" : "qcd97h",
-                "tableid" : 101,
-                "columnid" : 1305,
+                "tableid" : 44754,
+                "columnid" : 550099,
                 "urlTemplate" : null,
                 "format" : "none",
                 "tableColumn" : {
@@ -1406,13 +275,13 @@
                 },
                 "conditional_format" : null
               }, {
-                "foreignKeyId" : 80,
+                "foreignKeyId" : 62826,
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "7e0df7e6-c9ea-439a-bb72-4050608f078b",
                 "id" : "a3usls",
-                "tableid" : 101,
-                "columnid" : 1308,
+                "tableid" : 44754,
+                "columnid" : 550102,
                 "urlTemplate" : null,
                 "format" : "yes-no",
                 "tableColumn" : {
@@ -1420,13 +289,13 @@
                 },
                 "conditional_format" : null
               }, {
-                "foreignKeyId" : 80,
+                "foreignKeyId" : 62826,
                 "type" : "SIMPLE",
                 "aggregation" : "NONE",
                 "label" : "b2b47192-951e-44ab-91c1-fbd309a62427",
                 "id" : "f6dvo6",
-                "tableid" : 101,
-                "columnid" : 1311,
+                "tableid" : 44754,
+                "columnid" : 550105,
                 "urlTemplate" : null,
                 "format" : "datetime",
                 "tableColumn" : {
@@ -1436,13 +305,13 @@
               } ],
               "images" : [ ],
               "groupByColumns" : [ ],
-              "linkpageid" : "2b9abd5c-9ca2-4f51-9d53-81c948510288",
+              "linkpageid" : "3f1e6fbd-8e22-4e91-85f7-67b910f12da8",
               "hideIfEmpty" : false,
               "sortable" : 1,
               "alignment" : "left"
             }
           },
-          "id" : "1f8a2df5-b8ef-4d2f-936c-3543a1629a1a",
+          "id" : "f041ddfc-9aca-467d-8fa2-c5f1c503f4ed",
           "defaultvalue" : "",
           "displayorder" : 4,
           "filter" : "",
@@ -1458,7 +327,7 @@
           "pageId" : "f31544c8-75b9-47de-a314-0ab61b70605a"
         }, {
           "type" : "TEXT_INPUT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1472,7 +341,7 @@
             "mapToDataColumn" : false,
             "disabled" : 0
           },
-          "id" : "e4cf738a-5557-46ed-9ea7-6afb9263c99f",
+          "id" : "febc4623-1f8a-4d01-ba66-022b3d791212",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -1485,7 +354,7 @@
           "pageId" : "8d00a704-4bc2-4364-9a1c-4b1711f94e38"
         }, {
           "type" : "STATIC_TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1502,7 +371,7 @@
             "alignment" : "left",
             "fontStyle" : [ "bold", "italic" ]
           },
-          "id" : "fdcc61fc-d164-4266-971e-2c15af30765e",
+          "id" : "a09bcee5-9a81-4de4-90f2-a66648bb10ef",
           "defaultvalue" : "",
           "displayorder" : 7,
           "filter" : "",
@@ -1516,7 +385,7 @@
           "pageId" : "8d00a704-4bc2-4364-9a1c-4b1711f94e38"
         }, {
           "type" : "SELECT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1526,12 +395,12 @@
           "parentComponentId" : null,
           "parameters" : {
             "query" : {
-              "id" : "39d8e251-f214-48e4-83e7-8aff75cbfc78",
+              "id" : "728838e8-c1f5-4bb4-b12a-ce65bee2402a",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 100,
-                  "columnId" : 1303,
+                  "tableId" : 44753,
+                  "columnId" : 550097,
                   "valueType" : "VALUE",
                   "value" : "true",
                   "ignoredWhenValueIsNull" : false,
@@ -1541,12 +410,12 @@
               "autojoins" : false
             },
             "order" : {
-              "id" : "a0ca86b0-66c2-4a42-bda5-5412c49dcc69",
+              "id" : "a93fde41-d1be-4155-b29f-449ceb13a6d2",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 100,
-                  "columnId" : 1302,
+                  "tableId" : 44753,
+                  "columnId" : 550096,
                   "order" : "ASC",
                   "ignoredWhenValueIsNull" : false
                 }
@@ -1559,16 +428,16 @@
             "mapToDataColumn" : false,
             "matchOptions" : "STARTS_WITH",
             "field_width" : "medium",
-            "fill_serviceId" : 18,
-            "fill_tableid" : 100,
-            "fill_columnid_value" : 1301,
-            "fill_columnid_display" : 1302,
+            "fill_serviceId" : 4382,
+            "fill_tableid" : 44753,
+            "fill_columnid_value" : 550095,
+            "fill_columnid_display" : 550096,
             "visible" : 1,
             "optionLabelColumnType" : "STRING",
             "autoload" : 0,
             "disabled" : 0
           },
-          "id" : "0935d780-0186-4985-a8bb-64170e62602c",
+          "id" : "ba65a63e-945d-4af4-a8e0-05db8d109cce",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -1581,7 +450,7 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1599,7 +468,7 @@
             "defaultVerticalAlign" : "MIDDLE",
             "mobileWrappingMode" : "Row"
           },
-          "id" : "b44f628c-60be-40d3-8989-f1d8059e59c0",
+          "id" : "4d2e6e2a-14c7-4709-a08c-15907bcd9985",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
@@ -1841,20 +710,20 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "b44f628c-60be-40d3-8989-f1d8059e59c0",
+          "parentComponentId" : "4d2e6e2a-14c7-4709-a08c-15907bcd9985",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "0d27cd78-0567-46cd-ba76-8d010338ec3f",
+          "id" : "d5b00f8c-a6ad-487d-894e-11f017595e58",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -1868,20 +737,20 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "b44f628c-60be-40d3-8989-f1d8059e59c0",
+          "parentComponentId" : "4d2e6e2a-14c7-4709-a08c-15907bcd9985",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "8c72ce96-092f-43d1-9e76-de427c8b34e9",
+          "id" : "c8b584a2-41ba-4ff9-8787-897ec3665864",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -1895,21 +764,21 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "CHECKBOX",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : "b650768e-93fa-471a-8964-475bf6403490",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "0d27cd78-0567-46cd-ba76-8d010338ec3f",
+          "parentComponentId" : "d5b00f8c-a6ad-487d-894e-11f017595e58",
           "parameters" : {
             "visible" : 1,
             "mapToDataColumn" : false,
             "field_width" : "large",
             "disabled" : 0
           },
-          "id" : "158379a7-fecc-46f4-877f-80b83f5243c4",
+          "id" : "b63531bb-0b58-4c2f-af60-469d622a8d9c",
           "defaultvalue" : "0",
           "displayorder" : 1,
           "filter" : "",
@@ -1922,21 +791,21 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "TEXT_INPUT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : "e491435e-71c8-4319-96cb-69d69c39b833",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "8c72ce96-092f-43d1-9e76-de427c8b34e9",
+          "parentComponentId" : "c8b584a2-41ba-4ff9-8787-897ec3665864",
           "parameters" : {
             "field_width" : "large",
             "visible" : 0,
             "mapToDataColumn" : false,
             "disabled" : 0
           },
-          "id" : "fadd4034-f4f7-4e9a-bb96-9bd5d53e9961",
+          "id" : "5099acfb-760e-4468-bb5b-b66619206431",
           "defaultvalue" : "true",
           "displayorder" : 1,
           "filter" : "",
@@ -1949,7 +818,7 @@
           "pageId" : "8209063c-844c-4d80-9096-c7029fb2f15b"
         }, {
           "type" : "STATIC_TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -1966,7 +835,7 @@
             "alignment" : "left",
             "fontStyle" : [ "bold", "italic" ]
           },
-          "id" : "776d5f3d-2837-4676-9219-799175df6c90",
+          "id" : "62a2ed1f-65de-43cf-94dc-10b081552c7f",
           "defaultvalue" : "",
           "displayorder" : 5,
           "filter" : "",
@@ -1980,16 +849,16 @@
           "pageId" : "a11f64ad-3a1a-4f4a-a1d7-486a2aa2dde1"
         } ],
         "query" : {
-          "id" : "b9106b06-f8a4-435e-9a98-73bc58339271",
+          "id" : "af8f0e6d-f8a9-41dd-b4d6-4fb2acc1e918",
           "constraints" : {
             "type" : "EXPRESSION",
             "left" : {
               "type" : "TERM",
               "constraint" : {
-                "tableId" : 102,
-                "columnId" : 1317,
+                "tableId" : 44755,
+                "columnId" : 550111,
                 "valueType" : "COLUMN",
-                "variableColumn" : 1317,
+                "variableColumn" : 550111,
                 "ignoredWhenValueIsNull" : false,
                 "action" : "EQUALS_TO"
               }
@@ -1998,9 +867,9 @@
             "right" : {
               "type" : "TERM",
               "constraint" : {
-                "tableId" : 104,
-                "columnId" : 1326,
-                "foreignKeyId" : 82,
+                "tableId" : 44757,
+                "columnId" : 550120,
+                "foreignKeyId" : 62828,
                 "valueType" : "USER_EMAIL",
                 "ignoredWhenValueIsNull" : false,
                 "action" : "EQUALS_TO"
@@ -2012,7 +881,7 @@
         "title" : "bb73c00e-e6d7-4061-8829-6c120ce34368",
         "logicConfiguration" : [ {
           "constraints" : [ {
-            "targetComponentId" : "158379a7-fecc-46f4-877f-80b83f5243c4",
+            "targetComponentId" : "b63531bb-0b58-4c2f-af60-469d622a8d9c",
             "comparison" : "EQUAL_TO",
             "valueType" : "VALUE",
             "id" : "e60d1ad9-5d2f-4029-8d17-54f95e1db808",
@@ -2020,7 +889,7 @@
             "value" : "true"
           } ],
           "children" : [ {
-            "targetComponentId" : "fadd4034-f4f7-4e9a-bb96-9bd5d53e9961",
+            "targetComponentId" : "5099acfb-760e-4468-bb5b-b66619206431",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2032,7 +901,7 @@
             "value" : "true",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "fdcc61fc-d164-4266-971e-2c15af30765e",
+            "targetComponentId" : "a09bcee5-9a81-4de4-90f2-a66648bb10ef",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2044,7 +913,7 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "776d5f3d-2837-4676-9219-799175df6c90",
+            "targetComponentId" : "62a2ed1f-65de-43cf-94dc-10b081552c7f",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2056,7 +925,7 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "0935d780-0186-4985-a8bb-64170e62602c",
+            "targetComponentId" : "ba65a63e-945d-4af4-a8e0-05db8d109cce",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2068,7 +937,7 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "fadd4034-f4f7-4e9a-bb96-9bd5d53e9961",
+            "targetComponentId" : "5099acfb-760e-4468-bb5b-b66619206431",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2080,7 +949,7 @@
             "value" : " ",
             "group" : "FALSE"
           }, {
-            "targetComponentId" : "fdcc61fc-d164-4266-971e-2c15af30765e",
+            "targetComponentId" : "a09bcee5-9a81-4de4-90f2-a66648bb10ef",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2092,7 +961,7 @@
             "value" : "",
             "group" : "FALSE"
           }, {
-            "targetComponentId" : "776d5f3d-2837-4676-9219-799175df6c90",
+            "targetComponentId" : "62a2ed1f-65de-43cf-94dc-10b081552c7f",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2104,7 +973,7 @@
             "value" : "",
             "group" : "FALSE"
           }, {
-            "targetComponentId" : "0935d780-0186-4985-a8bb-64170e62602c",
+            "targetComponentId" : "ba65a63e-945d-4af4-a8e0-05db8d109cce",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2126,17 +995,17 @@
           "group" : null
         } ],
         "parameters" : { },
-        "tableid" : 102,
-        "datasourceid" : 18,
+        "tableid" : 44755,
+        "datasourceid" : 4382,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       }, {
-        "id" : "2b9abd5c-9ca2-4f51-9d53-81c948510288",
-        "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+        "id" : "3f1e6fbd-8e22-4e91-85f7-67b910f12da8",
+        "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "BACK_BUTTON",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -2145,7 +1014,7 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : { },
-          "id" : "6ec863fd-7181-49d4-9148-4d336983d8e9",
+          "id" : "7491dfcf-696e-444a-98d0-61ed7dca8c13",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2159,14 +1028,14 @@
           "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
         }, {
           "type" : "TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
-          "columnId" : 1314,
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+          "columnId" : 550108,
           "required" : false,
           "textType" : 0,
           "label" : "6643c4a4-d2fe-41f6-8747-313b2aee330b",
           "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "d1336973-20aa-4932-8bf9-56d90e543253",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "78c1b037-c804-4c99-804a-0e2b63b6ab32",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -2178,7 +1047,7 @@
               "condition" : "none"
             }
           },
-          "id" : "263e4b73-2d77-40a8-aa0f-d1420ac9c88b",
+          "id" : "b3e6b676-4fe0-443a-93c8-e63e2f7529e4",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2192,16 +1061,16 @@
           "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
         }, {
           "type" : "HTML_CONTENT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
-          "columnId" : 1306,
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+          "columnId" : 550100,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "c43f62a6-02b3-4fa0-b39e-469d2a9ae368",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "19afd299-df0e-4ce0-9b30-7c1ccb048fa9",
           "parameters" : { },
-          "id" : "aff05cd7-be4a-4b4b-931e-538e500c2341",
+          "id" : "dfc028de-6c89-451b-8721-8109fb62845c",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -2216,7 +1085,7 @@
           "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
         }, {
           "type" : "BUTTON",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -2260,7 +1129,7 @@
             "disabled" : 0,
             "showInBladeFooter" : true
           },
-          "id" : "4a445415-c3dd-46a7-bf0e-9837218fcf55",
+          "id" : "7b91aa81-098d-416a-8330-7ff7b9f4139e",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
@@ -2274,14 +1143,14 @@
           "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
         }, {
           "type" : "TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
-          "columnId" : 1311,
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+          "columnId" : 550105,
           "required" : false,
           "textType" : 0,
           "label" : "5f082e5d-0e02-435a-8eb9-54927ae51d91",
           "format" : "datetime",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "3fb9fa31-8910-4da9-90f4-f15477784ae2",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "aec926ad-b37b-4330-932d-ff7a1519a447",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -2293,7 +1162,7 @@
               "condition" : "none"
             }
           },
-          "id" : "76c2fc8e-adf5-4f27-a2f2-c33bff4bec91",
+          "id" : "2bb20784-44c0-4f6c-a307-21309f8759c9",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2307,14 +1176,14 @@
           "pageId" : "8c92b488-7c7a-49d6-9e2c-d51b253cfc7f"
         }, {
           "type" : "TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
-          "columnId" : 1305,
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+          "columnId" : 550099,
           "required" : false,
           "textType" : 0,
           "label" : "dd70cee2-613e-41e1-b91a-dd0d34e04f67",
           "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "1b1fe7ff-6ef4-490b-ab6f-019528f74752",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "7cebab18-6b32-49cb-b0e0-217bc29ed9a0",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -2326,7 +1195,7 @@
               "condition" : "none"
             }
           },
-          "id" : "81ba81f2-1a46-439d-92c3-a9bbd22d04a0",
+          "id" : "1272fd29-51b8-45c1-9811-5bd7e04ddb2a",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2341,14 +1210,14 @@
           "pageId" : "8c92b488-7c7a-49d6-9e2c-d51b253cfc7f"
         }, {
           "type" : "TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
-          "columnId" : 1315,
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
+          "columnId" : 550109,
           "required" : false,
           "textType" : 0,
           "label" : "5ecdfbd5-c5d2-49f1-ba5c-a45b72b7b3fb",
           "format" : "none",
-          "foreignKeyId" : 80,
-          "parentComponentId" : "a12bc5ec-514f-4253-b113-a6d50cc8a4aa",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "a308e8cd-5c36-4973-a91a-2b0c92ce1082",
           "parameters" : {
             "type" : "SIMPLE",
             "operationStack" : {
@@ -2360,7 +1229,7 @@
               "condition" : "none"
             }
           },
-          "id" : "d40ccec9-1614-4e26-8432-2df00ff66997",
+          "id" : "8dfc7499-3e32-41ca-ab60-7c62bb659415",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2374,20 +1243,20 @@
           "pageId" : "b41fd999-10d8-481e-b4f2-b8526536fef5"
         }, {
           "type" : "DIVIDER",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "3fb9fa31-8910-4da9-90f4-f15477784ae2",
+          "parentComponentId" : "aec926ad-b37b-4330-932d-ff7a1519a447",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "9e696f1a-7881-4c11-9d62-9888fb53e556",
+          "id" : "541217c8-0ba6-4808-91b3-2b9ac2635a8c",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -2401,7 +1270,7 @@
           "pageId" : "6d4bc7df-db74-4b1f-9ec3-f5ff5befb860"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
@@ -2418,7 +1287,7 @@
             "defaultVerticalAlign" : "TOP",
             "mobileWrappingMode" : "Row"
           },
-          "id" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "id" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -2576,20 +1445,20 @@
           "pageId" : "6d4bc7df-db74-4b1f-9ec3-f5ff5befb860"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "parentComponentId" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "a12bc5ec-514f-4253-b113-a6d50cc8a4aa",
+          "id" : "a308e8cd-5c36-4973-a91a-2b0c92ce1082",
           "defaultvalue" : "",
           "displayorder" : 1,
           "filter" : "",
@@ -2603,20 +1472,20 @@
           "pageId" : "6d4bc7df-db74-4b1f-9ec3-f5ff5befb860"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "parentComponentId" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "parameters" : {
             "query" : null,
             "prefill" : null,
             "order" : null
           },
-          "id" : "d1336973-20aa-4932-8bf9-56d90e543253",
+          "id" : "78c1b037-c804-4c99-804a-0e2b63b6ab32",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -2630,16 +1499,16 @@
           "pageId" : "6d4bc7df-db74-4b1f-9ec3-f5ff5befb860"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "parentComponentId" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "parameters" : { },
-          "id" : "1b1fe7ff-6ef4-490b-ab6f-019528f74752",
+          "id" : "7cebab18-6b32-49cb-b0e0-217bc29ed9a0",
           "defaultvalue" : "",
           "displayorder" : 3,
           "filter" : "",
@@ -2652,16 +1521,16 @@
           "sortable" : false
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "parentComponentId" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "parameters" : { },
-          "id" : "3fb9fa31-8910-4da9-90f4-f15477784ae2",
+          "id" : "aec926ad-b37b-4330-932d-ff7a1519a447",
           "defaultvalue" : "",
           "displayorder" : 4,
           "filter" : "",
@@ -2674,16 +1543,16 @@
           "sortable" : false
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "d3079d3f-d685-418a-99ef-6ec91d7e1138",
+          "parentComponentId" : "66b9131d-8766-4f07-b455-e720307e17d0",
           "parameters" : { },
-          "id" : "c43f62a6-02b3-4fa0-b39e-469d2a9ae368",
+          "id" : "19afd299-df0e-4ce0-9b30-7c1ccb048fa9",
           "defaultvalue" : "",
           "displayorder" : 5,
           "filter" : "",
@@ -2696,14 +1565,14 @@
           "sortable" : false
         }, {
           "type" : "TEXT",
-          "appId" : "5911664e-1609-48c7-8455-60bcca86fe15",
+          "appId" : "081f859a-e364-49db-9648-59e2c4bd45ac",
           "columnId" : null,
           "required" : false,
           "textType" : 0,
           "label" : "dbff6212-b185-4a67-8c7e-6edf798c410c",
           "format" : "none",
           "foreignKeyId" : null,
-          "parentComponentId" : "1b1fe7ff-6ef4-490b-ab6f-019528f74752",
+          "parentComponentId" : "7cebab18-6b32-49cb-b0e0-217bc29ed9a0",
           "parameters" : {
             "template" : "d637d58a-948d-4512-b711-7a0de27db870",
             "type" : "TEMPLATE",
@@ -2713,7 +1582,7 @@
             "hideIfEmpty" : false,
             "visible" : 1
           },
-          "id" : "9b5b0473-4a99-43f4-8eaf-fc44af4ab6bc",
+          "id" : "4e2882e5-c014-4752-aae3-32a798b71c01",
           "defaultvalue" : "",
           "displayorder" : 2,
           "filter" : "",
@@ -2726,17 +1595,17 @@
           "pageId" : "6d4bc7df-db74-4b1f-9ec3-f5ff5befb860"
         } ],
         "query" : {
-          "id" : "41406023-0cc0-4662-8c0b-3aa2d9c1f740",
+          "id" : "fe13c83d-a141-4b47-90ef-9ac07970a22b",
           "constraints" : {
             "type" : "EXPRESSION",
             "left" : {
               "type" : "TERM",
               "constraint" : {
-                "tableId" : 101,
-                "columnId" : 1309,
-                "foreignKeyId" : 80,
+                "tableId" : 44754,
+                "columnId" : 550103,
+                "foreignKeyId" : 62826,
                 "valueType" : "COLUMN",
-                "variableColumn" : 1319,
+                "variableColumn" : 550113,
                 "ignoredWhenValueIsNull" : false,
                 "action" : "EQUALS_TO"
               }
@@ -2745,9 +1614,9 @@
             "right" : {
               "type" : "TERM",
               "constraint" : {
-                "tableId" : 104,
-                "columnId" : 1326,
-                "foreignKeyId" : 82,
+                "tableId" : 44757,
+                "columnId" : 550120,
+                "foreignKeyId" : 62828,
                 "valueType" : "USER_EMAIL",
                 "ignoredWhenValueIsNull" : false,
                 "action" : "EQUALS_TO"
@@ -2759,7 +1628,7 @@
         "title" : "e72b1b9d-66b4-443b-afbe-af0014e0781b",
         "logicConfiguration" : [ {
           "constraints" : [ {
-            "targetComponentId" : "81ba81f2-1a46-439d-92c3-a9bbd22d04a0",
+            "targetComponentId" : "1272fd29-51b8-45c1-9811-5bd7e04ddb2a",
             "comparison" : "BLANK",
             "valueType" : null,
             "id" : "4544fc89-c3a2-4283-8fef-bac66d2cfcff",
@@ -2767,7 +1636,7 @@
             "value" : null
           } ],
           "children" : [ {
-            "targetComponentId" : "9b5b0473-4a99-43f4-8eaf-fc44af4ab6bc",
+            "targetComponentId" : "4e2882e5-c014-4752-aae3-32a798b71c01",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2779,7 +1648,7 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "81ba81f2-1a46-439d-92c3-a9bbd22d04a0",
+            "targetComponentId" : "1272fd29-51b8-45c1-9811-5bd7e04ddb2a",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2791,7 +1660,7 @@
             "value" : "",
             "group" : "TRUE"
           }, {
-            "targetComponentId" : "9b5b0473-4a99-43f4-8eaf-fc44af4ab6bc",
+            "targetComponentId" : "4e2882e5-c014-4752-aae3-32a798b71c01",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2803,7 +1672,7 @@
             "value" : "",
             "group" : "FALSE"
           }, {
-            "targetComponentId" : "81ba81f2-1a46-439d-92c3-a9bbd22d04a0",
+            "targetComponentId" : "1272fd29-51b8-45c1-9811-5bd7e04ddb2a",
             "constraints" : [ ],
             "children" : [ ],
             "execution" : null,
@@ -2825,13 +1694,1144 @@
           "group" : null
         } ],
         "parameters" : { },
-        "tableid" : 102,
-        "datasourceid" : 18,
+        "tableid" : 44755,
+        "datasourceid" : 4382,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "trackingUuid" : "c96f8128-d2ba-4497-bf6e-7975c5a27cde",
-      "actionApp" : true
+      "actionApp" : true,
+      "title" : "9143396a-4262-4de5-976c-5780fe6b3f5b",
+      "trackingUuid" : "c96f8128-d2ba-4497-bf6e-7975c5a27cde"
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  }, {
+    "appVersion" : {
+      "id" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+      "serviceId" : 4382,
+      "version" : 1270,
+      "parameters" : {
+        "imageUrl" : "exported/approval_change.44b65a0479ebafd66ab7c949e10687f6.svg",
+        "description" : "e2b9de14-3ff2-482a-87c8-49f7663a1628"
+      },
+      "startPageId" : "7759860f-a1e1-4821-9fb9-67eefbc4ecbd",
+      "pages" : [ {
+        "id" : "7759860f-a1e1-4821-9fb9-67eefbc4ecbd",
+        "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TABLE",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 44755,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "tableconfig" : {
+              "noDataText" : "b3a99278-2e6c-403c-8c91-afa6623342f1",
+              "tableid" : 44755,
+              "sqlquery" : {
+                "id" : "7bccf1f5-5cb2-4d4b-9843-251ce2bb6133",
+                "constraints" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "EXPRESSION",
+                    "left" : {
+                      "type" : "EXPRESSION",
+                      "left" : {
+                        "type" : "EXPRESSION",
+                        "left" : {
+                          "type" : "EXPRESSION",
+                          "left" : {
+                            "type" : "EXPRESSION",
+                            "left" : {
+                              "type" : "TERM",
+                              "constraint" : {
+                                "tableId" : 44754,
+                                "columnId" : 550107,
+                                "foreignKeyId" : 62826,
+                                "valueType" : "VALUE",
+                                "value" : "published",
+                                "ignoredWhenValueIsNull" : false,
+                                "action" : "EQUALS_TO"
+                              }
+                            },
+                            "operator" : "AND",
+                            "right" : {
+                              "type" : "TERM",
+                              "constraint" : {
+                                "tableId" : 44754,
+                                "columnId" : 550105,
+                                "foreignKeyId" : 62826,
+                                "valueType" : "TODAY_MINUS_N",
+                                "value" : "7",
+                                "ignoredWhenValueIsNull" : false,
+                                "action" : "GREATER_OR_EQUAL"
+                              }
+                            }
+                          },
+                          "operator" : "AND",
+                          "right" : {
+                            "type" : "EXPRESSION",
+                            "left" : {
+                              "type" : "EXPRESSION",
+                              "left" : {
+                                "type" : "TERM",
+                                "constraint" : {
+                                  "tableId" : 44754,
+                                  "columnId" : 550099,
+                                  "foreignKeyId" : 62826,
+                                  "valueType" : "COMPONENT",
+                                  "variableComponent" : "e3a542cb-641f-48e0-9401-39bbd7b63211",
+                                  "ignoredWhenValueIsNull" : true,
+                                  "action" : "LIKE"
+                                }
+                              },
+                              "operator" : "OR",
+                              "right" : {
+                                "type" : "TERM",
+                                "constraint" : {
+                                  "tableId" : 44754,
+                                  "columnId" : 550109,
+                                  "foreignKeyId" : 62826,
+                                  "valueType" : "COMPONENT",
+                                  "variableComponent" : "e3a542cb-641f-48e0-9401-39bbd7b63211",
+                                  "ignoredWhenValueIsNull" : true,
+                                  "action" : "LIKE"
+                                }
+                              }
+                            },
+                            "operator" : "OR",
+                            "right" : {
+                              "type" : "TERM",
+                              "constraint" : {
+                                "tableId" : 44755,
+                                "columnId" : 550112,
+                                "valueType" : "COMPONENT",
+                                "variableComponent" : "e3a542cb-641f-48e0-9401-39bbd7b63211",
+                                "ignoredWhenValueIsNull" : true,
+                                "action" : "LIKE"
+                              }
+                            }
+                          }
+                        },
+                        "operator" : "AND",
+                        "right" : {
+                          "type" : "EXPRESSION",
+                          "left" : {
+                            "type" : "TERM",
+                            "constraint" : {
+                              "tableId" : 44754,
+                              "columnId" : 550106,
+                              "foreignKeyId" : 62825,
+                              "valueType" : "VALUE",
+                              "value" : "studio",
+                              "ignoredWhenValueIsNull" : false,
+                              "action" : "EQUALS_TO"
+                            }
+                          },
+                          "operator" : "OR",
+                          "right" : {
+                            "type" : "TERM",
+                            "constraint" : {
+                              "tableId" : 44754,
+                              "columnId" : 550106,
+                              "foreignKeyId" : 62825,
+                              "valueType" : "VALUE",
+                              "value" : "submitted",
+                              "ignoredWhenValueIsNull" : false,
+                              "action" : "EQUALS_TO"
+                            }
+                          }
+                        }
+                      },
+                      "operator" : "AND",
+                      "right" : {
+                        "type" : "TERM",
+                        "constraint" : {
+                          "tableId" : 44755,
+                          "columnId" : 550111,
+                          "valueType" : "COMPONENT",
+                          "variableComponent" : "5115b050-81ec-4ac3-9b16-367bcee93273",
+                          "ignoredWhenValueIsNull" : true,
+                          "action" : "EQUALS_TO"
+                        }
+                      }
+                    },
+                    "operator" : "AND",
+                    "right" : {
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 44753,
+                        "columnId" : 550098,
+                        "foreignKeyId" : 62827,
+                        "valueType" : "VALUE",
+                        "value" : "published",
+                        "ignoredWhenValueIsNull" : false,
+                        "action" : "EQUALS_TO"
+                      }
+                    }
+                  },
+                  "operator" : "AND",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 44757,
+                      "columnId" : 550120,
+                      "foreignKeyId" : 62828,
+                      "valueType" : "USER_EMAIL",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
+                    }
+                  }
+                },
+                "autojoins" : false
+              },
+              "sqlorder" : {
+                "id" : "0ea88313-c072-47f9-bd1f-0675a2316243",
+                "constraints" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 44754,
+                    "columnId" : 550105,
+                    "foreignKeyId" : 62826,
+                    "order" : "DESC",
+                    "ignoredWhenValueIsNull" : false
+                  }
+                },
+                "autojoins" : false
+              },
+              "show_1_to_n" : "0",
+              "columns" : [ {
+                "foreignKeyId" : 62826,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "6f0e3d4d-b075-4253-ab05-a1ac3774880b",
+                "id" : "yspqbc",
+                "tableid" : 44754,
+                "columnid" : 550109,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : null
+              }, {
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "40302ff6-5f9d-4c51-aef3-8d3103e994f6",
+                "id" : "6g3lnb",
+                "tableid" : 44755,
+                "columnid" : 550112,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : null
+              }, {
+                "foreignKeyId" : 62826,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "8a928b3d-d6cb-4606-8a84-3a7b5dbf848a",
+                "id" : "yojgof",
+                "tableid" : 44754,
+                "columnid" : 550099,
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : "STRING"
+                },
+                "conditional_format" : null
+              }, {
+                "foreignKeyId" : 62826,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "9d87617a-ab8b-4d33-ab12-918928e497e0",
+                "id" : "src0ax",
+                "tableid" : 44754,
+                "columnid" : 550102,
+                "urlTemplate" : null,
+                "format" : "yes-no",
+                "tableColumn" : {
+                  "columnType" : "BOOLEAN"
+                },
+                "conditional_format" : null
+              }, {
+                "foreignKeyId" : 62826,
+                "type" : "SIMPLE",
+                "aggregation" : "NONE",
+                "label" : "d7b77c88-3c92-4239-88d5-840106599c1e",
+                "id" : "6qtq4f",
+                "tableid" : 44754,
+                "columnid" : 550105,
+                "urlTemplate" : null,
+                "format" : "datetime",
+                "tableColumn" : {
+                  "columnType" : "TIMESTAMP"
+                },
+                "conditional_format" : null
+              } ],
+              "images" : [ ],
+              "groupByColumns" : [ ],
+              "linkpageid" : "4e078178-bb19-4bd8-a3c3-48f2c5950fba",
+              "hideIfEmpty" : false,
+              "sortable" : 1,
+              "alignment" : "left"
+            }
+          },
+          "id" : "a8021e5d-6808-4cda-beb1-1b08b5c04429",
+          "defaultvalue" : "",
+          "displayorder" : 3,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "rowAction" : { },
+          "cssclass" : "",
+          "defaultLimit" : 20,
+          "icon" : "",
+          "tableid" : 10554,
+          "sortable" : false,
+          "pageId" : "ee5675d3-f311-4504-a9c9-adeee0c2469a"
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "d3efd98c-be2d-4949-874e-4cfecbb1c016",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "disabled" : 0
+          },
+          "id" : "e3a542cb-641f-48e0-9401-39bbd7b63211",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : "",
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "8d00a704-4bc2-4364-9a1c-4b1711f94e38"
+        }, {
+          "type" : "SELECT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "689d716b-f02b-4e83-b4df-815314db42f8",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "query" : {
+              "id" : "dd9d3b3a-b3ea-4b5b-84f5-7fcc1e09bd3c",
+              "constraints" : {
+                "type" : "EXPRESSION",
+                "left" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 44757,
+                    "columnId" : 550120,
+                    "foreignKeyId" : 62830,
+                    "valueType" : "USER_EMAIL",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                },
+                "operator" : "AND",
+                "right" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 44758,
+                    "columnId" : 550133,
+                    "valueType" : "VALUE",
+                    "value" : "published",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                }
+              },
+              "autojoins" : false
+            },
+            "order" : {
+              "id" : "09c2e149-7df3-4e4f-a704-b7d36765b5a3",
+              "constraints" : {
+                "type" : "TERM",
+                "constraint" : {
+                  "tableId" : 44758,
+                  "columnId" : 550128,
+                  "order" : "ASC",
+                  "ignoredWhenValueIsNull" : false
+                }
+              },
+              "autojoins" : false
+            },
+            "fillType" : "DATABASE",
+            "customFilterItems" : [ ],
+            "manualOptions" : [ ],
+            "mapToDataColumn" : false,
+            "matchOptions" : "STARTS_WITH",
+            "field_width" : "medium",
+            "fill_serviceId" : 4382,
+            "fill_tableid" : 44758,
+            "fill_columnid_value" : 550127,
+            "fill_columnid_display" : 550128,
+            "visible" : 1,
+            "optionLabelColumnType" : "STRING",
+            "autoload" : 0,
+            "disabled" : 0
+          },
+          "id" : "5115b050-81ec-4ac3-9b16-367bcee93273",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "8e3f357c-d050-4a35-bf73-be28e1a40789"
+        } ],
+        "query" : {
+          "id" : "5c73a267-5030-4902-9625-7158866d7e93",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 44757,
+              "columnId" : 550120,
+              "foreignKeyId" : 62828,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "8180cc42-b2cd-4e6b-895a-777579d628ef",
+        "logicConfiguration" : [ ],
+        "parameters" : { },
+        "tableid" : 44755,
+        "datasourceid" : 4382,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      }, {
+        "id" : "4e078178-bb19-4bd8-a3c3-48f2c5950fba",
+        "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "BACK_BUTTON",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "b08a46a7-72f3-4834-baa5-b302b1af48f0",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
+        }, {
+          "type" : "TEXT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : 550108,
+          "required" : false,
+          "textType" : 0,
+          "label" : "dbdaab06-901e-46df-8a5b-1b30a7e375e3",
+          "format" : "none",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "953a118e-dac7-45f4-a725-da8a747895eb",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "1c5a0664-6c4b-4270-bde8-c309cb8a49a8",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 8011,
+          "sortable" : false,
+          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "158efedb-5723-4f12-80e4-abd7722d03a2",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_8fjtt8",
+                "urlTemplate" : "{{get_channel_content.permalink_url}}",
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "valueCalendarEvent" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "fetchLimit" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "valueMail" : null,
+                "children" : null,
+                "appId" : null,
+                "tableId" : null,
+                "linkType" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "64b4a943-1fd3-4b1a-9429-51a3f54af629",
+          "defaultvalue" : "",
+          "displayorder" : 3,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "3cc25f42-da35-40da-b37d-34a520a8dfbf"
+        }, {
+          "type" : "TEXT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : 550105,
+          "required" : false,
+          "textType" : 0,
+          "label" : "299bb4ea-2ad0-4eb4-92ca-70e698e484c3",
+          "format" : "datetime",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "fbcdaadb-0f16-4a06-9c2a-56635fc79c00",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "115b31a7-a02a-429d-a419-15d2c927ffb4",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "columnType" : "TIMESTAMP",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 9447,
+          "sortable" : false,
+          "pageId" : "57a2ad59-706d-4742-aa2e-4319d276cf25"
+        }, {
+          "type" : "TEXT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : 550099,
+          "required" : false,
+          "textType" : 0,
+          "label" : "17d0a350-842f-417f-814f-ab6e96687233",
+          "format" : "none",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "c10b7f7e-1da8-4ab5-85c2-4e06ab76171c",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "ad01762a-cabe-4384-85e7-f2b0e054b918",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "columnType" : "STRING",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 8235,
+          "sortable" : false,
+          "pageId" : "57a2ad59-706d-4742-aa2e-4319d276cf25"
+        }, {
+          "type" : "TEXT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : 550109,
+          "required" : false,
+          "textType" : 0,
+          "label" : "72d4a362-8460-447c-996d-439ea739318b",
+          "format" : "none",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "1d60e3dd-a379-4832-ab39-cbc749b3b4cb",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "bd111bdb-f3da-4bf2-9ca4-74ac2dad7409",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 8235,
+          "sortable" : false,
+          "pageId" : "70d4ecf2-dd9e-4445-85b0-99ed85449ce3"
+        }, {
+          "type" : "DIVIDER",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9a7a6c54-82aa-4f57-adba-17ae5bc20e7c",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "57632445-99cb-492c-8dd9-3b6771de5559",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        }, {
+          "type" : "HTML_CONTENT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : 550100,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : 62826,
+          "parentComponentId" : "9a7a6c54-82aa-4f57-adba-17ae5bc20e7c",
+          "parameters" : { },
+          "id" : "deb82022-620c-4453-9e54-be2b88412914",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "columnType" : "STRING",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : 8855,
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 5,
+            "columnCountMobile" : 1,
+            "visible" : 1,
+            "defaultHorizontalAlign" : "STRETCH",
+            "columnCount" : 1,
+            "defaultVerticalAlign" : "TOP",
+            "mobileWrappingMode" : "Row"
+          },
+          "id" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "components" : [ {
+            "type" : "GRID_ITEM",
+            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
+            "columnId" : null,
+            "required" : false,
+            "textType" : 0,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
+            "prefillValue" : null,
+            "parameters" : {
+              "query" : null,
+              "prefill" : null,
+              "order" : null
+            },
+            "id" : "4cf575b6-d0c0-4274-8a5a-893a2af45cb1",
+            "defaultvalue" : "",
+            "displayorder" : 1,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "filter" : "",
+            "val" : "",
+            "helptext" : "",
+            "cssclass" : "",
+            "icon" : "",
+            "tableid" : "0",
+            "sortable" : false,
+            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6",
+            "components" : [ ]
+          }, {
+            "type" : "GRID_ITEM",
+            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
+            "columnId" : null,
+            "required" : false,
+            "textType" : 0,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
+            "prefillValue" : null,
+            "parameters" : {
+              "query" : null,
+              "prefill" : null,
+              "order" : null
+            },
+            "id" : "b9bbed34-c871-4959-8460-84fee9bd6dc3",
+            "defaultvalue" : "",
+            "displayorder" : 3,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "filter" : "",
+            "val" : "",
+            "helptext" : "",
+            "cssclass" : "",
+            "icon" : "",
+            "tableid" : "0",
+            "sortable" : false,
+            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6",
+            "components" : [ ]
+          }, {
+            "type" : "GRID_ITEM",
+            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
+            "columnId" : null,
+            "required" : false,
+            "textType" : 0,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
+            "prefillValue" : null,
+            "parameters" : { },
+            "id" : "d725eabd-01ca-4c59-8bb9-dce9cbfb9e7d",
+            "defaultvalue" : "",
+            "displayorder" : 4,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "filter" : "",
+            "val" : "",
+            "helptext" : "",
+            "cssclass" : "",
+            "icon" : "",
+            "tableid" : "0",
+            "sortable" : false,
+            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+          }, {
+            "type" : "GRID_ITEM",
+            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
+            "columnId" : null,
+            "required" : false,
+            "textType" : 0,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
+            "prefillValue" : null,
+            "parameters" : { },
+            "id" : "937aa137-7dd3-4c01-8b6e-31fe8688663b",
+            "defaultvalue" : "",
+            "displayorder" : 5,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "filter" : "",
+            "val" : "",
+            "helptext" : "",
+            "cssclass" : "",
+            "icon" : "",
+            "tableid" : "0",
+            "sortable" : false,
+            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+          }, {
+            "type" : "GRID_ITEM",
+            "appId" : "6ce72c1a-f584-4c52-a3a6-883d4bd2a118",
+            "columnId" : null,
+            "required" : false,
+            "textType" : 0,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "eb803752-14b0-4c70-8e45-be3b6ea248a3",
+            "prefillValue" : null,
+            "parameters" : { },
+            "id" : "a55ab9d4-0a07-4c5d-b0f3-9e5b9af34590",
+            "defaultvalue" : "",
+            "displayorder" : 6,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "filter" : "",
+            "val" : "",
+            "helptext" : "",
+            "cssclass" : "",
+            "icon" : "",
+            "tableid" : "0",
+            "sortable" : false,
+            "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+          } ],
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "1d60e3dd-a379-4832-ab39-cbc749b3b4cb",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "parameters" : {
+            "query" : null,
+            "prefill" : null,
+            "order" : null
+          },
+          "id" : "953a118e-dac7-45f4-a725-da8a747895eb",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "parameters" : { },
+          "id" : "c10b7f7e-1da8-4ab5-85c2-4e06ab76171c",
+          "defaultvalue" : "",
+          "displayorder" : 3,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "parameters" : { },
+          "id" : "fbcdaadb-0f16-4a06-9c2a-56635fc79c00",
+          "defaultvalue" : "",
+          "displayorder" : 4,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "4ac1de49-736e-448d-95e9-921bbbfb500d",
+          "parameters" : { },
+          "id" : "9a7a6c54-82aa-4f57-adba-17ae5bc20e7c",
+          "defaultvalue" : "",
+          "displayorder" : 5,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "tableid" : "0",
+          "sortable" : false
+        }, {
+          "type" : "TEXT",
+          "appId" : "6a4705ab-c86f-4a81-b874-3d511f2e28eb",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : "a6dde381-a55d-430c-971c-fb34eb568bbf",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "c10b7f7e-1da8-4ab5-85c2-4e06ab76171c",
+          "parameters" : {
+            "template" : "be8628d5-5bfa-4e16-a3f2-0b3132efa1b2",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "1625dd5d-66db-48cb-8bc4-a529391a9f17",
+          "defaultvalue" : "",
+          "displayorder" : 2,
+          "filter" : "",
+          "val" : "",
+          "prefillValue" : null,
+          "helptext" : "",
+          "cssclass" : "",
+          "icon" : "",
+          "sortable" : false,
+          "pageId" : "2dd59e1a-bab0-4601-bd9d-a1e4e66396d6"
+        } ],
+        "query" : {
+          "id" : "4ecb8095-d2da-4f29-9fe0-c644a6747405",
+          "constraints" : {
+            "type" : "EXPRESSION",
+            "left" : {
+              "type" : "TERM",
+              "constraint" : {
+                "tableId" : 44757,
+                "columnId" : 550120,
+                "foreignKeyId" : 62828,
+                "valueType" : "USER_EMAIL",
+                "ignoredWhenValueIsNull" : false,
+                "action" : "EQUALS_TO"
+              }
+            },
+            "operator" : "AND",
+            "right" : {
+              "type" : "TERM",
+              "constraint" : {
+                "tableId" : 44754,
+                "columnId" : 550103,
+                "foreignKeyId" : 62825,
+                "valueType" : "COLUMN",
+                "variableColumn" : 550113,
+                "ignoredWhenValueIsNull" : false,
+                "action" : "EQUALS_TO"
+              }
+            }
+          },
+          "autojoins" : false
+        },
+        "title" : "cfc661dd-27d5-4815-b2fc-7c7d848b4611",
+        "logicConfiguration" : [ {
+          "constraints" : [ {
+            "targetComponentId" : "ad01762a-cabe-4384-85e7-f2b0e054b918",
+            "comparison" : "BLANK",
+            "valueType" : null,
+            "id" : "5eb2a285-7df6-4c35-8686-ffa4d8c927e8",
+            "equality" : "IS",
+            "value" : null
+          } ],
+          "children" : [ {
+            "targetComponentId" : "1625dd5d-66db-48cb-8bc4-a529391a9f17",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "4adfe80b-e04f-4744-bc15-ac6a1888cd5e",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "ad01762a-cabe-4384-85e7-f2b0e054b918",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "c4c718e7-e712-4b83-8e73-c379fe6fd342",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "1625dd5d-66db-48cb-8bc4-a529391a9f17",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "bf4e31b7-a4ed-4215-8193-94b78db1ad4d",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          }, {
+            "targetComponentId" : "ad01762a-cabe-4384-85e7-f2b0e054b918",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "e367dd24-b0d6-495a-b2b5-45ca449e9bd6",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Not Defined Author",
+          "id" : "6fcc1e78-034b-4ab5-80dd-bd534ce9a9c5",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
+        } ],
+        "parameters" : { },
+        "tableid" : 44755,
+        "datasourceid" : 4382,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      } ],
+      "actionApp" : true,
+      "title" : "9ec3a17b-9d8c-4fb9-a99e-ad41b6bacbcc",
+      "trackingUuid" : "e431eaa0-9cca-47b9-9489-fa7897e60936"
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -2839,13 +2839,13 @@
     }
   } ],
   "services" : [ {
-    "id" : 18,
-    "uuid" : "d20d5824-acf7-44a6-87d8-ed11e0c07916",
-    "version" : 196,
-    "title" : "SocialChorus",
+    "id" : 4382,
+    "uuid" : "2dfea9ed-d596-44da-8565-f97ff5b29089",
+    "version" : 200,
+    "title" : "SocialChorus #2",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
-    "schemaName" : "ecosy2467c1_socialchorus",
+    "schemaName" : "d8uix7pohlog_socialchorus_2",
     "configuration" : {
       "trackingUuid" : "35a91c62-0880-4b83-9bad-25ee5b198cb6",
       "baseUrl" : "https://partner.socialchorus.com",
@@ -2868,1117 +2868,6 @@
         "type" : "NONE"
       },
       "useOnPremProxy" : false,
-      "dataEndpoints" : [ {
-        "name" : "Channel Followers",
-        "endpoint" : "/v2/channels/{{channel_id}}/followers",
-        "requestMethod" : "GET",
-        "postMode" : "FORMDATA",
-        "body" : "",
-        "id" : 5,
-        "type" : "DETAIL",
-        "parentTable" : "channels",
-        "rootPath" : "data",
-        "tables" : [ {
-          "id" : 11,
-          "tableName" : "channel_followers",
-          "path" : "data",
-          "columns" : [ {
-            "name" : "avatar_url",
-            "path" : "avatar_url",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "channels_auto_publish",
-            "path" : "auto_publish",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "auto_publish",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_contributor_count",
-            "path" : "contributor_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "contributor_count",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_created_at",
-            "path" : "created_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "created_at",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_description",
-            "path" : "description",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "description",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_follower_count",
-            "path" : "follower_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "follower_count",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "columnRole" : "PRIMARY_KEY",
-            "parentColumnReference" : "id",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_name",
-            "path" : "name",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "name",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_recommended",
-            "path" : "recommended",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "recommended",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_state",
-            "path" : "state",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "state",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_targeted",
-            "path" : "targeted",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "targeted",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_updated_at",
-            "path" : "updated_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "updated_at",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "channels_user_submittable",
-            "path" : "user_submittable",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "user_submittable",
-            "parentTableReference" : "channels"
-          }, {
-            "name" : "display_name",
-            "path" : "display_name",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "user_id",
-            "path" : "user_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          } ],
-          "root" : true,
-          "ignored" : false,
-          "childTables" : [ "data/groups" ],
-          "detailEndpointIds" : [ 6 ],
-          "loadingType" : "PULL"
-        } ],
-        "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "Channel Followers",
-        "paginationMethod" : {
-          "type" : "PAGE",
-          "limitParameter" : "page.size",
-          "limit" : 20,
-          "pageParameter" : "page.number"
-        },
-        "paginationEnabled" : true,
-        "mergeStrategy" : "SUBLIST",
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "pathParameters" : [ {
-          "valueType" : "PARENT_DATA",
-          "name" : "channel_id",
-          "defaultValue" : "2136068",
-          "parameterType" : "STRING",
-          "required" : true,
-          "uniqueId" : "2f592e1f-9cc7-4743-a118-975265883f2f",
-          "columnName" : "id"
-        } ],
-        "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ]
-      }, {
-        "name" : "Users",
-        "endpoint" : "/scim/v2/Users/{{user_id}}",
-        "requestMethod" : "GET",
-        "postMode" : "FORMDATA",
-        "body" : "",
-        "id" : 6,
-        "type" : "DETAIL",
-        "parentTable" : "channel_followers",
-        "rootPath" : "",
-        "tables" : [ {
-          "id" : 12,
-          "tableName" : "users",
-          "path" : "",
-          "columns" : [ {
-            "name" : "active",
-            "path" : "active",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "channel_avatar_url",
-            "path" : "avatar_url",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "avatar_url",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_auto_publish",
-            "path" : "auto_publish",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_auto_publish",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_contributor_count",
-            "path" : "contributor_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_contributor_count",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_created_at",
-            "path" : "created_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_created_at",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_description",
-            "path" : "description",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_description",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_follower_count",
-            "path" : "follower_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_follower_count",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "columnRole" : "PRIMARY_KEY",
-            "parentColumnReference" : "channels_id",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_name",
-            "path" : "name",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_name",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_recommended",
-            "path" : "recommended",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_recommended",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_state",
-            "path" : "state",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_state",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_targeted",
-            "path" : "targeted",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_targeted",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_updated_at",
-            "path" : "updated_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_updated_at",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_channels_user_submittable",
-            "path" : "user_submittable",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "channels_user_submittable",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_display_name",
-            "path" : "display_name",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "display_name",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "channel_user_id",
-            "path" : "user_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "MERGED_RECORD",
-            "parentColumnReference" : "user_id",
-            "parentTableReference" : "channel_followers"
-          }, {
-            "name" : "id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "locale",
-            "path" : "locale",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "name_family_name",
-            "path" : "name/familyName",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "name_given_name",
-            "path" : "name/givenName",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "preferred_language",
-            "path" : "preferredLanguage",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_birth_date",
-            "path" : "SocialChorus:1.0:User/birthDate",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_business_unit",
-            "path" : "SocialChorus:1.0:User/businessUnit",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_gender",
-            "path" : "SocialChorus:1.0:User/gender",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_hire_date",
-            "path" : "SocialChorus:1.0:User/hireDate",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_manager_name",
-            "path" : "SocialChorus:1.0:User/managerName",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "social_chorus_1_0_user_work_location",
-            "path" : "SocialChorus:1.0:User/workLocation",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "timezone",
-            "path" : "timezone",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "title",
-            "path" : "title",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "urn_ietf_params_scim_schemas_extension_enterprise_2_0_user_cost_center",
-            "path" : "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User/costCenter",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "urn_ietf_params_scim_schemas_extension_enterprise_2_0_user_department",
-            "path" : "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User/department",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "urn_ietf_params_scim_schemas_extension_enterprise_2_0_user_division",
-            "path" : "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User/division",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "urn_ietf_params_scim_schemas_extension_enterprise_2_0_user_employee_number",
-            "path" : "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User/employeeNumber",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "urn_ietf_params_scim_schemas_extension_enterprise_2_0_user_organization",
-            "path" : "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User/organization",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "user_name",
-            "path" : "userName",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "user_type",
-            "path" : "userType",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          } ],
-          "root" : true,
-          "ignored" : false,
-          "childTables" : [ "emails", "schemas", "roles", "groups" ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 13,
-          "tableName" : "users_emails",
-          "path" : "emails",
-          "columns" : [ {
-            "name" : "primary",
-            "path" : "primary",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "value",
-            "path" : "value",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "parent_channel_channels_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "PARENT_RECORD",
-            "parentColumnReference" : "channel_channels_id",
-            "parentTableReference" : "users",
-            "referenceGroup" : "nested_table_1"
-          }, {
-            "name" : "parent_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "PARENT_RECORD",
-            "parentColumnReference" : "id",
-            "parentTableReference" : "users",
-            "referenceGroup" : "nested_table_2"
-          }, {
-            "name" : "unique_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 36,
-            "source" : "GENERATED",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "root_channel_channels_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "ROOT_RECORD",
-            "columnRole" : "ROOT_KEY_REFERENCE",
-            "parentColumnReference" : "channel_channels_id"
-          }, {
-            "name" : "root_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "ROOT_RECORD",
-            "columnRole" : "ROOT_KEY_REFERENCE",
-            "parentColumnReference" : "id"
-          } ],
-          "root" : false,
-          "ignored" : false,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 14,
-          "tableName" : "users_roles",
-          "path" : "roles",
-          "columns" : [ {
-            "name" : "value",
-            "path" : "",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          } ],
-          "root" : false,
-          "ignored" : true,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 15,
-          "tableName" : "users_schemas",
-          "path" : "schemas",
-          "columns" : [ {
-            "name" : "value",
-            "path" : "",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          } ],
-          "root" : false,
-          "ignored" : true,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        } ],
-        "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "Users",
-        "paginationEnabled" : true,
-        "mergeStrategy" : "SUBLIST",
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "pathParameters" : [ {
-          "valueType" : "PARENT_DATA",
-          "name" : "user_id",
-          "defaultValue" : "7057065",
-          "parameterType" : "STRING",
-          "required" : true,
-          "uniqueId" : "e55071b8-5b94-4663-94c0-465e4fb0cbba",
-          "columnName" : "user_id"
-        } ],
-        "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ]
-      }, {
-        "name" : "Content",
-        "endpoint" : "/v2/content",
-        "requestMethod" : "GET",
-        "postMode" : "FORMDATA",
-        "body" : "",
-        "id" : 4,
-        "type" : "LIST",
-        "rootPath" : "data",
-        "tables" : [ {
-          "id" : 8,
-          "tableName" : "content",
-          "path" : "data",
-          "columns" : [ {
-            "name" : "accent_color",
-            "path" : "accent_color",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "author_avatar_url",
-            "path" : "author/avatar_url",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "author_display_name",
-            "path" : "author/display_name",
-            "primaryKeyCandidate" : false,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "author_user_id",
-            "path" : "author/user_id",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "body",
-            "path" : "body",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 20000,
-            "source" : "RECORD"
-          }, {
-            "name" : "body_short",
-            "path" : "body",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "content_type",
-            "path" : "content_type",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "created_at",
-            "path" : "created_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "RECORD"
-          }, {
-            "name" : "featured",
-            "path" : "featured",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "permalink_url",
-            "path" : "permalink_url",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "published_at",
-            "path" : "published_at",
-            "primaryKeyCandidate" : false,
-            "ignored" : false,
-            "columnType" : "TIMESTAMP",
-            "source" : "RECORD"
-          }, {
-            "name" : "source_post_id",
-            "path" : "source/post_id",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "source_posted_at",
-            "path" : "source/posted_at",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "source_type",
-            "path" : "source/type",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "state",
-            "path" : "state",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "summary",
-            "path" : "summary",
-            "primaryKeyCandidate" : false,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 500,
-            "source" : "RECORD"
-          }, {
-            "name" : "template_id",
-            "path" : "template/id",
-            "primaryKeyCandidate" : false,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "title",
-            "path" : "title",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "updated_at",
-            "path" : "updated_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "RECORD"
-          }, {
-            "name" : "uuid",
-            "path" : "uuid",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "visibility",
-            "path" : "visibility",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          } ],
-          "root" : true,
-          "ignored" : false,
-          "childTables" : [ "data/channels", "data/images" ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 9,
-          "tableName" : "content_channels",
-          "path" : "data/channels",
-          "columns" : [ {
-            "name" : "id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "name",
-            "path" : "name",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "parent_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "PARENT_RECORD",
-            "columnRole" : "PRIMARY_KEY",
-            "parentColumnReference" : "id",
-            "parentTableReference" : "content",
-            "referenceGroup" : "nested_table_9"
-          }, {
-            "name" : "root_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "ROOT_RECORD",
-            "columnRole" : "ROOT_KEY_REFERENCE",
-            "parentColumnReference" : "id"
-          } ],
-          "root" : false,
-          "ignored" : false,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 10,
-          "tableName" : "content_images",
-          "path" : "data/images",
-          "columns" : [ {
-            "name" : "id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "image_url",
-            "path" : "image_url",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          } ],
-          "root" : false,
-          "ignored" : true,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        } ],
-        "incrementalSyncQueryParameters" : [ {
-          "valueType" : "LAST_SYNCHRONIZATION",
-          "name" : "filter.created_at.from",
-          "dateTimeFormat" : "CUSTOM",
-          "customDateTimeFormat" : "YYYY-MM-DD[T]HH:mm:ss[Z]",
-          "timezone" : "Etc/UTC",
-          "required" : false,
-          "uniqueId" : "04211b7c-90ac-497b-9787-28606af0c05b"
-        } ],
-        "baseTableName" : "Content",
-        "paginationMethod" : {
-          "type" : "PAGE",
-          "limitParameter" : "page.size",
-          "limit" : 10,
-          "pageParameter" : "page.number"
-        },
-        "paginationEnabled" : true,
-        "mergeStrategy" : "NONE",
-        "headerParameters" : [ ],
-        "queryParameters" : [ ],
-        "pathParameters" : [ ],
-        "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        }, {
-          "id" : "IncrementalSynchronization",
-          "name" : "Incremental Synchronization",
-          "description" : "Incremental synchronization pulls only new and updated records from the source system since the last synchronization. Deleted records in the source system are not incrementally synced and therefore, they will remain in the local cache.",
-          "preferredSchedule" : "HOURLY"
-        } ]
-      }, {
-        "name" : "Channels",
-        "endpoint" : "/v2/channels",
-        "requestMethod" : "GET",
-        "postMode" : "FORMDATA",
-        "body" : "",
-        "id" : 1,
-        "type" : "LIST",
-        "rootPath" : "data",
-        "tables" : [ {
-          "id" : 1,
-          "tableName" : "channels",
-          "path" : "data",
-          "columns" : [ {
-            "name" : "auto_publish",
-            "path" : "auto_publish",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "contributor_count",
-            "path" : "contributor_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "created_at",
-            "path" : "created_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "RECORD"
-          }, {
-            "name" : "description",
-            "path" : "description",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "follower_count",
-            "path" : "follower_count",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "INTEGER",
-            "source" : "RECORD"
-          }, {
-            "name" : "id",
-            "path" : "id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "RECORD",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "name",
-            "path" : "name",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "recommended",
-            "path" : "recommended",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "state",
-            "path" : "state",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "targeted",
-            "path" : "targeted",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          }, {
-            "name" : "updated_at",
-            "path" : "updated_at",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "TIMESTAMP",
-            "source" : "RECORD"
-          }, {
-            "name" : "user_submittable",
-            "path" : "user_submittable",
-            "primaryKeyCandidate" : true,
-            "ignored" : true,
-            "columnType" : "BOOLEAN",
-            "source" : "RECORD"
-          } ],
-          "root" : true,
-          "ignored" : false,
-          "childTables" : [ "data/groups" ],
-          "detailEndpointIds" : [ 5 ],
-          "loadingType" : "PULL"
-        }, {
-          "id" : 2,
-          "tableName" : "channels_groups",
-          "path" : "data/groups",
-          "columns" : [ {
-            "name" : "value",
-            "path" : "",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 255,
-            "source" : "RECORD"
-          }, {
-            "name" : "parent_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "PARENT_RECORD",
-            "parentColumnReference" : "id",
-            "parentTableReference" : "channels",
-            "referenceGroup" : "nested_table"
-          }, {
-            "name" : "unique_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "STRING",
-            "length" : 36,
-            "source" : "GENERATED",
-            "columnRole" : "PRIMARY_KEY"
-          }, {
-            "name" : "root_id",
-            "primaryKeyCandidate" : true,
-            "ignored" : false,
-            "columnType" : "INTEGER",
-            "source" : "ROOT_RECORD",
-            "columnRole" : "ROOT_KEY_REFERENCE",
-            "parentColumnReference" : "id"
-          } ],
-          "root" : false,
-          "ignored" : false,
-          "childTables" : [ ],
-          "detailEndpointIds" : [ ],
-          "loadingType" : "PULL"
-        } ],
-        "incrementalSyncQueryParameters" : [ ],
-        "baseTableName" : "Channels",
-        "paginationMethod" : {
-          "type" : "PAGE",
-          "limitParameter" : "page.size",
-          "limit" : 10,
-          "maximumPages" : 1000,
-          "pageParameter" : "page.number"
-        },
-        "paginationEnabled" : true,
-        "mergeStrategy" : "NONE",
-        "headerParameters" : [ ],
-        "queryParameters" : [ {
-          "name" : "filter.state",
-          "defaultValue" : "published",
-          "parameterType" : "STRING",
-          "required" : false,
-          "uniqueId" : "88f2998c-bf99-4ecf-8033-f0058b93be69"
-        } ],
-        "pathParameters" : [ ],
-        "bodyParameters" : [ ],
-        "synchronizationTypes" : [ {
-          "id" : "FullSynchronization",
-          "name" : "Full Synchronization",
-          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
-          "preferredSchedule" : "DAILY"
-        } ]
-      } ],
       "webhookListeners" : [ ],
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
@@ -3989,7 +2878,6 @@
         "useTimeRange" : false,
         "schedule" : "HOURLY"
       } ],
-      "serviceActions" : [ ],
       "endpoints" : [ {
         "legacyEndpointId" : 5,
         "uniqueId" : "3f95a33e-c97e-4eaa-aacf-4d6378e7254d",
@@ -5103,7 +3991,7 @@
         }
       } ],
       "actions" : [ ],
-      "iconUrl" : "https://microappsicontest-cdn.azureedge.net/image/TMSXUiKsSPNWozvbpT6ihgxasWJnw6mU.png",
+      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/IA4ccact8pcnktbZyWb0kJ6ZObxWt8Qj.png",
       "iconType" : "CUSTOM_IMAGE",
       "rateLimitConfiguration" : {
         "timeWindow" : {
@@ -5125,14 +4013,14 @@
       }
     },
     "tables" : [ {
-      "id" : 99,
+      "id" : 44752,
       "title" : "channels_groups",
       "displayName" : "Channels Groups",
       "entityName" : "channels_groups",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1297,
+        "id" : 550091,
         "title" : "value",
         "displayName" : "Value",
         "attributeName" : "value",
@@ -5146,7 +4034,7 @@
         "defaultLabel" : "Value",
         "primaryKey" : false
       }, {
-        "id" : 1298,
+        "id" : 550092,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -5160,7 +4048,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 1299,
+        "id" : 550093,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -5174,7 +4062,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 1300,
+        "id" : 550094,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -5189,14 +4077,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 100,
+      "id" : 44753,
       "title" : "channels",
       "displayName" : "Channels",
       "entityName" : "channels",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1301,
+        "id" : 550095,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -5210,7 +4098,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 1302,
+        "id" : 550096,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -5224,7 +4112,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 1303,
+        "id" : 550097,
         "title" : "recommended",
         "displayName" : "Recommended",
         "attributeName" : "recommended",
@@ -5238,7 +4126,7 @@
         "defaultLabel" : "Recommended",
         "primaryKey" : false
       }, {
-        "id" : 1304,
+        "id" : 550098,
         "title" : "state",
         "displayName" : "State",
         "attributeName" : "state",
@@ -5253,14 +4141,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 101,
+      "id" : 44754,
       "title" : "content",
       "displayName" : "Content",
       "entityName" : "content",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1305,
+        "id" : 550099,
         "title" : "author_display_name",
         "displayName" : "Author Display Name",
         "attributeName" : "author_display_name",
@@ -5274,7 +4162,7 @@
         "defaultLabel" : "Author Display Name",
         "primaryKey" : false
       }, {
-        "id" : 1306,
+        "id" : 550100,
         "title" : "body",
         "displayName" : "Body",
         "attributeName" : "body",
@@ -5288,7 +4176,7 @@
         "defaultLabel" : "Body",
         "primaryKey" : false
       }, {
-        "id" : 1307,
+        "id" : 550101,
         "title" : "content_type",
         "displayName" : "Content Type",
         "attributeName" : "content_type",
@@ -5302,7 +4190,7 @@
         "defaultLabel" : "Content Type",
         "primaryKey" : false
       }, {
-        "id" : 1308,
+        "id" : 550102,
         "title" : "featured",
         "displayName" : "Featured",
         "attributeName" : "featured",
@@ -5316,7 +4204,7 @@
         "defaultLabel" : "Featured",
         "primaryKey" : false
       }, {
-        "id" : 1309,
+        "id" : 550103,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -5330,7 +4218,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 1310,
+        "id" : 550104,
         "title" : "permalink_url",
         "displayName" : "Permalink Url",
         "attributeName" : "permalink_url",
@@ -5344,7 +4232,7 @@
         "defaultLabel" : "Permalink Url",
         "primaryKey" : false
       }, {
-        "id" : 1311,
+        "id" : 550105,
         "title" : "published_at",
         "displayName" : "Published At",
         "attributeName" : "published_at",
@@ -5358,7 +4246,7 @@
         "defaultLabel" : "Published At",
         "primaryKey" : false
       }, {
-        "id" : 1312,
+        "id" : 550106,
         "title" : "source_type",
         "displayName" : "Source Type",
         "attributeName" : "source_type",
@@ -5372,7 +4260,7 @@
         "defaultLabel" : "Source Type",
         "primaryKey" : false
       }, {
-        "id" : 1313,
+        "id" : 550107,
         "title" : "state",
         "displayName" : "State",
         "attributeName" : "state",
@@ -5386,7 +4274,7 @@
         "defaultLabel" : "State",
         "primaryKey" : false
       }, {
-        "id" : 1314,
+        "id" : 550108,
         "title" : "summary",
         "displayName" : "Summary",
         "attributeName" : "summary",
@@ -5400,7 +4288,7 @@
         "defaultLabel" : "Summary",
         "primaryKey" : false
       }, {
-        "id" : 1315,
+        "id" : 550109,
         "title" : "title",
         "displayName" : "Title",
         "attributeName" : "title",
@@ -5414,7 +4302,7 @@
         "defaultLabel" : "Title",
         "primaryKey" : false
       }, {
-        "id" : 1316,
+        "id" : 550110,
         "title" : "uuid",
         "displayName" : "Uuid",
         "attributeName" : "uuid",
@@ -5429,14 +4317,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 102,
+      "id" : 44755,
       "title" : "content_channels",
       "displayName" : "Content Channels",
       "entityName" : "content_channels",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1317,
+        "id" : 550111,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -5450,7 +4338,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 1318,
+        "id" : 550112,
         "title" : "name",
         "displayName" : "Name",
         "attributeName" : "name",
@@ -5464,7 +4352,7 @@
         "defaultLabel" : "Name",
         "primaryKey" : false
       }, {
-        "id" : 1319,
+        "id" : 550113,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -5478,7 +4366,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : true
       }, {
-        "id" : 1320,
+        "id" : 550114,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -5493,14 +4381,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 103,
+      "id" : 44756,
       "title" : "channel_followers",
       "displayName" : "Channel Followers",
       "entityName" : "channel_followers",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1321,
+        "id" : 550115,
         "title" : "channels_id",
         "displayName" : "Channels Id",
         "attributeName" : "channels_id",
@@ -5514,7 +4402,7 @@
         "defaultLabel" : "Channels Id",
         "primaryKey" : true
       }, {
-        "id" : 1322,
+        "id" : 550116,
         "title" : "channels_name",
         "displayName" : "Channels Name",
         "attributeName" : "channels_name",
@@ -5528,7 +4416,7 @@
         "defaultLabel" : "Channels Name",
         "primaryKey" : false
       }, {
-        "id" : 1323,
+        "id" : 550117,
         "title" : "channels_recommended",
         "displayName" : "Channels Recommended",
         "attributeName" : "channels_recommended",
@@ -5542,7 +4430,7 @@
         "defaultLabel" : "Channels Recommended",
         "primaryKey" : false
       }, {
-        "id" : 1324,
+        "id" : 550118,
         "title" : "channels_state",
         "displayName" : "Channels State",
         "attributeName" : "channels_state",
@@ -5556,7 +4444,7 @@
         "defaultLabel" : "Channels State",
         "primaryKey" : false
       }, {
-        "id" : 1325,
+        "id" : 550119,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -5571,14 +4459,14 @@
         "primaryKey" : true
       } ]
     }, {
-      "id" : 104,
+      "id" : 44757,
       "title" : "users_emails",
       "displayName" : "Users Emails",
       "entityName" : "users_emails",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1326,
+        "id" : 550120,
         "title" : "value",
         "displayName" : "Value",
         "attributeName" : "value",
@@ -5592,7 +4480,7 @@
         "defaultLabel" : "Value",
         "primaryKey" : false
       }, {
-        "id" : 1327,
+        "id" : 550121,
         "title" : "primary",
         "displayName" : "Primary",
         "attributeName" : "primary",
@@ -5606,7 +4494,7 @@
         "defaultLabel" : "Primary",
         "primaryKey" : false
       }, {
-        "id" : 1328,
+        "id" : 550122,
         "title" : "parent_channel_channels_i",
         "displayName" : "Parent Channel Channels Id",
         "attributeName" : "parent_channel_channels_id",
@@ -5620,7 +4508,7 @@
         "defaultLabel" : "Parent Channel Channels Id",
         "primaryKey" : false
       }, {
-        "id" : 1329,
+        "id" : 550123,
         "title" : "parent_id",
         "displayName" : "Parent Id",
         "attributeName" : "parent_id",
@@ -5634,7 +4522,7 @@
         "defaultLabel" : "Parent Id",
         "primaryKey" : false
       }, {
-        "id" : 1330,
+        "id" : 550124,
         "title" : "unique_id",
         "displayName" : "Unique Id",
         "attributeName" : "unique_id",
@@ -5648,7 +4536,7 @@
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
       }, {
-        "id" : 1331,
+        "id" : 550125,
         "title" : "root_channel_channels_id",
         "displayName" : "Root Channel Channels Id",
         "attributeName" : "root_channel_channels_id",
@@ -5662,7 +4550,7 @@
         "defaultLabel" : "Root Channel Channels Id",
         "primaryKey" : false
       }, {
-        "id" : 1332,
+        "id" : 550126,
         "title" : "root_id",
         "displayName" : "Root Id",
         "attributeName" : "root_id",
@@ -5677,14 +4565,14 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 105,
+      "id" : 44758,
       "title" : "users",
       "displayName" : "Users",
       "entityName" : "users",
       "type" : "TABLE",
       "loadingType" : "PULL",
       "columns" : [ {
-        "id" : 1333,
+        "id" : 550127,
         "title" : "channel_channels_id",
         "displayName" : "Channel Channels Id",
         "attributeName" : "channel_channels_id",
@@ -5698,7 +4586,7 @@
         "defaultLabel" : "Channel Channels Id",
         "primaryKey" : true
       }, {
-        "id" : 1334,
+        "id" : 550128,
         "title" : "channel_channels_name",
         "displayName" : "Channel Channels Name",
         "attributeName" : "channel_channels_name",
@@ -5712,7 +4600,7 @@
         "defaultLabel" : "Channel Channels Name",
         "primaryKey" : false
       }, {
-        "id" : 1335,
+        "id" : 550129,
         "title" : "channel_channels_recommen",
         "displayName" : "Channel Channels Recommended",
         "attributeName" : "channel_channels_recommended",
@@ -5726,7 +4614,7 @@
         "defaultLabel" : "Channel Channels Recommended",
         "primaryKey" : false
       }, {
-        "id" : 1336,
+        "id" : 550130,
         "title" : "channel_user_id",
         "displayName" : "Channel User Id",
         "attributeName" : "channel_user_id",
@@ -5740,7 +4628,7 @@
         "defaultLabel" : "Channel User Id",
         "primaryKey" : false
       }, {
-        "id" : 1337,
+        "id" : 550131,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -5754,7 +4642,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 1338,
+        "id" : 550132,
         "title" : "user_name",
         "displayName" : "User Name",
         "attributeName" : "user_name",
@@ -5768,7 +4656,7 @@
         "defaultLabel" : "User Name",
         "primaryKey" : false
       }, {
-        "id" : 1339,
+        "id" : 550133,
         "title" : "channel_channels_state",
         "displayName" : "Channel Channels State",
         "attributeName" : "channel_channels_state",
@@ -5784,14 +4672,14 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 78,
+      "id" : 62824,
       "pkTable" : {
-        "id" : 100,
+        "id" : 44753,
         "title" : "channels",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 99,
+        "id" : 44752,
         "title" : "channels_groups",
         "type" : "TABLE"
       },
@@ -5799,9 +4687,9 @@
       "userDefined" : false,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 78,
+        "fkId" : 62824,
         "pkColumn" : {
-          "id" : 1301,
+          "id" : 550095,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -5816,7 +4704,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1298,
+          "id" : 550092,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -5832,14 +4720,14 @@
         }
       } ]
     }, {
-      "id" : 79,
+      "id" : 62825,
       "pkTable" : {
-        "id" : 101,
+        "id" : 44754,
         "title" : "content",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 102,
+        "id" : 44755,
         "title" : "content_channels",
         "type" : "TABLE"
       },
@@ -5847,9 +4735,9 @@
       "userDefined" : false,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 79,
+        "fkId" : 62825,
         "pkColumn" : {
-          "id" : 1309,
+          "id" : 550103,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -5864,7 +4752,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1319,
+          "id" : 550113,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -5880,14 +4768,14 @@
         }
       } ]
     }, {
-      "id" : 80,
+      "id" : 62826,
       "pkTable" : {
-        "id" : 102,
+        "id" : 44755,
         "title" : "content_channels",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 101,
+        "id" : 44754,
         "title" : "content",
         "type" : "TABLE"
       },
@@ -5895,9 +4783,9 @@
       "userDefined" : true,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 80,
+        "fkId" : 62826,
         "pkColumn" : {
-          "id" : 1319,
+          "id" : 550113,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -5912,7 +4800,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1309,
+          "id" : 550103,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -5928,14 +4816,14 @@
         }
       } ]
     }, {
-      "id" : 81,
+      "id" : 62827,
       "pkTable" : {
-        "id" : 102,
+        "id" : 44755,
         "title" : "content_channels",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 100,
+        "id" : 44753,
         "title" : "channels",
         "type" : "TABLE"
       },
@@ -5943,9 +4831,9 @@
       "userDefined" : true,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 81,
+        "fkId" : 62827,
         "pkColumn" : {
-          "id" : 1317,
+          "id" : 550111,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -5960,7 +4848,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1301,
+          "id" : 550095,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -5976,14 +4864,14 @@
         }
       } ]
     }, {
-      "id" : 82,
+      "id" : 62828,
       "pkTable" : {
-        "id" : 102,
+        "id" : 44755,
         "title" : "content_channels",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 104,
+        "id" : 44757,
         "title" : "users_emails",
         "type" : "TABLE"
       },
@@ -5991,9 +4879,9 @@
       "userDefined" : true,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 82,
+        "fkId" : 62828,
         "pkColumn" : {
-          "id" : 1317,
+          "id" : 550111,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -6008,7 +4896,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1328,
+          "id" : 550122,
           "title" : "parent_channel_channels_i",
           "displayName" : "Parent Channel Channels Id",
           "attributeName" : "parent_channel_channels_id",
@@ -6024,14 +4912,14 @@
         }
       } ]
     }, {
-      "id" : 83,
+      "id" : 62829,
       "pkTable" : {
-        "id" : 102,
+        "id" : 44755,
         "title" : "content_channels",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 99,
+        "id" : 44752,
         "title" : "channels_groups",
         "type" : "TABLE"
       },
@@ -6039,9 +4927,9 @@
       "userDefined" : true,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 83,
+        "fkId" : 62829,
         "pkColumn" : {
-          "id" : 1317,
+          "id" : 550111,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -6056,7 +4944,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1298,
+          "id" : 550092,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -6072,14 +4960,14 @@
         }
       } ]
     }, {
-      "id" : 84,
+      "id" : 62830,
       "pkTable" : {
-        "id" : 105,
+        "id" : 44758,
         "title" : "users",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 104,
+        "id" : 44757,
         "title" : "users_emails",
         "type" : "TABLE"
       },
@@ -6087,9 +4975,9 @@
       "userDefined" : false,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 84,
+        "fkId" : 62830,
         "pkColumn" : {
-          "id" : 1333,
+          "id" : 550127,
           "title" : "channel_channels_id",
           "displayName" : "Channel Channels Id",
           "attributeName" : "channel_channels_id",
@@ -6104,7 +4992,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1328,
+          "id" : 550122,
           "title" : "parent_channel_channels_i",
           "displayName" : "Parent Channel Channels Id",
           "attributeName" : "parent_channel_channels_id",
@@ -6120,14 +5008,14 @@
         }
       } ]
     }, {
-      "id" : 85,
+      "id" : 62831,
       "pkTable" : {
-        "id" : 105,
+        "id" : 44758,
         "title" : "users",
         "type" : "TABLE"
       },
       "fkTable" : {
-        "id" : 104,
+        "id" : 44757,
         "title" : "users_emails",
         "type" : "TABLE"
       },
@@ -6135,9 +5023,9 @@
       "userDefined" : false,
       "scriptDefined" : false,
       "fkColumnPairs" : [ {
-        "fkId" : 85,
+        "fkId" : 62831,
         "pkColumn" : {
-          "id" : 1337,
+          "id" : 550131,
           "title" : "id",
           "displayName" : "Id",
           "attributeName" : "id",
@@ -6152,7 +5040,7 @@
           "primaryKey" : true
         },
         "fkColumn" : {
-          "id" : 1329,
+          "id" : 550123,
           "title" : "parent_id",
           "displayName" : "Parent Id",
           "attributeName" : "parent_id",
@@ -6168,18 +5056,18 @@
         }
       } ]
     } ],
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ ],
   "resolvers" : [ ],
   "modelConfiguration" : {
-    "appIds" : [ "5911664e-1609-48c7-8455-60bcca86fe15", "41a5692e-947e-4038-a08a-5118f81e35dc" ],
+    "appIds" : [ "081f859a-e364-49db-9648-59e2c4bd45ac", "6a4705ab-c86f-4a81-b874-3d511f2e28eb" ],
     "resolverIds" : [ ],
     "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "324B07FABED35C5B9A48C3DC6DED8D96",
-  "appliedSappUpgrades" : [ "microapp-2450", "microapp-8950", "microapp-3548", "microapp-4518", "microapp-9702", "microapp-10876", "microapp-5025", "microapp-8576", "microapp-3838", "microapp-12505", "microapp-4020", "microapp-10856", "microapp-7290", "microapp-6853", "microapp-10421", "microapp-10549", "microapp-6617", "microapp-7984", "microapp-7561", "microapp-7961", "microapp-12525", "microapp-11136", "microapp-3547", "microapp-9597", "microapp-6790", "microapp-11340", "microapp-8003", "microapp-8921", "microapp-1980", "microapp-12427", "microapp-11836", "microapp-7888", "microapp-11349", "microapp-6293", "microapp-6264", "microapp-6262", "microapp-10858", "microapp-4666", "microapp-5227", "microapp-8511", "microapp-10420", "microapp-6593", "microapp-8892", "microapp-3580", "microapp-9701" ],
-  "buildVersion" : "1.55.0-SNAPSHOT.749db62c9322b279eb64540088dea3528985787c"
+  "translationChecksum" : "74097029F49CA67E11CFDE28CB0986D5",
+  "appliedSappUpgrades" : [ "microapp-3547", "microapp-10420", "microapp-8892", "microapp-4666", "microapp-4020", "microapp-1980", "microapp-5025", "microapp-11136", "microapp-3838", "microapp-3580", "microapp-6617", "microapp-6790", "microapp-8511", "microapp-6593", "microapp-9597", "microapp-6853", "microapp-10860", "microapp-11836", "microapp-9702", "microapp-8950", "microapp-7888", "microapp-6262", "microapp-5227", "microapp-8576", "microapp-11340", "microapp-4518", "microapp-6264", "microapp-10858", "microapp-7984", "microapp-8003", "microapp-9701", "microapp-7561", "microapp-7290", "microapp-10876", "microapp-10856", "microapp-12427", "microapp-10421", "microapp-6293", "microapp-12525", "microapp-2450", "microapp-7961", "microapp-12505", "microapp-3548", "microapp-11349", "microapp-10549", "microapp-8921" ],
+  "buildVersion" : "1.57.1.520cb6e0a707c179a3caa053e902264dd2d5532f"
 }
