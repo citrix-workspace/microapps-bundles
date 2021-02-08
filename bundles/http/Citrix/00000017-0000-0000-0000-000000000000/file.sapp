@@ -5926,7 +5926,7 @@
   "services" : [ {
     "id" : 33,
     "uuid" : "1a9d3d5b-3e7e-42b1-ac52-3fa7dd1adc4d",
-    "version" : 251,
+    "version" : 252,
     "title" : "Citrix Podio",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -6547,306 +6547,6 @@
         }
       } ],
       "actions" : [ {
-        "uniqueId" : "37ea9b7a-e351-4cb1-9d21-f9a982b39d8d",
-        "name" : "Create Broadcast",
-        "parameters" : [ {
-          "uniqueId" : "6b1ddf86-5f0e-42f1-94e7-c3fe02fa0696",
-          "name" : "end_date",
-          "type" : {
-            "dataType" : "DATETIME",
-            "dateTimeFormat" : "CUSTOM",
-            "customDateTimeFormat" : "YYYY-MM-DD",
-            "timezone" : "Etc/UTC"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "end_date"
-          }
-        }, {
-          "uniqueId" : "e213b121-0d57-4fac-8b83-dee9a120113d",
-          "name" : "published_by",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "published_by"
-          }
-        }, {
-          "uniqueId" : "0a794ab2-5e03-4dc0-ad33-4a97e829f283",
-          "name" : "image_url",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "image_url"
-          }
-        }, {
-          "uniqueId" : "2be818da-a640-4e31-9f36-2473a3a022b9",
-          "name" : "criticality",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "null",
-            "actionParameterName" : "criticality"
-          }
-        }, {
-          "uniqueId" : "19724ce1-3b42-40b1-87c0-f15a383dc5df",
-          "name" : "link",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "link"
-          }
-        }, {
-          "uniqueId" : "273146e3-4631-4159-a16b-3c7bf1303740",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        }, {
-          "uniqueId" : "c4529275-ccec-4139-b22f-ce2db6257486",
-          "name" : "message",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "message"
-          }
-        }, {
-          "uniqueId" : "7cf2ba47-c53d-47b2-a6cc-49c03ac53701",
-          "name" : "department",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "department"
-          }
-        }, {
-          "uniqueId" : "06c33640-fe4a-4527-956f-2583a4a1f33c",
-          "name" : "category",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "null",
-            "actionParameterName" : "category"
-          }
-        }, {
-          "uniqueId" : "cf1d8f36-fc25-4bd0-a86f-f2b359230dfe",
-          "name" : "status",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "null",
-            "actionParameterName" : "status"
-          }
-        }, {
-          "uniqueId" : "6c4b0682-1773-4f0f-b74e-eeb2970faef2",
-          "name" : "broadcast_app_id",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "{broadcast_app_id}"
-          }
-        }, {
-          "uniqueId" : "9266842f-8424-48f0-8056-9f238cfb14ad",
-          "name" : "broadcast_view_id",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "VALUE",
-            "value" : "{broadcast_view_id}"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "item/app/{{broadcast_app_id}",
-          "headers" : [ ],
-          "postMode" : "JSON",
-          "body" : "{\n\t\"fields\": {\n\t\t\"title\": [{\"value\":  {{title}} }],\n\t\t\"message\":  [{\"value\": {{message}} }],\n\t\t\"published-by\": [{\"value\":{{published_by}} }],\n\t\t\"category\":{{category}},\n\t\t\"criticality\": {{criticality}},\n\t\t\"status\": {{status}},\n\t\t\"image-url\": [{{image_url}}],\n\t\t\"link\": {{link}},\n\t\t\"department\": [{\"value\":{{department}} }],\n\t\t\"end-date\" : {\"start_date\": {{end_date}} }\n  }\n}",
-          "bodyParameters" : [ {
-            "name" : "",
-            "value" : ""
-          } ]
-        },
-        "preActionUpdates" : [ ],
-        "postActionUpdates" : [ {
-          "uniqueId" : "6695ddc5-c342-448b-b01c-2ff82fc98e9b",
-          "endpointLegacyId" : 2,
-          "endpointId" : "62aba8c8-77d6-4669-af7e-58faac1c023d",
-          "request" : {
-            "method" : "POST",
-            "uri" : "/item/app/{broadcast_app_id}}/filter/{{broadcast_view_id}}",
-            "headers" : [ ],
-            "postMode" : "JSON",
-            "body" : "{\n\"limit\": 300,\n\"offset\": 0\n}",
-            "bodyParameters" : [ ],
-            "transformation" : {
-              "script" : "const PODIO_VALUE_KEYS = [\"value\", \"start_utc\"];\nfunction podioFieldExtract(valueObject, fieldType, options) {\n\n\tfor (var k of PODIO_VALUE_KEYS) {\n\t\tif (valueObject.hasOwnProperty(k)) {\n\t\t\tif (fieldType == \"number\") {\n\t\t\t\treturn parseFloat(valueObject[k]);\n\t\t\t}\n\t\t\telse if (fieldType == \"app\") {\n\t\t\t\treturn valueObject[k].item_id;\n\t\t\t}\n\t\t\telse if (fieldType == \"category\") {\n                          \n\t\t\t\tif (options && options.asBoolean) {\n                                        \n\t\t\t\t\tif (!valueObject[k]) {\n\t\t\t\t\t\treturn null;\n\t\t\t\t\t}\n\t\t\t\t\tif (!valueObject[k].text) {\n\t\t\t\t\t\treturn null;\n\t\t\t\t\t}\n\t\t\t\t\tif ([\"yes\", \"y\", \"true\", \"1\", \"on\"].indexOf(valueObject[k].text.toLowerCase()) > -1) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn valueObject[k].id;\n\t\t\t\t}\n\t\t\t}\n\t\t\telse {\n\t\t\t\treturn valueObject[k];\n\t\t\t}\n\t\t}\n\t}\n\treturn null;\n}\n\nfunction formatItem(item, options){\n\tvar ret = {};\n\tif (item.fields) {\n\t\tfor (var i = 0; i < item.fields.length; i++) {\n\t\t\tvar field = item.fields[i];\n\t\t\tif (field.label) {\n\t\t\t\tlet label = field.label.replace(/ /g,\"_\")\n\t\t\t\tif (field.values && (field.values.length > 0)) {\n\t\t\t\t\tvar fieldOptions = {};\n\t\t\t\t\tif (options && options.asBoolean && (options.asBoolean.indexOf(field.label) > -1)) {\n\t\t\t\t\t\tfieldOptions.asBoolean = true;\n\t\t\t\t\t}\n\t\t\t\t\tif (options && options.explode && (options.explode.indexOf(field.label) > -1)) {\n\t\t\t\t\t\t// Explode the list into subkeys\n\t\t\t\t\t\tret[field.label] = {};\n\t\t\t\t\t\tfor (var j = 0; j < field.values.length; j++) {\n\t\t\t\t\t\t\tret[label][j.toString()] = podioFieldExtract(field.values[j], field.type, fieldOptions);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\telse {\n\t\t\t\t\t\t// Always take the first value from the list\n\t\t\t\t\t\tret[label] = podioFieldExtract(field.values[0], field.type, fieldOptions);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tif (item.item_id) {\n\t\tret._podio_item_id = item.item_id;\n\t}\n\tif (item.app_item_id) {\n\t\tret._podio_app_item_id = item.app_item_id;\n\t}\n\treturn ret;\n}\n\nfunction formatItems(items, options) {\n\tlet returnItems = [];\n\tfor(let i=0 ; i < items.length; i++)\n\t{\n\t\treturnItems.push(formatItem(items[i],options));\n\t}\n\treturn returnItems;\n}\n\nfunction handleResponse(response, debug= true){\n\tvar responseData;\n        if(response && response.items){\n\t\tresponseData = formatItems(response.items);\n\t} else if (response && response.fields){\n\t\tresponseData = formatItem(response.data, options);\n\t} else {\n\t\ttry {\n\t\t\tresponseData = (typeof(response)==\"string\")?JSON.parse(response):response;\n\t\t}\n\t\tcatch (_) {}\n\t}\n\tif(debug) console.log(JSON.stringify(responseData));\n\treturn responseData || {};\n}\n\n({response}) => {\n    let json = JSON.parse(response)\n    return {\nitems:handleResponse(json)\n}\n}"
-            }
-          },
-          "callChainEnabled" : false
-        } ],
-        "actionParameters" : [ {
-          "uniqueId" : "6b1ddf86-5f0e-42f1-94e7-c3fe02fa0696",
-          "name" : "end_date",
-          "type" : {
-            "dataType" : "DATETIME",
-            "dateTimeFormat" : "CUSTOM",
-            "customDateTimeFormat" : "YYYY-MM-DD",
-            "timezone" : "Etc/UTC"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "end_date"
-          }
-        }, {
-          "uniqueId" : "e213b121-0d57-4fac-8b83-dee9a120113d",
-          "name" : "published_by",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "published_by"
-          }
-        }, {
-          "uniqueId" : "0a794ab2-5e03-4dc0-ad33-4a97e829f283",
-          "name" : "image_url",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "image_url"
-          }
-        }, {
-          "uniqueId" : "2be818da-a640-4e31-9f36-2473a3a022b9",
-          "name" : "criticality",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "null",
-            "actionParameterName" : "criticality"
-          }
-        }, {
-          "uniqueId" : "19724ce1-3b42-40b1-87c0-f15a383dc5df",
-          "name" : "link",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "link"
-          }
-        }, {
-          "uniqueId" : "273146e3-4631-4159-a16b-3c7bf1303740",
-          "name" : "title",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "title"
-          }
-        }, {
-          "uniqueId" : "c4529275-ccec-4139-b22f-ce2db6257486",
-          "name" : "message",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "message"
-          }
-        }, {
-          "uniqueId" : "7cf2ba47-c53d-47b2-a6cc-49c03ac53701",
-          "name" : "department",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "-",
-            "actionParameterName" : "department"
-          }
-        }, {
-          "uniqueId" : "06c33640-fe4a-4527-956f-2583a4a1f33c",
-          "name" : "category",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "null",
-            "actionParameterName" : "category"
-          }
-        }, {
-          "uniqueId" : "cf1d8f36-fc25-4bd0-a86f-f2b359230dfe",
-          "name" : "status",
-          "type" : {
-            "dataType" : "INTEGER"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : false,
-            "defaultValue" : "null",
-            "actionParameterName" : "status"
-          }
-        } ]
-      }, {
         "uniqueId" : "963e6d02-607c-4987-b321-4e665e4ecc9f",
         "name" : "Update Broadcast",
         "parameters" : [ {
@@ -7195,6 +6895,306 @@
             "required" : true,
             "defaultValue" : "",
             "actionParameterName" : "app_item_id"
+          }
+        } ]
+      }, {
+        "uniqueId" : "37ea9b7a-e351-4cb1-9d21-f9a982b39d8d",
+        "name" : "Create Broadcast",
+        "parameters" : [ {
+          "uniqueId" : "6b1ddf86-5f0e-42f1-94e7-c3fe02fa0696",
+          "name" : "end_date",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "CUSTOM",
+            "customDateTimeFormat" : "YYYY-MM-DD",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "end_date"
+          }
+        }, {
+          "uniqueId" : "e213b121-0d57-4fac-8b83-dee9a120113d",
+          "name" : "published_by",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "published_by"
+          }
+        }, {
+          "uniqueId" : "0a794ab2-5e03-4dc0-ad33-4a97e829f283",
+          "name" : "image_url",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "image_url"
+          }
+        }, {
+          "uniqueId" : "2be818da-a640-4e31-9f36-2473a3a022b9",
+          "name" : "criticality",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "null",
+            "actionParameterName" : "criticality"
+          }
+        }, {
+          "uniqueId" : "19724ce1-3b42-40b1-87c0-f15a383dc5df",
+          "name" : "link",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "link"
+          }
+        }, {
+          "uniqueId" : "273146e3-4631-4159-a16b-3c7bf1303740",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        }, {
+          "uniqueId" : "c4529275-ccec-4139-b22f-ce2db6257486",
+          "name" : "message",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "message"
+          }
+        }, {
+          "uniqueId" : "7cf2ba47-c53d-47b2-a6cc-49c03ac53701",
+          "name" : "department",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "department"
+          }
+        }, {
+          "uniqueId" : "06c33640-fe4a-4527-956f-2583a4a1f33c",
+          "name" : "category",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "null",
+            "actionParameterName" : "category"
+          }
+        }, {
+          "uniqueId" : "cf1d8f36-fc25-4bd0-a86f-f2b359230dfe",
+          "name" : "status",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "null",
+            "actionParameterName" : "status"
+          }
+        }, {
+          "uniqueId" : "6c4b0682-1773-4f0f-b74e-eeb2970faef2",
+          "name" : "broadcast_app_id",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "{broadcast_app_id}"
+          }
+        }, {
+          "uniqueId" : "9266842f-8424-48f0-8056-9f238cfb14ad",
+          "name" : "broadcast_view_id",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "VALUE",
+            "value" : "{broadcast_view_id}"
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "item/app/{{broadcast_app_id}}",
+          "headers" : [ ],
+          "postMode" : "JSON",
+          "body" : "{\n\t\"fields\": {\n\t\t\"title\": [{\"value\":  {{title}} }],\n\t\t\"message\":  [{\"value\": {{message}} }],\n\t\t\"published-by\": [{\"value\":{{published_by}} }],\n\t\t\"category\":{{category}},\n\t\t\"criticality\": {{criticality}},\n\t\t\"status\": {{status}},\n\t\t\"image-url\": [{{image_url}}],\n\t\t\"link\": {{link}},\n\t\t\"department\": [{\"value\":{{department}} }],\n\t\t\"end-date\" : {\"start_date\": {{end_date}} }\n  }\n}",
+          "bodyParameters" : [ {
+            "name" : "",
+            "value" : ""
+          } ]
+        },
+        "preActionUpdates" : [ ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "6695ddc5-c342-448b-b01c-2ff82fc98e9b",
+          "endpointLegacyId" : 2,
+          "endpointId" : "62aba8c8-77d6-4669-af7e-58faac1c023d",
+          "request" : {
+            "method" : "POST",
+            "uri" : "/item/app/{broadcast_app_id}}/filter/{{broadcast_view_id}}",
+            "headers" : [ ],
+            "postMode" : "JSON",
+            "body" : "{\n\"limit\": 300,\n\"offset\": 0\n}",
+            "bodyParameters" : [ ],
+            "transformation" : {
+              "script" : "const PODIO_VALUE_KEYS = [\"value\", \"start_utc\"];\nfunction podioFieldExtract(valueObject, fieldType, options) {\n\n\tfor (var k of PODIO_VALUE_KEYS) {\n\t\tif (valueObject.hasOwnProperty(k)) {\n\t\t\tif (fieldType == \"number\") {\n\t\t\t\treturn parseFloat(valueObject[k]);\n\t\t\t}\n\t\t\telse if (fieldType == \"app\") {\n\t\t\t\treturn valueObject[k].item_id;\n\t\t\t}\n\t\t\telse if (fieldType == \"category\") {\n                          \n\t\t\t\tif (options && options.asBoolean) {\n                                        \n\t\t\t\t\tif (!valueObject[k]) {\n\t\t\t\t\t\treturn null;\n\t\t\t\t\t}\n\t\t\t\t\tif (!valueObject[k].text) {\n\t\t\t\t\t\treturn null;\n\t\t\t\t\t}\n\t\t\t\t\tif ([\"yes\", \"y\", \"true\", \"1\", \"on\"].indexOf(valueObject[k].text.toLowerCase()) > -1) {\n\t\t\t\t\t\treturn true;\n\t\t\t\t\t}\n\t\t\t\t\treturn false;\n\t\t\t\t}\n\t\t\t\telse {\n\t\t\t\t\treturn valueObject[k].id;\n\t\t\t\t}\n\t\t\t}\n\t\t\telse {\n\t\t\t\treturn valueObject[k];\n\t\t\t}\n\t\t}\n\t}\n\treturn null;\n}\n\nfunction formatItem(item, options){\n\tvar ret = {};\n\tif (item.fields) {\n\t\tfor (var i = 0; i < item.fields.length; i++) {\n\t\t\tvar field = item.fields[i];\n\t\t\tif (field.label) {\n\t\t\t\tlet label = field.label.replace(/ /g,\"_\")\n\t\t\t\tif (field.values && (field.values.length > 0)) {\n\t\t\t\t\tvar fieldOptions = {};\n\t\t\t\t\tif (options && options.asBoolean && (options.asBoolean.indexOf(field.label) > -1)) {\n\t\t\t\t\t\tfieldOptions.asBoolean = true;\n\t\t\t\t\t}\n\t\t\t\t\tif (options && options.explode && (options.explode.indexOf(field.label) > -1)) {\n\t\t\t\t\t\t// Explode the list into subkeys\n\t\t\t\t\t\tret[field.label] = {};\n\t\t\t\t\t\tfor (var j = 0; j < field.values.length; j++) {\n\t\t\t\t\t\t\tret[label][j.toString()] = podioFieldExtract(field.values[j], field.type, fieldOptions);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\telse {\n\t\t\t\t\t\t// Always take the first value from the list\n\t\t\t\t\t\tret[label] = podioFieldExtract(field.values[0], field.type, fieldOptions);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\tif (item.item_id) {\n\t\tret._podio_item_id = item.item_id;\n\t}\n\tif (item.app_item_id) {\n\t\tret._podio_app_item_id = item.app_item_id;\n\t}\n\treturn ret;\n}\n\nfunction formatItems(items, options) {\n\tlet returnItems = [];\n\tfor(let i=0 ; i < items.length; i++)\n\t{\n\t\treturnItems.push(formatItem(items[i],options));\n\t}\n\treturn returnItems;\n}\n\nfunction handleResponse(response, debug= true){\n\tvar responseData;\n        if(response && response.items){\n\t\tresponseData = formatItems(response.items);\n\t} else if (response && response.fields){\n\t\tresponseData = formatItem(response.data, options);\n\t} else {\n\t\ttry {\n\t\t\tresponseData = (typeof(response)==\"string\")?JSON.parse(response):response;\n\t\t}\n\t\tcatch (_) {}\n\t}\n\tif(debug) console.log(JSON.stringify(responseData));\n\treturn responseData || {};\n}\n\n({response}) => {\n    let json = JSON.parse(response)\n    return {\nitems:handleResponse(json)\n}\n}"
+            }
+          },
+          "callChainEnabled" : false
+        } ],
+        "actionParameters" : [ {
+          "uniqueId" : "6b1ddf86-5f0e-42f1-94e7-c3fe02fa0696",
+          "name" : "end_date",
+          "type" : {
+            "dataType" : "DATETIME",
+            "dateTimeFormat" : "CUSTOM",
+            "customDateTimeFormat" : "YYYY-MM-DD",
+            "timezone" : "Etc/UTC"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "end_date"
+          }
+        }, {
+          "uniqueId" : "e213b121-0d57-4fac-8b83-dee9a120113d",
+          "name" : "published_by",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "published_by"
+          }
+        }, {
+          "uniqueId" : "0a794ab2-5e03-4dc0-ad33-4a97e829f283",
+          "name" : "image_url",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "image_url"
+          }
+        }, {
+          "uniqueId" : "2be818da-a640-4e31-9f36-2473a3a022b9",
+          "name" : "criticality",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "null",
+            "actionParameterName" : "criticality"
+          }
+        }, {
+          "uniqueId" : "19724ce1-3b42-40b1-87c0-f15a383dc5df",
+          "name" : "link",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "link"
+          }
+        }, {
+          "uniqueId" : "273146e3-4631-4159-a16b-3c7bf1303740",
+          "name" : "title",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "title"
+          }
+        }, {
+          "uniqueId" : "c4529275-ccec-4139-b22f-ce2db6257486",
+          "name" : "message",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "message"
+          }
+        }, {
+          "uniqueId" : "7cf2ba47-c53d-47b2-a6cc-49c03ac53701",
+          "name" : "department",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "-",
+            "actionParameterName" : "department"
+          }
+        }, {
+          "uniqueId" : "06c33640-fe4a-4527-956f-2583a4a1f33c",
+          "name" : "category",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "null",
+            "actionParameterName" : "category"
+          }
+        }, {
+          "uniqueId" : "cf1d8f36-fc25-4bd0-a86f-f2b359230dfe",
+          "name" : "status",
+          "type" : {
+            "dataType" : "INTEGER"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : false,
+            "defaultValue" : "null",
+            "actionParameterName" : "status"
           }
         } ]
       } ],
