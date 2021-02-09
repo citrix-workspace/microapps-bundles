@@ -76,6 +76,9 @@ public class BundlesLoader {
     private static final Pattern VERSION_PATTERN =
             Pattern.compile("[0-9]+(?:\\.[0-9]+)*(\\.[0-9a-f]{40})?(-SNAPSHOT)?");
 
+    // e.g. `vendor: "Brick_Bridge_Consulting"`
+    private static final String WORD_SEPARATOR = "_";
+
     private static final String TOKEN_PARAMETER_NAME = "token";
     private static final String BEARER_PARAMETER_NAME = "bearer";
 
@@ -294,7 +297,8 @@ public class BundlesLoader {
             validateDeprecatedDate(metadata.getDeprecatedDate()).ifPresent(issues::add);
         }
         validateSync(bundle::getType, "type", metadata.getType()).ifPresent(issues::add);
-        validateSync(bundle::getVendor, "vendor", metadata.getVendor()).ifPresent(issues::add);
+        validateSync(bundle::getVendor, "vendor", replaceWhitespacesWithUnderscores(metadata.getVendor()))
+                .ifPresent(issues::add);
 
         validateLanguages(bundle, metadata.getI18nLanguages()).ifPresent(issues::add);
 
@@ -558,6 +562,10 @@ public class BundlesLoader {
         }
 
         return Optional.empty();
+    }
+
+    private static String replaceWhitespacesWithUnderscores(String text) {
+        return text != null && !text.isEmpty() ? text.replaceAll("\\s", WORD_SEPARATOR) : text;
     }
 
     private static Optional<ValidationException> validationIssue(String message) {
