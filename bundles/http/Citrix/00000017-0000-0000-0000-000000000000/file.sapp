@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "385ec6ec-3510-4f8f-a14f-8b0064ba20fb",
       "serviceId" : 33,
-      "version" : 133,
+      "version" : 135,
       "parameters" : {
         "imageUrl" : "exported/feedback.c533ed2d280d39d9288b2fd741a18651.svg",
         "description" : "f3aac13e-c551-41ac-8507-064b83bd742a"
@@ -188,7 +188,7 @@
           },
           "id" : "f9a0bf38-0930-418e-b860-67c609c3e0fa",
           "defaultvalue" : "",
-          "displayorder" : 2,
+          "displayorder" : 1,
           "pageId" : "754ae2d8-7542-4e96-9768-218297a25a6a"
         } ],
         "title" : "12c17409-f42b-46bc-805d-b7ef063fbcc7",
@@ -977,8 +977,10 @@
           "constraints" : [ {
             "targetComponentId" : "a4ba91e1-e0c8-4406-ada6-1134a3ca74a1",
             "comparison" : "BLANK",
+            "valueType" : null,
             "id" : "be07c586-5073-42dd-a9d7-bdef6459bd81",
-            "equality" : "IS"
+            "equality" : "IS",
+            "value" : null
           } ],
           "children" : [ {
             "targetComponentId" : "a4ba91e1-e0c8-4406-ada6-1134a3ca74a1",
@@ -1009,6 +1011,46 @@
           "valueType" : null,
           "label" : "Last Updated",
           "id" : "a9de44bd-46cb-467b-8e5d-84fc9d8f85fe",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
+        }, {
+          "constraints" : [ {
+            "targetComponentId" : "9955917c-4e20-4c98-80e0-bb714bf7d406",
+            "comparison" : "BLANK",
+            "id" : "008c1315-46fa-476e-9e9e-5157641444b3",
+            "equality" : "IS"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "9955917c-4e20-4c98-80e0-bb714bf7d406",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "6c234525-29bf-4665-bf52-57c7bf663c92",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "9955917c-4e20-4c98-80e0-bb714bf7d406",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "a0e464f2-076b-4bb2-baad-fbf83ed848f3",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Article from",
+          "id" : "3bc7d49d-9f0d-48c5-8ddc-fa2f4d1d4867",
           "type" : "CONDITION",
           "customExecution" : "",
           "value" : null,
@@ -5926,7 +5968,7 @@
   "services" : [ {
     "id" : 33,
     "uuid" : "1a9d3d5b-3e7e-42b1-ac52-3fa7dd1adc4d",
-    "version" : 252,
+    "version" : 253,
     "title" : "Citrix Podio",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -7062,7 +7104,7 @@
           "endpointId" : "62aba8c8-77d6-4669-af7e-58faac1c023d",
           "request" : {
             "method" : "POST",
-            "uri" : "/item/app/{broadcast_app_id}}/filter/{{broadcast_view_id}}",
+            "uri" : "/item/app/{{broadcast_app_id}}/filter/{{broadcast_view_id}}",
             "headers" : [ ],
             "postMode" : "JSON",
             "body" : "{\n\"limit\": 300,\n\"offset\": 0\n}",
