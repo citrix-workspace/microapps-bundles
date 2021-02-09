@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.citrix.microapps.bundlegen.pojo.ComingSoonMetadata;
 import com.citrix.microapps.bundlegen.pojo.DipMetadata;
 import com.citrix.microapps.bundlegen.pojo.HttpMetadata;
+import com.citrix.microapps.bundlegen.pojo.IconType;
 import com.citrix.microapps.bundlegen.pojo.Metadata;
 import com.citrix.microapps.bundlegen.pojo.ModelTranslation;
 import com.citrix.microapps.bundlegen.pojo.TemplateFile;
@@ -41,10 +42,12 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_ALLOWED_
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_ALLOWED_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.EXPORTED_ICON_URL_PREFIX;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATIONS_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATION_EXTENSION;
 import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.WARNING;
 import static com.citrix.microapps.bundlegen.pojo.Category.COMING_SOON;
+import static com.citrix.microapps.bundlegen.pojo.IconType.LIBRARY;
 import static com.citrix.microapps.bundlegen.pojo.template.SecurityType.NONE;
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
@@ -389,23 +392,40 @@ public class BundlesLoader {
             Optional<Metadata> metadata) {
         List<ValidationException> issues = new ArrayList<>();
         String iconUrl = serviceConfiguration.map(ServiceConfiguration::getIconUrl).orElse(null);
-        String iconType = serviceConfiguration.map(ServiceConfiguration::getIconType).orElse(null);
+        String iconTypeName = serviceConfiguration.map(ServiceConfiguration::getIconType).orElse(null);
         String metadataIconUrl = metadata.map(Metadata::getIconUrl).map(URI::toString).orElse(null);
-        if (isNull(iconUrl) || isNull(iconType)) {
+        if (isNull(iconUrl) || isNull(iconTypeName)) {
             issues.add(new ValidationException("Both iconUrl and iconType have to be specified"));
         }
-        if (!("LIBRARY".equals(iconType)  || "CUSTOM_IMAGE".equals(iconType))) {
-            issues.add(new ValidationException("Unsupported iconType: " + iconType) );
-        }
-        if ("LIBRARY".equals(iconType)  && !isNull(iconUrl)
-                && (URI.create(iconUrl).isAbsolute() || !iconUrl.startsWith("exported"))) {
-            issues.add(new ValidationException("LIBRARY type iconUrl must be relative and start with `exported/`"));
-        }
+
+        validateIconTypeAndUrl(iconTypeName, iconUrl).ifPresent(issues::add);
+
         if (isNull(iconUrl) || isNull(metadataIconUrl) || !Objects.equals(iconUrl, metadataIconUrl)) {
             issues.add(new ValidationException("Same iconUrl must be specified in both " +
                     "metadata.json and service configuration"));
         }
         return issues;
+    }
+
+    private static Optional<ValidationException> validateIconTypeAndUrl(String iconTypeName, String iconUrl) {
+        Optional<IconType> iconTypeOptional = getIconType(iconTypeName);
+        if (!iconTypeOptional.isPresent()) {
+            return Optional.of(new ValidationException("Unsupported iconType: " + iconTypeName));
+        } else if (LIBRARY == iconTypeOptional.get() && !isNull(iconUrl)
+                && (URI.create(iconUrl).isAbsolute() || !iconUrl.startsWith(EXPORTED_ICON_URL_PREFIX))) {
+            return Optional.of(new ValidationException(format("%s type iconUrl must be relative and start with `%s/`",
+                    LIBRARY.name(),
+                    EXPORTED_ICON_URL_PREFIX)));
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<IconType> getIconType(String iconTypeName) {
+        try {
+            return Optional.of(IconType.valueOf(iconTypeName));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     private static Stream<ValidationException> validateEndpoints(Optional<ServiceConfiguration> serviceConfiguration) {
