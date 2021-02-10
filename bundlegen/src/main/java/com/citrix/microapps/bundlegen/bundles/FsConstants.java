@@ -29,6 +29,7 @@ public class FsConstants {
     public static final String ARCHIVES_DIR = "archives";
     public static final String ARCHIVE_EXTENSION = ".zip";
     public static final String BUNDLES_JSON = "bundles.json";
+    public static final String EXPORTED_ICON_URL_PREFIX = "exported";
 
     /**
      * Validate best practises only for bundles created in last days defined in validation period

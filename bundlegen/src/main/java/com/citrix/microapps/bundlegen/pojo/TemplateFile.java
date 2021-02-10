@@ -17,7 +17,7 @@ public class TemplateFile {
     @JsonCreator
     public TemplateFile(
             @JsonProperty(value = "services", required = true) List<Service> services,
-            @JsonProperty(value = "translationChecksum", required = true) String translationChecksum) {
+            @JsonProperty(value = "translationChecksum") String translationChecksum) {
         this.services = services;
         this.translationChecksum = translationChecksum;
     }
