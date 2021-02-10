@@ -2,6 +2,7 @@ package com.citrix.microapps.bundlegen.bundles;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
@@ -24,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.citrix.microapps.bundlegen.pojo.ComingSoonMetadata;
 import com.citrix.microapps.bundlegen.pojo.DipMetadata;
 import com.citrix.microapps.bundlegen.pojo.HttpMetadata;
+import com.citrix.microapps.bundlegen.pojo.IconType;
 import com.citrix.microapps.bundlegen.pojo.Metadata;
 import com.citrix.microapps.bundlegen.pojo.ModelTranslation;
 import com.citrix.microapps.bundlegen.pojo.TemplateFile;
@@ -40,13 +42,16 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_ALLOWED_
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_ALLOWED_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_SOON_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
+import static com.citrix.microapps.bundlegen.bundles.FsConstants.EXPORTED_ICON_URL_PREFIX;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATIONS_DIR;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TRANSLATION_EXTENSION;
 import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.WARNING;
 import static com.citrix.microapps.bundlegen.pojo.Category.COMING_SOON;
+import static com.citrix.microapps.bundlegen.pojo.IconType.LIBRARY;
 import static com.citrix.microapps.bundlegen.pojo.template.SecurityType.NONE;
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
@@ -96,7 +101,7 @@ public class BundlesLoader {
 
         issues.addAll(checkLocalizations(
                 bundle,
-                loadAndValidateTemplateFile(issues, bundle)
+                loadAndValidateTemplateFile(issues, bundle, metadata)
                         .map(template -> template.getTranslationChecksum()),
                 comingSoonBundleFlag || idpBundleFlag));
 
@@ -144,7 +149,8 @@ public class BundlesLoader {
     }
 
     static Optional<TemplateFile> loadAndValidateTemplateFile(List<ValidationException> issues,
-                                                              FsBundle bundle) {
+                                                              FsBundle bundle,
+                                                              Optional<Metadata> metadata) {
         Path templateFilePath = bundle.getTemplatePath();
 
         try {
@@ -156,10 +162,16 @@ public class BundlesLoader {
 
                     Optional<ServiceConfiguration> serviceConfiguration = getServiceConfiguration(httpTemplateFile);
                     validateConfigurationIsUsingAuthentication(serviceConfiguration).ifPresent(issues::add);
+                    validateServiceIconUrlConfiguration(serviceConfiguration, metadata).forEach(issues::add);
                     validateEndpoints(serviceConfiguration).forEach(issues::add);
                     validateServiceActions(serviceConfiguration).forEach(issues::add);
                     return Optional.of(httpTemplateFile);
                 case IDENTITY_PROVIDER:
+                    TemplateFile idpTemplateFile = loadTemplateFile(templateFilePath);
+
+                    Optional<ServiceConfiguration> idpServiceConfiguration = getServiceConfiguration(idpTemplateFile);
+                    validateConfigurationIsUsingAuthentication(idpServiceConfiguration).ifPresent(issues::add);
+                    validateServiceIconUrlConfiguration(idpServiceConfiguration, metadata).forEach(issues::add);
                 case COMING_SOON:
                     return Optional.empty();
                 default:
@@ -171,12 +183,18 @@ public class BundlesLoader {
         }
     }
 
-    private static TemplateFile loadTemplateFileAndValidateChecksum(List<ValidationException> issues,
-                                                                    Path templateFilePath) throws IOException {
+    private static TemplateFile loadTemplateFile(Path templateFilePath) throws IOException {
         File file = templateFilePath.toFile();
         TemplateFile templateFile = BUNDLE_DATA_READER
                 .forType(TemplateFile.class)
                 .readValue(file);
+        return templateFile;
+    }
+
+    private static TemplateFile loadTemplateFileAndValidateChecksum(List<ValidationException> issues,
+                                                                    Path templateFilePath) throws IOException {
+        File file = templateFilePath.toFile();
+        TemplateFile templateFile = loadTemplateFile(templateFilePath);
         validateTranslationChecksum(file.getName(), templateFile).ifPresent(issues::add);
         return templateFile;
     }
@@ -371,6 +389,47 @@ public class BundlesLoader {
                 .filter(type -> NONE.name().equals(type))
                 .map(type -> validationWarning(
                         "Integration configuration is not using an authentication method"));
+    }
+
+    static List<ValidationException> validateServiceIconUrlConfiguration(
+            Optional<ServiceConfiguration> serviceConfiguration,
+            Optional<Metadata> metadata) {
+        List<ValidationException> issues = new ArrayList<>();
+        String iconUrl = serviceConfiguration.map(ServiceConfiguration::getIconUrl).orElse(null);
+        String iconTypeName = serviceConfiguration.map(ServiceConfiguration::getIconType).orElse(null);
+        String metadataIconUrl = metadata.map(Metadata::getIconUrl).map(URI::toString).orElse(null);
+        if (isNull(iconUrl) || isNull(iconTypeName)) {
+            issues.add(new ValidationException("Both iconUrl and iconType have to be specified"));
+        }
+
+        validateIconTypeAndUrl(iconTypeName, iconUrl).ifPresent(issues::add);
+
+        if (isNull(iconUrl) || isNull(metadataIconUrl) || !Objects.equals(iconUrl, metadataIconUrl)) {
+            issues.add(new ValidationException("Same iconUrl must be specified in both " +
+                    "metadata.json and service configuration"));
+        }
+        return issues;
+    }
+
+    private static Optional<ValidationException> validateIconTypeAndUrl(String iconTypeName, String iconUrl) {
+        Optional<IconType> iconTypeOptional = getIconType(iconTypeName);
+        if (!iconTypeOptional.isPresent()) {
+            return Optional.of(new ValidationException("Unsupported iconType: " + iconTypeName));
+        } else if (LIBRARY == iconTypeOptional.get() && !isNull(iconUrl)
+                && (URI.create(iconUrl).isAbsolute() || !iconUrl.startsWith(EXPORTED_ICON_URL_PREFIX))) {
+            return Optional.of(new ValidationException(format("%s type iconUrl must be relative and start with `%s/`",
+                    LIBRARY.name(),
+                    EXPORTED_ICON_URL_PREFIX)));
+        }
+        return Optional.empty();
+    }
+
+    private static Optional<IconType> getIconType(String iconTypeName) {
+        try {
+            return Optional.of(IconType.valueOf(iconTypeName));
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     private static Stream<ValidationException> validateEndpoints(Optional<ServiceConfiguration> serviceConfiguration) {

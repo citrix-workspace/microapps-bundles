@@ -1,0 +1,90 @@
+{
+  "applications": [
+    {
+      "appVersion": {
+        "id": "85d29cf7-07e2-40bb-9a0c-f0a3498020c6",
+        "serviceId": 5,
+        "version": 69,
+        "parameters": {
+          "imageUrl": "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/lead.78a3e549cded3d7e42b47ab8a358d765.svg",
+          "description": "63737269-29c6-4e3b-9242-f8191cf65197"
+        },
+        "title": "0ac1743a-b6f1-4c9d-81a0-3bf129987276",
+        "startPageId": "61b854ba-a99d-4197-be3a-4a2d80342514",
+        "pages": [],
+        "trackingUuid": "88560529-8282-4f74-b1b4-3db934776c1e",
+        "actionApp": true
+      },
+      "outboundLinks": {
+        "page": [],
+        "notification": []
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": 5,
+      "uuid": "c3d1490e-c2c8-4c60-9fbe-dcd1cc154f37",
+      "version": 53,
+      "title": "SAP SuccessFactors EC",
+      "serviceType": "GWSC",
+      "group": "GWSC:JSON",
+      "schemaName": "microapps_http_integratio",
+      "configuration": {
+        "trackingUuid": "85ac5e73-840c-44aa-8681-52ab85d8d547",
+        "baseUrl": "https://apisalesdemo2.successfactors.eu/odata/v2",
+        "security" : {
+          "type" : "BASIC",
+          "username" : "rmanga+rmpus@runmyprocess.com"
+        },
+        "useServiceActionSecurity": false,
+        "serviceActionSecurity": {
+          "type": "NONE"
+        },
+        "useOnPremProxy": false,
+        "webhookListeners": [],
+        "schedule": [
+          {
+            "synchronizationTypeId": "FullSynchronization",
+            "useTimeRange": false,
+            "schedule": "MANUALLY"
+          },
+          {
+            "synchronizationTypeId": "IncrementalSynchronization",
+            "useTimeRange": false,
+            "schedule": "MANUALLY"
+          }
+        ],
+        "iconUrl": "http://abs.url.com/exported/SuccessFactors.833a1da8b80b77391f222cbc6210e98c.svg",
+        "iconType": "LIBRARY",
+        "rateLimitConfiguration": {
+          "timeWindow": {
+            "unit": "SECONDS",
+            "amount": 1
+          },
+          "requestsPerWindow": 1
+        }
+      },
+      "context": {},
+      "tables": [],
+      "relationships": [],
+      "oauthLoginNeeded": false,
+      "fullyConfigured": true
+    }
+  ],
+  "notifications": [],
+  "resolvers": [],
+  "modelConfiguration": {
+    "appIds": [
+      "85d29cf7-07e2-40bb-9a0c-f0a3498020c6"
+    ],
+    "resolverIds": [],
+    "bundleDescription": "SAP SuccessFactors Employee Central",
+    "bundleVendor": "Citrix"
+  },
+  "translationChecksum": "2A9A89F9DF3A416DB4053D066B93583A",
+  "appliedSappUpgrades": [
+    "microapp-3838"
+  ],
+  "buildVersion": "1.27.4.bc36d831cc182bffd17f5429cabf495c1755bf2b"
+}
