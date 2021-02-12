@@ -3,11 +3,13 @@
     "appVersion" : {
       "id" : "c133a64e-6026-41cc-8fe8-d067d160f926",
       "serviceId" : 16,
-      "version" : 172,
+      "version" : 173,
       "parameters" : {
         "imageUrl" : "exported/ticket_create.d666c139f82e62a3394ccff26852dd92.svg",
         "description" : "00ecd166-a5ac-4a45-a0bc-d01d6db563fc"
       },
+      "actionApp" : true,
+      "startPageId" : "cb46284a-f472-48bd-8eab-52a1b6144549",
       "pages" : [ {
         "id" : "cb46284a-f472-48bd-8eab-52a1b6144549",
         "appId" : "c133a64e-6026-41cc-8fe8-d067d160f926",
@@ -294,14 +296,28 @@
             "query" : {
               "id" : "ed95a114-e138-4992-8f35-975ace479afa",
               "constraints" : {
-                "type" : "TERM",
-                "constraint" : {
-                  "tableId" : 212,
-                  "columnId" : 3575,
-                  "valueType" : "VALUE",
-                  "value" : "end-user",
-                  "ignoredWhenValueIsNull" : false,
-                  "action" : "NOT_EQUAL_TO"
+                "type" : "EXPRESSION",
+                "left" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 212,
+                    "columnId" : 3575,
+                    "valueType" : "VALUE",
+                    "value" : "end-user",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "NOT_EQUAL_TO"
+                  }
+                },
+                "operator" : "AND",
+                "right" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 212,
+                    "columnId" : 3540,
+                    "valueType" : "VAL_TRUE",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
                 }
               },
               "autojoins" : false
@@ -732,9 +748,7 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "actionApp" : true,
       "title" : "9a25d275-8546-49e2-bc6d-6ddfd97bcae2",
-      "startPageId" : "cb46284a-f472-48bd-8eab-52a1b6144549",
       "trackingUuid" : "af99695c-ea38-458a-9ac9-bfb628c2c835"
     },
     "outboundLinks" : {
@@ -745,11 +759,13 @@
     "appVersion" : {
       "id" : "edfe37a8-0ba2-44e2-af1f-3ed43bb0aebd",
       "serviceId" : 16,
-      "version" : 922,
+      "version" : 923,
       "parameters" : {
         "imageUrl" : "exported/ticket.c5845ed40605cc628a7bd89f963601b1.svg",
         "description" : "37fa941c-a499-4f8c-b6df-00ab369353a8"
       },
+      "actionApp" : true,
+      "startPageId" : "e6ef0560-192b-4f18-83de-369ed5225072",
       "pages" : [ {
         "id" : "e6ef0560-192b-4f18-83de-369ed5225072",
         "appId" : "edfe37a8-0ba2-44e2-af1f-3ed43bb0aebd",
@@ -764,8 +780,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "defaultLimit" : 20,
           "componentTableId" : 208,
+          "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "dea435ac-357d-44e5-9caa-246ffa40fa6a",
@@ -942,8 +958,8 @@
           "defaultvalue" : null,
           "displayorder" : 2,
           "rowAction" : { },
-          "defaultLimit" : 20,
           "componentTableId" : 208,
+          "defaultLimit" : 20,
           "tableid" : 208,
           "pageId" : "e6ef0560-192b-4f18-83de-369ed5225072"
         }, {
@@ -1610,8 +1626,8 @@
           "format" : "",
           "foreignKeyId" : 231,
           "parentComponentId" : null,
-          "defaultLimit" : 20,
           "componentTableId" : 215,
+          "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "d9e26675-231f-4970-9833-b32a20669837",
@@ -1644,8 +1660,8 @@
           "id" : "c4fb5dad-92d2-4a54-8ebc-45c62f7dd5ba",
           "defaultvalue" : null,
           "displayorder" : 11,
-          "defaultLimit" : 20,
-          "componentTableId" : 1352
+          "componentTableId" : 1352,
+          "defaultLimit" : 20
         }, {
           "type" : "TABLE",
           "appId" : "edfe37a8-0ba2-44e2-af1f-3ed43bb0aebd",
@@ -1656,8 +1672,8 @@
           "format" : "",
           "foreignKeyId" : 232,
           "parentComponentId" : null,
-          "defaultLimit" : 20,
           "componentTableId" : 217,
+          "defaultLimit" : 20,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "9b5df419-c3ac-42fb-943a-79926cefcfee",
@@ -1760,8 +1776,8 @@
           "id" : "e1b2781b-dc0d-4ec5-b91a-7f49d05e49c2",
           "defaultvalue" : null,
           "displayorder" : 12,
-          "defaultLimit" : 20,
-          "componentTableId" : 1354
+          "componentTableId" : 1354,
+          "defaultLimit" : 20
         }, {
           "type" : "GRID_ITEM",
           "appId" : "edfe37a8-0ba2-44e2-af1f-3ed43bb0aebd",
@@ -2944,14 +2960,28 @@
             "query" : {
               "id" : "b71e0c1b-7a8c-4a7e-8611-b3340ea12e2f",
               "constraints" : {
-                "type" : "TERM",
-                "constraint" : {
-                  "tableId" : 212,
-                  "columnId" : 3575,
-                  "valueType" : "VALUE",
-                  "value" : "end-user",
-                  "ignoredWhenValueIsNull" : false,
-                  "action" : "NOT_EQUAL_TO"
+                "type" : "EXPRESSION",
+                "left" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 212,
+                    "columnId" : 3575,
+                    "valueType" : "VALUE",
+                    "value" : "end-user",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "NOT_EQUAL_TO"
+                  }
+                },
+                "operator" : "AND",
+                "right" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 212,
+                    "columnId" : 3540,
+                    "valueType" : "VAL_TRUE",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
                 }
               },
               "autojoins" : false
@@ -4119,9 +4149,7 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "actionApp" : true,
       "title" : "8cf3a7f9-424d-4c3d-bae9-af071aee18c3",
-      "startPageId" : "e6ef0560-192b-4f18-83de-369ed5225072",
       "trackingUuid" : "678caf8f-1239-4572-ba0d-985adb5992d7"
     },
     "outboundLinks" : {
@@ -8115,7 +8143,7 @@
         } ]
       } ],
       "iconUrl" : "https://ctx-ws-cdn.cloud.com/assets/microapps/exported/Zendesk.c23ddbbea04b28e5303cb5046b14aa7c.svg",
-      "iconType" : "CUSTOM_IMAGE",
+      "iconType" : "CUSTOM_IMAGE",							 
       "rateLimitConfiguration" : {
         "timeWindow" : {
           "unit" : "MINUTES",
@@ -16288,6 +16316,12 @@
     "serviceId" : 16,
     "tableId" : 208,
     "linkedServiceId" : 16,
+    "label" : "e5831953-0ee4-4c50-bf99-7e9114236f64",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "UTC"
+    },
     "periodicDefinition" : {
       "reminderPeriod" : 0
     },
@@ -16307,12 +16341,6 @@
       }
     },
     "expirationDelete" : false,
-    "label" : "e5831953-0ee4-4c50-bf99-7e9114236f64",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "UTC"
-    },
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 212,
@@ -16347,6 +16375,12 @@
     "serviceId" : 16,
     "tableId" : 208,
     "linkedServiceId" : 16,
+    "label" : "aa85056b-1843-4127-9ca0-9cc82cf99938",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "UTC"
+    },
     "periodicDefinition" : {
       "reminderPeriod" : 0
     },
@@ -16383,12 +16417,6 @@
       }
     },
     "expirationDelete" : false,
-    "label" : "aa85056b-1843-4127-9ca0-9cc82cf99938",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "UTC"
-    },
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 212,
@@ -16423,16 +16451,16 @@
     "serviceId" : 16,
     "tableId" : 208,
     "linkedServiceId" : 16,
-    "periodicDefinition" : {
-      "reminderPeriod" : 0
-    },
-    "expirationDelete" : true,
     "label" : "fbc4cded-5046-4d1b-a3b5-cff07599e3cd",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "UTC"
     },
+    "periodicDefinition" : {
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 212,
@@ -16467,6 +16495,12 @@
     "serviceId" : 16,
     "tableId" : 208,
     "linkedServiceId" : 16,
+    "label" : "a3c674de-b3b0-4688-9b0e-2f5d229e3726",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "UTC"
+    },
     "periodicDefinition" : {
       "reminderPeriod" : 0
     },
@@ -16485,12 +16519,6 @@
       }
     },
     "expirationDelete" : false,
-    "label" : "a3c674de-b3b0-4688-9b0e-2f5d229e3726",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "UTC"
-    },
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 212,
@@ -16525,6 +16553,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "1350BAC0AD318BE9757AA87A2DC3AA47",
-  "appliedSappUpgrades" : [ "microapp-10876", "microapp-12525", "microapp-7290", "microapp-3838", "microapp-10856", "microapp-7984", "microapp-11136", "microapp-9597", "microapp-3548", "microapp-3580", "microapp-4020", "microapp-6853", "microapp-10858", "microapp-10421", "microapp-6293", "microapp-11836", "microapp-12427", "microapp-6790", "microapp-10860", "microapp-7888", "microapp-11340", "microapp-8511", "microapp-8892", "microapp-8950", "microapp-10420", "microapp-7961", "microapp-11349", "microapp-12505", "microapp-6617", "microapp-7561", "microapp-12936", "microapp-8003", "microapp-5025", "microapp-3547", "microapp-4518", "microapp-8576", "microapp-5227", "microapp-6593", "microapp-9701", "microapp-4666", "microapp-9702", "microapp-1980", "microapp-10549", "microapp-6264", "microapp-6262", "microapp-2450", "microapp-8921" ],
+  "appliedSappUpgrades" : [ "microapp-1980", "microapp-8921", "microapp-4020", "microapp-7561", "microapp-8950", "microapp-6853", "microapp-8003", "microapp-6790", "microapp-10876", "microapp-6293", "microapp-12505", "microapp-3547", "microapp-5227", "microapp-10858", "microapp-11340", "microapp-7290", "microapp-3548", "microapp-6264", "microapp-12936", "microapp-12525", "microapp-8511", "microapp-6617", "microapp-9702", "microapp-6593", "microapp-11836", "microapp-10420", "microapp-7984", "microapp-12427", "microapp-3580", "microapp-3838", "microapp-8892", "microapp-4666", "microapp-7961", "microapp-9597", "microapp-8576", "microapp-10549", "microapp-4518", "microapp-11136", "microapp-7888", "microapp-10856", "microapp-10860", "microapp-2450", "microapp-11349", "microapp-6262", "microapp-9701", "microapp-10421", "microapp-5025" ],
   "buildVersion" : "1.61.0.f70332ad1065149b22ba89333644542a5f7e065f"
 }
