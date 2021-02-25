@@ -2297,7 +2297,7 @@
     "appVersion" : {
       "id" : "ded0ef10-166d-44c3-8eee-5830e55bd008",
       "serviceId" : 10,
-      "version" : 460,
+      "version" : 462,
       "parameters" : {
         "imageUrl" : "exported/appointment.c117668c85459b8f05ff47018f14ab5a.svg",
         "description" : "ac649b0e-0a12-409e-8123-174d4ab436db"
@@ -2575,7 +2575,7 @@
           "required" : false,
           "textType" : 0,
           "label" : "7b5226e7-d2c1-425e-81a6-229cc7b9eab2",
-          "format" : "none",
+          "format" : "decimal",
           "foreignKeyId" : null,
           "parentComponentId" : "2e29ae52-1c25-426e-8299-d9013872d3f4",
           "parameters" : {
@@ -2583,12 +2583,19 @@
             "operationStack" : {
               "operations" : [ ]
             },
-            "name" : "Total Days"
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "name" : "Total Days",
+            "conditional_format" : {
+              "condition" : "none"
+            }
           },
           "id" : "15460f38-8461-4fe0-aa9b-0e1822b81681",
           "defaultvalue" : null,
           "displayorder" : 1,
-          "prefillValue" : null
+          "columnType" : "DOUBLE",
+          "prefillValue" : null,
+          "tableid" : 69
         }, {
           "type" : "TEXT",
           "appId" : "ded0ef10-166d-44c3-8eee-5830e55bd008",
@@ -2596,7 +2603,7 @@
           "required" : false,
           "textType" : 0,
           "label" : "42242283-95ba-4761-bea3-266163bd9160",
-          "format" : "none",
+          "format" : "decimal",
           "foreignKeyId" : null,
           "parentComponentId" : "986d2125-d2e8-4ec4-8b14-37ad3c97e88d",
           "parameters" : {
@@ -2604,12 +2611,19 @@
             "operationStack" : {
               "operations" : [ ]
             },
-            "name" : "Total Hours"
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "name" : "Total Hours",
+            "conditional_format" : {
+              "condition" : "none"
+            }
           },
           "id" : "9906f823-6d40-4a85-b587-2b2d90a4e363",
           "defaultvalue" : null,
           "displayorder" : 1,
-          "prefillValue" : null
+          "columnType" : "DOUBLE",
+          "prefillValue" : null,
+          "tableid" : 69
         }, {
           "type" : "FLEXIBLE_GRID",
           "appId" : "ded0ef10-166d-44c3-8eee-5830e55bd008",
