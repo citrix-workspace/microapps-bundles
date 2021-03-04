@@ -472,6 +472,7 @@ class BundlesLoaderTest {
                                 Collections.emptyList(),
                                 "bad 2019-12-18T11:36:00",
                                 "bad 2019-12-18T11:36:00",
+                                "bad 2019-12-19T11:36:00",
                                 true,
                                 Collections.singletonList("bad"),
                                 Collections.emptyList(),
@@ -482,6 +483,8 @@ class BundlesLoaderTest {
                                         "`[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}`",
                                 "Invalid value: field `masVersion`, value `bad 1.0.0`, pattern `[0-9]+(?:\\.[0-9]+)*" +
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
+                                "Invalid UTC timestamp format: field `eolDateWithSupport`, value `bad " +
+                                        "2019-12-19T11:36:00`",
                                 "Invalid UTC timestamp format: field `deprecatedDate`, value `bad 2019-12-18T11:36:00`",
                                 "Values mismatch: field `type`, filesystem `DIP` != metadata `HTTP`",
                                 "Values mismatch: field `vendor`, filesystem `vendor` != metadata `bad_vendor`",
@@ -507,6 +510,7 @@ class BundlesLoaderTest {
             "1.0.0",
             Collections.emptyList(),
             "2019-12-18T11:36:00",
+            "2020-12-08T06:39:48.517497Z",
             "2020-12-09T06:39:48.517497Z",
             true,
             Collections.emptyList(),
@@ -559,6 +563,7 @@ class BundlesLoaderTest {
                                 .masVersion("bad 1.0.0")
                                 .created("bad 2019-12-18T11:36:00")
                                 .deprecatedDate("2020-10-09T06:39:48.517497Z")
+                                .eolDateWithSupport("2020-10-10T06:39:48.517497Z")
                                 .i18nLanguages(Collections.singletonList("bad"))
                                 .build(),
                         asList(
@@ -595,6 +600,7 @@ class BundlesLoaderTest {
                 Collections.emptyList(),
                 "2019-12-18T11:36:00",
                 "2020-10-09T06:39:48.517497Z",
+                "2020-10-09T06:39:48.517497Z",
                 true,
                 Collections.emptyList(),
                 Collections.emptyList(),
@@ -614,6 +620,7 @@ class BundlesLoaderTest {
                 "1.0.0",
                 Collections.emptyList(),
                 "2019-12-18T11:36:00",
+                null,
                 null,
                 true,
                 Collections.emptyList(),

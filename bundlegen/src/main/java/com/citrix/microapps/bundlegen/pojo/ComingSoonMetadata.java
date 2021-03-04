@@ -35,6 +35,8 @@ public class ComingSoonMetadata extends Metadata {
             @JsonProperty(value = "created") String created,
             @JsonInclude(JsonInclude.Include.NON_NULL)
             @JsonProperty(value = "deprecatedDate") String deprecatedDate,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty(value = "eolDateWithSupport") String eolDateWithSupport,
             @JsonProperty(value = "tags") List<Tag> tags
     ) {
         super(type,
@@ -47,6 +49,7 @@ public class ComingSoonMetadata extends Metadata {
                 categories,
                 created,
                 deprecatedDate,
+                eolDateWithSupport,
                 false,
                 null,
                 null,

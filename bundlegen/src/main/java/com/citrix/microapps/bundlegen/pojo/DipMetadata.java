@@ -35,6 +35,8 @@ public class DipMetadata extends Metadata {
             @JsonProperty(value = "created", required = true) String created,
             @JsonInclude(JsonInclude.Include.NON_NULL)
             @JsonProperty(value = "deprecatedDate") String deprecatedDate,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty(value = "eolDateWithSupport") String eolDateWithSupport,
             @JsonProperty(value = "supportsOAuthForActions") boolean supportsOAuthForActions,
             @JsonProperty(value = "i18nLanguages") List<String> i18nLanguages,
             @JsonProperty(value = "apps") List<App> apps,
@@ -51,6 +53,7 @@ public class DipMetadata extends Metadata {
                 categories,
                 created,
                 deprecatedDate,
+                eolDateWithSupport,
                 supportsOAuthForActions,
                 i18nLanguages,
                 apps,
