@@ -1,10 +1,10 @@
 var apiKey = 'MUoj9GyLeQYmImDtli805eZOK7a8wk8W' // please see ariba documentation
 var realm = 'citrix-T' // please see ariba documentation
-var limit = 10 // limit number of records per page for pagination
-var lastChangeId = 18800  // Ariba internal change id, usually 1, please see ariba documentation
-var maxNoOfPages = 1 //  limit number of pages for pagination
-var lastApprovalDateValue = 1
-
+var limit = 100 // limit number of records per page for pagination
+var lastChangeId = 19000 // Ariba internal change id, usually 1, please see ariba documentation
+var maxNoOfPages = 10000 //  limit number of pages for pagination
+var groupMembers = [] // list of users group membership
+var groupList = [] //list of all groups
 
 function flatJsonObject(json, oName, prefix) {  //currently we are able to store only flat json object, so all nested object must be flattened
     if (json[oName] != undefined) {
@@ -15,10 +15,72 @@ function flatJsonObject(json, oName, prefix) {  //currently we are able to store
     return json
 }
 
-function storeRequisition(dataStore, client, requisition) {
+function resolveApprovalRequests(client, json) {  //this function is resolving approvers for requisitions and copy necessary informations to create notifications
+    let approvesList = []
+    
+    json.forEach(function (appReqsr) {
+        appReqsr.approvers.forEach(function (approvers) {
+            if (approvers.type != undefined) { 
+                approvers.approvalRequired = appReqsr.approvalRequired
+                approvers.approvalState = appReqsr.approvalState
+                approvers.reason = appReqsr.reason
+                approvers.state = appReqsr.state
+
+                if (approvers.type == 'user') { 
+                    approvers = flatJsonObject(approvers, 'user', '')  
+                    approvesList.push(approvers)
+                }
+                if (approvers.type == 'group') {
+                    approvesList = approvesList.concat(resolveGroupApproval(client, approvers))
+                }
+            }
+        })
+    })
+    return approvesList
+}
+
+function resolveGroupApproval(client ,json) {  //currently we are able to store only flat json object, so all nested object must be flattened
+    let groupFound = false
+    let userList =[]
+    let groupId = json.id
+    
+    for (let group of groupList) {  //checking if we already resolve the group
+        if (groupId == group) {
+            groupFound = true
+            break
+        }
+    } 
+            
+    if (groupFound) { //creating member list
+       userList = groupMembers.filter(function(group){return group.group == groupId})
+    }
+   
+    else { //adding new group and member to groupmembers
+        responseData = client.fetchSync('groups/'+ groupId +'/members?realm='+ realm, {headers: {'apikey':apiKey}})
+        groupList.push(groupId)
+        userList = responseData.jsonSync()
+        
+        for (let user of userList) {
+            user.group = groupId 
+        }
+        groupMembers =  groupMembers.concat(userList)
+    }
+
+    for (let user of userList) { //creating list of approvers
+        user.approvalRequestId = json.approvalRequestId
+        user.approvalRequired = json.approvalRequired
+        user.approvalState = json.approvalState
+        user.requisitionId = json.requisitionId
+        user.reason = json.reason
+        user.state = json.state
+     }
+        
+    return userList
+}
+function storeRequisition(dataStore, client, requisitionList) {
 	// getting requisition details and additional data
-	for (let i = 0; i < requisition.length; i++) {
-		responseData = client.fetchSync('requisitions/' + requisition[i] + '?realm=' + realm, {headers: {'apikey':apiKey}})
+	for (let requisition of requisitionList) {
+		responseData = client.fetchSync('requisitions/' + requisition + '?realm=' + realm, {headers: {'apikey':apiKey}})
         json = responseData.jsonSync()
 		
         if (responseData.status == 200 ) {
@@ -26,12 +88,19 @@ function storeRequisition(dataStore, client, requisition) {
             if (json.comments != undefined) {
                 for (let j = 0; j < json.comments.length; j++) {
 				    json.comments[j] = flatJsonObject(json.comments[j], 'user', 'user_') //this will move key/value pairs from json.comments[j].user object to the json.comments[j] and add user_ prefix
-			    }
+			
+                }
             
                 dataStore.save('rq_comments', json.comments) //saving comments 
 			    delete json.comments //deleting comments from json to gain better performance
             }
             
+            if (json.approvalRequests != undefined) {
+                let testtest= resolveApprovalRequests(client, json.approvalRequests)
+                dataStore.save('pendingApprovablesRequisitions', testtest)
+                delete json.approvalRequests //deleting approvalRequests from json to gain better performance
+            }
+
             //parsing requisition line items and line items accounting, li and li accounting are stored in arrary      
             if (json.lineItems != undefined) {
                 for (let j = 0; j < json.lineItems.length; j++) {
@@ -39,66 +108,26 @@ function storeRequisition(dataStore, client, requisition) {
                         json.lineItems[j].accountings[k] = flatJsonObject(json.lineItems[j].accountings[k], 'generalLedger', 'gl_') 
                         json.lineItems[j].accountings[k] = flatJsonObject(json.lineItems[j].accountings[k], 'costCenter', 'cc_')
                         json.lineItems[j].accountings[k] = flatJsonObject(json.lineItems[j].accountings[k], 'amount', 'am_')
-                
                     }
-                    dataStore.save('rq_li_accountings', json.lineItems[j].accountings)
-                    delete json.lineItems[j].accountings //saving li accounting
+                    dataStore.save('rq_li_accountings', json.lineItems[j].accountings) //saving li accounting
+                    delete json.lineItems[j].accountings //deleting accountings from json to gain better performance
 					
-					json.lineItems[j] = flatJsonObject(json.lineItems[j], 'supplier', 'supp_')
+                    json.lineItems[j] = flatJsonObject(json.lineItems[j], 'supplier', 'supp_')
                     json.lineItems[j] = flatJsonObject(json.lineItems[j], 'accountCategory', 'acc_cat_')
                     json.lineItems[j] = flatJsonObject(json.lineItems[j], 'description', 'desc_')
 					json.lineItems[j] = flatJsonObject(json.lineItems[j], 'desc_price', 'desc_pr_')
-					
-					
                 }
+
 			    dataStore.save('rq_lineitems', json.lineItems) //saving line items
 			    delete json.lineItems //deleting line items from json to gain better performance
             }
 
             json = flatJsonObject(json, 'totalCost', 'tc_')
 			json = flatJsonObject(json, 'requester', 'rq_')
-			dataStore.save('scr_requisition_details', json)
+			dataStore.save('requisition_details', json)
 		}
 	}
 }
-
-function storeInvoice(dataStore, client, invoice) {
- 	// getting invoice details
-    for (let j = 0; j < invoice.length; j++) {
-        responseData = client.fetchSync('invoices/' + invoice[j] + '?realm='+ realm, { headers: {'apikey':apiKey}})
-        if (responseData.status == 200) {
-            json = responseData.jsonSync()[invoice[j]] //remove root path object
-			
-			if (json.LineItems != undefined) {
-                for (let i = 0; i < json.LineItems.length; i++) {
-                    /**for (let k=0; k < json.LineItems[j].SplitAccountings.length; k++ ) {
-                        json.lineItems[j].accountings[k] = flatJsonObject(json.LineItems[j].SplitAccountings[k], 'GeneralLedger', 'gl_') 
-                        json.lineItems[j].accountings[k] = flatJsonObject(json.lineItems[j].accountings[k], 'costCenter', 'cc_')
-                        json.lineItems[j].accountings[k] = flatJsonObject(json.lineItems[j].accountings[k], 'amount', 'am_')
-                
-                    }
-                    dataStore.save('rq_li_accountings', json.lineItems[j].accountings)
-                    delete json.lineItems[j].accountings //saving li accounting  **/
-			
-			json.LineItems[i].Amount = flatJsonObject(json.LineItems[i].Amount, 'Currency', 'cur_')
-                    json.LineItems[i] = flatJsonObject(json.LineItems[i], 'Amount', 'am_')
-                   // json.LineItems[j] = flatJsonObject(json.lineItems[j], 'description', 'desc_')
-					//json.LineItems[j] = flatJsonObject(json.lineItems[j], 'desc_price', 'desc_pr_')
-					
-					
-                }
-				dataStore.save('inv_lineitems', json.LineItems)
-				delete json.LineItems
-			}
-			
-            json = flatJsonObject(json, 'TotalInvoiced','ti_')
-            json = flatJsonObject(json, 'ti_Currency','ti_cr_')
-            dataStore.save('scr_invoice_details', json)
-        }
-	}
-}
-
-
 
 function Sync(dataStore, client, context, incrementalSync) 
 {
@@ -107,13 +136,7 @@ function Sync(dataStore, client, context, incrementalSync)
 	let requi = [] //list of requisition
 	let invoice = [] //list of invoices
     let noOfPages = 1
-    let newApprovalDateValue = 1
 
-    // reading stored lastChangeSequenceId for incremental sync
-
-    if (incrementalSync && context.lastApprovalDateValue > 0) {
-        lastApprovalDateValue = context.lastApprovalDateValue
-    }
     // quering pendingApprovables endpoint to get all requisition and invoices uniq names 
     for (i = 0; i < noOfPages; i++) {  
 	    responseData = client.fetchSync('/pendingApprovables?realm='+ realm +'&limit=' + limit + '&offset=' + limit*i, {headers: {'apikey':apiKey}})
@@ -130,36 +153,28 @@ function Sync(dataStore, client, context, incrementalSync)
 			}
             //creating list on requisition and invoices
 			for (let j = 0; j < json.length; j++) {
-				if (json[j].documentType == 'ariba.purchasing.core.Requisition') {
-					requi.push(json[j].uniqueName)
-				}
-				if (json[j].documentType == 'ariba.invoicing.core.Invoice') {
-					invoice.push(json[j].UniqueName)
-				}                            
-                json[j].assignedDateValue = +json[j].assignedDate.replace(/-/g,'') // converting api dates strings to value (2021-01-10 to 20210110)
-                if (newApprovalDateValue < json[j].assignedDateValue) {                  //getting max value of the newApprovalDateValue for incremental sync from page
-                    newApprovalDateValue = json[j].assignedDateValue
-                }
-			}
-			dataStore.save('pendingApprovablesRequisitions', json.filter (json => json.documentType === 'ariba.purchasing.core.Requisition'))
-            dataStore.save('pendingApprovablesInvoices', json.filter (json => json.documentType === 'ariba.invoicing.core.Invoice'))
+				if (incrementalSync === false) {
+                    if (json[j].documentType == 'ariba.purchasing.core.Requisition') {
+					    requi.push(json[j].uniqueName)
+				    }
+				    if (json[j].documentType == 'ariba.invoicing.core.Invoice') {
+					    invoice.push(json[j].UniqueName)
+				    }                            
+                }                     
+            }
 		}
 	}
     
-    if (newApprovalDateValue > lastApprovalDateValue ) {   
-        context.lastApprovalDateValue = newApprovalDateValue  //saveing max value of the newApprovalDateValue for incremental sync from page
-    }
-    
-   	console.log('Total number of pendingApprovables endpont pages ' + noOfPages)
-   
-    let newChangeId = 1
-    noOfPages = 1
-
+    // quering channg endpoint to get all requisition and invoices uniq names 
+  
     if (incrementalSync && context.lastChangeSequenceId > 0) {     // reading stored lastChangeSequenceId for incremental sync
         lastChangeId = context.lastChangeSequenceId
     }
-    // quering channg endpoint to get all requisition and invoices uniq names 
-	for (i = 0; i < noOfPages; i++) {  
+
+    let newChangeId = 1
+    noOfPages = 1
+
+    for (i = 0; i < noOfPages; i++) {  
 		
         responseData = client.fetchSync('/changes?needTotal=true&realm='+ realm +'&limit=' + limit + '&offset=' + limit*i + '&lastChangeId=' + lastChangeId, {headers: {'apikey':apiKey}})
         json = responseData.jsonSync()
@@ -186,39 +201,36 @@ function Sync(dataStore, client, context, incrementalSync)
 					invoice.push(json[j].approvableUniqueName)
 				}
 			}
-			dataStore.save('scr_changes', json)
+			dataStore.save('changes', json)
 		}
 	}
-   if (newChangeId > lastChangeId ) { 
+
+    if (newChangeId > lastChangeId ) { 
         context.lastChangeSequenceId = newChangeId
     }
+
     requi = [...new Set(requi)] //creating uniq list
     storeRequisition(dataStore, client, requi)
 
-	invoice = [...new Set(invoice)] //creating uniq list
-    storeInvoice(dataStore, client, invoice)
-    
+    invoice = [...new Set(invoice)] //creating uniq list
+  
     //saving  lastChangeSequenceId for incremental sync into context
     if (newChangeId > lastChangeId ) {
         context.lastChangeSequenceId = newChangeId
     }
     
     console.log('Max Change ID ' + context.lastChangeSequenceId)
-	console.log('Total number of change endpont pages ' + noOfPages)
 	console.log('Total number of requisitions ' + requi.length)
-	console.log('Total number of invoices ' + invoice.length)
+	//console.log('Total number of invoices ' + invoice.length)
     console.log('Sync finished')
 }
 
 function fullSync ({dataStore, client, context}) {
-   
     Sync(dataStore, client, context, false)
 }
 
 function incrSync ({dataStore, client, context}) {
-   
     Sync(dataStore, client, context, true)
-  
 }
 
 integration.define({
@@ -235,47 +247,35 @@ integration.define({
                 'name': 'pendingApprovablesRequisitions',
                 'columns': [
                     {
-                        'name': 'uniqueName',
-                        'type': 'STRING',
-                        'length': 32,
-                        'primaryKey': true
-                    },
-                    {
-                        'name': 'documentType',
-                        'type': 'STRING',
-                        'length': 64
-                    },
-                    {
-                        'name': 'description',
-                        'type': 'STRING',
-                        'length': 4096
-                    },
-                    {
-                        'name': 'assignedDate',
+                        'name': 'approvalRequestId',
                         'type': 'STRING',
                         'length': 32
                     },
                     {
-                        'name': 'approver',
+                        'name': 'requisitionId',
                         'type': 'STRING',
                         'length': 32,
                         'primaryKey': true
                     },
                     {
-                        'name': 'fullURL',
+                        'name': 'approvalState',
                         'type': 'STRING',
-                        'length': 2048
+                        'length': 32
                     },
                     {
-                        'name': 'email',
+                        'name': 'approvalRequired',
+                        'type': 'BOOLEAN'
+                    },
+                    {
+                        'name': 'state',
+                        'type': 'LONG',
+                        'primaryKey': true
+                    },
+                    {
+                        'name': 'reason',
                         'type': 'STRING',
-                        'length': 64
-                    }
-                ]
-            },
-            {
-                'name': 'pendingApprovablesInvoices',
-                'columns': [
+                        'length': 4096
+                    },
                     {
                         'name': 'uniqueName',
                         'type': 'STRING',
@@ -283,40 +283,24 @@ integration.define({
                         'primaryKey': true
                     },
                     {
-                        'name': 'documentType',
+                        'name': 'realm',
                         'type': 'STRING',
                         'length': 64
                     },
                     {
-                        'name': 'description',
+                        'name': 'passwordAdapter',
                         'type': 'STRING',
-                        'length': 4096
+                        'length': 64
                     },
                     {
-                        'name': 'assignedDate',
-                        'type': 'STRING',
-                        'length': 32
-                    },
-                    {
-                        'name': 'approver',
-                        'type': 'STRING',
-                        'length': 32,
-                        'primaryKey': true
-                    },
-                    {
-                        'name': 'fullURL',
-                        'type': 'STRING',
-                        'length': 2048
-                    },
-                    {
-                        'name': 'email',
+                        'name': 'emailAddress',
                         'type': 'STRING',
                         'length': 64
                     }
                 ]
             },
             {
-                'name': 'scr_changes',
+                'name': 'changes',
                 'columns': [
                     {
                         'name': 'changeSequenceId',
@@ -357,7 +341,7 @@ integration.define({
                 ]
             },
             {
-                'name': 'scr_requisition_details',
+                'name': 'requisition_details',
                 'columns': [
                     {
                         'name': 'uniqueName',
@@ -380,7 +364,7 @@ integration.define({
                         'type': 'LONG'
                     },   
                     {
-                        'name': 'lastModified',
+                        'name': 'timeUpdated',
                         'type': 'LONG'
                     },
                     {
@@ -445,99 +429,7 @@ integration.define({
                     }
                 ]
             },
-            {
-                'name': 'scr_invoice_details',
-                'columns': [
-                    {
-                        'name': 'UniqueName',
-                        'type': 'STRING',
-                        'length': 32,
-                        'primaryKey': true
-                    },
-                    {
-                        'name': 'Name',
-                        'type': 'STRING',
-                        'length': 512
-                    },
-                    {
-                        'name': 'StatusString',
-                        'type': 'STRING',
-                        'length': 16
-                    },
-                    {
-                        'name': 'SubmitDate',
-                        'type': 'STRING',
-                        'length': 32
-                    },   
-                    {
-                        'name': 'LastModified',
-                        'type': 'STRING',
-                        'length': 32
-                    },
-                    {
-                        'name': 'InvoiceDate',
-                        'type': 'STRING',
-                        'length': 32
-                    },
-                    {
-                        'name': 'ApprovedState',
-                        'type': 'STRING',
-                        'length': 16
-                    },
-					{
-                        'name': 'ti_Amount',
-                        'type': 'DOUBLE'
-                    },
-					{
-                        'name': 'ti_cr_UniqueName',
-                        'type': 'STRING',
-						'length': 16
-                    },
-					{
-                        'name': 'Category',
-                        'type': 'INTEGER'
-                    },
-					{
-                        'name': 'InvoiceState',
-                        'type': 'STRING',
-						'length': 16
-                    },
-					{
-                        'name': 'InvoicePurpose',
-                        'type': 'STRING',
-						'length': 16
-                    },
-					{
-                        'name': 'InvoiceSubmissionMethod',
-                        'type': 'STRING',
-						'length': 16
-                    },
-					{
-                        'name': 'InvoiceNumber',
-                        'type': 'STRING',
-						'length': 16
-					}
-                ]
-            },
-			{
-                'name': 'inv_lineitems',
-                'columns': [
-                    {
-                        'name': 'Category',
-                        'type': 'INTEGER',
-                        'primaryKey': true
-                    },
-					{
-                        'name': 'am_Amount',
-                        'type': 'DOUBLE'
-                    },
-                    {
-                        'name': 'am_cur_UniqueName',
-                        'type': 'STRING',
-                        'length': 16
-                    }
-                ]
-            },
+			
             {
                 'name': 'rq_comments',
                 'columns': [
@@ -728,7 +620,7 @@ integration.define({
         "relationships": [
             {
                 "name": "requisition_lineitems",
-                "primaryTable": "scr_requisition_details",
+                "primaryTable": "requisition_details",
                 "foreignTable": "rq_lineitems",
                 "columnPairs": [
                     {
@@ -739,7 +631,7 @@ integration.define({
             },
             {
                 "name": "requisition_comments",
-                "primaryTable": "scr_requisition_details",
+                "primaryTable": "requisition_details",
                 "foreignTable": "rq_comments",
                 "columnPairs": [
                     {
@@ -750,12 +642,12 @@ integration.define({
             },
 			{
                 "name": "pending_rq_details",
-                "primaryTable": "scr_requisition_details",
+                "primaryTable": "requisition_details",
                 "foreignTable": "pendingApprovablesRequisitions",
                 "columnPairs": [
                     {
                         "primaryKey": "uniqueName",
-                        "foreignKey": "uniqueName"
+                        "foreignKey": "requisitionId"
                     }
                 ] 
             },
@@ -765,7 +657,7 @@ integration.define({
                 "foreignTable": "rq_lineitems",
                 "columnPairs": [
                     {
-                        "primaryKey": "uniqueName",
+                        "primaryKey": "requisitionId",
                         "foreignKey": "requisitionId"
                     }
                 ] 
@@ -776,7 +668,7 @@ integration.define({
                 "foreignTable": "rq_comments",
                 "columnPairs": [
                     {
-                        "primaryKey": "uniqueName",
+                        "primaryKey": "requisitionId",
                         "foreignKey": "requisitionId"
                     }
                 ] 
