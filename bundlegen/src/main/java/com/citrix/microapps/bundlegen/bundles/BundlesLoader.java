@@ -293,9 +293,24 @@ public class BundlesLoader {
         validateFormat(DATE_PATTERN, "created", metadata.getCreated()).ifPresent(issues::add);
         validateFormat(VERSION_PATTERN, "masVersion", metadata.getMasVersion()).ifPresent(issues::add);
 
-        if (metadata.getDeprecatedDate() != null) {
-            validateDeprecatedDate(metadata.getDeprecatedDate()).ifPresent(issues::add);
+        if (metadata.getEolDateWithSupport() != null) {
+            validateDate("eolDateWithSupport", metadata.getEolDateWithSupport()).ifPresent(issues::add);
         }
+
+        if (metadata.getDeprecatedDate() != null) {
+            validateDate("deprecatedDate", metadata.getDeprecatedDate()).ifPresent(issues::add);
+        }
+
+        if (metadata.getDeprecatedDate() != null
+                && metadata.getEolDateWithSupport() != null
+                && metadata.getDeprecatedDate().compareTo(metadata.getEolDateWithSupport()) > 0) {
+            issues.add(new ValidationException(
+                    String.format(
+                            "Deprecated date `%s` is greater than eol date with support `%s`",
+                            metadata.getEolDateWithSupport(),
+                            metadata.getDeprecatedDate())));
+        }
+
         validateSync(bundle::getType, "type", metadata.getType()).ifPresent(issues::add);
         validateSync(bundle::getVendor, "vendor", replaceWhitespacesWithUnderscores(metadata.getVendor()))
                 .ifPresent(issues::add);
@@ -503,13 +518,13 @@ public class BundlesLoader {
         return concat(preActionWarnings, postActionWarnings);
     }
 
-    static Optional<ValidationException> validateDeprecatedDate(String timestamp) {
+    static Optional<ValidationException> validateDate(String field, String timestamp) {
         try {
             Instant.parse(timestamp);
             return Optional.empty();
         } catch (DateTimeParseException e) {
             return Optional.of(new ValidationException(
-                    String.format("Invalid UTC timestamp format: field `deprecatedDate`, value `%s`", timestamp)));
+                    String.format("Invalid UTC timestamp format: field `%s`, value `%s`", field, timestamp)));
         }
     }
 
