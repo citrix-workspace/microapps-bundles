@@ -8,13 +8,13 @@ async function syncUsers(dataStore, client, context) {
     let next_page_token = ""
     let userids = [];
     do {
-        let request = await client.fetch(`/users?next_page_token=${next_page_token}&page_size=${page_size}`);
-        if (!(await request.ok)) {
-            throw new Error(await request.json());
+        const response = await client.fetch(`/users?next_page_token=${next_page_token}&page_size=${page_size}`);
+        let json = await response.json();
+        if (!response.ok) {
+            throw new Error(json);
         }
-        let response = await request.json();
-        next_page_token = response['next_page_token'] ?? "";
-        let data = response['users']
+        next_page_token = json.next_page_token ?? "";
+        const data = json.users
         let usersData = data.map(userData => {
             userids.push({userid:userData.id});
             let userObj = {
@@ -40,14 +40,14 @@ async function syncMeetings(dataStore, client, users) {
     const page_size=200;
     let meetingids = new Set();
     do {
-        let response = await client.fetch(`users/${users[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
-        if (!(await response.ok)) {
-            throw new Error(JSON.stringify(await response.json()));
+        const response = await client.fetch(`users/${users[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
+        const json = await response.json();
+        if (!(response.ok)) {
+            throw new Error(json);
         }
-        let responseData = await response.json();
-        next_page_token = responseData['next_page_token'] ?? "" ;
-        let meetings = responseData.meetings;
-        let data = meetings.map(meeting => {
+        next_page_token = json.next_page_token ?? "";
+        const data = json.meetings;
+        let meetingdata = data.map(meeting => {
             if(!meetingids.has(meeting.id)){
                 meetingids.add(meeting.id)
             }
@@ -64,7 +64,7 @@ async function syncMeetings(dataStore, client, users) {
                 "join_url": meeting.join_url,
             }
         });
-        dataStore.save('meetings', data);
+        dataStore.save('meetings', meetingdata);
         if (next_page_token == "") {
             i++;
         }
@@ -77,11 +77,11 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
     let dialInNumberscounter = 0;
     let meetingsMap = new Map();
     for (const meetingid of meetingids) {
-        let response = await client.fetch(`meetings/${meetingid}`)
-        if (!(await response.ok)) {
-            throw new Error(JSON.stringify(await response.json()));
+        const response = await client.fetch(`meetings/${meetingid}`)
+        const meeting = await response.json();
+        if (!(response.ok)) {
+            throw new Error(json);
         }
-        let meeting = await response.json();
         
         //Setting the meetingsmap with meetingid as key and email as value to be used in Meeting Invitations API call
         meetingsMap.set(meeting.id, { email: meeting.host_email })
@@ -158,7 +158,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
             dataStore.save('meeting_details_recur_3', dialInNumbers);
         }
         else{
-            console.log("Found a different meeting other than onetime and reucrring meeting id: "+meeting.id+" type: "+meeting.type)
+            console.log(`Found a different meeting other than onetime and reucrring meeting id: ${json.id} type: ${json.type}`);
         }
     }
     return meetingsMap;
@@ -167,15 +167,15 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
 // Loading the Meeting's Invitation
 async function syncMeetingInvitations(dataStore, client,meetingdetail) {
     //traversing through the meetingMap to get meeting id as key and email as value
-    for (const [meeting, user] of meetingdetail.entries()) {
-        let invitationreq = await client.fetch(`meetings/${meeting}/invitation`);
-        if (!(await invitationreq.ok)) {
-            throw new Error(JSON.stringify(await invitationreq.json()));
+    for (const [meetingId, user] of meetingdetail.entries()) {
+        const response = await client.fetch(`meetings/${meetingId}/invitation`);
+        const meeting = await response.json();
+        if (!(response.ok)) {
+            throw new Error(json);
         }
-        let invitationres = await invitationreq.json();
         dataStore.save("meeting_invitations", {
-            "id": meeting,
-            "invitation": invitationres.invitation,
+            "id": meetingId,
+            "invitation": meeting.invitation,
             "users_email": user.email
         })
     }
@@ -184,21 +184,21 @@ async function syncMeetingInvitations(dataStore, client,meetingdetail) {
 async function syncRecordings(dataStore, client,userids) {
     let i = 0;
     //defining the 7 days window to fetch the recordings data for an user
-    let to = moment().utc().format();
-    let from = moment().subtract(7, 'days').utc().format();
+    const to = moment().utc().format();
+    const from = moment().subtract(7, 'days').utc().format();
     let next_page_token = "";
     const page_size = 100;
 
     do {
-        let response = await client.fetch(`users/${userids[i].userid}/recordings?from=${from}&to=${to}&next_page_token=${next_page_token}&page_size=${page_size}`);
-        if (!(await response.ok)) {
-            throw new Error(JSON.stringify(await response.json()));
+        const response = await client.fetch(`users/${userids[i].userid}/recordings?from=${from}&to=${to}&next_page_token=${next_page_token}&page_size=${page_size}`);
+        const json = await response.json();
+        if (!response.ok) {
+            throw new Error(json);
         }
-        let responseData = await response.json();
-        next_page_token = responseData['next_page_token'] ?? "";
-        let recordings = responseData.meetings;
+        next_page_token = json.next_page_token ?? "";
+        const data = json.meetings;
         let recordDatacounter = 0;
-        let data = recordings.map(meeting => {
+        let recordingData = data.map(meeting => {
             let recordData = meeting.recording_files.map(rec => {
                 return {
                     "download_url": rec.download_url,
@@ -228,7 +228,7 @@ async function syncRecordings(dataStore, client,userids) {
                 "total_size": meeting.total_size
             }
         });
-        dataStore.save('meeting_recordings', data);
+        dataStore.save('meeting_recordings', recordingData);
         if (next_page_token == "") {
             i++;
         }
@@ -273,19 +273,19 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
     let next_page_token = "";
     let page_size=200;
     do {
-        let response = await client.fetch(`users/${context.user[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
-        if (!(await response.ok)) {
-            throw new Error(JSON.stringify(await response.json()));
+        const response = await client.fetch(`users/${context.user[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
+        let json = await response.json();
+        if (!response.ok) {
+            throw new Error(json);
         }
-        let responseData = await response.json();
-        next_page_token = responseData['next_page_token'] ?? "";
-        let meetings = responseData.meetings.filter(meeting => {
+        next_page_token = json.next_page_token ?? "";
+        const data = json.meetings;
+        let meetingsData = data.filter(meeting => {
             if (moment(meeting.created_at).isAfter(latestSynchronizationTime)) {
                 meetingids.add(meeting.id);
                 return true;
             }
-        });
-        let data = meetings.map(meeting => {
+        }).map(meeting => {
             if(!meetingids.has(meeting.id)){
                 meetingids.add(meeting.id)
             }
@@ -302,7 +302,7 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
                 "join_url": meeting.join_url,
             }
         });
-        dataStore.save('meetings', data);
+        dataStore.save('meetings', meetingsData);
         if (next_page_token == "") {
             i++;
         }
@@ -319,7 +319,7 @@ async function createMeeting({ dataStore, client, actionParameters }) {
     if(actionParameters.alternative_hosts2 != null){
         alternative_hosts+=','+actionParameters.alternative_hosts2;
     } 
-    const request = await client.fetch(`users/${actionParameters.Userid}/meetings`, {
+    const response = await client.fetch(`users/${actionParameters.Userid}/meetings`, {
         method: "POST",
         body: JSON.stringify({
             topic: actionParameters.topic,
@@ -340,12 +340,12 @@ async function createMeeting({ dataStore, client, actionParameters }) {
             }
         })
     })
-    if (!(await request.ok)) {
-        throw new Error(JSON.stringify(await request.json()))
+    const json = await response.json();
+    if (!response.ok) {
+        throw new Error(json)
     }
-    let meeting = await request.json();
-    meetingset = new Set([Number(meeting.id)]);
-    meetingMap = new Map([[meeting.id, { email: meeting.host_email }]])
+    meetingset = new Set([Number(json.id)]);
+    meetingMap = new Map([[json.id, { email: json.host_email }]])
 
     await syncMeetings(dataStore, client, [{userid: actionParameters.Userid}]);
     await syncMeetingsDetails(dataStore, client,meetingset);
@@ -355,18 +355,21 @@ async function createMeeting({ dataStore, client, actionParameters }) {
 
 //   Edit One Time Meeting One Co-organizer
 async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
-    let meetingset, meetingMap;
+    let meetingset;
     let occurrences = [];
     let alternative_hosts = actionParameters.alternative_hosts1;
     if(actionParameters.alternative_hosts2 != null){
         alternative_hosts+=','+actionParameters.alternative_hosts2;
     }
     if(actionParameters.previous_type == 8){
-        let req = await client.fetch(`meetings/${actionParameters.meetingid}`);
-        let meetingDetail = await req.json(); 
-        occurrences = meetingDetail.occurrences;
+        const response = await client.fetch(`meetings/${actionParameters.meetingid}`);
+        let json = await response.json(); 
+        if (!response.ok) {
+            throw new Error(json)
+        }
+        occurrences = json.occurrences;
     }
-    const request = await client.fetch(`meetings/${actionParameters.meetingid}`, {
+    const response = await client.fetch(`meetings/${actionParameters.meetingid}`, {
         method: "PATCH",
         body: JSON.stringify({
             topic: actionParameters.topic,
@@ -387,15 +390,17 @@ async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
             }
         })
     })
-    if (!(await request.ok)) {
-        throw new Error(JSON.stringify(await request.json()))
+    
+    //here response code is 204, so normally there will be no response.
+    if (!response.ok) {
+        throw new Error(await response.json())
     }
 
     if (actionParameters.previous_type == 8 && actionParameters.type == 8 && actionParameters.r_type == actionParameters.pre_rtype && !(moment(actionParameters.start_time).isSame(actionParameters.prev_start_time))) {
-        await updateMeetingOccurrences(actionParameters, occurrences, dataStore);
+        updateMeetingOccurrences(actionParameters, occurrences, dataStore);
     }
     // meetingset = new Set([meeting.id]);
-    await detectTypeChange(actionParameters,occurrences, dataStore);
+    detectTypeChange(actionParameters,occurrences, dataStore);
     await syncMeetings(dataStore, client, [{userid: actionParameters.Userid }]);
     meetingset = new Set([actionParameters.meetingid]);
     let meetingDetails = await syncMeetingsDetails(dataStore, client, meetingset);
@@ -405,17 +410,17 @@ async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
 
 async function editRecurringMeeting({ dataStore, client, actionParameters }) {
     let meetingset;
-    const request =await client.fetch(`meetings/${actionParameters.meetingid}?occurrence_id=${actionParameters.occurrence_id}`, {
+    const response =await client.fetch(`meetings/${actionParameters.meetingid}?occurrence_id=${actionParameters.occurrence_id}`, {
         method: "PATCH",
         body: JSON.stringify({
             start_time: actionParameters.start_time,
             duration: actionParameters.duration
         })
     })
-    if (!(await request.ok)) {
-        throw new Error(JSON.stringify(await request.json()))
+    //here response code is 204, so normally there will be no response.
+    if (!response.ok) {
+        throw new Error(await response.json())
     }
-    console.log()
     syncMeetings(dataStore, client, [{userid: actionParameters.userid }]);
     meetingset = new Set([actionParameters.meetingid]);
     let meetingDetails = await syncMeetingsDetails(dataStore, client, meetingset);
@@ -423,11 +428,12 @@ async function editRecurringMeeting({ dataStore, client, actionParameters }) {
 
 }
 
-async function detectTypeChange(actionParameters, meetingDetail, dataStore) {
-    let change = false;
+
+//Here are have to explicitly convert the Data Type to Number as we are getting the meetnigid as a String from microapp page.
+function detectTypeChange(actionParameters, meetingDetail, dataStore) {
     if (actionParameters.previous_type != actionParameters.type) {
         if (actionParameters.type == 2) {
-            change = true
+            changeData(dataStore,meetingDetail,actionParameters)
         }
         else if (actionParameters.type == 8) {
             let onetime = {
@@ -442,35 +448,12 @@ async function detectTypeChange(actionParameters, meetingDetail, dataStore) {
     }
     else {
         if (actionParameters.pre_rtype != actionParameters.r_type) {
-            change=true
+            changeData(dataStore,meetingDetail,actionParameters)
         }
     }
-
-    if(change){
-        let occurrenceData = meetingDetail.map(occurrence => {
-            return {
-                "duration": occurrence.duration,
-                "occurrence_id": Number(occurrence.occurrence_id),
-                "meetingId": Number(actionParameters.meetingid),
-                "start_time": new Date(occurrence.start_time),
-                "parent_id": Number(actionParameters.meetingid),
-                "visibility": false,
-            }
-        })
-        dataStore.save('meeting_details_recur_1', occurrenceData);
-        let recurring = {
-            "host_id": actionParameters.Userid,
-            "id": Number(actionParameters.meetingid),
-            "topic": actionParameters.topic,
-            "type": Number(actionParameters.type),
-            "visibility": false,
-        }
-        dataStore.save('meeting_details_recurring', recurring);
-    }
-    
 }
-
-async function updateMeetingOccurrences(actionParameters, meetingDetail, dataStore) {
+//Here are have to explicitly convert the Data Type to Number as we are getting the meetnigid as a String from microapp page.
+function updateMeetingOccurrences(actionParameters, meetingDetail, dataStore) {
     let occurrenceData = meetingDetail.map(occurrence => {
         return {
             "duration": occurrence.duration,
@@ -482,6 +465,29 @@ async function updateMeetingOccurrences(actionParameters, meetingDetail, dataSto
         }
     })
     dataStore.save('meeting_details_recur_1', occurrenceData);
+}
+
+//Here are have to explicitly convert the Data Type to Number as we are getting the meetnigid as a String from microapp page.
+function changeData(dataStore,meetingDetail,actionParameters){
+    let occurrenceData = meetingDetail.map(occurrence => {
+        return {
+            "duration": occurrence.duration,
+            "occurrence_id": Number(occurrence.occurrence_id),
+            "meetingId": Number(actionParameters.meetingid),
+            "start_time": new Date(occurrence.start_time),
+            "parent_id": Number(actionParameters.meetingid),
+            "visibility": false,
+        }
+    })
+    dataStore.save('meeting_details_recur_1', occurrenceData);
+    let recurring = {
+        "host_id": actionParameters.Userid,
+        "id": Number(actionParameters.meetingid),
+        "topic": actionParameters.topic,
+        "type": Number(actionParameters.type),
+        "visibility": false,
+    }
+    dataStore.save('meeting_details_recurring', recurring);
 }
 
 integration.define({
