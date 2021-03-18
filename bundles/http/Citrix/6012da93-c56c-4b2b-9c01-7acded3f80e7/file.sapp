@@ -16269,7 +16269,349 @@
     "fullyConfigured" : true,
     "oauthLoginNeeded" : false
   } ],
-  "notifications" : [ ],
+  "notifications" : [ {
+    "id" : "e72771d8-0619-4e70-871f-808678dbfaaf",
+    "legacyId" : 361,
+    "appId" : "5d25eba9-c4ae-4061-953b-ac79c77418a3",
+    "version" : 1,
+    "eventType" : "CHANGE",
+    "serviceId" : 77,
+    "tableId" : 1509,
+    "label" : "a12735d4-0939-4ed1-a1e9-81e4b2714873",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_RESU",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_RESU",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 1509,
+      "columnId" : 26464,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "b32b3ea0-e13f-4db1-8991-d23d537ef4d7",
+      "body" : "a50991d1-dea7-44b2-b988-0a4abe526db7",
+      "gotoAppPageId" : "2ae3c534-832f-45eb-916d-370289ff4c19",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_send_back.2ce924639f6c446ebe6277f14d74b7b6.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "f07b4cb3-b637-4662-a44d-97fe12635ba7",
+    "legacyId" : 360,
+    "appId" : "5d25eba9-c4ae-4061-953b-ac79c77418a3",
+    "version" : 1,
+    "eventType" : "CHANGE",
+    "serviceId" : 77,
+    "tableId" : 1509,
+    "label" : "19e08fef-d9fb-481c-a9fd-f66625a85192",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_ACCO",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_ACCO",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 1509,
+      "columnId" : 26464,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "794e6e8f-2d16-46b5-87b7-c4add7812e66",
+      "body" : "714b4239-d234-47b3-aaaf-94259341b063",
+      "gotoAppPageId" : "2ae3c534-832f-45eb-916d-370289ff4c19",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "9d2ebc16-7118-4834-aabc-50b0a7dce14d",
+    "legacyId" : 357,
+    "appId" : "7c3faa95-1f02-4e76-95a6-40e37c9eb2ee",
+    "version" : 3,
+    "eventType" : "REMINDER",
+    "serviceId" : 77,
+    "tableId" : 1509,
+    "label" : "895e96a9-25e8-41ad-bd0f-84b179b47992",
+    "schedule" : {
+      "jobSchedule" : "DAILY",
+      "useTimeRange" : false,
+      "scheduleTime" : "01:00",
+      "runTimezone" : "Etc/UTC"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDateColumnId" : 26467,
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 3,
+      "reminderType" : "AFTER"
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 1509,
+      "columnId" : 26459,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "bd0084f6-1df1-4b83-934a-353847fce900",
+      "body" : "fad4124b-f2b8-49a4-ba2c-2987ab28d74d",
+      "gotoAppPageId" : "b3ea5bc6-8b47-4815-8443-6664c5c3578a",
+      "configuration" : {
+        "cardTtlHours" : 264,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ "fec0095f-a870-420b-a264-a3d4dfb04133", "8f6aa0cb-63d1-46c4-ade7-a0e6fbe351aa" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "ca502afb-2b47-4b7a-a337-b2d5e45ecbf1",
+    "legacyId" : 358,
+    "appId" : "7c3faa95-1f02-4e76-95a6-40e37c9eb2ee",
+    "version" : 2,
+    "eventType" : "NEW",
+    "serviceId" : 77,
+    "tableId" : 1509,
+    "label" : "8d51f448-20b5-484e-a55e-651dfb5fc844",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 1509,
+      "columnId" : 26459,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "9ab30b76-8b74-4b20-a2ac-76a6c839c93d",
+      "body" : "d7b84f8f-5739-4084-8a8f-f4fb63752c7d",
+      "gotoAppPageId" : "b3ea5bc6-8b47-4815-8443-6664c5c3578a",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "fec0095f-a870-420b-a264-a3d4dfb04133", "8f6aa0cb-63d1-46c4-ade7-a0e6fbe351aa" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  }, {
+    "id" : "d0dd3b50-4343-449b-bc8d-3b22a8842c6e",
+    "legacyId" : 359,
+    "appId" : "7c3faa95-1f02-4e76-95a6-40e37c9eb2ee",
+    "version" : 1,
+    "eventType" : "CHANGE",
+    "serviceId" : 77,
+    "tableId" : 1509,
+    "label" : "c094a20b-c7d6-4c26-8d54-beb6db718784",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1509,
+        "columnId" : 26458,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_PEND",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 1509,
+      "columnId" : 26459,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "fb34ed31-3e11-4129-acfb-fcd68fa9feaf",
+      "body" : "d414a69d-c8df-4bad-83ac-89669a4b3b14",
+      "gotoAppPageId" : "b3ea5bc6-8b47-4815-8443-6664c5c3578a",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "fec0095f-a870-420b-a264-a3d4dfb04133", "8f6aa0cb-63d1-46c4-ade7-a0e6fbe351aa" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
     "appIds" : [ "7c3faa95-1f02-4e76-95a6-40e37c9eb2ee", "649cd937-467f-4dd8-8dd3-67b7ecc1d89a", "5d25eba9-c4ae-4061-953b-ac79c77418a3" ],
@@ -16277,7 +16619,7 @@
     "bundleDescription" : "Integrate with SAP Concur to receive notifications about approval requests and approve or send them back.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "D21C28D6F0F3FECFA919B87E5C0959B7",
+  "translationChecksum" : "F5DE662B0857AB84D9AC0BE9F968FF86",
   "appliedSappUpgrades" : [ "microapp-4518", "microapp-9702", "microapp-7290", "microapp-4020", "microapp-6264", "microapp-6617", "microapp-1980", "microapp-12505", "microapp-8003", "microapp-12525", "microapp-6790", "microapp-7888", "microapp-5227", "microapp-8921", "microapp-10860", "microapp-8576", "microapp-10420", "microapp-3548", "microapp-10856", "microapp-8950", "microapp-11349", "microapp-7984", "microapp-13233", "microapp-11136", "microapp-6262", "microapp-7561", "microapp-8892", "microapp-6293", "microapp-11836", "microapp-9597", "microapp-9701", "microapp-10876", "microapp-5025", "microapp-11340", "microapp-10421", "microapp-3547", "microapp-12427", "microapp-7961", "microapp-2450", "microapp-4666", "microapp-12936", "microapp-10549", "microapp-8511", "microapp-3580", "microapp-10858", "microapp-3838", "microapp-6853", "microapp-13471", "microapp-6593" ],
   "buildVersion" : "1.72.2.485612840a7dd3b9748f8abc3c680302033b4a57"
 }
