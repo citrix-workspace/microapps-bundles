@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "9068aa9a-5299-4bc7-90d0-7cddc6762c33",
       "serviceId" : 41,
-      "version" : 214,
+      "version" : 231,
       "parameters" : {
         "imageUrl" : "exported/requisition.96e9c06d43dbd8914e8206e9fc2fc880.svg",
         "description" : "687de49f-eca9-416f-a744-2ef1a28c9ae8"
@@ -96,8 +96,7 @@
                 "format" : "none",
                 "tableColumn" : {
                   "columnType" : null
-                },
-                "conditional_format" : null
+                }
               }, {
                 "foreignKeyId" : 976,
                 "id" : "uyj0de",
@@ -121,54 +120,54 @@
                   "left" : {
                     "type" : "EXPRESSION",
                     "left" : {
-                      "type" : "EXPRESSION",
-                      "left" : {
-                        "type" : "TERM",
-                        "constraint" : {
-                          "tableId" : 637,
-                          "columnId" : 20923,
-                          "valueType" : "USER_EMAIL",
-                          "ignoredWhenValueIsNull" : false,
-                          "action" : "EQUALS_TO"
-                        }
-                      },
-                      "operator" : "AND",
-                      "right" : {
-                        "type" : "TERM",
-                        "constraint" : {
-                          "tableId" : 637,
-                          "columnId" : 20918,
-                          "valueType" : "VALUE",
-                          "value" : "2",
-                          "ignoredWhenValueIsNull" : false,
-                          "action" : "EQUALS_TO"
-                        }
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 637,
+                        "columnId" : 20923,
+                        "valueType" : "USER_EMAIL",
+                        "ignoredWhenValueIsNull" : false,
+                        "action" : "EQUALS_TO"
+                      }
+                    },
+                    "operator" : "AND",
+                    "right" : {
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 637,
+                        "columnId" : 20918,
+                        "valueType" : "VALUE",
+                        "value" : "2",
+                        "ignoredWhenValueIsNull" : false,
+                        "action" : "EQUALS_TO"
+                      }
+                    }
+                  },
+                  "operator" : "AND",
+                  "right" : {
+                    "type" : "EXPRESSION",
+                    "left" : {
+                      "type" : "TERM",
+                      "constraint" : {
+                        "tableId" : 637,
+                        "columnId" : 20915,
+                        "valueType" : "COMPONENT",
+                        "variableComponent" : "c7d65641-72a2-48ea-a180-973285e2c3e9",
+                        "ignoredWhenValueIsNull" : true,
+                        "action" : "LIKE"
                       }
                     },
                     "operator" : "OR",
                     "right" : {
                       "type" : "TERM",
                       "constraint" : {
-                        "tableId" : 637,
-                        "columnId" : 20920,
+                        "tableId" : 638,
+                        "columnId" : 20931,
+                        "foreignKeyId" : 976,
                         "valueType" : "COMPONENT",
                         "variableComponent" : "c7d65641-72a2-48ea-a180-973285e2c3e9",
                         "ignoredWhenValueIsNull" : true,
                         "action" : "LIKE"
                       }
-                    }
-                  },
-                  "operator" : "OR",
-                  "right" : {
-                    "type" : "TERM",
-                    "constraint" : {
-                      "tableId" : 638,
-                      "columnId" : 20931,
-                      "foreignKeyId" : 976,
-                      "valueType" : "COMPONENT",
-                      "variableComponent" : "c7d65641-72a2-48ea-a180-973285e2c3e9",
-                      "ignoredWhenValueIsNull" : true,
-                      "action" : "LIKE"
                     }
                   }
                 },
@@ -545,7 +544,8 @@
                 "format" : "none",
                 "tableColumn" : {
                   "columnType" : null
-                }
+                },
+                "conditional_format" : null
               }, {
                 "id" : "0ob241",
                 "label" : "64c24bb3-7db8-49ce-a820-76a042f06dd4",
@@ -570,6 +570,26 @@
                   "columnType" : "STRING"
                 },
                 "conditional_format" : null
+              }, {
+                "template" : "70111b4d-04a6-458e-9926-8465fe28ad29",
+                "id" : "ni4wjn",
+                "label" : "ff69efe6-3483-4328-bd27-a22937b72ffb",
+                "tableid" : 639,
+                "type" : "TEMPLATE",
+                "urlTemplate" : null,
+                "format" : "none",
+                "tableColumn" : {
+                  "columnType" : null
+                },
+                "conditional_format" : null
+              }, {
+                "template" : "85710d6c-b170-458c-8de5-95ed361f8cb9",
+                "id" : "vjxtcu",
+                "label" : "c4029deb-88ed-4c48-813a-aa5f98f63b51",
+                "tableid" : 639,
+                "type" : "TEMPLATE",
+                "format" : "none",
+                "tableColumn" : { }
               } ],
               "images" : [ ],
               "tableid" : 639,
@@ -943,7 +963,7 @@
                   }, {
                     "parameterId" : "user",
                     "valueType" : "COLUMN",
-                    "columnId" : 20922,
+                    "columnId" : 20920,
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "visibleToSupplier",
@@ -1007,7 +1027,7 @@
   "services" : [ {
     "id" : 41,
     "uuid" : "b43d16ed-d1a7-4959-988a-be5e5e018cb6",
-    "version" : 217,
+    "version" : 221,
     "title" : "SAP Ariba",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1710,7 +1730,7 @@
     "context" : {
       "synchronizationContexts" : {
         "SyncChanges" : {
-          "lastChangeSequenceId" : "19569",
+          "lastChangeSequenceId" : "19609",
           "lastApprovalDateValue" : "20210309"
         }
       }
@@ -3135,7 +3155,7 @@
     "id" : "8bb94e43-947c-4b20-9bf6-fd3a329eb1a5",
     "legacyId" : 280,
     "appId" : "9068aa9a-5299-4bc7-90d0-7cddc6762c33",
-    "version" : 4,
+    "version" : 6,
     "eventType" : "NEW",
     "serviceId" : 41,
     "tableId" : 637,
@@ -3205,7 +3225,7 @@
     "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "C0B0B29E5DD68F386AE1815EDBF9F35D",
+  "translationChecksum" : "3FC8E38E60FF06D1AD3CC49B66DEDBF3",
   "appliedSappUpgrades" : [ "microapp-6617", "microapp-7984", "microapp-10860", "microapp-12505", "microapp-11836", "microapp-9702", "microapp-6853", "microapp-10421", "microapp-8003", "microapp-8950", "microapp-12525", "microapp-11136", "microapp-5227", "microapp-7961", "microapp-7561", "microapp-10549", "microapp-3838", "microapp-3548", "microapp-9701", "microapp-4666", "microapp-8511", "microapp-3580", "microapp-12936", "microapp-3547", "microapp-10420", "microapp-6264", "microapp-13233", "microapp-1980", "microapp-5025", "microapp-10876", "microapp-4020", "microapp-9597", "microapp-10858", "microapp-8576", "microapp-12427", "microapp-8921", "microapp-4518", "microapp-2450", "microapp-13471", "microapp-8892", "microapp-6790", "microapp-11340", "microapp-7888", "microapp-6293", "microapp-7290", "microapp-11349", "microapp-6262", "microapp-10856", "microapp-6593" ],
   "buildVersion" : "1.71.0.1a7db7eed124a71c90ddb9e4c3319e1c9f3b319d"
 }

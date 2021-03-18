@@ -275,34 +275,32 @@ function approveDenyRequisition ({dataStore, serviceClient, actionParameters}) {
     
     let responseData = serviceClient.fetchSync('requisitions/' + approvableId + '?realm=' + realm, {headers: {'apikey':apiKey}})
     let json = responseData.jsonSync()
-	if (responseData.ok && json) {
-        if (Math.round(json.totalCost.amount) == Math.round(totalCostAmount) && json.totalCost.currency == totalCostCurrency) {
+	try {
+        if (responseData.ok && json) {
+            if (Math.abs(json.totalCost.amount-totalCostAmount) < 0.01 && json.totalCost.currency == totalCostCurrency) { //validation of total costs and currency
                 console.log('Validation ok, total cost and currency match')
                 responseData = serviceClient.fetchSync('/operations/rest/requisitions/'+ action +'?realm=' + realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
-                    method: 'POST', 
-                    headers: {'apikey':apiKey}, 
-                    body: JSON.stringify(approveDenyRequest)
+                        method: 'POST', 
+                        headers: {'apikey':apiKey}, 
+                        body: JSON.stringify(approveDenyRequest)
+                    }
+                )
+                if (responseData.ok) {
+                    console.log('Requisition approval/deny submitted to Ariba')
                 }
-            )
+                else {
+                    throw new Error('Unable to pocess the requisition in Ariba: ' + responseData.statusText)
+                }   
+            }
+            else {
+                throw new Error('Validation fail: Unable to pocess the requisition, total cost did not match, please wait for data update') 
+            }
         }
-        else
-        {
-            console.log('Validation fail, total cost or currency has been changed')
-        }
+    } 
+    finally {
+    storeRequisition(dataStore, serviceClient, [approvableId])
     }
-    
-    storeRequisition(dataStore, serviceClient, [approvableId]) 
-
-    if (responseData.ok) {
-       
-    }
-    else {
-        throw new Error('Unable to pocess the requisition: ' + approveDenyResponse.statusText)
-    }   
-            
-    return
 }
-
 integration.define({
     'synchronizations': [
         {
