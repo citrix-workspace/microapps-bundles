@@ -1027,7 +1027,7 @@
   "services" : [ {
     "id" : 41,
     "uuid" : "b43d16ed-d1a7-4959-988a-be5e5e018cb6",
-    "version" : 224,
+    "version" : 228,
     "title" : "SAP Ariba",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1038,17 +1038,14 @@
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "CLIENT_CREDENTIALS",
-        "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
+        "clientSecret" : "{{secret 'dataEndpoint.clientSecret'}}",
         "scope" : "",
         "authorizationURL" : "",
         "tokenURL" : "https://api.ariba.com/v2/oauth/token",
         "grantTypeValue" : "client_credentials",
         "tokenAuthorization" : "AUTHORIZATION_HEADER",
         "authHeaderPrefix" : "",
-        "customAccessTokenParameters" : [ {
-          "name" : "Authorization",
-          "value" : "Basic ZjRjNjQyYTktZTY0Ny00YTNkLTllZjYtYjRkNzRjYTk3MjAxOmU4T3ZXYnpJWFp0azdGajlpSHFvQmtWSmo5QnNwTXVj"
-        } ],
+        "customAccessTokenParameters" : [ ],
         "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
       },
       "useServiceActionSecurity" : false,
@@ -1064,172 +1061,10 @@
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
         "useTimeRange" : false,
-        "schedule" : "MANUALLY"
+        "schedule" : "FIFTEEN_MINUTES"
       } ],
       "endpoints" : [ ],
-      "actions" : [ {
-        "uniqueId" : "4221e833-2a79-44d7-b111-f7f0ebdaccc1",
-        "name" : "Process Requisition",
-        "parameters" : [ {
-          "uniqueId" : "f76be295-81e4-4ba3-8889-25ed8aa10565",
-          "name" : "visibleToSupplier",
-          "type" : {
-            "dataType" : "BOOLEAN"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "visibleToSupplier"
-          }
-        }, {
-          "uniqueId" : "472b137c-2057-43ff-b667-bc965c0767fc",
-          "name" : "approvableId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "approvableId"
-          }
-        }, {
-          "uniqueId" : "a89ec747-43ea-475a-a4c7-92462b7cf7d1",
-          "name" : "passwordadapter",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "passwordadapter"
-          }
-        }, {
-          "uniqueId" : "1acd3d76-8e1e-4d8a-ad3e-809106268e08",
-          "name" : "action",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "action"
-          }
-        }, {
-          "uniqueId" : "9b865434-3f9a-4776-aba2-d09c6bdb6488",
-          "name" : "comment",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "comment"
-          }
-        }, {
-          "uniqueId" : "80321007-7af0-458e-b27e-d08bbc03eb45",
-          "name" : "user",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "user"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "/operations/rest/requisitions/{{action}}?realm=citrix-T&user={{user}}&passwordadapter={{passwordadapter}}",
-          "headers" : [ {
-            "name" : "apikey",
-            "value" : "MUoj9GyLeQYmImDtli805eZOK7a8wk8W"
-          } ],
-          "postMode" : "JSON",
-          "body" : "{\n\"approvableId\": \"{{approvableId}}\",\n\"comment\": \"{{comment}}\",\n\"visibleToSupplier\": \"{{visibleToSupplier}}\"\n}\n",
-          "bodyParameters" : [ ]
-        },
-        "preActionUpdates" : [ ],
-        "postActionUpdates" : [ ],
-        "actionParameters" : [ {
-          "uniqueId" : "f76be295-81e4-4ba3-8889-25ed8aa10565",
-          "name" : "visibleToSupplier",
-          "type" : {
-            "dataType" : "BOOLEAN"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "visibleToSupplier"
-          }
-        }, {
-          "uniqueId" : "472b137c-2057-43ff-b667-bc965c0767fc",
-          "name" : "approvableId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "approvableId"
-          }
-        }, {
-          "uniqueId" : "a89ec747-43ea-475a-a4c7-92462b7cf7d1",
-          "name" : "passwordadapter",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "passwordadapter"
-          }
-        }, {
-          "uniqueId" : "1acd3d76-8e1e-4d8a-ad3e-809106268e08",
-          "name" : "action",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "action"
-          }
-        }, {
-          "uniqueId" : "9b865434-3f9a-4776-aba2-d09c6bdb6488",
-          "name" : "comment",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "comment"
-          }
-        }, {
-          "uniqueId" : "80321007-7af0-458e-b27e-d08bbc03eb45",
-          "name" : "user",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "user"
-          }
-        } ]
-      } ],
+      "actions" : [ ],
       "iconUrl" : "exported/Ariba.51e0c216c1507cb16edb31bc47030a9e.svg",
       "iconType" : "LIBRARY",
       "rateLimitConfiguration" : {
