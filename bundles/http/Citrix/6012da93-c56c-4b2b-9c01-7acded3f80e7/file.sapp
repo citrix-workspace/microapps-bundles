@@ -8,6 +8,7 @@
         "imageUrl" : "exported/report.02ea4bc8050184997073d6d8d865fc94.svg",
         "description" : "a6284e03-fdb3-4095-a8da-296fb7248397"
       },
+      "title" : "a91f562f-75c6-48b4-a272-5f6a9ab34bd6",
       "pages" : [ {
         "id" : "aa41f7c0-c251-4ba2-9b43-0b6bfad97397",
         "appId" : "5d25eba9-c4ae-4061-953b-ac79c77418a3",
@@ -1621,7 +1622,6 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "a91f562f-75c6-48b4-a272-5f6a9ab34bd6",
       "trackingUuid" : "293062e6-95c1-4d8d-8a1b-c5c859752cb9",
       "startPageId" : "aa41f7c0-c251-4ba2-9b43-0b6bfad97397",
       "actionApp" : true
@@ -1639,6 +1639,7 @@
         "imageUrl" : "exported/requisition.96e9c06d43dbd8914e8206e9fc2fc880.svg",
         "description" : "1dd2f183-d30b-427f-bb65-3ec9d00c494b"
       },
+      "title" : "40478f4b-725d-485a-95f5-73a03788de91",
       "pages" : [ {
         "id" : "7d4786cf-b50d-4c27-abe8-51d5daa80c9f",
         "appId" : "649cd937-467f-4dd8-8dd3-67b7ecc1d89a",
@@ -3307,7 +3308,6 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "40478f4b-725d-485a-95f5-73a03788de91",
       "trackingUuid" : "be3df8a2-77a4-4b9a-bad7-72e968518b94",
       "startPageId" : "7d4786cf-b50d-4c27-abe8-51d5daa80c9f",
       "actionApp" : true
@@ -3325,6 +3325,7 @@
         "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
         "description" : "1119613b-a43b-4f64-aaca-7e2c6f720dfb"
       },
+      "title" : "d1c1a428-ac0f-4815-8ba9-1b861af0f42f",
       "pages" : [ {
         "id" : "755c6da0-cf2b-4d57-ac9a-270428a016b0",
         "appId" : "7c3faa95-1f02-4e76-95a6-40e37c9eb2ee",
@@ -4907,7 +4908,6 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "d1c1a428-ac0f-4815-8ba9-1b861af0f42f",
       "trackingUuid" : "57015c23-d2e9-48f9-9221-ae673be082aa",
       "startPageId" : "683651db-508a-4e9d-ad9c-3888e46c9999",
       "actionApp" : true
@@ -4920,7 +4920,7 @@
   "services" : [ {
     "id" : 77,
     "uuid" : "6012da93-c56c-4b2b-9c01-7acded3f80e7",
-    "version" : 255,
+    "version" : 259,
     "title" : "SAP Concur HTTP",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -9186,7 +9186,7 @@
             "maximumPages" : 1000
           },
           "transformation" : {
-            "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+            "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
           }
         },
         "incrementalSyncEnabled" : true,
@@ -9203,7 +9203,7 @@
             "maximumPages" : 1000
           },
           "transformation" : {
-            "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+            "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
           }
         },
         "dataStructure" : {
@@ -9809,7 +9809,7 @@
               "maximumPages" : 1000
             },
             "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
             }
           },
           "callChainEnabled" : true
@@ -9831,7 +9831,7 @@
               "maximumPages" : 1000
             },
             "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
             }
           },
           "callChainEnabled" : true
@@ -9874,6 +9874,155 @@
           }
         }, {
           "uniqueId" : "5e607aec-8369-4f9a-a3ab-88cc8a534a50",
+          "name" : "ownerId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "ownerId"
+          }
+        } ]
+      }, {
+        "uniqueId" : "ac2c610e-a65b-4f67-acf7-bc57a9a2c4b9",
+        "name" : "Recall Report",
+        "parameters" : [ {
+          "uniqueId" : "206ae77d-d504-4774-a144-92b53509bf02",
+          "name" : "comment",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "comment"
+          }
+        }, {
+          "uniqueId" : "4251cb0c-c6b2-4721-bafe-4b85741757c8",
+          "name" : "workflowActionId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "workflowActionId"
+          }
+        }, {
+          "uniqueId" : "85c449fc-2aaf-414c-a14e-1b110b16ab6f",
+          "name" : "reportId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "reportId"
+          }
+        }, {
+          "uniqueId" : "f8efaea2-9ea4-4f94-a068-50d012e546fa",
+          "name" : "ownerId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "ownerId"
+          }
+        } ],
+        "request" : {
+          "method" : "POST",
+          "uri" : "/api/expense/expensereport/v1.1/report/{{workflowActionId}}/workflowaction",
+          "headers" : [ {
+            "name" : "Accept",
+            "value" : "application/json"
+          }, {
+            "name" : "Content-Type",
+            "value" : "application/xml"
+          } ],
+          "postMode" : "JSON",
+          "body" : "<WorkflowAction xmlns=\"http://www.concursolutions.com/api/expense/expensereport/2011/03\">\n<Action>Recall to Employee</Action>\n<Comment>{{comment}}</Comment>\n</WorkflowAction>",
+          "bodyParameters" : [ ]
+        },
+        "preActionUpdates" : [ {
+          "uniqueId" : "c0cb5555-641b-4fae-bb02-61c00dd4f67d",
+          "endpointLegacyId" : 17,
+          "endpointId" : "b7fa0906-36c8-415a-a377-d8032530704a",
+          "request" : {
+            "method" : "GET",
+            "uri" : "/api/v3.0/expense/reports/{{reportId}}?user={{ownerId}}",
+            "headers" : [ ],
+            "postMode" : "FORMDATA",
+            "body" : "",
+            "bodyParameters" : [ ],
+            "transformation" : {
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
+            }
+          },
+          "callChainEnabled" : true
+        } ],
+        "postActionUpdates" : [ {
+          "uniqueId" : "fe8b2051-7fc9-4687-811c-84bd28ce1d08",
+          "endpointLegacyId" : 17,
+          "endpointId" : "b7fa0906-36c8-415a-a377-d8032530704a",
+          "request" : {
+            "method" : "GET",
+            "uri" : "/api/v3.0/expense/reports/{{reportId}}?user={{ownerId}}",
+            "headers" : [ ],
+            "postMode" : "FORMDATA",
+            "body" : "",
+            "bodyParameters" : [ ],
+            "transformation" : {
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
+            }
+          },
+          "callChainEnabled" : true
+        } ],
+        "actionParameters" : [ {
+          "uniqueId" : "206ae77d-d504-4774-a144-92b53509bf02",
+          "name" : "comment",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "comment"
+          }
+        }, {
+          "uniqueId" : "4251cb0c-c6b2-4721-bafe-4b85741757c8",
+          "name" : "workflowActionId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "workflowActionId"
+          }
+        }, {
+          "uniqueId" : "85c449fc-2aaf-414c-a14e-1b110b16ab6f",
+          "name" : "reportId",
+          "type" : {
+            "dataType" : "STRING"
+          },
+          "value" : {
+            "type" : "ACTION_PARAMETER",
+            "required" : true,
+            "defaultValue" : "",
+            "actionParameterName" : "reportId"
+          }
+        }, {
+          "uniqueId" : "f8efaea2-9ea4-4f94-a068-50d012e546fa",
           "name" : "ownerId",
           "type" : {
             "dataType" : "STRING"
@@ -9968,7 +10117,7 @@
               "maximumPages" : 1000
             },
             "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
             }
           },
           "callChainEnabled" : true
@@ -9990,7 +10139,7 @@
               "maximumPages" : 1000
             },
             "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
+              "script" : "// function exctracting WorkflowActionId from WorkflowActionURL from a single array item\nconst addWorkflowActionId = item => {\n\n    // if the item has \"WorkflowActionUrl\" and it is not empty\n    if (item.WorkflowActionUrl != null) {\n\n        // take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n        const groups = item.WorkflowActionUrl.match(/report\\/([^\\/]+)/)\n        if (Array.isArray(groups) && groups.length > 1) {\n            item.WorkflowActionId = groups[1]\n        }\n    }\n    return item\n}\n\n({response: responseString}) => {\n\n    // take the response and parse it\n    const response = JSON.parse(responseString)\n\n    // if the response is a single record then wrap it in \"Items\" array to keep consistent data structure\n    const result = Array.isArray(response.Items)\n        ? response\n        : {Items: [response]\n    }\n\n    // apply \"addWorkflowActionId\" function on Items\n    const Items = result.Items.map(addWorkflowActionId)\n\n    // return modified response\n    return JSON.stringify({...result, Items})\n}"
             }
           },
           "callChainEnabled" : true
@@ -10033,155 +10182,6 @@
           }
         }, {
           "uniqueId" : "acf73e4a-25e0-4c2a-b922-b03606bbb751",
-          "name" : "ownerId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "ownerId"
-          }
-        } ]
-      }, {
-        "uniqueId" : "ac2c610e-a65b-4f67-acf7-bc57a9a2c4b9",
-        "name" : "Recall Report",
-        "parameters" : [ {
-          "uniqueId" : "206ae77d-d504-4774-a144-92b53509bf02",
-          "name" : "comment",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "comment"
-          }
-        }, {
-          "uniqueId" : "4251cb0c-c6b2-4721-bafe-4b85741757c8",
-          "name" : "workflowActionId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "workflowActionId"
-          }
-        }, {
-          "uniqueId" : "85c449fc-2aaf-414c-a14e-1b110b16ab6f",
-          "name" : "reportId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "reportId"
-          }
-        }, {
-          "uniqueId" : "f8efaea2-9ea4-4f94-a068-50d012e546fa",
-          "name" : "ownerId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "ownerId"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "/api/expense/expensereport/v1.1/report/{{workflowActionId}}/workflowaction",
-          "headers" : [ {
-            "name" : "Accept",
-            "value" : "application/json"
-          }, {
-            "name" : "Content-Type",
-            "value" : "application/xml"
-          } ],
-          "postMode" : "JSON",
-          "body" : "<WorkflowAction xmlns=\"http://www.concursolutions.com/api/expense/expensereport/2011/03\">\n<Action>Recall to Employee</Action>\n<Comment>{{comment}}</Comment>\n</WorkflowAction>",
-          "bodyParameters" : [ ]
-        },
-        "preActionUpdates" : [ {
-          "uniqueId" : "c0cb5555-641b-4fae-bb02-61c00dd4f67d",
-          "endpointLegacyId" : 17,
-          "endpointId" : "b7fa0906-36c8-415a-a377-d8032530704a",
-          "request" : {
-            "method" : "GET",
-            "uri" : "/api/v3.0/expense/reports/{{reportId}}?user={{ownerId}}",
-            "headers" : [ ],
-            "postMode" : "FORMDATA",
-            "body" : "",
-            "bodyParameters" : [ ],
-            "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
-            }
-          },
-          "callChainEnabled" : true
-        } ],
-        "postActionUpdates" : [ {
-          "uniqueId" : "fe8b2051-7fc9-4687-811c-84bd28ce1d08",
-          "endpointLegacyId" : 17,
-          "endpointId" : "b7fa0906-36c8-415a-a377-d8032530704a",
-          "request" : {
-            "method" : "GET",
-            "uri" : "/api/v3.0/expense/reports/{{reportId}}?user={{ownerId}}",
-            "headers" : [ ],
-            "postMode" : "FORMDATA",
-            "body" : "",
-            "bodyParameters" : [ ],
-            "transformation" : {
-              "script" : "({response}) => {\n// take the response and parse it\n    let json = JSON.parse(response)\n\n// wrap response with \"Items\" to match the endpoint structure\n    json = {Items: [json]}\n\n// go through the items one by one\n    for (i = 0; i < json.Items.length; i++) {\n\n// if the item has \"WorkflowActionUrl\" and it is not empty\n        if(json.Items[i].hasOwnProperty('WorkflowActionUrl') && json.Items[i].WorkflowActionUrl.length > 1){      \n\n// take from URL anything between \"report/\" and \"/\", which is Workflow Action ID and store it to \"WorkflowActionId\"\n            id = json.Items[i].WorkflowActionUrl.match(/\\/report\\/([^\\/\\?]+)/)     \n            if (id !== null && id.length > 1) {\n                json.Items[i].WorkflowActionId = id[1]\n            }      \n        }\n   }\n\n// return amended response\n   return JSON.stringify(json)\n }"
-            }
-          },
-          "callChainEnabled" : true
-        } ],
-        "actionParameters" : [ {
-          "uniqueId" : "206ae77d-d504-4774-a144-92b53509bf02",
-          "name" : "comment",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "comment"
-          }
-        }, {
-          "uniqueId" : "4251cb0c-c6b2-4721-bafe-4b85741757c8",
-          "name" : "workflowActionId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "workflowActionId"
-          }
-        }, {
-          "uniqueId" : "85c449fc-2aaf-414c-a14e-1b110b16ab6f",
-          "name" : "reportId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "reportId"
-          }
-        }, {
-          "uniqueId" : "f8efaea2-9ea4-4f94-a068-50d012e546fa",
           "name" : "ownerId",
           "type" : {
             "dataType" : "STRING"
@@ -16266,8 +16266,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "e72771d8-0619-4e70-871f-808678dbfaaf",
@@ -16620,6 +16620,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "F5DE662B0857AB84D9AC0BE9F968FF86",
-  "appliedSappUpgrades" : [ "microapp-4518", "microapp-9702", "microapp-7290", "microapp-4020", "microapp-6264", "microapp-6617", "microapp-1980", "microapp-12505", "microapp-8003", "microapp-12525", "microapp-6790", "microapp-7888", "microapp-5227", "microapp-8921", "microapp-10860", "microapp-8576", "microapp-10420", "microapp-3548", "microapp-10856", "microapp-8950", "microapp-11349", "microapp-7984", "microapp-13233", "microapp-11136", "microapp-6262", "microapp-7561", "microapp-8892", "microapp-6293", "microapp-11836", "microapp-9597", "microapp-9701", "microapp-10876", "microapp-5025", "microapp-11340", "microapp-10421", "microapp-3547", "microapp-12427", "microapp-7961", "microapp-2450", "microapp-4666", "microapp-12936", "microapp-10549", "microapp-8511", "microapp-3580", "microapp-10858", "microapp-3838", "microapp-6853", "microapp-13471", "microapp-6593" ],
+  "appliedSappUpgrades" : [ "microapp-6617", "microapp-9701", "microapp-7561", "microapp-10858", "microapp-3838", "microapp-10860", "microapp-6593", "microapp-6853", "microapp-6262", "microapp-8892", "microapp-12427", "microapp-8003", "microapp-7888", "microapp-8576", "microapp-6293", "microapp-4666", "microapp-4518", "microapp-8921", "microapp-3580", "microapp-8950", "microapp-6790", "microapp-10856", "microapp-7961", "microapp-3547", "microapp-11136", "microapp-11349", "microapp-9702", "microapp-10549", "microapp-7290", "microapp-9597", "microapp-12936", "microapp-2450", "microapp-5025", "microapp-8511", "microapp-5227", "microapp-12525", "microapp-7984", "microapp-13233", "microapp-10420", "microapp-10876", "microapp-3548", "microapp-11340", "microapp-13471", "microapp-4020", "microapp-12505", "microapp-6264", "microapp-11836", "microapp-10421", "microapp-1980" ],
   "buildVersion" : "1.72.2.485612840a7dd3b9748f8abc3c680302033b4a57"
 }
