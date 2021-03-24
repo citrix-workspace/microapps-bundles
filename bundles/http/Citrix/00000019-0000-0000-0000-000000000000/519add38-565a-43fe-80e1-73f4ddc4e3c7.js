@@ -1,7 +1,5 @@
-const apiKey = '' // add apiKey, please see ariba documentation
-const realm = '' // add realm, please see ariba documentation
 const limit = 100 // limit number of records per page for pagination
-const maxNoOfPages = 10000  //  limit number of pages for pagination
+const maxNoOfPages = 100000  //  limit number of pages for pagination
 var lastChangeId = 1 // Ariba internal change id, usually 1, please see ariba documentation
 var groupMembers = [] // list of users group membership, this data is not stored
 var groupList = [] //list of all groups, this data is not stored
@@ -15,22 +13,34 @@ function flatJsonObject(json, oName, prefix) {  //currently we are able to store
     return json
 }
 
-function isArray(json){
-    if (json != undefined && json.length > 0) {
-        return true
+function isObject(json) {
+    if (json && typeof json === 'object') { 
+         return true
     }
     else {
         return false
     }
 }
 
-function calculateNumberOfPages(totalrecords){
-    totalrecords = totalrecords/limit
-    if (totalrecords > maxNoOfPages) {
-        console.log('Number of pages for pagination exceed set value ' + maxNoOfPages + '. Total number of pages needed: ' + totalrecords)
-        totalrecords = maxNoOfPages
+function notEmptyArray(json){
+    if (Array.isArray(json) && json.length > 0) {
+        return true    
     }
-    return totalrecords
+    return false
+}
+
+function calculateNumberOfPages(totalrecords){
+    if (Number.isInteger(totalrecords)) {
+        totalrecords = totalrecords/limit
+        if (totalrecords > maxNoOfPages) {
+            console.log('Warning: Number of pages for pagination exceed set value ' + maxNoOfPages + '. Total number of pages needed: ' + totalrecords)
+            totalrecords = maxNoOfPages
+        }
+        return totalrecords
+    } else {
+        console.log( 'Warning: unable to calculate number of pages:')
+        return 0
+    }
 }
 
 function parseComments(json) {
@@ -71,19 +81,24 @@ function parseApprovalRequests(client, json, totalCost) {  //this function is re
     json.forEach(function (appReqsr) {
         appReqsr.approvers.forEach(function (approvers) {
             if (approvers.type != undefined) { 
-                approvers.approvalRequired = appReqsr.approvalRequired
-                approvers.approvalState = appReqsr.approvalState
-                approvers.reason = appReqsr.reason
-                approvers.state = appReqsr.state
-                approvers.totalCostAmount = totalCost.amount
-                approvers.totalCostCurrency = totalCost.currency
+                try {
+                    approvers.approvalRequired = appReqsr.approvalRequired
+                    approvers.approvalState = appReqsr.approvalState
+                    approvers.reason = appReqsr.reason
+                    approvers.state = appReqsr.state
+                    approvers.totalCostAmount = totalCost.amount
+                    approvers.totalCostCurrency = totalCost.currency
 
-                if (approvers.type == 'user') {  //if approver is a user
-                    approvers = flatJsonObject(approvers, 'user', '')  
-                    approvesList.push(approvers)
+                    if (approvers.type == 'user') {  //if approver is a user
+                        approvers = flatJsonObject(approvers, 'user', '')  
+                        approvesList.push(approvers)
+                    }
+                    if (approvers.type == 'group') { //if approver is a group
+                        approvesList = approvesList.concat(resolveGroupApproval(client, approvers))
+                    }
                 }
-                if (approvers.type == 'group') { //if approver is a group
-                    approvesList = approvesList.concat(resolveGroupApproval(client, approvers))
+                catch (e) {
+                    console.log( 'Warning: unable to get all requisition data for user:')
                 }
             }
         })
@@ -109,18 +124,26 @@ function resolveGroupApproval(client ,json) {  //currently we are able to store 
                 user.group = groupId 
             }
             groupMembers =  groupMembers.concat(userList) //adding new group data 
-        }
+        }  
+        else {
+            console.log( 'Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText)
+        } 
     }
 
     for (let user of userList) { //creating list of approvers with additionl data from requisition
-        user.approvalRequestId = json.approvalRequestId
-        user.approvalRequired = json.approvalRequired
-        user.approvalState = json.approvalState
-        user.requisitionId = json.requisitionId
-        user.reason = json.reason
-        user.state = json.state
-        user.totalCostAmount = json.totalCostAmount
-        user.totalCostCurrency = json.totalCostCurrency
+        try {
+            user.approvalRequestId = json.approvalRequestId
+            user.approvalRequired = json.approvalRequired
+            user.approvalState = json.approvalState
+            user.requisitionId = json.requisitionId
+            user.reason = json.reason
+            user.state = json.state
+            user.totalCostAmount = json.totalCostAmount
+            user.totalCostCurrency = json.totalCostCurrency
+        }
+        catch (e) {
+            console.log( 'Warning: unable to get all requisition data for user:' + user)
+         }
     }
     return userList 
 }
@@ -132,21 +155,20 @@ function storeRequisition(dataStore, client, requisitions) {
 		let responseData = client.fetchSync('requisitions/' + requisition + '?realm=' + realm, {headers: {'apikey':apiKey}})
         let json = responseData.jsonSync()
 		
-        if (responseData.ok && json) {
-
-            if (isArray(json.comments)) {
+        if (responseData.ok && isObject(json)) {
+            if (notEmptyArray(json.comments)) {
                 dataStore.save('rq_comments', parseComments(json.comments)) //saving comments 
                 delete json.comments //deleting comments from json to gain better performance
             }
             
-            if (isArray(json.approvalRequests)) {
+            if (notEmptyArray(json.approvalRequests)) {
                 dataStore.save('pendingApprovablesRequisitions', parseApprovalRequests(client, json.approvalRequests, json.totalCost)) //saving approvers
                 delete json.approvalRequests 
             }
 
-            if (isArray(json.lineItems)) { //saving line items
+            if (notEmptyArray(json.lineItems)) { //saving line items
                 for (let j = 0; j < json.lineItems.length; j++) {
-                    if (isArray(json.lineItems[j].accountings)) {
+                    if (notEmptyArray(json.lineItems[j].accountings)) {
                         dataStore.save('rq_li_accountings', parseLineItemsAccountings(json.lineItems[j].accountings)) //saving li accounting
                         delete json.lineItems[j].accountings 
                     }
@@ -173,19 +195,27 @@ function parseApprovablesGetDocIds(json, documentsLists) {
     return documentsLists
 }
 
+function queryParameters(i) {
+    let query = ('realm='+ realm +'&limit=' + limit + '&offset=' + limit*i)
+    return query
+}
+
 function fetchApprovablesAndGetDocuments(client, documentsLists) {
     let noOfPages = 1
     for (let i = 0; i < noOfPages; i++) {  
-	    let responseData = client.fetchSync('/pendingApprovables?realm='+ realm +'&limit=' + limit + '&offset=' + limit*i, {headers: {'apikey':apiKey}})
-        let json = responseData.jsonSync()
-            
-        if (responseData.ok && isArray(json)) {
-            if (i == 0) {
-                noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count')) //calculating number of pages for pagination
-            } 
-           documentsLists = parseApprovablesGetDocIds(json, documentsLists) //creating list on requisition and invoices                                          
+	    let responseData = client.fetchSync('/pendingApprovables?' + queryParameters(i), {headers: {'apikey':apiKey}})
+        if (responseData.ok) {    
+            let json = responseData.jsonSync() 
+            if (notEmptyArray(json)) {
+                if (i == 0) {
+                    noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count')) //calculating number of pages for pagination
+                } 
+                documentsLists = parseApprovablesGetDocIds(json, documentsLists) //creating list on requisition and invoices                                          
+            }
+	    } else {
+            console.log( 'Warning: unable to get pendingApprovables page: ' + i + ' :' + responseData.statusText)
         }
-	}
+    }
     return documentsLists 
 }
 
@@ -205,29 +235,29 @@ function fetchChangesGetDocumentsAndGetLastId(client, documentsLists) {
     let noOfPages = 1
    
     for (let i = 0; i < noOfPages; i++) {  
-        let responseData = client.fetchSync('/changes?needTotal=true&realm='+ realm +'&limit=' + limit + '&offset=' + limit*i + '&lastChangeId=' + lastChangeId, {headers: {'apikey':apiKey}})
-        let json = responseData.jsonSync()
-
-        if (responseData.ok && isArray(json)) {
-            
-            if (i == 0) { //calculating number of pages for pagination
-				noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'))
-			}
-
-            if (documentsLists.newChangeId < +json[json.length - 1].changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
-				documentsLists.newChangeId = +json[json.length - 1].changeSequenceId
-            }
-
-            documentsLists = parseChangesGetDocIds(json, documentsLists) //creating list on requisition and invoices
-		}
-	}
+        let responseData = client.fetchSync('/changes?needTotal=true&' + queryParameters(i) + '&lastChangeId=' + lastChangeId, {headers: {'apikey':apiKey}})
+        if (responseData.ok) { 
+            let json = responseData.jsonSync()
+            if (notEmptyArray(json)) {
+                if (i == 0) { //calculating number of pages for pagination
+				    noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'))
+			    }
+                if (documentsLists.newChangeId < +json[json.length - 1].changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
+				    documentsLists.newChangeId = +json[json.length - 1].changeSequenceId
+                }
+                documentsLists = parseChangesGetDocIds(json, documentsLists) //creating list on requisition and invoices
+		    }
+	    } else {
+            console.log( 'Warning: unable to get changes: ' + responseData.statusText)
+        }
+    }
     return documentsLists
 }   
 
 function syncAriba(dataStore, client, context, incrementalSync) 
 {
 	console.log('Ariba sync started')
-    
+        
     let documentsLists  = { //creating lists od rq and invc ids
         requisitions: [],
         invoices: [],
@@ -256,16 +286,26 @@ function syncAriba(dataStore, client, context, incrementalSync)
     return
 }
 
-function fullSync ({dataStore, client, context}) {
+function setIntegrationParametersGlobal(integrationParameters){
+    apiKey = integrationParameters.apiKey  // please see ariba documentation
+    realm = integrationParameters.realm // please see ariba documentation
+    return
+}
+
+function fullSync ({dataStore, client, context, integrationParameters}) {
+    setIntegrationParametersGlobal(integrationParameters)
     return syncAriba(dataStore, client, context, false)
 }
 
-function incrSync ({dataStore, client, context}) {
+function incrSync ({dataStore, client, context, integrationParameters}) {
+    
+    setIntegrationParametersGlobal(integrationParameters)
     return syncAriba(dataStore, client, context, true)
 }
 
-function approveDenyRequisition ({dataStore, serviceClient, actionParameters}) {
-      
+function approveDenyRequisition ({dataStore, serviceClient, actionParameters, integrationParameters}) {
+    setIntegrationParametersGlobal(integrationParameters)  
+    
     const {approvableId, passwordAdapter, action, user, visibleToSupplier, comment, totalCostAmount, totalCostCurrency} = actionParameters
     const approveDenyRequest = {
         'approvableId': approvableId,
@@ -274,35 +314,34 @@ function approveDenyRequisition ({dataStore, serviceClient, actionParameters}) {
     }
     
     let responseData = serviceClient.fetchSync('requisitions/' + approvableId + '?realm=' + realm, {headers: {'apikey':apiKey}})
-    let json = responseData.jsonSync()
-	if (responseData.ok && json) {
-        if (Math.round(json.totalCost.amount) == Math.round(totalCostAmount) && json.totalCost.currency == totalCostCurrency) { //validation of total costs and currency
+    
+	try {
+        if (responseData.ok) {
+            let json = responseData.jsonSync()        
+            if (isObject(json) && Math.abs(json.totalCost.amount-totalCostAmount) < 0.01 && json.totalCost.currency == totalCostCurrency) { //validation of total costs and currency
                 console.log('Validation ok, total cost and currency match')
                 responseData = serviceClient.fetchSync('/operations/rest/requisitions/'+ action +'?realm=' + realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
-                    method: 'POST', 
-                    headers: {'apikey':apiKey}, 
-                    body: JSON.stringify(approveDenyRequest)
+                        method: 'POST', 
+                        headers: {'apikey':apiKey}, 
+                        body: JSON.stringify(approveDenyRequest)
+                    }
+                )
+                if (responseData.ok) {
+                    console.log('Requisition approval/deny submitted to Ariba')
                 }
-            )
+                else {
+                    throw new Error('Unable to pocess the requisition in Ariba: ' + responseData.statusText)
+                }   
+            }
+            else {
+                throw new Error('Validation fail: Unable to process the requisition, the total cost did not match, please wait for data update') 
+            }
         }
-        else
-        {
-            console.log('Validation fail, total cost or currency has changed in the Ariba instance')
-        }
+    } 
+    finally {
+    storeRequisition(dataStore, serviceClient, [approvableId])
     }
-    
-    storeRequisition(dataStore, serviceClient, [approvableId]) 
-
-    if (responseData.ok) {
-       
-    }
-    else {
-        throw new Error('Unable to pocess the requisition: ' + approveDenyResponse.statusText)
-    }   
-            
-    return
 }
-
 integration.define({
     'synchronizations': [
         {
@@ -310,6 +349,34 @@ integration.define({
             'fullSyncFunction': fullSync,
             'incrementalSyncFunction': incrSync
              }
+    ], 
+    'integrationParameters': [
+        {
+            name: 'apiKey', 
+            type: 'STRING',
+            label: 'Ariba apiKey',
+            description: 'Please see Ariba Api documentation',
+            required: true,
+            secret: true
+            
+        },
+        {
+            name: 'realm', 
+            type: 'STRING',
+            label: 'Ariba realm',
+            description: 'Please see Ariba Api documentation',
+            required: true,
+            secret: true
+            
+        },
+        {
+            name: 'lastChangeId', 
+            type: 'LONG',
+            label: 'Ariba lastChangeId',
+            description: 'Please see Ariba Api documentation',
+            required: true,
+            defaultValue: 1 
+        }
     ], 
     actions: [
         {
