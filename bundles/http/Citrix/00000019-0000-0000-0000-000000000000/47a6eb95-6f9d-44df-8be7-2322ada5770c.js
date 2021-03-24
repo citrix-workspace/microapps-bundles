@@ -1,6 +1,5 @@
 const limit = 100 // limit number of records per page for pagination
 const maxNoOfPages = 100000  //  limit number of pages for pagination
-var lastChangeId = 1 // Ariba internal change id, usually 1, please see ariba documentation
 var groupMembers = [] // list of users group membership, this data is not stored
 var groupList = [] //list of all groups, this data is not stored
 
@@ -289,6 +288,8 @@ function syncAriba(dataStore, client, context, incrementalSync)
 function setIntegrationParametersGlobal(integrationParameters){
     apiKey = integrationParameters.apiKey  // please see ariba documentation
     realm = integrationParameters.realm // please see ariba documentation
+    lastChangeId = integrationParameters.lastChangeId // Ariba internal change id, usually 1, please see ariba documentation
+
     return
 }
 
@@ -366,7 +367,7 @@ integration.define({
             label: 'Ariba realm',
             description: 'Please see Ariba Api documentation',
             required: true,
-            secret: true
+            secret: false
             
         },
         {
