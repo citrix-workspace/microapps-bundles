@@ -17,7 +17,7 @@ function authenticationHeaders(params) {
 async function parseAndCheckResponse(response, operationName) {
     const responseBody = await response.text();
     const responseXml = await parser.parseStringPromise(responseBody);
-    console.log(JSON.stringify(responseXml));
+    console.log(JSON.stringify(await responseXml, null, 2));
     const fail = jp.JSONPath('SOAP-ENV:Envelope.SOAP-ENV:Body[0].SOAP-ENV:Fault[0].faultstring[0]', responseXml)
     if (fail && 0 !== fail.length) {
         console.log(operationName + ' failed with response: ' + responseBody)
@@ -41,8 +41,7 @@ function submitPto({client, actionParameters, integrationParameters}) {
     });
         
 //    console.log(`Request: ${request}`)
-    const responseXml = parseAndCheckResponse(response, "Enter_Time_Off_Request");
-    console.log(`Response: ${responseXml}`)
+    parseAndCheckResponse(response, "Enter_Time_Off_Request");
 }
 
 function requestBody(authHeader, actionParameters) {
@@ -107,12 +106,6 @@ function doNothing({client}) {
 }
 
 integration.define({
-    "synchronizations": [
-        {
-            "name": "placeholder", // Logical name
-            "fullSyncFunction": doNothing,
-        },
-    ],
     "actions": [
         {
             "name": "Submit a time off request",
@@ -150,16 +143,6 @@ integration.define({
             ]
         }
     ],
-    "model": {
-        "tables": [
-            {
-                "name": "tickets",
-                "columns": [
-                    {"name": "id", "type": "INTEGER", "primaryKey": true},
-                ]
-            }
-        ]
-    },
     "integrationParameters": [
         {
             name: 'username',
@@ -180,5 +163,21 @@ integration.define({
             label: 'Workday tenant',
             required: true
         }
+    ],
+    "model": {
+        "tables": [
+            {
+                "name": "tickets",
+                "columns": [
+                    {"name": "id", "type": "INTEGER", "primaryKey": true},
+                ]
+            }
+        ]
+    },
+    "synchronizations": [
+        {
+            "name": "placeholder", // Logical name
+            "fullSyncFunction": doNothing,
+        },
     ]
 });
