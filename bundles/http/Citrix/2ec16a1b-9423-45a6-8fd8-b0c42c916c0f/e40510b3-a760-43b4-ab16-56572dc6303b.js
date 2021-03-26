@@ -1,6 +1,6 @@
 //Loaded moment-timezone library from sdk provided libraries 
 const moment = library.load('moment-timezone');
-
+const uuid = library.load('uuid');
 
 // loading the users data(Done)
 async function syncUsers(dataStore, client, context) {
@@ -114,7 +114,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
         let dialIn = meeting.settings.global_dial_in_countries.map(country => {
             return {
                 "value": country,
-                "unique_id": (++dialIncounter).toString(),
+                "unique_id": uuid.v4(),
                 "parent_id": meeting.id,
                 "root_id": meeting.id
             }
@@ -128,7 +128,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
                 "number": number.number,
                 "country_name": number.country_name,
                 "type": number.type,
-                "unique_id": (++dialInNumberscounter).toString(),
+                "unique_id": uuid.v4(),
                 "parent_id": meeting.id,
                 "root_id": meeting.id
             }
@@ -214,7 +214,7 @@ async function syncRecordings(dataStore, client,userids) {
                     "root_id": meeting.id,
                     "root_uuid": meeting.uuid,
                     "root_start_time": new Date(meeting.start_time),
-                    "unique_id": (++recordDatacounter).toString()
+                    "unique_id": uuid.v4()
                 }
             })
             dataStore.save("meeting_recordings_record", recordData);
