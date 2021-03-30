@@ -4,19 +4,36 @@
   "id" : "6012da93-c56c-4b2b-9c01-7acded3f80e7",
   "trackingUuid" : "d72f3bad-b517-4a58-8cf0-ee11c1ab2cf7",
   "title" : "SAP Concur HTTP",
-  "description" : "Only data endpoints set up (except Travel module).",
+  "description" : "Integrate with SAP Concur to receive notifications about approval requests and approve or send them back.",
   "iconUrl" : "exported/Concur.7f4236c35298ebbe5598db9a66e70273.svg",
-  "masVersion" : "1.20.11",
+  "masVersion" : "1.74.0.5e664997f9fd34c7e87b6ee714f4f354d5f927c6",
   "categories" : [ "INTERNAL_DEVELOPMENT" ],
-  "created" : "2020-08-17T09:57:24",
+  "created" : "2021-03-30T07:20:29",
   "supportsOAuthForActions" : true,
   "i18nLanguages" : [ "en" ],
   "apps" : [ {
-    "uuid" : "764cfe34-379a-40cd-98b5-ba5efba1a7a4",
-    "title" : "Blank Microapp",
+    "uuid" : "3247a9a1-07ff-494f-825d-5b36f54b9d64",
+    "trackingUuid" : "57015c23-d2e9-48f9-9221-ae673be082aa",
+    "title" : "Approvals",
+    "numberOfEvents" : 3,
+    "action" : true
+  }, {
+    "uuid" : "4e79586b-fb52-458d-8803-f77c494fe3f6",
+    "trackingUuid" : "be3df8a2-77a4-4b9a-bad7-72e968518b94",
+    "title" : "Expenses",
     "numberOfEvents" : 0,
-    "action" : false
+    "action" : true
+  }, {
+    "uuid" : "a3b25517-4bca-40ae-a533-ce210fa24b47",
+    "trackingUuid" : "293062e6-95c1-4d8d-8a1b-c5c859752cb9",
+    "title" : "Reports",
+    "numberOfEvents" : 2,
+    "action" : true
   } ],
   "vaResolvers" : [ ],
-  "tags" : [ ]
+  "tags" : [ {
+    "tag" : "helpUrl",
+    "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-concur.html"
+  } ],
+  "hideAddButton" : false
 }
