@@ -29,7 +29,8 @@ public class Bundle {
 
     public Metadata getMetadata() {
         return metadata
-                .orElseThrow(() -> new UnsupportedOperationException("No metadata, validations should prevent this"));
+                .orElseThrow(() -> new UnsupportedOperationException(String.format("Bundle: '%s' contains no metadata, " +
+                        "validations should have prevented this", this)));
     }
 
     public List<BundleIssue> getIssues() {

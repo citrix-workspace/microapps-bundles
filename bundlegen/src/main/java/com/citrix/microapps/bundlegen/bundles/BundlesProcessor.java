@@ -99,9 +99,7 @@ public class BundlesProcessor {
     }
 
     private boolean isWarningIssueOnlyForValidatedBundle(Bundle bundle, BundleIssue issue) {
-        return (issue.getSeverity() == WARNING
-                && Instant.from(CREATION_DATETIME_FORMATTER.parse(bundle.getMetadata().getCreated()))
-                .isAfter(bestPractisesValidationLimit))
+        return (issue.getSeverity() == WARNING && createdAfterBestPractisesValidationLimit(bundle))
                 || issue.getSeverity() == ERROR;
     }
 
@@ -156,6 +154,15 @@ public class BundlesProcessor {
             METADATA_WRITER.writeValue(bundlesJson.toFile(), bundles);
         } catch (IOException e) {
             throw new UncheckedIOException("Writing bundles JSON failed", e);
+        }
+    }
+
+    private boolean createdAfterBestPractisesValidationLimit(Bundle bundle) {
+        try {
+            return Instant.from(CREATION_DATETIME_FORMATTER.parse(bundle.getMetadata().getCreated()))
+                    .isAfter(bestPractisesValidationLimit);
+        } catch (UnsupportedOperationException e) {
+            return false;
         }
     }
 }
