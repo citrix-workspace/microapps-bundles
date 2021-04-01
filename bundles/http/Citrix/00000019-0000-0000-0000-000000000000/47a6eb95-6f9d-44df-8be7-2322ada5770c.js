@@ -48,11 +48,11 @@ function flatRequisition(requisition) {
     return requisition
 }
 
-function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {  
+async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {  
     //this function is resolving approvers for requisitions and copy necessary informations to create notifications
     let rqUserList = []
-    json.forEach(function (appReqsr) {
-        appReqsr.approvers.forEach(function (approvers) {
+    for (let appReqsr of json) {
+        for (let approvers of appReqsr.approvers) {
             if (approvers.type != undefined) { 
                 try {
                     approvers.approvalRequired = appReqsr.approvalRequired
@@ -67,7 +67,9 @@ function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
                         rqUserList.push(approvers)
                     }
                     if (approvers.type == 'group') { //if approver is a group
-                        groups = addIfMissingGroup(sync, approvers.id, groups) 
+                        if (groups.ids.includes(approvers.id) == false) { 
+                            groups = await addIfMissingGroup(sync, approvers.id, groups)
+                        }
                         rqUserList = rqUserList.concat(resolveGroupApproval(approvers, groups))
                     }
                 }
@@ -75,39 +77,32 @@ function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
                     console.log( 'Warning: unable to get all requisition data for user')
                 }
             }
-        })
-    })
+        }
+    }
     sync.dataStore.save('pendingApprovablesRequisitions', rqUserList) //saving approvers
-
     return groups
 }
 
-function addIfMissingGroup(sync, groupId, groups) {
+async function addIfMissingGroup(sync, groupId, groups) {
     
-    if (groups.ids.includes(groupId)) { 
-    }
-   
-    else {
-        groups.ids.push(groupId) //if group not found then we try to ask ariba
-        let responseData = sync.client.fetchSync('groups/'+ groupId +'/members?realm='+ sync.integrationParameters.realm, {
-            headers: {
-                'apikey':sync.integrationParameters.apiKey
-            }
-        })
+    groups.ids.push(groupId) //if group not found then we try to ask ariba
+    let responseData = await sync.client.fetch('groups/'+ groupId +'/members?realm='+ sync.integrationParameters.realm, {
+        headers: {
+           'apikey':sync.integrationParameters.apiKey
+        }
+    })
         
-        if (responseData.ok) {
-            let memberList = responseData.jsonSync()
-         
-            for (let member of memberList) {
-                member.group = groupId 
-            }
-            groups.members = groups.members.concat(memberList)
-          
-        }  
-        else {
-            console.log( 'Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText)
-        } 
-    }
+    if (responseData.ok) {
+        let memberList = await responseData.json()
+        for (let member of memberList) {
+            member.group = groupId 
+        }
+        groups.members = groups.members.concat(memberList)    
+    }  
+    else {
+        console.log( 'Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText)
+    } 
+    
     return groups
 }
 
@@ -135,18 +130,18 @@ function resolveGroupApproval(json, groups) {  //currently we are able to store 
     return userList 
 }
 
-function storeRequisition(sync, requisitions, groups) {
+async function storeRequisition(sync, requisitions, groups) {
     requisitions = [...new Set(requisitions)] //creating uniq list
     
     for (let requisition of requisitions) { 	// getting requisition details and additional data
       
-        let responseData = sync.client.fetchSync('requisitions/' + requisition + '?realm=' + sync.integrationParameters.realm, {
+        let responseData = await sync.client.fetch('requisitions/' + requisition + '?realm=' + sync.integrationParameters.realm, {
             headers: {
                 'apikey':sync.integrationParameters.apiKey
             }
         })
 
-        let json = responseData.jsonSync()
+        let json = await responseData.json()
 		
         if (responseData.ok && isObject(json)) {
             if (notEmptyArray(json.comments)) {
@@ -155,7 +150,7 @@ function storeRequisition(sync, requisitions, groups) {
             }
             
             if (notEmptyArray(json.approvalRequests)) {
-                groups =  parseAndStoreApprovalRequests(sync, json.approvalRequests, json.totalCost, groups)
+                groups = await parseAndStoreApprovalRequests(sync, json.approvalRequests, json.totalCost, groups)
                 delete json.approvalRequests
             }
 
@@ -170,7 +165,7 @@ function storeRequisition(sync, requisitions, groups) {
 			    delete json.lineItems 
             }
 
-           	sync.dataStore.save('requisition_details', flatRequisition(json))
+           	await sync.dataStore.save('requisition_details', flatRequisition(json))
 		}
 	}
 
@@ -193,17 +188,17 @@ function queryParameters(sync,i) {
     return `realm=${sync.integrationParameters.realm}&limit=${limit}&offset=${limit * i}`
 }
 
-function fetchApprovablesAndGetDocuments(sync, documentsLists) {
+async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
     let noOfPages = 1
     for (let i = 0; i < noOfPages; i++) {  
-	    let responseData = sync.client.fetchSync('/pendingApprovables?' + queryParameters(sync,i), {
+	    let responseData = await sync.client.fetch('/pendingApprovables?' + queryParameters(sync,i), {
             headers: {
                 'apikey':sync.integrationParameters.apiKey
             }
         })
 
         if (responseData.ok) {    
-            let json = responseData.jsonSync() 
+            let json = await responseData.json() 
             if (notEmptyArray(json)) {
                 if (i == 0) {
                     noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count')) //calculating number of pages for pagination
@@ -229,18 +224,18 @@ function parseChangesGetDocIds(json, documentsLists) {
     return documentsLists
 }   
 
-function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
+async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
     let noOfPages = 1
    
     for (let i = 0; i < noOfPages; i++) {  
-        let responseData = sync.client.fetchSync('/changes?needTotal=true&' + queryParameters(sync,i) + '&lastChangeId=' + documentsLists.lastChangeId, {
+        let responseData = await sync.client.fetch('/changes?needTotal=true&' + queryParameters(sync,i) + '&lastChangeId=' + documentsLists.lastChangeId, {
             headers: {
                 'apikey':sync.integrationParameters.apiKey
             }
         })
 
         if (responseData.ok) { 
-            let json = responseData.jsonSync()
+            let json = await responseData.json()
             if (notEmptyArray(json)) {
                 if (i == 0) { //calculating number of pages for pagination
 				    noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'))
@@ -258,7 +253,7 @@ function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
 }   
 
 //function syncAriba({dataStore, client, context}, incrementalSync) 
-function syncAriba(sync, incrementalSync) 
+async function syncAriba(sync, incrementalSync) 
 
 {
 	console.log('Ariba sync started')
@@ -280,12 +275,12 @@ function syncAriba(sync, incrementalSync)
         }
     }
     else {
-        documentsLists = fetchApprovablesAndGetDocuments(sync, documentsLists) //geting documents id, this endpoint is used only in full sync hold documents for open approvals infinitely
+       documentsLists = await fetchApprovablesAndGetDocuments(sync, documentsLists) //geting documents id, this endpoint is used only in full sync hold documents for open approvals infinitely
     }
             
-    documentsLists = fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days 
+    documentsLists = await fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days 
 
-    groups = storeRequisition(sync, documentsLists.requisitions, groups) //storing requisitions and resolve group approvables
+    groups = await storeRequisition(sync, documentsLists.requisitions, groups) //storing requisitions and resolve group approvables
           
     if (documentsLists.newChangeId > documentsLists.lastChangeId) {sync.context.lastChangeSequenceId = documentsLists.newChangeId}     //saving  lastChangeSequenceId for incremental sync into context
     
@@ -305,7 +300,7 @@ function incrSync (sync) {
     return syncAriba(sync, true)
 }
 
-function approveDenyRequisition (sync) {
+async function approveDenyRequisition (sync) {
     
     const {approvableId, passwordAdapter, action, user, visibleToSupplier, comment, totalCostAmount, totalCostCurrency} = sync.actionParameters
     const approveDenyRequest = {
@@ -318,7 +313,7 @@ function approveDenyRequisition (sync) {
         members:[]
     }
     
-    let responseData = sync.serviceClient.fetchSync('requisitions/' + approvableId + '?realm=' + sync.integrationParameters.realm, {
+    let responseData = await sync.serviceClient.fetch('requisitions/' + approvableId + '?realm=' + sync.integrationParameters.realm, {
         headers: {
             'apikey':sync.integrationParameters.apiKey
         }
@@ -326,10 +321,10 @@ function approveDenyRequisition (sync) {
     
 	try {
         if (responseData.ok) {
-            let json = responseData.jsonSync()        
+            let json = await responseData.json()        
             if (isObject(json) && Math.abs(json.totalCost.amount-totalCostAmount) < 0.01 && json.totalCost.currency == totalCostCurrency) { //validation of total costs and currency
                 console.log('Validation ok, total cost and currency match')
-                responseData = sync.serviceClient.fetchSync('/operations/rest/requisitions/'+ action +'?realm=' + sync.integrationParameters.realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
+                responseData = await sync.serviceClient.fetch('/operations/rest/requisitions/'+ action +'?realm=' + sync.integrationParameters.realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
                         method: 'POST', 
                         headers: {
                             'apikey':sync.integrationParameters.apiKey
