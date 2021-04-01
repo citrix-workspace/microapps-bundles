@@ -1,82 +1,56 @@
 const limit = 100 // limit number of records per page for pagination
 const maxNoOfPages = 100000  //  limit number of pages for pagination
-var groupMembers = [] // list of users group membership, this data is not stored
-var groupList = [] //list of all groups, this data is not stored
-
-function flatJsonObject(json, oName, prefix) {  //currently we are able to store only flat json object, so all nested object must be flattened
-    if (json[oName] != undefined) {
-            Object.entries(json[oName]).forEach(
-		        ([key, value]) => json[prefix + key] = value)
-            delete json[oName]
-        }
-    return json
-}
-
-function isObject(json) {
-    if (json && typeof json === 'object') { 
-         return true
-    }
-    else {
-        return false
-    }
-}
-
-function notEmptyArray(json){
-    if (Array.isArray(json) && json.length > 0) {
-        return true    
-    }
-    return false
-}
 
 function calculateNumberOfPages(totalrecords){
     if (Number.isInteger(totalrecords)) {
-        totalrecords = totalrecords/limit
-        if (totalrecords > maxNoOfPages) {
-            console.log('Warning: Number of pages for pagination exceed set value ' + maxNoOfPages + '. Total number of pages needed: ' + totalrecords)
-            totalrecords = maxNoOfPages
+       let totalpages = totalrecords/limit
+        if (totalpages > maxNoOfPages) {
+            console.log(`Warning: Number of pages for pagination exceed set value ${maxNoOfPages}. Total number of pages needed: ${totalpages}`)
+            totalpages = maxNoOfPages
         }
-        return totalrecords
+        return totalpages
     } else {
-        console.log( 'Warning: unable to calculate number of pages:')
+        console.log( `Warning: unable to calculate number of pages, total records returs as: ${totalrecords}` )
         return 0
     }
 }
 
-function parseComments(json) {
-    for (let i = 0; i < json.length; i++) {
-        json[i] = flatJsonObject(json[i], 'user', 'user_') //this will move key/value pairs from json.comments[j].user object to the json.comments[j] and add user_ prefix
+function flatComments(comments) {
+    for (let i = 0; i < comments.length; i++) {
+        //this will move key/value pairs from json.comments[j].user object to the json.comments[j] and add user_ prefix
+        comments[i] = flatJsonObject(comments[i], 'user', 'user_') 
     }
-    return json
+    return comments
 }
 
-function parseLineItems(json) {
-    for (let i=0; i < json.length; i++ ) {
-        json[i] = flatJsonObject(json[i], 'supplier', 'supp_')
-        json[i] = flatJsonObject(json[i], 'accountCategory', 'acc_cat_')
-        json[i] = flatJsonObject(json[i], 'description', 'desc_')
-        json[i] = flatJsonObject(json[i], 'desc_price', 'desc_pr_')
+function flatLineItems(items) {
+    for (let i=0; i < items.length; i++ ) {
+        items[i] = flatJsonObject(items[i], 'supplier', 'supp_')
+        items[i] = flatJsonObject(items[i], 'accountCategory', 'acc_cat_')
+        items[i] = flatJsonObject(items[i], 'description', 'desc_')
+        items[i] = flatJsonObject(items[i], 'desc_price', 'desc_pr_')
     }
-        return json
+    return items
 }
 
-function parseLineItemsAccountings(json) {
-    for (let i=0; i < json.length; i++ ) {
-        json[i] = flatJsonObject(json[i], 'generalLedger', 'gl_') 
-        json[i] = flatJsonObject(json[i], 'costCenter', 'cc_')
-        json[i] = flatJsonObject(json[i], 'amount', 'am_')
+function flatLineItemsAccountings(accountings) {
+    for (let i=0; i < accountings.length; i++ ) {
+        accountings[i] = flatJsonObject(accountings[i], 'generalLedger', 'gl_') 
+        accountings[i] = flatJsonObject(accountings[i], 'costCenter', 'cc_')
+        accountings[i] = flatJsonObject(accountings[i], 'amount', 'am_')
     }
-    return json
+    return accountings
 }
 
-function parseRequisition(json) {
-    json = flatJsonObject(json, 'totalCost', 'tc_')
-    json = flatJsonObject(json, 'requester', 'rq_')
-    return json
+function flatRequisition(requisition) {
+    requisition = flatJsonObject(requisition, 'totalCost', 'tc_')
+    requisition = flatJsonObject(requisition, 'requester', 'rq_')
+    return requisition
 }
 
-function parseApprovalRequests(client, json, totalCost) {  //this function is resolving approvers for requisitions and copy necessary informations to create notifications
-    let approvesList = []
-    
+function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {  
+    //this function is resolving approvers for requisitions and copy necessary informations to create notifications
+    let rqUserList = []
     json.forEach(function (appReqsr) {
         appReqsr.approvers.forEach(function (approvers) {
             if (approvers.type != undefined) { 
@@ -90,45 +64,58 @@ function parseApprovalRequests(client, json, totalCost) {  //this function is re
 
                     if (approvers.type == 'user') {  //if approver is a user
                         approvers = flatJsonObject(approvers, 'user', '')  
-                        approvesList.push(approvers)
+                        rqUserList.push(approvers)
                     }
                     if (approvers.type == 'group') { //if approver is a group
-                        approvesList = approvesList.concat(resolveGroupApproval(client, approvers))
+                        groups = addIfMissingGroup(sync, approvers.id, groups) 
+                        rqUserList = rqUserList.concat(resolveGroupApproval(approvers, groups))
                     }
                 }
                 catch (e) {
-                    console.log( 'Warning: unable to get all requisition data for user:')
+                    console.log( 'Warning: unable to get all requisition data for user')
                 }
             }
         })
     })
-    return approvesList
+    sync.dataStore.save('pendingApprovablesRequisitions', rqUserList) //saving approvers
+
+    return groups
 }
 
-function resolveGroupApproval(client ,json) {  //currently we are able to store only flat json object, so all nested object must be flattened
-    let userList =[]
-    const groupId = json.id
-                 
-    if (groupList.includes(groupId)) { //creating member list
-       userList = groupMembers.filter(function(group){return group.group == groupId})
+function addIfMissingGroup(sync, groupId, groups) {
+    
+    if (groups.ids.includes(groupId)) { 
     }
    
     else {
-        groupList.push(groupId) //if group not found then we try to ask ariba
-        let responseData = client.fetchSync('groups/'+ groupId +'/members?realm='+ realm, {headers: {'apikey':apiKey}})
+        groups.ids.push(groupId) //if group not found then we try to ask ariba
+        let responseData = sync.client.fetchSync('groups/'+ groupId +'/members?realm='+ sync.integrationParameters.realm, {
+            headers: {
+                'apikey':sync.integrationParameters.apiKey
+            }
+        })
         
         if (responseData.ok) {
-            userList = responseData.jsonSync()
-            for (let user of userList) {
-                user.group = groupId 
+            let memberList = responseData.jsonSync()
+         
+            for (let member of memberList) {
+                member.group = groupId 
             }
-            groupMembers =  groupMembers.concat(userList) //adding new group data 
+            groups.members = groups.members.concat(memberList)
+          
         }  
         else {
             console.log( 'Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText)
         } 
     }
+    return groups
+}
 
+function resolveGroupApproval(json, groups) {  //currently we are able to store only flat json object, so all nested object must be flattened
+
+    const groupId = json.id
+    let userList = groups.members.filter(function(groupMember){return groupMember.group == groupId})
+       
     for (let user of userList) { //creating list of approvers with additionl data from requisition
         try {
             user.approvalRequestId = json.approvalRequestId
@@ -144,42 +131,50 @@ function resolveGroupApproval(client ,json) {  //currently we are able to store 
             console.log( 'Warning: unable to get all requisition data for user:' + user)
          }
     }
+    
     return userList 
 }
 
-function storeRequisition(dataStore, client, requisitions) {
+function storeRequisition(sync, requisitions, groups) {
     requisitions = [...new Set(requisitions)] //creating uniq list
-
+    
     for (let requisition of requisitions) { 	// getting requisition details and additional data
-		let responseData = client.fetchSync('requisitions/' + requisition + '?realm=' + realm, {headers: {'apikey':apiKey}})
+      
+        let responseData = sync.client.fetchSync('requisitions/' + requisition + '?realm=' + sync.integrationParameters.realm, {
+            headers: {
+                'apikey':sync.integrationParameters.apiKey
+            }
+        })
+
         let json = responseData.jsonSync()
 		
         if (responseData.ok && isObject(json)) {
             if (notEmptyArray(json.comments)) {
-                dataStore.save('rq_comments', parseComments(json.comments)) //saving comments 
+                sync.dataStore.save('rq_comments', flatComments(json.comments)) //saving comments 
                 delete json.comments //deleting comments from json to gain better performance
             }
             
             if (notEmptyArray(json.approvalRequests)) {
-                dataStore.save('pendingApprovablesRequisitions', parseApprovalRequests(client, json.approvalRequests, json.totalCost)) //saving approvers
-                delete json.approvalRequests 
+                groups =  parseAndStoreApprovalRequests(sync, json.approvalRequests, json.totalCost, groups)
+                delete json.approvalRequests
             }
 
             if (notEmptyArray(json.lineItems)) { //saving line items
                 for (let j = 0; j < json.lineItems.length; j++) {
                     if (notEmptyArray(json.lineItems[j].accountings)) {
-                        dataStore.save('rq_li_accountings', parseLineItemsAccountings(json.lineItems[j].accountings)) //saving li accounting
+                        sync.dataStore.save('rq_li_accountings', flatLineItemsAccountings(json.lineItems[j].accountings)) //saving li accounting
                         delete json.lineItems[j].accountings 
                     }
                 }
-			    dataStore.save('rq_lineitems', parseLineItems(json.lineItems)) //saving line items
+			    sync.dataStore.save('rq_lineitems', flatLineItems(json.lineItems)) //saving line items
 			    delete json.lineItems 
             }
 
-           	dataStore.save('requisition_details', parseRequisition(json))
+           	sync.dataStore.save('requisition_details', flatRequisition(json))
 		}
 	}
-    return
+
+    return groups
 }
 
 function parseApprovablesGetDocIds(json, documentsLists) {
@@ -194,15 +189,19 @@ function parseApprovablesGetDocIds(json, documentsLists) {
     return documentsLists
 }
 
-function queryParameters(i) {
-    let query = ('realm='+ realm +'&limit=' + limit + '&offset=' + limit*i)
-    return query
+function queryParameters(sync,i) {
+    return `realm=${sync.integrationParameters.realm}&limit=${limit}&offset=${limit * i}`
 }
 
-function fetchApprovablesAndGetDocuments(client, documentsLists) {
+function fetchApprovablesAndGetDocuments(sync, documentsLists) {
     let noOfPages = 1
     for (let i = 0; i < noOfPages; i++) {  
-	    let responseData = client.fetchSync('/pendingApprovables?' + queryParameters(i), {headers: {'apikey':apiKey}})
+	    let responseData = sync.client.fetchSync('/pendingApprovables?' + queryParameters(sync,i), {
+            headers: {
+                'apikey':sync.integrationParameters.apiKey
+            }
+        })
+
         if (responseData.ok) {    
             let json = responseData.jsonSync() 
             if (notEmptyArray(json)) {
@@ -230,11 +229,16 @@ function parseChangesGetDocIds(json, documentsLists) {
     return documentsLists
 }   
 
-function fetchChangesGetDocumentsAndGetLastId(client, documentsLists) {
+function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
     let noOfPages = 1
    
     for (let i = 0; i < noOfPages; i++) {  
-        let responseData = client.fetchSync('/changes?needTotal=true&' + queryParameters(i) + '&lastChangeId=' + lastChangeId, {headers: {'apikey':apiKey}})
+        let responseData = sync.client.fetchSync('/changes?needTotal=true&' + queryParameters(sync,i) + '&lastChangeId=' + documentsLists.lastChangeId, {
+            headers: {
+                'apikey':sync.integrationParameters.apiKey
+            }
+        })
+
         if (responseData.ok) { 
             let json = responseData.jsonSync()
             if (notEmptyArray(json)) {
@@ -253,77 +257,83 @@ function fetchChangesGetDocumentsAndGetLastId(client, documentsLists) {
     return documentsLists
 }   
 
-function syncAriba(dataStore, client, context, incrementalSync) 
+//function syncAriba({dataStore, client, context}, incrementalSync) 
+function syncAriba(sync, incrementalSync) 
+
 {
 	console.log('Ariba sync started')
         
     let documentsLists  = { //creating lists od rq and invc ids
         requisitions: [],
         invoices: [],
-        newChangeId: lastChangeId
+        lastChangeId: sync.integrationParameters.lastChangeId,
+        newChangeId: 1
        }
+    let groups = {
+        ids:[],
+        members:[]
+    }
     
     if (incrementalSync) {     
-        if (context.lastChangeSequenceId > lastChangeId) {     // reading stored lastChangeSequenceId for incremental sync
-            lastChangeId = context.lastChangeSequenceId
+        if (sync.context.lastChangeSequenceId > documentsLists.lastChangeId) {     // reading stored lastChangeSequenceId for incremental sync
+            documentsLists.lastChangeId = sync.context.lastChangeSequenceId
         }
     }
     else {
-        documentsLists = fetchApprovablesAndGetDocuments(client, documentsLists) //geting documents id, this endpoint is used only in full sync hold documents for open approvals infinitely
+        documentsLists = fetchApprovablesAndGetDocuments(sync, documentsLists) //geting documents id, this endpoint is used only in full sync hold documents for open approvals infinitely
     }
             
-    documentsLists = fetchChangesGetDocumentsAndGetLastId(client, documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days 
+    documentsLists = fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days 
 
-    storeRequisition(dataStore, client, documentsLists.requisitions) //storing requisitions and resolve group approvables
+    groups = storeRequisition(sync, documentsLists.requisitions, groups) //storing requisitions and resolve group approvables
           
-    if (documentsLists.newChangeId > lastChangeId ) {context.lastChangeSequenceId = documentsLists.newChangeId}     //saving  lastChangeSequenceId for incremental sync into context
+    if (documentsLists.newChangeId > documentsLists.lastChangeId) {sync.context.lastChangeSequenceId = documentsLists.newChangeId}     //saving  lastChangeSequenceId for incremental sync into context
     
-    console.log('Max Change ID ' + context.lastChangeSequenceId)
+    console.log('Max Change ID ' + documentsLists.newChangeId)
 	console.log('Total number of requisitions ' + documentsLists.requisitions.length)
 	console.log('Total number of invoices ' + documentsLists.invoices.length)
     console.log('Sync finished')
     return
 }
 
-function setIntegrationParametersGlobal(integrationParameters){
-    apiKey = integrationParameters.apiKey  // please see ariba documentation
-    realm = integrationParameters.realm // please see ariba documentation
-    lastChangeId = integrationParameters.lastChangeId // Ariba internal change id, usually 1, please see ariba documentation
-
-    return
+function fullSync (sync) {
+    return syncAriba(sync, false)
 }
 
-function fullSync ({dataStore, client, context, integrationParameters}) {
-    setIntegrationParametersGlobal(integrationParameters)
-    return syncAriba(dataStore, client, context, false)
-}
-
-function incrSync ({dataStore, client, context, integrationParameters}) {
+function incrSync (sync) {
     
-    setIntegrationParametersGlobal(integrationParameters)
-    return syncAriba(dataStore, client, context, true)
+    return syncAriba(sync, true)
 }
 
-function approveDenyRequisition ({dataStore, serviceClient, actionParameters, integrationParameters}) {
-    setIntegrationParametersGlobal(integrationParameters)  
+function approveDenyRequisition (sync) {
     
-    const {approvableId, passwordAdapter, action, user, visibleToSupplier, comment, totalCostAmount, totalCostCurrency} = actionParameters
+    const {approvableId, passwordAdapter, action, user, visibleToSupplier, comment, totalCostAmount, totalCostCurrency} = sync.actionParameters
     const approveDenyRequest = {
         'approvableId': approvableId,
         'comment': comment,
         'visibleToSupplier': visibleToSupplier
     }
+    let groups = {
+        ids:[],
+        members:[]
+    }
     
-    let responseData = serviceClient.fetchSync('requisitions/' + approvableId + '?realm=' + realm, {headers: {'apikey':apiKey}})
+    let responseData = sync.serviceClient.fetchSync('requisitions/' + approvableId + '?realm=' + sync.integrationParameters.realm, {
+        headers: {
+            'apikey':sync.integrationParameters.apiKey
+        }
+    })
     
 	try {
         if (responseData.ok) {
             let json = responseData.jsonSync()        
             if (isObject(json) && Math.abs(json.totalCost.amount-totalCostAmount) < 0.01 && json.totalCost.currency == totalCostCurrency) { //validation of total costs and currency
                 console.log('Validation ok, total cost and currency match')
-                responseData = serviceClient.fetchSync('/operations/rest/requisitions/'+ action +'?realm=' + realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
+                responseData = sync.serviceClient.fetchSync('/operations/rest/requisitions/'+ action +'?realm=' + sync.integrationParameters.realm + '&user='+ user +'&passwordadapter=' + passwordAdapter,{
                         method: 'POST', 
-                        headers: {'apikey':apiKey}, 
+                        headers: {
+                            'apikey':sync.integrationParameters.apiKey
+                        }, 
                         body: JSON.stringify(approveDenyRequest)
                     }
                 )
@@ -340,9 +350,28 @@ function approveDenyRequisition ({dataStore, serviceClient, actionParameters, in
         }
     } 
     finally {
-    storeRequisition(dataStore, serviceClient, [approvableId])
+    storeRequisition(sync, [approvableId], groups)
     }
 }
+
+function flatJsonObject(json, oName, prefix) { 
+    //currently we are able to store only flat json object, so all nested object must be flattened
+    if (json[oName] != undefined) {
+            Object.entries(json[oName]).forEach(
+		        ([key, value]) => json[prefix + key] = value)
+            delete json[oName]
+        }
+    return json
+}
+
+function isObject(json) {
+  return json != null && typeof json === 'object'
+}
+
+function notEmptyArray(json){
+  return Array.isArray(json) && json.length > 0
+}
+
 integration.define({
     'synchronizations': [
         {
