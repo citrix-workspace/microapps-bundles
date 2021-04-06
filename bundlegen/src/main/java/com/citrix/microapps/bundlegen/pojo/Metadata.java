@@ -28,6 +28,7 @@ public abstract class Metadata {
     private final List<Category> categories;
     private final String created;
     private final String deprecatedDate;
+    private final String eolDateWithSupport;
     private final boolean supportsOAuthForActions;
     private final List<String> i18nLanguages;
     private final List<App> apps;
@@ -46,6 +47,7 @@ public abstract class Metadata {
             List<Category> categories,
             String created,
             String deprecatedDate,
+            String eolDateWithSupport,
             boolean supportsOAuthForActions,
             List<String> i18nLanguages,
             List<App> apps,
@@ -63,6 +65,7 @@ public abstract class Metadata {
         this.categories = ofNullable(categories).orElse(emptyList());
         this.created = created;
         this.deprecatedDate = deprecatedDate;
+        this.eolDateWithSupport = eolDateWithSupport;
         this.supportsOAuthForActions = supportsOAuthForActions;
         this.i18nLanguages = ofNullable(i18nLanguages).orElse(emptyList());
         this.apps = ofNullable(apps).orElse(emptyList());
