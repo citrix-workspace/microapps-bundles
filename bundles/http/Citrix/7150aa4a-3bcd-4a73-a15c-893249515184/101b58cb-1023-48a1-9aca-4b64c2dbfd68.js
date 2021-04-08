@@ -1,124 +1,120 @@
-const pageSize = 100
+const pageSize = 5
 
-function fullSync ({ client, dataStore, integrationParameters }) {
-  const credentials = getCredentials(client, integrationParameters)
+async function fullSync ({ client, dataStore, integrationParameters }) {
+  const credentials = await getCredentials(client, integrationParameters)
 
-  syncProjects({client, dataStore, credentials})
-  syncUsers({client, dataStore, credentials})
-  syncViews({ client, dataStore, credentials })
-  syncWorkbooks({client, dataStore, credentials})
+  await Promise.all([
+    // syncProjects({client, dataStore, credentials}),
+    // syncUsers({client, dataStore, credentials}),
+    syncViews({client, dataStore, credentials}),
+    syncWorkbooks({client, dataStore, credentials})
+  ])
+
 }
 
 async function syncProjects({ client, dataStore, credentials }) {
   let pageNumber = 0
-  let totalAvailable = 0
+  let totalAvailable
 
   do {
     pageNumber++
 
-    console.log('projects page ' + pageNumber)
-
-    await request(client, 'projects', credentials, pageNumber)
-    .then(body => {
-      totalAvailable = parseInt(body.pagination.totalAvailable)
+    const body = await request(client, 'projects', credentials, pageNumber)
+    
+    try {
       const projects = body.projects.project
+      totalAvailable = validateTotalAvailable(body, 'projects')
       
-      if (body.projects !== undefined && Array.isArray(projects) && projects.length > 0){
+      if (Array.isArray(projects) && projects.length > 0){
         dataStore.save('projects', projects)
       } else {
         console.log('WARNING: Endpoint projects - Bad or empty response')
       }
-      
-      if (body.pagination == undefined || totalAvailable == null||undefined) {
-        console.log('WARNING: Endpoint projects - No pagination attribute in response')
-        totalAvailable = 0
-      }
-    })
+
+    } catch (error) {
+      console.error(error)
+    }
+    
   } while (pageSize * pageNumber < totalAvailable)
 }
 
 async function syncUsers({ client, dataStore, credentials }) {
   let pageNumber = 0
-  let totalAvailable = 0
+  let totalAvailable
 
   do {
     pageNumber++
 
-    console.log('users page ' + pageNumber)
-
-    await request(client, 'users', credentials, pageNumber)
-    .then(body => {
-      totalAvailable = parseInt(body.pagination.totalAvailable)
+    const body = await request(client, 'users', credentials, pageNumber)
+    
+    try {
       const users = body.users.user
+      totalAvailable = validateTotalAvailable(body, 'users')
 
-      if (body.users !== undefined && Array.isArray(users) && users.length > 0){
+      if (Array.isArray(users) && users.length > 0){
         dataStore.save('users', users)
       } else {
         console.log('WARNING: Endpoint users - Bad or empty response')
       }
       
-      if (body.pagination == undefined || totalAvailable == null||undefined) {
-        console.log('WARNING: Endpoint users - No pagination attribute in response')
-        totalAvailable = 0
-      }
-    })
+    } catch (error) {
+      console.error(error)
+    }
+
   } while (pageSize * pageNumber < totalAvailable)
 }
 
 async function syncViews({ client, dataStore, credentials }) {
   let pageNumber = 0
-  let totalAvailable = 0
+  let totalAvailable
 
   do {
     pageNumber++
-    console.log('views page ' + pageNumber)
 
-    await request(client, 'views', credentials, pageNumber)
-    .then(body => {
-      totalAvailable = parseInt(body.pagination.totalAvailable)
+    const body = await request(client, 'views', credentials, pageNumber)
+
+    try {
       const views = body.views.view
+      totalAvailable = validateTotalAvailable(body, 'views') 
 
-      if (body.views !== undefined && Array.isArray(views) && views.length > 0) {
+      if (Array.isArray(views) && views.length > 0) {
         views.forEach(view => { // flaten nested JSONs
-          flatJson(view, 'workbook', 'workbook_')
-          flatJson(view, 'owner', 'owner_')
-          flatJson(view, 'project', 'project_')
+          flatJson(view, 'workbook')
+          flatJson(view, 'owner')
+          flatJson(view, 'project')
         })
         dataStore.save('views', views)
       } else {
         console.log('WARNING: Endpoint views - Bad or empty response')
       }
 
-      if (body.pagination == undefined || totalAvailable == null||undefined) {
-          console.log('WARNING: Endpoint views - No pagination attribute in response')
-          totalAvailable = 0
-      }
-    })
+    } catch (error) {
+      console.error(error)
+    }
+
   } while (pageSize * pageNumber < totalAvailable)
 }
 
 async function syncWorkbooks ({ client, dataStore, credentials }) {
   let pageNumber = 0
-  let totalAvailable = 0
+  let totalAvailable
 
   do {
     pageNumber++
-    console.log('workbooks page ' + pageNumber)
 
-    await request(client, 'workbooks', credentials, pageNumber)
-    .then(body => {
-      totalAvailable = parseInt(body.pagination.totalAvailable)
+    const body = await request(client, 'workbooks', credentials, pageNumber)
+    
+    try {
       const workbooks = body.workbooks.workbook
+      totalAvailable = validateTotalAvailable(body, 'workbooks')
 
-      if (body.workbooks !== undefined && Array.isArray(workbooks) && workbooks.length > 0) {
+      if (Array.isArray(workbooks) && workbooks.length > 0) {
         workbooks.forEach(workbook => { // flaten nested JSONs
-          flatJson(workbook, 'owner', 'owner_')
-          flatJson(workbook, 'project', 'project_')
+          flatJson(workbook, 'owner')
+          flatJson(workbook, 'project')
 
           // convert showTabs to boolean
-          if (workbook.showTabs === 'true') {
-            workbook.showTabs = true
-          } else { workbook.showTabs = false }
+          workbook.showTabs = workbook.showTabs === 'true'
 
           // convert size to integer
           const workbookSize = parseInt(workbook.size)
@@ -133,15 +129,14 @@ async function syncWorkbooks ({ client, dataStore, credentials }) {
         console.log('WARNING: Endpoint workbooks - Bad or empty response')
       }
 
-      if (body.pagination == undefined || totalAvailable == null||undefined) {
-        console.log('WARNING: Endpoint workbooks - No pagination attribute in response')
-        totalAvailable = 0
-      }
-    })
+    } catch (error) {
+      console.error(error)
+    }
+
   } while (pageSize * pageNumber < totalAvailable)
 }
 
-function getCredentials (client, params) {
+async function getCredentials (client, params) {
   const request = {
     credentials: {
       name: `${params.username}`,
@@ -152,7 +147,9 @@ function getCredentials (client, params) {
     }
   }
 
-  const credentialsResponse = client.fetchSync('/api/3.7/auth/signin', {
+  console.log("authorization request sent")
+
+  let response = await client.fetch('/api/3.7/auth/signin', {
     method: 'POST',
     body: JSON.stringify(request),
     headers: {
@@ -160,23 +157,27 @@ function getCredentials (client, params) {
     }
   })
 
-  if (!credentialsResponse.ok) {
-    throw new Error(`Auth Request failed(${credentialsResponse.status}: ${credentialsResponse.statusText})`)
+  if (!response.ok) {
+    throw new Error(`Auth Request failed(${response.status}: ${response.statusText})`)
   }
 
-  return credentialsResponse.jsonSync().credentials
+  response = await response.json()
+
+  console.log("authorization finished")
+
+  return response.credentials
 }
 
-function request(client, entity, credentials, pageNumber) {
-  let path
+async function request(client, entity, credentials, pageNumber) {
+  console.log('sync of ' + entity + ' page ' + pageNumber + ' started')
 
-  if (entity === 'users') {
-    path = 'api/3.7/sites/' + credentials.site.id + '/' + entity + '?fields=_all_&pageSize=' + pageSize + '&pageNumber=' + pageNumber
-  } else {
-    path = 'api/3.7/sites/' + credentials.site.id + '/' + entity + '?pageSize=' + pageSize + '&pageNumber=' + pageNumber
+  let path =`api/3.7/sites/${credentials.site.id}/${entity}?pageSize=${pageSize}&pageNumber=&${pageNumber}` 
+  
+  if (entity === "users") { 
+    path = `${path}&fields=_all_`; 
   }
 
-  const response = client.fetchSync(path,
+  const response = await client.fetch(path,
     {
       headers: {
         'X-Tableau-Auth': credentials.token
@@ -185,17 +186,26 @@ function request(client, entity, credentials, pageNumber) {
 
   if (!response.ok) {
     console.log(`WARNING: Endpoint ${entity} - Request failed(${response.status}: ${response.statusText})`)
+    //throw new Error(`Endpoint ${entity} - Request failed(${response.status}: ${response.statusText})`)
   }
-  console.log(entity + ' response received, status: ' + response.status)
+  console.log(entity + ' page ' + pageNumber + ' - response received, status: ' + response.status)
 
-  return response.json()
+  return await response.json()
 }
 
-function flatJson (json, oName, prefix) { // currently we are able to store only flat json object, so all nested object must be flattened
+function validateTotalAvailable (body, entity) {
+  if (body.pagination == null || body.pagination.totalAvailable == null) {
+    console.log('WARNING: Endpoint ' + entity + ' - No pagination attribute in response')
+    return 0
+  } else {
+    return body.pagination.totalAvailable
+  }
+}
+
+function flatJson (json, oName) { // currently we are able to store only flat json object, so all nested object must be flattened
   if (json[oName] !== undefined) {
-    Object.entries(json[oName]).forEach(
-      ([key, value]) => { json[prefix + key] = value })
-    delete json[oName]
+    json[`${oName}_id`] = json[oName].id;
+    delete json[oName];
   }
   return json
 }
