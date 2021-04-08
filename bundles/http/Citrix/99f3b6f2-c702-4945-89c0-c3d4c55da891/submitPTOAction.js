@@ -26,27 +26,27 @@ async function parseAndCheckResponse(response, operationName) {
     return responseXml;
 }
 
-function submitPto({client, actionParameters, integrationParameters}) {
+function submitPto({serviceClient, actionParameters, integrationParameters}) {
     const authHeader = authenticationHeaders(integrationParameters);
-    
+
     const request = requestBody(authHeader, actionParameters);
     console.log("Submitting 'Time Off Request'")
-    
-    let response = client.fetchSync(`/ccx/service/${integrationParameters.tenant}/Absence_Management/v32.2`, {
+
+    let response = serviceClient.fetchSync(`/ccx/service/${integrationParameters.tenant}/Absence_Management/v32.2`, {
         method: "POST",
         headers: {
             "Content-Type": "application/xml"
         },
         body: request
     });
-        
+
 //    console.log(`Request: ${request}`)
     parseAndCheckResponse(response, "Enter_Time_Off_Request");
 }
 
 function requestBody(authHeader, actionParameters) {
     let timeOffDataEntries = getTimeOffDataEntries(actionParameters)
-    
+
     return `<soapenv:Envelope xmlns:bsvc="urn:com.workday/bsvc" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
        <soapenv:Header>
          ${authHeader}
@@ -75,7 +75,7 @@ function requestBody(authHeader, actionParameters) {
 function getTimeOffDataEntries(actionParameters) {
     return getDatesInInterval(actionParameters.fromDate, actionParameters.toDate).map(date => {
         console.log(`Creating entry for date ${date}`)
-        
+
         return `<bsvc:Enter_Time_Off_Entry_Data>
                    <bsvc:Date>${date}</bsvc:Date>
                    <bsvc:Requested>${actionParameters.quantity}</bsvc:Requested>
@@ -93,16 +93,16 @@ function getDatesInInterval(fromDate, toDate) {
     if (fromMoment.isAfter(toMoment)) {
         throw new Error(`Invalid date range ${fromDate} - ${toDate}"`)
     }
-    
+
     let interval = toMoment.diff(fromMoment, 'days') + 1;
-    
+
     console.log(`Calculating dates in interval ${interval}`)
-    
+
     return [...Array(interval).keys()].map(i => moment(fromMoment.add(i, 'days'))).map(moment => moment.toISOString());
 }
 
 function doNothing({client}) {
-    
+
 }
 
 integration.define({
