@@ -4,8 +4,8 @@ async function fullSync ({ client, dataStore, integrationParameters }) {
   const credentials = await getCredentials(client, integrationParameters)
 
   await Promise.all([
-    // syncProjects({client, dataStore, credentials}),
-    // syncUsers({client, dataStore, credentials}),
+    syncProjects({client, dataStore, credentials}),
+    syncUsers({client, dataStore, credentials}),
     syncViews({client, dataStore, credentials}),
     syncWorkbooks({client, dataStore, credentials})
   ])
@@ -78,7 +78,7 @@ async function syncViews({ client, dataStore, credentials }) {
       totalAvailable = validateTotalAvailable(body, 'views') 
 
       if (Array.isArray(views) && views.length > 0) {
-        views.forEach(view => { // flaten nested JSONs
+        views.forEach(view => { // flatten nested JSONs
           flatJson(view, 'workbook')
           flatJson(view, 'owner')
           flatJson(view, 'project')
@@ -109,7 +109,7 @@ async function syncWorkbooks ({ client, dataStore, credentials }) {
       totalAvailable = validateTotalAvailable(body, 'workbooks')
 
       if (Array.isArray(workbooks) && workbooks.length > 0) {
-        workbooks.forEach(workbook => { // flaten nested JSONs
+        workbooks.forEach(workbook => { // flatten nested JSONs
           flatJson(workbook, 'owner')
           flatJson(workbook, 'project')
 
@@ -190,7 +190,7 @@ async function request(client, entity, credentials, pageNumber) {
   }
   console.log(entity + ' page ' + pageNumber + ' - response received, status: ' + response.status)
 
-  return await response.json()
+  return response.json()
 }
 
 function validateTotalAvailable (body, entity) {
