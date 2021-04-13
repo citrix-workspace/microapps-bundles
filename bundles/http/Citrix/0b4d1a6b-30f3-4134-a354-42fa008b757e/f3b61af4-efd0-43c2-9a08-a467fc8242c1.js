@@ -112,7 +112,7 @@ async function syncPeopleDetials(dataStore, client, session, people) {
             let dt = personDetails.get(supervisorPersonNumber)
             supervisorEmail = dt != undefined ? dt.EMailAddresses ? dt.EMailAddresses[0].EMailAddress[0].$.Address : '' : null
         }
-        dataArray.push({
+        dataStore.save("personalDetails", {
             "fullName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.FullName:null,
             "firstName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.FirstName:null,
             "lastName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.LastName:null,
@@ -121,9 +121,9 @@ async function syncPeopleDetials(dataStore, client, session, people) {
             "supervisorName": data.SupervisorData ? data.SupervisorData[0].Supervisor[0].$.FullName : null,
             "supervisorPersonNumber": supervisorPersonNumber,
             "supervisorEmail": supervisorEmail
-        })
+        });
     })
-    dataStore.save("personalDetails", dataArray);
+    
 }
 
 async function syncAccrualBalance(dataStore, client, session, people,integrationParameters) {
@@ -278,13 +278,13 @@ async function syncRecordTimestamp(dataStore, client, session, people,integratio
                     return {
                         "date": value.$.Date ? moment_lib(value.$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
                         "employee_person_identity_person_number": pno.personNumber,
-                        "in_punch_punch_date": value.InPunch[0].Punch[0].$ != undefined ? moment_lib(value.InPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                        "in_punch_punch_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.Date != undefined ? moment_lib(value.InPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
                         "in_punch_punch_entered_on_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment_lib(value.InPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
                         "in_punch_punch_entered_on_time": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnTime != undefined ? value.InPunch[0].Punch[0].$.EnteredOnTime : null,
                         "in_punch_punch_entered_kronos_time_zone": value.InPunch[0].Punch[0].$ != undefined ? value.InPunch[0].Punch[0].$.KronosTimeZone : null,
                         "in_punch_punch_time": value.InPunch[0].Punch[0].$ != undefined ? value.InPunch[0].Punch[0].$.Time : null,
-                        "out_punch_punch_date": value.OutPunch[0].Punch[0].$ != undefined ? moment_lib(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnDate ? moment_lib(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                        "out_punch_punch_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.Date != undefined ? moment_lib(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                        "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment_lib(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
                         "out_punch_punch_entered_on_time": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnTime ? value.OutPunch[0].Punch[0].$.EnteredOnTime : null,
                         "out_punch_punch_entered_kronos_time_zone": value.OutPunch[0].Punch[0].$ != undefined ? value.OutPunch[0].Punch[0].$.KronosTimeZone : null,
                         "out_punch_punch_time": value.OutPunch[0].Punch[0].$ != undefined ? value.OutPunch[0].Punch[0].$.Time : null,
@@ -530,7 +530,7 @@ integration.define({
         }
     ],
     integrationParameters:[
-        {name:"username",type:"STRING", label:"Kronos Username",secret:true,required:true},
+        {name:"username",type:"STRING", label:"Kronos Username",required:true},
         {name:"password",type:"STRING", label:"Kronos Password",secret:true,required:true},
         {name:"dateFormat",type:"STRING", label:"Kronos Date Format", description:`Supported Date Formats :'YYYY/MM/DD', 'MM/DD/YYYY', 'YYYY-MM-DD', 'MM-DD-YYYY', 'M/DD/YYYY', 'DD-MM-YYYY'.
         Make sure the date format you enter in this field is configured in Kronos setup as well.`,required:true}
