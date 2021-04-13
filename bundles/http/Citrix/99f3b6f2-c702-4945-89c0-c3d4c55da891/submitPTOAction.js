@@ -19,20 +19,20 @@ async function parseAndCheckResponse(response, operationName) {
     const responseXml = await parser.parseStringPromise(responseBody);
     console.log(JSON.stringify(await responseXml, null, 2));
     const fail = jp.JSONPath('SOAP-ENV:Envelope.SOAP-ENV:Body[0].SOAP-ENV:Fault[0].faultstring[0]', responseXml)
-    if (fail && 0 !== fail.length) {
+    if (!fail) {
         console.log(operationName + ' failed with response: ' + responseBody)
         throw new Error(fail);
     }
     return responseXml;
 }
 
-function submitPto({serviceClient, actionParameters, integrationParameters}) {
+async function submitPto({serviceClient, actionParameters, integrationParameters}) {
     const authHeader = authenticationHeaders(integrationParameters);
 
     const request = requestBody(authHeader, actionParameters);
     console.log("Submitting 'Time Off Request'")
 
-    let response = serviceClient.fetchSync(`/ccx/service/${integrationParameters.tenant}/Absence_Management/v32.2`, {
+    let response = await serviceClient.fetch(`/ccx/service/${integrationParameters.tenant}/Absence_Management/v32.2`, {
         method: "POST",
         headers: {
             "Content-Type": "application/xml"
@@ -41,7 +41,7 @@ function submitPto({serviceClient, actionParameters, integrationParameters}) {
     });
 
 //    console.log(`Request: ${request}`)
-    parseAndCheckResponse(response, "Enter_Time_Off_Request");
+    return parseAndCheckResponse(response, "Enter_Time_Off_Request");
 }
 
 function requestBody(authHeader, actionParameters) {
