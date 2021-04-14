@@ -1,6 +1,6 @@
 const ENDPOINT = "/incidents";
 const LIMIT = 100;
-let PAGES = 1000;
+let moment = library.load("moment-timezone");
 
 integration.define({
     "synchronizations": [
@@ -27,7 +27,7 @@ integration.define({
                     },
                     {
                         "name": "created_at",
-                        "type": "STRING"
+                        "type": "DATETIME"
                     },
                     {
                         "name": "commenter_id",
@@ -48,24 +48,13 @@ integration.define({
     }
 });
 
-function replacer(key, value) {
+function replaceBodyCharacters(key, value) {
     let str = value;
     if (key === "body") {
         str = str.replace(/<[^>]+>/gm, '');
         str = str.replace('\n&nbsp;', '');
     }
     return str;
-}
-
-function parserURL(urlEndpoint, strDate) {
-    if (urlEndpoint.indexOf(strDate) > 0) {
-        let start = urlEndpoint.indexOf('T');
-        let end = urlEndpoint.indexOf('Z');
-        let removeStr = urlEndpoint.slice(start, end + 1);
-        let parts = urlEndpoint.split(removeStr);
-        urlEndpoint = parts[0] + parts[1];
-    }
-    return urlEndpoint
 }
 
 async function updateComments({dataStore, client, latestSynchronizationTime}) {
@@ -77,58 +66,48 @@ async function updateComments({dataStore, client, latestSynchronizationTime}) {
     if (latestSynchronizationTime === undefined)
         queryFields = '?per_page=' + LIMIT + '&page=';
     else {
-        queryFields = '?q=lastUpdateDate>=' + latestSync.toISOString() + '&per_page=' + LIMIT + '&page=';
+        queryFields = '?q=lastUpdateDate>=' + moment(latestSync).format('YYYY-MM-DD') + '&per_page=' + LIMIT + '&page=';
     }
 
     //Get page count
     let urlEndpoint = ENDPOINT + queryFields + 0;
     let resp = await client.fetch(urlEndpoint);
-    if (resp.ok) {
-        PAGES = resp.headers["map"]["x-total-pages"];
-    }
+    const pages = resp.ok && resp.headers["map"]["x-total-pages"] ? resp.headers["map"]["x-total-pages"] : 1000;
 
     //Loop through all pages
-    for (j = 0; j < PAGES; j++) {
-        let urlEndpoint = ENDPOINT + queryFields + j;
+    for (j = 0; j < pages; j++) {
 
-        if (exit === true) {
+        if (exit) {
             break;
         }
 
-        urlEndpoint = parserURL(urlEndpoint, 'lastUpdateDate');
-        let resp = await client.fetch(urlEndpoint);
+        let incidentsEndpoint = ENDPOINT + queryFields + j;
+
+        let resp = await client.fetch(incidentsEndpoint);
 
         if (resp.ok) {
             var incidents = await resp.json();
-            var jsonIncidents = JSON.stringify(incidents, null, '\t');
-            var parsedIncidents = JSON.parse(jsonIncidents);
-            if (parsedIncidents.length === 0) {
+
+            if (incidents.length === 0) {
                 exit = true;
             }
 
             //Loop through each incident
-            for (i = 0; i < parsedIncidents.length; i++) {
+            for (i = 0; i < incidents.length; i++) {
 
                 let commentEndpoint = "";
 
                 if (latestSynchronizationTime === undefined)
-                    commentEndpoint = ENDPOINT + '/' + parsedIncidents[i].id + '/comments';
+                    commentEndpoint = ENDPOINT + '/' + incidents[i].id + '/comments';
                 else {
-                    commentEndpoint = ENDPOINT + '/' + parsedIncidents[i].id + '/comments' + '?q=updated_at>=' + latestSync.toISOString();
+                    commentEndpoint = ENDPOINT + '/' + incidents[i].id + '/comments' + '?q=updated_at>=' + moment(latestSync).format('YYYY-MM-DD');
                 }
-
-                commentEndpoint = parserURL(commentEndpoint, 'updated_at');
 
                 var response = await client.fetch(commentEndpoint);
 
-                console.log('i = ' + i +
-                    '\tticket id = ' + parsedIncidents[i].id +
-                    '\tticket number = ' + parsedIncidents[i].number +
-                    '\tstate = ' + parsedIncidents[i].state);
-
                 if (response.ok) {
                     let comments = await response.json();
-                    let updatedComments = JSON.stringify(comments, replacer, '\t');
+                    let updatedComments = JSON.stringify(comments, replaceBodyCharacters, '\t');
                     let parsedComments = JSON.parse(updatedComments);
 
                     if (parsedComments) {
