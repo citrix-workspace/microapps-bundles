@@ -1,6 +1,35 @@
 let parser = library.load("xml2js")
 let jp = library.load("jsonpath-plus")
-const moment_lib = library.load("moment-timezone")
+const moment = library.load("moment-timezone")
+
+const createRequest = (client,session) => async (body) => {
+    try {
+        const response = await client.fetch('/wfc/XmlService', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/xml",
+                Cookie: session
+            },
+            body: body
+        });
+        const data = await response.text();
+        const result = await parser.parseStringPromise(data);
+        let status = 200
+        if (response.ok && result?.Kronos_WFC.Response[0].$.Status == 'Failure') {
+            status = 400
+            throw new Error(result.Kronos_WFC.Response[0]);
+        }
+
+        return {
+            response,
+            result,
+            status
+           // or maybe even better: `result: result.Kronos_WFC.Response[0]` ?          
+        }
+    } catch (error) {
+        throw new Error(JSON.stringify(error))
+    }
+}
 
 async function logIn(client, userName, password) {
     let session = [];
@@ -31,94 +60,61 @@ async function logIn(client, userName, password) {
 }
 
 async function syncPeople(dataStore, client, session, integrationParameters) {
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(integrationParameters.dateFormat)
-    let people;
-    const response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0"?>
-        <KRONOS_WFC VERSION="1.0"><Request Action = "RunQuery">
-        <HyperfindQuery HyperfindQueryName = "All Home"  QueryDateSpan = "${start} - ${end}" VisibilityCode= "Public"  QueryPersonOrEmployee="Person" />
-        </Request>
-        </KRONOS_WFC>`
-    });
-    const data = await response.text();
-    parser.parseString(data, (err, result)=>{
-        if(err != null){
-            throw new Error(err);
-        }
-        else if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-            throw new Error(result.Kronos_WFC.Response[0].$.Message)
-        }
-
-        let HyperfindResult = result.Kronos_WFC.Response[0].HyperFindResult;
-        people = HyperfindResult.map(result => {
-            return{
-                "fullName": result.$.FullName,
-                "personNumber": result.$.PersonNumber,    
-            }            
-        })
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+    const body =  `<?xml version="1.0"?>
+    <KRONOS_WFC VERSION="1.0"><Request Action = "RunQuery">
+    <HyperfindQuery HyperfindQueryName = "All Home"  QueryDateSpan = "${start} - ${end}" VisibilityCode= "Public"  QueryPersonOrEmployee="Person" />
+    </Request>
+    </KRONOS_WFC>`
+    const request = createRequest(client,session)
+    const {response,result} = await request(body)
+    let HyperfindResult = result.Kronos_WFC.Response[0].HyperFindResult;
+    const people = HyperfindResult.map(result => {
+        return{
+            "fullName": result.$.FullName,
+            "personNumber": result.$.PersonNumber,    
+        }            
     })
     dataStore.save('people',people)
     return people;
 }
 
-async function syncPeopleDetials(dataStore, client, session, people) {
-    let dataArray = [];
+async function syncPeopleDetails(dataStore, client, session, people) {
     let personDetails = new Map();
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0" ?>
-            <Kronos_WFC version="1.0">
-            <Request Action = "Load">
-                <PersonInformation>
-                    <Identity>
-                        <PersonIdentity personNumber="${pno.personNumber}"></PersonIdentity>
-                    </Identity>
-                </PersonInformation>
-            </Request>    
-            </Kronos_WFC>`
-        })
-
-        const data = await response.text();
-        parser.parseString(data, (err, result) => {
-            if(err != null) {
-                throw new Error(err);
-            }
-            else if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-                throw new Error(result.Kronos_WFC.Response[0])
-            }
-            let personData = result.Kronos_WFC.Response[0].PersonInformation[0];
-
-            personDetails.set(personData.PersonData[0].Person?personData.PersonData[0].Person[0].$.PersonNumber:null,personData)
-        });
+    const request = createRequest(client,session)
+    for (const pno of people) {
+        const body = `<?xml version="1.0" ?>
+        <Kronos_WFC version="1.0">
+        <Request Action = "Load">
+            <PersonInformation>
+                <Identity>
+                    <PersonIdentity personNumber="${pno.personNumber}"></PersonIdentity>
+                </Identity>
+            </PersonInformation>
+        </Request>    
+        </Kronos_WFC>`
+        let {response,result} = await request(body)
+        let personData = result.Kronos_WFC.Response[0].PersonInformation[0];
+        personDetails.set(personData.PersonData[0].Person?personData.PersonData[0].Person[0].$.PersonNumber:null,personData)
     }
 
     personDetails.forEach(data => {
-        let supervisorPersonNumber = data.SupervisorData ? data.SupervisorData[0].Supervisor[0].$.PersonNumber : null;
+        let supervisorPersonNumber = data.SupervisorData ?.[0].Supervisor[0].$.PersonNumber ?? null;
         let supervisorEmail = '';
         if(supervisorPersonNumber != null)
         {
             let dt = personDetails.get(supervisorPersonNumber)
-            supervisorEmail = dt != undefined ? dt.EMailAddresses ? dt.EMailAddresses[0].EMailAddress[0].$.Address : '' : null
+            supervisorEmail = dt != undefined ? dt.EMailAddresses?.[0].EMailAddress[0].$.Address ?? '' : null
         }
         dataStore.save("personalDetails", {
-            "fullName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.FullName:null,
-            "firstName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.FirstName:null,
-            "lastName": data.PersonData[0].Person?data.PersonData[0].Person[0].$.LastName:null,
-            "email": data.EMailAddresses ? data.EMailAddresses[0].EMailAddress[0].$.Address : '',
-            "personNumber": data.PersonData[0].Person?data.PersonData[0].Person[0].$.PersonNumber:null,
-            "supervisorName": data.SupervisorData ? data.SupervisorData[0].Supervisor[0].$.FullName : null,
+            "fullName": data.PersonData[0].Person?.[0].$.FullName ?? null,
+            "firstName": data.PersonData[0].Person?.[0].$.FirstName ?? null,
+            "lastName": data.PersonData[0].Person?.[0].$.LastName ?? null,
+            "email": data.EMailAddresses?.[0].EMailAddress[0].$.Address ?? null,
+            "personNumber": data.PersonData[0].Person?.[0].$.PersonNumber ?? null,
+            "supervisorName": data.SupervisorData?.[0].Supervisor[0].$.FullName ?? null,
             "supervisorPersonNumber": supervisorPersonNumber,
             "supervisorEmail": supervisorEmail
         });
@@ -127,376 +123,292 @@ async function syncPeopleDetials(dataStore, client, session, people) {
 }
 
 async function syncAccrualBalance(dataStore, client, session, people,integrationParameters) {
-    const date = moment_lib().format(integrationParameters.dateFormat);
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version='1.0' encoding='UTF-8' ?>
-            <Kronos_WFC version="1.0">
-                <Request Action="Load">
-                    <AccrualData>
-                        <BalanceDate>${date}</BalanceDate>
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </AccrualData>
-                </Request>
-            </Kronos_WFC>`
-        })
-
-        const data = await response.text();
-        let accrualData = []
-        parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
+    const date = moment().format(integrationParameters.dateFormat);
+    const request = createRequest(client,session);
+    for (const pno of people) {
+        const body =  `<?xml version='1.0' encoding='UTF-8' ?>
+        <Kronos_WFC version="1.0">
+            <Request Action="Load">
+                <AccrualData>
+                    <BalanceDate>${date}</BalanceDate>
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </AccrualData>
+            </Request>
+        </Kronos_WFC>`
+        let {response,result} = await request(body)
+        let path = result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary ?? [];
+        let accrualData = path.map(value => {
+            return {
+                "accrualCodeId": value.$.AccrualCodeId,
+                "accrualCodeName": value.$.AccrualCodeName,
+                "accrualType": value.$.AccrualType,
+                "encumberedBalanceInTime": Number(value.$.EncumberedBalanceInTime),
+                "hoursPerDay": value.$.HoursPerDay,
+                "projectedVestedBalanceInTime": value.$.ProjectedVestedBalanceInTime,
+                "projectedDate": moment(value.$.ProjectedDate,`${integrationParameters.dateFormat}`).toDate(),
+                "projectedGrantAmountInTime": value.$.ProjectedGrantAmountInTime,
+                "projectedTakingAmountInTime": value.$.ProjectedTakingAmountInTime,
+                "vestedBalanceInTime": value.$.VestedBalanceInTime,
+                "personalNumber": pno.personNumber
             }
-            else if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-                throw new Error(JSON.stringify(result.Kronos_WFC.Response))
-            }
-            let path = result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary != undefined ? result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary : [];
-            accrualData = path.map(value => {
-                return {
-                    "accrualCodeId": value.$.AccrualCodeId,
-                    "accrualCodeName": value.$.AccrualCodeName,
-                    "accrualType": value.$.AccrualType,
-                    "encumberedBalanceInTime": Number(value.$.EncumberedBalanceInTime),
-                    "hoursPerDay": value.$.HoursPerDay,
-                    "projectedVestedBalanceInTime": value.$.ProjectedVestedBalanceInTime,
-                    "projectedDate": moment_lib(value.$.ProjectedDate,`${integrationParameters.dateFormat}`).toDate(),
-                    "projectedGrantAmountInTime": value.$.ProjectedGrantAmountInTime,
-                    "projectedTakingAmountInTime": value.$.ProjectedTakingAmountInTime,
-                    "vestedBalanceInTime": value.$.VestedBalanceInTime,
-                    "personalNumber": pno.personNumber
-                }
-            });
-        })
+        });
         dataStore.save("accrualBalances", accrualData);
     }
 }
 
 async function syncRequestTimeOff(dataStore, client, session, people,integrationParameters) {
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(integrationParameters.dateFormat)
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0"?>
-            <Kronos_WFC version="1.0">
-                <REQUEST ACTION="RetrieveRequests">
-                    <EmployeeRequestMgmt>
-                        <QueryDateSpan>${start} - ${end}</QueryDateSpan>
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </EmployeeRequestMgmt>
-                </REQUEST>
-            </Kronos_WFC>`
-        })
-
-        const data = await response.text();
-        let reqTimeOffData = []
-        parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
-            }
-            let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem !== undefined ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem : [];
-            reqTimeOffData = path.map(value =>{
-                let com = value.Comments != undefined ? value.Comments[0].Comment[0]:[]
-                return {
-                    "id":value.$.Id,
-                    "statusName":value.$.StatusName,
-                    "requestFor":value.$.RequestFor,
-                    "startDate":value.TimeOffPeriods != undefined ? moment_lib(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                    "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
-                    "startTime":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartTime : '',
-                    "duration":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.Duration : '',
-                    "endDate":value.TimeOffPeriods != undefined ? moment_lib(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                    "personNumber":pno.personNumber,
-                    "payCodeName":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.PayCodeName : '',
-                    "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                    "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                    "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                    "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                    "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                    "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                    "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                    "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                    "CreationDateTime":moment_lib(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-                }    
-            })
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+    const request = createRequest(client,session)
+    for (const pno of people) {
+        const body = `<?xml version="1.0"?>
+        <Kronos_WFC version="1.0">
+            <REQUEST ACTION="RetrieveRequests">
+                <EmployeeRequestMgmt>
+                    <QueryDateSpan>${start} - ${end}</QueryDateSpan>
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </EmployeeRequestMgmt>
+            </REQUEST>
+        </Kronos_WFC>`
+        let {response,result} = await request(body)
+        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem ?? [];
+        let reqTimeOffData = path.map(value =>{
+            let com = value.Comments?.[0].Comment[0] ?? []
+            return {
+                "id":value.$.Id,
+                "statusName":value.$.StatusName,
+                "requestFor":value.$.RequestFor,
+                "startDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
+                "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
+                "startTime":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.StartTime ?? '',
+                "duration":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.Duration ?? '',
+                "endDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
+                "personNumber":pno.personNumber,
+                "payCodeName":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.PayCodeName ?? '',
+                "CommentText":com.$?.CommentText ?? null,
+                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
+                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
+                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
+                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
+                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
+                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
+                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
+            }    
         })
         dataStore.save("timeOff", reqTimeOffData);
     }
 }
 
 async function syncRecordTimestamp(dataStore, client, session, people,integrationParameters) {
-    const start = moment_lib().subtract(1,'d').format(integrationParameters.dateFormat)
-    const end = moment_lib().format(integrationParameters.dateFormat)
-    for (pno of people) {
+    const start = moment().subtract(1,'d').format(integrationParameters.dateFormat)
+    const end = moment().format(integrationParameters.dateFormat)
+    const request = createRequest(client,session)
+    for (const pno of people) {
         let unique_key = 0;
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0"?>
-            <Kronos_WFC version="1.0">
-                <REQUEST ACTION="Load">
-                    <Timesheet>
-                        <Period>
-                            <TimeFramePeriod PeriodDateSpan = "${start} - ${end}" />
-                        </Period>
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </Timesheet>
-                </REQUEST>
-            </Kronos_WFC>`
-        })
-        const data = await response.text();
-        let timestampData = []
-        parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
-            }
-            else if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-                throw new Error(JSON.stringify(result.Kronos_WFC.Response))
-            }
-            let path = result.Kronos_WFC.Response[0].Timesheet[0].TotaledSpans[0].TotaledSpan != undefined ? result.Kronos_WFC.Response[0].Timesheet[0].TotaledSpans[0].TotaledSpan: [];
-            if(path.length > 0){
-                timestampData = path.map(value =>{
-                    return {
-                        "date": value.$.Date ? moment_lib(value.$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "employee_person_identity_person_number": pno.personNumber,
-                        "in_punch_punch_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.Date != undefined ? moment_lib(value.InPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "in_punch_punch_entered_on_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment_lib(value.InPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "in_punch_punch_entered_on_time": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnTime != undefined ? value.InPunch[0].Punch[0].$.EnteredOnTime : null,
-                        "in_punch_punch_entered_kronos_time_zone": value.InPunch[0].Punch[0].$ != undefined ? value.InPunch[0].Punch[0].$.KronosTimeZone : null,
-                        "in_punch_punch_time": value.InPunch[0].Punch[0].$ != undefined ? value.InPunch[0].Punch[0].$.Time : null,
-                        "out_punch_punch_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.Date != undefined ? moment_lib(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment_lib(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                        "out_punch_punch_entered_on_time": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnTime ? value.OutPunch[0].Punch[0].$.EnteredOnTime : null,
-                        "out_punch_punch_entered_kronos_time_zone": value.OutPunch[0].Punch[0].$ != undefined ? value.OutPunch[0].Punch[0].$.KronosTimeZone : null,
-                        "out_punch_punch_time": value.OutPunch[0].Punch[0].$ != undefined ? value.OutPunch[0].Punch[0].$.Time : null,
-                        "labor_account_id": value.$.LaborAccountId != undefined ? Number(value.$.LaborAccountId) : null,
-                        "labor_account_name": value.$.LaborAccountName != undefined ? value.$.LaborAccountName : null,
-                        "org_job_id": value.$.OrgJobId != undefined ? Number(value.$.OrgJobId) : null,
-                        "org_job_name": value.$.OrgJobName != undefined ? value.$.OrgJobName : null,
-                        "unique_key":(++unique_key).toString()
-                    }
-                })
-            }
-        })
-        dataStore.save("record_time_stamp", timestampData);
+        const body = `<?xml version="1.0"?>
+        <Kronos_WFC version="1.0">
+            <REQUEST ACTION="Load">
+                <Timesheet>
+                    <Period>
+                        <TimeFramePeriod PeriodDateSpan = "${start} - ${end}" />
+                    </Period>
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </Timesheet>
+            </REQUEST> 
+        </Kronos_WFC>`
+        let {response,result} = await request(body)
+        let path = result.Kronos_WFC.Response[0].Timesheet[0].TotaledSpans[0].TotaledSpan ?? [];
+        if(path.length > 0){
+            let timestampData = path.map(value =>{
+                return {
+                    "date": value.$.Date ? moment(value.$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "employee_person_identity_person_number": pno.personNumber,
+                    "in_punch_punch_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.Date != undefined ? moment(value.InPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "in_punch_punch_entered_on_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment(value.InPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "in_punch_punch_entered_on_time": value.InPunch[0].Punch[0].$?.EnteredOnTime ?? null ,
+                    "in_punch_punch_entered_kronos_time_zone": value.InPunch[0].Punch[0].$?.KronosTimeZone ?? null,
+                    "in_punch_punch_time": value.InPunch[0].Punch[0].$?.Time ?? null,
+                    "out_punch_punch_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.Date != undefined ? moment(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "out_punch_punch_entered_on_time": value.OutPunch[0].Punch[0].$?.EnteredOnTime ?? null,
+                    "out_punch_punch_entered_kronos_time_zone": value.OutPunch[0].Punch[0].$?.KronosTimeZone ?? null,
+                    "out_punch_punch_time": value.OutPunch[0].Punch[0].$?.Time ?? null,
+                    "labor_account_id": value.$.LaborAccountId != undefined ? Number(value.$.LaborAccountId) : null,
+                    "labor_account_name": value.$.LaborAccountName ?? null,
+                    "org_job_id": value.$.OrgJobId != undefined ? Number(value.$.OrgJobId) : null,
+                    "org_job_name": value.$.OrgJobName ?? null,
+                    "unique_key":(++unique_key).toString()
+                }
+            })
+            dataStore.save("record_time_stamp", timestampData);
+        }
     }
 }
 
 async function syncworkTime(dataStore, client, session, people,integrationParameters){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(integrationParameters.dateFormat)
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0" ?>
-            <Kronos_WFC version="1.0">
-                <Request Action="RetrieveRequests">
-                    <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}" RequestFor="Work Time">
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </EmployeeRequestMgmt>
-                </Request>
-            </Kronos_WFC>`
-        })
-
-        const data = await response.text();
-        let syncWorktimeData=[]
-         parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+    const request = createRequest(client,session);
+    for (const pno of people) {
+        const body =  `<?xml version="1.0" ?>
+        <Kronos_WFC version="1.0">
+            <Request Action="RetrieveRequests">
+                <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}" RequestFor="Work Time">
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </EmployeeRequestMgmt>
+            </Request>
+        </Kronos_WFC>`
+        const {response,result} = await request(body)
+        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
+        let syncWorktimeData = path.map(value =>{
+            let com = []
+            if(value.$.StatusName == "SUBMITTED"){
+                com = value.Comments?.[0].Comment[0] ?? []
             }
-
-            let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
-            syncWorktimeData = path.map(value =>{
-                let com = []
-                if(value.$.StatusName == "SUBMITTED"){
-                    com = value.Comments!=undefined?value.Comments[0].Comment[0]:[]
-                }
-                else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
-                    com = value.Comments!=undefined?value.Comments[0].Comment[value.Comments[0].Comment.length - 1]:[]
-                }
-                return {
-                    "endDate": moment_lib(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                    "endTime":value.$.EndTime,
-                    "startDate":moment_lib(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                    "startTime":value.$.StartTime,
-                    "personNumber":pno.personNumber,
-                    "StatusName":value.$.StatusName,
-                    "Length":value.$.Length,
-                    "requestId":value.$.Id,
-                    "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                    "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                    "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                    "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                    "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                    "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                    "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                    "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                    "CreationDateTime":moment_lib(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-                }
-            })
+            else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
+                com = value.Comments?.[0].Comment[value.Comments[0].Comment.length - 1] ?? []
+            }
+            return {
+                "endDate": moment(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
+                "endTime":value.$.EndTime,
+                "startDate":moment(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
+                "startTime":value.$.StartTime,
+                "personNumber":pno.personNumber,
+                "StatusName":value.$.StatusName,
+                "Length":value.$.Length,
+                "requestId":value.$.Id,
+                "CommentText":com.$?.CommentText ?? null,
+                "CommentDataSourceClientName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ClientName ?? null,
+                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+                "CommentDataSourceFunctionalAreaName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName ?? null,
+                "CommentDataSourceServerName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ServerName ?? null,
+                "CommentDataSourceUserName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.UserName ?? null,
+                "CommentNotesText":com.Notes?.[0].Note[0].$.Text ?? null,
+                "CommentNotesTimestamp":com.Notes?.[0].Note[0].$.Timestamp ?? null,
+                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
+            }
         })
         dataStore.save('work_time',syncWorktimeData)
     }
 }
 
 async function incsyncRequestTimeOff(dataStore, client, session, people,latestSynchronizationTime,integrationParameters) {
-    let timeOffDataArray = [];
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(integrationParameters.dateFormat)
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0"?>
-            <Kronos_WFC version="1.0">
-                <REQUEST ACTION="RetrieveRequests">
-                    <EmployeeRequestMgmt>
-                        <QueryDateSpan>${start} - ${end}</QueryDateSpan>
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </EmployeeRequestMgmt>
-                </REQUEST>
-            </Kronos_WFC>`
-        })
-        timeOffDataArray = []
-        const data = await response.text();
-        parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+    const request = createRequest(client,session)
+    for (const pno of people) {
+        const body =  `<?xml version="1.0"?>
+        <Kronos_WFC version="1.0">
+            <REQUEST ACTION="RetrieveRequests">
+                <EmployeeRequestMgmt>
+                    <QueryDateSpan>${start} - ${end}</QueryDateSpan>
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </EmployeeRequestMgmt>
+            </REQUEST>
+        </Kronos_WFC>`
+        const {response,result} = await request(body);
+        
+        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem : [];
+        let timeOffDataArray = path.filter(value =>{
+            return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
+        }).map(value =>{
+            let com = value.Comments != undefined ? value.Comments[0].Comment[0]:[]
+            return {
+                "id":value.$.Id,
+                "statusName":value.$.StatusName,
+                "requestFor":value.$.RequestFor,
+                "startDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
+                "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
+                "startTime":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartTime : '',
+                "duration":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.Duration : '',
+                "endDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
+                "personNumber":pno.personNumber,
+                "payCodeName":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.PayCodeName : '',
+                "CommentText":com.$ !=undefined ?com.$.CommentText:null,
+                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
+                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
+                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
+                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
+                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
+                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
+                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
             }
-            
-            let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem : [];
-            timeOffDataArray = path.filter(value =>{
-                return moment_lib(new Date(value.$.CreationDateTime)).isAfter(moment_lib(latestSynchronizationTime))
-            }).map(value =>{
-                let com = value.Comments != undefined ? value.Comments[0].Comment[0]:[]
-                return {
-                    "id":value.$.Id,
-                    "statusName":value.$.StatusName,
-                    "requestFor":value.$.RequestFor,
-                    "startDate":value.TimeOffPeriods != undefined ? moment_lib(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                    "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
-                    "startTime":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartTime : '',
-                    "duration":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.Duration : '',
-                    "endDate":value.TimeOffPeriods != undefined ? moment_lib(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                    "personNumber":pno.personNumber,
-                    "payCodeName":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.PayCodeName : '',
-                    "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                    "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                    "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                    "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                    "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                    "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                    "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                    "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                    "CreationDateTime":moment_lib(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-                }
-            })
         })
+        
         dataStore.save("timeOff", timeOffDataArray);
     }
 }
 
 
 async function incsyncworkTime(dataStore, client, session, people,latestSynchronizationTime,integrationParameters){
-    let syncWorktimeData = [];
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(integrationParameters.dateFormat)
-    for (pno of people) {
-        const response = await client.fetch('/wfc/XmlService', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/xml",
-                Cookie: session
-            },
-            body: `<?xml version="1.0" ?>
-            <Kronos_WFC version="1.0">
-                <Request Action="RetrieveRequests">
-                    <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}" RequestFor="Work Time">
-                        <Employee>
-                            <PersonIdentity personNumber="${pno.personNumber}"/>
-                        </Employee>
-                    </EmployeeRequestMgmt>
-                </Request>
-            </Kronos_WFC>`
-        })
-        syncWorktimeData = [];
-        const data = await response.text();
-        parser.parseString(data, (err, result) => {
-            if (err != null) {
-                throw new Error(err);
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+    const request = createRequest(client,session)
+    for (const pno of people) {
+        const body =  `<?xml version="1.0" ?>
+        <Kronos_WFC version="1.0">
+            <Request Action="RetrieveRequests">
+                <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}" RequestFor="Work Time">
+                    <Employee>
+                        <PersonIdentity personNumber="${pno.personNumber}"/>
+                    </Employee>
+                </EmployeeRequestMgmt>
+            </Request>
+        </Kronos_WFC>`
+        const {response,result} = await request(body)
+        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
+        let syncWorktimeData = path.filter(value =>{
+            return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
+        }).map(value =>{
+            let com = []
+            if(value.$.StatusName == "SUBMITTED"){
+                com = value.Comments!=undefined?value.Comments[0].Comment[0]:[]
             }
-
-            let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
-            syncWorktimeData = path.filter(value =>{
-                return moment_lib(new Date(value.$.CreationDateTime)).isAfter(moment_lib(latestSynchronizationTime))
-            }).map(value =>{
-                let com = []
-                if(value.$.StatusName == "SUBMITTED"){
-                    com = value.Comments!=undefined?value.Comments[0].Comment[0]:[]
-                }
-                else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
-                    com = value.Comments!=undefined?value.Comments[0].Comment[value.Comments[0].Comment.length - 1]:[]    
-                }
-                return {
-                    "endDate":moment_lib(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                    "endTime":value.$.EndTime,
-                    "startDate":moment_lib(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                    "startTime":value.$.StartTime,
-                    "personNumber":pno.personNumber,
-                    "StatusName":value.$.StatusName,
-                    "Length":value.$.Length,
-                    "requestId":value.$.Id,
-                    "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                    "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                    "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                    "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                    "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                    "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                    "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                    "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                    "CreationDateTime":moment_lib(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-                }
-            })
+            else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
+                com = value.Comments!=undefined?value.Comments[0].Comment[value.Comments[0].Comment.length - 1]:[]    
+            }
+            return {
+                "endDate":moment(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
+                "endTime":value.$.EndTime,
+                "startDate":moment(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
+                "startTime":value.$.StartTime,
+                "personNumber":pno.personNumber,
+                "StatusName":value.$.StatusName,
+                "Length":value.$.Length,
+                "requestId":value.$.Id,
+                "CommentText":com.$ !=undefined ?com.$.CommentText:null,
+                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
+                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
+                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
+                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
+                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
+                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
+                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
+            }
         })
         dataStore.save('work_time',syncWorktimeData)
     }
 }
 
-function isDateFormatValid(dateFormat){
-    let validFormats = new Set(['YYYY/MM/DD', 'MM/DD/YYYY', 'YYYY-MM-DD', 'MM-DD-YYYY', 'M/DD/YYYY', 'DD-MM-YYYY'])
+function getValidDateFormat(dateFormat){
+    let validFormats = new Set(['YYYY/MM/DD', 'MM/DD/YYYY', 'YYYY-MM-DD', 'MM-DD-YYYY','M-DD-YYYY', 'M/DD/YYYY', 'DD-MM-YYYY'])
     if(!validFormats.has(dateFormat.toUpperCase())){
         throw new Error(`Date Format [${dateFormat}] is not supported , choose any of the supported formats [${[...validFormats].toString()}] `)
     }
@@ -504,21 +416,23 @@ function isDateFormatValid(dateFormat){
 }
 
 async function incrementalSync({ dataStore, client,latestSynchronizationTime, integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
     const people = await syncPeople(dataStore, client, session,integrationParameters);
-    await incsyncRequestTimeOff(dataStore, client, session, people,latestSynchronizationTime,integrationParameters);
-    await incsyncworkTime(dataStore, client, session, people,latestSynchronizationTime,integrationParameters);
+    await Promise.all([
+        incsyncRequestTimeOff(dataStore, client, session, people,latestSynchronizationTime,integrationParameters),
+        incsyncworkTime(dataStore, client, session, people,latestSynchronizationTime,integrationParameters)
+    ])
 }
 async function fullSync({ dataStore, client, integrationParameters}) {
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
     const people = await syncPeople(dataStore, client, session,integrationParameters);
-    await syncPeopleDetials(dataStore, client, session, people);
-    await syncAccrualBalance(dataStore, client, session, people,integrationParameters);
-    await syncRecordTimestamp(dataStore, client, session, people,integrationParameters);    
-    await syncRequestTimeOff(dataStore, client, session, people,integrationParameters);
-    await syncworkTime(dataStore, client, session, people,integrationParameters);
+    await Promise.all([syncPeopleDetails(dataStore, client, session, people),
+    syncAccrualBalance(dataStore, client, session, people,integrationParameters),
+    syncRecordTimestamp(dataStore, client, session, people,integrationParameters),    
+    syncRequestTimeOff(dataStore, client, session, people,integrationParameters),
+    syncworkTime(dataStore, client, session, people,integrationParameters)])
 }
 
 integration.define({
@@ -794,82 +708,60 @@ integration.define({
 });
 
 async function updateAccrualBalance({ actionParameters, client, dataStore,integrationParameters}) {
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const date = actionParameters.date;
     const number = actionParameters.personNumber;
     let accrualBalance = [];
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    let response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version='1.0' encoding='UTF-8' ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="Load">
-                <AccrualData>
-                    <BalanceDate>${moment_lib(date).format(integrationParameters.dateFormat)}</BalanceDate>
-                    <Employee>
-                        <PersonIdentity personNumber="${number}"/>
-                    </Employee>
-                </AccrualData>
-            </Request>
-        </Kronos_WFC>`
-    });
-    const data = await response.text();
-    parser.parseString(data, function (err, result) {
-        if(err != null){
-            throw new Error(JSON.stringify(err));
-        }
-        else if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-            throw new Error(result.Kronos_WFC.Response[0].Error[0].DetailError[0].Error[0].$.Message)
-        }
-        dt = result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary ? result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary : [];
-        dt.forEach(k => {
-            accrualBalance.push({
-            "accrualCodeId": k.$.AccrualCodeId,
-            "accrualCodeName": k.$.AccrualCodeName,
-            "accrualType": k.$.AccrualType,
-            "encumberedBalanceInTime": Number(k.$.EncumberedBalanceInTime),
-            "hoursPerDay": k.$.HoursPerDay,
-            "projectedVestedBalanceInTime": k.$.ProjectedVestedBalanceInTime,
-            "projectedDate": moment_lib(actionParameters.date).format('yyyy-MM-DD'),
-            "projectedGrantAmountInTime": k.$.ProjectedGrantAmountInTime,
-            "projectedTakingAmountInTime": k.$.ProjectedTakingAmountInTime,
-            "vestedBalanceInTime": k.$.VestedBalanceInTime,
-            "personalNumber": number,
-            })
+    const request = createRequest(client,session);
+    const body = `<?xml version='1.0' encoding='UTF-8' ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="Load">
+            <AccrualData>
+                <BalanceDate>${moment(date).format(integrationParameters.dateFormat)}</BalanceDate>
+                <Employee>
+                    <PersonIdentity personNumber="${number}"/>
+                </Employee>
+            </AccrualData>
+        </Request>
+    </Kronos_WFC>`
+    const {response,result} = await request(body)
+    let dt = result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary ? result.Kronos_WFC.Response[0].AccrualData[0].AccrualBalances[0].AccrualBalanceSummary : [];
+    dt.forEach(k => {
+        accrualBalance.push({
+        "accrualCodeId": k.$.AccrualCodeId,
+        "accrualCodeName": k.$.AccrualCodeName,
+        "accrualType": k.$.AccrualType,
+        "encumberedBalanceInTime": Number(k.$.EncumberedBalanceInTime),
+        "hoursPerDay": k.$.HoursPerDay,
+        "projectedVestedBalanceInTime": k.$.ProjectedVestedBalanceInTime,
+        "projectedDate": moment(actionParameters.date).format('yyyy-MM-DD'),
+        "projectedGrantAmountInTime": k.$.ProjectedGrantAmountInTime,
+        "projectedTakingAmountInTime": k.$.ProjectedTakingAmountInTime,
+        "vestedBalanceInTime": k.$.VestedBalanceInTime,
+        "personalNumber": number,
         })
-    });
+    })
     dataStore.save('accrualbalanceserviceaction', JSON.stringify(accrualBalance));
 }
 
 
 async function requestTimeOff({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-   const draftResult = await drafttimeoff(actionParameters,client,session,integrationParameters.dateFormat)
-   if(draftResult.status == 200){
-    const submittedResult = await submitimeoff(actionParameters,client,session,draftResult.requestId,integrationParameters.dateFormat)
-    if(submittedResult.status == 200)
-        await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    else{
-        throw new Error(JSON.stringify(submittedResult.error))
+    const {status,requestId} = await drafttimeoff(actionParameters,client,session,integrationParameters.dateFormat)
+    if(status == 200){
+        const {status} = await submitimeoff(actionParameters,client,session,requestId,integrationParameters.dateFormat)
+        if(status == 200)
+            await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
-   }else{
-       throw new Error(draftResult.error);
-   }
 }
 
 async function drafttimeoff(actionParameters,client,session,dateFormat){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(dateFormat)
+    const end = moment().month(month).endOf('month').format(dateFormat)
     let reqBody;
-    let requestId;
-    let error = null;
-    let status = 200;
     let commentBody = actionParameters.comment != undefined ? 
     `<Comments>
     <Comment CommentText="Need Off">
@@ -878,7 +770,10 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
             </Note>
         </Notes>
     </Comment>
-</Comments>` : '';
+    </Comments>` : '';
+
+    const request = createRequest(client,session);
+
     if(actionParameters.duration === "full_day"){
         reqBody = `<?xml version="1.0" ?>
         <Kronos_WFC version="1.0">
@@ -892,8 +787,8 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
                         <EmployeeGlobalTimeOffRequestItem RequestFor = "Time Off">
                             <TimeOffPeriods>
                                 <TimeOffPeriod Duration = "${actionParameters.duration}"
-                             EndDate = "${moment_lib(actionParameters.endDate).format(dateFormat)}"
-                             StartDate = "${moment_lib(actionParameters.startDate).format(dateFormat)}"
+                             EndDate = "${moment(actionParameters.endDate).format(dateFormat)}"
+                             StartDate = "${moment(actionParameters.startDate).format(dateFormat)}"
                              PayCodeName="${actionParameters.PayCodeName}"
                             ></TimeOffPeriod>
                             </TimeOffPeriods>
@@ -917,8 +812,8 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
                         <EmployeeGlobalTimeOffRequestItem RequestFor = "Time Off">
                             <TimeOffPeriods>
                                 <TimeOffPeriod Duration = "${actionParameters.duration}"
-                             EndDate = "${moment_lib(actionParameters.endDate).format(dateFormat)}"
-                             StartDate = "${moment_lib(actionParameters.startDate).format(dateFormat)}"
+                             EndDate = "${moment(actionParameters.endDate).format(dateFormat)}"
+                             StartDate = "${moment(actionParameters.startDate).format(dateFormat)}"
                              PayCodeName="${actionParameters.PayCodeName}" StartTime="${actionParameters.startTime}" Length="${actionParameters.length}"
                             ></TimeOffPeriod>
                             </TimeOffPeriods>
@@ -929,366 +824,206 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
             </Request>
         </Kronos_WFC>`
     }
-    let draftrequest = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: reqBody
-    })
+    const {result,status} = await request(reqBody)
+    let requestId = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem[0].$.Id;
 
-    let draftresponse = await draftrequest.text();
-    parser.parseString(draftresponse, (err, draftresult) => {
-        if (err != null) {
-            error = err;
-            status = 400
-        }
-        else if(draftresult.Kronos_WFC.Response[0].$.Status == 'Failure'){
-            error = draftresult.Kronos_WFC.Response[0].Error != undefined ? draftresult.Kronos_WFC.Response[0].Error[0].DetailErrors[0].Error[0].$.Message:null
-            
-            error = error == null ? draftresult.Kronos_WFC.Response[0].$.Message : error
-            status = 400
-        }else{
-            requestId = draftresult.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem[0].$.Id;
-        }
-    })
-    return {status:status,requestId:requestId,error:error};
+    return {status,requestId};
 }
 
 async function submitimeoff(actionParameters,client,session,requestId,dateFormat){
-    let status = 200;
-    let error = null
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
-    let response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="SubmitRequests">
-                <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}">
-                    <Employee>
-                        <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-                    </Employee>
-                    <RequestIds>
-                        <RequestId Id = "${requestId}"></RequestId>
-                    </RequestIds>
-                </EmployeeRequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-    })
-
-    const data = await response.text();
-    parser.parseString(data,async (err, result) => {
-        if (err != null) {
-            status=400
-            error = err;
-        }
-        if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-            status=400
-            error = result.Kronos_WFC.Response[0].Error[0].DetailErrors[0].Error[0].$.Message
-        }
-    })
-    return {status:status,error:error};
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(dateFormat)
+    const end = moment().month(month).endOf('month').format(dateFormat)
+    const request = createRequest(client,session)
+    const body = `<?xml version="1.0" ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="SubmitRequests">
+            <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}">
+                <Employee>
+                    <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+                </Employee>
+                <RequestIds>
+                    <RequestId Id = "${requestId}"></RequestId>
+                </RequestIds>
+            </EmployeeRequestMgmt>
+        </Request>
+    </Kronos_WFC>`
+    const {status} =await request(body) 
+    return {status};
 }
 
 async function denyTimeOff({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const result = await denyTO(actionParameters,client,session,integrationParameters.dateFormat);
-    if(result.status == 200){
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+
+    const request = createRequest(client,session)
+    const body = `<?xml version="1.0" ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="UpdateStatus">
+            <RequestMgmt QueryDateSpan = "${start} - ${end}">
+                <Employees>
+                    <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+                </Employees>
+                <RequestIds>
+                    <RequestId Id= "${actionParameters.requestId}"></RequestId>
+                </RequestIds>
+                <RequestStatusChanges>
+                    <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="REFUSED">
+                        <comments>
+                            <comment CommentText = "Need Off">
+                                <Notes>
+                                    <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
+                                </Notes>
+                            </comment>
+                        </comments>
+                    </RequestStatusChange>
+                </RequestStatusChanges>
+            </RequestMgmt>
+        </Request>
+    </Kronos_WFC>`
+    const {status} = await request(body)
+    if(status == 200){
         await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    }else{
-        throw new Error(result.error)
     }
 }
 
-async function denyTO(actionParameters,client,session,dateFormat){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
-    let status = 200
-    let error = null
-    const response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="UpdateStatus">
-                <RequestMgmt QueryDateSpan = "${start} - ${end}">
-                    <Employees>
-                        <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-                    </Employees>
-                    <RequestIds>
-                        <RequestId Id= "${actionParameters.requestId}"></RequestId>
-                    </RequestIds>
-                    <RequestStatusChanges>
-                        <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="REFUSED">
-                            <comments>
-                                <comment CommentText = "Need Off">
-                                    <Notes>
-                                        <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
-                                    </Notes>
-                                </comment>
-                            </comments>
-                        </RequestStatusChange>
-                    </RequestStatusChanges>
-                </RequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-    })
-
-    const data = await response.text();
-    parser.parseString(data, (err, result) => {
-        if (err != null) {
-            status = 400
-            error = err;
-        }
-        if(result.Kronos_WFC.Response[0].$.Status != 'Success'){
-            status = 400
-            error = result.Kronos_WFC.Response[0].Error[0].DetailError[0].Error[0].$.Message
-        }
-    })
-    return {status:status,error:error}
-}
 
 async function approveTimeOff({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const result = await approveTO(actionParameters,client,session,integrationParameters.dateFormat);
-    if(result.status == 200){
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
+
+    const request = createRequest(client,session);
+    const body = `<?xml version="1.0" ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="UpdateStatus">
+            <RequestMgmt QueryDateSpan = "${start} - ${end}">
+                <Employees>
+                    <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+                </Employees>
+                <RequestIds>
+                    <RequestId Id= "${actionParameters.requestId}"></RequestId>
+                </RequestIds>
+                <RequestStatusChanges >
+                    <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="APPROVED">
+                        <comments>
+                            <comment CommentText = "Need Off">
+                                <Notes>
+                                    <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
+                                </Notes>
+                            </comment>
+                        </comments>
+                    </RequestStatusChange>
+                </RequestStatusChanges>
+            </RequestMgmt>
+        </Request>
+    </Kronos_WFC>`
+    const {status} = await request(body)
+    if(status == 200){
         await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    }else{
-        throw new Error(result.error)
     }
 }
 
-async function approveTO(actionParameters,client,session,dateFormat){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
-    let status = 200;
-    let error = null;
-    const response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="UpdateStatus">
-                <RequestMgmt QueryDateSpan = "${start} - ${end}">
-                    <Employees>
-                        <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-                    </Employees>
-                    <RequestIds>
-                        <RequestId Id= "${actionParameters.requestId}"></RequestId>
-                    </RequestIds>
-                    <RequestStatusChanges >
-                        <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="APPROVED">
-                            <comments>
-                                <comment CommentText = "Need Off">
-                                    <Notes>
-                                        <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
-                                    </Notes>
-                                </comment>
-                            </comments>
-                        </RequestStatusChange>
-                    </RequestStatusChanges>
-                </RequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-    })
-
-    const data = await response.text();
-    parser.parseString(data, (err, result) => {
-        if (err != null) {
-            status = 400
-            error = err;
-        }
-        if(result.Kronos_WFC.Response[0].$.Status == 'Failure'){
-            status = 400
-            error = result.Kronos_WFC.Response[0].Error[0].DetailErrors[0].Error[0].$.Message
-        }
-    })
-    return {status:status,error:error}
-}
 
 //Punch-in Punch-out
 async function recordTimestamp({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const result  = await timestamp(actionParameters,client,session,integrationParameters.dateFormat);
-    if(result.status == 200){
+    const request = createRequest(client,session)
+    const body = `<?xml version="1.0"?>
+    <Kronos_WFC version="1.0">
+    <Request Action="AddOnly">
+        <Punch Date="${moment(actionParameters.date).format(integrationParameters.dateFormat)}" Time ="${actionParameters.time}">
+        <Employee>
+            <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+        </Employee>
+        </Punch>
+    </Request>
+    </Kronos_WFC>`
+    const {status} = await request(body)
+    if(status == 200){
         await syncRecordTimestamp(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    }else{
-        throw new Error(result.error)
     }
 }
 
-async function timestamp(actionParameters,client,session,dateFormat){
-    let status = 200;
-    let error = null ;
-    let response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0"?>
-        <Kronos_WFC version="1.0">
-        <Request Action="AddOnly">
-            <Punch Date="${moment_lib(actionParameters.date).format(dateFormat)}" Time ="${actionParameters.time}">
-            <Employee>
-                <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-            </Employee>
-            </Punch>
-        </Request>
-        </Kronos_WFC>`
-    })
-
-    const data = await response.text();
-    parser.parseString(data, (err, result) => {
-        if (err != null) {
-            status=400;
-            error =  err;
-        }
-        if(result.Kronos_WFC.Response[0].$.Status != "Success"){
-            status=400;
-            error = result.Kronos_WFC.Response[0].Error[0].$.Message
-        }
-    })
-    return {status:status,error:error}
-}
 
 async function approveTimelog({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    let result = await approveTL(actionParameters,client,session,integrationParameters.dateFormat);
-    if(result.status = 200){
-        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    }else{
-        throw new Error(result.error)
-    }
-}
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
 
-async function approveTL(actionParameters,client,session,dateFormat){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
-    let status = 200
-    let error = null
-    const response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="UpdateStatus">
-                <RequestMgmt QueryDateSpan = "${start} - ${end}">
-                    <Employees>
-                        <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-                    </Employees>
-                    <RequestIds>
-                        <RequestId Id= "${actionParameters.requestId}"></RequestId>
-                    </RequestIds>
-                    <RequestStatusChanges>
-                        <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="APPROVED">
-                            <comments>
-                                <comment CommentText = "Need Off">
-                                    <Notes>
-                                        <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
-                                    </Notes>
-                                </comment>
-                            </comments>
-                        </RequestStatusChange>
-                    </RequestStatusChanges>
-                </RequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-    })
-    const data = await response.text();
-    parser.parseString(data, (err,result)=>{
-        if(err != null){
-            status = 400
-            error = err
-        }
-        if(result.Kronos_WFC.Response[0].$.Status != "Success"){
-            status = 400
-            error = result.Kronos_WFC.Response[0].Error[0].DetailErrors[0].Error[0].$.Message
-        }        
-    })
-    return {status:status,error:error};
+    const request = createRequest(client,session)
+    const body = `<?xml version="1.0" ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="UpdateStatus">
+            <RequestMgmt QueryDateSpan = "${start} - ${end}">
+                <Employees>
+                    <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+                </Employees>
+                <RequestIds>
+                    <RequestId Id= "${actionParameters.requestId}"></RequestId>
+                </RequestIds>
+                <RequestStatusChanges>
+                    <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="APPROVED">
+                        <comments>
+                            <comment CommentText = "Need Off">
+                                <Notes>
+                                    <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
+                                </Notes>
+                            </comment>
+                        </comments>
+                    </RequestStatusChange>
+                </RequestStatusChanges>
+            </RequestMgmt>
+        </Request>
+    </Kronos_WFC>`
+    const {status} = await request(body)
+    if(status == 200){
+        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+    }
 }
 
 async function sentBackTimelog({actionParameters,client,dataStore,integrationParameters}){
-    integrationParameters.dateFormat = isDateFormatValid(integrationParameters.dateFormat)
+    integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const result = await sentBackTL(actionParameters,client,session,integrationParameters.dateFormat);
-    if(result.status == 200){
-        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
-    }else{
-        throw new Error(result.error)
-    }
-}
+    const month = moment().format('M')
+    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
+    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
 
-async function sentBackTL(actionParameters,client,session,dateFormat){
-    const month = moment_lib().format('M')
-    const start = moment_lib().month(month-1).startOf('month').format(dateFormat)
-    const end = moment_lib().month(month).endOf('month').format(dateFormat)
-    let status = 200
-    let error = null
-    const response = await client.fetch('/wfc/XmlService', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/xml",
-            Cookie: session
-        },
-        body: `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="UpdateStatus">
-                <RequestMgmt QueryDateSpan = "${start} - ${end}">
-                    <Employees>
-                        <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
-                    </Employees>
-                    <RequestIds>
-                        <RequestId Id= "${actionParameters.requestId}"></RequestId>
-                    </RequestIds>
-                    <RequestStatusChanges>
-                        <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="REFUSED">
-                            <comments>
-                                <comment CommentText = "Need Off">
-                                    <Notes>
-                                        <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
-                                    </Notes>
-                                </comment>
-                            </comments>
-                        </RequestStatusChange>
-                    </RequestStatusChanges>
-                </RequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-    })
-    const data = await response.text();
-    parser.parseString(data, (err,result)=>{
-        if(err != null){
-            status = 400
-            error = err
-        }
-        if(result.Kronos_WFC.Response[0].$.Status != "Success"){
-            error = result.Kronos_WFC.Response[0].Error[0].DetailErrors[0].Error[0].$.Message
-        }
-    })
-    return {status:status,error:error};
+    const request = createRequest(client,session)
+    const body = `<?xml version="1.0" ?>
+    <Kronos_WFC version="1.0">
+        <Request Action="UpdateStatus">
+            <RequestMgmt QueryDateSpan = "${start} - ${end}">
+                <Employees>
+                    <PersonIdentity PersonNumber="${actionParameters.personNumber}"/>
+                </Employees>
+                <RequestIds>
+                    <RequestId Id= "${actionParameters.requestId}"></RequestId>
+                </RequestIds>
+                <RequestStatusChanges>
+                    <RequestStatusChange RequestId = "${actionParameters.requestId}" ToStatusName="REFUSED">
+                        <comments>
+                            <comment CommentText = "Need Off">
+                                <Notes>
+                                    <Note Text = "${actionParameters.userText ?? ""} ${actionParameters.comment}"></Note>
+                                </Notes>
+                            </comment>
+                        </comments>
+                    </RequestStatusChange>
+                </RequestStatusChanges>
+            </RequestMgmt>
+        </Request>
+    </Kronos_WFC>`
+    const {status} = await request(body)
+    if(status == 200){
+        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+    }
 }
