@@ -34,7 +34,6 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.TEMPLATE_FILE;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class BundlesLoaderTest {
 
@@ -114,12 +113,12 @@ class BundlesLoaderTest {
     void checkBestPractisesMetadataFile() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
 
-        assertNotNull(metadata.get());
+        assertThat(metadata).isPresent();
         assertListEqualsInAnyOrder(Collections.singletonList("Integration does not use OAuth for writeback actions"),
                 toMessages(validationWarnings));
     }
@@ -128,14 +127,14 @@ class BundlesLoaderTest {
     void checkBestPractisesTemplateFile() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "Integration configuration is not using an authentication method",
                 "Endpoint `testEndpoint` does not use pagination",
@@ -151,14 +150,14 @@ class BundlesLoaderTest {
     void checkAbsoluteUrlForLibraryIcon() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendorForIconUrlTest/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendorForIconUrlTest/SAP-SuccessFactors-EC"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "LIBRARY type iconUrl must be relative and start with `exported/`",
                 "Same iconUrl must be specified in both metadata.json and service configuration"),
@@ -170,17 +169,17 @@ class BundlesLoaderTest {
         FsHttpBundle bundle =
                 new FsHttpBundle(
                         path("src/test/resources/bundles/http/vendorForIconUrlTest" +
-                                "/00000012-0000-0000-0000-000000000002"),
+                                "/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "Loading of bundle metadata failed: src/test/resources/bundles/http/vendorForIconUrlTest" +
-                        "/00000012-0000-0000-0000-000000000002/metadata.json",
+                        "/SAP-SuccessFactors-EC-2/metadata.json",
                 "Both iconUrl and iconType have to be specified",
                 "Unsupported iconType: null",
                 "Same iconUrl must be specified in both metadata.json and service configuration"),
