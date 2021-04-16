@@ -583,11 +583,15 @@ public class BundlesLoader {
         return Optional.empty();
     }
     
-    static List<ValidationException> validateUniqueness(Map<Bundle, List<FsBundle>> bundles) {
+    static List<ValidationException> validateHttpUniqueness(Map<Bundle, List<FsBundle>> bundles) {
         List<ValidationException> validationIssues = new ArrayList<>();
 
         for (Entry<Bundle, List<FsBundle>> bundle : bundles.entrySet()) {
-            List<FsBundle> duplicatedBundles = bundle.getValue();
+            List<FsBundle> duplicatedBundles = bundle.getValue()
+                    .stream()
+                    .filter(FsHttpBundle.class::isInstance)
+                    .collect(toList());
+            
             if (duplicatedBundles.size() > 1) {
                 validationIssues.add(validationIssue(format("Bundles with same vendor `%s` and id `%s` - `%s`",
                         bundle.getKey().getMetadata().getVendor(),

@@ -72,11 +72,11 @@ public class BundlesProcessor {
                 .map(loader::loadBundle)
                 .collect(groupingBy(Function.identity(), mapping(Bundle::getFs, toList())));
         
-        List<ValidationException> uniquenessIssues = BundlesLoader.validateUniqueness(bundles);
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(bundles);
         if (!uniquenessIssues.isEmpty()) {
-            logger.error("/tFound {} duplicate bundles:", uniquenessIssues.size());
+            logger.error("\tFound {} duplicate bundles:", uniquenessIssues.size());
             for (ValidationException validationException : uniquenessIssues) {
-                logger.error("/t/t{}", validationException.getMessage());
+                logger.error("\t\t{}", validationException.getMessage());
             }
             
             return false;
