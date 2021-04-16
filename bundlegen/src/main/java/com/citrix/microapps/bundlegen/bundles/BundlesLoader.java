@@ -364,7 +364,7 @@ public class BundlesLoader {
                             metadata.getType(), expectedType)));
         }
 
-        validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
+//        validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
         validateSupportsOAuthForActions(metadata.isSupportsOAuthForActions()).ifPresent(issues::add);
 
         return issues;
