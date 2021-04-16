@@ -573,9 +573,12 @@ class BundlesLoaderTest {
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `HTTP` != metadata `DIP`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
-                                "Invalid value: field `type`, value `DIP`, expecting `HTTP`",
-                                "Values mismatch: field `id`, filesystem `bad 00b31529-bc3f-4dab-84c9-b0a539d51d73` " +
-                                        "!= metadata `00b31529-bc3f-4dab-84c9-b0a539d51d73`"
+                                "Invalid value: field `type`, value `DIP`, expecting `HTTP`"/*
+                                                                                             * ,
+                                                                                             * "Values mismatch: field `id`, filesystem `bad 00b31529-bc3f-4dab-84c9-b0a539d51d73` "
+                                                                                             * +
+                                                                                             * "!= metadata `00b31529-bc3f-4dab-84c9-b0a539d51d73`"
+                                                                                             */
                         )
                 )
         );
