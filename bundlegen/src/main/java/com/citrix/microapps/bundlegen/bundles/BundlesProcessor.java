@@ -8,8 +8,11 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLES_JSON;
 import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.ERROR;
 import static com.citrix.microapps.bundlegen.bundles.IssueSeverity.WARNING;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -63,11 +68,21 @@ public class BundlesProcessor {
     }
 
     public boolean processAllBundles() {
-        List<Bundle> allBundles = finder
-                .findBundles()
+        Map<Bundle, List<FsBundle>> bundles = finder.findBundles()
                 .map(loader::loadBundle)
-                .collect(toList());
-
+                .collect(groupingBy(Function.identity(), mapping(Bundle::getFs, toList())));
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateUniqueness(bundles);
+        if (!uniquenessIssues.isEmpty()) {
+            logger.error("/tFound {} duplicate bundles:", uniquenessIssues.size());
+            for (ValidationException validationException : uniquenessIssues) {
+                logger.error("/t/t{}", validationException.getMessage());
+            }
+            
+            return false;
+        }
+        
+        Collection<Bundle> allBundles = bundles.keySet();
         List<BundleIssue> issues = allBundles.stream()
                 .flatMap(bundle -> bundle.getIssues().stream()
                         .filter(issue -> isWarningIssueOnlyForValidatedBundle(bundle, issue)))
