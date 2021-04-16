@@ -54,6 +54,9 @@ import static com.citrix.microapps.bundlegen.pojo.template.SecurityType.NONE;
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
@@ -583,17 +586,20 @@ public class BundlesLoader {
         return Optional.empty();
     }
     
-    static List<ValidationException> validateHttpUniqueness(Map<Bundle, List<FsBundle>> bundles) {
+    static List<ValidationException> validateHttpUniqueness(List<Bundle> bundles) {
         List<ValidationException> validationIssues = new ArrayList<>();
 
-        for (Entry<Bundle, List<FsBundle>> bundle : bundles.entrySet()) {
+        Map<Bundle, List<FsBundle>> allBundles = bundles.stream()
+                .collect(groupingBy(identity(), mapping(Bundle::getFs, toList())));
+        
+        for (Entry<Bundle, List<FsBundle>> bundle : allBundles.entrySet()) {
             List<FsBundle> duplicatedBundles = bundle.getValue()
                     .stream()
                     .filter(FsHttpBundle.class::isInstance)
                     .collect(toList());
             
             if (duplicatedBundles.size() > 1) {
-                validationIssues.add(validationIssue(format("Bundles with same vendor `%s` and id `%s` - `%s`",
+                validationIssues.add(validationIssue(format("Bundles with same vendor `%s` and id `%s` in paths `%s`",
                         bundle.getKey().getMetadata().getVendor(),
                         bundle.getKey().getMetadata().getId(),
                         duplicatedBundles)));

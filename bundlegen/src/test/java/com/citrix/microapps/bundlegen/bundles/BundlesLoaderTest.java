@@ -31,11 +31,16 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_S
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.METADATA_FILE;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TEMPLATE_FILE;
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BundlesLoaderTest {
+
+    private static final String BUNDLE_ID = "00b31529-bc3f-4dab-84c9-b0a539d51d73";
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
@@ -262,6 +267,68 @@ class BundlesLoaderTest {
     void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
         assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
+    }
+    
+    @Test
+    void validateHttpUniquenessOk() {
+        Bundle bundle1 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name"), emptyList()),
+                defaultHttpMetadata, 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name2"), emptyList()), 
+                defaultHttpMetadata.toBuilder()
+                                   .id("some-other-id")
+                                   .build(), 
+                emptyList());
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(Arrays.asList(bundle1, bundle2));
+        
+        assertThat(uniquenessIssues).isEmpty();
+    }
+    
+    @Test
+    void validateHttpUniquenessIssues() {
+        Bundle bundle1 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name"), emptyList()),
+                defaultHttpMetadata, 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name2"), emptyList()), 
+                defaultHttpMetadata, 
+                emptyList());
+        
+        List<Bundle> bundles = Arrays.asList(bundle1, bundle2);
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(bundles);
+        
+        String expectedMessage = format(
+                "Bundles with same vendor `%s` and id `%s` in paths `%s`", 
+                "vendor", 
+                BUNDLE_ID,
+                bundles.stream()
+                       .map(Bundle::getFs)
+                       .collect(toList()));
+        
+        assertThat(Arrays.asList(expectedMessage)).containsExactlyInAnyOrderElementsOf(toMessages(uniquenessIssues));
+    }
+    
+    @Test
+    void validateDipUniquenessOk() {
+        Bundle bundle1 = new Bundle(
+                new FsDipBundle(Paths.get("dip", "vendor", "v1.0", "name"), emptyList()),
+                getDipMetadata().toBuilder().version("1.0").build(), 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsDipBundle(Paths.get("dip", "vendor", "2.0", "name"), emptyList()), 
+                getDipMetadata().toBuilder().version("2.0").build(), 
+                emptyList());
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(Arrays.asList(bundle1, bundle2));
+        
+        assertThat(uniquenessIssues).isEmpty();
     }
 
     private static List<Path> toPaths(String... paths) {
@@ -501,7 +568,7 @@ class BundlesLoaderTest {
 
     private static final HttpMetadata defaultHttpMetadata = new HttpMetadata(Type.HTTP,
             "vendor",
-            UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+            UUID.fromString(BUNDLE_ID),
             UUID.fromString("e555da00-55f8-4275-878e-d2facae817f5"),
             "title",
             "description",
@@ -523,13 +590,13 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(
                         new FsHttpBundle(
-                                Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                Paths.get("http", "vendor", BUNDLE_ID),
                                 toPaths()),
                         defaultHttpMetadata
                 ),
                 Arguments.of(
                         new FsHttpBundle(
-                                Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                Paths.get("http", "vendor", BUNDLE_ID),
                                 toPaths()),
                         defaultHttpMetadata
                                 .toBuilder()
