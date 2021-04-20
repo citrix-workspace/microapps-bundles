@@ -11,6 +11,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -52,6 +54,9 @@ import static com.citrix.microapps.bundlegen.pojo.template.SecurityType.NONE;
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 
@@ -105,7 +110,7 @@ public class BundlesLoader {
                         .map(template -> template.getTranslationChecksum()),
                 comingSoonBundleFlag || idpBundleFlag));
 
-        return new Bundle(bundle, metadata, issues);
+        return new Bundle(bundle, metadata.orElse(null), issues);
     }
 
 
@@ -172,6 +177,8 @@ public class BundlesLoader {
                     Optional<ServiceConfiguration> idpServiceConfiguration = getServiceConfiguration(idpTemplateFile);
                     validateConfigurationIsUsingAuthentication(idpServiceConfiguration).ifPresent(issues::add);
                     validateServiceIconUrlConfiguration(idpServiceConfiguration, metadata).forEach(issues::add);
+
+                    return Optional.empty();
                 case COMING_SOON:
                     return Optional.empty();
                 default:
@@ -364,7 +371,7 @@ public class BundlesLoader {
                             metadata.getType(), expectedType)));
         }
 
-        validateSync(bundle::getId, "id", metadata.getId().toString()).ifPresent(issues::add);
+        // we don't validate unique bundle id because HTTP bundle may have not unique folder names      
         validateSupportsOAuthForActions(metadata.isSupportsOAuthForActions()).ifPresent(issues::add);
 
         return issues;
@@ -485,7 +492,7 @@ public class BundlesLoader {
 
     private static boolean filterTokenNames(EndpointParameter parameter) {
         String name = parameter.getName();
-        return name != null && name.contains(TOKEN_PARAMETER_NAME) || name.contains(BEARER_PARAMETER_NAME);
+        return name != null && (name.contains(TOKEN_PARAMETER_NAME) || name.contains(BEARER_PARAMETER_NAME));
     }
 
     private static boolean useNoIncrementalSync(Endpoint endpoint) {
@@ -536,7 +543,7 @@ public class BundlesLoader {
             return Optional.empty();
         }
 
-        return validationIssue(
+        return optionalValidationIssue(
                 format("Invalid value: field `%s`, value `%s`, pattern `%s`", field, value, pattern));
     }
 
@@ -549,7 +556,7 @@ public class BundlesLoader {
             return Optional.empty();
         }
 
-        return validationIssue(
+        return optionalValidationIssue(
                 format("Values mismatch: field `%s`, filesystem `%s` != metadata `%s`", field, fsValue, value));
     }
 
@@ -571,22 +578,49 @@ public class BundlesLoader {
                 .collect(toList());
 
         if (!languagesMetadata.equals(languagesFs)) {
-            return validationIssue(
+            return optionalValidationIssue(
                     format("Values mismatch: field `i18nLanguages`, filesystem `%s` != metadata `%s`",
                             languagesFs, languagesMetadata));
         }
 
         return Optional.empty();
     }
+    
+    static List<ValidationException> validateHttpUniqueness(List<Bundle> bundles) {
+        List<ValidationException> validationIssues = new ArrayList<>();
+
+        Map<Bundle, List<FsBundle>> allBundles = bundles.stream()
+                .collect(groupingBy(identity(), mapping(Bundle::getFs, toList())));
+        
+        for (Entry<Bundle, List<FsBundle>> bundle : allBundles.entrySet()) {
+            List<FsBundle> duplicatedBundles = bundle.getValue()
+                    .stream()
+                    .filter(FsHttpBundle.class::isInstance)
+                    .collect(toList());
+            
+            if (duplicatedBundles.size() > 1) {
+                validationIssues.add(validationIssue(format("Bundles with same vendor `%s` and id `%s` in paths `%s`",
+                        bundle.getKey().getMetadata().getVendor(),
+                        bundle.getKey().getMetadata().getId(),
+                        duplicatedBundles)));
+            }
+        }
+        
+        return validationIssues;
+    }
 
     private static String replaceWhitespacesWithUnderscores(String text) {
         return text != null && !text.isEmpty() ? text.replaceAll("\\s", WORD_SEPARATOR) : text;
     }
 
-    private static Optional<ValidationException> validationIssue(String message) {
-        return Optional.of(new ValidationException(message));
+    private static ValidationException validationIssue(String message) {
+        return new ValidationException(message);
     }
 
+    private static Optional<ValidationException> optionalValidationIssue(String message) {
+        return Optional.of(validationIssue(message));
+    }
+    
     private static Optional<ValidationException> optionalValidationWarning(String message) {
         return Optional.of(validationWarning(message));
     }
