@@ -3,55 +3,61 @@
   "vendor" : "Citrix",
   "id" : "99f3b6f2-c702-4945-89c0-c3d4c55da891",
   "trackingUuid" : "1d5fe9ce-ca5a-41f8-984a-bd835c8e3d96",
-  "title" : "Workday (Notifications)",
-  "description" : "Integrate with Workday to submit Time Off requests, Expenses and Change Job, receive notifications about the status change of a request, and act on notifications.",
+  "title" : "Workday",
+  "description" : "Integrate with Workday to submit Time Off requests, receive notifications about the status change of Expenses, Time Off Requests, Change Job, and act on notifications.",
   "iconUrl" : "exported/Workday.6802ebc5497a2243ad129bc04a3975ab.svg",
-  "masVersion" : "1.66.0-SNAPSHOT",
+  "masVersion" : "1.79.0-SNAPSHOT",
   "categories" : [ "WEB_SERVICES" ],
-  "created" : "2021-02-25T14:17:46",
+  "created" : "2021-04-14T11:33:09",
   "supportsOAuthForActions" : true,
   "i18nLanguages" : [ "de", "en", "es", "fr", "it", "ja", "nl", "pt-BR", "zh-CN" ],
   "apps" : [ {
-    "uuid" : "00404c89-19a8-48c0-8e68-2bcbc90b5897",
+    "uuid" : "29617775-18c4-4d8d-a363-3b8d24f93082",
     "trackingUuid" : "f2744d92-09dd-48b4-a03d-4cda73f7d507",
     "title" : "Create Time Off Request",
     "numberOfEvents" : 0,
     "action" : true
   }, {
-    "uuid" : "10bb7a65-b391-4997-9e34-7571e5af3997",
-    "trackingUuid" : "4ee52630-bbd7-47b6-9045-94c32b0a3917",
-    "title" : "Change Job",
-    "numberOfEvents" : 1,
-    "action" : true
-  }, {
-    "uuid" : "5717bbac-24b8-42ee-9d41-85fd58b3f9f6",
-    "trackingUuid" : "bb50e293-6a15-4ee5-bdf7-e8f6e046db31",
-    "title" : "Create Change Job",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "62f42d77-79f9-4f6b-92e5-4301b4434d2f",
-    "trackingUuid" : "3b7e3324-5680-451e-98b5-82f79687e9b0",
-    "title" : "Create Expense Report",
-    "numberOfEvents" : 0,
-    "action" : true
-  }, {
-    "uuid" : "ded0ef10-166d-44c3-8eee-5830e55bd008",
+    "uuid" : "37503305-c782-4639-b02a-63528aa2aea4",
     "trackingUuid" : "4d7a5af4-3aa5-4d2a-b817-f36a3451111f",
     "title" : "My Time Off Requests",
     "numberOfEvents" : 1,
     "action" : true
   }, {
-    "uuid" : "f8867b43-befa-4be8-af77-d415b437a1ed",
+    "uuid" : "40889408-f620-4697-9cb2-fe4156ec9822",
+    "trackingUuid" : "bb50e293-6a15-4ee5-bdf7-e8f6e046db31",
+    "title" : "Create Change Job",
+    "numberOfEvents" : 0,
+    "action" : true
+  }, {
+    "uuid" : "be17c176-e0f1-4db3-a56c-fe5440121401",
+    "trackingUuid" : "4ee52630-bbd7-47b6-9045-94c32b0a3917",
+    "title" : "Change Job",
+    "numberOfEvents" : 1,
+    "action" : true
+  }, {
+    "uuid" : "cbb2a3a0-1d05-4d90-8c8b-a4f5afb0348b",
     "trackingUuid" : "b33aea3b-f9aa-43c5-ab41-c4dcb69e480d",
     "title" : "Time Off Requests",
     "numberOfEvents" : 1,
     "action" : true
+  }, {
+    "uuid" : "fa738e08-c703-43dd-b69c-5cae20d706ed",
+    "trackingUuid" : "3b7e3324-5680-451e-98b5-82f79687e9b0",
+    "title" : "Create Expense Report",
+    "numberOfEvents" : 0,
+    "action" : true
   } ],
   "vaResolvers" : [ ],
-  "tags" : [{
+  "tags" : [ {
     "tag" : "helpUrl",
     "value" : "https://docs.citrix.com/en-us/citrix-microapps/set-up-template-integrations/integrate-workday.html"
-} ],
+  } ],
+  "scriptMetadata" : {
+    "originalFileName" : "submitPTOAction.js",
+    "storedFileName" : "submitPTOAction.js",
+    "checksum" : "B074C88FFDDDFA824A5C2D087CABD94C",
+    "apiVersion" : "1.1"
+  },
   "hideAddButton" : false
 }
