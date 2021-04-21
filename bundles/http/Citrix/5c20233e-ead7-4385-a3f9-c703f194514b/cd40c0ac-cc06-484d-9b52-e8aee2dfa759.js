@@ -57,16 +57,16 @@ function replaceBodyCharacters(key, value) {
     return str;
 }
 
-async function updateComments({dataStore, client, latestSynchronizationTime}) {
+async function updateComments({ dataStore, client, latestSynchronizationTime }) {
     let incidentComments = "";
-    let queryFields = "";
     let exit = false;
     let latestSync = new Date(latestSynchronizationTime);
+    let updatedAt = '?q=updated_at>=' + moment(latestSync).format('YYYY-MM-DD');
 
-    if (latestSynchronizationTime === undefined)
+    let queryFields = '?q=lastUpdateDate>=' + moment(latestSync).format('YYYY-MM-DD') + '&per_page=' + LIMIT + '&page=';
+
+    if (latestSynchronizationTime === undefined) {
         queryFields = '?per_page=' + LIMIT + '&page=';
-    else {
-        queryFields = '?q=lastUpdateDate>=' + moment(latestSync).format('YYYY-MM-DD') + '&per_page=' + LIMIT + '&page=';
     }
 
     //Get page count
@@ -75,7 +75,7 @@ async function updateComments({dataStore, client, latestSynchronizationTime}) {
     const pages = resp.ok && resp.headers["map"]["x-total-pages"] ? resp.headers["map"]["x-total-pages"] : 1000;
 
     //Loop through all pages
-    for (j = 0; j < pages; j++) {
+    for (let j = 0; j < pages; j++) {
 
         if (exit) {
             break;
@@ -86,24 +86,22 @@ async function updateComments({dataStore, client, latestSynchronizationTime}) {
         let resp = await client.fetch(incidentsEndpoint);
 
         if (resp.ok) {
-            var incidents = await resp.json();
+            let incidents = await resp.json();
 
             if (incidents.length === 0) {
-                exit = true;
+                break;
             }
 
             //Loop through each incident
-            for (i = 0; i < incidents.length; i++) {
+            for (let i = 0; i < incidents.length; i++) {
 
-                let commentEndpoint = "";
+                let commentEndpoint = ENDPOINT + '/' + incidents[i].id + '/comments' + updatedAt
 
-                if (latestSynchronizationTime === undefined)
+                if (latestSynchronizationTime === undefined) {
                     commentEndpoint = ENDPOINT + '/' + incidents[i].id + '/comments';
-                else {
-                    commentEndpoint = ENDPOINT + '/' + incidents[i].id + '/comments' + '?q=updated_at>=' + moment(latestSync).format('YYYY-MM-DD');
                 }
 
-                var response = await client.fetch(commentEndpoint);
+                let response = await client.fetch(commentEndpoint);
 
                 if (response.ok) {
                     let comments = await response.json();
@@ -123,7 +121,7 @@ async function updateComments({dataStore, client, latestSynchronizationTime}) {
                 }
             }
         } else {
-            throw new Error(`Could not retrieve incidents (${response.status}: ${response.statusText})`);
+            throw new Error(`Could not retrieve incidents (${resp.status}: ${resp.statusText})`);
         }
     }
 
