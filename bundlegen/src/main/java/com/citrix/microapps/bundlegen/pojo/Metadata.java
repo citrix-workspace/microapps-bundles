@@ -18,6 +18,7 @@ import static java.util.Optional.ofNullable;
 @SuperBuilder(toBuilder = true)
 public abstract class Metadata {
 
+    private final String id;
     private final Type type;
     private final String vendor;
     private final UUID trackingUuid;
@@ -37,6 +38,7 @@ public abstract class Metadata {
     private final boolean hideAddButton;
 
     public Metadata(
+            String id,
             Type type,
             String vendor,
             UUID trackingUuid,
@@ -55,6 +57,7 @@ public abstract class Metadata {
             List<Tag> tags,
             boolean hideAddButton
     ) {
+        this.id = id;
         this.type = type;
         this.vendor = vendor;
         this.trackingUuid = trackingUuid;

@@ -31,12 +31,16 @@ import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_COMING_S
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.BUNDLE_MANDATORY_FILES;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.METADATA_FILE;
 import static com.citrix.microapps.bundlegen.bundles.FsConstants.TEMPLATE_FILE;
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class BundlesLoaderTest {
+
+    private static final String BUNDLE_ID = "00b31529-bc3f-4dab-84c9-b0a539d51d73";
 
     @ParameterizedTest
     @MethodSource("checkMandatoryFilesOkProvider")
@@ -114,12 +118,12 @@ class BundlesLoaderTest {
     void checkBestPractisesMetadataFile() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
 
-        assertNotNull(metadata.get());
+        assertThat(metadata).isPresent();
         assertListEqualsInAnyOrder(Collections.singletonList("Integration does not use OAuth for writeback actions"),
                 toMessages(validationWarnings));
     }
@@ -128,14 +132,14 @@ class BundlesLoaderTest {
     void checkBestPractisesTemplateFile() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "Integration configuration is not using an authentication method",
                 "Endpoint `testEndpoint` does not use pagination",
@@ -151,14 +155,14 @@ class BundlesLoaderTest {
     void checkAbsoluteUrlForLibraryIcon() {
         FsHttpBundle bundle =
                 new FsHttpBundle(
-                        path("src/test/resources/bundles/http/vendorForIconUrlTest/00000012-0000-0000-0000-000000000000"),
+                        path("src/test/resources/bundles/http/vendorForIconUrlTest/SAP-SuccessFactors-EC"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "LIBRARY type iconUrl must be relative and start with `exported/`",
                 "Same iconUrl must be specified in both metadata.json and service configuration"),
@@ -170,17 +174,17 @@ class BundlesLoaderTest {
         FsHttpBundle bundle =
                 new FsHttpBundle(
                         path("src/test/resources/bundles/http/vendorForIconUrlTest" +
-                                "/00000012-0000-0000-0000-000000000002"),
+                                "/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json")));
         List<ValidationException> validationWarnings = new ArrayList<>();
         Optional<Metadata> metadata = BundlesLoader.loadAndValidateMetadata(validationWarnings, bundle);
         Optional<TemplateFile> templateFile = BundlesLoader.loadAndValidateTemplateFile(validationWarnings,
                 bundle, metadata);
 
-        assertNotNull(templateFile.get());
+        assertThat(templateFile).isPresent();
         assertListEqualsInAnyOrder(asList(
                 "Loading of bundle metadata failed: src/test/resources/bundles/http/vendorForIconUrlTest" +
-                        "/00000012-0000-0000-0000-000000000002/metadata.json",
+                        "/SAP-SuccessFactors-EC-2/metadata.json",
                 "Both iconUrl and iconType have to be specified",
                 "Unsupported iconType: null",
                 "Same iconUrl must be specified in both metadata.json and service configuration"),
@@ -263,6 +267,68 @@ class BundlesLoaderTest {
     void validateHttpMetadataIssues(FsBundle bundle, HttpMetadata metadata, List<String> expectedMessages) {
         List<ValidationException> issues = BundlesLoader.validateHttpMetadata(bundle, metadata);
         assertListEqualsInAnyOrder(expectedMessages, toMessages(issues));
+    }
+    
+    @Test
+    void validateHttpUniquenessOk() {
+        Bundle bundle1 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name"), emptyList()),
+                defaultHttpMetadata, 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name2"), emptyList()), 
+                defaultHttpMetadata.toBuilder()
+                                   .id("some-other-id")
+                                   .build(), 
+                emptyList());
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(Arrays.asList(bundle1, bundle2));
+        
+        assertThat(uniquenessIssues).isEmpty();
+    }
+    
+    @Test
+    void validateHttpUniquenessIssues() {
+        Bundle bundle1 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name"), emptyList()),
+                defaultHttpMetadata, 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsHttpBundle(Paths.get("http", "vendor", "name2"), emptyList()), 
+                defaultHttpMetadata, 
+                emptyList());
+        
+        List<Bundle> bundles = Arrays.asList(bundle1, bundle2);
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(bundles);
+        
+        String expectedMessage = format(
+                "Bundles with same vendor `%s` and id `%s` in paths `%s`", 
+                "vendor", 
+                BUNDLE_ID,
+                bundles.stream()
+                       .map(Bundle::getFs)
+                       .collect(toList()));
+        
+        assertThat(Arrays.asList(expectedMessage)).containsExactlyInAnyOrderElementsOf(toMessages(uniquenessIssues));
+    }
+    
+    @Test
+    void validateDipUniquenessOk() {
+        Bundle bundle1 = new Bundle(
+                new FsDipBundle(Paths.get("dip", "vendor", "v1.0", "name"), emptyList()),
+                getDipMetadata().toBuilder().version("1.0").build(), 
+                emptyList());
+        
+        Bundle bundle2 = new Bundle(
+                new FsDipBundle(Paths.get("dip", "vendor", "2.0", "name"), emptyList()), 
+                getDipMetadata().toBuilder().version("2.0").build(), 
+                emptyList());
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(Arrays.asList(bundle1, bundle2));
+        
+        assertThat(uniquenessIssues).isEmpty();
     }
 
     private static List<Path> toPaths(String... paths) {
@@ -502,7 +568,7 @@ class BundlesLoaderTest {
 
     private static final HttpMetadata defaultHttpMetadata = new HttpMetadata(Type.HTTP,
             "vendor",
-            UUID.fromString("00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+            UUID.fromString(BUNDLE_ID),
             UUID.fromString("e555da00-55f8-4275-878e-d2facae817f5"),
             "title",
             "description",
@@ -524,13 +590,13 @@ class BundlesLoaderTest {
         return Stream.of(
                 Arguments.of(
                         new FsHttpBundle(
-                                Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                Paths.get("http", "vendor", BUNDLE_ID),
                                 toPaths()),
                         defaultHttpMetadata
                 ),
                 Arguments.of(
                         new FsHttpBundle(
-                                Paths.get("http", "vendor", "00b31529-bc3f-4dab-84c9-b0a539d51d73"),
+                                Paths.get("http", "vendor", BUNDLE_ID),
                                 toPaths()),
                         defaultHttpMetadata
                                 .toBuilder()
@@ -573,9 +639,12 @@ class BundlesLoaderTest {
                                         "(\\.[0-9a-f]{40})?(-SNAPSHOT)?`",
                                 "Values mismatch: field `type`, filesystem `HTTP` != metadata `DIP`",
                                 "Values mismatch: field `i18nLanguages`, filesystem `[]` != metadata `[bad]`",
-                                "Invalid value: field `type`, value `DIP`, expecting `HTTP`",
-                                "Values mismatch: field `id`, filesystem `bad 00b31529-bc3f-4dab-84c9-b0a539d51d73` " +
-                                        "!= metadata `00b31529-bc3f-4dab-84c9-b0a539d51d73`"
+                                "Invalid value: field `type`, value `DIP`, expecting `HTTP`"/*
+                                                                                             * ,
+                                                                                             * "Values mismatch: field `id`, filesystem `bad 00b31529-bc3f-4dab-84c9-b0a539d51d73` "
+                                                                                             * +
+                                                                                             * "!= metadata `00b31529-bc3f-4dab-84c9-b0a539d51d73`"
+                                                                                             */
                         )
                 )
         );

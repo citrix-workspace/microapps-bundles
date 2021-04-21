@@ -67,7 +67,17 @@ public class BundlesProcessor {
                 .findBundles()
                 .map(loader::loadBundle)
                 .collect(toList());
-
+        
+        List<ValidationException> uniquenessIssues = BundlesLoader.validateHttpUniqueness(allBundles);
+        if (!uniquenessIssues.isEmpty()) {
+            logger.error("\tFound {} duplicate bundles:", uniquenessIssues.size());
+            for (ValidationException validationException : uniquenessIssues) {
+                logger.error("\t\t{}", validationException.getMessage());
+            }
+            
+            return false;
+        }
+        
         List<BundleIssue> issues = allBundles.stream()
                 .flatMap(bundle -> bundle.getIssues().stream()
                         .filter(issue -> isWarningIssueOnlyForValidatedBundle(bundle, issue)))
