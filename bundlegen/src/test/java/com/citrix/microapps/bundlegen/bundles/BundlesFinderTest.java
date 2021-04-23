@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import static com.citrix.microapps.bundlegen.TestUtils.path;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BundlesFinderTest {
@@ -45,25 +45,25 @@ class BundlesFinderTest {
                         singletonList(Paths.get("metadata.json"))),
                 new FsDipBundle(path("src/test/resources/bundles/dip/vendor2/bundle1/0.0.1"),
                         singletonList(Paths.get("metadata.json"))),
-                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/0.0.1"),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC"),
                         singletonList(Paths.get("metadata.json"))),
-                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/00000012-0000-0000-0000-000000000000"),
+                new FsHttpBundle(path("src/test/resources/bundles/http/vendor1/SAP-SuccessFactors-EC-2"),
                         asList(
                                 Paths.get("file.sapp"),
                                 Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendor2/bundle2"),
                         singletonList(Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendorForIconUrlTest" +
-                        "/00000012-0000-0000-0000-000000000000"),
+                        "/SAP-SuccessFactors-EC"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json"))),
                 new FsHttpBundle(path("src/test/resources/bundles/http/vendorForIconUrlTest" +
-                        "/00000012-0000-0000-0000-000000000002"),
+                        "/SAP-SuccessFactors-EC-2"),
                         asList(Paths.get("file.sapp"), Paths.get("metadata.json"))),
                 new FsIdpBundle(path("src/test/resources/bundles/identity_provider/vendor1/bundle1"),
                         singletonList(Paths.get("metadata.json")))
         );
 
-        assertEquals(expected, actual);
+        assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
     }
 
     @Test
