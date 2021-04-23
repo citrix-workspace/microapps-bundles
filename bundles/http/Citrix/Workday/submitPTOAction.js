@@ -19,7 +19,7 @@ async function parseAndCheckResponse(response, operationName) {
     const responseXml = await parser.parseStringPromise(responseBody);
     console.log(JSON.stringify(await responseXml, null, 2));
     const fail = jp.JSONPath('SOAP-ENV:Envelope.SOAP-ENV:Body[0].SOAP-ENV:Fault[0].faultstring[0]', responseXml)
-    if (!fail) {
+    if (fail && fail.length !== 0) {
         console.log(operationName + ' failed with response: ' + responseBody)
         throw new Error(fail);
     }
