@@ -17,7 +17,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public class ComingSoonMetadata extends Metadata {
 
-    private final String id;
     private final String version;
 
     @JsonCreator
@@ -39,7 +38,8 @@ public class ComingSoonMetadata extends Metadata {
             @JsonProperty(value = "eolDateWithSupport") String eolDateWithSupport,
             @JsonProperty(value = "tags") List<Tag> tags
     ) {
-        super(type,
+        super(id, 
+                type,
                 vendor,
                 trackingUuid,
                 title,
@@ -56,7 +56,6 @@ public class ComingSoonMetadata extends Metadata {
                 null,
                 tags,
                 false);
-        this.id = id;
         this.version = version;
     }
 }
