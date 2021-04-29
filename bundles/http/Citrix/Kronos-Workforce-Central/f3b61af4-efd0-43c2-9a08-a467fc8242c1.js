@@ -81,9 +81,8 @@ async function syncPeople(dataStore, client, session, integrationParameters) {
     return people;
 }
 
-async function syncPeopleDetails(dataStore, client, session, people) {
+async function syncPeopleDetails(dataStore, request, people) {
     let personDetails = new Map();
-    const request = createRequest(client,session)
     for (const pno of people) {
         const body = `<?xml version="1.0" ?>
         <Kronos_WFC version="1.0">
@@ -122,9 +121,8 @@ async function syncPeopleDetails(dataStore, client, session, people) {
     
 }
 
-async function syncAccrualBalance(dataStore, client, session, people,integrationParameters) {
+async function syncAccrualBalance(dataStore, request, people,integrationParameters) {
     const date = moment().format(integrationParameters.dateFormat);
-    const request = createRequest(client,session);
     for (const pno of people) {
         const body =  `<?xml version='1.0' encoding='UTF-8' ?>
         <Kronos_WFC version="1.0">
@@ -147,7 +145,7 @@ async function syncAccrualBalance(dataStore, client, session, people,integration
                 "encumberedBalanceInTime": Number(value.$.EncumberedBalanceInTime),
                 "hoursPerDay": value.$.HoursPerDay,
                 "projectedVestedBalanceInTime": value.$.ProjectedVestedBalanceInTime,
-                "projectedDate": moment(value.$.ProjectedDate,`${integrationParameters.dateFormat}`).toDate(),
+                "projectedDate": moment(value.$.ProjectedDate,integrationParameters.dateFormat).toDate(),
                 "projectedGrantAmountInTime": value.$.ProjectedGrantAmountInTime,
                 "projectedTakingAmountInTime": value.$.ProjectedTakingAmountInTime,
                 "vestedBalanceInTime": value.$.VestedBalanceInTime,
@@ -158,11 +156,10 @@ async function syncAccrualBalance(dataStore, client, session, people,integration
     }
 }
 
-async function syncRequestTimeOff(dataStore, client, session, people,integrationParameters) {
+async function syncRequestTimeOff(dataStore, request, people,integrationParameters,latestSynchronizationTime=null) {
     const month = moment().format('M')
     const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
     const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
-    const request = createRequest(client,session)
     for (const pno of people) {
         const body = `<?xml version="1.0"?>
         <Kronos_WFC version="1.0">
@@ -177,38 +174,23 @@ async function syncRequestTimeOff(dataStore, client, session, people,integration
         </Kronos_WFC>`
         let {response,result} = await request(body)
         let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem ?? [];
-        let reqTimeOffData = path.map(value =>{
-            let com = value.Comments?.[0].Comment[0] ?? []
-            return {
-                "id":value.$.Id,
-                "statusName":value.$.StatusName,
-                "requestFor":value.$.RequestFor,
-                "startDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
-                "startTime":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.StartTime ?? '',
-                "duration":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.Duration ?? '',
-                "endDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                "personNumber":pno.personNumber,
-                "payCodeName":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.PayCodeName ?? '',
-                "CommentText":com.$?.CommentText ?? null,
-                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-            }    
-        })
-        dataStore.save("timeOff", reqTimeOffData);
+        if(latestSynchronizationTime != null){
+            const filteredRecords = path.filter(value =>{
+                return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
+            })
+            let incReqTimeOffData =  saveRequestTimeOffData(filteredRecords,integrationParameters,pno)
+            dataStore.save("timeOff", incReqTimeOffData);
+        }else{
+            let reqTimeOffData = saveRequestTimeOffData(path,integrationParameters,pno)
+            dataStore.save("timeOff", reqTimeOffData);
+        }
+        
     }
 }
 
-async function syncRecordTimestamp(dataStore, client, session, people,integrationParameters) {
+async function syncRecordTimestamp(dataStore, request, people,integrationParameters) {
     const start = moment().subtract(1,'d').format(integrationParameters.dateFormat)
     const end = moment().format(integrationParameters.dateFormat)
-    const request = createRequest(client,session)
     for (const pno of people) {
         let unique_key = 0;
         const body = `<?xml version="1.0"?>
@@ -229,15 +211,15 @@ async function syncRecordTimestamp(dataStore, client, session, people,integratio
         if(path.length > 0){
             let timestampData = path.map(value =>{
                 return {
-                    "date": value.$.Date ? moment(value.$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "date": value.$.Date ? moment(value.$.Date,integrationParameters.dateFormat).format('yyyy-MM-DD') : null,
                     "employee_person_identity_person_number": pno.personNumber,
-                    "in_punch_punch_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.Date != undefined ? moment(value.InPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                    "in_punch_punch_entered_on_date": value.InPunch[0].Punch[0].$ != undefined && value.InPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment(value.InPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "in_punch_punch_date": value.InPunch[0].Punch[0].$?.Date != undefined ? moment(value.InPunch[0].Punch[0].$.Date,integrationParameters.dateFormat).format('yyyy-MM-DD') : null,
+                    "in_punch_punch_entered_on_date": value.InPunch[0].Punch[0].$?.EnteredOnDate != undefined ? moment(value.InPunch[0].Punch[0].$.EnteredOnDate,integrationParameters.dateFormat).format('yyyy-MM-DD') : null,
                     "in_punch_punch_entered_on_time": value.InPunch[0].Punch[0].$?.EnteredOnTime ?? null ,
                     "in_punch_punch_entered_kronos_time_zone": value.InPunch[0].Punch[0].$?.KronosTimeZone ?? null,
                     "in_punch_punch_time": value.InPunch[0].Punch[0].$?.Time ?? null,
-                    "out_punch_punch_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.Date != undefined ? moment(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
-                    "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$ != undefined && value.OutPunch[0].Punch[0].$.EnteredOnDate != undefined ? moment(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "out_punch_punch_date": value.OutPunch[0].Punch[0].$?.Date != undefined ? moment(value.OutPunch[0].Punch[0].$.Date,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
+                    "out_punch_punch_entered_on_date": value.OutPunch[0].Punch[0].$?.EnteredOnDate != undefined ? moment(value.OutPunch[0].Punch[0].$.EnteredOnDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : null,
                     "out_punch_punch_entered_on_time": value.OutPunch[0].Punch[0].$?.EnteredOnTime ?? null,
                     "out_punch_punch_entered_kronos_time_zone": value.OutPunch[0].Punch[0].$?.KronosTimeZone ?? null,
                     "out_punch_punch_time": value.OutPunch[0].Punch[0].$?.Time ?? null,
@@ -253,11 +235,10 @@ async function syncRecordTimestamp(dataStore, client, session, people,integratio
     }
 }
 
-async function syncworkTime(dataStore, client, session, people,integrationParameters){
+async function syncworkTime(dataStore, request, people,integrationParameters,latestSynchronizationTime=null){
     const month = moment().format('M')
     const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
     const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
-    const request = createRequest(client,session);
     for (const pno of people) {
         const body =  `<?xml version="1.0" ?>
         <Kronos_WFC version="1.0">
@@ -271,141 +252,78 @@ async function syncworkTime(dataStore, client, session, people,integrationParame
         </Kronos_WFC>`
         const {response,result} = await request(body)
         let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
-        let syncWorktimeData = path.map(value =>{
-            let com = []
-            if(value.$.StatusName == "SUBMITTED"){
-                com = value.Comments?.[0].Comment[0] ?? []
-            }
-            else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
-                com = value.Comments?.[0].Comment[value.Comments[0].Comment.length - 1] ?? []
-            }
-            return {
-                "endDate": moment(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                "endTime":value.$.EndTime,
-                "startDate":moment(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                "startTime":value.$.StartTime,
-                "personNumber":pno.personNumber,
-                "StatusName":value.$.StatusName,
-                "Length":value.$.Length,
-                "requestId":value.$.Id,
-                "CommentText":com.$?.CommentText ?? null,
-                "CommentDataSourceClientName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ClientName ?? null,
-                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                "CommentDataSourceFunctionalAreaName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName ?? null,
-                "CommentDataSourceServerName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ServerName ?? null,
-                "CommentDataSourceUserName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.UserName ?? null,
-                "CommentNotesText":com.Notes?.[0].Note[0].$.Text ?? null,
-                "CommentNotesTimestamp":com.Notes?.[0].Note[0].$.Timestamp ?? null,
-                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-            }
-        })
-        dataStore.save('work_time',syncWorktimeData)
+        if(latestSynchronizationTime != null){
+            let filteredRecords = path.filter(value =>{
+                return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
+            })
+            let incWorktimeData = saveWorkTimeData(filteredRecords,integrationParameters,pno)
+            dataStore.save('work_time',incWorktimeData)
+        }else{
+            let syncWorktimeData = saveWorkTimeData(path,integrationParameters,pno)
+            dataStore.save('work_time',syncWorktimeData)
+        }
     }
 }
 
-async function incsyncRequestTimeOff(dataStore, client, session, people,latestSynchronizationTime,integrationParameters) {
-    const month = moment().format('M')
-    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
-    const request = createRequest(client,session)
-    for (const pno of people) {
-        const body =  `<?xml version="1.0"?>
-        <Kronos_WFC version="1.0">
-            <REQUEST ACTION="RetrieveRequests">
-                <EmployeeRequestMgmt>
-                    <QueryDateSpan>${start} - ${end}</QueryDateSpan>
-                    <Employee>
-                        <PersonIdentity personNumber="${pno.personNumber}"/>
-                    </Employee>
-                </EmployeeRequestMgmt>
-            </REQUEST>
-        </Kronos_WFC>`
-        const {response,result} = await request(body);
-        
-        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeGlobalTimeOffRequestItem : [];
-        let timeOffDataArray = path.filter(value =>{
-            return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
-        }).map(value =>{
-            let com = value.Comments != undefined ? value.Comments[0].Comment[0]:[]
-            return {
-                "id":value.$.Id,
-                "statusName":value.$.StatusName,
-                "requestFor":value.$.RequestFor,
-                "startDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
-                "startTime":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartTime : '',
-                "duration":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.Duration : '',
-                "endDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD') : '',
-                "personNumber":pno.personNumber,
-                "payCodeName":value.TimeOffPeriods != undefined ? value.TimeOffPeriods[0].TimeOffPeriod[0].$.PayCodeName : '',
-                "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-            }
-        })
-        
-        dataStore.save("timeOff", timeOffDataArray);
-    }
+function saveRequestTimeOffData(response,integrationParameters,person){
+    return response.map(value =>{
+        let com = value.Comments?.[0].Comment[0]??[]
+        return {
+            "id":value.$.Id,
+            "statusName":value.$.StatusName,
+            "requestFor":value.$.RequestFor,
+            "startDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.StartDate,integrationParameters.dateFormat).format('yyyy-MM-DD') : '',
+            "length":value.TimeOffPeriods != undefined ? Number(value.TimeOffPeriods[0].TimeOffPeriod[0].$.Length) : '',
+            "startTime":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.StartTime ?? '',
+            "duration":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.Duration ?? '',
+            "endDate":value.TimeOffPeriods != undefined ? moment(value.TimeOffPeriods[0].TimeOffPeriod[0].$.EndDate,integrationParameters.dateFormat).format('yyyy-MM-DD') : '',
+            "personNumber":person.personNumber,
+            "payCodeName":value.TimeOffPeriods?.[0].TimeOffPeriod[0].$.PayCodeName ?? '',
+            "CommentText":com.$?.CommentText ?? null,
+            "CommentDataSourceClientName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ClientName ?? null,
+            "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+            "CommentDataSourceFunctionalAreaName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName ?? null,
+            "CommentDataSourceServerName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ServerName ?? null,
+            "CommentDataSourceUserName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.UserName ?? null,
+            "CommentNotesText":com.Notes?.[0].Note[0].$.Text ?? null,
+            "CommentNotesTimestamp":com.Notes?.[0].Note[0].$.Timestamp ?? null,
+            "CreationDateTime":moment(value.$.CreationDateTime, value.$.CreationDateTime.endsWith("M")?`${integrationParameters.dateFormat} hh:mm A`:`${integrationParameters.dateFormat} hh:mm`).toDate(),
+        }
+    })
+}
+
+function saveWorkTimeData(response,integrationParameters,person){
+    return response.map(value =>{
+        let com = []
+        if(value.$.StatusName == "SUBMITTED"){
+            com = value.Comments?.[0].Comment[0]??[]
+        }
+        else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
+            com = value.Comments?.[0].Comment[value.Comments[0].Comment.length - 1] ?? []    
+        }
+        return {
+            "endDate":moment(value.$.EndDate,integrationParameters.dateFormat).format('yyyy-MM-DD'),
+            "endTime":value.$.EndTime,
+            "startDate":moment(value.$.StartDate,integrationParameters.dateFormat).format('yyyy-MM-DD'),
+            "startTime":value.$.StartTime,
+            "personNumber":person.personNumber,
+            "StatusName":value.$.StatusName,
+            "Length":value.$.Length,
+            "requestId":value.$.Id,
+            "CommentText":com.$?.CommentText ?? null,
+            "CommentDataSourceClientName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ClientName ?? null,
+            "CommentDataSourceFunctionalAreaCode":com.Notes !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
+            "CommentDataSourceFunctionalAreaName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName ?? null,
+            "CommentDataSourceServerName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.ServerName ?? null,
+            "CommentDataSourceUserName":com.Notes?.[0].Note[0].DataSource[0].DataSource[0].$.UserName ?? null,
+            "CommentNotesText":com.Notes?.[0].Note[0].$.Text ?? null,
+            "CommentNotesTimestamp":com.Notes?.[0].Note[0].$.Timestamp ?? null,
+            "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
+        }
+    })
 }
 
 
-async function incsyncworkTime(dataStore, client, session, people,latestSynchronizationTime,integrationParameters){
-    const month = moment().format('M')
-    const start = moment().month(month-1).startOf('month').format(integrationParameters.dateFormat)
-    const end = moment().month(month).endOf('month').format(integrationParameters.dateFormat)
-    const request = createRequest(client,session)
-    for (const pno of people) {
-        const body =  `<?xml version="1.0" ?>
-        <Kronos_WFC version="1.0">
-            <Request Action="RetrieveRequests">
-                <EmployeeRequestMgmt QueryDateSpan = "${start} - ${end}" RequestFor="Work Time">
-                    <Employee>
-                        <PersonIdentity personNumber="${pno.personNumber}"/>
-                    </Employee>
-                </EmployeeRequestMgmt>
-            </Request>
-        </Kronos_WFC>`
-        const {response,result} = await request(body)
-        let path = result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem ? result.Kronos_WFC.Response[0].EmployeeRequestMgmt[0].RequestItems[0].EmployeeWorkTimeRequestItem : [];
-        let syncWorktimeData = path.filter(value =>{
-            return moment(new Date(value.$.CreationDateTime)).isAfter(moment(latestSynchronizationTime))
-        }).map(value =>{
-            let com = []
-            if(value.$.StatusName == "SUBMITTED"){
-                com = value.Comments!=undefined?value.Comments[0].Comment[0]:[]
-            }
-            else if(value.$.StatusName == "APPROVED" || value.$.StatusName == "REFUSED"){
-                com = value.Comments!=undefined?value.Comments[0].Comment[value.Comments[0].Comment.length - 1]:[]    
-            }
-            return {
-                "endDate":moment(value.$.EndDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                "endTime":value.$.EndTime,
-                "startDate":moment(value.$.StartDate,`${integrationParameters.dateFormat}`).format('yyyy-MM-DD'),
-                "startTime":value.$.StartTime,
-                "personNumber":pno.personNumber,
-                "StatusName":value.$.StatusName,
-                "Length":value.$.Length,
-                "requestId":value.$.Id,
-                "CommentText":com.$ !=undefined ?com.$.CommentText:null,
-                "CommentDataSourceClientName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ClientName:null,
-                "CommentDataSourceFunctionalAreaCode":com.$ !=undefined ?Number(com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaCode):null,
-                "CommentDataSourceFunctionalAreaName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.FunctionalAreaName:null,
-                "CommentDataSourceServerName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.ServerName:null,
-                "CommentDataSourceUserName":com.$ !=undefined ?com.Notes[0].Note[0].DataSource[0].DataSource[0].$.UserName:null,
-                "CommentNotesText":com.$ !=undefined ?com.Notes[0].Note[0].$.Text:null,
-                "CommentNotesTimestamp":com.$ !=undefined ?com.Notes[0].Note[0].$.Timestamp:null,
-                "CreationDateTime":moment(value.$.CreationDateTime, `${integrationParameters.dateFormat} hh:mm A`).toDate(),
-            }
-        })
-        dataStore.save('work_time',syncWorktimeData)
-    }
-}
 
 function getValidDateFormat(dateFormat){
     let validFormats = new Set(['YYYY/MM/DD', 'MM/DD/YYYY', 'YYYY-MM-DD', 'MM-DD-YYYY','M-DD-YYYY', 'M/DD/YYYY', 'DD-MM-YYYY'])
@@ -415,24 +333,28 @@ function getValidDateFormat(dateFormat){
     return dateFormat.toUpperCase()
 }
 
-async function incrementalSync({ dataStore, client,latestSynchronizationTime, integrationParameters}){
+async function incrementalSync({ dataStore, client,latestSynchronizationTime, integrationParameters,context}){
     integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const people = await syncPeople(dataStore, client, session,integrationParameters);
+    const request = createRequest(client,session)
     await Promise.all([
-        incsyncRequestTimeOff(dataStore, client, session, people,latestSynchronizationTime,integrationParameters),
-        incsyncworkTime(dataStore, client, session, people,latestSynchronizationTime,integrationParameters)
+        syncRequestTimeOff(dataStore, request, context.people,integrationParameters,latestSynchronizationTime),
+        syncworkTime(dataStore, request, context.people,integrationParameters,latestSynchronizationTime)
     ])
 }
-async function fullSync({ dataStore, client, integrationParameters}) {
+async function fullSync({ dataStore, client, integrationParameters,context}) {
     integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
     const people = await syncPeople(dataStore, client, session,integrationParameters);
-    await Promise.all([syncPeopleDetails(dataStore, client, session, people),
-    syncAccrualBalance(dataStore, client, session, people,integrationParameters),
-    syncRecordTimestamp(dataStore, client, session, people,integrationParameters),    
-    syncRequestTimeOff(dataStore, client, session, people,integrationParameters),
-    syncworkTime(dataStore, client, session, people,integrationParameters)])
+    context.people = people
+    const request = createRequest(client,session)
+    await Promise.all([
+        syncPeopleDetails(dataStore, request, people),
+        syncAccrualBalance(dataStore, request, people,integrationParameters),
+        syncRecordTimestamp(dataStore, request, people,integrationParameters),    
+        syncRequestTimeOff(dataStore, request, people,integrationParameters),
+        syncworkTime(dataStore, request, people,integrationParameters)
+    ])
 }
 
 integration.define({
@@ -735,29 +657,30 @@ async function updateAccrualBalance({ actionParameters, client, dataStore,integr
         "encumberedBalanceInTime": Number(k.$.EncumberedBalanceInTime),
         "hoursPerDay": k.$.HoursPerDay,
         "projectedVestedBalanceInTime": k.$.ProjectedVestedBalanceInTime,
-        "projectedDate": moment(actionParameters.date).format('yyyy-MM-DD'),
+        "projectedDate": new Date(actionParameters.date),
         "projectedGrantAmountInTime": k.$.ProjectedGrantAmountInTime,
         "projectedTakingAmountInTime": k.$.ProjectedTakingAmountInTime,
         "vestedBalanceInTime": k.$.VestedBalanceInTime,
         "personalNumber": number,
         })
     })
-    dataStore.save('accrualbalanceserviceaction', JSON.stringify(accrualBalance));
+    dataStore.save('accrualbalanceserviceaction', accrualBalance);
 }
 
 
 async function requestTimeOff({actionParameters,client,dataStore,integrationParameters}){
     integrationParameters.dateFormat = getValidDateFormat(integrationParameters.dateFormat)
     const session = await logIn(client, integrationParameters.username , integrationParameters.password);
-    const {status,requestId} = await drafttimeoff(actionParameters,client,session,integrationParameters.dateFormat)
+    const request = createRequest(client,session)
+    const {status,requestId} = await drafttimeoff(actionParameters,request,integrationParameters.dateFormat)
     if(status == 200){
-        const {status} = await submitimeoff(actionParameters,client,session,requestId,integrationParameters.dateFormat)
+        const {status} = await submitimeoff(actionParameters,request,requestId,integrationParameters.dateFormat)
         if(status == 200)
-            await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+            await syncRequestTimeOff(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
 
-async function drafttimeoff(actionParameters,client,session,dateFormat){
+async function drafttimeoff(actionParameters,request,dateFormat){
     const month = moment().format('M')
     const start = moment().month(month-1).startOf('month').format(dateFormat)
     const end = moment().month(month).endOf('month').format(dateFormat)
@@ -771,9 +694,6 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
         </Notes>
     </Comment>
     </Comments>` : '';
-
-    const request = createRequest(client,session);
-
     if(actionParameters.duration === "full_day"){
         reqBody = `<?xml version="1.0" ?>
         <Kronos_WFC version="1.0">
@@ -830,11 +750,10 @@ async function drafttimeoff(actionParameters,client,session,dateFormat){
     return {status,requestId};
 }
 
-async function submitimeoff(actionParameters,client,session,requestId,dateFormat){
+async function submitimeoff(actionParameters,request,requestId,dateFormat){
     const month = moment().format('M')
     const start = moment().month(month-1).startOf('month').format(dateFormat)
     const end = moment().month(month).endOf('month').format(dateFormat)
-    const request = createRequest(client,session)
     const body = `<?xml version="1.0" ?>
     <Kronos_WFC version="1.0">
         <Request Action="SubmitRequests">
@@ -886,7 +805,7 @@ async function denyTimeOff({actionParameters,client,dataStore,integrationParamet
     </Kronos_WFC>`
     const {status} = await request(body)
     if(status == 200){
-        await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+        await syncRequestTimeOff(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
 
@@ -925,7 +844,7 @@ async function approveTimeOff({actionParameters,client,dataStore,integrationPara
     </Kronos_WFC>`
     const {status} = await request(body)
     if(status == 200){
-        await syncRequestTimeOff(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+        await syncRequestTimeOff(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
 
@@ -947,7 +866,7 @@ async function recordTimestamp({actionParameters,client,dataStore,integrationPar
     </Kronos_WFC>`
     const {status} = await request(body)
     if(status == 200){
-        await syncRecordTimestamp(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+        await syncRecordTimestamp(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
 
@@ -986,7 +905,7 @@ async function approveTimelog({actionParameters,client,dataStore,integrationPara
     </Kronos_WFC>`
     const {status} = await request(body)
     if(status == 200){
-        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+        await syncworkTime(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
 
@@ -1024,6 +943,6 @@ async function sentBackTimelog({actionParameters,client,dataStore,integrationPar
     </Kronos_WFC>`
     const {status} = await request(body)
     if(status == 200){
-        await syncworkTime(dataStore,client,session,[{personNumber:actionParameters.personNumber}],integrationParameters)
+        await syncworkTime(dataStore,request,[{personNumber:actionParameters.personNumber}],integrationParameters)
     }
 }
