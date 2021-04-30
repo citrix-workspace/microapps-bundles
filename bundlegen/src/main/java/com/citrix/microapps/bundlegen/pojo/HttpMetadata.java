@@ -17,7 +17,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public class HttpMetadata extends Metadata {
 
-    private final UUID id;  // TODO: Remove it from source json?
     private final ScriptMetadata scriptMetadata;
 
     @JsonCreator
@@ -45,7 +44,8 @@ public class HttpMetadata extends Metadata {
             @JsonProperty(value = "scriptMetadata") ScriptMetadata scriptMetadata,
             @JsonProperty(value = "hideAddButton") boolean hideAddButton
     ) {
-        super(type,
+        super(id.toString(),
+                type,
                 vendor,
                 trackingUuid,
                 title,
@@ -62,8 +62,6 @@ public class HttpMetadata extends Metadata {
                 vaResolvers,
                 tags,
                 hideAddButton);
-
-        this.id = id;
         this.scriptMetadata = scriptMetadata;
     }
 }

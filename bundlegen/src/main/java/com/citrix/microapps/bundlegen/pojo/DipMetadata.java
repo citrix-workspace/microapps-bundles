@@ -16,7 +16,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder(toBuilder = true)
 public class DipMetadata extends Metadata {
-    private final String id;  // TODO: Remove it from source json?
     private final String version;  // TODO: Remove it from source json?
 
     @JsonCreator
@@ -43,7 +42,8 @@ public class DipMetadata extends Metadata {
             @JsonProperty(value = "vaResolvers") List<VaResolver> vaResolvers,
             @JsonProperty(value = "tags") List<Tag> tags
     ) {
-        super(type,
+        super(id,
+                type,
                 vendor,
                 trackingUuid,
                 title,
@@ -61,7 +61,6 @@ public class DipMetadata extends Metadata {
                 tags,
                 false);
 
-        this.id = id;
         this.version = version;
     }
 }
