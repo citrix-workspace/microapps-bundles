@@ -47,7 +47,9 @@ async function syncMeetings(dataStore, client, users) {
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
-        let meetingdata = data.map(meeting => {
+        let meetingdata = data.filter(meeting =>{
+            return meeting.type == 2 || meeting.type == 8 
+        }).map(meeting => {
             if(!meetingids.has(meeting.id)){
                 meetingids.add(meeting.id)
             }
@@ -281,7 +283,7 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
         let meetingsData = data.filter(meeting => {
-            if (moment(meeting.created_at).isAfter(latestSynchronizationTime)) {
+            if (moment(meeting.created_at).isAfter(latestSynchronizationTime) && (meeting.type == 2 || meeting.type == 8) ) {
                 meetingids.add(meeting.id);
                 return true;
             }
