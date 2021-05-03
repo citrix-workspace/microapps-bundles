@@ -3,11 +3,12 @@
     "appVersion" : {
       "id" : "28351713-e85a-4e49-9c92-5f22fa7eb54e",
       "serviceId" : 2111,
-      "version" : 138,
+      "version" : 139,
       "parameters" : {
         "imageUrl" : "exported/event_change.e37beeb7d36d2e013231ff70896b0227.svg",
         "description" : "6cee5cba-262a-4805-aadc-a8aa4d7c20d8"
       },
+      "title" : "d55ffd14-d405-4b5d-8eb4-297c709138b7",
       "pages" : [ {
         "id" : "7a76cbf1-86e2-4b59-93fd-f511b07a6267",
         "appId" : "28351713-e85a-4e49-9c92-5f22fa7eb54e",
@@ -137,12 +138,25 @@
               "sqlorder" : {
                 "id" : "83608e3c-4b9b-49f5-9428-a0cb69162081",
                 "constraints" : {
-                  "type" : "TERM",
-                  "constraint" : {
-                    "tableId" : 16333,
-                    "columnId" : 220092,
-                    "order" : "DESC",
-                    "ignoredWhenValueIsNull" : false
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 16333,
+                      "columnId" : 220090,
+                      "order" : "DESC",
+                      "ignoredWhenValueIsNull" : false
+                    }
+                  },
+                  "operator" : "AND",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 16333,
+                      "columnId" : 220092,
+                      "order" : "DESC",
+                      "ignoredWhenValueIsNull" : false
+                    }
                   }
                 },
                 "autojoins" : false
@@ -157,10 +171,10 @@
           "id" : "e2a0cf21-9430-46e8-80b1-91543e4f5b4a",
           "defaultvalue" : null,
           "displayorder" : 2,
-          "componentTableId" : 15398,
+          "componentTableId" : 16333,
           "defaultLimit" : 20,
-          "tableid" : 15398,
-          "pageId" : "f48888d8-08f0-42b3-a649-3b3e47b79b5c"
+          "tableid" : 16333,
+          "pageId" : "7a76cbf1-86e2-4b59-93fd-f511b07a6267"
         }, {
           "type" : "STATIC_TEXT",
           "appId" : "28351713-e85a-4e49-9c92-5f22fa7eb54e",
@@ -212,9 +226,8 @@
         "pagetype" : "Detail"
       } ],
       "startPageId" : "7a76cbf1-86e2-4b59-93fd-f511b07a6267",
-      "title" : "d55ffd14-d405-4b5d-8eb4-297c709138b7",
-      "actionApp" : true,
-      "trackingUuid" : "14ca84d4-40da-493f-a3af-199d96e65a2d"
+      "trackingUuid" : "14ca84d4-40da-493f-a3af-199d96e65a2d",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -229,6 +242,7 @@
         "imageUrl" : "exported/event_start.e2f92205cac12c96a1a9b3afdae6124c.svg",
         "description" : "f6d5788f-69a5-4b3b-bcbc-321617566ff0"
       },
+      "title" : "37c25703-5ff1-443d-aa98-a875be824a48",
       "pages" : [ {
         "id" : "1412ece6-fdbe-4e83-8938-671996c98896",
         "appId" : "29afc8eb-36a8-4570-911b-abbaa164dd6e",
@@ -1816,9 +1830,8 @@
         "pagetype" : "Detail"
       } ],
       "startPageId" : "1412ece6-fdbe-4e83-8938-671996c98896",
-      "title" : "37c25703-5ff1-443d-aa98-a875be824a48",
-      "actionApp" : true,
-      "trackingUuid" : "33d93b7d-9586-4778-8c8c-42cae83d6139"
+      "trackingUuid" : "33d93b7d-9586-4778-8c8c-42cae83d6139",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -1833,6 +1846,7 @@
         "imageUrl" : "exported/account_update.72cef94412b706ce004118ef22da641c.svg",
         "description" : "8404ea03-9bb2-425c-9e9f-bc490ba752ac"
       },
+      "title" : "78bb1ae7-6aa5-43aa-8777-d5b51f128197",
       "pages" : [ {
         "id" : "ac5cc713-eb7e-4dc1-972e-c69cd67716ee",
         "appId" : "42b7c157-2dbb-454f-81d6-356fe13ca794",
@@ -2749,9 +2763,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "78bb1ae7-6aa5-43aa-8777-d5b51f128197",
-      "actionApp" : false,
-      "trackingUuid" : "4dfddbf0-0d11-4a5c-8199-c91e03bb0322"
+      "trackingUuid" : "4dfddbf0-0d11-4a5c-8199-c91e03bb0322",
+      "actionApp" : false
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -2766,6 +2779,7 @@
         "imageUrl" : "exported/contact_update.963f106129547fa0f978f9a4a437991f.svg",
         "description" : "df6c7c47-4d55-4eba-90b0-c237c3d7482e"
       },
+      "title" : "be57244b-8bde-4a21-ad2a-4a87d01e01f9",
       "pages" : [ {
         "id" : "6874fa1d-33a1-4702-9f81-464286d4c7b8",
         "appId" : "526cdbd5-b394-49d2-bf69-1b7d3b7bfd57",
@@ -3795,9 +3809,8 @@
         "pagetype" : "Detail"
       } ],
       "startPageId" : "6874fa1d-33a1-4702-9f81-464286d4c7b8",
-      "title" : "be57244b-8bde-4a21-ad2a-4a87d01e01f9",
-      "actionApp" : true,
-      "trackingUuid" : "0e79aac0-e9a7-4529-952b-30599fbf4064"
+      "trackingUuid" : "0e79aac0-e9a7-4529-952b-30599fbf4064",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -3812,6 +3825,7 @@
         "imageUrl" : "exported/event_update.2a362f29b069bf2550f527ceebf6e1a7.svg",
         "description" : "5677d991-bfaa-434c-aa59-150eaa03e316"
       },
+      "title" : "9e4b83b0-a268-4962-aa17-335c0d18e1a9",
       "pages" : [ {
         "id" : "cd42d775-6cd1-4af8-bf27-1d03f705fba8",
         "appId" : "76c0dfb9-12a2-478b-82fb-e7459dfc7846",
@@ -4873,9 +4887,8 @@
         "pagetype" : "Detail"
       } ],
       "startPageId" : "cd42d775-6cd1-4af8-bf27-1d03f705fba8",
-      "title" : "9e4b83b0-a268-4962-aa17-335c0d18e1a9",
-      "actionApp" : true,
-      "trackingUuid" : "5df6057e-c32c-42bc-9987-fd154ce3f0fa"
+      "trackingUuid" : "5df6057e-c32c-42bc-9987-fd154ce3f0fa",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -4890,6 +4903,7 @@
         "imageUrl" : "exported/account_update.72cef94412b706ce004118ef22da641c.svg",
         "description" : "ef2d7667-2911-48ed-8872-afb01faf78b8"
       },
+      "title" : "73525554-a380-4b53-bf04-2cbb304118a9",
       "pages" : [ {
         "id" : "3b6541c8-272a-496f-9e0d-559057195272",
         "appId" : "b02cc8d2-b05b-4a10-8510-cc6986e705bc",
@@ -6050,9 +6064,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "title" : "73525554-a380-4b53-bf04-2cbb304118a9",
-      "actionApp" : false,
-      "trackingUuid" : "d17f99ae-a1ec-46f2-8a6e-ba9e997be274"
+      "trackingUuid" : "d17f99ae-a1ec-46f2-8a6e-ba9e997be274",
+      "actionApp" : false
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -6062,7 +6075,7 @@
   "services" : [ {
     "id" : 2111,
     "uuid" : "4c06cb5b-9b13-4419-b0eb-130a09ba3854",
-    "version" : 108,
+    "version" : 138,
     "title" : "Kronos Workforce Central",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -6089,7 +6102,7 @@
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
         "useTimeRange" : false,
-        "schedule" : "FIFTEEN_MINUTES"
+        "schedule" : "HOURLY"
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
@@ -6677,12 +6690,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 345,
-            "endLine" : 358
+            "startLine" : 339,
+            "endLine" : 351
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 336,
-            "endLine" : 344
+            "startLine" : 329,
+            "endLine" : 338
           }
         } ],
         "actions" : [ {
@@ -6698,8 +6711,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 632,
-            "endLine" : 668
+            "startLine" : 625,
+            "endLine" : 661
           }
         }, {
           "name" : "submitTimeOff",
@@ -6738,8 +6751,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 671,
-            "endLine" : 681
+            "startLine" : 664,
+            "endLine" : 674
           }
         }, {
           "name" : "approveTimeOff",
@@ -6762,8 +6775,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 813,
-            "endLine" : 849
+            "startLine" : 805,
+            "endLine" : 840
           }
         }, {
           "name" : "denyTimeOff",
@@ -6786,8 +6799,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 774,
-            "endLine" : 810
+            "startLine" : 767,
+            "endLine" : 802
           }
         }, {
           "name" : "recordtimestamp",
@@ -6806,8 +6819,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 853,
-            "endLine" : 871
+            "startLine" : 844,
+            "endLine" : 862
           }
         }, {
           "name" : "approveTimeLog",
@@ -6830,8 +6843,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 874,
-            "endLine" : 910
+            "startLine" : 865,
+            "endLine" : 900
           }
         }, {
           "name" : "sentBackTimeLog",
@@ -6854,8 +6867,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 912,
-            "endLine" : 948
+            "startLine" : 902,
+            "endLine" : 937
           }
         } ],
         "webhookListeners" : [ ],
@@ -6885,7 +6898,7 @@
     "context" : {
       "synchronizationContexts" : {
         "timesheets" : {
-          "people" : "[{\"fullName\":\"lacy, zane\",\"personNumber\":\"26\"},{\"fullName\":\"Evans, Edna\",\"personNumber\":\"32\"},{\"fullName\":\"Jones, Beryl\",\"personNumber\":\"217\"},{\"fullName\":\"ADMIN, WSI\",\"personNumber\":\"1\"},{\"fullName\":\"Lester, Rick\",\"personNumber\":\"216\"},{\"fullName\":\"Kamensky, Annie\",\"personNumber\":\"110\"},{\"fullName\":\"rayne, elisa\",\"personNumber\":\"2\"},{\"fullName\":\"Johnson, Emily\",\"personNumber\":\"44\"},{\"fullName\":\"Kilian, Jen\",\"personNumber\":\"38\"},{\"fullName\":\"Jones, Douglas\",\"personNumber\":\"7\"},{\"fullName\":\"Metzler, Rita\",\"personNumber\":\"8\"},{\"fullName\":\"Torres, Katherine\",\"personNumber\":\"35\"},{\"fullName\":\"Oertel, Barbara\",\"personNumber\":\"43\"},{\"fullName\":\"Moylan, Mary\",\"personNumber\":\"103\"},{\"fullName\":\"Hoyle, Liam\",\"personNumber\":\"210\"},{\"fullName\":\"Krawetz, Kyle\",\"personNumber\":\"208\"},{\"fullName\":\"Jacobs, Joseph\",\"personNumber\":\"6\"},{\"fullName\":\"Billings, Thomas\",\"personNumber\":\"3\"},{\"fullName\":\"McNulty, Wendy\",\"personNumber\":\"105\"},{\"fullName\":\"Smith, John D\",\"personNumber\":\"15\"},{\"fullName\":\"Radue, Brian\",\"personNumber\":\"9\"},{\"fullName\":\"Cotton, Amanda\",\"personNumber\":\"206\"},{\"fullName\":\"Exempt, Melvin\",\"personNumber\":\"13\"},{\"fullName\":\"Smith, Jack C\",\"personNumber\":\"14\"},{\"fullName\":\"Pieciul, Ross\",\"personNumber\":\"42\"},{\"fullName\":\"O'Donnell, Robert\",\"personNumber\":\"211\"},{\"fullName\":\"Alcaino, Clark\",\"personNumber\":\"202\"},{\"fullName\":\"Campos, Chloe\",\"personNumber\":\"107\"},{\"fullName\":\"Moore, Ann\",\"personNumber\":\"34\"},{\"fullName\":\"Disano, Tony\",\"personNumber\":\"209\"},{\"fullName\":\"St. Pierre, Christine\",\"personNumber\":\"207\"},{\"fullName\":\"Lussier, Rob\",\"personNumber\":\"215\"},{\"fullName\":\"George, Pat\",\"personNumber\":\"37\"},{\"fullName\":\"Tedder, Owen\",\"personNumber\":\"214\"},{\"fullName\":\"Super, Pat\",\"personNumber\":\"45\"},{\"fullName\":\"Gormley, Don\",\"personNumber\":\"27\"},{\"fullName\":\"Sherman, Joni\",\"personNumber\":\"4\"},{\"fullName\":\"Maynard, Doris\",\"personNumber\":\"28\"},{\"fullName\":\"Union, Test 80 S-S\",\"personNumber\":\"12\"},{\"fullName\":\"Fallon, Jane\",\"personNumber\":\"5\"},{\"fullName\":\"Snow, Fred\",\"personNumber\":\"10\"},{\"fullName\":\"Baker, Ginger\",\"personNumber\":\"29\"},{\"fullName\":\"Geldres, Elise\",\"personNumber\":\"39\"},{\"fullName\":\"Sullivan, Gary\",\"personNumber\":\"36\"},{\"fullName\":\"Johnson, Jean\",\"personNumber\":\"33\"},{\"fullName\":\"Nelson, Elizabeth\",\"personNumber\":\"113\"},{\"fullName\":\"Davis, Rodney\",\"personNumber\":\"46\"},{\"fullName\":\"Stock, Donna\",\"personNumber\":\"11\"},{\"fullName\":\"Moran, Virginia\",\"personNumber\":\"102\"},{\"fullName\":\"Shephard, Rita\",\"personNumber\":\"119\"},{\"fullName\":\"Stein, Elliot\",\"personNumber\":\"108\"},{\"fullName\":\"Tardiff, Gwen\",\"personNumber\":\"111\"},{\"fullName\":\"Vincent, Joanne\",\"personNumber\":\"118\"},{\"fullName\":\"Leclaire, Jackie\",\"personNumber\":\"120\"},{\"fullName\":\"Champine, Tim\",\"personNumber\":\"47\"},{\"fullName\":\"Santos, Diana\",\"personNumber\":\"116\"},{\"fullName\":\"Hernandez, Joseph T\",\"personNumber\":\"124\"},{\"fullName\":\"Capparelli, Roger\",\"personNumber\":\"205\"},{\"fullName\":\"McKenna, Todd\",\"personNumber\":\"41\"},{\"fullName\":\"Regan, Elinor\",\"personNumber\":\"112\"},{\"fullName\":\"Anderson, James\",\"personNumber\":\"30\"},{\"fullName\":\"Gavin, Martha\",\"personNumber\":\"114\"},{\"fullName\":\"Arick, Michael\",\"personNumber\":\"48\"},{\"fullName\":\"Clark, Freddie\",\"personNumber\":\"201\"},{\"fullName\":\"Brooks, Bob\",\"personNumber\":\"31\"},{\"fullName\":\"Richie, Betty\",\"personNumber\":\"25\"},{\"fullName\":\"Carpenter, Jill\",\"personNumber\":\"212\"},{\"fullName\":\"Jackson, Joan\",\"personNumber\":\"109\"},{\"fullName\":\"Bush, Diane L\",\"personNumber\":\"303\"},{\"fullName\":\"Adams, Regina A\",\"personNumber\":\"101\"},{\"fullName\":\"Doe, Jane\",\"personNumber\":\"304\"},{\"fullName\":\"Wilson, Jon\",\"personNumber\":\"9999\"},{\"fullName\":\"Smith, Kathy\",\"personNumber\":\"9998\"},{\"fullName\":\"Cage, Stu\",\"personNumber\":\"9997\"},{\"fullName\":\"Mattiace, Len Q\",\"personNumber\":\"305\"},{\"fullName\":\"Hughs, Thomas\",\"personNumber\":\"306\"},{\"fullName\":\"V, Adele\",\"personNumber\":\"777\"},{\"fullName\":\"Valdez, Aaron\",\"personNumber\":\"999003\"},{\"fullName\":\"Smith, John\",\"personNumber\":\"999004\"},{\"fullName\":\"Dog, Deputiy\",\"personNumber\":\"999\"},{\"fullName\":\"Johnston, Al A\",\"personNumber\":\"21578\"},{\"fullName\":\"Wesson, Smith\",\"personNumber\":\"234656\"},{\"fullName\":\"Madder, Sarah\",\"personNumber\":\"565656565\"},{\"fullName\":\"Elliott, Sam\",\"personNumber\":\"21\"},{\"fullName\":\"Archer, Melanie\",\"personNumber\":\"23\"},{\"fullName\":\"Donaldson, Roger\",\"personNumber\":\"24\"},{\"fullName\":\"Union, Test 80\",\"personNumber\":\"123456\"},{\"fullName\":\"Less, Hope 1\",\"personNumber\":\"999999\"},{\"fullName\":\"Doger, Roger 2\",\"personNumber\":\"9999999\"}]"
+          "people" : "[\"26\",\"32\",\"217\",\"1\",\"216\",\"110\",\"2\",\"44\",\"38\",\"7\",\"8\",\"35\",\"43\",\"103\",\"210\",\"208\",\"6\",\"3\",\"105\",\"15\",\"9\",\"206\",\"13\",\"14\",\"42\",\"211\",\"202\",\"107\",\"34\",\"209\",\"207\",\"215\",\"37\",\"214\",\"45\",\"27\",\"4\",\"28\",\"12\",\"5\",\"10\",\"29\",\"39\",\"36\",\"33\",\"113\",\"46\",\"11\",\"102\",\"119\",\"108\",\"111\",\"118\",\"120\",\"47\",\"116\",\"124\",\"205\",\"41\",\"112\",\"30\",\"114\",\"48\",\"201\",\"31\",\"25\",\"212\",\"109\",\"303\",\"101\",\"304\",\"9999\",\"9998\",\"9997\",\"305\",\"306\",\"777\",\"999003\",\"999004\",\"999\",\"21578\",\"234656\",\"565656565\",\"21\",\"23\",\"24\",\"123456\",\"999999\",\"9999999\"]"
         }
       }
     },
@@ -8944,10 +8957,10 @@
   "modelConfiguration" : {
     "appIds" : [ "29afc8eb-36a8-4570-911b-abbaa164dd6e", "28351713-e85a-4e49-9c92-5f22fa7eb54e", "76c0dfb9-12a2-478b-82fb-e7459dfc7846", "526cdbd5-b394-49d2-bf69-1b7d3b7bfd57", "b02cc8d2-b05b-4a10-8510-cc6986e705bc", "42b7c157-2dbb-454f-81d6-356fe13ca794" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "",
+    "bundleDescription" : "Wherever you are, whenever you need to, you can access your organization?s system through your intranet or mobile device. With Citrix Kronos Workforce Central, managers can easily see and respond to potential workforce management issues. Employees can perform time management tasks and submit requests. Everyone can instantly engage, take action, and move on to what?s next.",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "287C96B8A2FE384C9312EBF6AFD66C96",
-  "appliedSappUpgrades" : [ "microapp-12936", "microapp-6293", "microapp-8003", "microapp-11349", "microapp-7561", "microapp-6617", "microapp-6262", "microapp-10860", "microapp-1980", "microapp-8576", "microapp-13344", "microapp-3838", "microapp-11136", "microapp-13233", "microapp-5227", "microapp-12525", "microapp-10858", "microapp-6790", "microapp-11836", "microapp-6593", "microapp-10549", "microapp-12505", "microapp-4020", "microapp-8892", "microapp-10420", "microapp-7290", "microapp-13808", "microapp-3547", "microapp-10856", "microapp-3580", "microapp-4666", "microapp-4518", "microapp-8921", "microapp-10876", "microapp-9701", "microapp-7984", "microapp-6264", "microapp-8511", "microapp-7888", "microapp-7961", "microapp-11340", "microapp-9702", "microapp-3548", "microapp-13471", "microapp-5025", "microapp-10421", "microapp-9597", "microapp-12427", "microapp-8950", "microapp-2450", "microapp-6853" ],
+  "appliedSappUpgrades" : [ "microapp-6853", "microapp-3580", "microapp-3548", "microapp-13233", "microapp-9597", "microapp-1980", "microapp-12936", "microapp-3838", "microapp-6264", "microapp-8921", "microapp-7888", "microapp-6790", "microapp-9701", "microapp-10549", "microapp-8511", "microapp-7561", "microapp-6262", "microapp-4518", "microapp-10860", "microapp-10420", "microapp-8892", "microapp-6617", "microapp-11349", "microapp-5025", "microapp-10876", "microapp-4020", "microapp-5227", "microapp-8003", "microapp-6593", "microapp-10856", "microapp-6293", "microapp-7290", "microapp-13808", "microapp-10858", "microapp-8950", "microapp-11136", "microapp-7961", "microapp-12427", "microapp-2450", "microapp-3547", "microapp-9702", "microapp-12505", "microapp-7984", "microapp-12525", "microapp-10421", "microapp-13344", "microapp-13471", "microapp-11836", "microapp-11340", "microapp-4666", "microapp-8576" ],
   "buildVersion" : "1.80.5.99bc38ad799968b68c66c294883deda2e613aed4"
 }
