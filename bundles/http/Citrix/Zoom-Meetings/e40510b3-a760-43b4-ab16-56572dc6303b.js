@@ -47,7 +47,9 @@ async function syncMeetings(dataStore, client, users) {
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
-        let meetingdata = data.map(meeting => {
+        let meetingdata = data.filter(meeting =>{
+            return meeting.type == 2 || meeting.type == 8 
+        }).map(meeting => {
             if(!meetingids.has(meeting.id)){
                 meetingids.add(meeting.id)
             }
@@ -80,7 +82,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
         const response = await client.fetch(`meetings/${meetingid}`)
         const meeting = await response.json();
         if (!(response.ok)) {
-            throw new Error(json);
+            throw new Error(meeting);
         }
         
         //Setting the meetingsmap with meetingid as key and email as value to be used in Meeting Invitations API call
@@ -105,8 +107,6 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
             "timezone": meeting.timezone,
             "topic": meeting.topic,
             "type": meeting.type,
-            "recurrence_weekly_days": null,
-            "recurrence_monthly_day": null,
             "visibility": true
         }
 
@@ -157,9 +157,6 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
             dataStore.save('meeting_details_recur_2', dialIn);
             dataStore.save('meeting_details_recur_3', dialInNumbers);
         }
-        else{
-            console.log(`Found a different meeting other than onetime and reucrring meeting id: ${json.id} type: ${json.type}`);
-        }
     }
     return meetingsMap;
 }
@@ -171,7 +168,7 @@ async function syncMeetingInvitations(dataStore, client,meetingdetail) {
         const response = await client.fetch(`meetings/${meetingId}/invitation`);
         const meeting = await response.json();
         if (!(response.ok)) {
-            throw new Error(json);
+            throw new Error(meeting);
         }
         dataStore.save("meeting_invitations", {
             "id": meetingId,
@@ -281,7 +278,7 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
         let meetingsData = data.filter(meeting => {
-            if (moment(meeting.created_at).isAfter(latestSynchronizationTime)) {
+            if ((meeting.type == 2 || meeting.type == 8) && moment(meeting.created_at).isAfter(latestSynchronizationTime)) {
                 meetingids.add(meeting.id);
                 return true;
             }
