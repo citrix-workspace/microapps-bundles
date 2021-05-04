@@ -47,64 +47,61 @@ integration.define({
     }
 });
 
+
 async function updateComments({dataStore, client, latestSynchronizationTime}) {
-    let incidentComments = [];
-    let latestSync = new Date(latestSynchronizationTime);
-    let updatedAt = latestSynchronizationTime ? '' : `?q=updated_at>=${moment(latestSync).format('YYYY-MM-DD')}`;
+    const incidentComments = [];
+    const latestSyncDate = new Date(latestSynchronizationTime);
+    const latestSync = moment(latestSyncDate).format('YYYY-MM-DD');
+    const updatedAt = latestSynchronizationTime ? `?q=updated_at>=${latestSync}` : '';
+    const lastUpdateDate = latestSynchronizationTime ? `?q=lastUpdateDate>=${latestSync}` : '';
 
-    let queryFields = `?per_page=${LIMIT}`;
+    const incidentsResp = await client.fetch(`/incidents?per_page=${LIMIT}${lastUpdateDate}`);
 
-    if (!latestSynchronizationTime) {
-        queryFields = `${queryFields}&q=lastUpdateDate>=${moment(latestSync).format('YYYY-MM-DD')}`;
+    if (!incidentsResp.ok) {
+        throw new Error(`Could not retrieve incidents count (${incidentsResp.status}: ${incidentsResp.statusText})`);
     }
 
-    const incidentsResp = await client.fetch(`/incidents${queryFields}`);
-
-    const pages = incidentsResp.ok && incidentsResp.headers["map"]["x-total-pages"] ? incidentsResp.headers["map"]["x-total-pages"] : 1000;
+    const pagesCount = incidentsResp.headers['map']['x-total-pages'] ?? 1000;
 
     //Loop through all pages
-    for (let j = 0; j < pages; j++) {
+    for (let j = 0; j < pagesCount; j++) {
+        const incidentsPaginationResp = await client.fetch(`/incidents?per_page=${LIMIT}${lastUpdateDate}&page=${j}`);
 
-        const incidentsPaginationResp = await client.fetch(`/incidents${queryFields}&page=${j}`);
-
-        if (incidentsPaginationResp.ok) {
-
-            var incidents = await incidentsPaginationResp.json();
-
-            if (incidents.length === 0) {
-                break;
-            }
-
-            //Loop through each incident
-            for (let i = 0; i < incidents.length; i++) {
-
-                let commentsResponse = await client.fetch(`/incidents/${incidents[i].id}/comments${updatedAt}`);
-
-                if (commentsResponse.ok) {
-                    let commentsJson = await commentsResponse.json();
-
-                    if (commentsJson) {
-                        commentsJson.forEach(comment => {
-                            incidentComments.push({
-                                id: comment.id,
-                                body: comment.body.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ''),
-                                created_at: new Date(comment.created_at),
-                                commenter_id: comment.commenter_id,
-                                user_name: comment.user.name,
-                                user_email: comment.user.email
-                            })
-                        });
-                    }
-                } else {
-                    throw new Error(`Could not retrieve comments (${commentsResponse.status}: ${commentsResponse.statusText})`);
-                }
-            }
-        } else {
+        if (!incidentsPaginationResp.ok) {
             throw new Error(`Could not retrieve incidents (${incidentsPaginationResp.status}: ${incidentsPaginationResp.statusText})`);
+        }
+
+        const incidents = await incidentsPaginationResp.json();
+        if (incidents.length === 0) {
+            break;
+        }
+
+        //Loop through each incident
+        for (const incident of incidents) {
+            const commentsResponse = await client.fetch(`/incidents/${incident.id}/comments${updatedAt}`);
+
+            if (!commentsResponse.ok) {
+                throw new Error(`Could not retrieve comments (${commentsResponse.status}: ${commentsResponse.statusText})`);
+            }
+
+            let commentsJson = await commentsResponse.json();
+
+            if (commentsJson) {
+                commentsJson.forEach(comment => {
+                    incidentComments.push({
+                        id: comment.id,
+                        body: comment.body.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ''),
+                        created_at: new Date(comment.created_at),
+                        commenter_id: comment.commenter_id,
+                        user_name: comment.user.name,
+                        user_email: comment.user.email,
+                    });
+                });
+            }
         }
     }
 
     if (incidentComments.length > 0) {
-        dataStore.save("updated_comments", incidentComments);
+        dataStore.save('updated_comments', incidentComments);
     }
 }
