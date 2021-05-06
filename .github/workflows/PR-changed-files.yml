@@ -1,6 +1,6 @@
 name: PR-changed-files-check
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - master
 
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout source repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Check Changed Files
         id: changed
         uses: citrix-workspace/g11n-PR-changed-files@master
