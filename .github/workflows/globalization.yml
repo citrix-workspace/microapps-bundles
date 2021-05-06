@@ -1,9 +1,6 @@
 name: Globalization
 on:
-  pull_request:
-    branches:
-      - master
-  push:
+  pull_request_target:
     branches:
       - master
 jobs:
@@ -12,6 +9,8 @@ jobs:
     steps:
       - name: Checkout source repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: G11n Radar
         uses: citrix-workspace/g11n-scan@master
         with:
