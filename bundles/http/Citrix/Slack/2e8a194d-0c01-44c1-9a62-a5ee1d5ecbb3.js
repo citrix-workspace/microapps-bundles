@@ -1,11 +1,4 @@
-const FAVORITE_CHANNEL = 'C019TN87BD0';
-const OLDEST_TIMESTAMP = '1602316800';
-const ENDPOINT_FAVORITES_CHANNELS = "/conversations.history?channel=" + FAVORITE_CHANNEL
-const ENDPOINT_FAVORITE_CHANNEL_MESSAGES = "/conversations.history?channel=" + FAVORITE_CHANNEL + "&oldest=" + OLDEST_TIMESTAMP + "&limit=200"
-const ENDPOINT_USER_INFO = "/users.info?user="
-const ENDPOINT_CHANNEL = '/conversations.list?types=public_channel,private_channel'
-const ENDPOINT_CHANNEL_MEMBERS = '/conversations.members?channel='
-
+const FAVORITE_CHANNEL_ID = 'C019TN87BD0';
 
 integration.define({
     "synchronizations": [
@@ -28,7 +21,7 @@ integration.define({
                     },
                     {
                         "name": "datetime",
-                        "type": "DATETIME",
+                        "type": "DATETIME"
                     },
                     {
                         "name": "text",
@@ -79,42 +72,33 @@ integration.define({
     }
 });
 
-async function changeIDbyRealName(dataStore, client, isIncremental, latestSynchronizationTime=null) {
-    let respFavChannels = await client.fetch(ENDPOINT_FAVORITES_CHANNELS)
+async function changeIDbyRealName(dataStore, client, isIncremental, latestSynchronizationTime = null) {
+    let respFavChannels = await client.fetch(`/conversations.history?channel=${FAVORITE_CHANNEL_ID}` )
     let parsedChannelMessages = [];
     let parsedAllFavoriteChannels = [];
     let parsedAllChannels = [];
-    let urlEndpoint = "";
 
     if (respFavChannels.ok) {
 
         let favoriteChannels = await respFavChannels.json()
-        let prettyFavoriteChannels = JSON.stringify(favoriteChannels.messages, null, '\t')
-        let parsedFavoriteChannels = JSON.parse(prettyFavoriteChannels)
+        let favoriteChannelMessages = favoriteChannels.messages;
         let indexChannels = 0
         let usedChannels = []
         let nextChannel = false
-        let strLastSyncDateTime = ""
 
         do {
-            urlEndpoint = ENDPOINT_FAVORITE_CHANNEL_MESSAGES
+            let sevenDaysBeforeSync = new Date();
+            sevenDaysBeforeSync.setDate(sevenDaysBeforeSync.getDate() - 7);
+            let timestamp = `${sevenDaysBeforeSync.getTime() / 1000}`.slice(0, 10);
 
             if (isIncremental) {
                 if (latestSynchronizationTime) {
-                    strLastSyncDateTime = latestSynchronizationTime
-                    let lastSyncDateTime = new Date(strLastSyncDateTime)
-                    urlEndpoint = urlEndpoint.replace(OLDEST_TIMESTAMP, `${lastSyncDateTime.getTime() / 1000}`.slice(0, 10))
-                } else {
-                    let sevenDaysBeforeSync = new Date();
-                    sevenDaysBeforeSync.setDate(sevenDaysBeforeSync.getDate() - 7);
-                    urlEndpoint = urlEndpoint.replace(OLDEST_TIMESTAMP, `${sevenDaysBeforeSync.getTime() / 1000}`.slice(0, 10))
+                    const lastSyncDateTime = new Date(latestSynchronizationTime)
+                    timestamp = `${lastSyncDateTime.getTime() / 1000}`.slice(0, 10);
                 }
             }
 
-            usedChannels.forEach(channel => {
-                if (channel === parsedFavoriteChannels[indexChannels].text)
-                    nextChannel = true
-            });
+            nextChannel = usedChannels.includes(favoriteChannelMessages[indexChannels].text)
 
             if (nextChannel) {
                 nextChannel = false
@@ -122,48 +106,52 @@ async function changeIDbyRealName(dataStore, client, isIncremental, latestSynchr
                 continue
             }
 
-            urlEndpoint = urlEndpoint.replace(FAVORITE_CHANNEL, parsedFavoriteChannels[indexChannels].text)
-            let response = await client.fetch(urlEndpoint)
+            const channel = favoriteChannelMessages[indexChannels].text
 
-            usedChannels.push(parsedFavoriteChannels[indexChannels].text)
-            parsedAllFavoriteChannels.push(parsedFavoriteChannels[indexChannels])
+            const response = await client.fetch(
+                `/conversations.history?channel=${channel}&oldest=${timestamp}&limit=200`
+            )
+
+            usedChannels.push(favoriteChannelMessages[indexChannels].text)
+            parsedAllFavoriteChannels.push(favoriteChannelMessages[indexChannels])
 
             if (response.ok) {
-                let channelMessages = await response.json()
-                if (channelMessages.messages === undefined) {
+
+                let channelMessagesResponse = await response.json()
+                let channelMessages = channelMessagesResponse.messages
+
+                if (channelMessages === undefined) {
                     indexChannels++
                     continue
                 }
-                let prettyMessages = JSON.stringify(channelMessages.messages, null, '\t')
-                let parsedMessages = JSON.parse(prettyMessages)
+
                 let indexMessages = 0
 
-                if (parsedMessages[indexMessages] === undefined || parsedMessages === undefined) {
+                if (channelMessages[indexMessages] === undefined) {
                     indexChannels++
                     continue
                 }
 
                 do {
 
-                    let user_id = ""
                     let user_ids = []
                     let indexUser = 0;
-                    let text = parsedMessages[indexMessages].text;
+                    let text = channelMessages[indexMessages].text;
                     let searchText = text;
 
                     do {
 
-                        user_id = searchText.substring(searchText.indexOf('<@') + 2, searchText.indexOf('>'));
+                        const user_id = searchText.substring(searchText.indexOf('<@') + 2, searchText.indexOf('>'));
 
-                        if (searchText.indexOf('<@') >= 0) {
+                        if (user_id) {
                             user_ids.push(user_id)
                         } else {
-                            parsedMessages[indexMessages].text_changed = text
+                            channelMessages[indexMessages].text_changed = text
                         }
 
                         searchText = searchText.substring(searchText.indexOf('>') + 1)
 
-                        let resp = await client.fetch(ENDPOINT_USER_INFO + user_ids[indexUser])
+                        let resp = await client.fetch(`/users.info?user=${user_ids[indexUser]}`)
 
                         if (resp.ok) {
                             let userData = await resp.json()
@@ -172,94 +160,86 @@ async function changeIDbyRealName(dataStore, client, isIncremental, latestSynchr
                                 continue
                             }
 
-                            parsedMessages[indexMessages].text_changed = text.replace('<@' + user_ids[indexUser] + '>', userData.user.real_name)
+                            channelMessages[indexMessages].text_changed = text.replace('<@' + user_ids[indexUser] + '>', userData.user.real_name)
 
                         } else {
-                            throw new Error(`Could not retrieve user data (${response.status}: ${response.statusText})`);
+                            throw new Error(`Could not retrieve user data (${resp.status}: ${resp.statusText})`);
                         }
 
                         indexUser++
                     } while (searchText.indexOf('>') >= 0)
-
-                    parsedMessages[indexMessages].datetime = new Date(parsedMessages[indexMessages].ts * 1000);
-                    parsedChannelMessages.push(parsedMessages[indexMessages])
+                    channelMessages[indexMessages].datetime = new Date(channelMessages[indexMessages].ts * 1000);
+                    parsedChannelMessages.push(channelMessages[indexMessages])
 
                     indexMessages++;
-                } while (parsedMessages[indexMessages] !== undefined)
-
+                } while (channelMessages[indexMessages] !== undefined)
 
             } else {
                 throw new Error(`Could not retrieve favorite channel messages (${response.status}: ${response.statusText})`);
             }
 
             indexChannels++;
-        } while (parsedFavoriteChannels[indexChannels] !== undefined)
+        } while (favoriteChannels[indexChannels] !== undefined)
 
-        urlEndpoint = ENDPOINT_CHANNEL;
-
-        let respChannels = await client.fetch(urlEndpoint)
+        const respChannels = await client.fetch('/conversations.list?types=public_channel,private_channel')
 
         if (respChannels.ok) {
-            let allChannels = await respChannels.json()
-            let prettyChannels = JSON.stringify(allChannels.channels, null, '\t')
-            let parsedChannels = JSON.parse(prettyChannels)
+            let allChannelsResponse = await respChannels.json()
+            let allChannels = allChannelsResponse.channels
             let indexChannels = 0;
 
             do {
-                let channel = parsedChannels[indexChannels]
-                urlEndpoint = ENDPOINT_CHANNEL_MEMBERS + channel.id
-                let respChannelsMembers = await client.fetch(urlEndpoint)
+                let channel = allChannels[indexChannels]
+                let respChannelsMembers = await client.fetch(`/conversations.members?channel=${channel.id}`)
 
                 if (respChannelsMembers.ok) {
                     let allChannelsMember = await respChannelsMembers.json()
-                    if (allChannelsMember.members === undefined) {
+                    let channelMembers = allChannelsMember.members
+                    if (channelMembers === undefined) {
                         indexChannels++
                         continue
                     }
-                    let prettyChannelsMembers = JSON.stringify(allChannelsMember.members, null, '\t')
-                    let parsedChannelsMembers = JSON.parse(prettyChannelsMembers)
-                    let insert = true;
                     let indexChannelsMembers = 0;
-                    let channelMember = "";
 
                     do {
 
-                        channelMember = parsedChannelsMembers[indexChannelsMembers]
-                        insert = true;
+                        const channelMember = channelMembers[indexChannelsMembers]
+
                         channel.is_favorite = false
                         channel.user = channelMember
                         channel.ts = null
-                        parsedAllFavoriteChannels.forEach(async (favoriteChannel) => {
+                        parsedAllFavoriteChannels.forEach((favoriteChannel) => {
                             if (channel.id === favoriteChannel.text && channelMember === favoriteChannel.user) {
                                 channel.is_favorite = true
                                 channel.ts = favoriteChannel.ts
                             }
                         });
-                        let id = channel.id
-                        let user = channel.user
-                        let is_favorite = channel.is_favorite
-                        let name = channel.name
-                        let ts = channel.ts
-                        parsedAllChannels.push({id, user, name, ts, is_favorite})
+
+                        parsedAllChannels.push({
+                            id: channel.id,
+                            user: channel.user,
+                            name: channel.name,
+                            ts: channel.ts,
+                            is_favorite: channel.is_favorite
+                        })
 
                         indexChannelsMembers++
-                    } while (parsedChannelsMembers[indexChannelsMembers] !== undefined)
+                    } while (channelMembers[indexChannelsMembers] !== undefined)
 
                 }
-
                 indexChannels++
-            } while (parsedChannels[indexChannels] !== undefined)
+            } while (allChannels[indexChannels] !== undefined)
 
             if (parsedAllChannels) {
                 dataStore.save("favorite_channels_members", parsedAllChannels)
             }
 
         } else {
-            throw new Error(`Could not retrieve channels (${response.status}: ${response.statusText})`);
+            throw new Error(`Could not retrieve channels (${respChannels.status}: ${respChannels.statusText})`);
         }
 
     } else {
-        throw new Error(`Could not retrieve favorite channels (${response.status}: ${response.statusText})`);
+        throw new Error(`Could not retrieve favorite channels (${respFavChannels.status}: ${respFavChannels.statusText})`);
     }
 
     if (parsedChannelMessages) {
@@ -268,9 +248,9 @@ async function changeIDbyRealName(dataStore, client, isIncremental, latestSynchr
 }
 
 async function fullSync({dataStore, client}) {
-    await changeIDbyRealName(dataStore, client, false);
+    return changeIDbyRealName(dataStore, client, false);
 }
 
 async function incrementalSync({dataStore, client, latestSynchronizationTime}) {
-    await changeIDbyRealName(dataStore, client, false, latestSynchronizationTime);
+    return changeIDbyRealName(dataStore, client, true, latestSynchronizationTime);
 }
