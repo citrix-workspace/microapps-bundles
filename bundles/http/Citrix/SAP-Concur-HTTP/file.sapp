@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "0c1114fa-66f3-435e-acb3-7e5db6a484ea",
       "serviceId" : 111,
-      "version" : 637,
+      "version" : 640,
       "parameters" : {
         "imageUrl" : "exported/requisition.96e9c06d43dbd8914e8206e9fc2fc880.svg",
         "description" : "1dd2f183-d30b-427f-bb65-3ec9d00c494b"
@@ -11,6 +11,7 @@
       "actionApp" : true,
       "startPageId" : "7e87bfef-1cd1-4e3c-8bfb-0b774c971456",
       "title" : "40478f4b-725d-485a-95f5-73a03788de91",
+      "trackingUuid" : "be3df8a2-77a4-4b9a-bad7-72e968518b94",
       "pages" : [ {
         "id" : "7e87bfef-1cd1-4e3c-8bfb-0b774c971456",
         "appId" : "0c1114fa-66f3-435e-acb3-7e5db6a484ea",
@@ -45,8 +46,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 2283,
           "defaultLimit" : 20,
+          "componentTableId" : 2283,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "f7d46d4b-528d-4582-9ee4-a24ce87dd909",
@@ -189,8 +190,8 @@
           "defaultvalue" : null,
           "displayorder" : 2,
           "rowAction" : { },
-          "componentTableId" : 1492,
           "defaultLimit" : 20,
+          "componentTableId" : 1492,
           "tableid" : 1492,
           "pageId" : "7d4786cf-b50d-4c27-abe8-51d5daa80c9f"
         } ],
@@ -731,8 +732,8 @@
           "format" : "",
           "foreignKeyId" : 2500,
           "parentComponentId" : null,
-          "componentTableId" : 2283,
           "defaultLimit" : 20,
+          "componentTableId" : 2283,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "b8e68502-d629-4498-82a7-47caf39c9351",
@@ -858,8 +859,8 @@
           "defaultvalue" : null,
           "displayorder" : 7,
           "rowAction" : { },
-          "componentTableId" : 1492,
           "defaultLimit" : 20,
+          "componentTableId" : 1492,
           "tableid" : 1492,
           "pageId" : "9bde2680-0e6d-4ca2-b879-b6796a7f7766"
         }, {
@@ -1083,28 +1084,14 @@
         "query" : {
           "id" : "05b200a3-6ba7-406f-ba6a-ce8d8cb85135",
           "constraints" : {
-            "type" : "EXPRESSION",
-            "left" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2283,
-                "columnId" : 43917,
-                "foreignKeyId" : 2500,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
-            },
-            "operator" : "OR",
-            "right" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2286,
-                "columnId" : 43961,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2283,
+              "columnId" : 43917,
+              "foreignKeyId" : 2500,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
             }
           },
           "autojoins" : false
@@ -1784,7 +1771,8 @@
           "parameters" : {
             "tableId" : 2302,
             "columnUrl" : 44666,
-            "columnName" : 44665
+            "columnName" : 44665,
+            "urlSecurity" : "PUBLIC"
           },
           "id" : "9f471615-22e6-432b-ae69-a0ae544c60b8",
           "defaultvalue" : null,
@@ -1817,6 +1805,21 @@
           "displayorder" : 8,
           "pageId" : "3627da2a-f59e-48a1-972e-cdf1b383bcfe"
         } ],
+        "query" : {
+          "id" : "e014e467-f96f-46f7-8873-3176ddc12038",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2286,
+              "columnId" : 43966,
+              "foreignKeyId" : 2500,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
         "title" : "53c39248-b081-4593-b1aa-99951eb767dc",
         "logicConfiguration" : [ {
           "constraints" : [ {
@@ -1894,8 +1897,7 @@
         "datasourceid" : 111,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "trackingUuid" : "be3df8a2-77a4-4b9a-bad7-72e968518b94"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -1905,7 +1907,7 @@
     "appVersion" : {
       "id" : "0d152056-da4d-49e9-aec5-be5d7a957f92",
       "serviceId" : 111,
-      "version" : 574,
+      "version" : 577,
       "parameters" : {
         "imageUrl" : "exported/report.02ea4bc8050184997073d6d8d865fc94.svg",
         "description" : "a6284e03-fdb3-4095-a8da-296fb7248397"
@@ -1913,6 +1915,7 @@
       "actionApp" : true,
       "startPageId" : "aef09180-cb0f-4aa1-af70-847fa807f757",
       "title" : "a91f562f-75c6-48b4-a272-5f6a9ab34bd6",
+      "trackingUuid" : "293062e6-95c1-4d8d-8a1b-c5c859752cb9",
       "pages" : [ {
         "id" : "aef09180-cb0f-4aa1-af70-847fa807f757",
         "appId" : "0d152056-da4d-49e9-aec5-be5d7a957f92",
@@ -1947,8 +1950,8 @@
           "format" : "",
           "foreignKeyId" : 2500,
           "parentComponentId" : null,
-          "componentTableId" : 2286,
           "defaultLimit" : 20,
+          "componentTableId" : 2286,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "1923adc3-131e-40a1-8eed-6d19ce5423f6",
@@ -2618,8 +2621,8 @@
           "format" : "",
           "foreignKeyId" : 2500,
           "parentComponentId" : null,
-          "componentTableId" : 2283,
           "defaultLimit" : 20,
+          "componentTableId" : 2283,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "31c3a98f-789c-4fd4-9e71-5f7fc77e3bda",
@@ -2970,28 +2973,14 @@
         "query" : {
           "id" : "b35f1e78-290a-40a0-8d58-34c7f16d5d1a",
           "constraints" : {
-            "type" : "EXPRESSION",
-            "left" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2283,
-                "columnId" : 43917,
-                "foreignKeyId" : 2500,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
-            },
-            "operator" : "OR",
-            "right" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2286,
-                "columnId" : 43961,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2283,
+              "columnId" : 43917,
+              "foreignKeyId" : 2500,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
             }
           },
           "autojoins" : false
@@ -3596,7 +3585,8 @@
           "parameters" : {
             "tableId" : 2302,
             "columnUrl" : 44666,
-            "columnName" : 44665
+            "columnName" : 44665,
+            "urlSecurity" : "PUBLIC"
           },
           "id" : "7e956c3e-1e66-4453-b7dd-32ab3d48282b",
           "defaultvalue" : null,
@@ -3651,6 +3641,21 @@
           "displayorder" : 7,
           "pageId" : "502259cd-aaec-4cd3-a77c-8e500a9af60f"
         } ],
+        "query" : {
+          "id" : "086559cf-8c5d-49ee-9d8d-cc7f86d4c870",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2286,
+              "columnId" : 43966,
+              "foreignKeyId" : 2500,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
         "title" : "90ffe5e0-3db1-4d67-8e90-d89b3d0244de",
         "logicConfiguration" : [ {
           "constraints" : [ {
@@ -3728,8 +3733,7 @@
         "datasourceid" : 111,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "trackingUuid" : "293062e6-95c1-4d8d-8a1b-c5c859752cb9"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -3739,7 +3743,7 @@
     "appVersion" : {
       "id" : "42520294-8225-4c39-835f-0fd854cf54fe",
       "serviceId" : 111,
-      "version" : 860,
+      "version" : 863,
       "parameters" : {
         "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
         "description" : "1119613b-a43b-4f64-aaca-7e2c6f720dfb"
@@ -3747,6 +3751,7 @@
       "actionApp" : true,
       "startPageId" : "1c2778f2-b9cc-4975-aa57-94249f04aae1",
       "title" : "d1c1a428-ac0f-4815-8ba9-1b861af0f42f",
+      "trackingUuid" : "57015c23-d2e9-48f9-9221-ae673be082aa",
       "pages" : [ {
         "id" : "ce95a241-4c63-4c23-87cf-4ed0635fd470",
         "appId" : "42520294-8225-4c39-835f-0fd854cf54fe",
@@ -4249,7 +4254,8 @@
           "parameters" : {
             "tableId" : 2302,
             "columnUrl" : 44666,
-            "columnName" : 44665
+            "columnName" : 44665,
+            "urlSecurity" : "PUBLIC"
           },
           "id" : "ab7e865b-700e-4605-9c75-c9f1533b4b5b",
           "defaultvalue" : null,
@@ -4326,6 +4332,21 @@
           "displayorder" : 10,
           "pageId" : "7cf4c8c3-8e2e-4607-8444-979fd34adcd8"
         } ],
+        "query" : {
+          "id" : "ee7d23d2-fc2b-4f7c-bd15-a5305199a110",
+          "constraints" : {
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2286,
+              "columnId" : 43961,
+              "foreignKeyId" : 2500,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
+            }
+          },
+          "autojoins" : false
+        },
         "title" : "37237f42-af0f-4699-b6b3-8feb24ea2cb3",
         "logicConfiguration" : [ {
           "constraints" : [ {
@@ -4417,8 +4438,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 2286,
           "defaultLimit" : 20,
+          "componentTableId" : 2286,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "cd290fcd-f29f-47f5-94f8-478626abd0bc",
@@ -5047,8 +5068,8 @@
           "format" : "",
           "foreignKeyId" : 2500,
           "parentComponentId" : null,
-          "componentTableId" : 2283,
           "defaultLimit" : 20,
+          "componentTableId" : 2283,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "1a14af10-bffe-44fc-8e97-8fde9825b1ab",
@@ -5458,27 +5479,13 @@
         "query" : {
           "id" : "3f18d3f1-f047-4c3b-b41c-f9145f710773",
           "constraints" : {
-            "type" : "EXPRESSION",
-            "left" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2286,
-                "columnId" : 43961,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
-            },
-            "operator" : "OR",
-            "right" : {
-              "type" : "TERM",
-              "constraint" : {
-                "tableId" : 2286,
-                "columnId" : 43966,
-                "valueType" : "USER_EMAIL",
-                "ignoredWhenValueIsNull" : false,
-                "action" : "EQUALS_TO"
-              }
+            "type" : "TERM",
+            "constraint" : {
+              "tableId" : 2286,
+              "columnId" : 43961,
+              "valueType" : "USER_EMAIL",
+              "ignoredWhenValueIsNull" : false,
+              "action" : "EQUALS_TO"
             }
           },
           "autojoins" : false
@@ -5534,8 +5541,7 @@
         "datasourceid" : 111,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "trackingUuid" : "57015c23-d2e9-48f9-9221-ae673be082aa"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -5553,6 +5559,7 @@
       "actionApp" : true,
       "startPageId" : "a69a9676-98f3-4402-8543-3f44099de23a",
       "title" : "87615509-dfdd-483f-964c-94abd081f650",
+      "trackingUuid" : "b811c2d8-c9ec-488b-821d-9f7984e2faf9",
       "pages" : [ {
         "id" : "a69a9676-98f3-4402-8543-3f44099de23a",
         "appId" : "93985b77-2ed4-4082-94ec-a173a94a6a0b",
@@ -5587,36 +5594,12 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 2287,
           "defaultLimit" : 20,
+          "componentTableId" : 2287,
           "parameters" : {
             "noDataText" : "bb54e621-fb8c-461d-b4d5-0ccf74c0ec31",
             "dataSource" : "TABLE",
-            "item" : {
-              "title" : {
-                "dataColumnsMap" : { },
-                "tableid" : 2287,
-                "columnid" : 44009,
-                "type" : "SIMPLE",
-                "stringFormat" : "none"
-              },
-              "image" : {
-                "dataColumnsMap" : { },
-                "type" : "SIMPLE",
-                "stringFormat" : ""
-              },
-              "body" : {
-                "template" : "99efd114-0e13-41a0-8122-cc20743262ed",
-                "dataColumnsMap" : { },
-                "type" : "TEMPLATE",
-                "stringFormat" : ""
-              },
-              "meta" : {
-                "dataColumnsMap" : { },
-                "type" : "SIMPLE",
-                "stringFormat" : ""
-              }
-            },
+            "staticItems" : [ ],
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_PAGE",
@@ -5746,6 +5729,31 @@
               "autojoins" : false
             },
             "show_1_to_n" : "0",
+            "item" : {
+              "title" : {
+                "dataColumnsMap" : { },
+                "tableid" : 2287,
+                "columnid" : 44009,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              },
+              "image" : {
+                "dataColumnsMap" : { },
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "template" : "99efd114-0e13-41a0-8122-cc20743262ed",
+                "dataColumnsMap" : { },
+                "type" : "TEMPLATE",
+                "stringFormat" : ""
+              },
+              "meta" : {
+                "dataColumnsMap" : { },
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              }
+            },
             "hideIfEmpty" : false,
             "layout" : {
               "listType" : "GRID_THUMBNAIL_SIDE",
@@ -5760,7 +5768,6 @@
               "columnCount" : 1,
               "listImageSize" : "SMALL"
             },
-            "staticItems" : [ ],
             "description" : ""
           },
           "id" : "2ab64ba4-9beb-4e09-9094-8b5adc764d86",
@@ -5779,36 +5786,12 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 2287,
           "defaultLimit" : 20,
+          "componentTableId" : 2287,
           "parameters" : {
             "noDataText" : "cd6f8fd3-3d5a-4bdc-a50b-4f7f1d517f4c",
             "dataSource" : "TABLE",
-            "item" : {
-              "title" : {
-                "dataColumnsMap" : { },
-                "tableid" : 2287,
-                "columnid" : 44009,
-                "type" : "SIMPLE",
-                "stringFormat" : "none"
-              },
-              "image" : {
-                "dataColumnsMap" : { },
-                "type" : "SIMPLE",
-                "stringFormat" : ""
-              },
-              "body" : {
-                "template" : "825398d0-9acb-4f38-ad9f-628aabf3f4d3",
-                "dataColumnsMap" : { },
-                "type" : "TEMPLATE",
-                "stringFormat" : ""
-              },
-              "meta" : {
-                "dataColumnsMap" : { },
-                "type" : "SIMPLE",
-                "stringFormat" : ""
-              }
-            },
+            "staticItems" : [ ],
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_PAGE",
@@ -5939,6 +5922,31 @@
               "autojoins" : false
             },
             "show_1_to_n" : "0",
+            "item" : {
+              "title" : {
+                "dataColumnsMap" : { },
+                "tableid" : 2287,
+                "columnid" : 44009,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              },
+              "image" : {
+                "dataColumnsMap" : { },
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "template" : "825398d0-9acb-4f38-ad9f-628aabf3f4d3",
+                "dataColumnsMap" : { },
+                "type" : "TEMPLATE",
+                "stringFormat" : ""
+              },
+              "meta" : {
+                "dataColumnsMap" : { },
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              }
+            },
             "hideIfEmpty" : true,
             "layout" : {
               "listType" : "GRID_THUMBNAIL_SIDE",
@@ -5953,7 +5961,6 @@
               "columnCount" : 1,
               "listImageSize" : "SMALL"
             },
-            "staticItems" : [ ],
             "description" : ""
           },
           "id" : "eac82bc9-4699-45e3-b25f-41fa148a1864",
@@ -6936,32 +6943,11 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 2303,
           "defaultLimit" : 20,
+          "componentTableId" : 2303,
           "parameters" : {
             "dataSource" : "TABLE",
-            "item" : {
-              "title" : {
-                "dataColumnsMap" : { },
-                "tableid" : 2303,
-                "columnid" : 44672,
-                "type" : "SIMPLE",
-                "stringFormat" : "none"
-              },
-              "image" : {
-                "dataColumnsMap" : { },
-                "type" : "SIMPLE",
-                "stringFormat" : ""
-              },
-              "body" : {
-                "template" : "376dd0fa-1165-40b2-9ee9-c2699f31788a",
-                "dataColumnsMap" : { },
-                "tableid" : 2303,
-                "columnid" : 44669,
-                "type" : "TEMPLATE",
-                "stringFormat" : "none"
-              }
-            },
+            "staticItems" : [ ],
             "operationStack" : {
               "operations" : [ ]
             },
@@ -7009,6 +6995,28 @@
               "autojoins" : false
             },
             "show_1_to_n" : "0",
+            "item" : {
+              "title" : {
+                "dataColumnsMap" : { },
+                "tableid" : 2303,
+                "columnid" : 44672,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              },
+              "image" : {
+                "dataColumnsMap" : { },
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "template" : "376dd0fa-1165-40b2-9ee9-c2699f31788a",
+                "dataColumnsMap" : { },
+                "tableid" : 2303,
+                "columnid" : 44669,
+                "type" : "TEMPLATE",
+                "stringFormat" : "none"
+              }
+            },
             "hideIfEmpty" : false,
             "layout" : {
               "listType" : "GRID_THUMBNAIL_SIDE",
@@ -7023,7 +7031,6 @@
               "columnCount" : 1,
               "listImageSize" : "SMALL"
             },
-            "staticItems" : [ ],
             "description" : ""
           },
           "id" : "8d9631a7-6113-40f0-9484-106493b4aebe",
@@ -7386,8 +7393,7 @@
         "datasourceid" : 111,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "trackingUuid" : "b811c2d8-c9ec-488b-821d-9f7984e2faf9"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -38387,48 +38393,6 @@
     "eventType" : "CHANGE",
     "serviceId" : 111,
     "tableId" : 2286,
-    "label" : "a12735d4-0939-4ed1-a1e9-81e4b2714873",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/GMT"
-    },
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "messageConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 2286,
-        "columnId" : 43960,
-        "columnType" : "STRING",
-        "action" : "BECOMES",
-        "comparator" : "EQUALS_TO",
-        "value" : "A_RESU",
-        "valueType" : "VALUE"
-      }
-    },
-    "expirationChangeConditions" : {
-      "type" : "TERM",
-      "constraint" : {
-        "tableId" : 2286,
-        "columnId" : 43960,
-        "columnType" : "STRING",
-        "action" : "BECOMES",
-        "comparator" : "NOT_EQUAL_TO",
-        "value" : "A_RESU",
-        "valueType" : "VALUE"
-      }
-    },
-    "expirationDelete" : true,
-    "audience" : "BY_USER_QUERY",
-    "audienceQuery" : {
-      "tableId" : 2286,
-      "columnId" : 43966,
-      "variable" : "USER_EMAIL"
-    },
     "messageDefinition" : {
       "title" : "b32b3ea0-e13f-4db1-8991-d23d537ef4d7",
       "body" : "a50991d1-dea7-44b2-b988-0a4abe526db7",
@@ -38446,7 +38410,49 @@
     },
     "messageCountLimit" : 50,
     "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "hasValidConstraints" : true,
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "label" : "a12735d4-0939-4ed1-a1e9-81e4b2714873",
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 2286,
+        "columnId" : 43960,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "A_RESU",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 2286,
+        "columnId" : 43960,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "NOT_EQUAL_TO",
+        "value" : "A_RESU",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 2286,
+      "columnId" : 43966,
+      "variable" : "USER_EMAIL"
+    }
   }, {
     "id" : "945b457a-2848-4070-bbf3-08b2ad0e1857",
     "legacyId" : 569,
@@ -38455,12 +38461,30 @@
     "eventType" : "CHANGE",
     "serviceId" : 111,
     "tableId" : 2286,
-    "label" : "19e08fef-d9fb-481c-a9fd-f66625a85192",
+    "messageDefinition" : {
+      "title" : "794e6e8f-2d16-46b5-87b7-c4add7812e66",
+      "body" : "714b4239-d234-47b3-aaaf-94259341b063",
+      "gotoAppPageId" : "b3f5a548-37b6-407e-a64e-2e9f866be95e",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "19e08fef-d9fb-481c-a9fd-f66625a85192",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38496,25 +38520,7 @@
       "tableId" : 2286,
       "columnId" : 43966,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "794e6e8f-2d16-46b5-87b7-c4add7812e66",
-      "body" : "714b4239-d234-47b3-aaaf-94259341b063",
-      "gotoAppPageId" : "b3f5a548-37b6-407e-a64e-2e9f866be95e",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "49ca0c5d-4f4e-4003-8753-30bc82341193",
     "legacyId" : 568,
@@ -38523,12 +38529,29 @@
     "eventType" : "CHANGE",
     "serviceId" : 111,
     "tableId" : 2286,
-    "label" : "c094a20b-c7d6-4c26-8d54-beb6db718784",
+    "messageDefinition" : {
+      "title" : "fb34ed31-3e11-4129-acfb-fcd68fa9feaf",
+      "body" : "d414a69d-c8df-4bad-83ac-89669a4b3b14",
+      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "c094a20b-c7d6-4c26-8d54-beb6db718784",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38564,24 +38587,7 @@
       "tableId" : 2286,
       "columnId" : 43961,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "fb34ed31-3e11-4129-acfb-fcd68fa9feaf",
-      "body" : "d414a69d-c8df-4bad-83ac-89669a4b3b14",
-      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "ab5ae4d3-109e-4ca8-996f-93b17a1fdbf4",
     "legacyId" : 567,
@@ -38590,13 +38596,31 @@
     "eventType" : "REMINDER",
     "serviceId" : 111,
     "tableId" : 2286,
-    "label" : "895e96a9-25e8-41ad-bd0f-84b179b47992",
+    "messageDefinition" : {
+      "title" : "bd0084f6-1df1-4b83-934a-353847fce900",
+      "body" : "fad4124b-f2b8-49a4-ba2c-2987ab28d74d",
+      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
+      "configuration" : {
+        "cardTtlHours" : 264,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "DAILY",
       "useTimeRange" : false,
       "scheduleTime" : "01:00",
       "runTimezone" : "Etc/UTC"
     },
+    "label" : "895e96a9-25e8-41ad-bd0f-84b179b47992",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDateColumnId" : 43969,
@@ -38634,25 +38658,7 @@
       "tableId" : 2286,
       "columnId" : 43961,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "bd0084f6-1df1-4b83-934a-353847fce900",
-      "body" : "fad4124b-f2b8-49a4-ba2c-2987ab28d74d",
-      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
-      "configuration" : {
-        "cardTtlHours" : 264,
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "b2f04eff-e794-40fc-8dd5-3188334b9433",
     "legacyId" : 566,
@@ -38661,12 +38667,30 @@
     "eventType" : "NEW",
     "serviceId" : 111,
     "tableId" : 2286,
-    "label" : "8d51f448-20b5-484e-a55e-651dfb5fc844",
+    "messageDefinition" : {
+      "title" : "9ab30b76-8b74-4b20-a2ac-76a6c839c93d",
+      "body" : "d7b84f8f-5739-4084-8a8f-f4fb63752c7d",
+      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "8d51f448-20b5-484e-a55e-651dfb5fc844",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38702,25 +38726,7 @@
       "tableId" : 2286,
       "columnId" : 43961,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "9ab30b76-8b74-4b20-a2ac-76a6c839c93d",
-      "body" : "d7b84f8f-5739-4084-8a8f-f4fb63752c7d",
-      "gotoAppPageId" : "a799961f-39f3-4aab-afee-b5d0ac831c04",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ "ff45ac6b-a275-4150-a285-74ed6cdbe3c3", "973fb1ee-372d-4eee-9960-a67afd2b26b1" ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "716e8160-77ad-4592-a1b1-4d0478eafa72",
     "legacyId" : 562,
@@ -38729,12 +38735,29 @@
     "eventType" : "NEW",
     "serviceId" : 111,
     "tableId" : 2287,
-    "label" : "41cfda2c-9e5a-4119-9cf8-008dc1f9aafd",
+    "messageDefinition" : {
+      "title" : "c22feab4-397f-4cc5-83b6-c5e259cea13d",
+      "body" : "99fccb42-1242-421e-872e-3184a2a29bff",
+      "gotoAppPageId" : "ee6b44c1-7be9-49d5-92c7-e6bbb57ed8d9",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "41cfda2c-9e5a-4119-9cf8-008dc1f9aafd",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38774,24 +38797,7 @@
       "tableId" : 2287,
       "columnId" : 44011,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "c22feab4-397f-4cc5-83b6-c5e259cea13d",
-      "body" : "99fccb42-1242-421e-872e-3184a2a29bff",
-      "gotoAppPageId" : "ee6b44c1-7be9-49d5-92c7-e6bbb57ed8d9",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "73662cb2-d1c4-49ae-9ba4-2b38497259ca",
     "legacyId" : 565,
@@ -38800,12 +38806,30 @@
     "eventType" : "CHANGE",
     "serviceId" : 111,
     "tableId" : 2303,
-    "label" : "b2ca1fce-1493-47ca-a2f2-2ce9325a079b",
+    "messageDefinition" : {
+      "title" : "e577e418-b674-46a5-b901-f9efb2c07f3b",
+      "body" : "076a5897-99b2-4e13-9a25-2ac6584887cb",
+      "gotoAppPageId" : "a69a9676-98f3-4402-8543-3f44099de23a",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/itinerary_share.2bdf640981a4e8670ab09cec218530a9.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "b2ca1fce-1493-47ca-a2f2-2ce9325a079b",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38858,25 +38882,7 @@
       "tableId" : 2303,
       "columnId" : 44670,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "e577e418-b674-46a5-b901-f9efb2c07f3b",
-      "body" : "076a5897-99b2-4e13-9a25-2ac6584887cb",
-      "gotoAppPageId" : "a69a9676-98f3-4402-8543-3f44099de23a",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "exported/itinerary_share.2bdf640981a4e8670ab09cec218530a9.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "787a0b80-b61f-493b-8311-d124f40f7c66",
     "legacyId" : 563,
@@ -38885,12 +38891,29 @@
     "eventType" : "CHANGE",
     "serviceId" : 111,
     "tableId" : 2287,
-    "label" : "845dad3a-bfa2-44fe-8c07-3bbe9d8fa0d8",
+    "messageDefinition" : {
+      "title" : "90a3b553-ab22-4a1b-8dfd-7b3540380fce",
+      "body" : "7558d009-5e6a-421e-9539-3f339a270f15",
+      "gotoAppPageId" : "ee6b44c1-7be9-49d5-92c7-e6bbb57ed8d9",
+      "configuration" : {
+        "cardTtlHours" : 336,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
+    "label" : "845dad3a-bfa2-44fe-8c07-3bbe9d8fa0d8",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -38930,24 +38953,7 @@
       "tableId" : 2287,
       "columnId" : 44011,
       "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "90a3b553-ab22-4a1b-8dfd-7b3540380fce",
-      "body" : "7558d009-5e6a-421e-9539-3f339a270f15",
-      "gotoAppPageId" : "ee6b44c1-7be9-49d5-92c7-e6bbb57ed8d9",
-      "configuration" : {
-        "cardTtlHours" : 336,
-        "highPriority" : false,
-        "cardIcon" : {
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    }
   }, {
     "id" : "81a06cce-0c3a-4e24-9bd7-4c229bb5dd52",
     "legacyId" : 564,
@@ -38956,24 +38962,6 @@
     "eventType" : "NEW",
     "serviceId" : 111,
     "tableId" : 2303,
-    "label" : "348cab34-3a36-427a-9f6f-a927498ec6b0",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/GMT"
-    },
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "expirationDelete" : true,
-    "audience" : "BY_USER_QUERY",
-    "audienceQuery" : {
-      "tableId" : 2303,
-      "columnId" : 44670,
-      "variable" : "USER_EMAIL"
-    },
     "messageDefinition" : {
       "title" : "e366cf78-4f29-4f01-ab72-c49c3e75893b",
       "body" : "b7aa54e4-9ef4-40e0-afa3-6c8b29ecff59",
@@ -38990,7 +38978,25 @@
     },
     "messageCountLimit" : 50,
     "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "hasValidConstraints" : true,
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "label" : "348cab34-3a36-427a-9f6f-a927498ec6b0",
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 2303,
+      "columnId" : 44670,
+      "variable" : "USER_EMAIL"
+    }
   } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
@@ -39000,6 +39006,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "36BCFC12EE7A85F219433B9932BA2CA2",
-  "appliedSappUpgrades" : [ "microapp-8511", "microapp-9597", "microapp-6262", "microapp-10876", "microapp-10856", "microapp-6293", "microapp-13808", "microapp-8921", "microapp-6593", "microapp-10860", "microapp-3548", "microapp-7984", "microapp-9701", "microapp-9702", "microapp-2450", "microapp-12505", "microapp-8576", "microapp-10420", "microapp-3580", "microapp-4666", "microapp-5227", "microapp-10421", "microapp-3838", "microapp-7561", "microapp-10858", "microapp-11836", "microapp-13233", "microapp-14177", "microapp-11136", "microapp-5025", "microapp-7290", "microapp-7961", "microapp-1980", "microapp-8950", "microapp-12427", "microapp-6617", "microapp-10549", "microapp-8003", "microapp-8892", "microapp-4020", "microapp-7888", "microapp-11340", "microapp-13471", "microapp-11349", "microapp-6790", "microapp-12936", "microapp-13344", "microapp-12525", "microapp-4518", "microapp-6264", "microapp-3547", "microapp-6853" ],
-  "buildVersion" : "1.83.0.632165623458a003ab116c3266a784676f2943d7"
+  "appliedSappUpgrades" : [ "microapp-6293", "microapp-3580", "microapp-9597", "microapp-8576", "microapp-6264", "microapp-10420", "microapp-8950", "microapp-1980", "microapp-12525", "microapp-10549", "microapp-3548", "microapp-8511", "microapp-10876", "microapp-11340", "microapp-8003", "microapp-2450", "microapp-8892", "microapp-7888", "microapp-14177", "microapp-3838", "microapp-12505", "microapp-11349", "microapp-6853", "microapp-13808", "microapp-9702", "microapp-6790", "microapp-11136", "microapp-10860", "microapp-6262", "microapp-6593", "microapp-4020", "microapp-7561", "microapp-7290", "microapp-12936", "microapp-4518", "microapp-4666", "microapp-10856", "microapp-10421", "microapp-7961", "microapp-5025", "microapp-13233", "microapp-7984", "microapp-5227", "microapp-13471", "microapp-13344", "microapp-6617", "microapp-11836", "microapp-12427", "microapp-3547", "microapp-9701", "microapp-8921", "microapp-10858" ],
+  "buildVersion" : "1.85.0-SNAPSHOT.93cb4f612a750b6cf3a2910f84baf9ccbf963c9d"
 }
