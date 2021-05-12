@@ -11,7 +11,7 @@ integration.define({
         }
     ],
     integrationParameters: [
-        { name: "account_Id", type: "STRING", label: "Docusign Account Id", required: true, description: "Enter the Doucsing Account Id, For More Details See \'Configure OAuth server\' section of Docusign Documentaion" }
+        { name: "account_Id", type: "STRING", label: "Docusign Account Id", required: true, description: "Enter the DocuSign Account Id, for More Details See \'Configure OAuth server\' section of Docusign Documentation" }
     ],
     model: {
         tables: [
@@ -55,8 +55,7 @@ integration.define({
                     { name: "routing_order", type: "INTEGER" },
                     { name: "signed_date_time", type: "DATETIME" },
                     { name: "status", type: "STRING", length: 255 },
-                    { name: "user_id", type: "STRING", length: 255 }, { name: "parent_template_id", type: "STRING", length: 255 },
-                    { name: "root_envelope_id", type: "STRING", length: 255 },
+                    { name: "user_id", type: "STRING", length: 255 },
                     { name: "parent_envelope_id", type: "STRING", length: 255 },
                 ]
             },
@@ -82,7 +81,6 @@ integration.define({
                     { name: "name", type: "STRING", length: 255 },
                     { name: "parent_template_id", type: "STRING", length: 255 },
                     { name: "unique_id", type: "STRING", primaryKey: true, length: 255 },
-                    { name: "root_template_id", type: "STRING", length: 255 },
                 ]
             },
             {
@@ -91,7 +89,6 @@ integration.define({
                     { name: "value", type: "STRING", length: 255 },
                     { name: "parent_template_id", type: "STRING", length: 255 },
                     { name: "unique_id", type: "STRING", primaryKey: true, length: 255 },
-                    { name: "root_template_id", type: "STRING", length: 255 },
                 ]
             },
             {
@@ -258,14 +255,11 @@ async function syncUsers(client, dataStore, account_id) {
 
 async function syncTemplates(client, dataStore, account_id, latestSynchronizationTime=null) {
     const COUNT = 100
-    const ORDER_BY = 'modified'
-    const ORDER = 'desc'
-    const INCLUDE = 'documents'
     let start_position = 0
     let totalSetSize = 0
     const MODIFIED_FROM_DATE = moment(latestSynchronizationTime).utc().format()
     do {
-        let url = `/accounts/${account_id}/templates?count=${COUNT}&order_by${ORDER_BY}&order=${ORDER}&include=${INCLUDE}&start_position=${start_position}`
+        let url = `/accounts/${account_id}/templates?count=${COUNT}&order_by=modified&order=desc&include=documents&start_position=${start_position}`
         if(latestSynchronizationTime != null){
             url+=`&modified_from_date=${MODIFIED_FROM_DATE}`
         }
@@ -285,7 +279,6 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
                     "name": document.name,
                     "parent_template_id": template.templateId,
                     "unique_id": uuid.v4(),
-                    "root_template_id": template.templateId
                 }
             })
 
@@ -296,7 +289,6 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
                     "value": folderId,
                     "parent_template_id": template.templateId,
                     "unique_id": uuid.v4(),
-                    "root_template_id": template.templateId
                 }
             })
 
@@ -325,16 +317,12 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
 
 async function syncEnvelopes(client, dataStore, account_id, userids, latestSynchronizationTime=null) {
     const COUNT = 100
-    const ORDER_BY = 'created'
-    const ORDER = 'desc'
-    const INCLUDE = 'recipients'
-    const STATUS = 'any'
     const FROM_DATE = latestSynchronizationTime == null ?moment().subtract(4, 'M').utc().format():moment(latestSynchronizationTime).utc().format()
     let start_position = 0
     let totalSetSize = 0
     let i = 0
     do {
-        const response = await client.fetch(`/accounts/${account_id}/envelopes?from_date=${FROM_DATE}&include=${INCLUDE}&count=${COUNT}&order=${ORDER}&order_by=${ORDER_BY}&user_id=${userids[i]}&status=${STATUS}&start_position=${start_position}`)
+        const response = await client.fetch(`/accounts/${account_id}/envelopes?from_date=${FROM_DATE}&include=recipients&count=${COUNT}&order=desc&order_by=created&user_id=${userids[i]}&status=any&start_position=${start_position}`)
         const json = await response.json()
         if (!response.ok) {
             throw new Error(JSON.stringify(json))
@@ -357,7 +345,6 @@ async function syncEnvelopes(client, dataStore, account_id, userids, latestSynch
                     "signed_date_time": recipient.signedDateTime != undefined ? new Date(recipient.signedDateTime) : null,
                     "status": recipient.status,
                     "user_id": recipient.userId,
-                    "root_envelope_id": envelope.envelopeId,
                     "parent_envelope_id": envelope.envelopeId
                 }
             })
@@ -408,18 +395,17 @@ async function addRecipient({ client, dataStore, integrationParameters, actionPa
         body: JSON.stringify({
             "signers": [
                 {
-                    "email": `${actionParameters.recipient_Email ?? actionParameters.recipient_Email_Unknown}`,
-                    "name": `${actionParameters.recipient_Name}`,
-                    "recipientId": `${parseInt(moment().format('HHmmss'), 10)}`,//parseInt used to remove the leading zeros
-                    "roleName": `${actionParameters.role_Name}`,
+                    email: actionParameters.recipient_Email ?? actionParameters.recipient_Email_Unknown,
+                    name: actionParameters.recipient_Name,
+                    recipientId: Date.now(),
+                    roleName: actionParameters.role_Name,
                 }
             ]
         })
     })
-    const json = await response.json()
 
     if (!response.ok) {
-        throw new Error(JSON.stringify(json))
+        throw new Error(await response.text())
     }
     await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
 }
@@ -431,32 +417,42 @@ async function updateOrResendEnvelope({ client, dataStore, integrationParameters
         body: JSON.stringify({
             "signers": [
                 {
-                    "email": `${actionParameters.recipient_Email ?? actionParameters.recipient_Email_Unknown}`,
-                    "name": `${actionParameters.recipient_Name}`,
-                    "recipientId": `${actionParameters.recipient_Id}`,
+                    email: actionParameters.recipient_Email ?? actionParameters.recipient_Email_Unknown,
+                    name: actionParameters.recipient_Name,
+                    recipientId: actionParameters.recipient_Id,
                 }
             ]
         })
     })
-    const json = await response.json()
 
     if (!response.ok) {
-        throw new Error(JSON.stringify(json))
+        throw new Error(await response.text())
     }
     await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
 }
 
 async function sendTemplateThreeRecipient({ client, dataStore, integrationParameters, actionParameters }) {
     const ACCOUNT_ID = integrationParameters.account_Id;
-    let templateRoles = [{ "roleName": `${actionParameters.role_Name_one}`, "name": `${actionParameters.recipient_Name_one}`, "email": `${actionParameters.recipient_Email_one ?? actionParameters.recipient_Email_one_Unknown}` }]
+    let templateRoles = [{
+        roleName: actionParameters.role_Name_one,
+        name: actionParameters.recipient_Name_one,
+        email: actionParameters.recipient_Email_one ?? actionParameters.recipient_Email_one_Unknown
+    }]
 
     if (actionParameters.role_Name_two != null && actionParameters.recipient_Name_two != null) {
-        templateRoles = [{ "roleName": `${actionParameters.role_Name_one}`, "name": `${actionParameters.recipient_Name_one}`, "email": `${actionParameters.recipient_Email_one ?? actionParameters.recipient_Email_one_Unknown}`},{ "roleName": `${actionParameters.role_Name_two}`, "name": `${actionParameters.recipient_Name_two}`, "email": `${actionParameters.recipient_Email_two ?? actionParameters.recipient_Email_two_Unknown}` }]
+        templateRoles.push({
+            roleName: actionParameters.role_Name_two,
+            name: actionParameters.recipient_Name_two,
+            email: actionParameters.recipient_Email_two ?? actionParameters.recipient_Email_two_Unknown,
+        })
     }
     if (actionParameters.role_Name_three != null && actionParameters.recipient_Name_three != null) {
-        templateRoles = [{ "roleName": `${actionParameters.role_Name_one}`, "name": `${actionParameters.recipient_Name_one}`, "email": `${actionParameters.recipient_Email_one ?? actionParameters.recipient_Email_one_Unknown}`},{ "roleName": `${actionParameters.role_Name_two}`, "name": `${actionParameters.recipient_Name_two}`, "email": `${actionParameters.recipient_Email_two ?? actionParameters.recipient_Email_two_Unknown}` },{ "roleName": `${actionParameters.role_Name_three}`, "name": `${actionParameters.recipient_Name_three}`, "email": `${actionParameters.recipient_Email_three ?? actionParameters.recipient_Email_three_Unknown}` }]
+        templateRoles.push({
+            roleName: actionParameters.role_Name_three,
+            name: actionParameters.recipient_Name_three,
+            email: actionParameters.recipient_Email_three ?? actionParameters.recipient_Email_three_Unknown
+        })
     }
-    console.log(JSON.stringify(templateRoles.toString()))
     const response = await client.fetch(`accounts/${ACCOUNT_ID}/envelopes`, {
         method: "POST",
         body: JSON.stringify({
@@ -466,10 +462,9 @@ async function sendTemplateThreeRecipient({ client, dataStore, integrationParame
             "status": "sent"
         })
     })
-    const json = await response.json()
 
     if (!response.ok) {
-        throw new Error(JSON.stringify(json))
+        throw new Error(await response.text())
     }
     await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
 }
@@ -479,10 +474,9 @@ async function deleteRecipient({ client, dataStore, integrationParameters, actio
     const response = await client.fetch(`accounts/${ACCOUNT_ID}/envelopes/${actionParameters.envelope_Id}/recipients/${actionParameters.recipient_Id}`, {
         method: "DELETE",
     })
-    const json = await response.json()
 
     if (!response.ok) {
-        throw new Error(JSON.stringify(json))
+        throw new Error(await response.text())
     }
     dataStore.deleteById('envelopes_recipients_signers', actionParameters.recipient_Id)
 }

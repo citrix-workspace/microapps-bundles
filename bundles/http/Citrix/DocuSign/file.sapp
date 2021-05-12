@@ -9,8 +9,8 @@
         "description" : "b407b4ce-1511-440d-a84d-6c68522a6e3a"
       },
       "actionApp" : true,
-      "startPageId" : "39bc84d4-3729-45e9-bdef-083a63418018",
       "title" : "a2f0c89f-f320-4acc-9c40-fa1e56d92281",
+      "startPageId" : "39bc84d4-3729-45e9-bdef-083a63418018",
       "pages" : [ {
         "id" : "39bc84d4-3729-45e9-bdef-083a63418018",
         "appId" : "5db1e6a0-5fda-403c-b677-45a9449b94bd",
@@ -4043,8 +4043,8 @@
         "description" : "aa2bc7f0-17ad-40da-aaef-52c1e80c7dc6"
       },
       "actionApp" : true,
-      "startPageId" : "2c3c5b21-2b8a-476f-95c7-aa57f15ca625",
       "title" : "69a26bab-528a-4e83-8cb7-e152f2bf9be1",
+      "startPageId" : "2c3c5b21-2b8a-476f-95c7-aa57f15ca625",
       "pages" : [ {
         "id" : "84b87a10-7996-4c43-87a1-2ed52a883eba",
         "appId" : "9f9baca8-b891-4db3-be38-35d26d255d31",
@@ -9237,8 +9237,8 @@
         "description" : "97d0e141-0f49-4a51-a3b6-2a93f3176fca"
       },
       "actionApp" : true,
-      "startPageId" : "b052a5b3-6c38-42a4-92f7-9fb244ef4635",
       "title" : "4d965a9f-a8e5-4849-a887-56293409365c",
+      "startPageId" : "b052a5b3-6c38-42a4-92f7-9fb244ef4635",
       "pages" : [ {
         "id" : "b052a5b3-6c38-42a4-92f7-9fb244ef4635",
         "appId" : "e6816f0d-0dbd-4105-9b26-85491a4e8e17",
@@ -10209,7 +10209,7 @@
   "services" : [ {
     "id" : 2198,
     "uuid" : "fe4daf49-c7a1-4eb5-b5d7-c164c3c551e5",
-    "version" : 90,
+    "version" : 102,
     "title" : "DocuSign",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -10466,18 +10466,6 @@
               "length" : 255,
               "mandatory" : false
             }, {
-              "name" : "parent_template_id",
-              "primaryKey" : false,
-              "type" : "STRING",
-              "length" : 255,
-              "mandatory" : false
-            }, {
-              "name" : "root_envelope_id",
-              "primaryKey" : false,
-              "type" : "STRING",
-              "length" : 255,
-              "mandatory" : false
-            }, {
               "name" : "parent_envelope_id",
               "primaryKey" : false,
               "type" : "STRING",
@@ -10569,12 +10557,6 @@
               "type" : "STRING",
               "length" : 255,
               "mandatory" : true
-            }, {
-              "name" : "root_template_id",
-              "primaryKey" : false,
-              "type" : "STRING",
-              "length" : 255,
-              "mandatory" : false
             } ]
           }, {
             "name" : "templates_folder_ids",
@@ -10596,12 +10578,6 @@
               "type" : "STRING",
               "length" : 255,
               "mandatory" : true
-            }, {
-              "name" : "root_template_id",
-              "primaryKey" : false,
-              "type" : "STRING",
-              "length" : 255,
-              "mandatory" : false
             } ]
           }, {
             "name" : "users",
@@ -10691,12 +10667,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 206,
-            "endLine" : 213
+            "startLine" : 203,
+            "endLine" : 210
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 215,
-            "endLine" : 222
+            "startLine" : 212,
+            "endLine" : 219
           }
         } ],
         "actions" : [ {
@@ -10728,8 +10704,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 403,
-            "endLine" : 425
+            "startLine" : 390,
+            "endLine" : 411
           }
         }, {
           "name" : "Update_Or_Resend_Envelope",
@@ -10760,8 +10736,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 426,
-            "endLine" : 447
+            "startLine" : 412,
+            "endLine" : 432
           }
         }, {
           "name" : "Send_Envelope",
@@ -10828,8 +10804,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 449,
-            "endLine" : 475
+            "startLine" : 434,
+            "endLine" : 470
           }
         }, {
           "name" : "Delete_Recipient",
@@ -10848,8 +10824,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 477,
-            "endLine" : 488
+            "startLine" : 472,
+            "endLine" : 482
           }
         } ],
         "webhookListeners" : [ ],
@@ -10857,7 +10833,7 @@
           "name" : "account_Id",
           "type" : "STRING",
           "label" : "Docusign Account Id",
-          "description" : "Enter the Doucsing Account Id, For More Details See 'Configure OAuth server' section of Docusign Documentaion",
+          "description" : "Enter the DocuSign Account Id, for More Details See 'Configure OAuth server' section of Docusign Documentation",
           "required" : true,
           "secret" : false
         } ]
@@ -11195,34 +11171,6 @@
         "defaultLabel" : "User Id",
         "primaryKey" : false
       }, {
-        "id" : 228414,
-        "title" : "parent_template_id",
-        "displayName" : "Parent Template Id",
-        "attributeName" : "parent_template_id",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Parent Template Id",
-        "primaryKey" : false
-      }, {
-        "id" : 228415,
-        "title" : "root_envelope_id",
-        "displayName" : "Root Envelope Id",
-        "attributeName" : "root_envelope_id",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Root Envelope Id",
-        "primaryKey" : false
-      }, {
         "id" : 228416,
         "title" : "parent_envelope_id",
         "displayName" : "Parent Envelope Id",
@@ -11300,20 +11248,6 @@
         "writable" : false,
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
-      }, {
-        "id" : 228421,
-        "title" : "root_template_id",
-        "displayName" : "Root Template Id",
-        "attributeName" : "root_template_id",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Root Template Id",
-        "primaryKey" : false
       }, {
         "id" : 228422,
         "title" : "last_modified",
@@ -11554,20 +11488,6 @@
         "writable" : false,
         "defaultLabel" : "Unique Id",
         "primaryKey" : true
-      }, {
-        "id" : 228438,
-        "title" : "root_template_id",
-        "displayName" : "Root Template Id",
-        "attributeName" : "root_template_id",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Root Template Id",
-        "primaryKey" : false
       }, {
         "id" : 228439,
         "title" : "last_modified",
@@ -12052,8 +11972,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
     "id" : "b909f1dd-40de-41fd-b71e-418b7ad740cb",
@@ -12063,6 +11983,37 @@
     "eventType" : "CHANGE",
     "serviceId" : 2198,
     "tableId" : 17028,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 17032,
+      "columnId" : 228453,
+      "foreignKeyId" : 13679,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "67c460ed-4e2e-484c-91b9-5ed679c99a79",
+      "body" : "e1b9aa9e-eb9b-4f30-b292-4e450f7e3527",
+      "gotoAppPageId" : "77c773d1-d401-404c-846b-09b13bb10cf8",
+      "configuration" : {
+        "cardTtlHours" : 72,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "96f74f64-d381-4e3c-ba33-4becf693b9c4" ],
+      "task" : false,
+      "url" : ""
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "label" : "d56dfe3a-ad3f-4814-898a-dc3fdcaed5a4",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -12096,38 +12047,7 @@
         }
       }
     },
-    "expirationDelete" : true,
-    "label" : "d56dfe3a-ad3f-4814-898a-dc3fdcaed5a4",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/GMT"
-    },
-    "audience" : "BY_USER_QUERY",
-    "audienceQuery" : {
-      "tableId" : 17032,
-      "columnId" : 228453,
-      "foreignKeyId" : 13679,
-      "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "67c460ed-4e2e-484c-91b9-5ed679c99a79",
-      "body" : "e1b9aa9e-eb9b-4f30-b292-4e450f7e3527",
-      "gotoAppPageId" : "77c773d1-d401-404c-846b-09b13bb10cf8",
-      "configuration" : {
-        "cardTtlHours" : 72,
-        "highPriority" : false,
-        "cardIcon" : {
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ "96f74f64-d381-4e3c-ba33-4becf693b9c4" ],
-      "task" : false,
-      "url" : ""
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "expirationDelete" : true
   }, {
     "id" : "e1ef4ecf-2f2b-4b52-a0e5-f510fbcb847d",
     "legacyId" : 3163,
@@ -12136,6 +12056,35 @@
     "eventType" : "NEW",
     "serviceId" : 2198,
     "tableId" : 17028,
+    "audience" : "BY_USER_QUERY",
+    "audienceQuery" : {
+      "tableId" : 17028,
+      "columnId" : 228403,
+      "variable" : "USER_EMAIL"
+    },
+    "messageDefinition" : {
+      "title" : "16143c10-af10-4d5c-8189-2dbc506ae4e4",
+      "gotoAppPageId" : "84b87a10-7996-4c43-87a1-2ed52a883eba",
+      "configuration" : {
+        "cardTtlHours" : 48,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "8447556a-d93e-4c87-916c-6ea374abda03" ],
+      "task" : false,
+      "url" : ""
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "GMT"
+    },
+    "label" : "45421fc0-7abe-4aeb-9470-4c6700fa9347",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -12234,36 +12183,7 @@
         "valueType" : "VALUE"
       }
     },
-    "expirationDelete" : true,
-    "label" : "45421fc0-7abe-4aeb-9470-4c6700fa9347",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "GMT"
-    },
-    "audience" : "BY_USER_QUERY",
-    "audienceQuery" : {
-      "tableId" : 17028,
-      "columnId" : 228403,
-      "variable" : "USER_EMAIL"
-    },
-    "messageDefinition" : {
-      "title" : "16143c10-af10-4d5c-8189-2dbc506ae4e4",
-      "gotoAppPageId" : "84b87a10-7996-4c43-87a1-2ed52a883eba",
-      "configuration" : {
-        "cardTtlHours" : 48,
-        "highPriority" : false,
-        "cardIcon" : {
-          "type" : "MICRO_APP_ICON"
-        }
-      },
-      "actionButtonIds" : [ "8447556a-d93e-4c87-916c-6ea374abda03" ],
-      "task" : false,
-      "url" : ""
-    },
-    "messageCountLimit" : 50,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "expirationDelete" : true
   } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
@@ -12273,6 +12193,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "91BD48F27C259E43F33F51E8B0420B9B",
-  "appliedSappUpgrades" : [ "microapp-10420", "microapp-3580", "microapp-8921", "microapp-7961", "microapp-6853", "microapp-14177", "microapp-12505", "microapp-3548", "microapp-4518", "microapp-10876", "microapp-11136", "microapp-9701", "microapp-5227", "microapp-6262", "microapp-8892", "microapp-7888", "microapp-13471", "microapp-8576", "microapp-8511", "microapp-6264", "microapp-10860", "microapp-2450", "microapp-3547", "microapp-13344", "microapp-13808", "microapp-9702", "microapp-1980", "microapp-8950", "microapp-11836", "microapp-6593", "microapp-9597", "microapp-10421", "microapp-11349", "microapp-7290", "microapp-10858", "microapp-7561", "microapp-8003", "microapp-3838", "microapp-6617", "microapp-12936", "microapp-7984", "microapp-10856", "microapp-6293", "microapp-6790", "microapp-12525", "microapp-12427", "microapp-4020", "microapp-5025", "microapp-13233", "microapp-4666", "microapp-10549", "microapp-11340" ],
-  "buildVersion" : "1.83.0.632165623458a003ab116c3266a784676f2943d7"
+  "appliedSappUpgrades" : [ "microapp-3548", "microapp-6617", "microapp-8003", "microapp-9597", "microapp-12427", "microapp-11136", "microapp-10860", "microapp-12936", "microapp-10420", "microapp-8950", "microapp-13344", "microapp-8576", "microapp-13233", "microapp-6853", "microapp-11349", "microapp-3547", "microapp-3580", "microapp-4020", "microapp-6593", "microapp-4666", "microapp-6293", "microapp-10421", "microapp-7984", "microapp-7290", "microapp-13471", "microapp-10856", "microapp-11340", "microapp-10876", "microapp-14613", "microapp-9701", "microapp-7561", "microapp-11836", "microapp-8511", "microapp-8921", "microapp-12525", "microapp-6790", "microapp-13808", "microapp-8892", "microapp-4518", "microapp-6262", "microapp-5025", "microapp-6264", "microapp-1980", "microapp-3838", "microapp-10858", "microapp-7961", "microapp-7888", "microapp-14177", "microapp-10549", "microapp-9702", "microapp-2450", "microapp-5227", "microapp-12505" ],
+  "buildVersion" : "1.86.0.72a2e6320a8023ed53cd3af48e570b40e69bfe3f"
 }
