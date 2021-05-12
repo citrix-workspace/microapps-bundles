@@ -1,27 +1,19 @@
-let _ = library.load("lodash");
-let moment = library.load("moment-timezone");
+const _ = library.load('lodash')
 
-function SyncSharedItineraries(dataStore, client) {
-
-}
-
-function fullSyncSharedItineraries({dataStore, client}) {
-    return SyncSharedItineraries(dataStore, client);
-}
-
-async function shareItinerary({client, dataStore, actionParameters}) {
-    //console.log(`shareItinerary(${JSON.stringify(actionParameters)})`)
-    const {shareItineraryId, Comment,sharedWithEmail,sharedByEmail,sharedByName} = actionParameters
-    dataStore.save("itiner_sharedWithOthers", actionParameters)
+// this function only takes actionParameters and stores them to itiner_sharedWithOthers table
+async function shareItinerary({dataStore, actionParameters}) {
+    // console.log(`shareItinerary(${JSON.stringify(actionParameters)})`)
+    const itinerary = _.pick(actionParameters, [
+        'shareItineraryId',
+        'Comment',
+        'sharedWithEmail',
+        'sharedByEmail',
+        'sharedByName',
+    ])
+    dataStore.save('itiner_sharedWithOthers', itinerary)
 }
 
 integration.define({
-    "synchronizations": [
-        {
-            "name": "itiner_sharedWithOthers", // Logical name
-            "fullSyncFunction": fullSyncSharedItineraries,
-        }
-    ],
     actions: [
         {
             name: 'shareItinerary',
@@ -29,43 +21,43 @@ integration.define({
                 {
                     name: 'shareItineraryId',
                     type: 'STRING',
-                    required: true
+                    required: true,
                 },
                 {
                     name: 'Comment',
-                    type: 'STRING'
+                    type: 'STRING',
                 },
                 {
                     name: 'sharedWithEmail',
                     type: 'STRING',
-                    required: true
+                    required: true,
                 },
                 {
                     name: 'sharedByEmail',
                     type: 'STRING',
-                    required: true
+                    required: true,
                 },
                 {
                     name: 'sharedByName',
-                    type: 'STRING'
-                }
+                    type: 'STRING',
+                },
             ],
             function: shareItinerary,
-        }
+        },
     ],
-    "model": {
-        "tables": [
+    model: {
+        tables: [
             {
-                "name": "itiner_sharedWithOthers",
-                "columns": [
-                    {"name": "shareItineraryId", "type": "STRING", "length": 255, "primaryKey": true},
-                    {"name": "Comment", "type": "STRING"},
-                    {"name": "sharedWithEmail", "type": "STRING", "length": 255, "primaryKey": true},
-                    {"name": "sharedByEmail", "type": "STRING"},
-                    {"name": "sharedByName", "type": "STRING"}
-                ]
-            }
+                name: 'itiner_sharedWithOthers',
+                columns: [
+                    {name: 'shareItineraryId', type: 'STRING', length: 255, primaryKey: true},
+                    {name: 'Comment', type: 'STRING'},
+                    {name: 'sharedWithEmail', type: 'STRING', length: 255, primaryKey: true},
+                    {name: 'sharedByEmail', type: 'STRING'},
+                    {name: 'sharedByName', type: 'STRING'},
+                ],
+            },
         ],
-        "relationships": []
-    }
+        relationships: [],
+    },
 })
