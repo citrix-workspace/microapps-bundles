@@ -82,6 +82,7 @@ async function syncViews({ client, dataStore, credentials }) {
           flatJson(view, 'workbook')
           flatJson(view, 'owner')
           flatJson(view, 'project')
+          view.contentUrl = view.contentUrl.replace('/sheets', '')
         })
         dataStore.save('views', views)
       } else {
@@ -171,7 +172,7 @@ async function getCredentials (client, params) {
 async function request(client, entity, credentials, pageNumber) {
   console.log('sync of ' + entity + ' page ' + pageNumber + ' started')
 
-  let path =`api/3.7/sites/${credentials.site.id}/${entity}?pageSize=${pageSize}&pageNumber=&${pageNumber}` 
+  let path =`api/3.7/sites/${credentials.site.id}/${entity}?pageSize=${pageSize}&pageNumber=${pageNumber}` 
   
   if (entity === "users") { 
     path = `${path}&fields=_all_`; 
