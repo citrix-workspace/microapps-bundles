@@ -1,4 +1,4 @@
-const pageSize = 100
+const pageSize = 5
 
 async function fullSync ({ client, dataStore, integrationParameters }) {
   const credentials = await getCredentials(client, integrationParameters)

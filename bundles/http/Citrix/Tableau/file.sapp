@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "b81007f7-1cd0-4247-a7b1-ecb523ec5a05",
       "serviceId" : 155,
-      "version" : 98,
+      "version" : 103,
       "parameters" : {
         "imageUrl" : "exported/Tableau.92c06ed6cd3bc47a9b856af0b1826a00.svg",
         "description" : "8a1b2700-6cb0-421d-aacc-20de317dcd94"
@@ -280,7 +280,7 @@
           "required" : false,
           "textType" : null,
           "label" : "bcadd204-29db-4e63-b848-98f9c5e9169a",
-          "format" : "none",
+          "format" : "datetime",
           "foreignKeyId" : null,
           "parentComponentId" : "e7ccafa9-e7e0-44f0-9c32-46e0cf9a7f2d",
           "parameters" : {
@@ -293,18 +293,15 @@
             "query" : null,
             "prefill" : null,
             "conditional_format" : {
-              "bgColor" : null,
-              "condition" : "none",
-              "option" : null,
-              "optionValue" : null,
-              "textColor" : null,
-              "formatStyle" : null
+              "condition" : "none"
             },
             "order" : null
           },
           "id" : "6b02692d-8d09-4de5-9fe8-03618bb5b3ba",
           "defaultvalue" : null,
-          "displayorder" : 1
+          "displayorder" : 1,
+          "columnType" : "TIMESTAMP",
+          "tableid" : 2107
         }, {
           "type" : "TEXT",
           "appId" : "b81007f7-1cd0-4247-a7b1-ecb523ec5a05",
@@ -312,7 +309,7 @@
           "required" : false,
           "textType" : null,
           "label" : "29869e47-3bbc-4fd6-95ac-85bf03d3ea01",
-          "format" : "none",
+          "format" : "datetime",
           "foreignKeyId" : null,
           "parentComponentId" : "5e009c5d-526f-46b7-b008-da9eb3d30be9",
           "parameters" : {
@@ -325,18 +322,15 @@
             "query" : null,
             "prefill" : null,
             "conditional_format" : {
-              "bgColor" : null,
-              "condition" : "none",
-              "option" : null,
-              "optionValue" : null,
-              "textColor" : null,
-              "formatStyle" : null
+              "condition" : "none"
             },
             "order" : null
           },
           "id" : "166d8a94-2408-4296-bdfb-deba56cfe0e8",
           "defaultvalue" : null,
-          "displayorder" : 1
+          "displayorder" : 1,
+          "columnType" : "TIMESTAMP",
+          "tableid" : 2107
         }, {
           "type" : "TABLEAU",
           "appId" : "b81007f7-1cd0-4247-a7b1-ecb523ec5a05",
@@ -529,8 +523,8 @@
           "defaultvalue" : null,
           "displayorder" : 2,
           "rowAction" : { },
-          "componentTableId" : 2107,
           "defaultLimit" : 20,
+          "componentTableId" : 2107,
           "tableid" : 2107,
           "pageId" : "d1183e71-d93d-4bd4-816a-18cef73ca6ae"
         } ],
@@ -565,7 +559,7 @@
     "schemaName" : "lubos250cc1_tableau",
     "configuration" : {
       "trackingUuid" : "0525a328-3a77-4b66-a0b9-5bdd4cc5a20d",
-      "baseUrl" : "https://{tenantID}.online.tableau.com",
+      "baseUrl" : "https://{tenantId}.online.tableau.com",
       "security" : {
         "type" : "NONE"
       },
