@@ -1,0 +1,4685 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+      "serviceId" : 9,
+      "version" : 360,
+      "parameters" : {
+        "imageUrl" : "exported/report.02ea4bc8050184997073d6d8d865fc94.svg",
+        "description" : "cb3e2203-844c-4400-8dcf-16349857282b"
+      },
+      "startPageId" : "b1de9c00-9861-4512-a8ad-5315f0980720",
+      "title" : "731e1fb5-15b2-4274-a7e4-988163821dcc",
+      "pages" : [ {
+        "id" : "b1de9c00-9861-4512-a8ad-5315f0980720",
+        "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+        "type" : "LIST",
+        "components" : [ {
+          "type" : "STATIC_IMAGE",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "imageExtUrl" : "https://fccfoundation.org/wp-content/uploads/2019/10/listen-on-spotify-logo-4.png",
+            "imageExtUrlSignature" : "4f2adce6ff030a28ba1494976312c0254a0e6c1ea0969b8f28cc289a3daa9348",
+            "imageSize" : "fullWidth",
+            "alignment" : "left"
+          },
+          "id" : "9083c47a-4315-4d18-94dd-c72b45276301",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "b1de9c00-9861-4512-a8ad-5315f0980720"
+        }, {
+          "type" : "LIST",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "1d6dfc28-51d6-4b30-a397-e96a08e3bc42",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 458,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "dataSource" : "TABLE",
+            "item" : {
+              "title" : {
+                "tableid" : 458,
+                "columnid" : 5124,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              },
+              "image" : {
+                "foreignKeyId" : 380,
+                "tableid" : 460,
+                "columnid" : 5149,
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "tableid" : 458,
+                "columnid" : 5120,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              }
+            },
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_PAGE",
+                "id" : "d513607b-cc8c-43b3-b4ab-147577630fe0",
+                "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+                "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc",
+                "clearRecord" : false,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "children" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tableid" : 458,
+            "show_1_to_n" : "0",
+            "hideIfEmpty" : false,
+            "layout" : {
+              "listType" : "LIST_THUMBNAIL",
+              "showItemBody" : false,
+              "showItemTitle" : true,
+              "flipTitleDescription" : false,
+              "listStyle" : "NONE",
+              "listImageStyle" : "CIRCLE",
+              "showItemImage" : true,
+              "listImagePosition" : "LEFT",
+              "listImageSize" : "LARGE"
+            },
+            "staticItems" : [ ],
+            "description" : "Spotify's Weekly Playlists"
+          },
+          "id" : "74e616f0-dd3f-4b03-9175-1ee850d73b46",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "componentTableId" : null,
+          "defaultLimit" : 20,
+          "pageId" : "b1de9c00-9861-4512-a8ad-5315f0980720"
+        } ],
+        "title" : "8a2bd6b1-37a9-4905-ba08-e46c6a59a825",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 458,
+        "datasourceid" : 9,
+        "pagetype" : "List",
+        "pagetype" : "List"
+      }, {
+        "id" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc",
+        "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "IMAGE",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : 5149,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : 380,
+          "parentComponentId" : null,
+          "parameters" : {
+            "editable" : false,
+            "imageShape" : "circle",
+            "imageSize" : "large",
+            "alignment" : "center"
+          },
+          "id" : "8b99cac4-8528-44fe-9e68-5358b8f39299",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "columnType" : "STRING",
+          "tableid" : 460,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        }, {
+          "type" : "TEXT",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : 5124,
+          "required" : false,
+          "textType" : null,
+          "label" : "8f78cce3-9461-4c7e-a5af-1a2307a51665",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "f2be66ea-4037-439f-8190-a672b90b3c32",
+          "defaultvalue" : null,
+          "displayorder" : 3,
+          "columnType" : null,
+          "tableid" : 458,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        }, {
+          "type" : "TEXT",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : 5125,
+          "required" : false,
+          "textType" : null,
+          "label" : "61604a5c-7f6f-478a-9745-0b7c7b3ea528",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "68cdd868-a258-45e9-afdb-185af4294975",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "columnType" : null,
+          "tableid" : 458,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        }, {
+          "type" : "TEXT",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : 5135,
+          "required" : false,
+          "textType" : null,
+          "label" : "5cf11ccd-95d3-4833-be7d-1d3fbc4f868a",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "56da4075-0a24-4aad-8c4f-4bfb51383acd",
+          "defaultvalue" : null,
+          "displayorder" : 5,
+          "columnType" : null,
+          "tableid" : 458,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "25d55714-cd26-4cce-bb86-6f03506a04b6",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_l3apnx",
+                "urlTemplate" : "https://open.spotify.com/playlist/{{id}}",
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "children" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : "open.spotify.com/playlist/37i9dQZF1DWVinJBuv0P4z",
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "a80ac6ee-949f-4ef5-a9ae-fd7b946c44b3",
+          "defaultvalue" : null,
+          "displayorder" : 6,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        }, {
+          "type" : "BACK_BUTTON",
+          "appId" : "0b2e4240-e5b5-40d0-82c2-8c9e276161ea",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "c9a4551b-9851-46ce-b091-45439cabac67",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "7fe74fd7-b9c5-4889-952b-da0e2ac7a8bc"
+        } ],
+        "title" : "42b10229-0981-4b4a-9f5a-ecd74a03c9fe",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 458,
+        "datasourceid" : 9,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      } ],
+      "trackingUuid" : "921e85fd-93d0-45dd-ab9b-7c4befbaa6eb",
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  }, {
+    "appVersion" : {
+      "id" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+      "serviceId" : 9,
+      "version" : 288,
+      "parameters" : {
+        "imageUrl" : "exported/report_add.f9e2ea298099fca0aae0fef9380242f3.svg",
+        "description" : "5980cd62-faf6-4065-aff1-4fe7d772c8a6"
+      },
+      "startPageId" : "49fecd2f-c5d9-413c-bf92-30a433ec96d3",
+      "title" : "6d8fcc05-ded1-4314-8cb7-5a5ce3a59316",
+      "pages" : [ {
+        "id" : "49fecd2f-c5d9-413c-bf92-30a433ec96d3",
+        "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+        "type" : "LIST",
+        "components" : [ {
+          "type" : "STATIC_IMAGE",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "imageExtUrl" : "https://fccfoundation.org/wp-content/uploads/2019/10/listen-on-spotify-logo-4.png",
+            "imageExtUrlSignature" : "4f2adce6ff030a28ba1494976312c0254a0e6c1ea0969b8f28cc289a3daa9348",
+            "imageSize" : "fullWidth",
+            "alignment" : "left"
+          },
+          "id" : "6ec7cc77-4289-407a-936d-7bbc80c1b306",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "49fecd2f-c5d9-413c-bf92-30a433ec96d3"
+        }, {
+          "type" : "LIST",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "873d5b39-0269-4f64-b303-16b9e8a941e0",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 497,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "dataSource" : "TABLE",
+            "item" : {
+              "title" : {
+                "tableid" : 497,
+                "columnid" : 5554,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              },
+              "image" : {
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "tableid" : 497,
+                "columnid" : 5555,
+                "type" : "SIMPLE",
+                "stringFormat" : "date"
+              }
+            },
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_PAGE",
+                "id" : "11a98724-54d9-496d-8873-c16080f3c85c",
+                "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+                "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93",
+                "clearRecord" : false
+              } ]
+            },
+            "tableid" : 497,
+            "show_1_to_n" : "0",
+            "hideIfEmpty" : false,
+            "layout" : {
+              "listType" : "LIST_BASIC",
+              "showItemBody" : true,
+              "showItemTitle" : true,
+              "flipTitleDescription" : false
+            },
+            "staticItems" : [ ],
+            "description" : "New song/album releases from the past week!"
+          },
+          "id" : "ce9d9b52-675f-4fde-8943-167056411e8b",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "componentTableId" : null,
+          "defaultLimit" : 20,
+          "pageId" : "49fecd2f-c5d9-413c-bf92-30a433ec96d3"
+        } ],
+        "title" : "f06ac51d-7a0e-4f00-9300-6831d40153d6",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 497,
+        "datasourceid" : 9,
+        "pagetype" : "List",
+        "pagetype" : "List"
+      }, {
+        "id" : "146343aa-8c86-416c-b036-fb4a771f1a93",
+        "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "IMAGE",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : 5573,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : 412,
+          "parentComponentId" : null,
+          "parameters" : {
+            "editable" : false,
+            "imageShape" : "circle",
+            "imageSize" : "large",
+            "alignment" : "center"
+          },
+          "id" : "167ea25f-3be3-4d4b-afd3-c2989dc931e7",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "columnType" : null,
+          "tableid" : 499,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        }, {
+          "type" : "TEXT",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : 5554,
+          "required" : false,
+          "textType" : null,
+          "label" : "f47c6eff-755e-4d52-b17f-9e91dfab2dcc",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "19952373-5982-4f12-9508-cbfc0f602b9f",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "tableid" : 497,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        }, {
+          "type" : "TEXT",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : 5555,
+          "required" : false,
+          "textType" : null,
+          "label" : "81d43861-35ef-4436-99f8-eeebcdad14fc",
+          "format" : "date",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "79b1d69e-f44b-4623-be4a-bb6a1c49d1c0",
+          "defaultvalue" : null,
+          "displayorder" : 3,
+          "tableid" : 497,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        }, {
+          "type" : "TEXT",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : 5566,
+          "required" : false,
+          "textType" : null,
+          "label" : "784f887f-3830-4d4d-8d24-7068aec9e6b3",
+          "format" : "none",
+          "foreignKeyId" : 411,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "ab3ddf19-c24d-4387-a75c-e4464fa7afce",
+          "defaultvalue" : null,
+          "displayorder" : 5,
+          "columnType" : null,
+          "tableid" : 498,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "091af4f4-217b-4256-87c1-77d5c4879944",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_URL",
+                "label" : "Go to URL",
+                "id" : "op_gt40mz",
+                "urlTemplate" : "https://open.spotify.com/album/{{id}}",
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "children" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : "https://api.spotify.com/v1/albums/0PHH7ZnpTBkek9iQtGNBno",
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "42c94f45-bebf-4e9a-a788-28ca1faec0b4",
+          "defaultvalue" : null,
+          "displayorder" : 6,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        }, {
+          "type" : "BACK_BUTTON",
+          "appId" : "839fa7c8-bdff-44b0-a5f8-5bfb33f45409",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "cda837c7-f894-4139-8774-9232adf0399e",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "146343aa-8c86-416c-b036-fb4a771f1a93"
+        } ],
+        "title" : "1089d5d4-9dea-43c6-8773-31316c378b43",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 497,
+        "datasourceid" : 9,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      } ],
+      "trackingUuid" : "60191ed8-5df6-4498-acc4-ab1ec82666bd",
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 9,
+    "uuid" : "d635df8f-d595-4442-bc6b-b699d25b48de",
+    "version" : 111,
+    "title" : "Spotify",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "schemaName" : "ft9cgqicnkgb_spotify",
+    "configuration" : {
+      "trackingUuid" : "c2dbcbba-fee7-43e4-9b91-0540814eb7e5",
+      "baseUrl" : "https://api.spotify.com/v1/",
+      "security" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "clientSecret" : "{{secret \"dataEndpoint.clientSecret\"}}",
+        "password" : "",
+        "scope" : "",
+        "authorizationURL" : "https://accounts.spotify.com/authorize",
+        "tokenURL" : "https://accounts.spotify.com/api/token",
+        "grantTypeValue" : "authorization_code",
+        "tokenAuthorization" : "REQUEST_BODY",
+        "authHeaderPrefix" : "",
+        "customAccessTokenParameters" : [ ],
+        "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
+      },
+      "useServiceActionSecurity" : true,
+      "serviceActionSecurity" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "clientSecret" : "{{secret \"serviceAction.clientSecret\"}}",
+        "password" : "",
+        "scope" : "",
+        "authorizationURL" : "https://accounts.spotify.com/authorize",
+        "tokenURL" : "https://accounts.spotify.com/api/token",
+        "grantTypeValue" : "authorization_code",
+        "tokenAuthorization" : "REQUEST_BODY",
+        "authHeaderPrefix" : "",
+        "customAccessTokenParameters" : [ ],
+        "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
+      },
+      "useOnPremProxy" : false,
+      "certificateValidationDisabled" : false,
+      "webhookListeners" : [ ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : true,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
+        "schedule" : "DAILY"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "HOURLY"
+      } ],
+      "endpoints" : [ {
+        "legacyEndpointId" : 4,
+        "uniqueId" : "272daca5-3f12-45b2-9c45-4b4a364ed4ba",
+        "name" : "Featured Playlists",
+        "type" : "LIST",
+        "parameters" : [ ],
+        "fullSynchronization" : {
+          "method" : "GET",
+          "uri" : "browse/featured-playlists",
+          "headers" : [ ],
+          "postMode" : "FORMDATA",
+          "body" : "",
+          "bodyParameters" : [ ]
+        },
+        "incrementalSyncEnabled" : true,
+        "incrementalSynchronization" : {
+          "method" : "GET",
+          "uri" : "browse/featured-playlists",
+          "headers" : [ ],
+          "postMode" : "FORMDATA",
+          "body" : "",
+          "bodyParameters" : [ ]
+        },
+        "dataStructure" : {
+          "uniqueId" : "b144b759-cf74-4ff8-931a-e056a4c7cd45",
+          "baseTableName" : "Featured Playlists",
+          "rootPath" : "",
+          "tables" : [ {
+            "id" : 25,
+            "tableName" : "featured_playlists",
+            "path" : "",
+            "columns" : [ {
+              "name" : "message",
+              "path" : "message",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "playlists_href",
+              "path" : "playlists/href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "playlists_limit",
+              "path" : "playlists/limit",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "playlists_next",
+              "path" : "playlists/next",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "playlists_offset",
+              "path" : "playlists/offset",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "playlists_previous",
+              "path" : "playlists/previous",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "playlists_total",
+              "path" : "playlists/total",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            } ],
+            "root" : true,
+            "ignored" : false,
+            "childTables" : [ "playlists/items" ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 26,
+            "tableName" : "featured_playlists_playlists_items",
+            "path" : "playlists/items",
+            "columns" : [ {
+              "name" : "collaborative",
+              "path" : "collaborative",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "BOOLEAN",
+              "source" : "RECORD"
+            }, {
+              "name" : "description",
+              "path" : "description",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "external_urls_spotify",
+              "path" : "external_urls/spotify",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "href",
+              "path" : "href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "id",
+              "path" : "id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "name",
+              "path" : "name",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_display_name",
+              "path" : "owner/display_name",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_external_urls_spotify",
+              "path" : "owner/external_urls/spotify",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_href",
+              "path" : "owner/href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_id",
+              "path" : "owner/id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_type",
+              "path" : "owner/type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "owner_uri",
+              "path" : "owner/uri",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "primary_color",
+              "path" : "primary_color",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "public",
+              "path" : "public",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "snapshot_id",
+              "path" : "snapshot_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "tracks_href",
+              "path" : "tracks/href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "tracks_total",
+              "path" : "tracks/total",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "type",
+              "path" : "type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "uri",
+              "path" : "uri",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_message",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "message",
+              "parentTableReference" : "featured_playlists",
+              "referenceGroup" : "nested_table_15"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_message",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "message"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ "playlists/items/images" ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 27,
+            "tableName" : "featured_playlists_items_images",
+            "path" : "playlists/items/images",
+            "columns" : [ {
+              "name" : "height",
+              "path" : "height",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "url",
+              "path" : "url",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "width",
+              "path" : "width",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "unique_id",
+              "parentTableReference" : "featured_playlists_playlists_items",
+              "referenceGroup" : "nested_table_16"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_message",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "message"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          } ]
+        }
+      }, {
+        "legacyEndpointId" : 7,
+        "uniqueId" : "2e261d02-1020-4b5f-bb5c-b432e6a25cd6",
+        "name" : "New Releases",
+        "type" : "LIST",
+        "parameters" : [ ],
+        "fullSynchronization" : {
+          "method" : "GET",
+          "uri" : "browse/new-releases",
+          "headers" : [ ],
+          "postMode" : "FORMDATA",
+          "body" : "",
+          "bodyParameters" : [ ]
+        },
+        "incrementalSyncEnabled" : true,
+        "incrementalSynchronization" : {
+          "method" : "GET",
+          "uri" : "browse/new-releases",
+          "headers" : [ ],
+          "postMode" : "FORMDATA",
+          "body" : "",
+          "bodyParameters" : [ ]
+        },
+        "dataStructure" : {
+          "uniqueId" : "42228633-aebc-480b-9670-735372cdfdfc",
+          "baseTableName" : "New Releases",
+          "rootPath" : "",
+          "tables" : [ {
+            "id" : 57,
+            "tableName" : "new_releases",
+            "path" : "",
+            "columns" : [ {
+              "name" : "albums_href",
+              "path" : "albums/href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "albums_limit",
+              "path" : "albums/limit",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "albums_next",
+              "path" : "albums/next",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "albums_offset",
+              "path" : "albums/offset",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "albums_previous",
+              "path" : "albums/previous",
+              "primaryKeyCandidate" : false,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "albums_total",
+              "path" : "albums/total",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            } ],
+            "root" : true,
+            "ignored" : false,
+            "childTables" : [ "albums/items" ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 58,
+            "tableName" : "new_releases_albums_items",
+            "path" : "albums/items",
+            "columns" : [ {
+              "name" : "album_type",
+              "path" : "album_type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "external_urls_spotify",
+              "path" : "external_urls/spotify",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "href",
+              "path" : "href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "id",
+              "path" : "id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "name",
+              "path" : "name",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "release_date",
+              "path" : "release_date",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "DATE",
+              "source" : "RECORD"
+            }, {
+              "name" : "release_date_precision",
+              "path" : "release_date_precision",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "total_tracks",
+              "path" : "total_tracks",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "type",
+              "path" : "type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "uri",
+              "path" : "uri",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_albums_href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "albums_href",
+              "parentTableReference" : "new_releases",
+              "referenceGroup" : "nested_table_18"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_albums_href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "albums_href"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ "albums/items/artists", "albums/items/available_markets", "albums/items/images" ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 59,
+            "tableName" : "new_releases_items_artists",
+            "path" : "albums/items/artists",
+            "columns" : [ {
+              "name" : "external_urls_spotify",
+              "path" : "external_urls/spotify",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "href",
+              "path" : "href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "id",
+              "path" : "id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "name",
+              "path" : "name",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "type",
+              "path" : "type",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "uri",
+              "path" : "uri",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "unique_id",
+              "parentTableReference" : "new_releases_albums_items",
+              "referenceGroup" : "nested_table_19"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_albums_href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "albums_href"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 60,
+            "tableName" : "new_releases_items_available_markets",
+            "path" : "albums/items/available_markets",
+            "columns" : [ {
+              "name" : "value",
+              "path" : "",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "unique_id",
+              "parentTableReference" : "new_releases_albums_items",
+              "referenceGroup" : "nested_table_20"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_albums_href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "albums_href"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          }, {
+            "id" : 61,
+            "tableName" : "new_releases_items_images",
+            "path" : "albums/items/images",
+            "columns" : [ {
+              "name" : "height",
+              "path" : "height",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "url",
+              "path" : "url",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "width",
+              "path" : "width",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "INTEGER",
+              "source" : "RECORD"
+            }, {
+              "name" : "parent_unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "PARENT_RECORD",
+              "parentColumnReference" : "unique_id",
+              "parentTableReference" : "new_releases_albums_items",
+              "referenceGroup" : "nested_table_21"
+            }, {
+              "name" : "unique_id",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 36,
+              "source" : "GENERATED",
+              "columnRole" : "PRIMARY_KEY"
+            }, {
+              "name" : "root_albums_href",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "ROOT_RECORD",
+              "columnRole" : "ROOT_KEY_REFERENCE",
+              "parentColumnReference" : "albums_href"
+            } ],
+            "root" : false,
+            "ignored" : false,
+            "childTables" : [ ],
+            "detailEndpointIds" : [ ],
+            "loadingType" : "PULL"
+          } ]
+        }
+      } ],
+      "actions" : [ ],
+      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/TlkjOHT5tmUowK2UQtpIiMranV7pG7j3.png",
+      "iconType" : "CUSTOM_IMAGE",
+      "dataEndpoints" : [ {
+        "name" : "Playlist2",
+        "endpoint" : "playlists/6p4XIWJPCT8cMFHQSwnPWN",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "id" : 2,
+        "type" : "LIST",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 9,
+          "tableName" : "playlist_2",
+          "path" : "",
+          "columns" : [ {
+            "name" : "collaborative",
+            "path" : "collaborative",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "description",
+            "path" : "description",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "followers_href",
+            "path" : "followers/href",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "followers_total",
+            "path" : "followers/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_display_name",
+            "path" : "owner/display_name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_external_urls_spotify",
+            "path" : "owner/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_href",
+            "path" : "owner/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_id",
+            "path" : "owner/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_type",
+            "path" : "owner/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_uri",
+            "path" : "owner/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_color",
+            "path" : "primary_color",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "public",
+            "path" : "public",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "snapshot_id",
+            "path" : "snapshot_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_href",
+            "path" : "tracks/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_limit",
+            "path" : "tracks/limit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_next",
+            "path" : "tracks/next",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_offset",
+            "path" : "tracks/offset",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_previous",
+            "path" : "tracks/previous",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_total",
+            "path" : "tracks/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "images", "tracks/items" ],
+          "detailEndpointIds" : [ 3 ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 10,
+          "tableName" : "playlist_2_images",
+          "path" : "images",
+          "columns" : [ {
+            "name" : "height",
+            "path" : "height",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "url",
+            "path" : "url",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "width",
+            "path" : "width",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "playlist_2",
+            "referenceGroup" : "nested_table_14"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 11,
+          "tableName" : "playlist_2_tracks_items",
+          "path" : "tracks/items",
+          "columns" : [ {
+            "name" : "added_at",
+            "path" : "added_at",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_external_urls_spotify",
+            "path" : "added_by/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_href",
+            "path" : "added_by/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_id",
+            "path" : "added_by/id",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_type",
+            "path" : "added_by/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_uri",
+            "path" : "added_by/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "is_local",
+            "path" : "is_local",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_color",
+            "path" : "primary_color",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_album_type",
+            "path" : "track/album/album_type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_external_urls_spotify",
+            "path" : "track/album/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_href",
+            "path" : "track/album/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_id",
+            "path" : "track/album/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_name",
+            "path" : "track/album/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_release_date",
+            "path" : "track/album/release_date",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DATE",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_release_date_precision",
+            "path" : "track/album/release_date_precision",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_total_tracks",
+            "path" : "track/album/total_tracks",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_type",
+            "path" : "track/album/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_uri",
+            "path" : "track/album/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_disc_number",
+            "path" : "track/disc_number",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_duration_ms",
+            "path" : "track/duration_ms",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_episode",
+            "path" : "track/episode",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_explicit",
+            "path" : "track/explicit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_external_ids_isrc",
+            "path" : "track/external_ids/isrc",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_external_urls_spotify",
+            "path" : "track/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_href",
+            "path" : "track/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_id",
+            "path" : "track/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_is_local",
+            "path" : "track/is_local",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_name",
+            "path" : "track/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_popularity",
+            "path" : "track/popularity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_preview_url",
+            "path" : "track/preview_url",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_track",
+            "path" : "track/track",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_track_number",
+            "path" : "track/track_number",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_type",
+            "path" : "track/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_uri",
+            "path" : "track/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "video_thumbnail_url",
+            "path" : "video_thumbnail/url",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "playlist_2",
+            "referenceGroup" : "nested_table_1"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ "tracks/items/track/album/artists", "tracks/items/track/album/available_markets", "tracks/items/track/album/images", "tracks/items/track/artists", "tracks/items/track/available_markets" ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 12,
+          "tableName" : "playlist_2_album_artists",
+          "path" : "tracks/items/track/album/artists",
+          "columns" : [ {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_tracks_items",
+            "referenceGroup" : "nested_table_2"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 13,
+          "tableName" : "playlist_2_album_available_markets",
+          "path" : "tracks/items/track/album/available_markets",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_tracks_items",
+            "referenceGroup" : "nested_table_3"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 14,
+          "tableName" : "playlist_2_album_images",
+          "path" : "tracks/items/track/album/images",
+          "columns" : [ {
+            "name" : "height",
+            "path" : "height",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "url",
+            "path" : "url",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "width",
+            "path" : "width",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_tracks_items",
+            "referenceGroup" : "nested_table_4"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 15,
+          "tableName" : "playlist_2_track_artists",
+          "path" : "tracks/items/track/artists",
+          "columns" : [ {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_tracks_items",
+            "referenceGroup" : "nested_table_5"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 16,
+          "tableName" : "playlist_2_track_available_markets",
+          "path" : "tracks/items/track/available_markets",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_tracks_items",
+            "referenceGroup" : "nested_table_6"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "detailEndpointIds" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "Playlist2",
+        "paginationEnabled" : true,
+        "mergeStrategy" : "NONE",
+        "bodyParameters" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ {
+          "name" : "playlist_id",
+          "defaultValue" : "6p4XIWJPCT8cMFHQSwnPWN",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "ddf2fa49-5b6f-45ea-a53d-4fe635541fdf"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ]
+      }, {
+        "name" : "Playlist2_Child",
+        "endpoint" : "playlists/{{playlist_id}}",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "id" : 3,
+        "type" : "DETAIL",
+        "parentTable" : "playlist_2",
+        "rootPath" : "",
+        "tables" : [ {
+          "id" : 17,
+          "tableName" : "playlist_2_child",
+          "path" : "",
+          "columns" : [ {
+            "name" : "collaborative",
+            "path" : "collaborative",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "description",
+            "path" : "description",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "followers_href",
+            "path" : "followers/href",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "followers_total",
+            "path" : "followers/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_display_name",
+            "path" : "owner/display_name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_external_urls_spotify",
+            "path" : "owner/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_href",
+            "path" : "owner/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_id",
+            "path" : "owner/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_type",
+            "path" : "owner/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "owner_uri",
+            "path" : "owner/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_color",
+            "path" : "primary_color",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "public",
+            "path" : "public",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "snapshot_id",
+            "path" : "snapshot_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_href",
+            "path" : "tracks/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_limit",
+            "path" : "tracks/limit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_next",
+            "path" : "tracks/next",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_offset",
+            "path" : "tracks/offset",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_previous",
+            "path" : "tracks/previous",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "tracks_total",
+            "path" : "tracks/total",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          } ],
+          "root" : true,
+          "ignored" : false,
+          "childTables" : [ "images", "tracks/items" ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 18,
+          "tableName" : "playlist_2_child_images",
+          "path" : "images",
+          "columns" : [ {
+            "name" : "width",
+            "path" : "width",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "url",
+            "path" : "url",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "height",
+            "path" : "height",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "playlist_2_child",
+            "referenceGroup" : "nested_table_7"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 19,
+          "tableName" : "playlist_2_child_tracks_items",
+          "path" : "tracks/items",
+          "columns" : [ {
+            "name" : "track_type",
+            "path" : "track/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_id",
+            "path" : "added_by/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_uri",
+            "path" : "track/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_name",
+            "path" : "track/album/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_external_urls_spotify",
+            "path" : "track/album/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_album_type",
+            "path" : "track/album/album_type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_total_tracks",
+            "path" : "track/album/total_tracks",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_id",
+            "path" : "track/album/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_duration_ms",
+            "path" : "track/duration_ms",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_href",
+            "path" : "track/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_popularity",
+            "path" : "track/popularity",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_explicit",
+            "path" : "track/explicit",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_track",
+            "path" : "track/track",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_episode",
+            "path" : "track/episode",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "is_local",
+            "path" : "is_local",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_uri",
+            "path" : "track/album/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_release_date",
+            "path" : "track/album/release_date",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "DATE",
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_uri",
+            "path" : "added_by/uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_track_number",
+            "path" : "track/track_number",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_id",
+            "path" : "track/id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_disc_number",
+            "path" : "track/disc_number",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_href",
+            "path" : "track/album/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_external_ids_isrc",
+            "path" : "track/external_ids/isrc",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_external_urls_spotify",
+            "path" : "added_by/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "primary_color",
+            "path" : "primary_color",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_href",
+            "path" : "added_by/href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_preview_url",
+            "path" : "track/preview_url",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_at",
+            "path" : "added_at",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "TIMESTAMP",
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_release_date_precision",
+            "path" : "track/album/release_date_precision",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_name",
+            "path" : "track/name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_album_type",
+            "path" : "track/album/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_external_urls_spotify",
+            "path" : "track/external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "video_thumbnail_url",
+            "path" : "video_thumbnail/url",
+            "primaryKeyCandidate" : false,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "added_by_type",
+            "path" : "added_by/type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "track_is_local",
+            "path" : "track/is_local",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "BOOLEAN",
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "id",
+            "parentTableReference" : "playlist_2_child",
+            "referenceGroup" : "nested_table_8"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ "tracks/items/track/album/artists", "tracks/items/track/album/available_markets", "tracks/items/track/album/images", "tracks/items/track/artists", "tracks/items/track/available_markets" ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 20,
+          "tableName" : "playlist_2_child_album_artists",
+          "path" : "tracks/items/track/album/artists",
+          "columns" : [ {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_child_tracks_items",
+            "referenceGroup" : "nested_table_9"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 21,
+          "tableName" : "playlist_2_child_album_available_markets",
+          "path" : "tracks/items/track/album/available_markets",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_child_tracks_items",
+            "referenceGroup" : "nested_table_10"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 22,
+          "tableName" : "playlist_2_child_album_images",
+          "path" : "tracks/items/track/album/images",
+          "columns" : [ {
+            "name" : "width",
+            "path" : "width",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "url",
+            "path" : "url",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "height",
+            "path" : "height",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "INTEGER",
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_child_tracks_items",
+            "referenceGroup" : "nested_table_11"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 23,
+          "tableName" : "playlist_2_child_track_artists",
+          "path" : "tracks/items/track/artists",
+          "columns" : [ {
+            "name" : "external_urls_spotify",
+            "path" : "external_urls/spotify",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "name",
+            "path" : "name",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "id",
+            "path" : "id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "href",
+            "path" : "href",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "type",
+            "path" : "type",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "uri",
+            "path" : "uri",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_child_tracks_items",
+            "referenceGroup" : "nested_table_12"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        }, {
+          "id" : 24,
+          "tableName" : "playlist_2_child_track_available_markets",
+          "path" : "tracks/items/track/available_markets",
+          "columns" : [ {
+            "name" : "value",
+            "path" : "",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "RECORD"
+          }, {
+            "name" : "parent_unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "PARENT_RECORD",
+            "parentColumnReference" : "unique_id",
+            "parentTableReference" : "playlist_2_child_tracks_items",
+            "referenceGroup" : "nested_table_13"
+          }, {
+            "name" : "unique_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 36,
+            "source" : "GENERATED",
+            "columnRole" : "PRIMARY_KEY"
+          }, {
+            "name" : "root_id",
+            "primaryKeyCandidate" : true,
+            "ignored" : false,
+            "columnType" : "STRING",
+            "length" : 255,
+            "source" : "ROOT_RECORD",
+            "columnRole" : "ROOT_KEY_REFERENCE",
+            "parentColumnReference" : "id"
+          } ],
+          "root" : false,
+          "ignored" : false,
+          "childTables" : [ ],
+          "loadingType" : "PULL"
+        } ],
+        "incrementalSyncQueryParameters" : [ ],
+        "baseTableName" : "Playlist2_Child",
+        "paginationEnabled" : true,
+        "mergeStrategy" : "NONE",
+        "bodyParameters" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ {
+          "valueType" : "PARENT_DATA",
+          "name" : "playlist_id",
+          "defaultValue" : "6p4XIWJPCT8cMFHQSwnPWN",
+          "parameterType" : "STRING",
+          "required" : true,
+          "uniqueId" : "4f5ce880-4c6b-4934-a5bf-1de7f6ac4a19",
+          "columnName" : "id"
+        } ],
+        "synchronizationTypes" : [ {
+          "id" : "FullSynchronization",
+          "name" : "Full Synchronization",
+          "description" : "Full synchronization drops the local cache and pulls all data from the source system again.",
+          "preferredSchedule" : "DAILY"
+        } ],
+        "headerParameters" : [ ]
+      } ],
+      "serviceActions" : [ {
+        "name" : "Playlist_GET",
+        "endpoint" : "playlists/{{playlistID}}",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "serviceActionId" : "8111595d-99ad-4eec-a10c-c4184f865338",
+        "actionParameters" : [ {
+          "name" : "value",
+          "dataType" : "STRING",
+          "defaultValue" : "value",
+          "required" : true,
+          "uniqueId" : "d45c8f77-14b2-4048-9277-e3a11b67d7ac"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ ],
+        "bodyParameters" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ {
+          "name" : "playlistID",
+          "required" : false,
+          "uniqueId" : "296770a6-0427-4d88-b339-bc3a2b86237d",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "d45c8f77-14b2-4048-9277-e3a11b67d7ac"
+        } ],
+        "headerParameters" : [ ]
+      }, {
+        "name" : "Get Playlist",
+        "endpoint" : "users/{user_id}/playlists",
+        "requestMethod" : "GET",
+        "postMode" : "FORMDATA",
+        "body" : "",
+        "serviceActionId" : "3438ef9c-9519-49e4-b348-7b412e1da8a4",
+        "actionParameters" : [ {
+          "name" : "value",
+          "dataType" : "STRING",
+          "defaultValue" : "value",
+          "required" : true,
+          "uniqueId" : "769d709b-404e-4b6a-82c2-f05c94471d2d"
+        } ],
+        "preActionDataUpdates" : [ ],
+        "postActionDataUpdates" : [ ],
+        "bodyParameters" : [ ],
+        "queryParameters" : [ ],
+        "pathParameters" : [ {
+          "name" : "user_id",
+          "required" : false,
+          "uniqueId" : "f2303b1e-29a6-45c7-b733-51e45f5396fc",
+          "editMode" : "FULL",
+          "valueMapping" : "ACTION_PARAMETER",
+          "actionParameterUniqueId" : "769d709b-404e-4b6a-82c2-f05c94471d2d"
+        } ],
+        "headerParameters" : [ ]
+      } ]
+    },
+    "context" : { },
+    "tables" : [ {
+      "id" : 458,
+      "title" : "featured_playlists_playli",
+      "displayName" : "Featured Playlists Playlists Items",
+      "entityName" : "featured_playlists_playlists_items",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5119,
+        "title" : "collaborative",
+        "displayName" : "Collaborative",
+        "attributeName" : "collaborative",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Collaborative",
+        "primaryKey" : false
+      }, {
+        "id" : 5120,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 5121,
+        "title" : "external_urls_spotify",
+        "displayName" : "External Urls Spotify",
+        "attributeName" : "external_urls_spotify",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "External Urls Spotify",
+        "primaryKey" : false
+      }, {
+        "id" : 5122,
+        "title" : "href",
+        "displayName" : "Href",
+        "attributeName" : "href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5123,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5124,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 5125,
+        "title" : "owner_display_name",
+        "displayName" : "Owner Display Name",
+        "attributeName" : "owner_display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 5126,
+        "title" : "owner_external_urls_spoti",
+        "displayName" : "Owner External Urls Spotify",
+        "attributeName" : "owner_external_urls_spotify",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner External Urls Spotify",
+        "primaryKey" : false
+      }, {
+        "id" : 5127,
+        "title" : "owner_href",
+        "displayName" : "Owner Href",
+        "attributeName" : "owner_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5128,
+        "title" : "owner_id",
+        "displayName" : "Owner Id",
+        "attributeName" : "owner_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5129,
+        "title" : "owner_type",
+        "displayName" : "Owner Type",
+        "attributeName" : "owner_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Type",
+        "primaryKey" : false
+      }, {
+        "id" : 5130,
+        "title" : "owner_uri",
+        "displayName" : "Owner Uri",
+        "attributeName" : "owner_uri",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Owner Uri",
+        "primaryKey" : false
+      }, {
+        "id" : 5131,
+        "title" : "primary_color",
+        "displayName" : "Primary Color",
+        "attributeName" : "primary_color",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Primary Color",
+        "primaryKey" : false
+      }, {
+        "id" : 5132,
+        "title" : "public",
+        "displayName" : "Public",
+        "attributeName" : "public",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Public",
+        "primaryKey" : false
+      }, {
+        "id" : 5133,
+        "title" : "snapshot_id",
+        "displayName" : "Snapshot Id",
+        "attributeName" : "snapshot_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Snapshot Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5134,
+        "title" : "tracks_href",
+        "displayName" : "Tracks Href",
+        "attributeName" : "tracks_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Tracks Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5135,
+        "title" : "tracks_total",
+        "displayName" : "Tracks Total",
+        "attributeName" : "tracks_total",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Tracks Total",
+        "primaryKey" : false
+      }, {
+        "id" : 5136,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 5137,
+        "title" : "uri",
+        "displayName" : "Uri",
+        "attributeName" : "uri",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Uri",
+        "primaryKey" : false
+      }, {
+        "id" : 5138,
+        "title" : "parent_message",
+        "displayName" : "Parent Message",
+        "attributeName" : "parent_message",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Message",
+        "primaryKey" : false
+      }, {
+        "id" : 5139,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5140,
+        "title" : "root_message",
+        "displayName" : "Root Message",
+        "attributeName" : "root_message",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Message",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 459,
+      "title" : "featured_playlists",
+      "displayName" : "Featured Playlists",
+      "entityName" : "featured_playlists",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5141,
+        "title" : "message",
+        "displayName" : "Message",
+        "attributeName" : "message",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Message",
+        "primaryKey" : true
+      }, {
+        "id" : 5142,
+        "title" : "playlists_href",
+        "displayName" : "Playlists Href",
+        "attributeName" : "playlists_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5143,
+        "title" : "playlists_limit",
+        "displayName" : "Playlists Limit",
+        "attributeName" : "playlists_limit",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Limit",
+        "primaryKey" : false
+      }, {
+        "id" : 5144,
+        "title" : "playlists_next",
+        "displayName" : "Playlists Next",
+        "attributeName" : "playlists_next",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Next",
+        "primaryKey" : false
+      }, {
+        "id" : 5145,
+        "title" : "playlists_offset",
+        "displayName" : "Playlists Offset",
+        "attributeName" : "playlists_offset",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Offset",
+        "primaryKey" : false
+      }, {
+        "id" : 5146,
+        "title" : "playlists_previous",
+        "displayName" : "Playlists Previous",
+        "attributeName" : "playlists_previous",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Previous",
+        "primaryKey" : false
+      }, {
+        "id" : 5147,
+        "title" : "playlists_total",
+        "displayName" : "Playlists Total",
+        "attributeName" : "playlists_total",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Playlists Total",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 460,
+      "title" : "featured_playlists_items",
+      "displayName" : "Featured Playlists Items Images",
+      "entityName" : "featured_playlists_items_images",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5148,
+        "title" : "height",
+        "displayName" : "Height",
+        "attributeName" : "height",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Height",
+        "primaryKey" : false
+      }, {
+        "id" : 5149,
+        "title" : "url",
+        "displayName" : "Url",
+        "attributeName" : "url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Url",
+        "primaryKey" : false
+      }, {
+        "id" : 5150,
+        "title" : "width",
+        "displayName" : "Width",
+        "attributeName" : "width",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Width",
+        "primaryKey" : false
+      }, {
+        "id" : 5151,
+        "title" : "parent_unique_id",
+        "displayName" : "Parent Unique Id",
+        "attributeName" : "parent_unique_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Unique Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5152,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5153,
+        "title" : "root_message",
+        "displayName" : "Root Message",
+        "attributeName" : "root_message",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Message",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 495,
+      "title" : "new_releases_items_availa",
+      "displayName" : "New Releases Items Available Markets",
+      "entityName" : "new_releases_items_available_markets",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5540,
+        "title" : "value",
+        "displayName" : "Value",
+        "attributeName" : "value",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Value",
+        "primaryKey" : false
+      }, {
+        "id" : 5541,
+        "title" : "parent_unique_id",
+        "displayName" : "Parent Unique Id",
+        "attributeName" : "parent_unique_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Unique Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5542,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5543,
+        "title" : "root_albums_href",
+        "displayName" : "Root Albums Href",
+        "attributeName" : "root_albums_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Albums Href",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 496,
+      "title" : "new_releases",
+      "displayName" : "New Releases",
+      "entityName" : "new_releases",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5544,
+        "title" : "albums_href",
+        "displayName" : "Albums Href",
+        "attributeName" : "albums_href",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Href",
+        "primaryKey" : true
+      }, {
+        "id" : 5545,
+        "title" : "albums_limit",
+        "displayName" : "Albums Limit",
+        "attributeName" : "albums_limit",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Limit",
+        "primaryKey" : false
+      }, {
+        "id" : 5546,
+        "title" : "albums_next",
+        "displayName" : "Albums Next",
+        "attributeName" : "albums_next",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Next",
+        "primaryKey" : false
+      }, {
+        "id" : 5547,
+        "title" : "albums_offset",
+        "displayName" : "Albums Offset",
+        "attributeName" : "albums_offset",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Offset",
+        "primaryKey" : false
+      }, {
+        "id" : 5548,
+        "title" : "albums_previous",
+        "displayName" : "Albums Previous",
+        "attributeName" : "albums_previous",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Previous",
+        "primaryKey" : false
+      }, {
+        "id" : 5549,
+        "title" : "albums_total",
+        "displayName" : "Albums Total",
+        "attributeName" : "albums_total",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Albums Total",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 497,
+      "title" : "new_releases_albums_items",
+      "displayName" : "New Releases Albums Items",
+      "entityName" : "new_releases_albums_items",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5550,
+        "title" : "album_type",
+        "displayName" : "Album Type",
+        "attributeName" : "album_type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Album Type",
+        "primaryKey" : false
+      }, {
+        "id" : 5551,
+        "title" : "external_urls_spotify",
+        "displayName" : "External Urls Spotify",
+        "attributeName" : "external_urls_spotify",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "External Urls Spotify",
+        "primaryKey" : false
+      }, {
+        "id" : 5552,
+        "title" : "href",
+        "displayName" : "Href",
+        "attributeName" : "href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5553,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5554,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 5555,
+        "title" : "release_date",
+        "displayName" : "Release Date",
+        "attributeName" : "release_date",
+        "type" : "DATE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Release Date",
+        "primaryKey" : false
+      }, {
+        "id" : 5556,
+        "title" : "release_date_precision",
+        "displayName" : "Release Date Precision",
+        "attributeName" : "release_date_precision",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Release Date Precision",
+        "primaryKey" : false
+      }, {
+        "id" : 5557,
+        "title" : "total_tracks",
+        "displayName" : "Total Tracks",
+        "attributeName" : "total_tracks",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Total Tracks",
+        "primaryKey" : false
+      }, {
+        "id" : 5558,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 5559,
+        "title" : "uri",
+        "displayName" : "Uri",
+        "attributeName" : "uri",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Uri",
+        "primaryKey" : false
+      }, {
+        "id" : 5560,
+        "title" : "parent_albums_href",
+        "displayName" : "Parent Albums Href",
+        "attributeName" : "parent_albums_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Albums Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5561,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5562,
+        "title" : "root_albums_href",
+        "displayName" : "Root Albums Href",
+        "attributeName" : "root_albums_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Albums Href",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 498,
+      "title" : "new_releases_items_artist",
+      "displayName" : "New Releases Items Artists",
+      "entityName" : "new_releases_items_artists",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5563,
+        "title" : "external_urls_spotify",
+        "displayName" : "External Urls Spotify",
+        "attributeName" : "external_urls_spotify",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "External Urls Spotify",
+        "primaryKey" : false
+      }, {
+        "id" : 5564,
+        "title" : "href",
+        "displayName" : "Href",
+        "attributeName" : "href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Href",
+        "primaryKey" : false
+      }, {
+        "id" : 5565,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5566,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 5567,
+        "title" : "type",
+        "displayName" : "Type",
+        "attributeName" : "type",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Type",
+        "primaryKey" : false
+      }, {
+        "id" : 5568,
+        "title" : "uri",
+        "displayName" : "Uri",
+        "attributeName" : "uri",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Uri",
+        "primaryKey" : false
+      }, {
+        "id" : 5569,
+        "title" : "parent_unique_id",
+        "displayName" : "Parent Unique Id",
+        "attributeName" : "parent_unique_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Unique Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5570,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5571,
+        "title" : "root_albums_href",
+        "displayName" : "Root Albums Href",
+        "attributeName" : "root_albums_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Albums Href",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 499,
+      "title" : "new_releases_items_images",
+      "displayName" : "New Releases Items Images",
+      "entityName" : "new_releases_items_images",
+      "type" : "TABLE",
+      "loadingType" : "PULL",
+      "columns" : [ {
+        "id" : 5572,
+        "title" : "height",
+        "displayName" : "Height",
+        "attributeName" : "height",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Height",
+        "primaryKey" : false
+      }, {
+        "id" : 5573,
+        "title" : "url",
+        "displayName" : "Url",
+        "attributeName" : "url",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Url",
+        "primaryKey" : false
+      }, {
+        "id" : 5574,
+        "title" : "width",
+        "displayName" : "Width",
+        "attributeName" : "width",
+        "type" : "INTEGER",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Width",
+        "primaryKey" : false
+      }, {
+        "id" : 5575,
+        "title" : "parent_unique_id",
+        "displayName" : "Parent Unique Id",
+        "attributeName" : "parent_unique_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Unique Id",
+        "primaryKey" : false
+      }, {
+        "id" : 5576,
+        "title" : "unique_id",
+        "displayName" : "Unique Id",
+        "attributeName" : "unique_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Unique Id",
+        "primaryKey" : true
+      }, {
+        "id" : 5577,
+        "title" : "root_albums_href",
+        "displayName" : "Root Albums Href",
+        "attributeName" : "root_albums_href",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Root Albums Href",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ {
+      "id" : 380,
+      "pkTable" : {
+        "id" : 458,
+        "title" : "featured_playlists_playli",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 460,
+        "title" : "featured_playlists_items",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_16",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 380,
+        "pkColumn" : {
+          "id" : 5139,
+          "title" : "unique_id",
+          "displayName" : "Unique Id",
+          "attributeName" : "unique_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Unique Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5151,
+          "title" : "parent_unique_id",
+          "displayName" : "Parent Unique Id",
+          "attributeName" : "parent_unique_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Unique Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 379,
+      "pkTable" : {
+        "id" : 459,
+        "title" : "featured_playlists",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 458,
+        "title" : "featured_playlists_playli",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_15",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 379,
+        "pkColumn" : {
+          "id" : 5141,
+          "title" : "message",
+          "displayName" : "Message",
+          "attributeName" : "message",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Message",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5138,
+          "title" : "parent_message",
+          "displayName" : "Parent Message",
+          "attributeName" : "parent_message",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Message",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 410,
+      "pkTable" : {
+        "id" : 496,
+        "title" : "new_releases",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 497,
+        "title" : "new_releases_albums_items",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_18",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 410,
+        "pkColumn" : {
+          "id" : 5544,
+          "title" : "albums_href",
+          "displayName" : "Albums Href",
+          "attributeName" : "albums_href",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Albums Href",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5560,
+          "title" : "parent_albums_href",
+          "displayName" : "Parent Albums Href",
+          "attributeName" : "parent_albums_href",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Albums Href",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 409,
+      "pkTable" : {
+        "id" : 497,
+        "title" : "new_releases_albums_items",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 495,
+        "title" : "new_releases_items_availa",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_20",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 409,
+        "pkColumn" : {
+          "id" : 5561,
+          "title" : "unique_id",
+          "displayName" : "Unique Id",
+          "attributeName" : "unique_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Unique Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5541,
+          "title" : "parent_unique_id",
+          "displayName" : "Parent Unique Id",
+          "attributeName" : "parent_unique_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Unique Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 411,
+      "pkTable" : {
+        "id" : 497,
+        "title" : "new_releases_albums_items",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 498,
+        "title" : "new_releases_items_artist",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_19",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 411,
+        "pkColumn" : {
+          "id" : 5561,
+          "title" : "unique_id",
+          "displayName" : "Unique Id",
+          "attributeName" : "unique_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Unique Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5569,
+          "title" : "parent_unique_id",
+          "displayName" : "Parent Unique Id",
+          "attributeName" : "parent_unique_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Unique Id",
+          "primaryKey" : false
+        }
+      } ]
+    }, {
+      "id" : 412,
+      "pkTable" : {
+        "id" : 497,
+        "title" : "new_releases_albums_items",
+        "type" : "TABLE"
+      },
+      "fkTable" : {
+        "id" : 499,
+        "title" : "new_releases_items_images",
+        "type" : "TABLE"
+      },
+      "alias" : "nested_table_21",
+      "userDefined" : false,
+      "scriptDefined" : false,
+      "fkColumnPairs" : [ {
+        "fkId" : 412,
+        "pkColumn" : {
+          "id" : 5561,
+          "title" : "unique_id",
+          "displayName" : "Unique Id",
+          "attributeName" : "unique_id",
+          "type" : "STRING",
+          "nullable" : false,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Unique Id",
+          "primaryKey" : true
+        },
+        "fkColumn" : {
+          "id" : 5575,
+          "title" : "parent_unique_id",
+          "displayName" : "Parent Unique Id",
+          "attributeName" : "parent_unique_id",
+          "type" : "STRING",
+          "nullable" : true,
+          "autoIncrement" : false,
+          "roleType" : "DB_COLUMN",
+          "searchable" : true,
+          "readable" : true,
+          "writable" : false,
+          "defaultLabel" : "Parent Unique Id",
+          "primaryKey" : false
+        }
+      } ]
+    } ],
+    "metadata" : {
+      "categories" : [ ],
+      "tags" : [ ],
+      "hideAddButton" : false
+    },
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "0b2e4240-e5b5-40d0-82c2-8c9e276161ea", "839fa7c8-bdff-44b0-a5f8-5bfb33f45409" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "D1103FF5C7A51C74E16313692DA6F0D2",
+  "appliedSappUpgrades" : [ "microapp-13344", "microapp-8511", "microapp-12936", "microapp-2450", "microapp-10856", "microapp-6262", "microapp-3547", "microapp-10420", "microapp-8892", "microapp-4666", "microapp-7888", "microapp-3548", "microapp-11836", "microapp-7961", "microapp-9702", "microapp-4020", "microapp-10421", "microapp-13808", "microapp-12525", "microapp-7561", "microapp-7984", "microapp-6790", "microapp-8921", "microapp-12427", "microapp-9597", "microapp-8950", "microapp-3838", "microapp-10876", "microapp-10549", "microapp-8003", "microapp-3580", "microapp-12505", "microapp-1980", "microapp-5025", "microapp-10860", "microapp-8576", "microapp-10858", "microapp-11136", "microapp-11340", "microapp-9701", "microapp-13233", "microapp-4518", "microapp-6293", "microapp-6853", "microapp-11349", "microapp-6617", "microapp-13471", "microapp-7290", "microapp-6264", "microapp-6593", "microapp-5227" ],
+  "buildVersion" : "1.79.0.c7f9838900e37b329eebd0bd7ed448e0c85faec8"
+}
