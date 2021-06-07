@@ -105,12 +105,12 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
             `/conversations.history?channel=${channel}&oldest=${timestamp}&limit=200`
         )
 
-        usedChannels.push(favoriteChannelMessages[indexChannels].text)
-        parsedAllFavoriteChannels.push(favoriteChannelMessages[indexChannels])
-
         if (!response.ok) {
             throw new Error(`Could not retrieve favorite channel messages (${response.status}: ${response.statusText})`);
         }
+
+        usedChannels.push(favoriteChannelMessages[indexChannels].text)
+        parsedAllFavoriteChannels.push(favoriteChannelMessages[indexChannels])
 
         let channelMessagesResponse = await response.json()
         let channelMessages = channelMessagesResponse.messages
@@ -148,18 +148,17 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
 
                 let resp = await client.fetch(`/users.info?user=${user_ids[indexUser]}`)
 
-                if (resp.ok) {
-                    let userData = await resp.json()
-                    if (userData.user === undefined) {
-                        indexChannels++
-                        continue
-                    }
-
-                    channelMessages[indexMessages].text_changed = text.replace('<@' + user_ids[indexUser] + '>', userData.user.real_name)
-
-                } else {
+                if (!resp.ok) {
                     throw new Error(`Could not retrieve user data (${resp.status}: ${resp.statusText})`);
                 }
+
+                let userData = await resp.json()
+                if (userData.user === undefined) {
+                    indexChannels++
+                    continue
+                }
+
+                channelMessages[indexMessages].text_changed = text.replace('<@' + user_ids[indexUser] + '>', userData.user.real_name)
 
                 indexUser++
             } while (searchText.indexOf('>') >= 0)
@@ -175,7 +174,7 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
     const respChannels = await client.fetch('/conversations.list?types=public_channel,private_channel')
 
     if (!respChannels.ok) {
-        throw new Error(`Could not retrieve favorite channel messages (${respChannels.status}: ${respChannels.statusText})`);
+        throw new Error(`Could not retrieve channels (${respChannels.status}: ${respChannels.statusText})`);
     }
 
     let allChannelsResponse = await respChannels.json()
@@ -186,41 +185,43 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
         let channel = allChannels[indexAllChannels]
         let respChannelsMembers = await client.fetch(`/conversations.members?channel=${channel.id}`)
 
-        if (respChannelsMembers.ok) {
-            let allChannelsMember = await respChannelsMembers.json()
-            let channelMembers = allChannelsMember.members
-            if (!channelMembers.length) {
-                indexAllChannels++
-                continue
-            }
-            let indexChannelsMembers = 0;
-
-            do {
-
-                const channelMember = channelMembers[indexChannelsMembers]
-
-                channel.is_favorite = false
-                channel.user = channelMember
-                channel.ts = null
-                parsedAllFavoriteChannels.forEach((favoriteChannel) => {
-                    if (channel.id === favoriteChannel.text && channelMember === favoriteChannel.user) {
-                        channel.is_favorite = true
-                        channel.ts = favoriteChannel.ts
-                    }
-                });
-
-                parsedAllChannels.push({
-                    id: channel.id,
-                    user: channel.user,
-                    name: channel.name,
-                    ts: channel.ts,
-                    is_favorite: channel.is_favorite
-                })
-
-                indexChannelsMembers++
-            } while (channelMembers[indexChannelsMembers] !== undefined)
-
+        if (!respChannelsMembers.ok) {
+            throw new Error(`Could not retrieve favorite channel messages (${respChannelsMembers.status}: ${respChannelsMembers.statusText})`);
         }
+
+        let allChannelsMember = await respChannelsMembers.json()
+        let channelMembers = allChannelsMember.members
+        if (!channelMembers.length) {
+            indexAllChannels++
+            continue
+        }
+        let indexChannelsMembers = 0;
+
+        do {
+
+            const channelMember = channelMembers[indexChannelsMembers]
+
+            channel.is_favorite = false
+            channel.user = channelMember
+            channel.ts = null
+            parsedAllFavoriteChannels.forEach((favoriteChannel) => {
+                if (channel.id === favoriteChannel.text && channelMember === favoriteChannel.user) {
+                    channel.is_favorite = true
+                    channel.ts = favoriteChannel.ts
+                }
+            });
+
+            parsedAllChannels.push({
+                id: channel.id,
+                user: channel.user,
+                name: channel.name,
+                ts: channel.ts,
+                is_favorite: channel.is_favorite
+            })
+
+            indexChannelsMembers++
+        } while (channelMembers[indexChannelsMembers] !== undefined)
+
         indexAllChannels++
     } while (allChannels[indexAllChannels] !== undefined)
 
@@ -229,12 +230,12 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
 }
 
 async function fullSync({dataStore, client}) {
-    let timestamp = moment().subtract(14, 'days').unix();
+    const timestamp = moment().subtract(14, 'days').unix();
     return changeIDbyRealName(dataStore, client, timestamp);
 }
 
 async function incrementalSync({dataStore, client, latestSynchronizationTime}) {
-    const lastSyncDateTime = new Date(latestSynchronizationTime)
-    const timestamp = `${lastSyncDateTime.getTime() / 1000}`.slice(0, 10);
+    const date = new Date(latestSynchronizationTime)
+    const timestamp = moment(date).unix()
     return changeIDbyRealName(dataStore, client, timestamp);
 }
