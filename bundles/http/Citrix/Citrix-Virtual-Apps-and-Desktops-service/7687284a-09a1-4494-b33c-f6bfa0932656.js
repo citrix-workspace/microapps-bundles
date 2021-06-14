@@ -1,9 +1,21 @@
 const limit = 50
+const isDebugLogsEnabled = false
+
+function debugMsg(message) {
+    if (isDebugLogsEnabled) {
+        console.log(message)
+    }
+}
+
+// Synchoronization functions
 
 async function fullSync(params) {
     params.context.siteIds = await getSiteIds(params)
 
-    await Promise.all([syncMachines(params), syncSessions(params)])
+    await Promise.all([
+        // syncMachines(params),
+        syncSessions(params),
+    ])
 }
 
 async function incrementalSync(params) {
@@ -15,21 +27,21 @@ async function syncMachines(params) {
     const fields =
         'Id,AgentVersion,AssociatedUsers,MachineCatalog,DeliveryGroup,DnsName,InMaintenanceMode,IPAddress,MachineType,LastConnectionFailure,LastConnectionTime,LastConnectionUser,LastDeregistrationReason,LastDeregistrationTime,LastErrorReason,LastErrorTime,Name,OSType,OSVersion,PersistUserChanges,PowerState,ProvisioningType,RegistrationState,ScheduledReboot,SessionClientAddress,SessionClientName,SessionCount,SessionProtocol,SessionStartTime,SessionState,SessionStateChangeTime,SessionSupport,SessionUserName,SummaryState,WillShutdownAfterUse,WindowsConnectionSetting,Zone,FaultState'
 
-    let body = '{}'
+    let body = {}
 
     if (params.latestSynchronizationTime) {
-        body = `{\ 
-            "SearchFilters":[\
-                {\
-                    "Property":"FaultState",\
-                    "Value":"None",\
-                    "Operator":"NotEquals"\
-                }\
-            ]\
-        }`
-        console.log('Incremental sync of Machines started.')
+        body = {
+            SearchFilters: [
+                {
+                    Property: 'FaultState',
+                    Value: 'None',
+                    Operator: 'NotEquals',
+                },
+            ],
+        }
+        debugMsg('Incremental sync of Machines started.')
     } else {
-        console.log('Sync of Machines started.')
+        debugMsg('Sync of Machines started.')
     }
 
     for (const siteId of params.context.siteIds) {
@@ -40,7 +52,7 @@ async function syncMachines(params) {
                 'Machines',
                 continuationToken,
                 fields,
-                body,
+                JSON.stringify(body),
             )
 
             try {
@@ -59,17 +71,19 @@ async function syncMachines(params) {
                         flatJson(machine, 'MachineCatalog')
                         flatJson(machine, 'Zone')
                         machine.Site_Id = siteId
+                        machine.LastConnectionTime = new Date(machine.LastConnectionTime)
+                        machine.LastDeregistrationTime = new Date(machine.LastDeregistrationTime)
+                        machine.LastErrorTime = new Date(machine.LastErrorTime)
+                        machine.SessionStartTime = new Date(machine.SessionStartTime)
+                        machine.SessionStateChangeTime = new Date(machine.SessionStateChangeTime)
 
                         // Store Associated Users for the Machine.
-                        if (machine.AssociatedUsers && machine.AssociatedUsers.length > 0) {
-                            const machines_associated_users = machine.AssociatedUsers.map(user => {
+                        if (machine.AssociatedUsers?.length > 0) {
+                            const machineAssociatedUsers = machine.AssociatedUsers.map(user => {
                                 user.Machine_Id = machine.Id
                                 return user
                             })
-                            params.dataStore.save(
-                                'machine_associated_user',
-                                machines_associated_users,
-                            )
+                            params.dataStore.save('machine_associated_user', machineAssociatedUsers)
                         }
                     }
                     params.dataStore.save('machine', machines)
@@ -84,7 +98,7 @@ async function syncMachines(params) {
         } while (continuationToken)
     }
 
-    console.log('Sync of Machines finished.')
+    debugMsg('Sync of Machines finished.')
 }
 
 async function syncSessions(params) {
@@ -92,25 +106,29 @@ async function syncSessions(params) {
     const fields =
         'Id,ApplicationsInUse,AppState,Client,Connection,Machine,SessionType,StartTime,State,StateChangeTime,User'
 
-    let body = `{
-        "SearchFilters":[{\
-            "Property": "SessionStateChangeTime",\
-            "Value":"LastMonth",\
-            "Operator":"IsWithin"\
-        }]\
-    }`
+    let body = {
+        SearchFilters: [
+            {
+                Property: 'SessionStateChangeTime',
+                Value: 'LastMonth',
+                Operator: 'IsWithin',
+            },
+        ],
+    }
 
     if (params.latestSynchronizationTime) {
-        body = `{\
-            "SearchFilters":[{\
-                "Property": "SessionStateChangeTime",\
-                "Value":"Last30Minutes",\
-                "Operator":"IsWithin"\ 
-            }]\
-        }`
-        console.log('Incremental sync of Sessions started.')
+        body = {
+            SearchFilters: [
+                {
+                    Property: 'SessionStateChangeTime',
+                    Value: 'Last30Minutes',
+                    Operator: 'IsWithin',
+                },
+            ],
+        }
+        debugMsg('Incremental sync of Sessions started.')
     } else {
-        console.log('Sync of Sessions started.')
+        debugMsg('Sync of Sessions started.')
     }
 
     for (const siteId of params.context.siteIds) {
@@ -121,7 +139,7 @@ async function syncSessions(params) {
                 'Sessions',
                 continuationToken,
                 fields,
-                body,
+                JSON.stringify(body),
             )
 
             try {
@@ -141,19 +159,16 @@ async function syncSessions(params) {
                         flatJson(session, 'Machine_DeliveryGroup')
                         flatJson(session, 'Machine_MachineCatalog')
                         flatJson(session, 'Machine_Zone')
+                        session.StartTime = new Date(session.StartTime)
+                        session.StateChangeTime = new Date(session.StateChangeTime)
 
                         // Store Applications In Use for the Session.
-                        if (session.ApplicationsInUse && session.ApplicationsInUse.length > 0) {
-                            const sessions_applications_in_use = session.ApplicationsInUse.map(
-                                app => {
-                                    app.Session_Id = session.Id
-                                    return app
-                                },
-                            )
-                            params.dataStore.save(
-                                'session_app_in_use',
-                                sessions_applications_in_use,
-                            )
+                        if (session.ApplicationsInUse?.length > 0) {
+                            const sessionsApplicationsInUse = session.ApplicationsInUse.map(app => {
+                                app.Session_Id = session.Id
+                                return app
+                            })
+                            params.dataStore.save('session_app_in_use', sessionsApplicationsInUse)
                         }
                     }
                     params.dataStore.save('session', sessions)
@@ -168,15 +183,14 @@ async function syncSessions(params) {
         } while (continuationToken)
     }
 
-    console.log('Sync of Sessions finished.')
+    debugMsg('Sync of Sessions finished.')
 }
 
 async function getSiteIds({client, integrationParameters}) {
-    console.log('Started getting Site Ids.')
+    debugMsg('Started getting Site Ids.')
 
     let response = await client.fetch('/me', {
         headers: {
-            'Content-Type': 'application/json',
             'Citrix-CustomerId': integrationParameters.customerId,
         },
     })
@@ -197,7 +211,7 @@ async function getSiteIds({client, integrationParameters}) {
         console.error(err)
     }
 
-    console.log('Finished getting Site IDs')
+    debugMsg('Finished getting Site IDs')
 
     return siteIds
 }
@@ -217,9 +231,8 @@ async function request(
     }
     const response = await client.fetch(path, {
         method: 'POST',
-        body: body,
+        body,
         headers: {
-            'Content-Type': 'application/json',
             'Citrix-CustomerId': integrationParameters.customerId,
         },
     })
@@ -235,12 +248,14 @@ async function request(
 }
 
 function flatJson(json, oName) {
-    if (json[oName] != undefined) {
+    if (json[oName] != null) {
         Object.entries(json[oName]).map(([key, value]) => (json[oName + '_' + key] = value))
         delete json[oName]
     }
     return json
 }
+
+// Definitions
 
 integration.define({
     synchronizations: [
@@ -302,8 +317,7 @@ integration.define({
                     },
                     {
                         name: 'LastConnectionTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'LastConnectionUser_DisplayName',
@@ -332,8 +346,7 @@ integration.define({
                     },
                     {
                         name: 'LastDeregistrationTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'LastErrorReason',
@@ -342,8 +355,7 @@ integration.define({
                     },
                     {
                         name: 'LastErrorTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'MachineCatalog_Id',
@@ -421,8 +433,7 @@ integration.define({
                     },
                     {
                         name: 'SessionStartTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'SessionState',
@@ -431,8 +442,7 @@ integration.define({
                     },
                     {
                         name: 'SessionStateChangeTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'SessionSupport',
@@ -577,8 +587,7 @@ integration.define({
                     },
                     {
                         name: 'StartTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'State',
@@ -587,8 +596,7 @@ integration.define({
                     },
                     {
                         name: 'StateChangeTime',
-                        type: 'STRING',
-                        length: 255,
+                        type: 'DATETIME',
                     },
                     {
                         name: 'User_DisplayName',
