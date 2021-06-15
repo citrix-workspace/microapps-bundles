@@ -25,7 +25,8 @@ async function canvasSync({ dataStore, client, serviceClient}) {
                     let course = await courseResponse.json();
 
                     const promise = course.map(async courseValue => {
-                        let courseId = await JSON.stringify(courseValue.id)
+                        let courseId = JSON.stringify(courseValue.id)
+
                         await updateAction(dataStore, serviceClient, courseId);   // function call
                     })
                     await Promise.all(promise)
