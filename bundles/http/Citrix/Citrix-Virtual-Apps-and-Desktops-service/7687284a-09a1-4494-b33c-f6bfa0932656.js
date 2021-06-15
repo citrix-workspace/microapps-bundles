@@ -7,15 +7,12 @@ function debugMsg(message) {
     }
 }
 
-// Synchoronization functions
+// Synchronization functions
 
 async function fullSync(params) {
     params.context.siteIds = await getSiteIds(params)
 
-    await Promise.all([
-        // syncMachines(params),
-        syncSessions(params),
-    ])
+    await Promise.all([syncMachines(params), syncSessions(params)])
 }
 
 async function incrementalSync(params) {
@@ -52,15 +49,11 @@ async function syncMachines(params) {
                 'Machines',
                 continuationToken,
                 fields,
-                JSON.stringify(body),
+                body,
             )
 
             try {
-                if (response.ContinuationToken) {
-                    continuationToken = response.ContinuationToken
-                } else {
-                    continuationToken = null
-                }
+                continuationToken = response.ContinuationToken ?? null
 
                 const machines = response.Items
 
@@ -139,15 +132,12 @@ async function syncSessions(params) {
                 'Sessions',
                 continuationToken,
                 fields,
-                JSON.stringify(body),
+                body,
             )
 
             try {
-                if (response.ContinuationToken) {
-                    continuationToken = response.ContinuationToken
-                } else {
-                    continuationToken = null
-                }
+                continuationToken = response.ContinuationToken ?? null
+
                 const sessions = response.Items
 
                 if (Array.isArray(sessions) && sessions.length > 0) {
@@ -231,7 +221,7 @@ async function request(
     }
     const response = await client.fetch(path, {
         method: 'POST',
-        body,
+        body: JSON.stringify(body),
         headers: {
             'Citrix-CustomerId': integrationParameters.customerId,
         },
