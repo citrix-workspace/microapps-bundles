@@ -1,46 +1,38 @@
 const moment = library.load('moment-timezone');
 
-var today = moment.utc();
-var StartDate = today.subtract(30, 'd');
-StartDate = StartDate.format();
-var EndDate = today.add(60, 'd');
-EndDate = EndDate.format();
+const startDate = moment.utc().subtract(30, 'd').format();
+const endDate = moment.utc().add(30, 'd').format();
 
 //DataLoading Endpoints
-async function canvasSync({ dataStore, client, serviceClient}) {
-    let accountResponse = await client.fetch('api/v1/accounts');    //Account API call
+async function canvasSync({ dataStore, client, serviceClient }) {
+    const accountResponse = await client.fetch('api/v1/accounts?per_page=100');
     if (accountResponse.ok) {
-        let account = await accountResponse.json();
+        const account = await accountResponse.json();
         const promises = account.map(async accountValue => {
-            let accountId = JSON.stringify(accountValue.id);
-            let courseLink, condition, i = 1;
-            // courses pagination
+            const accountId = JSON.stringify(accountValue.id);
+            let nextPageExists, i = 1;
+
             do {
-                condition = "";
-                let courseResponse = await client.fetch(`api/v1/accounts/${accountId}/courses?page=${i}&per_page=100`);  //Courses API call
+                const courseResponse = await client.fetch(`api/v1/accounts/${accountId}/courses?page=${i}&per_page=100`);
                 i++;
-                let tempCourseLink = courseResponse.headers.map.link;
-                tempCourseLink = tempCourseLink.split(',');
-                if (courseResponse.ok) {
-                    let course = await courseResponse.json();
+                const tempCourseLink = courseResponse.headers.map.link.split(',');
+                if (!courseResponse.ok) {
+                    throw new Error(`Courses sync failed ${courseResponse.status}:${courseResponse.statusText}.`)
+                }
+                else {
+                    const course = await courseResponse.json();
 
                     const promise = course.map(async courseValue => {
-                        let courseId = JSON.stringify(courseValue.id)
-
-                        await updateAction(dataStore, serviceClient, courseId);   // function call
+                        const courseId = JSON.stringify(courseValue.id)
+                        await updateAction(dataStore, client, courseId);
                     })
                     await Promise.all(promise)
                     tempCourseLink.forEach(element => {
-                        courseLink = element.split("; ");
-                        courseLink = courseLink[1];
-                        if (courseLink == `rel="next"`) {
-                            condition = courseLink;
-                        }
+                        const courseLink = element.split("; ")[1];
+                        nextPageExists = courseLink === 'rel="next"';
                     });
-                } else {
-                    throw new Error(`Courses sync failed ${courseResponse.status}:${courseResponse.statusText}.`)
                 }
-            } while (condition == `rel="next"`);
+            } while (nextPageExists);
 
         })
         await Promise.all(promises)
@@ -50,41 +42,37 @@ async function canvasSync({ dataStore, client, serviceClient}) {
 }
 
 //SA-Create Course Announcement
-async function createCourseAnnouncement({dataStore, client, actionParameters, serviceClient}) {
-    let url = `/api/v1/courses/${actionParameters.courseId}/discussion_topics?title=${actionParameters.title}&message=${actionParameters.message}&is_announcement=true&published=true&lock_at=${actionParameters.lock_at}&delayed_post_at =${actionParameters.delayed_post_at}`
-    let response = await client.fetch(url,{
-    method: "POST"
+async function createCourseAnnouncement({ dataStore, client, actionParameters, serviceClient }) {
+    const response = await client.fetch(`/api/v1/courses/${actionParameters.courseId}/discussion_topics?title=${actionParameters.title}&message=${actionParameters.message}&is_announcement=true&published=true&lock_at=${actionParameters.lock_at}&delayed_post_at =${actionParameters.delayed_post_at}`, {
+        method: "POST"
     })
 
     if (response.ok) {
-        //Data Update After action
-        await updateAction(dataStore, serviceClient, actionParameters.courseId);   // function call
+        await updateAction(dataStore, serviceClient, actionParameters.courseId);
     } else {
         throw new Error(`Could not do course registration (${response.status}: ${response.statusText})`);
     }
 }
 
 //SA-Accept Invitation
-async function acceptInvitation({dataStore, client, actionParameters, serviceClient}) {
-    let response = await client.fetch(`/api/v1/courses/${actionParameters.courseId}/enrollments/${actionParameters.enrollmentId}/accept`,{
+async function acceptInvitation({ dataStore, client, actionParameters, serviceClient }) {
+    const response = await client.fetch(`/api/v1/courses/${actionParameters.courseId}/enrollments/${actionParameters.enrollmentId}/accept`, {
         method: "POST"
     });
     if (response.ok) {
-        //Data Update After action
-        await updateAction(dataStore, serviceClient, actionParameters.courseId);   // function call        
+        return updateAction(dataStore, serviceClient, actionParameters.courseId);
     } else {
         throw new Error(`Could not accept invitation: (${response.status}: ${response.statusText})`);
     }
 }
 
 //SA-Course Registration
-async function courseRegistration({dataStore, client, actionParameters, serviceClient}) {
-    let response = await client.fetch(`/api/v1/courses/${actionParameters.courseId}/enrollments?enrollment[type]=StudentEnrollment&enrollment[user_id]=${actionParameters.userId}`,{
+async function courseRegistration({ dataStore, client, actionParameters, serviceClient }) {
+    const response = await client.fetch(`/api/v1/courses/${actionParameters.courseId}/enrollments?enrollment[type]=StudentEnrollment&enrollment[user_id]=${actionParameters.userId}`, {
         method: "POST"
     });
     if (response.ok) {
-        //Data Update After Action
-        await updateAction(dataStore, serviceClient, actionParameters.courseId);  // function call
+        await updateAction(dataStore, serviceClient, actionParameters.courseId);
     } else {
         throw new Error(`Could not accept invitation: (${response.status}: ${response.statusText})`);
     }
@@ -92,28 +80,23 @@ async function courseRegistration({dataStore, client, actionParameters, serviceC
 
 // Announcement & Enrollment API call
 async function updateAction(dataStore, serviceClient, courseId) {
-    let announcementCondition, announcementLink, announcementIncrement = 1;
-    //announcement pagination
-    do {
-        announcementCondition = "";
-        let announcementResponse = await serviceClient.fetch(`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${EndDate}&page=${announcementIncrement}&per_page=100`);  //Announcement API call
-        announcementIncrement++
-        let tempAnnouncementLink = announcementResponse.headers.map.link;
-        tempAnnouncementLink = tempAnnouncementLink.split(",");
+    let announcementPageExists, announcementIncrement = 1;
 
-        let enrollmentCondition, enrollmentLink, enrollmentIncrement = 1;
-        //enrollment pagination
+    do {
+        const announcementResponse = await serviceClient.fetch(`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${startDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=100`);
+        announcementIncrement++
+        const tempAnnouncementLink = announcementResponse.headers.map.link.split(",");
+
+        let enrollmentPageExists, enrollmentIncrement = 1;
         do {
-            enrollmentCondition = "";
-            let enrollmentResponse = await serviceClient.fetch(`/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=100`);  //Enrollments API call
+            const enrollmentResponse = await serviceClient.fetch(`/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=100`);
             enrollmentIncrement++
-            let tempEnrollmentLink = enrollmentResponse.headers.map.link;
-            tempEnrollmentLink = tempEnrollmentLink.split(",");
-            var enrollment;
+            const tempEnrollmentLink = enrollmentResponse.headers.map.link.split(",");
+            let enrollment;
             if (enrollmentResponse.ok) {
                 enrollment = await enrollmentResponse.json();
-                const promise = await enrollment.map(async enrollmentValue => {                
-                    let enrollmentBody = {
+                const promise = await enrollment.map(async enrollmentValue => {
+                    const enrollmentBody = {
                         "id": enrollmentValue.id,
                         "course_id": enrollmentValue.course_id,
                         "role": enrollmentValue.role,
@@ -122,7 +105,7 @@ async function updateAction(dataStore, serviceClient, courseId) {
                         "user_id": enrollmentValue.user.id,
                         "user_name": enrollmentValue.user.name
                     }
-                    await dataStore.save('enrollments', JSON.stringify(enrollmentBody))
+                    dataStore.save('enrollments', enrollmentBody)
                 })
                 await Promise.all(promise)
             } else {
@@ -133,7 +116,7 @@ async function updateAction(dataStore, serviceClient, courseId) {
                 let announcement = await announcementResponse.json();
                 const promise = await announcement.map(async announcementValue => {
                     const promise = await enrollment.map(async enrollmentValue => {
-                        let announcementBody = {
+                        const announcementBody = {
                             "id": announcementValue.id,
                             "enrollme_id": enrollmentValue.id,
                             "enrollme_course_id": enrollmentValue.course_id,
@@ -146,7 +129,7 @@ async function updateAction(dataStore, serviceClient, courseId) {
                             "author_display_name": announcementValue.author.display_name,
                             "url": announcementValue.url
                         }
-                        await dataStore.save('announcements', JSON.stringify(announcementBody))
+                        dataStore.save('announcements', announcementBody)
                     })
                     await Promise.all(promise)
 
@@ -157,22 +140,16 @@ async function updateAction(dataStore, serviceClient, courseId) {
                 throw new Error(`Announcement sync failed ${announcementResponse.status}:${announcementResponse.statusText}.`)
             }
             tempEnrollmentLink.forEach(element => {
-                enrollmentLink = element.split("; ");
-                enrollmentLink = enrollmentLink[1];
-                if (enrollmentLink == `rel="next"`) {
-                    announcementCondition = enrollmentLink;
-                }
+                const enrollmentLink = element.split("; ")[1];
+                enrollmentPageExists = enrollmentLink == 'rel="next"';
             });
-        } while (enrollmentCondition == `rel="next"`);
+        } while (enrollmentPageExists);
 
         tempAnnouncementLink.forEach(element => {
-            announcementLink = element.split("; ");
-            announcementLink = announcementLink[1];
-            if (announcementLink == `rel="next"`) {
-                announcementCondition = announcementLink;
-            }
+            const announcementLink = element.split("; ")[1];
+            announcementPageExists = announcementLink == 'rel="next"'
         });
-    } while (announcementCondition == `rel="next"`);
+    } while (announcementPageExists);
 
 }
 
@@ -236,7 +213,7 @@ integration.define({
         },
         {
             "name": "Course Registration",
-            "parameters":[
+            "parameters": [
                 {
                     "name": "courseId",
                     "type": "INTEGER",
