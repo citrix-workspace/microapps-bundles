@@ -3,14 +3,15 @@ const moment = library.load('moment-timezone');
 const startDate = moment.utc().subtract(30, 'd').format();
 const endDate = moment.utc().add(30, 'd').format();
 
-//DataLoading Endpoints
-async function canvasSync({ dataStore, client, serviceClient }) {
+//Dataloading Endpoints
+async function canvasFullSync({ dataStore, client, latestSynchronizationTime }) {
     const accountResponse = await client.fetch('api/v1/accounts?per_page=100');
     if (accountResponse.ok) {
         const account = await accountResponse.json();
         const promises = account.map(async accountValue => {
             const accountId = JSON.stringify(accountValue.id);
-            let nextPageExists, i = 1;
+            let i = 1;
+            let nextPageExists = false;
 
             do {
                 const courseResponse = await client.fetch(`api/v1/accounts/${accountId}/courses?page=${i}&per_page=100`);
@@ -24,7 +25,12 @@ async function canvasSync({ dataStore, client, serviceClient }) {
 
                     const promise = course.map(async courseValue => {
                         const courseId = JSON.stringify(courseValue.id)
-                        await updateAction(dataStore, client, courseId);
+                        if (latestSynchronizationTime){
+                            const lastSyncTime = moment(latestSynchronizationTime).utc().format();
+                            return updateAction(dataStore, client, courseId, lastSyncTime);
+                        } else {
+                            return updateAction(dataStore, client, courseId, startDate);
+                        }
                     })
                     await Promise.all(promise)
                     tempCourseLink.forEach(element => {
@@ -48,7 +54,7 @@ async function createCourseAnnouncement({ dataStore, client, actionParameters, s
     })
 
     if (response.ok) {
-        await updateAction(dataStore, serviceClient, actionParameters.courseId);
+        return updateAction(dataStore, serviceClient, actionParameters.courseId, startDate);
     } else {
         throw new Error(`Could not do course registration (${response.status}: ${response.statusText})`);
     }
@@ -60,7 +66,7 @@ async function acceptInvitation({ dataStore, client, actionParameters, serviceCl
         method: "POST"
     });
     if (response.ok) {
-        return updateAction(dataStore, serviceClient, actionParameters.courseId);
+        return updateAction(dataStore, serviceClient, actionParameters.courseId, startDate);
     } else {
         throw new Error(`Could not accept invitation: (${response.status}: ${response.statusText})`);
     }
@@ -72,22 +78,24 @@ async function courseRegistration({ dataStore, client, actionParameters, service
         method: "POST"
     });
     if (response.ok) {
-        await updateAction(dataStore, serviceClient, actionParameters.courseId);
+        return updateAction(dataStore, serviceClient, actionParameters.courseId, startDate);
     } else {
         throw new Error(`Could not accept invitation: (${response.status}: ${response.statusText})`);
     }
 }
 
 // Announcement & Enrollment API call
-async function updateAction(dataStore, serviceClient, courseId) {
-    let announcementPageExists, announcementIncrement = 1;
+async function updateAction(dataStore, serviceClient, courseId, StartDate) {
+    let announcementIncrement = 1;
+    let announcementPageExists = false;
 
     do {
-        const announcementResponse = await serviceClient.fetch(`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${startDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=100`);
+        const announcementResponse = await serviceClient.fetch(`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=100`);
         announcementIncrement++
         const tempAnnouncementLink = announcementResponse.headers.map.link.split(",");
 
-        let enrollmentPageExists, enrollmentIncrement = 1;
+        let enrollmentIncrement = 1;
+        let enrollmentPageExists = false;
         do {
             const enrollmentResponse = await serviceClient.fetch(`/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=100`);
             enrollmentIncrement++
@@ -157,7 +165,9 @@ integration.define({
     "synchronizations": [
         {
             "name": "canvas",
-            "fullSyncFunction": canvasSync
+            "fullSyncFunction": canvasFullSync,
+            "incrementalSyncFunction": canvasFullSync
+
         }
     ],
     "actions": [
