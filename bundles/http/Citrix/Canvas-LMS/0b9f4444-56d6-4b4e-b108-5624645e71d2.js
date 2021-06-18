@@ -8,40 +8,37 @@ async function canvasFullSync({ dataStore, client, latestSynchronizationTime }) 
     const accountResponse = await client.fetch('api/v1/accounts?per_page=100');
     if (accountResponse.ok) {
         const account = await accountResponse.json();
-        const promises = account.map(async accountValue => {
-            const accountId = JSON.stringify(accountValue.id);
+        for (const accountValue of account) {
             let i = 1;
-            let nextPageExists = false;
+            let nextPageExists;
 
             do {
-                const courseResponse = await client.fetch(`api/v1/accounts/${accountId}/courses?page=${i}&per_page=100`);
+                nextPageExists = false;
+                const courseResponse = await client.fetch(`api/v1/accounts/${accountValue.id}/courses?page=${i}&per_page=100`);
                 i++;
                 const tempCourseLink = courseResponse.headers.map.link.split(',');
                 if (!courseResponse.ok) {
                     throw new Error(`Courses sync failed ${courseResponse.status}:${courseResponse.statusText}.`)
                 }
-                else {
                     const course = await courseResponse.json();
-
-                    const promise = course.map(async courseValue => {
-                        const courseId = JSON.stringify(courseValue.id)
-                        if (latestSynchronizationTime){
-                            const lastSyncTime = moment(latestSynchronizationTime).utc().format();
-                            return updateAction(dataStore, client, courseId, lastSyncTime);
-                        } else {
-                            return updateAction(dataStore, client, courseId, startDate);
+                        
+                    for (const courseValue of course) {
+                            if (latestSynchronizationTime){
+                                const lastSyncTime = moment(latestSynchronizationTime).utc().format();
+                                await updateAction(dataStore, client, courseValue.id, lastSyncTime);
+                            } else {
+                                await updateAction(dataStore, client, courseValue.id, startDate);
+                            }
                         }
-                    })
-                    await Promise.all(promise)
                     tempCourseLink.forEach(element => {
                         const courseLink = element.split("; ")[1];
-                        nextPageExists = courseLink === 'rel="next"';
+                        if (courseLink === `rel="next"`) {
+                            nextPageExists = true;
+                        }
                     });
-                }
             } while (nextPageExists);
 
-        })
-        await Promise.all(promises)
+        }
     } else {
         throw new Error(`Accounts sync failed ${accountResponse.status}:${accountResponse.statusText}.`)
     }
@@ -87,23 +84,25 @@ async function courseRegistration({ dataStore, client, actionParameters, service
 // Announcement & Enrollment API call
 async function updateAction(dataStore, serviceClient, courseId, StartDate) {
     let announcementIncrement = 1;
-    let announcementPageExists = false;
+    let announcementPageExists;
 
     do {
+        announcementPageExists = false;
         const announcementResponse = await serviceClient.fetch(`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=100`);
         announcementIncrement++
         const tempAnnouncementLink = announcementResponse.headers.map.link.split(",");
 
         let enrollmentIncrement = 1;
-        let enrollmentPageExists = false;
+        let enrollmentPageExists;
         do {
+            enrollmentPageExists = false;
             const enrollmentResponse = await serviceClient.fetch(`/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=100`);
             enrollmentIncrement++
             const tempEnrollmentLink = enrollmentResponse.headers.map.link.split(",");
             let enrollment;
             if (enrollmentResponse.ok) {
                 enrollment = await enrollmentResponse.json();
-                const promise = await enrollment.map(async enrollmentValue => {
+                for (const enrollmentValue of enrollment) {
                     const enrollmentBody = {
                         "id": enrollmentValue.id,
                         "course_id": enrollmentValue.course_id,
@@ -114,16 +113,16 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate) {
                         "user_name": enrollmentValue.user.name
                     }
                     dataStore.save('enrollments', enrollmentBody)
-                })
-                await Promise.all(promise)
+                }
+
             } else {
                 throw new Error(`Enrollments sync failed ${enrollmentResponse.status}:${enrollmentResponse.statusText}.`)
             }
 
             if (announcementResponse.ok) {
                 let announcement = await announcementResponse.json();
-                const promise = await announcement.map(async announcementValue => {
-                    const promise = await enrollment.map(async enrollmentValue => {
+                for (const announcementValue of announcement) {
+                    for (const enrollmentValue of enrollment) {
                         const announcementBody = {
                             "id": announcementValue.id,
                             "enrollme_id": enrollmentValue.id,
@@ -138,24 +137,26 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate) {
                             "url": announcementValue.url
                         }
                         dataStore.save('announcements', announcementBody)
-                    })
-                    await Promise.all(promise)
+                    }
 
-                })
-                await Promise.all(promise)
+                }
 
             } else {
                 throw new Error(`Announcement sync failed ${announcementResponse.status}:${announcementResponse.statusText}.`)
             }
             tempEnrollmentLink.forEach(element => {
                 const enrollmentLink = element.split("; ")[1];
-                enrollmentPageExists = enrollmentLink == 'rel="next"';
+                if (enrollmentLink == 'rel="next"') {
+                    enrollmentPageExists = true;
+                }
             });
         } while (enrollmentPageExists);
 
         tempAnnouncementLink.forEach(element => {
             const announcementLink = element.split("; ")[1];
-            announcementPageExists = announcementLink == 'rel="next"'
+            if (announcementLink == 'rel="next"') {
+                announcementPageExists = true; 
+            }
         });
     } while (announcementPageExists);
 
