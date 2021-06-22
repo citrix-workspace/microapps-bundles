@@ -86,7 +86,7 @@ async function createCourseAnnouncement({
     );
   } else {
     throw new Error(
-      `Could not do course registration (${response.status}: ${response.statusText})`
+      `Could not create course announcement (${response.status}: ${response.statusText})`
     );
   }
 }
@@ -118,8 +118,8 @@ async function acceptInvitation({
   }
 }
 
-//SA-Course Registration
-async function courseRegistration({
+//SA-Create Invitation
+async function createInvitation({
   dataStore,
   client,
   actionParameters,
@@ -140,7 +140,7 @@ async function courseRegistration({
     );
   } else {
     throw new Error(
-      `Could not accept invitation: (${response.status}: ${response.statusText})`
+      `Could not create course registration: (${response.status}: ${response.statusText})`
     );
   }
 }
@@ -292,7 +292,7 @@ integration.define({
       function: acceptInvitation,
     },
     {
-      name: "Course Registration",
+      name: "Create Invitation",
       parameters: [
         {
           name: "courseId",
@@ -305,7 +305,7 @@ integration.define({
           required: true,
         },
       ],
-      function: courseRegistration,
+      function: createInvitation,
     },
   ],
   model: {
