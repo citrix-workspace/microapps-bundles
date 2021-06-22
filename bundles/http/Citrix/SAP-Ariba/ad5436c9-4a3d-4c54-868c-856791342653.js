@@ -188,6 +188,7 @@ async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
 			if (notEmptyArray(json)) {
 				if (i == 0) {
 					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count')) //calculating number of pages for pagination
+                    console.log('Total number of pages for pendingApprovables endpoint ' + noOfPages)
 				}
 				documentsLists = parseApprovablesGetDocIds(json,
 					documentsLists) //creating list on requisition and invoices                                          
@@ -225,6 +226,7 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
 			if (notEmptyArray(json)) {
 				if (i == 0) { //calculating number of pages for pagination
 					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'))
+                    console.log('Total number of pages for changes endpoint ' + noOfPages)
 				}
 				if (documentsLists.newChangeId < +json[json.length - 1]
 					.changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
