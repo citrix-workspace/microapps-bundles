@@ -1,7 +1,8 @@
-const limit = 100 // limit number of records per page for pagination
+const limitApprovables = 100 // limit number of records per page for pagination
+const limitChanges = 10000 // limit number of records per page for pagination
 const maxNoOfPages = 100000 //  limit number of pages for pagination
 
-function calculateNumberOfPages(totalrecords) {
+function calculateNumberOfPages(totalrecords, limit) {
 	if (Number.isInteger(totalrecords)) {
 		let totalpages = totalrecords / limit
 		if (totalpages > maxNoOfPages) {
@@ -171,14 +172,15 @@ function parseApprovablesGetDocIds(json, documentsLists) {
 	return documentsLists
 }
 
-function queryParameters(sync, i) {
+function queryParameters(sync, i, limit) {
 	return `realm=${sync.integrationParameters.realm}&limit=${limit}&offset=${limit * i}`
 }
+
 
 async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
 	let noOfPages = 1
 	for (let i = 0; i < noOfPages; i++) {
-		let responseData = await sync.client.fetch('/pendingApprovables?' + queryParameters(sync, i), {
+		let responseData = await sync.client.fetch('/pendingApprovables?' + queryParameters(sync, i, limitApprovables), {
 			headers: {
 				'apikey': sync.integrationParameters.apiKey
 			}
@@ -187,7 +189,7 @@ async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
 			let json = await responseData.json()
 			if (notEmptyArray(json)) {
 				if (i == 0) {
-					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count')) //calculating number of pages for pagination
+					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'),limitApprovables) //calculating number of pages for pagination
                     console.log('Total number of pages for pendingApprovables endpoint ' + noOfPages)
 				}
 				documentsLists = parseApprovablesGetDocIds(json,
@@ -216,7 +218,7 @@ function parseChangesGetDocIds(json, documentsLists) {
 async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
 	let noOfPages = 1
 	for (let i = 0; i < noOfPages; i++) {
-		let responseData = await sync.client.fetch('/changes?needTotal=true&' + queryParameters(sync, i) + '&lastChangeId=' + documentsLists.lastChangeId, {
+		let responseData = await sync.client.fetch('/changes?needTotal=true&' + queryParameters(sync, i, limitChanges) + '&lastChangeId=' + documentsLists.lastChangeId, {
 			headers: {
 				'apikey': sync.integrationParameters.apiKey
 			}
@@ -225,7 +227,7 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
 			let json = await responseData.json()
 			if (notEmptyArray(json)) {
 				if (i == 0) { //calculating number of pages for pagination
-					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'))
+					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'),limitChanges)
                     console.log('Total number of pages for changes endpoint ' + noOfPages)
 				}
 				if (documentsLists.newChangeId < +json[json.length - 1]
