@@ -22,7 +22,14 @@ async function incrementalSync(params) {
 async function syncMachines(params) {
     let continuationToken
     const fields =
-        'Id,AgentVersion,AssociatedUsers,MachineCatalog,DeliveryGroup,DnsName,InMaintenanceMode,IPAddress,MachineType,LastConnectionFailure,LastConnectionTime,LastConnectionUser,LastDeregistrationReason,LastDeregistrationTime,LastErrorReason,LastErrorTime,Name,OSType,OSVersion,PersistUserChanges,PowerState,ProvisioningType,RegistrationState,ScheduledReboot,SessionClientAddress,SessionClientName,SessionCount,SessionProtocol,SessionStartTime,SessionState,SessionStateChangeTime,SessionSupport,SessionUserName,SummaryState,WillShutdownAfterUse,WindowsConnectionSetting,Zone,FaultState'
+        'Id,AgentVersion,AssociatedUsers,MachineCatalog,DeliveryGroup,' +
+        'DnsName,InMaintenanceMode,IPAddress,MachineType,LastConnectionFailure,' +
+        'LastConnectionTime,LastConnectionUser,LastDeregistrationReason,LastDeregistrationTime,' +
+        'LastErrorReason,LastErrorTime,Name,OSType,OSVersion,PersistUserChanges,PowerState,' +
+        'ProvisioningType,RegistrationState,ScheduledReboot,SessionClientAddress,' +
+        'SessionClientName,SessionCount,SessionProtocol,SessionStartTime,SessionState,' +
+        'SessionStateChangeTime,SessionSupport,SessionUserName,SummaryState,' +
+        'WillShutdownAfterUse,WindowsConnectionSetting,Zone,FaultState'
 
     let body = {}
 
@@ -43,7 +50,7 @@ async function syncMachines(params) {
 
     for (const siteId of params.context.siteIds) {
         do {
-            const response = await request(
+            const response = await searchRequest(
                 siteId,
                 params,
                 'Machines',
@@ -59,25 +66,7 @@ async function syncMachines(params) {
 
                 if (Array.isArray(machines) && machines.length > 0) {
                     for (const machine of machines) {
-                        flatJson(machine, 'DeliveryGroup')
-                        flatJson(machine, 'LastConnectionUser')
-                        flatJson(machine, 'MachineCatalog')
-                        flatJson(machine, 'Zone')
-                        machine.Site_Id = siteId
-                        machine.LastConnectionTime = new Date(machine.LastConnectionTime)
-                        machine.LastDeregistrationTime = new Date(machine.LastDeregistrationTime)
-                        machine.LastErrorTime = new Date(machine.LastErrorTime)
-                        machine.SessionStartTime = new Date(machine.SessionStartTime)
-                        machine.SessionStateChangeTime = new Date(machine.SessionStateChangeTime)
-
-                        // Store Associated Users for the Machine.
-                        if (machine.AssociatedUsers?.length > 0) {
-                            const machineAssociatedUsers = machine.AssociatedUsers.map(user => {
-                                user.Machine_Id = machine.Id
-                                return user
-                            })
-                            params.dataStore.save('machine_associated_user', machineAssociatedUsers)
-                        }
+                        shapeMachine(machine, params.dataStore, siteId)
                     }
                     params.dataStore.save('machine', machines)
                 } else {
@@ -86,7 +75,7 @@ async function syncMachines(params) {
                     )
                 }
             } catch (error) {
-                console.error(error)
+                throw new Error(`Syncing Machines failed: (${error})`)
             }
         } while (continuationToken)
     }
@@ -97,7 +86,8 @@ async function syncMachines(params) {
 async function syncSessions(params) {
     let continuationToken
     const fields =
-        'Id,ApplicationsInUse,AppState,Client,Connection,Machine,SessionType,StartTime,State,StateChangeTime,User'
+        'Id,ApplicationsInUse,AppState,Client,Connection,' +
+        'Machine,SessionType,StartTime,State,StateChangeTime,User'
 
     let body = {
         SearchFilters: [
@@ -126,7 +116,7 @@ async function syncSessions(params) {
 
     for (const siteId of params.context.siteIds) {
         do {
-            const response = await request(
+            const response = await searchRequest(
                 siteId,
                 params,
                 'Sessions',
@@ -142,24 +132,7 @@ async function syncSessions(params) {
 
                 if (Array.isArray(sessions) && sessions.length > 0) {
                     for (const session of sessions) {
-                        flatJson(session, 'Client')
-                        flatJson(session, 'Connection')
-                        flatJson(session, 'User')
-                        flatJson(session, 'Machine')
-                        flatJson(session, 'Machine_DeliveryGroup')
-                        flatJson(session, 'Machine_MachineCatalog')
-                        flatJson(session, 'Machine_Zone')
-                        session.StartTime = new Date(session.StartTime)
-                        session.StateChangeTime = new Date(session.StateChangeTime)
-
-                        // Store Applications In Use for the Session.
-                        if (session.ApplicationsInUse?.length > 0) {
-                            const sessionsApplicationsInUse = session.ApplicationsInUse.map(app => {
-                                app.Session_Id = session.Id
-                                return app
-                            })
-                            params.dataStore.save('session_app_in_use', sessionsApplicationsInUse)
-                        }
+                        shapeSession(session, params.dataStore, siteId)
                     }
                     params.dataStore.save('session', sessions)
                 } else {
@@ -168,7 +141,7 @@ async function syncSessions(params) {
                     )
                 }
             } catch (error) {
-                console.error(error)
+                throw new Error(`Syncing Sessions failed: (${error})`)
             }
         } while (continuationToken)
     }
@@ -206,7 +179,7 @@ async function getSiteIds({client, integrationParameters}) {
     return siteIds
 }
 
-async function request(
+async function searchRequest(
     siteId,
     {client, integrationParameters},
     entity,
@@ -237,12 +210,179 @@ async function request(
     return response.json()
 }
 
+function shapeMachine(machine, dataStore, siteId) {
+    flatJson(machine, 'DeliveryGroup')
+    flatJson(machine, 'LastConnectionUser')
+    flatJson(machine, 'MachineCatalog')
+    flatJson(machine, 'Zone')
+    machine.Site_Id = siteId
+    machine.LastConnectionTime = makeDate(machine.LastConnectionTime)
+    machine.LastDeregistrationTime = makeDate(machine.LastDeregistrationTime)
+    machine.LastErrorTime = makeDate(machine.LastErrorTime)
+    machine.SessionStartTime = makeDate(machine.SessionStartTime)
+    machine.SessionStateChangeTime = makeDate(machine.SessionStateChangeTime)
+
+    // Store Associated Users for the Machine.
+    if (machine.AssociatedUsers?.length > 0) {
+        const machineAssociatedUsers = machine.AssociatedUsers.map(user => {
+            user.Machine_Id = machine.Id
+            return user
+        })
+        dataStore.save('machine_associated_user', machineAssociatedUsers)
+    }
+
+    return machine
+}
+
+function shapeSession(session, dataStore, siteId) {
+    flatJson(session, 'Client')
+    flatJson(session, 'Connection')
+    flatJson(session, 'User')
+    flatJson(session, 'Machine')
+    flatJson(session, 'Machine_DeliveryGroup')
+    flatJson(session, 'Machine_MachineCatalog')
+    flatJson(session, 'Machine_Zone')
+    session.Site_Id = siteId
+    session.StartTime = makeDate(session.StartTime)
+    session.StateChangeTime = makeDate(session.StateChangeTime)
+
+    // Store Applications In Use for the Session.
+    if (session.ApplicationsInUse?.length > 0) {
+        const sessionsApplicationsInUse = session.ApplicationsInUse.map(app => {
+            app.Session_Id = session.Id
+            return app
+        })
+        dataStore.save('session_app_in_use', sessionsApplicationsInUse)
+    }
+
+    return session
+}
+
+function makeDate(date) {
+    return date ? new Date(date) : null
+}
+
 function flatJson(json, oName) {
     if (json[oName] != null) {
         Object.entries(json[oName]).map(([key, value]) => (json[oName + '_' + key] = value))
         delete json[oName]
     }
     return json
+}
+
+// Actions functions
+
+async function toggleMaintenanceMode(params) {
+    const {actionParameters, integrationParameters, client} = params
+    const path = `${actionParameters.siteId}/Machines/${actionParameters.id}`
+    const body = {
+        InMaintenanceMode: actionParameters.inMaintenanceMode,
+    }
+
+    const response = await client.fetch(path, {
+        method: 'PATCH',
+        body: JSON.stringify(body),
+        headers: {
+            'Citrix-CustomerId': integrationParameters.customerId,
+        },
+    })
+
+    if (!response.ok) {
+        throw new Error(
+            `Setting maintenance mode failed (${response.status}: ${response.statusText})`,
+        )
+    }
+}
+
+async function rebootMachine(params) {
+    const {actionParameters, integrationParameters, client} = params
+    const path = `${actionParameters.siteId}/Machines/${actionParameters.id}/$reboot?force=${actionParameters.force}`
+
+    const response = await client.fetch(path, {
+        method: 'POST',
+        headers: {
+            'Citrix-CustomerId': integrationParameters.customerId,
+        },
+    })
+
+    if (!response.ok) {
+        throw new Error(`Machine reboot failed (${response.status}: ${response.statusText})`)
+    }
+}
+
+async function updateMachine(params) {
+    const {actionParameters, client, integrationParameters, dataStore} = params
+    const path = `${actionParameters.siteId}/Machines/${actionParameters.id}`
+
+    let machine = await client.fetch(path, {
+        headers: {
+            'Citrix-CustomerId': integrationParameters.customerId,
+        },
+    })
+
+    if (!machine.ok) {
+        throw new Error(`Machine update failed (${machine.status}: ${machine.statusText})`)
+    }
+
+    try {
+        machine = await machine.json()
+        machine = await shapeMachine(machine, dataStore, actionParameters.siteId)
+        dataStore.save('machine', machine)
+        debugMsg('Machine update was successful.')
+    } catch (er) {
+        throw new Error(`Storing Machine failed (${er})`)
+    }
+}
+
+async function disconnectOrLogoffSession(params) {
+    const {client, integrationParameters, dataStore, actionParameters} = params
+    const path = `${actionParameters.siteId}/Sessions/${actionParameters.id}/$${actionParameters.action}`
+
+    const response = await client.fetch(path, {
+        method: 'POST',
+        headers: {
+            'Citrix-CustomerId': integrationParameters.customerId,
+        },
+    })
+
+    if (!response.ok) {
+        throw new Error(
+            `Session disconnect / logoff failed (${response.status}: ${response.statusText})`,
+        )
+    }
+
+    if (actionParameters.action === 'logoff') {
+        dataStore.deleteById('session', actionParameters.id)
+        debugMsg('Session was successfully logged off.')
+    }
+
+    if (actionParameters.action === 'disconnect') {
+        debugMsg('Session was successfully disconnected.')
+    }
+}
+
+async function updateSession(params) {
+    const {actionParameters, client, integrationParameters, dataStore} = params
+    const path = `${actionParameters.siteId}/Sessions/${actionParameters.id}`
+
+    let session = await client.fetch(path, {
+        headers: {
+            'Citrix-CustomerId': integrationParameters.customerId,
+        },
+    })
+
+    if (!session.ok) {
+        throw new Error(`Session update failed (${session.status}: ${session.statusText})`)
+    }
+
+    try {
+        session = await session.json()
+        session = await shapeSession(session, dataStore, actionParameters.siteId)
+        dataStore.save('session', session)
+        debugMsg('Session update was successful.')
+    } catch (er) {
+        throw new Error(`Storing Session failed (${er})`)
+    }
 }
 
 // Definitions
@@ -253,6 +393,103 @@ integration.define({
             name: 'sync',
             fullSyncFunction: fullSync,
             incrementalSyncFunction: incrementalSync,
+        },
+    ],
+    actions: [
+        {
+            name: 'Toggle Maintenance Mode',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'inMaintenanceMode',
+                    type: 'BOOLEAN',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: toggleMaintenanceMode,
+        },
+        {
+            name: 'Reboot Machine',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'force',
+                    type: 'BOOLEAN',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: rebootMachine,
+        },
+        {
+            name: 'Disconnect or Logoff Session',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'action',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: disconnectOrLogoffSession,
+        },
+        {
+            name: 'Update Session',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: updateSession,
+        },
+        {
+            name: 'Update Machine',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: updateMachine,
         },
     ],
     model: {
