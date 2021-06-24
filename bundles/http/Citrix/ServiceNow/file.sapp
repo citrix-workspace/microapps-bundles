@@ -11985,7 +11985,7 @@
     "schemaName" : "lubos250cc1_servicenow",
     "configuration" : {
       "trackingUuid" : "fbe9b20f-2047-4c36-8fd6-353d2b741d18",
-      "baseUrl" : "https://{{customerID}}.service-now.com/",
+      "baseUrl" : "https://{{customer_id}}.service-now.com/",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "RESOURCE_OWNER_PASSWORD",
@@ -11993,7 +11993,7 @@
         "password" : "{{secret 'dataEndpoint.password'}}",
         "scope" : "",
         "authorizationURL" : "",
-        "tokenURL" : "https://ven01956service-now.com/oauth_token.do",
+        "tokenURL" : "https://{{customer_id}}.service-now.com/oauth_token.do",
         "grantTypeValue" : "password",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
@@ -12005,8 +12005,8 @@
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret 'serviceAction.clientSecret'}}",
         "scope" : "",
-        "authorizationURL" : "https://{{customerID}}.service-now.com/oauth_auth.do",
-        "tokenURL" : "https://{{customerID}}.service-now.com/oauth_token.do",
+        "authorizationURL" : "https://{{customer_id}}.service-now.com/oauth_auth.do",
+        "tokenURL" : "https://{{customer_id}}.service-now.com/oauth_token.do",
         "grantTypeValue" : "authorization_code",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "",
