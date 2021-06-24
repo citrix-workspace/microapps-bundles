@@ -95,12 +95,21 @@ async function addIfMissingGroup(sync, groupId, groups) {
 		let memberList = await responseData.json()
 		for (let member of memberList) {
 			member.group = groupId
-		}
+            try {
+                delete member.contentType
+                delete member.realm
+            }
+		    catch
+            {
+                console.log('Warning: unable to delete group member contentType or realm ')
+            }
+        }
 		groups.members = groups.members.concat(memberList)
 	}
 	else {
 		console.log('Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText)
 	}
+    console.log('Groups size extimation:' + JSON.stringify(groups).length/1000 + ' kb')
 	return groups
 }
 
@@ -108,7 +117,8 @@ function resolveGroupApproval(json, groups) { //currently we are able to store o
 	const groupId = json.id
 	let userList = groups.members.filter(function(groupMember) {
 		return groupMember.group == groupId
-	})
+	}).map(group => ({...group}))
+    
 	for (let user of userList) { //creating list of approvers with additionl data from requisition
 		try {
 			user.approvalRequestId = json.approvalRequestId
@@ -154,7 +164,7 @@ async function storeRequisition(sync, requisitions, groups) {
 				sync.dataStore.save('rq_lineitems', flatLineItems(json.lineItems)) //saving line items
 				delete json.lineItems
 			}
-			await sync.dataStore.save('requisition_details', flatRequisition(json))
+			sync.dataStore.save('requisition_details', flatRequisition(json))
 		}
 	}
 	return groups
@@ -190,7 +200,9 @@ async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
 			if (notEmptyArray(json)) {
 				if (i == 0) {
 					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'),limitApprovables) //calculating number of pages for pagination
+                    console.log('Total number of pending approvables ' + responseData.headers.get('X-Total-Count'))
                     console.log('Total number of pages for pendingApprovables endpoint ' + noOfPages)
+                    
 				}
 				documentsLists = parseApprovablesGetDocIds(json,
 					documentsLists) //creating list on requisition and invoices                                          
@@ -228,7 +240,10 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
 			if (notEmptyArray(json)) {
 				if (i == 0) { //calculating number of pages for pagination
 					noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'),limitChanges)
+                    console.log('First Change ID ' + json[1].changeSequenceId)
+                    console.log('Total number of changes ' + responseData.headers.get('X-Total-Count'))
                     console.log('Total number of pages for changes endpoint ' + noOfPages)
+                    
 				}
 				if (documentsLists.newChangeId < +json[json.length - 1]
 					.changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
