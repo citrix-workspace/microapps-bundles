@@ -87,7 +87,7 @@ async function resolveGroupMembers(sync, groupId, groups) {
        // console.log(`Found group ${groupId} in groups cache`);
         return groups.get(groupId);
     }
-    let responseData = await sync.client.fetch('groups/' + groupId + '/members?realm=' + sync.integrationParameters.realm, {
+    let responseData = await sync.client.fetch('groups/' + groupId + '/members?realm=' + sync.integrationParameters.realm + '&limit=1000', {
         headers: {
             'apikey': sync.integrationParameters.apiKey
         }
