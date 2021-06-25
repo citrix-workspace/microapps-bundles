@@ -326,7 +326,7 @@ async function updateMachine(params) {
 
     try {
         machine = await machine.json()
-        machine = await shapeMachine(machine, dataStore, actionParameters.siteId)
+        machine = shapeMachine(machine, dataStore, actionParameters.siteId)
         dataStore.save('machine', machine)
         debugMsg('Machine update was successful.')
     } catch (er) {
