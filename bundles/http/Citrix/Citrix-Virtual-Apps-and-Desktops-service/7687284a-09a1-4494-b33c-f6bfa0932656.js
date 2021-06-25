@@ -377,7 +377,7 @@ async function updateSession(params) {
 
     try {
         session = await session.json()
-        session = await shapeSession(session, dataStore, actionParameters.siteId)
+        session = shapeSession(session, dataStore, actionParameters.siteId)
         dataStore.save('session', session)
         debugMsg('Session update was successful.')
     } catch (er) {
