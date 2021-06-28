@@ -42,7 +42,6 @@ async function syncAgreements(dataStore, client, userids, integrationParameters,
     let agreements = new Map()
     do {
         const response = await client.fetch(`/api/rest/v6/agreements?pageSize=${PAGE_SZIE}`, {
-            method: 'GET',
             headers: {
                 "x-api-user": `userid:${userids[i]}`,
             }
@@ -91,7 +90,6 @@ async function syncLibraryDocuments(dataStore, client, userids) {
     let url = `/api/rest/v6/libraryDocuments?pageSize=${PAGE_SZIE}`
     do {
         const response = await client.fetch(url, {
-            method: 'GET',
             headers: {
                 "x-api-user": `userid:${userids[i]}`,
             }
@@ -139,7 +137,6 @@ async function syncLibraryDocuments(dataStore, client, userids) {
 async function syncArgreementDetails(client, dataStore, agreements) {
     for (const [agreementId, value] of agreements) {
         const response = await client.fetch(`/api/rest/v6/agreements/${agreementId}/members`, {
-            method: 'GET',
             headers: {
                 "x-api-user": `userid:${value.userid}`,
             }
@@ -314,6 +311,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
                 participantSetsInfo: participantSetsInfo,
                 signatureType: 'ESIGN',
                 state: 'IN_PROCESS'
+            
             }
         )
     })
@@ -322,7 +320,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
         throw new Error(JSON.stringify(json))
     }
     const id = json['id']
-    let agreement = new Map([[id, { "userid": actionParameters.userid }]])
+    let agreement = new Map([[id, { "userid": actionParameters.userid , "name": actionParameters.agreementName}]])
     await Promise.all([
         syncAgreements(dataStore, client, [actionParameters.userid], integrationParameters),
         syncArgreementDetails(client, dataStore, agreement),
@@ -344,19 +342,12 @@ async function shareAgreement({ dataStore, client, actionParameters, integration
             ]
         })
     })
-
-    const json = await response.json()
     if (!response.ok) {
-        throw new Error(JSON.stringify(json))
+        throw new Error(JSON.stringify(await response.text()))
     }
-    let agreement = new Map([[actionParameters.agreementId, { "userid": actionParameters.userid }]])
-    await Promise.all([
-        syncAgreements(dataStore, client, [actionParameters.userid], integrationParameters),
-        syncArgreementDetails(client, dataStore, agreement),
-    ])
 }
 
-async function cancleAgreement({ dataStore, client, actionParameters, integrationParameters }) {
+async function cancelAgreement({ dataStore, client, actionParameters, integrationParameters }) {
     const response = await client.fetch(`/api/rest/v6/agreements/${actionParameters.agreementId}/state`, {
         method: 'PUT',
         headers: {
@@ -370,7 +361,7 @@ async function cancleAgreement({ dataStore, client, actionParameters, integratio
     if (!response.ok) {
         throw new Error(JSON.stringify(await response.json()))
     }
-    let agreement = new Map([[actionParameters.agreementId, { "userid": actionParameters.userid }]])
+    let agreement = new Map([[actionParameters.agreementId, { "userid": actionParameters.userid , "name": actionParameters.agreementName}]])
     await Promise.all([
         syncAgreements(dataStore, client, [actionParameters.userid], integrationParameters),
         syncArgreementDetails(client, dataStore, agreement),
@@ -406,7 +397,7 @@ integration.define({
     ],
     integrationParameters: [
         { name: "GroupId", type: "STRING", label: "AdobeSign GroupId", required: true },
-        { name: "AgreementCount", type: "STRING", label: "Enter the number of agreements to be loaded for a user", required: true }
+        { name: "AgreementCount", type: "STRING", label: "Agreements Per User", required: true , description: "No of Agreements to stored per user in cache table" }
     ],
     model: {
         tables: [
@@ -536,17 +527,18 @@ integration.define({
                 { name: "userid", type: "STRING", required: true },
                 { name: "email", type: "STRING", required: true },
                 { name: "emailUnknown", type: "STRING" },
-                { name: "message", type: "STRING" },
+                { name: "message", type: "STRING" }
             ],
             function: shareAgreement
         },
         {
-            name: "CancleAgreement",
+            name: "CancelAgreement",
             parameters: [
                 { name: "agreementId", type: "STRING", required: true },
-                { name: "userid", type: "STRING", required: true }
+                { name: "userid", type: "STRING", required: true },
+                { name: "agreementName", type:"STRING"}
             ],
-            function: cancleAgreement
+            function: cancelAgreement
         },
         {
             name: "sendAgreement",
@@ -565,10 +557,10 @@ integration.define({
                 { name: "emailUnknown3", type: "STRING" },
                 { name: "addrecipient2", type: "BOOLEAN" },
                 { name: "addrecipient3", type: "BOOLEAN" },
-                { name: "order", type: "STRING", length: 255 },
-                { name: "order1", type: "STRING", length: 255 },
-                { name: "order2", type: "STRING", length: 255 },
-                { name: "order3", type: "STRING", length: 255 },
+                { name: "order", type: "STRING"},
+                { name: "order1", type: "STRING"},
+                { name: "order2", type: "STRING"},
+                { name: "order3", type: "STRING"},
                 { name: "userid", type: "STRING" },
             ],
             function: sendAgreement
