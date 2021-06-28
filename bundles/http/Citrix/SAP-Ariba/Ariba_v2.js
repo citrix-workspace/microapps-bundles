@@ -238,10 +238,11 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
             if (notEmptyArray(json)) {
                 if (i === 0) { //calculating number of pages for pagination
                     noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'), limitChanges)
-                    console.log('First Change ID ' + json[1].changeSequenceId)
                     console.log('Total number of changes ' + responseData.headers.get('X-Total-Count'))
                     console.log('Total number of pages for changes endpoint ' + noOfPages)
+                    console.log('First Change ID ' + json[0].changeSequenceId)
                 }
+
                 if (documentsLists.newChangeId < +json[json.length - 1]
                     .changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
                     documentsLists.newChangeId = +json[json.length - 1].changeSequenceId

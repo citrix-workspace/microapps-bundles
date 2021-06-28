@@ -2133,7 +2133,7 @@
   "services" : [ {
     "id" : 16,
     "uuid" : "33fe7b74-d991-4047-bdf9-63df2aeb7311",
-    "version" : 293,
+    "version" : 298,
     "title" : "SAP Ariba",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -2171,6 +2171,8 @@
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
         "useTimeRange" : false,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
         "schedule" : "FIFTEEN_MINUTES"
       } ],
       "endpoints" : [ ],
@@ -2636,12 +2638,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 290,
-            "endLine" : 292
+            "startLine" : 291,
+            "endLine" : 293
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 294,
-            "endLine" : 296
+            "startLine" : 295,
+            "endLine" : 297
           }
         } ],
         "actions" : [ {
@@ -2681,8 +2683,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 298,
-            "endLine" : 351
+            "startLine" : 299,
+            "endLine" : 352
           }
         } ],
         "webhookListeners" : [ ],
@@ -2714,7 +2716,7 @@
     "context" : {
       "synchronizationContexts" : {
         "SyncChanges" : {
-          "lastChangeSequenceId" : "20102",
+          "lastChangeSequenceId" : "22584",
           "lastApprovalDateValue" : "20210309"
         }
       }
