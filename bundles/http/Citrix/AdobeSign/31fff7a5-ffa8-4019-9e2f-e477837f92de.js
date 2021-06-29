@@ -1,10 +1,19 @@
 const moment = library.load('moment-timezone');
 const uuid = library.load('uuid')
+
+function getStatus(status) {
+    return status.split('_').reduce((initialValue, currnetValue) => {
+        return initialValue + (currnetValue[0].toUpperCase() + (currnetValue.toLowerCase()).substring(1, currnetValue
+            .length) + ' ')
+    }, '').trimEnd()
+}
+
 async function syncUsers(dataStore, client, integrationParameters) {
     let userids = []
-    const PAGE_SZIE = 100
+    const PAGE_SIZE = 100
     let cursor = ""
-    let url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SZIE}`
+    const activeUsers = []
+    let url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SIZE}`
     do {
         const response = await client.fetch(url);
         const json = await response.json();
@@ -14,13 +23,14 @@ async function syncUsers(dataStore, client, integrationParameters) {
         }
         const data = json.userInfoList ?? []
         cursor = json.page.nextCursor ?? null
-        url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SZIE}&cursor=${cursor}`
-        let users = data.filter(async user=>{
-            const status = await client.fetch(`api/rest/v6/users/${user.id}`).json()
-            if(status === "ACTIVE"){
-                return true
+        url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SIZE}&cursor=${cursor}`
+        for (const user of data) {
+            const userDetails = client.fetchSync(`api/rest/v6/users/${user.id}`).jsonSync()
+            if (userDetails.status === "ACTIVE") {
+                activeUsers.push(user)
             }
-        }).map(user => {
+        }
+        let users = activeUsers.map(user => {
             userids.push(user.id);
             return {
                 "ID": user.id,
@@ -36,12 +46,15 @@ async function syncUsers(dataStore, client, integrationParameters) {
     return userids
 }
 
-async function syncAgreements(dataStore, client, userids, integrationParameters,latestSynchronizationTime=null) {
-    const PAGE_SZIE = integrationParameters.AgreementCount
+async function syncAgreements(dataStore, client, userids, integrationParameters, latestSynchronizationTime = null) {
+    const PAGE_SIZE = integrationParameters.AgreementCount
     let i = 0
     let agreements = new Map()
+    if (userids.length === 0) {
+        return agreements
+    }
     do {
-        const response = await client.fetch(`/api/rest/v6/agreements?pageSize=${PAGE_SZIE}`, {
+        const response = await client.fetch(`/api/rest/v6/agreements?pageSize=${PAGE_SIZE}`, {
             headers: {
                 "x-api-user": `userid:${userids[i]}`,
             }
@@ -50,14 +63,12 @@ async function syncAgreements(dataStore, client, userids, integrationParameters,
         if (!response.ok) {
             throw new Error(JSON.stringify(json))
         }
-        const data = json.userAgreementList ?? []
-        let agreementsData = data.filter(agreement => {
-            if(latestSynchronizationTime != null){
+        let agreementsData = json.userAgreementList?.filter(agreement => {
+            if (latestSynchronizationTime != null) {
                 return (moment(new Date(agreement.displayDate)).isAfter(moment(latestSynchronizationTime)) && agreement.status != "DRAFT" && agreement.status != "WAITING_FOR_MY_SIGNATURE" && agreement.type == "AGREEMENT")
-            }else{
+            } else {
                 return agreement.status != "DRAFT" && agreement.status != "WAITING_FOR_MY_SIGNATURE" && agreement.type == "AGREEMENT"
             }
-            
         }).map(agreement => {
             agreements.set(agreement.id, { "userid": userids[i], "name": agreement.name })
             return {
@@ -67,27 +78,27 @@ async function syncAgreements(dataStore, client, userids, integrationParameters,
                 "type": agreement.type,
                 "name": agreement.name,
                 "latestVersionId": agreement.latestVersionId,
-                "status": agreement.status.split('_').reduce((initialvalue, currnetvalue) => {
-                    return initialvalue + (currnetvalue[0].toUpperCase() + (currnetvalue.toLowerCase()).substring(1, currnetvalue
-                        .length) + ' ')
-                }, '').trimEnd(),
+                "status": getStatus(agreement.status),
                 "hidden": Boolean(agreement.hidden),
                 "groupId": agreement.groupId,
                 "userId": userids[i]
             }
         })
 
-        dataStore.save("agreements", agreementsData);
+        dataStore.save("agreements", agreementsData ?? []);
         i++
     } while (i < userids.length)
     return agreements
 }
 
 async function syncLibraryDocuments(dataStore, client, userids) {
-    const PAGE_SZIE = 100
+    const PAGE_SIZE = 100
     let cursor = " "
     let i = 0
-    let url = `/api/rest/v6/libraryDocuments?pageSize=${PAGE_SZIE}`
+    if (userids.length == 0) {
+        return false
+    }
+    let url = `/api/rest/v6/libraryDocuments?pageSize=${PAGE_SIZE}`
     do {
         const response = await client.fetch(url, {
             headers: {
@@ -98,19 +109,17 @@ async function syncLibraryDocuments(dataStore, client, userids) {
         if (!response.ok) {
             throw new Error(JSON.stringify(json))
         }
-        const data = json.libraryDocumentList ?? []
         cursor = json.page.nextCursor ?? null
-        url = `/api/rest/v6/libraryDocuments?pageSize=${PAGE_SZIE}&cursor=${cursor}`
-        let templateData = data.map(template => {
-            let templateTypes = template.templateTypes ?? []
-            let templateTypesData = templateTypes.map(templateType => {
+        url = `/api/rest/v6/libraryDocuments?pageSize=${PAGE_SIZE}&cursor=${cursor}`
+        let templateData = json.libraryDocumentList?.map(template => {
+            let templateTypesData = template.templateTypes?.map(templateType => {
                 return {
                     "templateType": templateType,
                     "parentId": template.id,
                     "uniqueId": uuid.v4()
                 }
             })
-            dataStore.save('templateTypes', templateTypesData)
+            dataStore.save('templateTypes', templateTypesData ?? [])
             return {
                 "id": template.id,
                 "name": template.name,
@@ -120,15 +129,15 @@ async function syncLibraryDocuments(dataStore, client, userids) {
                 "sharingMode": template.sharingMode,
                 "hidden": Boolean(template.hidden),
                 "groupId": template.groupId,
-                "status": template.status
+                "status": getStatus(template.status)
             }
         })
 
-        dataStore.save("libraryDocuments", templateData);
+        dataStore.save("libraryDocuments", templateData ?? []);
 
         if (cursor == null) {
             i++
-            url = `/api/rest/v6/libraryDocuments?page_size=${PAGE_SZIE}`
+            url = `/api/rest/v6/libraryDocuments?page_size=${PAGE_SIZE}`
         }
 
     } while (i < userids.length)
@@ -145,33 +154,24 @@ async function syncArgreementDetails(client, dataStore, agreements) {
         if (!response.ok) {
             throw new Error(JSON.stringify(json))
         }
-        const participantSets = json['participantSets'] ?? []
-        const senderInfo = json['senderInfo'] ?? []
-        participantSets.map(participantSet => {
-            const memberInfos = participantSet.memberInfos ?? []
-            let data = memberInfos.map(member => {
+        json.participantSets?.map(participantSet => {
+            let data = participantSet.memberInfos?.map(member => {
                 return {
                     "agreement_id": agreementId,
                     "agreement_name": value.name,
                     "participant_email": member.email,
                     "participent_id": member.id,
-                    "participent_role": participantSet.role,
-                    "participent_status": participantSet.status.split('_').reduce((initialvalue, currnetvalue) => {
-                        return initialvalue + (currnetvalue[0].toUpperCase() + (currnetvalue.toLowerCase()).substring(1, currnetvalue
-                            .length) + ' ')
-                    }, '').trimEnd(),
+                    "participant_role": participantSet.role,
+                    "participant_status": getStatus(participantSet.status),
                     "sender_company": member.company,
-                    "sender_email": senderInfo.email,
-                    "sender_name": senderInfo.name,
-                    "status": senderInfo.status.split('_').reduce((initialvalue, currnetvalue) => {
-                        return initialvalue + (currnetvalue[0].toUpperCase() + (currnetvalue.toLowerCase()).substring(1, currnetvalue
-                            .length) + ' ')
-                    }, '').trimEnd(),
-                    "userid": senderInfo.userId,
-                    "createdDate": senderInfo.createdDate
+                    "sender_email": json.senderInfo?.email,
+                    "sender_name": json.senderInfo?.name,
+                    "status": getStatus(json.senderInfo?.status),
+                    "userid": json.senderInfo?.userId,
+                    "createdDate": json.senderInfo?.createdDate
                 }
             })
-            dataStore.save("agreementDetails", data)
+            dataStore.save("agreementDetails", data ?? [])
         })
     }
 }
@@ -185,7 +185,7 @@ async function fullSync({ dataStore, client, integrationParameters }) {
     ])
 }
 
-async function incrementalSync({dataStore, client,integrationParameters, latestSynchronizationTime}){
+async function incrementalSync({ dataStore, client, integrationParameters, latestSynchronizationTime }) {
     const userids = await syncUsers(dataStore, client, integrationParameters,);
     const agreements = await syncAgreements(dataStore, client, userids, integrationParameters, latestSynchronizationTime);
     await syncArgreementDetails(client, dataStore, agreements)
@@ -253,14 +253,17 @@ async function agreementview({ client, dataStore, actionParameters }) {
     })
     dataStore.save("agreementViews", data)
 }
- 
+
 async function sendAgreement({ dataStore, client, actionParameters, integrationParameters }) {
     let transientDocuments = null
     let fileInfos = {
-            "libraryDocumentId": `${actionParameters.libraryDocumentId}`
-        }
+        "libraryDocumentId": `${actionParameters.libraryDocumentId}`
+    }
     if (actionParameters.libraryDocumentId == null) {
         let transientDocument = await uploadFiles(dataStore, client, actionParameters)
+        if(transientDocument == false){
+            throw new Error('File not selected')
+        }
         delete fileInfos.libraryDocumentId
         fileInfos.transientDocumentId = transientDocument
     }
@@ -275,7 +278,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
             order: actionParameters.order == 'inorder' ? actionParameters.order1 : 1
         }
     ]
-    if (actionParameters.addrecipient2 == true) {
+    if (actionParameters.addrecipient2) {
         participantSetsInfo.push({
             memberInfos: [
                 {
@@ -286,7 +289,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
             order: actionParameters.order == 'inorder' ? actionParameters.order2 : 1
         })
     }
-    if (actionParameters.addrecipient3 == true) {
+    if (actionParameters.addrecipient3) {
         participantSetsInfo.push({
             memberInfos: [
                 {
@@ -311,7 +314,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
                 participantSetsInfo: participantSetsInfo,
                 signatureType: 'ESIGN',
                 state: 'IN_PROCESS'
-            
+
             }
         )
     })
@@ -319,15 +322,15 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
     if (!response.ok) {
         throw new Error(JSON.stringify(json))
     }
-    const id = json['id']
-    let agreement = new Map([[id, { "userid": actionParameters.userid , "name": actionParameters.agreementName}]])
+    const {id} = json
+    let agreement = new Map([[id, { "userid": actionParameters.userid, "name": actionParameters.agreementName }]])
     await Promise.all([
         syncAgreements(dataStore, client, [actionParameters.userid], integrationParameters),
         syncArgreementDetails(client, dataStore, agreement),
     ])
 }
 
-async function shareAgreement({ dataStore, client, actionParameters, integrationParameters }) {
+async function shareAgreement({ dataStore, client, actionParameters}) {
     const response = await client.fetch(`/api/rest/v6/agreements/${actionParameters.agreementId}/members/share`, {
         method: 'POST',
         headers: {
@@ -343,7 +346,7 @@ async function shareAgreement({ dataStore, client, actionParameters, integration
         })
     })
     if (!response.ok) {
-        throw new Error(JSON.stringify(await response.text()))
+        throw new Error(await response.text())
     }
 }
 
@@ -359,20 +362,25 @@ async function cancelAgreement({ dataStore, client, actionParameters, integratio
     })
 
     if (!response.ok) {
-        throw new Error(JSON.stringify(await response.json()))
+        throw new Error(await response.text())
     }
-    let agreement = new Map([[actionParameters.agreementId, { "userid": actionParameters.userid , "name": actionParameters.agreementName}]])
+    let agreement = new Map([[actionParameters.agreementId, { "userid": actionParameters.userid, "name": actionParameters.agreementName }]])
     await Promise.all([
         syncAgreements(dataStore, client, [actionParameters.userid], integrationParameters),
         syncArgreementDetails(client, dataStore, agreement),
     ])
 }
 async function uploadFiles(dataStore, client, actionParameters) {
+    console.log(JSON.stringify(actionParameters.attachments))
     const formData = new FormData()
+    if(actionParameters.attachments.length == 0){
+        return false
+    }
     actionParameters.attachments?.forEach(file => {
         formData.append('File', file)
         formData.append('File-Name', file.name)
     })
+    
     const response = await client.fetch(`/api/rest/v6/transientDocuments`, {
         method: "POST",
         body: formData,
@@ -397,7 +405,7 @@ integration.define({
     ],
     integrationParameters: [
         { name: "GroupId", type: "STRING", label: "AdobeSign GroupId", required: true },
-        { name: "AgreementCount", type: "STRING", label: "Agreements Per User", required: true , description: "No of Agreements to stored per user in cache table" }
+        { name: "AgreementCount", type: "STRING", label: "Agreements Per User", required: true, description: "No of Agreements to stored per user in cache table" }
     ],
     model: {
         tables: [
@@ -455,8 +463,8 @@ integration.define({
                     { name: "agreement_name", type: "STRING", length: 255 },
                     { name: "participant_email", type: "STRING", length: 255 },
                     { name: "participent_id", type: "STRING", length: 255, primaryKey: true },
-                    { name: "participent_role", type: "STRING", length: 255 },
-                    { name: "participent_status", type: "STRING", length: 255 },
+                    { name: "participant_role", type: "STRING", length: 255 },
+                    { name: "participant_status", type: "STRING", length: 255 },
                     { name: "sender_company", type: "STRING", length: 255 },
                     { name: "sender_email", type: "STRING", length: 255 },
                     { name: "sender_name", type: "STRING", length: 255 },
@@ -536,7 +544,7 @@ integration.define({
             parameters: [
                 { name: "agreementId", type: "STRING", required: true },
                 { name: "userid", type: "STRING", required: true },
-                { name: "agreementName", type:"STRING"}
+                { name: "agreementName", type: "STRING" }
             ],
             function: cancelAgreement
         },
@@ -557,10 +565,10 @@ integration.define({
                 { name: "emailUnknown3", type: "STRING" },
                 { name: "addrecipient2", type: "BOOLEAN" },
                 { name: "addrecipient3", type: "BOOLEAN" },
-                { name: "order", type: "STRING"},
-                { name: "order1", type: "STRING"},
-                { name: "order2", type: "STRING"},
-                { name: "order3", type: "STRING"},
+                { name: "order", type: "STRING" },
+                { name: "order1", type: "STRING" },
+                { name: "order2", type: "STRING" },
+                { name: "order3", type: "STRING" },
                 { name: "userid", type: "STRING" },
             ],
             function: sendAgreement
