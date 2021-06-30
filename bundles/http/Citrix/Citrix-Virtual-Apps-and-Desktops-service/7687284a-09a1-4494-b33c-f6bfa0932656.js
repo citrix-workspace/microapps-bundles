@@ -93,7 +93,6 @@ async function syncSessions(params) {
         SearchFilters: [
             {
                 Property: 'SessionStateChangeTime',
-                // parametr v configuraci
                 Value: 'LastMonth',
                 Operator: 'IsWithin',
             },
@@ -105,7 +104,6 @@ async function syncSessions(params) {
             SearchFilters: [
                 {
                     Property: 'SessionStateChangeTime',
-                    // parametr v configuraci
                     Value: 'Last30Minutes',
                     Operator: 'IsWithin',
                 },
