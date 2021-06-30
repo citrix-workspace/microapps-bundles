@@ -1,5 +1,6 @@
 const limitApprovables = 100 // limit number of records per page for pagination approvables
-const limitChanges = 10000 // limit number of records per page for pagination changers
+const limitGroups = 1000  // limit number of records for resolving group members
+const limitChanges = 5000 // limit number of records per page for pagination changers
 const maxNoOfPages = 100000 //  limit number of pages for pagination
 
 function calculateNumberOfPages(totalrecords, limit) {
@@ -55,7 +56,7 @@ async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
     let rqUserList = []
     for (let appReqsr of json) {
         for (let approvers of appReqsr.approvers) {
-            if (approvers.type !== undefined) {
+            if (['user', 'group'].includes(approvers.type)) {
                 try {
                     approvers.approvalRequired = appReqsr.approvalRequired
                     approvers.approvalState = appReqsr.approvalState
@@ -73,7 +74,7 @@ async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
                     }
                 }
                 catch (e) {
-                    console.log('Warning: unable to get all requisition data for user ' + e.message)
+                    console.log(`Warning: unable to get all requisition data for ${approvers.type}: ${e.message}`)
                 }
             }
         }
@@ -87,26 +88,20 @@ async function resolveGroupMembers(sync, groupId, groups) {
        // console.log(`Found group ${groupId} in groups cache`);
         return groups.get(groupId);
     }
-    let responseData = await sync.client.fetch('groups/' + groupId + '/members?realm=' + sync.integrationParameters.realm + '&limit=1000', {
+    let responseData = await sync.client.fetch('groups/' + groupId + '/members?realm=' + sync.integrationParameters.realm + '&limit=' + limitGroups, {
         headers: {
             'apikey': sync.integrationParameters.apiKey
         }
     });
 
     if (responseData.ok) {
-        let memberList = (await responseData.json()).map(member => {
-            return {
-                "emailAddress": member.emailAddress,
-                "phone": member.phone,
-                "name": member.name,
-                "uniqueName": member.uniqueName,
-                "passwordAdapter": member.passwordAdapter,
-            }
-        })
+        let memberList = (await responseData.json()).map(({emailAddress,phone,name,uniqueName,passwordAdapter}) => 
+        ({emailAddress,phone,name,uniqueName,passwordAdapter}))
+        
         groups.set(groupId, memberList);
-        //console.log(JSON.stringify(memberList));
 
         console.log(`Adding group ${groupId} with member list size ${memberList.length}, total group count: ${groups.size}`);
+        
         return memberList;
     } else {
         console.log('Warning: unable to get Group with ID:' + groupId + ':' + responseData.statusText);

@@ -2133,7 +2133,7 @@
   "services" : [ {
     "id" : 16,
     "uuid" : "33fe7b74-d991-4047-bdf9-63df2aeb7311",
-    "version" : 298,
+    "version" : 307,
     "title" : "SAP Ariba",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -2164,16 +2164,12 @@
       "webhookListeners" : [ ],
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
-        "useTimeRange" : true,
-        "runFrom" : "00:00",
-        "runTo" : "04:00",
-        "schedule" : "DAILY"
+        "useTimeRange" : false,
+        "schedule" : "MANUALLY"
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
         "useTimeRange" : false,
-        "runFrom" : "00:00",
-        "runTo" : "04:00",
-        "schedule" : "FIFTEEN_MINUTES"
+        "schedule" : "MANUALLY"
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
@@ -2184,7 +2180,7 @@
           "unit" : "SECONDS",
           "amount" : 1
         },
-        "requestsPerWindow" : 3
+        "requestsPerWindow" : 5
       },
       "timeoutInSeconds" : 120,
       "scriptConfiguration" : {
@@ -2638,12 +2634,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 291,
-            "endLine" : 293
+            "startLine" : 286,
+            "endLine" : 288
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 295,
-            "endLine" : 297
+            "startLine" : 290,
+            "endLine" : 292
           }
         } ],
         "actions" : [ {
@@ -2683,8 +2679,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 299,
-            "endLine" : 352
+            "startLine" : 294,
+            "endLine" : 347
           }
         } ],
         "webhookListeners" : [ ],
@@ -2716,7 +2712,7 @@
     "context" : {
       "synchronizationContexts" : {
         "SyncChanges" : {
-          "lastChangeSequenceId" : "22584",
+          "lastChangeSequenceId" : "22625",
           "lastApprovalDateValue" : "20210309"
         }
       }
@@ -4079,7 +4075,7 @@
       "hideAddButton" : false
     },
     "oauthLoginNeeded" : false,
-    "fullyConfigured" : false
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "061ec001-9a82-461c-bffa-4121f19892fc",
