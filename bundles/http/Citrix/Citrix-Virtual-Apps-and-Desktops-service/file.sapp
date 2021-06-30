@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "1272f376-31df-4687-810b-b98dc0580ed9",
       "serviceId" : 175,
-      "version" : 731,
+      "version" : 751,
       "parameters" : {
         "imageUrl" : "exported/appointment.c117668c85459b8f05ff47018f14ab5a.svg",
         "description" : "e05066cb-d8dc-4d92-b726-f19d090eb736"
@@ -824,7 +824,7 @@
           },
           "id" : "99fe8c1d-e55e-43c1-b027-b54184cfa999",
           "defaultvalue" : null,
-          "displayorder" : 3,
+          "displayorder" : 4,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "1272f376-31df-4687-810b-b98dc0580ed9",
@@ -1104,7 +1104,7 @@
           "parameters" : { },
           "id" : "bf5f621e-75d5-44c1-8a87-30814055a921",
           "defaultvalue" : null,
-          "displayorder" : 4,
+          "displayorder" : 5,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
         }, {
           "type" : "STATIC_TEXT",
@@ -1127,7 +1127,7 @@
           },
           "id" : "4d3015fe-a870-4f91-a665-39f16040d076",
           "defaultvalue" : null,
-          "displayorder" : 5,
+          "displayorder" : 6,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
         }, {
           "type" : "FLEXIBLE_GRID",
@@ -1150,7 +1150,7 @@
           },
           "id" : "810cff5d-bd25-4b1b-9953-9f4a704e5221",
           "defaultvalue" : null,
-          "displayorder" : 6,
+          "displayorder" : 7,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "1272f376-31df-4687-810b-b98dc0580ed9",
@@ -1437,13 +1437,8 @@
                 "serviceAction" : {
                   "type" : "GWSC",
                   "id" : "0719d238-bef7-402d-b497-aba8a8c7fc34",
-                  "name" : "Disconnect or Logoff Session",
+                  "name" : "Logoff Session",
                   "parameters" : [ {
-                    "parameterId" : "action",
-                    "valueType" : "VALUE",
-                    "value" : "logoff",
-                    "type" : "GWSCP"
-                  }, {
                     "parameterId" : "id",
                     "valueType" : "COLUMN",
                     "columnId" : 37080,
@@ -1454,7 +1449,7 @@
                     "columnId" : 37096,
                     "type" : "GWSCP"
                   } ],
-                  "serviceActionId" : "19855c7c-34f3-4a92-92ce-228b77cb2aac",
+                  "serviceActionId" : "46df1a60-1f9e-4683-984f-a03d0282e061",
                   "serviceId" : 175,
                   "preserveComponentValues" : false
                 },
@@ -1485,7 +1480,7 @@
           },
           "id" : "aed029ca-fed4-4105-a99d-868fed048899",
           "defaultvalue" : null,
-          "displayorder" : 9,
+          "displayorder" : 10,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
         }, {
           "type" : "BUTTON",
@@ -1507,13 +1502,8 @@
                 "serviceAction" : {
                   "type" : "GWSC",
                   "id" : "de56c800-40bf-4d8d-9eaf-59751cf1b84c",
-                  "name" : "Disconnect or Logoff Session",
+                  "name" : "Disconnect Session",
                   "parameters" : [ {
-                    "parameterId" : "action",
-                    "valueType" : "VALUE",
-                    "value" : "disconnect",
-                    "type" : "GWSCP"
-                  }, {
                     "parameterId" : "id",
                     "valueType" : "COLUMN",
                     "columnId" : 37080,
@@ -1524,7 +1514,7 @@
                     "columnId" : 37096,
                     "type" : "GWSCP"
                   } ],
-                  "serviceActionId" : "19855c7c-34f3-4a92-92ce-228b77cb2aac",
+                  "serviceActionId" : "1c4145d9-8a7e-4932-88b6-4ae62e44649b",
                   "serviceId" : 175,
                   "preserveComponentValues" : false
                 },
@@ -1546,31 +1536,6 @@
                 "to" : null,
                 "value" : null,
                 "events" : null
-              }, {
-                "type" : "SERVICE_ACTION",
-                "label" : "Run service action",
-                "id" : "op_ozm8v6",
-                "children" : [ ],
-                "serviceAction" : {
-                  "type" : "GWSC",
-                  "id" : "29ba042c-483a-4cf0-8b2e-c32bcdb465b2",
-                  "name" : "Update Session",
-                  "parameters" : [ {
-                    "parameterId" : "id",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37080,
-                    "type" : "GWSCP"
-                  }, {
-                    "parameterId" : "siteId",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37096,
-                    "type" : "GWSCP"
-                  } ],
-                  "serviceActionId" : "e854fbef-14d4-46e7-b60b-78222025b481",
-                  "serviceId" : 175,
-                  "preserveComponentValues" : false
-                },
-                "serviceId" : 175
               } ]
             },
             "tone" : "PRIMARY",
@@ -1580,7 +1545,7 @@
           },
           "id" : "41793356-07af-4616-92f3-0e8d433fbf33",
           "defaultvalue" : null,
-          "displayorder" : 10,
+          "displayorder" : 11,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
         }, {
           "type" : "LIST",
@@ -1645,7 +1610,7 @@
           },
           "id" : "9c866261-75f3-47df-804e-bf7f884b6428",
           "defaultvalue" : null,
-          "displayorder" : 8,
+          "displayorder" : 9,
           "componentTableId" : null,
           "defaultLimit" : 20,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
@@ -1662,7 +1627,72 @@
           "parameters" : { },
           "id" : "7b210fc5-8bff-4acb-89b7-0ccd82749b07",
           "defaultvalue" : null,
-          "displayorder" : 7,
+          "displayorder" : 8,
+          "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "1272f376-31df-4687-810b-b98dc0580ed9",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "c6fa60bf-e501-4d2b-906e-b604de03fbd3",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run service action",
+                "id" : "op_se0ajc",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "387dad67-5056-47f9-873e-a381c9351a6e",
+                  "name" : "Update Session",
+                  "parameters" : [ {
+                    "parameterId" : "id",
+                    "valueType" : "COLUMN",
+                    "columnId" : 37080,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "siteId",
+                    "valueType" : "COLUMN",
+                    "columnId" : 37096,
+                    "type" : "GWSCP"
+                  } ],
+                  "serviceActionId" : "e854fbef-14d4-46e7-b60b-78222025b481",
+                  "serviceId" : 175,
+                  "preserveComponentValues" : false
+                },
+                "serviceId" : 175,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "BABY",
+            "disabled" : 0,
+            "showInBladeFooter" : false
+          },
+          "id" : "6ead6550-0a3a-4213-9872-00ea853f21a5",
+          "defaultvalue" : null,
+          "displayorder" : 3,
           "pageId" : "cf190329-6500-4194-a7e8-78947bb02f74"
         } ],
         "query" : {
@@ -1710,6 +1740,36 @@
           "customExecution" : "",
           "value" : null,
           "group" : null
+        }, {
+          "constraints" : [ {
+            "targetComponentId" : "f1b87b4f-4105-4c3b-ad95-44fa9ccef6dc",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "VALUE",
+            "id" : "ae1a579a-1e94-44b2-91ca-06064f7818d8",
+            "equality" : "IS",
+            "value" : "Disconnected"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "41793356-07af-4616-92f3-0e8d433fbf33",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "e6a9237b-1739-42a7-a4a8-b915488af7d9",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Disconnected",
+          "id" : "7e1a14d5-0bee-408a-a7a8-10bf779818bb",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
         } ],
         "parameters" : {
           "operationStack" : {
@@ -1731,7 +1791,7 @@
     "appVersion" : {
       "id" : "8b5a14a8-a410-445a-9833-790f3e0fb941",
       "serviceId" : 175,
-      "version" : 723,
+      "version" : 731,
       "parameters" : {
         "imageUrl" : "exported/account.7e6a4a82a354a98226bc0c0b4ec9039b.svg",
         "description" : "32ed416e-f0d5-4b04-b652-e313cd05b13a"
@@ -2286,7 +2346,7 @@
           },
           "id" : "2cdb94c0-e325-40ab-a7f9-c594dd7d8c6e",
           "defaultvalue" : null,
-          "displayorder" : 4,
+          "displayorder" : 5,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "8b5a14a8-a410-445a-9833-790f3e0fb941",
@@ -2630,7 +2690,7 @@
           "parameters" : { },
           "id" : "9e0fb4d2-bbaa-4056-a668-c6e6c3761cfe",
           "defaultvalue" : null,
-          "displayorder" : 5,
+          "displayorder" : 6,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "FLEXIBLE_GRID",
@@ -2653,7 +2713,7 @@
           },
           "id" : "767b6a80-4193-4f3a-a28a-b167b3e2cf70",
           "defaultvalue" : null,
-          "displayorder" : 7,
+          "displayorder" : 8,
           "components" : [ ],
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
@@ -2737,7 +2797,7 @@
           },
           "id" : "2e50389e-a36c-4222-990d-e8327467511e",
           "defaultvalue" : null,
-          "displayorder" : 6,
+          "displayorder" : 7,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "DIVIDER",
@@ -2752,7 +2812,7 @@
           "parameters" : { },
           "id" : "a96a155e-f101-420e-a1b2-c81f18e53cac",
           "defaultvalue" : null,
-          "displayorder" : 8,
+          "displayorder" : 9,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "STATIC_TEXT",
@@ -2775,7 +2835,7 @@
           },
           "id" : "ff8d555c-75d3-4c0a-bd9d-f16540522614",
           "defaultvalue" : null,
-          "displayorder" : 9,
+          "displayorder" : 10,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "STATIC_TEXT",
@@ -2798,7 +2858,7 @@
           },
           "id" : "81ea8a4b-0a8d-4692-b58b-3e2a0f491112",
           "defaultvalue" : null,
-          "displayorder" : 10,
+          "displayorder" : 11,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "BUTTON",
@@ -2859,31 +2919,6 @@
                 "to" : null,
                 "value" : null,
                 "events" : null
-              }, {
-                "type" : "SERVICE_ACTION",
-                "label" : "Run service action",
-                "id" : "op_cja7gh",
-                "children" : [ ],
-                "serviceAction" : {
-                  "type" : "GWSC",
-                  "id" : "4096debc-d2fb-448d-b9a3-f4d3ba41c150",
-                  "name" : "Update Machine",
-                  "parameters" : [ {
-                    "parameterId" : "id",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37113,
-                    "type" : "GWSCP"
-                  }, {
-                    "parameterId" : "siteId",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37151,
-                    "type" : "GWSCP"
-                  } ],
-                  "serviceActionId" : "597c1d3a-4779-4019-9912-03390ec67883",
-                  "serviceId" : 175,
-                  "preserveComponentValues" : false
-                },
-                "serviceId" : 175
               } ]
             },
             "tone" : "PRIMARY",
@@ -2893,7 +2928,7 @@
           },
           "id" : "94b052cd-fb03-4187-a69e-f73cdaa42d71",
           "defaultvalue" : null,
-          "displayorder" : 11,
+          "displayorder" : 12,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "BUTTON",
@@ -2954,31 +2989,6 @@
                 "to" : null,
                 "value" : null,
                 "events" : null
-              }, {
-                "type" : "SERVICE_ACTION",
-                "label" : "Run service action",
-                "id" : "op_bit6ny",
-                "children" : [ ],
-                "serviceAction" : {
-                  "type" : "GWSC",
-                  "id" : "aba2289d-8396-44e0-8bcc-776baa2749c5",
-                  "name" : "Update Machine",
-                  "parameters" : [ {
-                    "parameterId" : "id",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37113,
-                    "type" : "GWSCP"
-                  }, {
-                    "parameterId" : "siteId",
-                    "valueType" : "COLUMN",
-                    "columnId" : 37151,
-                    "type" : "GWSCP"
-                  } ],
-                  "serviceActionId" : "597c1d3a-4779-4019-9912-03390ec67883",
-                  "serviceId" : 175,
-                  "preserveComponentValues" : false
-                },
-                "serviceId" : 175
               } ]
             },
             "tone" : "PRIMARY",
@@ -2988,7 +2998,7 @@
           },
           "id" : "e99b99ee-6c24-40fe-a3af-1db074fe1de4",
           "defaultvalue" : null,
-          "displayorder" : 12,
+          "displayorder" : 13,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
         }, {
           "type" : "BUTTON",
@@ -3044,13 +3054,6 @@
                 "to" : null,
                 "value" : null,
                 "events" : null
-              }, {
-                "type" : "GOTO_PAGE",
-                "label" : "Go to page",
-                "id" : "op_w5fl9j",
-                "appId" : "8b5a14a8-a410-445a-9833-790f3e0fb941",
-                "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670",
-                "clearRecord" : false
               } ]
             },
             "tone" : "SECONDARY",
@@ -3059,6 +3062,29 @@
             "showInBladeFooter" : false
           },
           "id" : "8de22dc4-bc6f-45d1-aae1-8228905d51f8",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
+        }, {
+          "type" : "STATIC_TEXT",
+          "appId" : "8b5a14a8-a410-445a-9833-790f3e0fb941",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "content" : "79d12fd9-f43f-48c1-bfda-64b0f77fc9dc",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "font_size" : "0",
+            "alignment" : "left",
+            "fontStyle" : [ "bold" ]
+          },
+          "id" : "f3346f0a-4962-419a-936b-b89602ea502e",
           "defaultvalue" : null,
           "displayorder" : 3,
           "pageId" : "fb6e0bf4-7f7d-41fe-8f87-c7fa2d50d670"
@@ -3271,6 +3297,48 @@
           "customExecution" : "",
           "value" : null,
           "group" : null
+        }, {
+          "constraints" : [ {
+            "targetComponentId" : "6e803728-5aa3-4dde-9258-b3508037978e",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "VALUE",
+            "id" : "12e6cea1-0ae9-4f60-91ec-d5080d115364",
+            "equality" : "IS",
+            "value" : "Restarting"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "f3346f0a-4962-419a-936b-b89602ea502e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "bec50bfc-4a32-413f-bcc5-60a90dc09c9c",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "f3346f0a-4962-419a-936b-b89602ea502e",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "7b3130ff-881c-4601-a313-d254606d3099",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Restarted",
+          "id" : "bcdd1ec3-fea7-4c25-a843-5940ee30c696",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
         } ],
         "parameters" : {
           "operationStack" : {
@@ -3292,7 +3360,7 @@
     "appVersion" : {
       "id" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
       "serviceId" : 175,
-      "version" : 975,
+      "version" : 1020,
       "parameters" : {
         "imageUrl" : "exported/opportunity.0c540a511c468189e370aec2529cbe8b.svg",
         "description" : "21faf02e-eb05-42be-9252-9ab3c275fcf5"
@@ -4352,7 +4420,7 @@
           },
           "id" : "10f63c35-e3d3-4ce2-963d-e200e7d64e72",
           "defaultvalue" : null,
-          "displayorder" : 4,
+          "displayorder" : 5,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
@@ -5102,7 +5170,7 @@
           "parameters" : { },
           "id" : "8fa2a5db-fb2b-4337-be97-9d105c99c8e8",
           "defaultvalue" : null,
-          "displayorder" : 5,
+          "displayorder" : 6,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "STATIC_TEXT",
@@ -5125,7 +5193,7 @@
           },
           "id" : "abd677de-9d54-42f0-afe2-3087303d7646",
           "defaultvalue" : null,
-          "displayorder" : 6,
+          "displayorder" : 7,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "FLEXIBLE_GRID",
@@ -5149,7 +5217,7 @@
           },
           "id" : "ed79c16d-a21c-4e9e-b982-1bdf376aa062",
           "defaultvalue" : null,
-          "displayorder" : 7,
+          "displayorder" : 8,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
@@ -5429,7 +5497,7 @@
           "parameters" : { },
           "id" : "a508824b-8b96-49a3-a177-851d4df0c29a",
           "defaultvalue" : null,
-          "displayorder" : 8,
+          "displayorder" : 9,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "STATIC_TEXT",
@@ -5452,7 +5520,7 @@
           },
           "id" : "bbc4aeb6-809c-42f0-b3f2-d10d21f17455",
           "defaultvalue" : null,
-          "displayorder" : 9,
+          "displayorder" : 10,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "FLEXIBLE_GRID",
@@ -5475,7 +5543,7 @@
           },
           "id" : "59bd7122-42f4-4cb4-9454-98e7c1164e04",
           "defaultvalue" : null,
-          "displayorder" : 10,
+          "displayorder" : 11,
           "components" : [ {
             "type" : "GRID_ITEM",
             "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
@@ -5755,7 +5823,7 @@
           "parameters" : { },
           "id" : "b94e8772-5ee8-4093-8df6-7226e15a3f2e",
           "defaultvalue" : null,
-          "displayorder" : 11,
+          "displayorder" : 12,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "STATIC_TEXT",
@@ -5778,7 +5846,7 @@
           },
           "id" : "277d0819-7375-44f0-b9a7-b12764869a6c",
           "defaultvalue" : null,
-          "displayorder" : 12,
+          "displayorder" : 13,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "BUTTON",
@@ -5848,7 +5916,7 @@
           },
           "id" : "988fb4f2-3e9f-4742-96fb-7b9403995105",
           "defaultvalue" : null,
-          "displayorder" : 13,
+          "displayorder" : 14,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "BUTTON",
@@ -5918,7 +5986,7 @@
           },
           "id" : "5f1bb8fd-f19c-444e-b4f6-c3abed64703a",
           "defaultvalue" : null,
-          "displayorder" : 14,
+          "displayorder" : 15,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
         }, {
           "type" : "BUTTON",
@@ -5982,11 +6050,11 @@
               }, {
                 "type" : "SERVICE_ACTION",
                 "label" : "Run service action",
-                "id" : "op_s473zm",
+                "id" : "op_fm199e",
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "94f3fdbf-21d3-49bb-8a0e-038708e36194",
+                  "id" : "05c5a256-e55d-443c-b3ea-31e80a4ce443",
                   "name" : "Update Machine",
                   "parameters" : [ {
                     "parameterId" : "id",
@@ -6003,7 +6071,24 @@
                   "serviceId" : 175,
                   "preserveComponentValues" : false
                 },
-                "serviceId" : 175
+                "serviceId" : 175,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
               } ]
             },
             "tone" : "SECONDARY",
@@ -6077,11 +6162,11 @@
               }, {
                 "type" : "SERVICE_ACTION",
                 "label" : "Run service action",
-                "id" : "op_bz3lxb",
+                "id" : "op_0k9rmc",
                 "children" : [ ],
                 "serviceAction" : {
                   "type" : "GWSC",
-                  "id" : "03b8e252-fc66-4582-af97-cfcd0f2c3695",
+                  "id" : "10aafac6-4319-4730-8147-e43e1b956299",
                   "name" : "Update Machine",
                   "parameters" : [ {
                     "parameterId" : "id",
@@ -6098,7 +6183,24 @@
                   "serviceId" : 175,
                   "preserveComponentValues" : false
                 },
-                "serviceId" : 175
+                "serviceId" : 175,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
               } ]
             },
             "tone" : "SECONDARY",
@@ -6155,6 +6257,29 @@
             "showInBladeFooter" : false
           },
           "id" : "80a1766d-7db9-4201-a86e-c736df2e44b5",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
+        }, {
+          "type" : "STATIC_TEXT",
+          "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 0,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "content" : "2b2b15d8-bd6e-480d-ba1b-9f29761d7d4f",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "font_size" : "0",
+            "alignment" : "left",
+            "fontStyle" : [ "bold" ]
+          },
+          "id" : "e481521a-b6ad-44cd-a1ca-a8812f7497e4",
           "defaultvalue" : null,
           "displayorder" : 3,
           "pageId" : "2d7c8230-e764-4035-bea9-c7cfd21bdcd3"
@@ -6389,6 +6514,48 @@
           "customExecution" : "",
           "value" : null,
           "group" : null
+        }, {
+          "constraints" : [ {
+            "targetComponentId" : "cc3d0b78-365f-4d4b-a00f-4f0d5324e5cc",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "VALUE",
+            "id" : "1f874436-f404-465c-a95a-f835bb28eb9e",
+            "equality" : "IS",
+            "value" : "Restarting"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "e481521a-b6ad-44cd-a1ca-a8812f7497e4",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "262a393d-d94f-4cbb-96c1-45771a945602",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "e481521a-b6ad-44cd-a1ca-a8812f7497e4",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "1305b43d-8bad-494f-a578-1e70d6387893",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "FALSE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Restarted",
+          "id" : "68fca356-3f8d-47ef-af97-1c9f6d7cb957",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
         } ],
         "parameters" : {
           "operationStack" : {
@@ -6410,7 +6577,7 @@
   "services" : [ {
     "id" : 175,
     "uuid" : "d083eebb-c193-4de7-8741-97a5c0384cdf",
-    "version" : 156,
+    "version" : 181,
     "title" : "Citrix Virtual Apps and Desktops service",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -6425,7 +6592,7 @@
         "password" : "",
         "scope" : "",
         "authorizationURL" : "",
-        "tokenURL" : "https://api-us.cloud.com/cctrustoauth2/{customerId}/tokens/clients",
+        "tokenURL" : "https://api-us.cloud.com/cctrustoauth2/rtstprodtest/tokens/clients",
         "grantTypeValue" : "client_credentials",
         "tokenAuthorization" : "REQUEST_BODY",
         "authHeaderPrefix" : "CwsAuth bearer=",
@@ -6942,8 +7109,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 275,
-            "endLine" : 295
+            "startLine" : 279,
+            "endLine" : 300
           }
         }, {
           "name" : "Reboot Machine",
@@ -6962,18 +7129,14 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 297,
-            "endLine" : 311
+            "startLine" : 302,
+            "endLine" : 327
           }
         }, {
-          "name" : "Disconnect or Logoff Session",
-          "uniqueId" : "19855c7c-34f3-4a92-92ce-228b77cb2aac",
+          "name" : "Disconnect Session",
+          "uniqueId" : "1c4145d9-8a7e-4932-88b6-4ae62e44649b",
           "parameters" : [ {
             "name" : "id",
-            "type" : "STRING",
-            "required" : true
-          }, {
-            "name" : "action",
             "type" : "STRING",
             "required" : true
           }, {
@@ -6982,8 +7145,24 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 337,
-            "endLine" : 362
+            "startLine" : 354,
+            "endLine" : 364
+          }
+        }, {
+          "name" : "Logoff Session",
+          "uniqueId" : "46df1a60-1f9e-4683-984f-a03d0282e061",
+          "parameters" : [ {
+            "name" : "id",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "siteId",
+            "type" : "STRING",
+            "required" : true
+          } ],
+          "scriptSourceFunctionLocation" : {
+            "startLine" : 366,
+            "endLine" : 375
           }
         }, {
           "name" : "Update Session",
@@ -6998,8 +7177,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 364,
-            "endLine" : 386
+            "startLine" : 398,
+            "endLine" : 428
           }
         }, {
           "name" : "Update Machine",
@@ -7014,8 +7193,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 313,
-            "endLine" : 335
+            "startLine" : 329,
+            "endLine" : 352
           }
         } ],
         "webhookListeners" : [ ],
@@ -8246,7 +8425,7 @@
     "id" : "7f761020-6721-4dfb-840a-6951e76f0b7f",
     "legacyId" : 1002,
     "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
-    "version" : 3,
+    "version" : 4,
     "eventType" : "NEW",
     "serviceId" : 175,
     "tableId" : 2344,
@@ -8297,7 +8476,7 @@
           "type" : "MICRO_APP_ICON"
         }
       },
-      "actionButtonIds" : [ "988fb4f2-3e9f-4742-96fb-7b9403995105" ],
+      "actionButtonIds" : [ ],
       "task" : false
     },
     "messageCountLimit" : 50,
@@ -8307,7 +8486,7 @@
     "id" : "b0d147c5-c22f-4dfe-ab9e-c45d56e94ce4",
     "legacyId" : 1001,
     "appId" : "97d717cf-dedd-48ec-b7db-1f17b1dfa3d8",
-    "version" : 3,
+    "version" : 4,
     "eventType" : "CHANGE",
     "serviceId" : 175,
     "tableId" : 2344,
@@ -8358,7 +8537,7 @@
           "type" : "MICRO_APP_ICON"
         }
       },
-      "actionButtonIds" : [ "988fb4f2-3e9f-4742-96fb-7b9403995105" ],
+      "actionButtonIds" : [ ],
       "task" : false
     },
     "messageCountLimit" : 50,
@@ -8372,7 +8551,7 @@
     "bundleDescription" : "Integrate with Citrix Virtual Apps and Desktops service to allow users to self-service their Sessions and Virtual Desktops and to notify admins about faulty Machines.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "0644AD2ACBAB83BA88FF3B8395E33FFA",
-  "appliedSappUpgrades" : [ "microapp-12427", "microapp-10856", "microapp-6790", "microapp-9702", "microapp-13344", "microapp-6853", "microapp-2450", "microapp-9597", "microapp-6617", "microapp-3580", "microapp-10876", "microapp-6264", "microapp-8003", "microapp-12505", "microapp-3547", "microapp-12936", "microapp-5227", "microapp-13233", "microapp-13471", "microapp-12525", "microapp-10860", "microapp-14177", "microapp-11836", "microapp-7561", "microapp-4020", "microapp-10420", "microapp-13808", "microapp-11136", "microapp-7961", "microapp-11349", "microapp-7984", "microapp-10858", "microapp-8511", "microapp-10549", "microapp-8950", "microapp-3838", "microapp-14492", "microapp-5025", "microapp-6593", "microapp-7290", "microapp-8921", "microapp-3548", "microapp-4666", "microapp-6262", "microapp-11340", "microapp-6293", "microapp-9701", "microapp-14613", "microapp-8892", "microapp-8576", "microapp-7888", "microapp-1980", "microapp-10421", "microapp-4518" ],
+  "translationChecksum" : "B406EB476D57D3B7450C9D327DE642AE",
+  "appliedSappUpgrades" : [ "microapp-5025", "microapp-6262", "microapp-12505", "microapp-3547", "microapp-4020", "microapp-13808", "microapp-8950", "microapp-12427", "microapp-4666", "microapp-11349", "microapp-6853", "microapp-6617", "microapp-10876", "microapp-10856", "microapp-8511", "microapp-5227", "microapp-12525", "microapp-3838", "microapp-11340", "microapp-2450", "microapp-3580", "microapp-10549", "microapp-6264", "microapp-9701", "microapp-9597", "microapp-12936", "microapp-13233", "microapp-14177", "microapp-11836", "microapp-10860", "microapp-3548", "microapp-10858", "microapp-11136", "microapp-9702", "microapp-14613", "microapp-7888", "microapp-8921", "microapp-4518", "microapp-6593", "microapp-7290", "microapp-13471", "microapp-13344", "microapp-1980", "microapp-6790", "microapp-8892", "microapp-6293", "microapp-14492", "microapp-7961", "microapp-10420", "microapp-7561", "microapp-10421", "microapp-8576", "microapp-7984", "microapp-8003" ],
   "buildVersion" : "1.96.0.1a6fd913e11f45ad4ef12050bc24c18732a3426b"
 }
