@@ -355,7 +355,7 @@ async function disconnectSession(params) {
     if (state !== 404 && state !== 'Disconnected') {
         await sessionRequest(params, 'disconnect')
         const session = await updateSession(params)
-        session.State = 'Diconnected'
+        session.State = 'Disconnected'
         params.dataStore.save('session', session)
         debugMsg('Session was successfully disconnected.')
     }
