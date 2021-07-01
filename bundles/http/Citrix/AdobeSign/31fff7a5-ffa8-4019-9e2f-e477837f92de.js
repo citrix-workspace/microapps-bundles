@@ -2,8 +2,8 @@ const moment = library.load('moment-timezone');
 const uuid = library.load('uuid')
 
 function getStatus(status) {
-    return status.split('_').reduce((initialValue, currnetValue) => {
-        return initialValue + (currnetValue[0].toUpperCase() + (currnetValue.toLowerCase()).substring(1, currnetValue
+    return status.split('_').reduce((initialValue, currentValue) => {
+        return initialValue + (currentValue[0].toUpperCase() + (currentValue.toLowerCase()).substring(1, currentValue
             .length) + ' ')
     }, '').trimEnd()
 }
@@ -25,23 +25,21 @@ async function syncUsers(dataStore, client, integrationParameters) {
         cursor = json.page.nextCursor ?? null
         url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SIZE}&cursor=${cursor}`
         for (const user of data) {
-            const userDetails = client.fetchSync(`api/rest/v6/users/${user.id}`).jsonSync()
-            if (userDetails.status === "ACTIVE") {
-                activeUsers.push(user)
+            const response = await client.fetch(`api/rest/v6/users/${user.id}`)
+            const json = await response.json()
+            if (json.status === "ACTIVE") {
+                userids.push(user.id);
+                activeUsers.push({
+                    "id": user.id,
+                    "email": user.email,
+                    "company": user.company,
+                    "firstName": user.firstName,
+                    "lastName": user.lastName,
+                    "accountId": user.accountId
+                })
             }
         }
-        let users = activeUsers.map(user => {
-            userids.push(user.id);
-            return {
-                "ID": user.id,
-                "email": user.email,
-                "company": user.company,
-                "firstName": user.firstName,
-                "lastName": user.lastName,
-                "accountId": user.accountId
-            }
-        })
-        dataStore.save("Users", users);
+        dataStore.save("Users", activeUsers);
     } while (cursor != null)
     return userids
 }
@@ -154,13 +152,13 @@ async function syncArgreementDetails(client, dataStore, agreements) {
         if (!response.ok) {
             throw new Error(JSON.stringify(json))
         }
-        json.participantSets?.map(participantSet => {
+        json.participantSets?.forEach(participantSet => {
             let data = participantSet.memberInfos?.map(member => {
                 return {
                     "agreement_id": agreementId,
                     "agreement_name": value.name,
                     "participant_email": member.email,
-                    "participent_id": member.id,
+                    "participant_id": member.id,
                     "participant_role": participantSet.role,
                     "participant_status": getStatus(participantSet.status),
                     "sender_company": member.company,
@@ -261,7 +259,7 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
     }
     if (actionParameters.libraryDocumentId == null) {
         let transientDocument = await uploadFiles(dataStore, client, actionParameters)
-        if(transientDocument == false){
+        if(Boolean(transientDocument) === false){
             throw new Error('File not selected')
         }
         delete fileInfos.libraryDocumentId
@@ -373,8 +371,8 @@ async function cancelAgreement({ dataStore, client, actionParameters, integratio
 async function uploadFiles(dataStore, client, actionParameters) {
     console.log(JSON.stringify(actionParameters.attachments))
     const formData = new FormData()
-    if(actionParameters.attachments.length == 0){
-        return false
+    if(!actionParameters.attachments || actionParameters.attachments.length === 0){
+        return 0
     }
     actionParameters.attachments?.forEach(file => {
         formData.append('File', file)
@@ -449,7 +447,7 @@ integration.define({
             {
                 name: "Users",
                 columns: [
-                    { name: "ID", type: "STRING", primaryKey: true, length: 255 },
+                    { name: "id", type: "STRING", primaryKey: true, length: 255 },
                     { name: "email", type: "STRING", length: 255 },
                     { name: "company", type: "STRING", length: 255 },
                     { name: "firstName", type: "STRING", length: 255 },
@@ -462,7 +460,7 @@ integration.define({
                     { name: "agreement_id", type: "STRING", length: 255 },
                     { name: "agreement_name", type: "STRING", length: 255 },
                     { name: "participant_email", type: "STRING", length: 255 },
-                    { name: "participent_id", type: "STRING", length: 255, primaryKey: true },
+                    { name: "participant_id", type: "STRING", length: 255, primaryKey: true },
                     { name: "participant_role", type: "STRING", length: 255 },
                     { name: "participant_status", type: "STRING", length: 255 },
                     { name: "sender_company", type: "STRING", length: 255 },
