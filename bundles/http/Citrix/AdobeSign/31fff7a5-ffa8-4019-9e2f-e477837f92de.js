@@ -14,7 +14,7 @@ async function syncUsers(dataStore, client, integrationParameters) {
     let cursor
     let url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SIZE}`
     do {
-		const activeUsers = []
+        const activeUsers = []
         const response = await client.fetch(url);
         const json = await response.json();
 
