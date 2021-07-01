@@ -16,7 +16,7 @@ async function fullSync(params) {
 }
 
 async function incrementalSync(params) {
-    await Promise.all([syncMachines(params), syncSessions(params)])
+    await Promise.all([syncSessions(params)])
 }
 
 async function syncMachines(params) {
@@ -159,6 +159,7 @@ async function getSiteIds({client, integrationParameters}) {
     })
 
     if (!response.ok) {
+        console.log('Error body: ', await response.text())
         throw new Error(`Getting Site IDs failed(${response.status}: ${response.statusText})`)
     }
 
@@ -201,6 +202,7 @@ async function searchRequest(
     })
 
     if (!response.ok) {
+        console.log('Error body: ', await response.text())
         throw new Error(
             `Endpoint ${entity} - Request failed(${response.status}: ${response.statusText})`,
         )
@@ -288,6 +290,7 @@ async function toggleMaintenanceMode(params) {
     })
 
     if (!response.ok) {
+        console.log('Error body: ', await response.text())
         throw new Error(
             `Setting maintenance mode failed (${response.status}: ${response.statusText})`,
         )
@@ -295,18 +298,29 @@ async function toggleMaintenanceMode(params) {
 }
 
 async function rebootMachine(params) {
-    const {actionParameters, integrationParameters, client} = params
+    const {actionParameters, integrationParameters, client, dataStore} = params
     const path = `${actionParameters.siteId}/Machines/${actionParameters.id}/$reboot?force=${actionParameters.force}`
 
-    const response = await client.fetch(path, {
+    let machine = await client.fetch(path, {
         method: 'POST',
         headers: {
             'Citrix-CustomerId': integrationParameters.customerId,
         },
     })
 
-    if (!response.ok) {
-        throw new Error(`Machine reboot failed (${response.status}: ${response.statusText})`)
+    if (!machine.ok) {
+        console.log('Error body: ', await machine.text())
+        throw new Error(`Machine reboot failed (${machine.status}: ${machine.statusText})`)
+    }
+
+    try {
+        machine = await machine.json()
+        machine = shapeMachine(machine, dataStore, actionParameters.siteId)
+        machine.SummaryState = 'Restarting'
+        dataStore.save('machine', machine)
+        debugMsg('Machine update was successful.')
+    } catch (er) {
+        throw new Error(`Storing Machine failed (${er})`)
     }
 }
 
@@ -321,6 +335,7 @@ async function updateMachine(params) {
     })
 
     if (!machine.ok) {
+        console.log('Error body: ', await machine.text())
         throw new Error(`Machine update failed (${machine.status}: ${machine.statusText})`)
     }
 
@@ -334,9 +349,32 @@ async function updateMachine(params) {
     }
 }
 
-async function disconnectOrLogoffSession(params) {
-    const {client, integrationParameters, dataStore, actionParameters} = params
-    const path = `${actionParameters.siteId}/Sessions/${actionParameters.id}/$${actionParameters.action}`
+async function disconnectSession(params) {
+    const state = await updateSession(params)
+
+    if (state !== 404 && state !== 'Disconnected') {
+        await sessionRequest(params, 'disconnect')
+        const session = await updateSession(params)
+        session.State = 'Disconnected'
+        params.dataStore.save('session', session)
+        debugMsg('Session was successfully disconnected.')
+    }
+}
+
+async function logoffSession(params) {
+    const state = await updateSession(params)
+    const {dataStore, actionParameters} = params
+
+    if (state !== 404) {
+        await sessionRequest(params, 'logoff')
+        dataStore.deleteById('session', actionParameters.id)
+        debugMsg('Session was successfully logged off.')
+    }
+}
+
+async function sessionRequest(params, action) {
+    const {client, integrationParameters, actionParameters} = params
+    const path = `${actionParameters.siteId}/Sessions/${actionParameters.id}/$${action}`
 
     const response = await client.fetch(path, {
         method: 'POST',
@@ -346,19 +384,13 @@ async function disconnectOrLogoffSession(params) {
     })
 
     if (!response.ok) {
+        console.log('Error body: ', await response.text())
         throw new Error(
             `Session disconnect / logoff failed (${response.status}: ${response.statusText})`,
         )
     }
 
-    if (actionParameters.action === 'logoff') {
-        dataStore.deleteById('session', actionParameters.id)
-        debugMsg('Session was successfully logged off.')
-    }
-
-    if (actionParameters.action === 'disconnect') {
-        debugMsg('Session was successfully disconnected.')
-    }
+    debugMsg('Session request was successful.')
 }
 
 async function updateSession(params) {
@@ -371,17 +403,25 @@ async function updateSession(params) {
         },
     })
 
-    if (!session.ok) {
-        throw new Error(`Session update failed (${session.status}: ${session.statusText})`)
-    }
+    if (session.status === 404) {
+        dataStore.deleteById('session', actionParameters.id)
+        console.log('WARNING: The session was not found and was deleted from cache.')
+        return session.status
+    } else {
+        if (!session.ok) {
+            console.log('Error body: ', await session.text())
+            throw new Error(`Session update failed (${session.status}: ${session.statusText})`)
+        }
 
-    try {
-        session = await session.json()
-        session = shapeSession(session, dataStore, actionParameters.siteId)
-        dataStore.save('session', session)
-        debugMsg('Session update was successful.')
-    } catch (er) {
-        throw new Error(`Storing Session failed (${er})`)
+        try {
+            session = await session.json()
+            session = shapeSession(session, dataStore, actionParameters.siteId)
+            dataStore.save('session', session)
+            debugMsg('Session update was successful.')
+            return session
+        } catch (er) {
+            throw new Error(`Storing Session failed (${er})`)
+        }
     }
 }
 
@@ -439,15 +479,10 @@ integration.define({
             function: rebootMachine,
         },
         {
-            name: 'Disconnect or Logoff Session',
+            name: 'Disconnect Session',
             parameters: [
                 {
                     name: 'id',
-                    type: 'STRING',
-                    required: true,
-                },
-                {
-                    name: 'action',
                     type: 'STRING',
                     required: true,
                 },
@@ -457,7 +492,23 @@ integration.define({
                     required: true,
                 },
             ],
-            function: disconnectOrLogoffSession,
+            function: disconnectSession,
+        },
+        {
+            name: 'Logoff Session',
+            parameters: [
+                {
+                    name: 'id',
+                    type: 'STRING',
+                    required: true,
+                },
+                {
+                    name: 'siteId',
+                    type: 'STRING',
+                    required: true,
+                },
+            ],
+            function: logoffSession,
         },
         {
             name: 'Update Session',
