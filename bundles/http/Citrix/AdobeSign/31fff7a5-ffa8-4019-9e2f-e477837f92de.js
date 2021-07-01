@@ -11,10 +11,10 @@ function getStatus(status) {
 async function syncUsers(dataStore, client, integrationParameters) {
     let userids = []
     const PAGE_SIZE = 100
-    let cursor = ""
-    const activeUsers = []
+    let cursor
     let url = `/api/rest/v6/groups/${integrationParameters.GroupId}/users?pageSize=${PAGE_SIZE}`
     do {
+		const activeUsers = []
         const response = await client.fetch(url);
         const json = await response.json();
 
