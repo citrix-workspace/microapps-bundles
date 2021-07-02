@@ -259,9 +259,6 @@ async function sendAgreement({ dataStore, client, actionParameters, integrationP
     }
     if (actionParameters.libraryDocumentId == null) {
         let transientDocument = await uploadFiles(dataStore, client, actionParameters)
-        if(Boolean(transientDocument) === false){
-            throw new Error('File not selected')
-        }
         delete fileInfos.libraryDocumentId
         fileInfos.transientDocumentId = transientDocument
     }
@@ -372,7 +369,7 @@ async function uploadFiles(dataStore, client, actionParameters) {
     console.log(JSON.stringify(actionParameters.attachments))
     const formData = new FormData()
     if(!actionParameters.attachments || actionParameters.attachments.length === 0){
-        return 0
+        throw new Error("File not selected")
     }
     actionParameters.attachments?.forEach(file => {
         formData.append('File', file)
