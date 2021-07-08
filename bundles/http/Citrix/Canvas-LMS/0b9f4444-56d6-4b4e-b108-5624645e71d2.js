@@ -2,6 +2,9 @@ const moment = library.load("moment-timezone");
 
 const startDate = moment.utc().subtract(30, "d").format();
 const endDate = moment.utc().add(30, "d").format();
+const now = moment.utc().format();
+const end = moment.utc().add(1, 'h').format();
+const perPage = 100;
 
 //Dataloading Endpoints
 async function canvasFullSync({
@@ -9,7 +12,7 @@ async function canvasFullSync({
   client,
   latestSynchronizationTime,
 }) {
-  const accountResponse = await client.fetch("api/v1/accounts?per_page=100");
+  const accountResponse = await client.fetch(`api/v1/accounts?per_page=${perPage}`);
   if (accountResponse.ok) {
     const account = await accountResponse.json();
     for (const accountValue of account) {
@@ -19,7 +22,7 @@ async function canvasFullSync({
       do {
         nextPageExists = false;
         const courseResponse = await client.fetch(
-          `api/v1/accounts/${accountValue.id}/courses?page=${i}&per_page=100`
+          `api/v1/accounts/${accountValue.id}/courses?page=${i}&per_page=${perPage}`
         );
         i++;
         const tempCourseLink = courseResponse.headers.map.link.split(",");
@@ -35,9 +38,9 @@ async function canvasFullSync({
             const lastSyncTime = moment(latestSynchronizationTime)
               .utc()
               .format();
-            await updateAction(dataStore, client, courseValue.id, lastSyncTime);
+            await updateAction(dataStore, client, courseValue.id, lastSyncTime, endDate);
           } else {
-            await updateAction(dataStore, client, courseValue.id, startDate);
+            await updateAction(dataStore, client, courseValue.id, startDate, endDate);
           }
         }
         tempCourseLink.forEach((element) => {
@@ -82,7 +85,8 @@ async function createCourseAnnouncement({
       dataStore,
       serviceClient,
       actionParameters.courseId,
-      startDate
+      now,
+      end
     );
   } else {
     throw new Error(
@@ -109,7 +113,8 @@ async function acceptInvitation({
       dataStore,
       serviceClient,
       actionParameters.courseId,
-      startDate
+      now,
+      end
     );
   } else {
     throw new Error(
@@ -136,7 +141,8 @@ async function createInvitation({
       dataStore,
       serviceClient,
       actionParameters.courseId,
-      startDate
+      now,
+      end
     );
   } else {
     throw new Error(
@@ -146,14 +152,14 @@ async function createInvitation({
 }
 
 // Announcement & Enrollment API call
-async function updateAction(dataStore, serviceClient, courseId, StartDate) {
+async function updateAction(dataStore, serviceClient, courseId, StartDate, endDate) {
   let announcementIncrement = 1;
   let announcementPageExists;
 
   do {
     announcementPageExists = false;
     const announcementResponse = await serviceClient.fetch(
-      `api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=100`
+      `api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=${perPage}`
     );
     announcementIncrement++;
     const tempAnnouncementLink =
@@ -164,7 +170,7 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate) {
     do {
       enrollmentPageExists = false;
       const enrollmentResponse = await serviceClient.fetch(
-        `/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=100`
+        `/api/v1/courses/${courseId}/enrollments?page=${enrollmentIncrement}&per_page=${perPage}`
       );
       enrollmentIncrement++;
       const tempEnrollmentLink = enrollmentResponse.headers.map.link.split(",");
@@ -281,11 +287,6 @@ integration.define({
         {
           name: "enrollmentId",
           type: "INTEGER",
-          required: true,
-        },
-        {
-          name: "email",
-          type: "STRING",
           required: true,
         },
       ],
