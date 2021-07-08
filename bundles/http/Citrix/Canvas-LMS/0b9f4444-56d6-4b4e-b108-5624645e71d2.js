@@ -140,7 +140,8 @@ async function rejectInvitation({
     dataStore.deleteById("enrollments", actionParameters.enrollmentId);
   } else {
     throw new Error(
-      `Could not accept invitation: (${response.status}: ${response.statusText})`
+      `Could not reject invitation: (${response.status}: ${response.statusText})`
+
     );
   }
 }
