@@ -123,6 +123,28 @@ async function acceptInvitation({
   }
 }
 
+//SA-Reject Invitation
+async function rejectInvitation({
+  dataStore,
+  client,
+  actionParameters,
+  serviceClient,
+}) {
+  const response = await client.fetch(
+    `/api/v1/courses/${actionParameters.courseId}/enrollments/${actionParameters.enrollmentId}/reject`,
+    {
+      method: "POST",
+    }
+  );
+  if (response.ok) {
+    dataStore.deleteById("enrollments", actionParameters.enrollmentId);
+  } else {
+    throw new Error(
+      `Could not accept invitation: (${response.status}: ${response.statusText})`
+    );
+  }
+}
+
 //SA-Create Invitation
 async function createInvitation({
   dataStore,
@@ -291,6 +313,22 @@ integration.define({
         },
       ],
       function: acceptInvitation,
+    },
+    {
+      name: "Reject Invitation",
+      parameters: [
+        {
+          name: "courseId",
+          type: "INTEGER",
+          required: true,
+        },
+        {
+          name: "enrollmentId",
+          type: "INTEGER",
+          required: true,
+        },
+      ],
+      function: rejectInvitation,
     },
     {
       name: "Create Invitation",
