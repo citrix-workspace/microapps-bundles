@@ -141,7 +141,6 @@ async function rejectInvitation({
   } else {
     throw new Error(
       `Could not reject invitation: (${response.status}: ${response.statusText})`
-
     );
   }
 }

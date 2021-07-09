@@ -3,12 +3,11 @@
     "appVersion" : {
       "id" : "344aeaf7-ed94-4bc1-8eb3-548b99afeb88",
       "serviceId" : 2298,
-      "version" : 292,
+      "version" : 300,
       "parameters" : {
-        "imageUrl" : "exported/course.fa9aabf2ac03cfad305b04ed8db96430.svg"
+        "imageUrl" : "exported/course.fa9aabf2ac03cfad305b04ed8db96430.svg",
+        "description" : "9fce0798-6edd-4117-b7db-3f0a9b06f9f2"
       },
-      "title" : "7496ad34-6eb7-4a76-9057-cab85808d60b",
-      "startPageId" : "a5fa98b8-7eed-497b-b3f3-c07a6729e629",
       "pages" : [ {
         "id" : "a5fa98b8-7eed-497b-b3f3-c07a6729e629",
         "appId" : "344aeaf7-ed94-4bc1-8eb3-548b99afeb88",
@@ -43,8 +42,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17784,
           "defaultLimit" : 20,
+          "componentTableId" : 17784,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "10a73f5e-20fe-45a1-8d83-a93f4dbacf14",
@@ -148,8 +147,8 @@
           "defaultvalue" : null,
           "displayorder" : 3,
           "rowAction" : { },
-          "defaultLimit" : 20,
           "componentTableId" : 17375,
+          "defaultLimit" : 20,
           "tableid" : 17375,
           "pageId" : "cf9b67a8-4907-4f6f-8fe2-fbb7d0fbb4c0"
         }, {
@@ -270,8 +269,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17785,
           "defaultLimit" : 20,
+          "componentTableId" : 17785,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "2e1737d9-d3d7-43e0-bb42-f88f87ba6525",
@@ -403,8 +402,8 @@
           "id" : "d39b4602-1366-4daf-906d-c440c2976be8",
           "defaultvalue" : null,
           "displayorder" : 5,
-          "defaultLimit" : 20,
           "componentTableId" : 17376,
+          "defaultLimit" : 20,
           "tableid" : 17376,
           "pageId" : "a3ce6736-882d-4934-88ec-75569d65a304"
         }, {
@@ -446,7 +445,7 @@
                 "type" : "GOTO_URL",
                 "label" : "Go to URL",
                 "id" : "op_zb7nic",
-                "urlTemplate" : "https://citrix.instructure.com/courses/{{component \"21bcb660-791c-4e00-bd51-c5619edae73f\"}}/grades",
+                "urlTemplate" : "https://{host_name}/courses/{{id}}/grades",
                 "notes" : null,
                 "componentId" : null,
                 "subject" : null,
@@ -463,7 +462,7 @@
                 "style" : null,
                 "to" : null,
                 "serviceId" : null,
-                "value" : "https://citrix.instructure.com/courses/{{component \"d070dfaf-c91a-4ba3-b42f-5eaf7c066f26\"}}/gradebook",
+                "value" : "https://citrix.instructure.com/courses/1/grades",
                 "events" : null
               } ]
             },
@@ -718,6 +717,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
+      "title" : "7496ad34-6eb7-4a76-9057-cab85808d60b",
+      "startPageId" : "a5fa98b8-7eed-497b-b3f3-c07a6729e629",
       "trackingUuid" : "ed4d4bc4-972a-4242-b596-4fded910e6d5",
       "actionApp" : true
     },
@@ -729,12 +730,11 @@
     "appVersion" : {
       "id" : "4d72294f-b482-40d1-8cac-9bab09164078",
       "serviceId" : 2298,
-      "version" : 130,
+      "version" : 157,
       "parameters" : {
-        "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg"
+        "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
+        "description" : "5f94e23e-0f96-493f-a9cf-4dc4d62b0472"
       },
-      "title" : "95e04ec3-2dc6-413a-80ca-25e66d3caa86",
-      "startPageId" : "0d60a93f-0755-44cc-bbd0-925256254e7b",
       "pages" : [ {
         "id" : "0d60a93f-0755-44cc-bbd0-925256254e7b",
         "appId" : "4d72294f-b482-40d1-8cac-9bab09164078",
@@ -1102,6 +1102,7 @@
             "value" : "",
             "group" : "FALSE"
           }, {
+            "sourceComponentId" : "c5836827-4e31-47eb-9b77-b170c0983e95",
             "targetComponentId" : "de84ede9-6c13-4e59-9c8e-3cc8b2befcc1",
             "constraints" : [ ],
             "children" : [ ],
@@ -1126,8 +1127,10 @@
           "constraints" : [ {
             "targetComponentId" : "4e1800b5-15f9-4283-bfe3-da11eab01c89",
             "comparison" : "BLANK",
+            "valueType" : null,
             "id" : "d88d1698-ac36-4bfe-b36d-98172629b3f4",
-            "equality" : "IS"
+            "equality" : "IS",
+            "value" : null
           } ],
           "children" : [ {
             "targetComponentId" : "f00b7fa8-321f-4029-8c82-940b4c526279",
@@ -1161,6 +1164,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
+      "title" : "95e04ec3-2dc6-413a-80ca-25e66d3caa86",
+      "startPageId" : "0d60a93f-0755-44cc-bbd0-925256254e7b",
       "trackingUuid" : "cc15833a-deca-4dac-845c-8b2a02f265e7",
       "actionApp" : true
     },
@@ -1172,12 +1177,11 @@
     "appVersion" : {
       "id" : "6172f674-07f2-4517-ab17-c2e7d6b0c938",
       "serviceId" : 2298,
-      "version" : 320,
+      "version" : 327,
       "parameters" : {
-        "imageUrl" : "exported/myself_update.13edfc094346230b9a91353e6f3f239e.svg"
+        "imageUrl" : "exported/myself_update.13edfc094346230b9a91353e6f3f239e.svg",
+        "description" : "bd78ca6c-2551-40d1-a5f3-4239f4ffa492"
       },
-      "title" : "ce79e7fd-6166-49b1-a9ea-a80ad909de66",
-      "startPageId" : "037d567e-d734-46d4-8b64-7ef79aaf1db1",
       "pages" : [ {
         "id" : "037d567e-d734-46d4-8b64-7ef79aaf1db1",
         "appId" : "6172f674-07f2-4517-ab17-c2e7d6b0c938",
@@ -1212,8 +1216,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17784,
           "defaultLimit" : 20,
+          "componentTableId" : 17784,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "bd5cc49c-1b02-4639-98ae-cb74da60504c",
@@ -1595,7 +1599,7 @@
           },
           "id" : "b9bb90d0-42cd-4f4d-96d5-cac66829f308",
           "defaultvalue" : "",
-          "displayorder" : 5,
+          "displayorder" : 4,
           "pageId" : "f0b1f20c-f89a-4892-b22d-275e17083e93"
         }, {
           "type" : "BUTTON",
@@ -1640,20 +1644,20 @@
           },
           "id" : "7bfb8191-adbe-42b6-904e-ee235a6ce728",
           "defaultvalue" : null,
-          "displayorder" : 6,
+          "displayorder" : 5,
           "pageId" : "f0b1f20c-f89a-4892-b22d-275e17083e93"
         }, {
           "type" : "TABLE",
           "appId" : "6172f674-07f2-4517-ab17-c2e7d6b0c938",
-          "columnId" : null,
+          "columnId" : 238938,
           "required" : false,
           "textType" : null,
           "label" : null,
           "format" : "",
-          "foreignKeyId" : null,
+          "foreignKeyId" : 14171,
           "parentComponentId" : null,
-          "componentTableId" : 17792,
           "defaultLimit" : 20,
+          "componentTableId" : 17792,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "cfb5c363-aca7-45d1-91f4-d2626624f3f9",
@@ -1689,29 +1693,14 @@
               "sqlquery" : {
                 "id" : "270ace46-3d14-405b-9401-5dd0f6731e02",
                 "constraints" : {
-                  "type" : "EXPRESSION",
-                  "left" : {
-                    "type" : "TERM",
-                    "constraint" : {
-                      "tableId" : 17792,
-                      "columnId" : 238953,
-                      "valueType" : "COMPONENT",
-                      "variableComponent" : "b9bb90d0-42cd-4f4d-96d5-cac66829f308",
-                      "ignoredWhenValueIsNull" : true,
-                      "action" : "LIKE"
-                    }
-                  },
-                  "operator" : "AND",
-                  "right" : {
-                    "type" : "TERM",
-                    "constraint" : {
-                      "tableId" : 17792,
-                      "columnId" : 238933,
-                      "valueType" : "COMPONENT",
-                      "variableComponent" : "20b4c0da-e2bc-412c-aadb-ac215d5c2ca5",
-                      "ignoredWhenValueIsNull" : true,
-                      "action" : "EQUALS_TO"
-                    }
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 17792,
+                    "columnId" : 238953,
+                    "valueType" : "COMPONENT",
+                    "variableComponent" : "b9bb90d0-42cd-4f4d-96d5-cac66829f308",
+                    "ignoredWhenValueIsNull" : true,
+                    "action" : "LIKE"
                   }
                 },
                 "autojoins" : false
@@ -1729,7 +1718,7 @@
                 },
                 "autojoins" : false
               },
-              "show_1_to_n" : "0",
+              "show_1_to_n" : "1",
               "groupByColumns" : [ ],
               "linkpageid" : "1c7b3cee-5758-4d7f-9a8c-15d3637d034a",
               "hideIfEmpty" : false,
@@ -1739,12 +1728,12 @@
           },
           "id" : "d090c9d5-262f-45fc-8094-24d4844ce134",
           "defaultvalue" : null,
-          "displayorder" : 8,
+          "displayorder" : 7,
           "rowAction" : { },
           "defaultLimit" : 20,
-          "componentTableId" : 17378,
-          "tableid" : 17378,
-          "pageId" : "f0b1f20c-f89a-4892-b22d-275e17083e93"
+          "componentTableId" : 17792,
+          "tableid" : 17792,
+          "pageId" : "a069200f-ed1e-4a76-9967-00ce45399207"
         }, {
           "type" : "STATIC_TEXT",
           "appId" : "6172f674-07f2-4517-ab17-c2e7d6b0c938",
@@ -1766,7 +1755,7 @@
           },
           "id" : "bd2d5588-950f-40a4-865b-bfaf114f0de1",
           "defaultvalue" : null,
-          "displayorder" : 7,
+          "displayorder" : 6,
           "pageId" : "f0b1f20c-f89a-4892-b22d-275e17083e93"
         } ],
         "title" : "38037985-b5c2-41eb-a4f0-f590bf11a5b2",
@@ -1966,7 +1955,7 @@
                 "serviceAction" : {
                   "type" : "GWSC",
                   "id" : "281a4361-9061-43dc-b283-8f44197f51fd",
-                  "name" : "Course Registration",
+                  "name" : "Create Invitation",
                   "parameters" : [ {
                     "parameterId" : "courseId",
                     "valueType" : "COMPONENT",
@@ -1978,7 +1967,7 @@
                     "componentId" : "30bd88a6-dbce-4789-9996-98217eb8c8ed",
                     "type" : "GWSCP"
                   } ],
-                  "serviceActionId" : "5e734408-abbd-47ff-a345-9351ec4ade97",
+                  "serviceActionId" : "f0719d6e-aa53-414d-96f8-23ce1acf60a4",
                   "serviceId" : 2298,
                   "preserveComponentValues" : false
                 },
@@ -2458,8 +2447,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17785,
           "defaultLimit" : 20,
+          "componentTableId" : 17785,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "684a6383-4714-4fe7-877a-3855dc4305ca",
@@ -2598,6 +2587,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
+      "title" : "ce79e7fd-6166-49b1-a9ea-a80ad909de66",
+      "startPageId" : "037d567e-d734-46d4-8b64-7ef79aaf1db1",
       "trackingUuid" : "fc407347-2137-4ab4-9633-db7e4d01bb9a",
       "actionApp" : true
     },
@@ -2609,12 +2600,11 @@
     "appVersion" : {
       "id" : "fe515648-eda4-4e8f-9c6e-0a9d66d40e5e",
       "serviceId" : 2298,
-      "version" : 604,
+      "version" : 612,
       "parameters" : {
-        "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg"
+        "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+        "description" : "54dc204d-13ce-4707-983a-b2b68c306c50"
       },
-      "title" : "50a09bd7-44bf-47b1-9aa1-db3fbdac83c7",
-      "startPageId" : "4819a179-256c-4c92-8553-bca29112b676",
       "pages" : [ {
         "id" : "c3aa0622-871b-47bb-beb6-0932184cb2af",
         "appId" : "fe515648-eda4-4e8f-9c6e-0a9d66d40e5e",
@@ -2765,10 +2755,6 @@
                     "columnId" : 238933,
                     "type" : "GWSCP"
                   }, {
-                    "parameterId" : "email",
-                    "valueType" : "USER_EMAIL",
-                    "type" : "GWSCP"
-                  }, {
                     "parameterId" : "enrollmentId",
                     "valueType" : "COLUMN",
                     "columnId" : 238932,
@@ -2829,23 +2815,38 @@
                   "id" : "b126a97a-a5b1-4a5e-a581-939dd153d432",
                   "name" : "Reject Invitation",
                   "parameters" : [ {
-                    "id" : "53eaf261-0d00-4ea3-b40f-838758d534fd",
                     "parameterId" : "courseId",
                     "valueType" : "COLUMN",
                     "columnId" : 238933,
                     "type" : "GWSCP"
                   }, {
-                    "id" : "125f2f7d-3617-4694-8c80-3d7fd3b87fc8",
                     "parameterId" : "enrollmentId",
                     "valueType" : "COLUMN",
                     "columnId" : 238932,
                     "type" : "GWSCP"
                   } ],
-                  "serviceActionId" : "a114f83f-e284-48c6-9d73-938d73bbe387",
+                  "serviceActionId" : "e75652bf-d9cd-4256-a500-c8ca954a4fa0",
                   "serviceId" : 2298,
                   "preserveComponentValues" : false
                 },
-                "serviceId" : 2298
+                "serviceId" : 2298,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
               } ]
             },
             "tone" : "RED",
@@ -3020,8 +3021,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17784,
           "defaultLimit" : 20,
+          "componentTableId" : 17784,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "c11fecd0-4fb6-4cbe-81c7-a8534557a9d1",
@@ -3277,8 +3278,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17793,
           "defaultLimit" : 20,
+          "componentTableId" : 17793,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "5d99a685-8040-4700-9ee2-0650e21dc471",
@@ -3324,24 +3325,40 @@
                         "left" : {
                           "type" : "EXPRESSION",
                           "left" : {
-                            "type" : "TERM",
-                            "constraint" : {
-                              "tableId" : 17793,
-                              "columnId" : 238944,
-                              "valueType" : "USER_EMAIL",
-                              "ignoredWhenValueIsNull" : false,
-                              "action" : "EQUALS_TO"
+                            "type" : "EXPRESSION",
+                            "left" : {
+                              "type" : "TERM",
+                              "constraint" : {
+                                "tableId" : 17793,
+                                "columnId" : 238944,
+                                "valueType" : "USER_EMAIL",
+                                "ignoredWhenValueIsNull" : false,
+                                "action" : "EQUALS_TO"
+                              }
+                            },
+                            "operator" : "AND",
+                            "right" : {
+                              "type" : "TERM",
+                              "constraint" : {
+                                "tableId" : 17793,
+                                "columnId" : 238941,
+                                "valueType" : "COMPONENT",
+                                "variableComponent" : "e885795a-b65a-4bc2-a6e6-d749c5ac3460",
+                                "ignoredWhenValueIsNull" : true,
+                                "action" : "EQUALS_TO"
+                              }
                             }
                           },
                           "operator" : "AND",
                           "right" : {
                             "type" : "TERM",
                             "constraint" : {
-                              "tableId" : 17793,
-                              "columnId" : 238941,
-                              "valueType" : "COMPONENT",
-                              "variableComponent" : "e885795a-b65a-4bc2-a6e6-d749c5ac3460",
-                              "ignoredWhenValueIsNull" : true,
+                              "tableId" : 17791,
+                              "columnId" : 238931,
+                              "foreignKeyId" : 14173,
+                              "valueType" : "VALUE",
+                              "value" : "public",
+                              "ignoredWhenValueIsNull" : false,
                               "action" : "EQUALS_TO"
                             }
                           }
@@ -3351,10 +3368,10 @@
                           "type" : "TERM",
                           "constraint" : {
                             "tableId" : 17791,
-                            "columnId" : 238931,
+                            "columnId" : 238927,
                             "foreignKeyId" : 14173,
                             "valueType" : "VALUE",
-                            "value" : "public",
+                            "value" : "Announcements",
                             "ignoredWhenValueIsNull" : false,
                             "action" : "EQUALS_TO"
                           }
@@ -3364,51 +3381,50 @@
                       "right" : {
                         "type" : "TERM",
                         "constraint" : {
-                          "tableId" : 17791,
-                          "columnId" : 238927,
-                          "foreignKeyId" : 14173,
-                          "valueType" : "VALUE",
-                          "value" : "Announcements",
+                          "tableId" : 17793,
+                          "columnId" : 238946,
+                          "valueType" : "NOW",
                           "ignoredWhenValueIsNull" : false,
-                          "action" : "EQUALS_TO"
+                          "action" : "LESS_OR_EQUAL"
                         }
                       }
                     },
                     "operator" : "AND",
                     "right" : {
-                      "type" : "TERM",
-                      "constraint" : {
-                        "tableId" : 17793,
-                        "columnId" : 238946,
-                        "valueType" : "NOW",
-                        "ignoredWhenValueIsNull" : false,
-                        "action" : "LESS_OR_EQUAL"
+                      "type" : "EXPRESSION",
+                      "left" : {
+                        "type" : "TERM",
+                        "constraint" : {
+                          "tableId" : 17793,
+                          "columnId" : 238947,
+                          "valueType" : "NOW",
+                          "ignoredWhenValueIsNull" : false,
+                          "action" : "LESS_OR_EQUAL"
+                        }
+                      },
+                      "operator" : "OR",
+                      "right" : {
+                        "type" : "TERM",
+                        "constraint" : {
+                          "tableId" : 17793,
+                          "columnId" : 238947,
+                          "valueType" : "VAL_NULL",
+                          "ignoredWhenValueIsNull" : false,
+                          "action" : "EQUALS_TO"
+                        }
                       }
                     }
                   },
                   "operator" : "AND",
                   "right" : {
-                    "type" : "EXPRESSION",
-                    "left" : {
-                      "type" : "TERM",
-                      "constraint" : {
-                        "tableId" : 17793,
-                        "columnId" : 238947,
-                        "valueType" : "NOW",
-                        "ignoredWhenValueIsNull" : false,
-                        "action" : "LESS_OR_EQUAL"
-                      }
-                    },
-                    "operator" : "OR",
-                    "right" : {
-                      "type" : "TERM",
-                      "constraint" : {
-                        "tableId" : 17793,
-                        "columnId" : 238947,
-                        "valueType" : "VAL_NULL",
-                        "ignoredWhenValueIsNull" : false,
-                        "action" : "EQUALS_TO"
-                      }
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 17793,
+                      "columnId" : 238945,
+                      "valueType" : "VALUE",
+                      "value" : "StudentEnrollment",
+                      "ignoredWhenValueIsNull" : false,
+                      "action" : "EQUALS_TO"
                     }
                   }
                 },
@@ -3499,8 +3515,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17790,
           "defaultLimit" : 20,
+          "componentTableId" : 17790,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "a7175a95-930e-457c-a6a7-6be26ffe2fdd",
@@ -3655,8 +3671,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 17786,
           "defaultLimit" : 20,
+          "componentTableId" : 17786,
           "parameters" : {
             "tableconfig" : {
               "noDataText" : "6f4d59bb-9fb2-44b7-b725-a67e92e25c51",
@@ -5249,6 +5265,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
+      "title" : "50a09bd7-44bf-47b1-9aa1-db3fbdac83c7",
+      "startPageId" : "4819a179-256c-4c92-8553-bca29112b676",
       "trackingUuid" : "e0971412-6bce-4dfa-8006-dc7fff4821dd",
       "actionApp" : true
     },
@@ -5260,22 +5278,22 @@
   "services" : [ {
     "id" : 2298,
     "uuid" : "e80ec039-95c1-4c66-bb94-a6cb7a1652fb",
-    "version" : 125,
+    "version" : 146,
     "title" : "Canvas LMS",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "hotsvcnv6xdz_canvas_lms_2",
     "configuration" : {
       "trackingUuid" : "4fde839a-f215-4f57-a0ef-dd16d84216d2",
-      "baseUrl" : "https://citrix.instructure.com",
+      "baseUrl" : "https://{hostname}.com",
       "security" : {
         "type" : "OAUTH2",
         "grantType" : "AUTHORIZATION_CODE",
         "clientSecret" : "{{secret 'dataEndpoint.clientSecret'}}",
         "password" : "",
         "scope" : "",
-        "authorizationURL" : "https://citrix.instructure.com/login/oauth2/auth",
-        "tokenURL" : "https://citrix.instructure.com/login/oauth2/token",
+        "authorizationURL" : "https://{hostname}.com/login/oauth2/auth",
+        "tokenURL" : "https://{hostname}.com/login/oauth2/token",
         "grantTypeValue" : "authorization_code",
         "companyId" : "",
         "oauthURL" : "",
@@ -5292,8 +5310,8 @@
         "clientSecret" : "{{secret 'serviceAction.clientSecret'}}",
         "password" : "",
         "scope" : "",
-        "authorizationURL" : "https://citrix.instructure.com/login/oauth2/auth",
-        "tokenURL" : "https://citrix.instructure.com/login/oauth2/token",
+        "authorizationURL" : "https://{hostname}.com/login/oauth2/auth",
+        "tokenURL" : "https://{hostname}.com/login/oauth2/token",
         "grantTypeValue" : "authorization_code",
         "companyId" : "",
         "oauthURL" : "",
@@ -5310,9 +5328,11 @@
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
         "useTimeRange" : false,
-        "runFrom" : "00:00",
-        "runTo" : "04:00",
         "schedule" : "EIGHT_HOURS"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "schedule" : "HOURLY"
       } ],
       "endpoints" : [ {
         "legacyEndpointId" : 2,
@@ -8010,70 +8030,7 @@
           "mergeStrategy" : "NONE"
         }
       } ],
-      "actions" : [ {
-        "uniqueId" : "a114f83f-e284-48c6-9d73-938d73bbe387",
-        "name" : "Reject Invitation",
-        "parameters" : [ {
-          "uniqueId" : "29a26d6f-0ae8-492f-84e8-630b0c212b56",
-          "name" : "courseId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "courseId"
-          }
-        }, {
-          "uniqueId" : "ff95a2f4-af65-42d3-bede-764a1890f18c",
-          "name" : "enrollmentId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "enrollmentId"
-          }
-        } ],
-        "request" : {
-          "method" : "POST",
-          "uri" : "/api/v1/courses/{{courseId}}/enrollments/{{enrollmentId}}/reject",
-          "headers" : [ ],
-          "postMode" : "FORMDATA",
-          "body" : "",
-          "bodyParameters" : [ ]
-        },
-        "preActionUpdates" : [ ],
-        "postActionUpdates" : [ ],
-        "actionParameters" : [ {
-          "uniqueId" : "29a26d6f-0ae8-492f-84e8-630b0c212b56",
-          "name" : "courseId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "courseId"
-          }
-        }, {
-          "uniqueId" : "ff95a2f4-af65-42d3-bede-764a1890f18c",
-          "name" : "enrollmentId",
-          "type" : {
-            "dataType" : "STRING"
-          },
-          "value" : {
-            "type" : "ACTION_PARAMETER",
-            "required" : true,
-            "defaultValue" : "",
-            "actionParameterName" : "enrollmentId"
-          }
-        } ]
-      } ],
+      "actions" : [ ],
       "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/TEGJf2vhv8wexUsRk0l7kfyJlLMcC7R2.png",
       "iconType" : "CUSTOM_IMAGE",
       "rateLimitConfiguration" : {
@@ -8150,7 +8107,8 @@
               "type" : "STRING",
               "length" : 255,
               "mandatory" : false
-            } ]
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
           }, {
             "name" : "enrollments",
             "columns" : [ {
@@ -8192,17 +8150,22 @@
               "primaryKey" : false,
               "type" : "INTEGER",
               "mandatory" : false
-            } ]
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
           } ],
           "relationships" : [ ]
         },
         "synchronizations" : [ {
           "name" : "canvas",
           "fullSyncConfigured" : true,
-          "incrementalSyncConfigured" : false,
+          "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
             "startLine" : 10,
-            "endLine" : 49
+            "endLine" : 59
+          },
+          "scriptSourceFunctionLocationIncrSync" : {
+            "startLine" : 10,
+            "endLine" : 59
           }
         } ],
         "actions" : [ {
@@ -8230,8 +8193,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 52,
-            "endLine" : 64
+            "startLine" : 62,
+            "endLine" : 96
           }
         }, {
           "name" : "Accept Invitation",
@@ -8244,18 +8207,30 @@
             "name" : "enrollmentId",
             "type" : "INTEGER",
             "required" : true
+          } ],
+          "scriptSourceFunctionLocation" : {
+            "startLine" : 99,
+            "endLine" : 124
+          }
+        }, {
+          "name" : "Reject Invitation",
+          "uniqueId" : "e75652bf-d9cd-4256-a500-c8ca954a4fa0",
+          "parameters" : [ {
+            "name" : "courseId",
+            "type" : "INTEGER",
+            "required" : true
           }, {
-            "name" : "email",
-            "type" : "STRING",
+            "name" : "enrollmentId",
+            "type" : "INTEGER",
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 67,
-            "endLine" : 77
+            "startLine" : 127,
+            "endLine" : 146
           }
         }, {
-          "name" : "Course Registration",
-          "uniqueId" : "5e734408-abbd-47ff-a345-9351ec4ade97",
+          "name" : "Create Invitation",
+          "uniqueId" : "f0719d6e-aa53-414d-96f8-23ce1acf60a4",
           "parameters" : [ {
             "name" : "courseId",
             "type" : "INTEGER",
@@ -8266,8 +8241,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 80,
-            "endLine" : 90
+            "startLine" : 149,
+            "endLine" : 174
           }
         } ],
         "webhookListeners" : [ ],
@@ -8287,6 +8262,7 @@
       "entityName" : "accounts",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238626,
         "title" : "id",
@@ -8309,6 +8285,7 @@
       "entityName" : "courses",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238627,
         "title" : "course_code",
@@ -8359,6 +8336,7 @@
       "entityName" : "grades",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238630,
         "title" : "assignment_name",
@@ -8493,6 +8471,7 @@
       "entityName" : "assignments",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238649,
         "title" : "course_id",
@@ -8627,6 +8606,7 @@
       "entityName" : "users",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238835,
         "title" : "id",
@@ -8677,6 +8657,7 @@
       "entityName" : "files",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238853,
         "title" : "courses_id",
@@ -8783,6 +8764,7 @@
       "entityName" : "tabs",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238905,
         "title" : "courses_id",
@@ -8861,6 +8843,7 @@
       "entityName" : "enrollments",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238932,
         "title" : "id",
@@ -8981,6 +8964,7 @@
       "entityName" : "announcements",
       "type" : "TABLE",
       "loadingType" : "PULL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
         "id" : 238939,
         "title" : "id",
@@ -9542,8 +9526,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "b11f24a1-a8f3-4e7e-ba0d-eba6272690b5",
@@ -9592,7 +9576,7 @@
     "id" : "34c39af6-59c6-476f-a1b3-ec6929be9c44",
     "legacyId" : 3413,
     "appId" : "fe515648-eda4-4e8f-9c6e-0a9d66d40e5e",
-    "version" : 30,
+    "version" : 32,
     "eventType" : "REMINDER",
     "serviceId" : 2298,
     "tableId" : 17793,
@@ -9736,7 +9720,7 @@
     "id" : "ad94a74e-40e5-4576-8ffd-9bf9227616e9",
     "legacyId" : 3402,
     "appId" : "fe515648-eda4-4e8f-9c6e-0a9d66d40e5e",
-    "version" : 1,
+    "version" : 2,
     "eventType" : "NEW",
     "serviceId" : 2298,
     "tableId" : 17792,
@@ -9769,7 +9753,7 @@
         "valueType" : "VALUE"
       }
     },
-    "expirationDelete" : false,
+    "expirationDelete" : true,
     "label" : "b83d505f-7724-4c68-8003-28c5b80b7752",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
@@ -9803,10 +9787,10 @@
   "modelConfiguration" : {
     "appIds" : [ "4d72294f-b482-40d1-8cac-9bab09164078", "fe515648-eda4-4e8f-9c6e-0a9d66d40e5e", "344aeaf7-ed94-4bc1-8eb3-548b99afeb88", "6172f674-07f2-4517-ab17-c2e7d6b0c938" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Deploy the Canvas LMS integration to view the course and its related details as a student, and as a teacher to create a course announcement and view the course members and grades.",
+    "bundleDescription" : "Deploy the Canvas LMS integration to view the course and its related details as a student, and as a teacher to create a course announcement and view/add course members and view student's grades.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "654F3ED3651C0FCC6771E37855714A2E",
-  "appliedSappUpgrades" : [ "microapp-7561", "microapp-7888", "microapp-13471", "microapp-10856", "microapp-11836", "microapp-11136", "microapp-13233", "microapp-8576", "microapp-5227", "microapp-8892", "microapp-13344", "microapp-8003", "microapp-12505", "microapp-7984", "microapp-2450", "microapp-5025", "microapp-14613", "microapp-14492", "microapp-6293", "microapp-12427", "microapp-9597", "microapp-8921", "microapp-10858", "microapp-10860", "microapp-6262", "microapp-4020", "microapp-3548", "microapp-6593", "microapp-6853", "microapp-1980", "microapp-8950", "microapp-11349", "microapp-6264", "microapp-10420", "microapp-12936", "microapp-10421", "microapp-7961", "microapp-6790", "microapp-4518", "microapp-9701", "microapp-10876", "microapp-12525", "microapp-3547", "microapp-7290", "microapp-3580", "microapp-14177", "microapp-8511", "microapp-6617", "microapp-3838", "microapp-4666", "microapp-13808", "microapp-9702", "microapp-11340", "microapp-10549" ],
-  "buildVersion" : "1.93.4.40cd82fa6dc8acc40d248f3d650d1bc3f60b6197"
+  "translationChecksum" : "DE47DDEDD007996D973A4FBB86FE0877",
+  "appliedSappUpgrades" : [ "microapp-8576", "microapp-11349", "microapp-2450", "microapp-13344", "microapp-6790", "microapp-11340", "microapp-4518", "microapp-10549", "microapp-14613", "microapp-7888", "microapp-13233", "microapp-10860", "microapp-12427", "microapp-4020", "microapp-8003", "microapp-6593", "microapp-10858", "microapp-5227", "microapp-10420", "microapp-7984", "microapp-6262", "microapp-11836", "microapp-3548", "microapp-6617", "microapp-3580", "microapp-14492", "microapp-11136", "microapp-13471", "microapp-8921", "microapp-9702", "microapp-7290", "microapp-9597", "microapp-6853", "microapp-12505", "microapp-5025", "microapp-10421", "microapp-6264", "microapp-9701", "microapp-10856", "microapp-8950", "microapp-3547", "microapp-10876", "microapp-7961", "microapp-3838", "microapp-12525", "microapp-8511", "microapp-14177", "microapp-14849", "microapp-1980", "microapp-7561", "microapp-6293", "microapp-8892", "microapp-4666", "microapp-12936", "microapp-13808" ],
+  "buildVersion" : "1.101.0.b2c44a647767b3456fd79adbd8b61d80e8963b9f"
 }
