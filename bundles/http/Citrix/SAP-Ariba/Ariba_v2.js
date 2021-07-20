@@ -201,7 +201,7 @@ async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
                     documentsLists) //creating list on requisition and invoices
             }
             else {
-            console.log('Warning: ariba return empty response for pendingApprovables endpoint')
+            console.log('Warning: Ariba returned empty response for pendingApprovables endpoint')
             }
         }
         else {
@@ -243,19 +243,20 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
                               
                 try {
                     const currentItem = json[json.length - 1]
-                    if (currentItem && documentsLists.newChangeId < +(currentItem.changeSequenceId)) { //getting the  lastChangeSequenceId for incremental sync from page
-                        documentsLists.newChangeId = +(currentItem.changeSequenceId)
+                    if (currentItem && documentsLists.newChangeId < parseInt(currentItem.changeSequenceId)) { //getting the  lastChangeSequenceId for incremental sync from page
+                        documentsLists.newChangeId = parseInt(currentItem.changeSequenceId)
                     }
+
                 }
                 catch (e) {
-                    console.log(`Warning: unable to get newChangeId from change api response}`)
+                    console.log(`Warning: unable to get newChangeId from change api response `,e )
                 }
 
                 documentsLists = parseChangesGetDocIds(json, documentsLists) //creating list on requisition and invoices
                 sync.dataStore.save('changes',json)
             }
             else { 
-                console.log('Warning: ariba return empty response for change endpoint')    
+                console.log('Warning: Ariba returned empty response for change endpoint')    
             }
         }
         else {
