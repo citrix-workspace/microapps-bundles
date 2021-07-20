@@ -1,6 +1,6 @@
 const limitApprovables = 100 // limit number of records per page for pagination approvables
 const limitGroups = 1000  // limit number of records for resolving group members
-const limitChanges = 5000 // limit number of records per page for pagination changers
+const limitChanges = 50 // limit number of records per page for pagination changers
 const maxNoOfPages = 100000 //  limit number of pages for pagination
 
 function calculateNumberOfPages(totalrecords, limit) {
@@ -200,6 +200,9 @@ async function fetchApprovablesAndGetDocuments(sync, documentsLists) {
                 documentsLists = parseApprovablesGetDocIds(json,
                     documentsLists) //creating list on requisition and invoices
             }
+            else {
+            console.log('Warning: Ariba returned empty response for pendingApprovables endpoint')
+            }
         }
         else {
             console.log('Warning: unable to get pendingApprovables page: ' + i + ' :' + responseData.statusText)
@@ -235,14 +238,25 @@ async function fetchChangesGetDocumentsAndGetLastId(sync, documentsLists) {
                     noOfPages = calculateNumberOfPages(+responseData.headers.get('X-Total-Count'), limitChanges)
                     console.log('Total number of changes ' + responseData.headers.get('X-Total-Count'))
                     console.log('Total number of pages for changes endpoint ' + noOfPages)
-                    console.log('First Change ID ' + json[0].changeSequenceId)
+                    console.log('First item with change ID ',json[0].changeSequenceId)
+                }
+                              
+                try {
+                    const currentItem = json[json.length - 1]
+                    if (currentItem && documentsLists.newChangeId < parseInt(currentItem.changeSequenceId)) { //getting the  lastChangeSequenceId for incremental sync from page
+                        documentsLists.newChangeId = parseInt(currentItem.changeSequenceId)
+                    }
+
+                }
+                catch (e) {
+                    console.log(`Warning: unable to get newChangeId from change api response `,e )
                 }
 
-                if (documentsLists.newChangeId < +json[json.length - 1]
-                    .changeSequenceId) { //getting the  lastChangeSequenceId for incremental sync from page
-                    documentsLists.newChangeId = +json[json.length - 1].changeSequenceId
-                }
                 documentsLists = parseChangesGetDocIds(json, documentsLists) //creating list on requisition and invoices
+                sync.dataStore.save('changes',json)
+            }
+            else { 
+                console.log('Warning: Ariba returned empty response for change endpoint')    
             }
         }
         else {
@@ -361,7 +375,7 @@ function isObject(json) {
 }
 
 function notEmptyArray(json) {
-    return Array.isArray(json) && json.length > 0
+    return Array.isArray(json) && json.length > 0 && json[0] !== undefined
 }
 
 integration.define({
@@ -513,6 +527,37 @@ integration.define({
                     {
                         'name': 'totalCostAmount',
                         'type': 'DOUBLE'
+                    }
+                ]
+            },
+            {
+                'name': 'changes',
+                'columns': [
+                    {
+                        'name': 'changeSequenceId',
+                        'type': 'STRING',
+                        'length': 64,
+                        'primaryKey': true
+                    },
+                    {
+                        'name': 'approvableBaseID',
+                        'type': 'STRING',
+                        'length': 64
+                    },
+                    {
+                        'name': 'changeType',
+                        'type': 'STRING',
+                        'length': 64
+                    },
+                    {
+                        'name': 'restResourceName',
+                        'type': 'STRING',
+                        'length': 64
+                    },
+                    {
+                        'name': 'approvableUniqueName',
+                        'type': 'STRING',
+                        'length': 64
                     }
                 ]
             },
