@@ -1628,7 +1628,7 @@
   "services" : [ {
     "id" : 10,
     "uuid" : "fb5d68d5-de15-413c-ace7-29a712de0a71",
-    "version" : 6,
+    "version" : 7,
     "title" : "SAP Concur HTTP Demo",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1652,13 +1652,11 @@
         "useTimeRange" : true,
         "runFrom" : "00:00",
         "runTo" : "04:00",
-        "schedule" : "MANUALLY"
+        "schedule" : "DAILY"
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
-        "useTimeRange" : true,
-        "runFrom" : "00:00",
-        "runTo" : "04:00",
-        "schedule" : "MANUALLY"
+        "useTimeRange" : false,
+        "schedule" : "FIFTEEN_MINUTES"
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
