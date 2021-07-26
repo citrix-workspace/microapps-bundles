@@ -3,20 +3,24 @@ const moment = library.load('moment-timezone');
 const uuid = library.load('uuid');
 
 // loading the users data(Done)
-async function syncUsers(dataStore, client, context) {
+async function syncUsers(dataStore, client) {
     const page_size = 100
     let next_page_token = ""
     let userids = [];
     do {
-        const response = await client.fetch(`/users?next_page_token=${next_page_token}&page_size=${page_size}`);
+        const response = await client.fetch(`users?next_page_token=${next_page_token}&page_size=${page_size}`);
         let json = await response.json();
         if (!response.ok) {
-            throw new Error(json);
+            if(json.code === 4700){
+                return userids
+            }else{
+                throw new Error(JSON.stringify(json));  
+            }
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.users
         let usersData = data.map(userData => {
-            userids.push({userid:userData.id});
+            userids.push({userid:userData.id,email:userData.email});
             let userObj = {
                 "userid": userData.id,
                 "first_name": userData.first_name,
@@ -29,7 +33,6 @@ async function syncUsers(dataStore, client, context) {
         })
         dataStore.save("users", usersData);
     } while (next_page_token != "");
-    context.user = userids;
     return userids;
 }
 
@@ -39,11 +42,16 @@ async function syncMeetings(dataStore, client, users) {
     let next_page_token="";
     const page_size=200;
     let meetingids = new Set();
+    
+    if(users.length === 0){
+        return meetingids
+    }
+
     do {
         const response = await client.fetch(`users/${users[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
         const json = await response.json();
         if (!(response.ok)) {
-            throw new Error(json);
+            throw new Error(JSON.stringify(json));
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
@@ -51,7 +59,7 @@ async function syncMeetings(dataStore, client, users) {
             return meeting.type == 2 || meeting.type == 8 
         }).map(meeting => {
             if(!meetingids.has(meeting.id)){
-                meetingids.add(meeting.id)
+                meetingids.add({meetingid:meeting.id,email:users[i].email})
             }
             return {
                 "uuid": meeting.uuid,
@@ -75,11 +83,9 @@ async function syncMeetings(dataStore, client, users) {
 }
 //Loading the meetings details from zoom SOR to cache db(Done)
 async function syncMeetingsDetails(dataStore, client,meetingids) {
-    let dialIncounter = 0;
-    let dialInNumberscounter = 0;
     let meetingsMap = new Map();
-    for (const meetingid of meetingids) {
-        const response = await client.fetch(`meetings/${meetingid}`)
+    for (const value of meetingids) {
+        const response = await client.fetch(`meetings/${value.meetingid}`)
         const meeting = await response.json();
         if (!(response.ok)) {
             throw new Error(meeting);
@@ -101,7 +107,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
             "recurrence_type": meeting.recurrence!= undefined ?meeting.recurrence.type:null,
             "recurrence_weekly_days": meeting.recurrence!= undefined ?meeting.recurrence.weekly_days :null,
             "recurrence_monthly_day": meeting.recurrence!= undefined ?meeting.recurrence.monthly_day :null,
-            "settings_alternative_host": meeting.settings.alternative_hosts,
+            "settings_alternative_host": meeting.settings?.alternative_hosts ?? [],
             "start_time": meeting.start_time != undefined ? new Date(meeting.start_time):null,
             "start_url": meeting.start_url,
             "timezone": meeting.timezone,
@@ -111,7 +117,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
         }
 
         //storing dial-in countries of onetime meeting 
-        let dialIn = meeting.settings.global_dial_in_countries.map(country => {
+        let dialIn = meeting.settings?.global_dial_in_countries?.map(country => {
             return {
                 "value": country,
                 "unique_id": uuid.v4(),
@@ -121,7 +127,7 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
         })
 
         // storing numbers of dial_in countries 
-        let dialInNumbers = meeting.settings.global_dial_in_numbers.map(number => {
+        let dialInNumbers = meeting.settings?.global_dial_in_numbers?.map(number => {
 
             return {
                 "country": number.country,
@@ -135,13 +141,13 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
         })
         //if meeting is a onetime(2) meeting
         if (meeting.type == 2) {
-            dataStore.save('meeting_details_one_time', meetingDetails)
-            dataStore.save('meeting_details_one_t_1', dialIn);
-            dataStore.save('meeting_details_one_t_2', dialInNumbers);
+            dataStore.save('meeting_details_one_time', meetingDetails ?? [])
+            dataStore.save('meeting_details_one_t_1', dialIn ?? []);
+            dataStore.save('meeting_details_one_t_2', dialInNumbers ?? []);
         }
         //if meeting type is recurring(8)
         else if (meeting.type == 8) { 
-            let occurrenceData = meeting.occurrences.map(occurrence => {
+            let occurrenceData = meeting.occurrences?.map(occurrence => {
                 return {
                     "duration": occurrence.duration,
                     "occurrence_id": Number(occurrence.occurrence_id),
@@ -152,10 +158,10 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
                 }
             })
             //Storing the data to the cache DB            
-            dataStore.save('meeting_details_recurring', meetingDetails);
-            dataStore.save('meeting_details_recur_1', occurrenceData);
-            dataStore.save('meeting_details_recur_2', dialIn);
-            dataStore.save('meeting_details_recur_3', dialInNumbers);
+            dataStore.save('meeting_details_recurring', meetingDetails ?? []);
+            dataStore.save('meeting_details_recur_1', occurrenceData ?? []);
+            dataStore.save('meeting_details_recur_2', dialIn ?? []);
+            dataStore.save('meeting_details_recur_3', dialInNumbers ?? []);
         }
     }
     return meetingsMap;
@@ -164,16 +170,16 @@ async function syncMeetingsDetails(dataStore, client,meetingids) {
 // Loading the Meeting's Invitation
 async function syncMeetingInvitations(dataStore, client,meetingdetail) {
     //traversing through the meetingMap to get meeting id as key and email as value
-    for (const [meetingId, user] of meetingdetail.entries()) {
-        const response = await client.fetch(`meetings/${meetingId}/invitation`);
+    for (const value of meetingdetail) {
+        const response = await client.fetch(`meetings/${value.meetingid}/invitation`);
         const meeting = await response.json();
         if (!(response.ok)) {
             throw new Error(meeting);
         }
         dataStore.save("meeting_invitations", {
-            "id": meetingId,
+            "id": Number(value.meetingid),
             "invitation": meeting.invitation,
-            "users_email": user.email
+            "users_email": value.email
         })
     }
 }
@@ -185,12 +191,18 @@ async function syncRecordings(dataStore, client,userids) {
     const from = moment().subtract(7, 'days').utc().format();
     let next_page_token = "";
     const page_size = 100;
-
+    if(userids.length === 0){
+        return false
+    }
     do {
         const response = await client.fetch(`users/${userids[i].userid}/recordings?from=${from}&to=${to}&next_page_token=${next_page_token}&page_size=${page_size}`);
         const json = await response.json();
         if (!response.ok) {
-            throw new Error(json);
+            if(json.code === 4700){
+                return userids
+            }else{
+                throw new Error(JSON.stringify(json));  
+            }
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
@@ -231,10 +243,10 @@ async function syncRecordings(dataStore, client,userids) {
         }
     } while (i < userids.length);
 }
-async function zoomFullSync({ dataStore, client, context }){
+async function zoomFullSync({ dataStore, client }){
     //Loading Users Data using /users endpoint
     console.log(`users sync started`);
-    let users = await syncUsers(dataStore, client, context);
+    let users = await syncUsers(dataStore, client);
     console.log("users sync completed");
 
     //Loading the user's upcoming meetings
@@ -242,38 +254,30 @@ async function zoomFullSync({ dataStore, client, context }){
     let meetings = await syncMeetings(dataStore,client,users);
     console.log(`upcoming meetings sync completed`);
     
-    //Loading Meeting Details
-    console.log(`meetings details sync started`);
-    let meetingdetail = await syncMeetingsDetails(dataStore,client,meetings);
-    console.log(`meetings details sync completed`);
-     
-    //Loading meeting Invitations
-    console.log(`meetings invitation sync started`);
-    await syncMeetingInvitations(dataStore,client,meetingdetail);
-    console.log(`meetings invitation sync completed`);
-    
-     //Loading Recording Details
-    console.log(`meetings recording sync started`);
-    await syncRecordings(dataStore,client,users);
-    console.log(`meetings recording sync completed`); 
+    await Promise.all([
+        syncMeetingsDetails(dataStore,client,meetings),
+        syncMeetingInvitations(dataStore,client,meetings),
+        syncRecordings(dataStore,client,users)
+    ])
 }
 
-async function zoomIncSync({ client, dataStore, latestSynchronizationTime, context }) {
-    let meetingids = await incSyncMeetings(dataStore,client,context,latestSynchronizationTime)
+async function zoomIncSync({ client, dataStore, latestSynchronizationTime}) {
+    const users = await syncUsers(dataStore,client)
+    let meetingids = await incSyncMeetings(dataStore,client,users,latestSynchronizationTime)
     let meetingdetail = await syncMeetingsDetails(dataStore, client,meetingids);
     await syncMeetingInvitations(dataStore, client, meetingdetail);
 }
 
-async function incSyncMeetings(dataStore,client,context,latestSynchronizationTime){
+async function incSyncMeetings(dataStore,client,users,latestSynchronizationTime){
     let i = 0;
     let meetingids = new Set();
     let next_page_token = "";
     let page_size=200;
     do {
-        const response = await client.fetch(`users/${context.user[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
+        const response = await client.fetch(`users/${users[i].userid}/meetings?type=upcoming&next_page_token=${next_page_token}&page_size=${page_size}`);
         let json = await response.json();
         if (!response.ok) {
-            throw new Error(json);
+            throw new Error(JSON.stringify(json));
         }
         next_page_token = json.next_page_token ?? "";
         const data = json.meetings;
@@ -284,7 +288,7 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
             }
         }).map(meeting => {
             if(!meetingids.has(meeting.id)){
-                meetingids.add(meeting.id)
+                meetingids.add({meetingid:meeting.id,email:users[i].email})
             }
             return {
                 "uuid": meeting.uuid,
@@ -303,20 +307,20 @@ async function incSyncMeetings(dataStore,client,context,latestSynchronizationTim
         if (next_page_token == "") {
             i++;
         }
-    } while (i < context.user.length)
+    } while (i < users.length)
     return meetingids
 }
 
 
 
 //Defining Actions Methods
-async function createMeeting({ dataStore, client, actionParameters }) {
+async function createMeeting({ dataStore, client, serviceClient, actionParameters }) {
     let meetingset, meetingMap;
     let alternative_hosts = actionParameters.alternative_hosts1;
     if(actionParameters.alternative_hosts2 != null){
         alternative_hosts+=','+actionParameters.alternative_hosts2;
     } 
-    const response = await client.fetch(`users/${actionParameters.Userid}/meetings`, {
+    const response = await serviceClient.fetch(`users/${actionParameters.userid}/meetings`, {
         method: "POST",
         body: JSON.stringify({
             topic: actionParameters.topic,
@@ -339,19 +343,18 @@ async function createMeeting({ dataStore, client, actionParameters }) {
     })
     const json = await response.json();
     if (!response.ok) {
-        throw new Error(json)
+        throw new Error(JSON.stringify(json))
     }
-    meetingset = new Set([Number(json.id)]);
-    meetingMap = new Map([[json.id, { email: json.host_email }]])
+    meetingset = new Set([{meetingid:json.id,email:actionParameters.host_email}]);
 
-    await syncMeetings(dataStore, client, [{userid: actionParameters.Userid}]);
-    await syncMeetingsDetails(dataStore, client,meetingset);
-    await syncMeetingInvitations(dataStore, client, meetingMap);
+    await syncMeetings(dataStore, serviceClient, [{userid: actionParameters.userid, email: actionParameters.host_email}]);
+    await syncMeetingsDetails(dataStore,serviceClient, meetingset);
+    await syncMeetingInvitations(dataStore, serviceClient, meetingset);
 }
 
 
 //   Edit One Time Meeting One Co-organizer
-async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
+async function editOnetimeMeeting({ dataStore, client, serviceClient, actionParameters }) {
     let meetingset;
     let occurrences = [];
     let alternative_hosts = actionParameters.alternative_hosts1;
@@ -362,7 +365,7 @@ async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
         const response = await client.fetch(`meetings/${actionParameters.meetingid}`);
         let json = await response.json(); 
         if (!response.ok) {
-            throw new Error(json)
+            throw new Error(JSON.stringify(json))
         }
         occurrences = json.occurrences;
     }
@@ -390,7 +393,7 @@ async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
     
     //here response code is 204, so normally there will be no response.
     if (!response.ok) {
-        throw new Error(await response.json())
+        throw new Error(await JSON.stringify(response.json()))
     }
 
     if (actionParameters.previous_type == 8 && actionParameters.type == 8 && actionParameters.r_type == actionParameters.pre_rtype && !(moment(actionParameters.start_time).isSame(actionParameters.prev_start_time))) {
@@ -398,10 +401,10 @@ async function editOnetimeMeeting({ dataStore, client, actionParameters }) {
     }
     // meetingset = new Set([meeting.id]);
     detectTypeChange(actionParameters,occurrences, dataStore);
-    await syncMeetings(dataStore, client, [{userid: actionParameters.Userid }]);
-    meetingset = new Set([actionParameters.meetingid]);
-    let meetingDetails = await syncMeetingsDetails(dataStore, client, meetingset);
-    await syncMeetingInvitations(dataStore, client,meetingDetails);
+    meetingset = new Set([{meetingid:actionParameters.meetingid,email:actionParameters.host_email}]);
+    await syncMeetings(dataStore, serviceClient, [{userid: actionParameters.Userid, email: actionParameters.host_email}]);
+    await syncMeetingsDetails(dataStore, client, meetingset);
+    await syncMeetingInvitations(dataStore, client,meetingset);
 }
 
 
@@ -418,11 +421,10 @@ async function editRecurringMeeting({ dataStore, client, actionParameters }) {
     if (!response.ok) {
         throw new Error(await response.json())
     }
-    syncMeetings(dataStore, client, [{userid: actionParameters.userid }]);
-    meetingset = new Set([actionParameters.meetingid]);
-    let meetingDetails = await syncMeetingsDetails(dataStore, client, meetingset);
-    await syncMeetingInvitations(dataStore, client,meetingDetails);
-
+    meetingset = new Set([{meetingid:actionParameters.meetingid,email:actionParameters.host_email}]);
+    await syncMeetings(dataStore, client, [{userid: actionParameters.userid, email: actionParameters.host_email}]);
+    await syncMeetingsDetails(dataStore, client, meetingset);
+    await syncMeetingInvitations(dataStore, client,meetingset);
 }
 
 
@@ -817,72 +819,75 @@ integration.define({
         {
             name: "createMeeting",
             parameters: [
-                { name: "end_times", type: "STRING", length: 255 },
-                { name: "mx", type: "STRING", length: 255 },
-                { name: "type", type: "STRING", length: 255 },
-                { name: "duration", type: "STRING", length: 255 },
-                { name: "start_time", type: "STRING", length: 255 },
-                { name: "ar", type: "STRING", length: 255 },
-                { name: "password", type: "STRING", length: 255 },
-                { name: "au", type: "STRING", length: 255 },
-                { name: "alternative_hosts1", type: "STRING", length: 255 },
-                { name: "alternative_hosts2", type: "STRING", length: 255 },
-                { name: "Userid", type: "STRING", required: true, length: 255 },
-                { name: "topic", type: "STRING", length: 255 },
-                { name: "repeat_interval", type: "STRING", length: 255 },
-                { name: "monthly_day", type: "STRING", length: 255 },
-                { name: "r_type", type: "STRING", length: 255 },
-                { name: "weekly_days", type: "STRING", length: 255 },
-                { name: "us", type: "STRING", length: 255 },
-                { name: "ca", type: "STRING", length: 255 },
+                { name: "end_times", type: "STRING"},
+                { name: "mx", type: "STRING"},
+                { name: "type", type: "STRING"},
+                { name: "duration", type: "STRING"},
+                { name: "start_time", type: "STRING"},
+                { name: "ar", type: "STRING"},
+                { name: "password", type: "STRING"},
+                { name: "au", type: "STRING"},
+                { name: "alternative_hosts1", type: "STRING"},
+                { name: "alternative_hosts2", type: "STRING"},
+                { name: "userid", type: "STRING", required: true},
+                { name: "topic", type: "STRING"},
+                { name: "repeat_interval", type: "STRING"},
+                { name: "monthly_day", type: "STRING"},
+                { name: "r_type", type: "STRING"},
+                { name: "weekly_days", type: "STRING"},
+                { name: "us", type: "STRING"},
+                { name: "ca", type: "STRING"},
+                { name: "host_email", type: "STRING"},
             ],
             function: createMeeting,
         },
         {
             name: "editOnetimeMeeting",
             parameters: [
-                { name: "end_times", type: "STRING", length: 255 },
-                { name: "meetingid", type: "STRING", required: true, length: 255 },
-                { name: "mx", type: "STRING", length: 255 },
-                { name: "type", type: "STRING", length: 255 },
-                { name: "previous_type", type: "STRING", length: 255 },
-                { name: "duration", type: "STRING", length: 255 },
-                { name: "prev_start_time", type: "STRING", length: 255 },
-                { name: "start_time", type: "STRING", length: 255 },
-                { name: "ar", type: "STRING", length: 255 },
-                { name: "password", type: "STRING", length: 255 },
-                { name: "au", type: "STRING", length: 255 },
-                { name: "alternative_hosts1", type: "STRING", length: 255 },
-                { name: "alternative_hosts2", type: "STRING", length: 255 },
-                { name: "Userid", type: "STRING", required: true, length: 255 },
-                { name: "topic", type: "STRING", length: 255 },
-                { name: "occurrence_id", type: "STRING", length: 255 },
-                { name: "repeat_interval", type: "STRING", length: 255 },
-                { name: "monthly_day", type: "STRING", length: 255 },
-                { name: "r_type", type: "STRING", length: 255 },
-                { name: "pre_rtype", type: "STRING", length: 255 },
-                { name: "weekly_days", type: "STRING", length: 255 },
-                { name: "us", type: "STRING", length: 255 },
-                { name: "ca", type: "STRING", length: 255 },
+                { name: "end_times", type: "STRING"},
+                { name: "meetingid", type: "STRING", required: true},
+                { name: "mx", type: "STRING"},
+                { name: "type", type: "STRING"},
+                { name: "previous_type", type: "STRING"},
+                { name: "duration", type: "STRING"},
+                { name: "prev_start_time", type: "STRING"},
+                { name: "start_time", type: "STRING"},
+                { name: "ar", type: "STRING"},
+                { name: "password", type: "STRING"},
+                { name: "au", type: "STRING"},
+                { name: "alternative_hosts1", type: "STRING"},
+                { name: "alternative_hosts2", type: "STRING"},
+                { name: "Userid", type: "STRING", required: true},
+                { name: "topic", type: "STRING"},
+                { name: "occurrence_id", type: "STRING"},
+                { name: "repeat_interval", type: "STRING"},
+                { name: "monthly_day", type: "STRING"},
+                { name: "r_type", type: "STRING"},
+                { name: "pre_rtype", type: "STRING"},
+                { name: "weekly_days", type: "STRING"},
+                { name: "us", type: "STRING"},
+                { name: "ca", type: "STRING"},
+                { name: "host_email", type: "STRING"},
             ],
             function: editOnetimeMeeting,
         },
         {
             name: "EditRecurringMeeting",
             parameters: [
-                { name: "meetingid", type: "STRING", required: true, length: 255 },
-                { name: "mx", type: "STRING", length: 255 },
-                { name: "type", type: "STRING", length: 255 },
-                { name: "userid", type: "STRING", required: true, length: 255 },
-                { name: "duration", type: "STRING", length: 255 },
-                { name: "start_time", type: "STRING", length: 255 },
-                { name: "ar", type: "STRING", length: 255 },
-                { name: "password", type: "STRING", length: 255 },
-                { name: "au", type: "STRING", length: 255 },
-                { name: "topic", type: "STRING", length: 255 },
-                { name: "occurrence_id", type: "STRING", required: true, length: 255 },
-                { name: "US", type: "STRING", length: 255 },
-                { name: "CA", type: "STRING", length: 255 },
+                { name: "meetingid", type: "STRING", required: true},
+                { name: "mx", type: "STRING"},
+                { name: "type", type: "STRING"},
+                { name: "userid", type: "STRING", required: true},
+                { name: "duration", type: "STRING"},
+                { name: "start_time", type: "STRING"},
+                { name: "ar", type: "STRING"},
+                { name: "password", type: "STRING"},
+                { name: "au", type: "STRING"},
+                { name: "topic", type: "STRING"},
+                { name: "occurrence_id", type: "STRING", required: true},
+                { name: "US", type: "STRING"},
+                { name: "CA", type: "STRING"},
+                { name: "host_email", type: "STRING"},
             ],
             function: editRecurringMeeting,
         }
