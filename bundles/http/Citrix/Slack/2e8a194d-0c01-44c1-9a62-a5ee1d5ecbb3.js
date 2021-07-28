@@ -141,7 +141,7 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
 
             channelMessages[indexMessages].text_changed = text
 
-            // If there is an user tagged in the message
+            // If there is at least one user tagged in the message
             if (userIds.length) {
                 for (let j = 0; j < userIds.length; j++) {
                     let userId = userIds[j]
@@ -158,6 +158,16 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
                     }
                     userNames.push(userData.user.real_name)
                 }
+                /*
+                This for loop bellow loops thought userNames list applying changes to text variable content based on index and pushing
+                to a new list called replaceResult.
+                ## Usernames: John Doe, John Smith
+                ## Text to replace: <@UAEJKFEA324> and <@UAEGEAQEF>
+                ------------------------
+                ## IF Statement: John Doe and <@UAEGEAQEF>
+                ------------------------
+                ## ELSE statement: John Doe and <@UAEGEAQEF>, John Doe and John Smith
+                */
                 for (let i = 0; i < userNames.length; i++) {
                     if (!replaceResult.length) {
                         replaceResult.push(text.replace('<@' + userIds[i] + '>',userNames[i]))
