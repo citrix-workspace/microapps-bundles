@@ -338,7 +338,7 @@ integration.define({
                     {
                         "name": "Description",
                         "type": "STRING",
-                        "length": 1024
+                        "length": 255
                     },
                     {
                         "name": "Priority",
@@ -376,11 +376,13 @@ integration.define({
                     },
                     {
                         "name": "Stat_SLAResponseBreached",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 16
                     },
                     {
                         "name": "Stat_SLAResolutionBreached",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 16
                     },
                     {
                         "name": "CallSource",
@@ -442,7 +444,7 @@ integration.define({
                     {
                         "name": "Description",
                         "type": "STRING",
-                        "length": 1024
+                        "length": 255
                     },
                     {
                         "name": "Priority",
@@ -480,11 +482,13 @@ integration.define({
                     },
                     {
                         "name": "Stat_SLAResponseBreached",
-                        "type": "BOOLEAN"
+                        "type": "STRING",
+                        "length": 16
                     },
                     {
                         "name": "Stat_SLAResolutionBreached",
-                        "type": "BOOLEAN"
+                        "type": "STRING",
+                        "length": 16
                     },
                     {
                         "name": "CallSource",
@@ -716,7 +720,7 @@ integration.define({
 
 const pageSize = 200;
 
-async function getUsers({ dataStore, client, latestSynchronizationTime }) {    
+async function getUsers({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -774,7 +778,7 @@ async function getUsers({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getCustomers({ dataStore, client, latestSynchronizationTime }) {    
+async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -832,7 +836,7 @@ async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getIncidents({ dataStore, client, latestSynchronizationTime }) {    
+async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -896,7 +900,7 @@ async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getServiceRequests({ dataStore, client, latestSynchronizationTime }) {    
+async function getServiceRequests({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -960,7 +964,7 @@ async function getServiceRequests({ dataStore, client, latestSynchronizationTime
     }
 }
 
-async function getComments({ dataStore, client, latestSynchronizationTime }) {    
+async function getComments({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1022,7 +1026,7 @@ async function getComments({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getIncidentServices({ dataStore, client, latestSynchronizationTime }) {    
+async function getIncidentServices({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let fieldName = '';
@@ -1083,7 +1087,6 @@ async function getIncidentServices({ dataStore, client, latestSynchronizationTim
 }
 
 async function getIncidentCategories({ dataStore, client }) {
-    
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1128,7 +1131,7 @@ async function getIncidentCategories({ dataStore, client }) {
     }
 }
 
-async function getIncidentSubCategories({ dataStore, client }) {    
+async function getIncidentSubCategories({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1173,7 +1176,7 @@ async function getIncidentSubCategories({ dataStore, client }) {
     }
 }
 
-async function getServicesIncidentTypes({ dataStore, client }) {    
+async function getServicesIncidentTypes({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1228,7 +1231,7 @@ async function getServicesIncidentTypes({ dataStore, client }) {
     }
 }
 
-async function getCategoriesIncidentTypes({ dataStore, client }) {    
+async function getCategoriesIncidentTypes({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1283,7 +1286,7 @@ async function getCategoriesIncidentTypes({ dataStore, client }) {
     }
 }
 
-async function getIncidentSources({ dataStore, client, latestSynchronizationTime }) {    
+async function getIncidentSources({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1336,7 +1339,7 @@ async function getIncidentSources({ dataStore, client, latestSynchronizationTime
     }
 }
 
-async function getIncidentPriorities({ dataStore, client, latestSynchronizationTime }) {    
+async function getIncidentPriorities({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1389,7 +1392,7 @@ async function getIncidentPriorities({ dataStore, client, latestSynchronizationT
     }
 }
 
-async function getIncidentStatuses({ dataStore, client, latestSynchronizationTime }) {    
+async function getIncidentStatuses({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
     let date = '';
