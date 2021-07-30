@@ -220,7 +220,8 @@ integration.define({
                     },
                     {
                         "name": "CreatedBy",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64,
                     },
                     {
                         "name": "LastModifiedDateTime",
@@ -228,19 +229,23 @@ integration.define({
                     },
                     {
                         "name": "FullName",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Department",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Email",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "DefaultTeamName",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     }
                 ]
             },
@@ -259,7 +264,8 @@ integration.define({
                     },
                     {
                         "name": "CreatedBy",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "LastModDateTime",
@@ -267,19 +273,23 @@ integration.define({
                     },
                     {
                         "name": "FullName",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Department",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Email",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "DefaultTeamName",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     }
                 ]
             },
@@ -302,43 +312,53 @@ integration.define({
                     },
                     {
                         "name": "CreatedBy",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Status",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Service",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Category",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Subcategory",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Description",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 255
                     },
                     {
                         "name": "Priority",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedTeam",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedTo",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedToID",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "LastModifiedDateTime",
@@ -346,23 +366,26 @@ integration.define({
                     },
                     {
                         "name": "IncidentType",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "CreatedByEmail",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Stat_SLAResponseBreached",
-                        "type": "STRING"
+                        "type": "BOOLEAN"
                     },
                     {
                         "name": "Stat_SLAResolutionBreached",
-                        "type": "STRING"
+                        "type": "BOOLEAN"
                     },
                     {
                         "name": "CallSource",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "SLAResponseWarning",
@@ -393,43 +416,53 @@ integration.define({
                     },
                     {
                         "name": "CreatedBy",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Status",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Service",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Category",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Subcategory",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Description",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 255
                     },
                     {
                         "name": "Priority",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedTeam",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedTo",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "AssignedToID",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "LastModifiedDateTime",
@@ -437,23 +470,26 @@ integration.define({
                     },
                     {
                         "name": "IncidentType",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "CreatedByEmail",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Stat_SLAResponseBreached",
-                        "type": "STRING"
+                        "type": "BOOLEAN"
                     },
                     {
                         "name": "Stat_SLAResolutionBreached",
-                        "type": "STRING"
+                        "type": "BOOLEAN"
                     },
                     {
                         "name": "CallSource",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "SLAResponseWarning",
@@ -476,7 +512,8 @@ integration.define({
                     },
                     {
                         "name": "JournalTypeName",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "CreatedDateTime",
@@ -488,15 +525,18 @@ integration.define({
                     },
                     {
                         "name": "LastModBy",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "ParentRecID",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "Details",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 1024
                     }
                 ]
             },
@@ -511,11 +551,13 @@ integration.define({
                     },
                     {
                         "name": "Status",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "NextStatus",
                         "type": "STRING",
+                        "length": 32
                     }
                 ]
             },
@@ -530,11 +572,13 @@ integration.define({
                     },
                     {
                         "name": "Service",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Description",
                         "type": "STRING",
+                        "length": 510
                     }
                 ]
             },
@@ -549,15 +593,18 @@ integration.define({
                     },
                     {
                         "name": "IncidentCategory",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "CategoryDescription",
                         "type": "STRING",
+                        "length": 1024
                     },
                     {
                         "name": "Service",
                         "type": "STRING",
+                        "length": 32
                     }
                 ]
             },
@@ -572,19 +619,23 @@ integration.define({
                     },
                     {
                         "name": "Category",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Subcategory",
                         "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "Service",
                         "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "IncidentType",
                         "type": "STRING",
+                        "length": 32
                     }
                 ]
             },
@@ -598,11 +649,13 @@ integration.define({
                     },
                     {
                         "name": "Service",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 32
                     },
                     {
                         "name": "IncidentType",
                         "type": "STRING",
+                        "length": 32
                     }
                 ]
             },
@@ -616,11 +669,13 @@ integration.define({
                     },
                     {
                         "name": "Category",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     },
                     {
                         "name": "IncidentType",
                         "type": "STRING",
+                        "length": 64
                     }
                 ]
             },
@@ -635,7 +690,8 @@ integration.define({
                     },
                     {
                         "name": "Source",
-                        "type": "STRING"
+                        "type": "STRING",
+                        "length": 64
                     }
                 ]
             },
@@ -658,8 +714,9 @@ integration.define({
     }
 });
 
-async function getUsers({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+const pageSize = 200;
+
+async function getUsers({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -669,7 +726,7 @@ async function getUsers({ dataStore, client, latestSynchronizationTime }) {
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModifiedDateTime';
     }
 
@@ -717,8 +774,7 @@ async function getUsers({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getCustomers({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -728,7 +784,7 @@ async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModDateTime';
     }
 
@@ -776,8 +832,7 @@ async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getIncidents({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -787,7 +842,7 @@ async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModifiedDateTime';
     }
 
@@ -841,8 +896,7 @@ async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getServiceRequests({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getServiceRequests({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -852,7 +906,7 @@ async function getServiceRequests({ dataStore, client, latestSynchronizationTime
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModifiedDateTime';
     }
 
@@ -906,8 +960,7 @@ async function getServiceRequests({ dataStore, client, latestSynchronizationTime
     }
 }
 
-async function getComments({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getComments({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -917,7 +970,7 @@ async function getComments({ dataStore, client, latestSynchronizationTime }) {
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModifiedDateTime';
     }
 
@@ -969,8 +1022,7 @@ async function getComments({ dataStore, client, latestSynchronizationTime }) {
     }
 }
 
-async function getIncidentServices({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getIncidentServices({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let fieldName = '';
@@ -980,7 +1032,7 @@ async function getIncidentServices({ dataStore, client, latestSynchronizationTim
         date = '1900-01-01';
         fieldName = 'CreatedDateTime';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
         fieldName = 'LastModifiedDateTime';
     }
 
@@ -1031,7 +1083,7 @@ async function getIncidentServices({ dataStore, client, latestSynchronizationTim
 }
 
 async function getIncidentCategories({ dataStore, client }) {
-    let pageSize = 200;
+    
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1076,8 +1128,7 @@ async function getIncidentCategories({ dataStore, client }) {
     }
 }
 
-async function getIncidentSubCategories({ dataStore, client }) {
-    let pageSize = 200;
+async function getIncidentSubCategories({ dataStore, client }) {    
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1122,8 +1173,7 @@ async function getIncidentSubCategories({ dataStore, client }) {
     }
 }
 
-async function getServicesIncidentTypes({ dataStore, client }) {
-    let pageSize = 200;
+async function getServicesIncidentTypes({ dataStore, client }) {    
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1178,8 +1228,7 @@ async function getServicesIncidentTypes({ dataStore, client }) {
     }
 }
 
-async function getCategoriesIncidentTypes({ dataStore, client }) {
-    let pageSize = 200;
+async function getCategoriesIncidentTypes({ dataStore, client }) {    
     let page = 1;
     let moreRecords = true;
     let body = {
@@ -1234,8 +1283,7 @@ async function getCategoriesIncidentTypes({ dataStore, client }) {
     }
 }
 
-async function getIncidentSources({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getIncidentSources({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1243,7 +1291,7 @@ async function getIncidentSources({ dataStore, client, latestSynchronizationTime
     if (latestSynchronizationTime === undefined) {
         date = '1900-01-01';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
     }
 
     let body = {
@@ -1288,8 +1336,7 @@ async function getIncidentSources({ dataStore, client, latestSynchronizationTime
     }
 }
 
-async function getIncidentPriorities({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getIncidentPriorities({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1297,7 +1344,7 @@ async function getIncidentPriorities({ dataStore, client, latestSynchronizationT
     if (latestSynchronizationTime === undefined) {
         date = '1900-01-01';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
     }
 
     let body = {
@@ -1342,8 +1389,7 @@ async function getIncidentPriorities({ dataStore, client, latestSynchronizationT
     }
 }
 
-async function getIncidentStatuses({ dataStore, client, latestSynchronizationTime }) {
-    let pageSize = 200;
+async function getIncidentStatuses({ dataStore, client, latestSynchronizationTime }) {    
     let page = 1;
     let moreRecords = true;
     let date = '';
@@ -1351,7 +1397,7 @@ async function getIncidentStatuses({ dataStore, client, latestSynchronizationTim
     if (latestSynchronizationTime === undefined) {
         date = '2000-01-01';
     } else {
-        date = date = new Date(latestSynchronizationTime).toISOString();
+        date = new Date(latestSynchronizationTime).toISOString();
     }
 
     let body = {
