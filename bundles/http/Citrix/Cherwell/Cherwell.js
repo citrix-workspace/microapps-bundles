@@ -338,7 +338,7 @@ integration.define({
                     {
                         "name": "Description",
                         "type": "STRING",
-                        "length": 255
+                        "length": 1024
                     },
                     {
                         "name": "Priority",
@@ -376,11 +376,11 @@ integration.define({
                     },
                     {
                         "name": "Stat_SLAResponseBreached",
-                        "type": "BOOLEAN"
+                        "type": "STRING"
                     },
                     {
                         "name": "Stat_SLAResolutionBreached",
-                        "type": "BOOLEAN"
+                        "type": "STRING"
                     },
                     {
                         "name": "CallSource",
@@ -442,7 +442,7 @@ integration.define({
                     {
                         "name": "Description",
                         "type": "STRING",
-                        "length": 255
+                        "length": 1024
                     },
                     {
                         "name": "Priority",
