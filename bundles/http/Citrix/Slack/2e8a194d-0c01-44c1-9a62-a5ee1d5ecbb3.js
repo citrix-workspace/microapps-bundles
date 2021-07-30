@@ -79,10 +79,10 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
     let parsedAllFavoriteChannels = [];
     let parsedAllChannels = [];
 
+
     if (!respFavChannels.ok) {
         throw new Error(`Could not retrieve favorite channel messages (${respFavChannels.status}: ${respFavChannels.statusText})`);
     }
-
     let favoriteChannels = await respFavChannels.json()
     let favoriteChannelMessages = favoriteChannels.messages;
     let indexChannels = 0
@@ -90,7 +90,6 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
     let nextChannel = false
 
     do {
-
         nextChannel = usedChannels.includes(favoriteChannelMessages[indexChannels].text)
 
         if (nextChannel) {
@@ -100,7 +99,6 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
         }
 
         const channel = favoriteChannelMessages[indexChannels].text
-
         const response = await client.fetch(
             `/conversations.history?channel=${channel}&oldest=${timestamp}&limit=200`
         )
@@ -129,48 +127,64 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
 
         do {
 
-            let user_ids = []
-            let indexUser = 0;
+            let userIds = []
+            let userNames = []
+            let userRegex = /(?:^|\W)<@(\w+)(?!\w)/g;
+            let match;
+            let replaceResult = [];
+
             let text = channelMessages[indexMessages].text;
-            let searchText = text;
 
-            do {
+            while (match = userRegex.exec(text)) {
+                userIds.push(match[1]);
+            }
 
-                const user_id = searchText.substring(searchText.indexOf('<@') + 2, searchText.indexOf('>'));
+            channelMessages[indexMessages].text_changed = text
 
-                if (user_id) {
-                    user_ids.push(user_id)
-                } else {
-                    channelMessages[indexMessages].text_changed = text
+            // If there is at least one user tagged in the message
+            if (userIds.length) {
+                for (let j = 0; j < userIds.length; j++) {
+                    let userId = userIds[j]
+                    let resp = await client.fetch(`/users.info?user=${userId}`)
+
+                    if (!resp.ok) {
+                        throw new Error(`Could not retrieve user data (${resp.status}: ${resp.statusText})`);
+                    }
+
+                    let userData = await resp.json()
+                    if (userData.user === undefined) {
+                        indexChannels++
+                        break
+                    }
+                    userNames.push(userData.user.real_name)
                 }
-
-                searchText = searchText.substring(searchText.indexOf('>') + 1)
-
-                let resp = await client.fetch(`/users.info?user=${user_ids[indexUser]}`)
-
-                if (!resp.ok) {
-                    throw new Error(`Could not retrieve user data (${resp.status}: ${resp.statusText})`);
+                /*
+                This for loop bellow loops thought userNames list applying changes to text variable content based on index and pushing
+                to a new list called replaceResult.
+                ## Usernames: John Doe, John Smith
+                ## Text to replace: <@UAEJKFEA324> and <@UAEGEAQEF>
+                ------------------------
+                ## IF Statement: John Doe and <@UAEGEAQEF>
+                ------------------------
+                ## ELSE statement: John Doe and <@UAEGEAQEF>, John Doe and John Smith
+                */
+                for (let i = 0; i < userNames.length; i++) {
+                    if (!replaceResult.length) {
+                        replaceResult.push(text.replace('<@' + userIds[i] + '>',userNames[i]))
+                    } else {
+                        replaceResult.push(replaceResult[replaceResult.length - 1].replace('<@' + userIds[i] + '>',userNames[i]))
+                    }
                 }
+                channelMessages[indexMessages].text_changed = replaceResult[replaceResult.length - 1]
+            }
 
-                let userData = await resp.json()
-                if (userData.user === undefined) {
-                    indexChannels++
-                    continue
-                }
-
-                channelMessages[indexMessages].text_changed = text.replace('<@' + user_ids[indexUser] + '>', userData.user.real_name)
-
-                indexUser++
-            } while (searchText.indexOf('>') >= 0)
             channelMessages[indexMessages].datetime = new Date(channelMessages[indexMessages].ts * 1000);
             parsedChannelMessages.push(channelMessages[indexMessages])
-
             indexMessages++;
         } while (channelMessages[indexMessages] !== undefined)
 
         indexChannels++;
     } while (favoriteChannels[indexChannels] !== undefined)
-
     const respChannels = await client.fetch('/conversations.list?types=public_channel,private_channel')
 
     if (!respChannels.ok) {
@@ -196,11 +210,9 @@ async function changeIDbyRealName(dataStore, client, timestamp) {
             continue
         }
         let indexChannelsMembers = 0;
-
         do {
 
             const channelMember = channelMembers[indexChannelsMembers]
-
             channel.is_favorite = false
             channel.user = channelMember
             channel.ts = null
