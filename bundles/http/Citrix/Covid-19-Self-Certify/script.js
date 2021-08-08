@@ -61,24 +61,17 @@ integration.define({
 })
 
 async function validateResponse(response){
-    let responseBody, errorMessage, errorStatus
-    if(response.headers.map['content-type'].includes("application/json")){
-        const jsonBody = await response.json()
+    const body = await response.text()
+    if(response.headers.map['content-type'].toLowerCase().includes("application/json")){
+        const jsonBody = JSON.parse(body)
         if(!response.ok){
-            responseBody = jsonBody
-            errorMessage = jsonBody.error_description
-            errorStatus = true
+            return {responseBody:jsonBody,errorMessage:jsonBody.error_description,errorStatus:true}
         }else{
-            responseBody = jsonBody
-            errorStatus = false
+            return {responseBody:jsonBody,errorStatus:false}
         }
     }else{
-        const body = await response.text()
-        responseBody = body
-        errorMessage = 'Unable to proccess the request'
-        errorStatus = true
+        return {responseBody:body,errorMessage:'Unable to process the request',errorStatus:true}
     }
-    return {responseBody,errorMessage,errorStatus}
 }
 
 async function syncApp({ client, dataStore, integrationParameters }) {
@@ -202,23 +195,13 @@ async function getRegionData(client, dataStore, integrationParameters) {
 }
 
 function getTextValue(dataItems, type, label = null) {
-    let value
-    dataItems.forEach(item => {
-        if ((label != null && item.label == label && item.type === type) || (label == null && item.type == type)) {
-            value = item.values[0]?.value
-        }
-    })
-    return value
+    const item = dataItems.find(item => (label != null && item.label == label && item.type === type) || (label == null && item.type == type))
+    return item?.values[0]?.value ?? null
 }
 
 function getCategoryValue(dataItems) {
-    let confirmation
-    dataItems.forEach(item => {
-        if (item.type === 'category') {
-            confirmation = item.values[0]?.value?.text
-        }
-    })
-    return confirmation
+    const confirmation = dataItems.find(item => item.type === 'category')
+    return confirmation?.values[0]?.value?.text ?? null
 }
 
 function escapeString(conditions) {
@@ -226,21 +209,11 @@ function escapeString(conditions) {
 }
 
 function getTimestamp(dataItems) {
-    let date
-    dataItems.forEach(item => {
-        if (item.type === 'date') {
-            date = new Date(item.values[0].start)
-        }
-    })
-    return date
+    const date = dataItems.find(item => item.type === 'date')
+    return date != undefined ? new Date(date.values[0].start) : null
 }
 
 function getImage(dataItems,label) {
-    let image
-    dataItems.forEach(item => {
-        if (item.type === 'embed' && item.label === label) {
-            image = item.values[0].embed.url
-        }
-    })
-    return image
+    const image = dataItems.find(item => item.type === 'embed' && item.label === label)
+    return image?.values[0]?.embed?.url ?? null
 }

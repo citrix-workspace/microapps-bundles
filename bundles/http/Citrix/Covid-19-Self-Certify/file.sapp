@@ -8,6 +8,8 @@
         "imageUrl" : "exported/contact_approve.2332440733d7a7563ec66971b25ec3e7.svg",
         "description" : "034cefe6-20f1-48db-94a9-4cfef937ce87"
       },
+      "title" : "791d64db-57c4-4e22-89da-4de136b22604",
+      "startPageId" : "7caa4011-abe0-4881-8563-756c67377caa",
       "pages" : [ {
         "id" : "51ab84f0-96b2-4093-9041-0fc0ca0452e7",
         "appId" : "e0fc92f2-8671-4725-91e1-05fa60af91be",
@@ -2936,8 +2938,6 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "7caa4011-abe0-4881-8563-756c67377caa",
-      "title" : "791d64db-57c4-4e22-89da-4de136b22604",
       "trackingUuid" : "deec9060-18e0-4bc9-9b82-3c38af0cc77d",
       "actionApp" : true
     },
@@ -2949,7 +2949,7 @@
   "services" : [ {
     "id" : 2498,
     "uuid" : "1c91bed3-4e8a-4979-b442-c2ddba97c7f7",
-    "version" : 84,
+    "version" : 86,
     "title" : "Covid-19 Self Certify",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -2996,13 +2996,7 @@
         "useTimeRange" : true,
         "runFrom" : "00:00",
         "runTo" : "04:00",
-        "schedule" : "MANUALLY"
-      }, {
-        "synchronizationTypeId" : "IncrementalSynchronization",
-        "useTimeRange" : true,
-        "runFrom" : "00:00",
-        "runTo" : "04:00",
-        "schedule" : "MANUALLY"
+        "schedule" : "DAILY"
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
@@ -3121,8 +3115,8 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : false,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 84,
-            "endLine" : 89
+            "startLine" : 77,
+            "endLine" : 82
           }
         } ],
         "actions" : [ {
@@ -3150,8 +3144,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 136,
-            "endLine" : 159
+            "startLine" : 129,
+            "endLine" : 152
           }
         } ],
         "webhookListeners" : [ ],
@@ -3455,8 +3449,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "684fdace-68c6-449d-8b38-9cba431a8376",
@@ -3484,12 +3478,12 @@
       }
     },
     "expirationDelete" : true,
+    "label" : "d20a4945-8dd8-415d-a84c-8e450300cfde",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
-    "label" : "d20a4945-8dd8-415d-a84c-8e450300cfde",
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 19326,
@@ -3518,7 +3512,7 @@
     "id" : "8bb0da4a-3562-41f0-941a-e241b21df570",
     "legacyId" : 4105,
     "appId" : "e0fc92f2-8671-4725-91e1-05fa60af91be",
-    "version" : 7,
+    "version" : 8,
     "eventType" : "CHANGE",
     "serviceId" : 2498,
     "tableId" : 19326,
@@ -3537,7 +3531,7 @@
             "tableId" : 19326,
             "columnId" : 256600,
             "columnType" : "STRING",
-            "action" : "BECOMES",
+            "action" : "IS",
             "comparator" : "EQUALS_TO",
             "value" : "Disagree",
             "valueType" : "VALUE"
@@ -3571,12 +3565,12 @@
       }
     },
     "expirationDelete" : true,
+    "label" : "935086e0-fc76-4bae-9f63-69a9f0338485",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
-    "label" : "935086e0-fc76-4bae-9f63-69a9f0338485",
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 19326,
@@ -3658,12 +3652,12 @@
       }
     },
     "expirationDelete" : true,
+    "label" : "6804677d-15a7-4216-90c9-056cb5dca4f7",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
-    "label" : "6804677d-15a7-4216-90c9-056cb5dca4f7",
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 19326,
@@ -3714,12 +3708,12 @@
       }
     },
     "expirationDelete" : true,
+    "label" : "3ee64bde-76a2-4bfe-9e0f-7907b696cf96",
     "schedule" : {
       "jobSchedule" : "AFTER_CONNECTOR_SYNC",
       "useTimeRange" : false,
       "runTimezone" : "Etc/GMT"
     },
-    "label" : "3ee64bde-76a2-4bfe-9e0f-7907b696cf96",
     "audience" : "BY_USER_QUERY",
     "audienceQuery" : {
       "tableId" : 19326,
@@ -3753,6 +3747,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "5DE27AE19FC7D5AFBBE518C12DCF5420",
-  "appliedSappUpgrades" : [ "microapp-3548", "microapp-10549", "microapp-6593", "microapp-8511", "microapp-6293", "microapp-4020", "microapp-1980", "microapp-10420", "microapp-8921", "microapp-11340", "microapp-13471", "microapp-3547", "microapp-5227", "microapp-11836", "microapp-4666", "microapp-10856", "microapp-11349", "microapp-13344", "microapp-14978", "microapp-14492", "microapp-7961", "microapp-3838", "microapp-14849", "microapp-10421", "microapp-6262", "microapp-6617", "microapp-6264", "microapp-9597", "microapp-7888", "microapp-8892", "microapp-3580", "microapp-2450", "microapp-6853", "microapp-7561", "microapp-11136", "microapp-12936", "microapp-12505", "microapp-5025", "microapp-6790", "microapp-13233", "microapp-10858", "microapp-13808", "microapp-4518", "microapp-14177", "microapp-8003", "microapp-12427", "microapp-10860", "microapp-14613", "microapp-10876", "microapp-12525", "microapp-9701", "microapp-9702", "microapp-8576", "microapp-8950", "microapp-7290", "microapp-7984" ],
+  "appliedSappUpgrades" : [ "microapp-13233", "microapp-10421", "microapp-11136", "microapp-13344", "microapp-14492", "microapp-14177", "microapp-6293", "microapp-2450", "microapp-14849", "microapp-5025", "microapp-3838", "microapp-6853", "microapp-10549", "microapp-4666", "microapp-6264", "microapp-6790", "microapp-11340", "microapp-12505", "microapp-4020", "microapp-10858", "microapp-5227", "microapp-14613", "microapp-8003", "microapp-8921", "microapp-3580", "microapp-12427", "microapp-4518", "microapp-12525", "microapp-7561", "microapp-9597", "microapp-10860", "microapp-1980", "microapp-7984", "microapp-3548", "microapp-7961", "microapp-7290", "microapp-13808", "microapp-3547", "microapp-10420", "microapp-10876", "microapp-9702", "microapp-11349", "microapp-8950", "microapp-6617", "microapp-6593", "microapp-6262", "microapp-12936", "microapp-9701", "microapp-10856", "microapp-11836", "microapp-14978", "microapp-7888", "microapp-13471", "microapp-8511", "microapp-8576", "microapp-8892" ],
   "buildVersion" : "1.106.1.9347bcbe8aeae409ce8a8cb11e3ebae1d15c6ea6"
 }
