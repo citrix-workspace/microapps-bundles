@@ -99,7 +99,7 @@ async function getItems(client, dataStore, integrationParameters, dataUpdateAfte
         const {responseBody,errorMessage,errorStatus} = await validateResponse(itemsResponse)
         if (errorStatus) {
             console.log(JSON.stringify(responseBody),errorMessage)
-            throw new Error(JSON.stringify(errorMessage))
+            throw new Error(errorMessage)
         }
         total = responseBody.total
         const items = responseBody.items ?? []
@@ -166,7 +166,7 @@ async function getRegionData(client, dataStore, integrationParameters) {
         const {responseBody,errorMessage,errorStatus} = await validateResponse(countryDataResponse)
         if (errorStatus) {
             console.log(JSON.stringify(responseBody),errorMessage)
-            throw new Error(JSON.stringify(errorMessage))
+            throw new Error(errorMessage)
         }
         total = responseBody.total
         const items = responseBody.items ?? []
