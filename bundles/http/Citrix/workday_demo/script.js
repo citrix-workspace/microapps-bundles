@@ -3,29 +3,46 @@ Name: Workday Demo HTTP integration, using generated dummy data
 Created by: Andrey Kornilov
 Date: 18.7.2021
 */
+
 let expenseReport;
 const names = ["Mark Knopfler","Ritchie Blackmore","Eddie Van Halen","Adrian Smith","Billy Duffy"]
 const descriptions = ["Lyft","Uber","Dinner","Hotel","Flight Tickets","Rental"]
 
-//Function, that generates data for the table, using random values
+//Function, that generates data for the table, using random values, both for incremental and full sync
 
-
-async function getExpenses ({dataStore,context}) {
-  context.key1 = 0;
+async function getExpenses (dataStore,context,fullSync) {
   let expenseReport = [];
-  for(let i = 1; i < 15; i++) {
+  let iterations;
+  let dateRandom;
 
-      //Context passes same value as ID, to pass it to incremental sync
+//Switch statement, that regulates behavior of loop, depending on sync type
+  switch (fullSync) {
+    case true:
+      context.key1 = 0;
+      iterations = context.key1 + 15
+      dateRandom = true
+      break;
+
+    default:
+      iterations = context.key1 + 3
+      dateRandom = false
+      break;
+  }
+
+  for(let i = context.key1; i < iterations; i++) {
+
+      //Context passes same value as ID
       context.key1 += 1
-      //Init date instance
+
+      //Init date instance and check, if we need to randomize dates
       let date = new Date()
-      date.setDate(date.getDate()-(Math.floor(Math.random() * (10))))
+      dateRandom ? date.setDate(date.getDate()-(Math.floor(Math.random() * (10)))) : date.setDate(date.getDate());
 
       //Init blank object for expense and set min and max expense values
-      let expense = {};
       const min = 100
       const max = 20000
       
+      let expense = {};
       expense['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
       expense['ID'] = i
       expense['Currency'] = 'USD'
@@ -38,44 +55,11 @@ async function getExpenses ({dataStore,context}) {
       expense['Status'] = "In Progress";
       
       //Pushes new object to the object array, and saves to dataStore
-
       expenseReport.push(expense);
   }
   dataStore.save('expenseReport', expenseReport)  
 }
-async function getExpensesSync ({dataStore, context}) {
-  console.log(context.key1)
-  let expenseReport = [];
-  for(let i = context.key1; i < context.key1 + 3; i++) {
-    //Init blank object for expense and set min and max expense values
 
-      let expense = {};
-      const min = 100
-      const max = 20000
-      
-
-      let date = new Date()
-      date.setDate(date.getDate())
-      
-      expense['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
-      expense['ID'] = i
-      expense['Currency'] = 'USD'
-      expense['Name'] = names[Math.floor(Math.random() * (names.length))]
-      expense['Amount'] = Math.floor(Math.random() * (max - min + 1)) + min;
-      expense['ReportID'] = `EXP-${i}`
-      expense['Date'] = date.toLocaleDateString()
-      expense['ReimbursementAmount'] = Math.floor(Math.random() * (expense['Amount'] - min + 1)) + min;
-      expense['AdvanceAmount'] = expense['Amount'] - expense['ReimbursementAmount']
-      expense['Status'] = "In Progress";
-      
-      
-      //Pushes new object to the object array, and saves to dataStore
-
-      expenseReport.push(expense);
-  }
-  context.key1 += 4
-  dataStore.save('expenseReport', expenseReport)  
-}
 async function updateStatus({ dataStore, client, actionParameters, integrationParameters }) {
   
   let {Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date} = actionParameters
@@ -89,8 +73,10 @@ integration.define({
   synchronizations: [
     {
       name: 'expenseReport',
-      fullSyncFunction: getExpenses,
-      incrementalSyncFunction: getExpensesSync
+
+      //Sync implementation with added custom parameter
+      fullSyncFunction: function({dataStore, context}) { return getExpenses(dataStore, context, true) },
+      incrementalSyncFunction: function({dataStore, context}) { return getExpenses(dataStore, context, false) },
     }
   ],
   actions: [

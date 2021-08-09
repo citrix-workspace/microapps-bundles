@@ -782,8 +782,8 @@
   "services" : [ {
     "id" : 1,
     "uuid" : "19af0398-ac9b-4b7e-899e-4a4bb882b49c",
-    "version" : 254,
-    "title" : "Workday Demo HTTP",
+    "version" : 1245,
+    "title" : "Workday Demo Integration",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "andreff97c1_workday_demo",
@@ -810,6 +810,8 @@
       }, {
         "synchronizationTypeId" : "IncrementalSynchronization",
         "useTimeRange" : false,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
         "schedule" : "FIFTEEN_MINUTES"
       } ],
       "endpoints" : [ ],
@@ -882,12 +884,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 13,
-            "endLine" : 46
+            "startLine" : 78,
+            "endLine" : 78
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 47,
-            "endLine" : 80
+            "startLine" : 79,
+            "endLine" : 79
           }
         } ],
         "actions" : [ {
@@ -935,8 +937,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 81,
-            "endLine" : 88
+            "startLine" : 63,
+            "endLine" : 70
           }
         } ],
         "webhookListeners" : [ ],
@@ -948,7 +950,7 @@
       "synchronizationContexts" : {
         "expensesReport" : { },
         "expenseReport" : {
-          "key1" : "14"
+          "key1" : "16"
         }
       }
     },
@@ -1181,7 +1183,7 @@
   "modelConfiguration" : {
     "appIds" : [ "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Demo Workday HTTP integration & microapp",
+    "bundleDescription" : "Demo Workday Integration",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "B36D7152986032F64454D1729523E2B1",
