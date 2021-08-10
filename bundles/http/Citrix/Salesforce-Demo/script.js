@@ -20,86 +20,6 @@ const accounts = [
         Description: ""
     },
     {
-        Id: '10',
-        Address: 'Southfield, 2952 Perry Street,48076,USA',
-        Industry: 'Construction',
-        Name: 'Bohai Industrial Partners',
-        Phone: '810-643-0431',
-        Description: ""
-    },
-    {
-        Id: '11',
-        Address: 'Albany, 2828 West Virginia Avenue, 12207, USA',
-        Industry: 'Energy',
-        Name: 'Hays Oil & Gas',
-        Phone: '518-894-5157',
-        Description: ""
-    },
-    {
-        Id: '12',
-        Address: 'Brattleboro, 1133 Selah Way,5301,USA',
-        Industry: 'Insurance',
-        Name: 'Boyle Insurance',
-        Phone: '802-714-7616',
-        Description: ""
-    },
-    {
-        Id: '13',
-        Address: 'Fort Worth, 4604 Sycamore Circle,76102,USA',
-        Industry: 'Chemicals',
-        Name: 'Ares Chemicals',
-        Phone: '682-622-9079',
-        Description: ""
-    },
-    {
-        Id: '14',
-        Address: 'Elmsford, 2271 Cantebury Drive, 10523, USA',
-        Industry: 'Hospitality',
-        Name: 'Primavera Hotels & Resorts',
-        Phone: '646-533-8087',
-        Description: ""
-    },
-    {
-        Id: '15',
-        Address: 'Pinellas, 4413 Maryland Avenue,33781,USA',
-        Industry: 'Transportation',
-        Name: 'General Transport',
-        Phone: '727-524-6063',
-        Description: ""
-    },
-    {
-        Id: '16',
-        Address: 'Nondalton, 179 Veltri Drive,99640,USA',
-        Industry: 'Banking',
-        Name: 'Erste Banking Corporation',
-        Phone: '907-294-2511',
-        Description: ""
-    },
-    {
-        Id: '17',
-        Address: 'Bowling Green, 2950 Coffman Alley,42101,USA',
-        Industry: 'Technology',
-        Name: 'Digital Edge',
-        Phone: '270-717-4629',
-        Description: ""
-    },
-    {
-        Id: '18',
-        Address: 'Odessa, 230 Scenicview Drive,79762,USA',
-        Industry: 'Technology',
-        Name: 'RedPoint Engines',
-        Phone: '432-265-5915',
-        Description: ""
-    },
-    {
-        Id: '19',
-        Address: 'Dothan, 4563 Turkey Pen Lane,36303,USA',
-        Industry: 'Apparel',
-        Name: 'Axe Retail Group',
-        Phone: '334-508-1593',
-        Description: ""
-    },
-    {
         Id: '2',
         Address: 'Elk Lake, 82 Orphan Road,54739,USA',
         Industry: 'Apparel',
@@ -138,30 +58,6 @@ const accounts = [
         Name: 'Y Hotels & Resorts Ltd',
         Phone: '480-380-3572',
         Description: ""
-    },
-    {
-        Id: '7',
-        Address: 'Chester, 848 Cityview Drive,19013,USA',
-        Industry: 'Transportation',
-        Name: 'Blue Transport',
-        Phone: '610-494-9869',
-        Description: ""
-    },
-    {
-        Id: '8',
-        Address: 'Nashville, 4498 Andell Road,37201,USA',
-        Industry: 'Construction',
-        Name: 'Bering Industrial Partners',
-        Phone: '615-259-1561',
-        Description: ""
-    },
-    {
-        Id: '9',
-        Address: 'Tyler, 850 Florence Street,75702,USA',
-        Industry: 'Construction',
-        Name: 'Gerdau Iron and Steel',
-        Phone: '903-507-4173',
-        Description: ""
     }
 ]
 
@@ -177,7 +73,7 @@ var opportunities = [
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
-        Description: "",
+        Description: "Upgrade the CPG Module",
         AccountId: '1'
     },
     {
@@ -191,7 +87,7 @@ var opportunities = [
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
-        Description: "",
+        Description: "Acquire the mobile suite for Atlantic Group",
         AccountId: '4'
     },
     {
@@ -205,7 +101,7 @@ var opportunities = [
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
-        Description: "",
+        Description: "Requisition the necessary CRM Cloud accounts",
         AccountId: '4'
     },
     {
@@ -219,7 +115,7 @@ var opportunities = [
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
-        Description: "",
+        Description: "Upgrade the CPG Module for Shaw",
         AccountId: '5'
     },
     {
@@ -233,45 +129,9 @@ var opportunities = [
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
-        Description: "",
+        Description: "Order a new mobile suite in place of the previous one",
         AccountId: '5'
-    }/*,
-{
-Id: '16',
-Name: 'Y Hotels CRM Cloud',
-Amount: 20000.00,
-CurrencyCode: 'USD',
-Stage: 'Prospecting',
-Type: 'New Customer',
-DateSubmitted: date.toLocaleDateString(),
-DueDate: datestring,
-Probability: 25,
-AccountId: '6'
-},
-{
-Id: '17',
-Name: 'Y Hotels Data Solutions',
-Amount: 9950.00,
-CurrencyCode: 'USD',
-Stage: 'Qualification',
-Type: 'New Customer',
-DateSubmitted: date.toLocaleDateString(),
-DueDate: datestring,
-Probability: 25,
-AccountId: '6'
-},
-{
-Id: '19',
-Name: 'Blue Transport CPG Module',
-Amount: 7950.00,
-CurrencyCode: 'USD',
-Stage: 'Needs Analysis',
-Type: 'Existing Customer - Upgrade',
-DateSubmitted: date.toLocaleDateString(),
-DueDate: datestring,
-Probability: 25,
-AccountId: '7'
-} */
+    }
 ]
 
 var tasks = [
@@ -283,7 +143,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'High',
         Status: 'Not Started',
-        Description: ""
+        Description: "Write preliminary contract draft for later review"
     },
     {
         Id: '2',
@@ -293,7 +153,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'High',
         Status: 'Not Started',
-        Description: ""
+        Description: "Update the presentation, don't forget to address the feedback from the previous one"
     },
     {
         Id: '3',
@@ -303,7 +163,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Medium',
         Status: 'In Progress',
-        Description: ""
+        Description: "Send updated proposal to Joe for review before the team-wide presentation"
     },
     {
         Id: '4',
@@ -313,7 +173,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Low',
         Status: 'In Progress',
-        Description: ""
+        Description: "Close last opportunity"
     },
     {
         Id: '5',
@@ -323,7 +183,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'High',
         Status: 'Not Started',
-        Description: ""
+        Description: "We want to have at least 5% discount"
     },
     {
         Id: '6',
@@ -333,7 +193,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Medium',
         Status: 'In Progress',
-        Description: ""
+        Description: "Draft the proposal and have Mark review it later"
     },
     {
         Id: '7',
@@ -343,17 +203,17 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Low',
         Status: 'Not Started',
-        Description: ""
+        Description: "Use the sources Jane shared with us"
     },
     {
         Id: '8',
-        Subject: 'Identify the experts in snowmobiles in the company',
+        Subject: 'Identify the experts in the company',
         AccountId: '5',
         SubmittedOn: date2.toLocaleDateString(),
         DueDate: datestring,
         Priority: 'Low',
         Status: 'In Progress',
-        Description: ""
+        Description: "Identify the experts in the company"
     },
     {
         Id: '9',
@@ -363,7 +223,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'High',
         Status: 'Not Started',
-        Description: ""
+        Description: "Prepare presentation for new clients"
     },
     {
         Id: '10',
@@ -373,7 +233,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Medium',
         Status: 'In Progress',
-        Description: ""
+        Description: "Send market research to VP"
     },
     {
         Id: '11',
@@ -383,7 +243,7 @@ var tasks = [
         DueDate: datestring,
         Priority: 'Low',
         Status: 'Not Started',
-        Description: ""
+        Description: "Call sales manager and discuss our proposal"
     }
 ]
 
@@ -421,6 +281,8 @@ async function incrementSyncOpportunity({dataStore}) {
     opportunity.Id = (+new Date).toString(36)
     opportunity.AccountId = (Math.floor(Math.random() * (accounts.length)) + 1).toString()
     opportunity.DueDate = notificationDate
+    opportunity.Name = "Another " + opportunity.Name
+    opportunity.Amount = Math.floor(Math.random() * (20000-100)) + 100
 
     dataStore.save('opportunities', opportunity)
     console.log("Incremental sync complete")
@@ -437,7 +299,6 @@ async function updateTicket({dataStore, actionParameters}) {
 }
 
 async function createTask({dataStore, actionParameters}) {
-    //let tid = (parseInt(tasks[tasks.length-1].Id) + 1).toString()
     console.log(`Creating a task with subject ${actionParameters.Subject} for account with id of ${actionParameters.AccountId}`)
     const {Subject, AccountId, SubmittedOn, DueDate, Priority, Status, Description} = actionParameters
     let task = {Subject, AccountId, SubmittedOn, DueDate, Priority, Status, Description}
@@ -449,12 +310,13 @@ async function createTask({dataStore, actionParameters}) {
 }
 
 function createOpportunity({dataStore, actionParameters}) {
-    //let oid = (parseInt(opportunities[opportunities.length-1].Id)+1).toString()
     console.log(`LENGTH OF OPPORTUNITIES IS ${opportunities.length}`)
     console.log(`Creating an opportunity with a subject ${actionParameters.Subject}`)
+
     const {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName} = actionParameters
     let opportunity = {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName}
     let temp = opportunities[Math.floor(Math.random() * (opportunities.length))]
+
     opportunity.Id = (+new Date).toString(36);
     opportunity.Probability = Math.floor(Math.random() * 100)
     opportunity.CurrencyCode = 'USD'
