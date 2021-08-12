@@ -4,21 +4,21 @@ Created by: Andrey Kornilov
 Date: 18.7.2021
 */
 
-let expenseReport;
+const _ = library.load('lodash')
 const names = ["Mark Knopfler","Ritchie Blackmore","Eddie Van Halen","Adrian Smith","Billy Duffy"]
 const descriptions = ["Lyft","Uber","Dinner","Hotel","Flight Tickets","Rental"]
 
 //Function, that generates data for the table, using random values, both for incremental and full sync
-
 async function getExpenses (dataStore,context,fullSync) {
-  let expenseReport = [];
   let iterations;
   let dateRandom;
+  const min = 100
+  const max = 20000
 
 //Switch statement, that regulates behavior of loop, depending on sync type
   switch (fullSync) {
     case true:
-      context.key1 = 0;
+      context.key1 = 1;
       iterations = context.key1 + 15
       dateRandom = true
       break;
@@ -28,38 +28,34 @@ async function getExpenses (dataStore,context,fullSync) {
       dateRandom = false
       break;
   }
-
-  for(let i = context.key1; i < iterations; i++) {
-
-      //Context passes same value as ID
-      context.key1 += 1
-
+  console.log(context.key1)
+  console.log(iterations)
+const expenseReport = _.range(context.key1, iterations).map(ID => {
+			const min = 100
+      const max = 20000
       //Init date instance and check, if we need to randomize dates
       let date = new Date()
       dateRandom ? date.setDate(date.getDate()-(Math.floor(Math.random() * (10)))) : date.setDate(date.getDate());
-
+      date.toLocaleDateString()
       //Init blank object for expense and set min and max expense values
-      const min = 100
-      const max = 20000
-      
       let expense = {};
+      
       expense['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
-      expense['ID'] = i
+      expense['ID'] = ID
       expense['Currency'] = 'USD'
       expense['Name'] = names[Math.floor(Math.random() * (names.length))]
       expense['Amount'] = Math.floor(Math.random() * (max - min + 1)) + min;
-      expense['ReportID'] = `EXP-${i}`
+      expense['ReportID'] = `EXP-${ID}`
       expense['Date'] = date.toLocaleDateString()
       expense['ReimbursementAmount'] = Math.floor(Math.random() * (expense['Amount'] - min + 1)) + min
       expense['AdvanceAmount'] = expense['Amount'] - expense['ReimbursementAmount']
       expense['Status'] = "In Progress";
-      
-      //Pushes new object to the object array, and saves to dataStore
-      expenseReport.push(expense);
-  }
-  dataStore.save('expenseReport', expenseReport)  
-}
+	return expense
 
+})
+  context.key1 = iterations
+  dataStore.save('expenseReport', expenseReport) 
+}
 async function updateStatus({ dataStore, client, actionParameters, integrationParameters }) {
   
   let {Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date} = actionParameters
