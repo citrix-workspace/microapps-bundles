@@ -1,4 +1,5 @@
 const moment = library.load('moment-timezone')
+const _ = library.load('lodash')
 const uuid = library.load('uuid')
 integration.define({
     synchronizations: [
@@ -16,21 +17,21 @@ integration.define({
                     { name: "email", type: "STRING", length: 255, primaryKey: true },
                     { name: "confirmation", type: "STRING", length: 255 },
                     { name: "createdOn", type: "DATETIME" },
-                    { name: "app_item_id", type: "INTEGER" },
+                    { name: "appItemId", type: "INTEGER" },
                     { name: "region", type: "STRING", length: 255 },
                     { name: "country", type: "STRING", length: 255 },
                 ]
             },
             {
-                name: "cities",
+                name: "country",
                 columns: [
                     { name: "uniqueId", type: "STRING", length: 255, primaryKey: true },
-                    { name: "countryName", type: "STRING", length: 255 },
-                    { name: "regionName", type: "STRING", length: 255 },
+                    { name: "country", type: "STRING", length: 255 },
+                    { name: "region", type: "STRING", length: 255 },
                 ]
             },
             {
-                name: "countryConditions",
+                name: "region",
                 columns: [
                     { name: "uniqueId", type: "STRING", length: 255, primaryKey: true },
                     { name: "guidelines", type: "STRING", length: 3000 },
@@ -47,13 +48,13 @@ integration.define({
     ],
     actions: [
         {
-            name: "covid_self_certify",
+            name: "covidSelfCertify",
             parameters: [
                 { name: "email", type: "STRING", required: true },
                 { name: "status", type: "INTEGER", required: true },
                 { name: "country", type: "STRING", required: true },
                 { name: "city", type: "STRING", required: true },
-                { name: "appId", type: "STRING" }
+                { name: "appItemId", type: "STRING" }
             ],
             function: covidSelfCertify
         }
@@ -102,32 +103,25 @@ async function getItems(client, dataStore, integrationParameters, dataUpdateAfte
             throw new Error(errorMessage)
         }
         total = responseBody.total
-        const items = responseBody.items ?? []
-        items.filter(item => {
-            const email = getTextValue(item.fields, 'email')
-            if (!userEmails.has(email)) {
-                userEmails.add(email)
-                return true
-            }
-            return false
-        }).map(item => {
-            const fields = item.fields ?? []
-            dataStore.save("items", {
+        const items = (responseBody.items ?? []).map(item => {
+            return {
                 "employeeName": getTextValue(item.fields, 'text', 'Name') ?? null,
                 "email": getTextValue(item.fields, 'email') ?? null,
                 "confirmation": getCategoryValue(item.fields) ?? null,
                 "createdOn": getTimestamp(item.fields) ?? null,
-                "app_item_id": item.app_item_id,
+                "appItemId": item.app_item_id,
                 "region": getTextValue(item.fields, 'text', 'Region') ?? null,
                 "country": getTextValue(item.fields, 'text', 'Country') ?? null,
-            })
+            }
         })
+        const uniqueItems = _.uniqBy(items,'email')
+        dataStore.save('items',uniqueItems)
         offset += limit
     } while (dataUpdateAfterAction != true && offset <= total)
 }
 
 async function covidSelfCertify({ client, dataStore, integrationParameters, actionParameters }) {
-    if (actionParameters.appId !== null) {
+    if (actionParameters.appItemId !== null) {
         dataStore.deleteById('items', actionParameters.email)
     }
     const response = await client.fetch(`item/app/${integrationParameters.covidAppId}`, {
@@ -135,7 +129,7 @@ async function covidSelfCertify({ client, dataStore, integrationParameters, acti
         body: JSON.stringify({
             "fields": {
                 "email": [{ "type": "work", "value": actionParameters.email }],
-                "title": [{ "value": actionParameters.email.substring(0, actionParameters.email.indexOf('@')).split('.').reduce((initialvalue, currentvalue) => { return initialvalue + (currentvalue[0].toUpperCase() + currentvalue.substring(1, currentvalue.length) + ' ') }, '').trimEnd() }],
+                "title": [{ "value": getTitleFromEmail(actionParameters.email)}],
                 "confirmation": actionParameters.status,
                 "createdon": {
                     "start": moment().format('YYYY-MM-DD HH:mm:ss')
@@ -173,19 +167,19 @@ async function getRegionData(client, dataStore, integrationParameters) {
         items.forEach(item => {
             const fields = item.fields ?? []
             const region = getTextValue(item.fields, 'text', 'Region') ?? null
-            const countries = String(getTextValue(item.fields, 'text', 'Countries')).split(',')
+            const countries = _.uniq(String(getTextValue(item.fields, 'text', 'Countries')).split(','))
             countries?.forEach(country => {
-                dataStore.save("cities", {
+                dataStore.save("country", {
                     "uniqueId": uuid.v4(),
-                    "countryName": country,
-                    "regionName": region
+                    "country": country,
+                    "region": region
                 })
             })
 
-            dataStore.save('countryConditions', {
+            dataStore.save('region', {
                 "uniqueId": uuid.v4(),
                 "region": region,
-                "guidelines": escapeString(getTextValue(item.fields,'text','Guidelines')) ?? null,
+                "guidelines": convertHtmlTagsToStringEscapeSequence(getTextValue(item.fields,'text','Guidelines')) ?? null,
                 "image":getImage(item.fields,'Image') ?? null
             })
 
@@ -204,7 +198,7 @@ function getCategoryValue(dataItems) {
     return confirmation?.values[0]?.value?.text ?? null
 }
 
-function escapeString(conditions) {
+function convertHtmlTagsToStringEscapeSequence(conditions) {
     return conditions?.replaceAll('<br/>', '\r\n').replaceAll('</p>', '\r\n').replaceAll('<p>', '') ?? null
 }
 
@@ -216,4 +210,8 @@ function getTimestamp(dataItems) {
 function getImage(dataItems,label) {
     const image = dataItems.find(item => item.type === 'embed' && item.label === label)
     return image?.values[0]?.embed?.url ?? null
+}
+
+function getTitleFromEmail(email){
+    return email.substring(0, email.indexOf('@')).split('.').reduce((initialvalue, currentvalue) => { return initialvalue + (currentvalue[0].toUpperCase() + currentvalue.substring(1, currentvalue.length) + ' ') }, '').trimEnd() 
 }
