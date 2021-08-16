@@ -8,7 +8,6 @@
         "imageUrl" : "exported/contact_approve.2332440733d7a7563ec66971b25ec3e7.svg",
         "description" : "034cefe6-20f1-48db-94a9-4cfef937ce87"
       },
-      "actionApp" : true,
       "title" : "791d64db-57c4-4e22-89da-4de136b22604",
       "startPageId" : "a5783f0d-4bea-4d47-b52c-6c516c49b209",
       "trackingUuid" : "deec9060-18e0-4bc9-9b82-3c38af0cc77d",
@@ -284,8 +283,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : "cc36605d-07ed-4d2b-b14a-5196b779e894",
-          "componentTableId" : 19326,
           "defaultLimit" : 20,
+          "componentTableId" : 19326,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -368,8 +367,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : "2d3eca82-ef24-44de-a84a-3f126fbf74d5",
-          "componentTableId" : 19326,
           "defaultLimit" : 20,
+          "componentTableId" : 19326,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -676,8 +675,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : "8fbc266b-be89-41b6-ad01-b027e7fb05ca",
-          "componentTableId" : 19326,
           "defaultLimit" : 20,
+          "componentTableId" : 19326,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -823,8 +822,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : "e5078487-657c-48f8-a753-5de15df75aed",
-          "componentTableId" : 19326,
           "defaultLimit" : 20,
+          "componentTableId" : 19326,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -1426,8 +1425,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 20242,
           "defaultLimit" : 20,
+          "componentTableId" : 20242,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -1520,8 +1519,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 20242,
           "defaultLimit" : 20,
+          "componentTableId" : 20242,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -2747,7 +2746,8 @@
         "datasourceid" : 2498,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ]
+      } ],
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -2757,7 +2757,7 @@
   "services" : [ {
     "id" : 2498,
     "uuid" : "1c91bed3-4e8a-4979-b442-c2ddba97c7f7",
-    "version" : 100,
+    "version" : 106,
     "title" : "Covid-19 Self Certify",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -2781,10 +2781,10 @@
         "authHeaderPrefix" : "",
         "customAccessTokenParameters" : [ {
           "name" : "app_id",
-          "value" : "{AppId}"
+          "value" : "{PodioAppId}"
         }, {
           "name" : "app_token",
-          "value" : "{AppToken}"
+          "value" : "{PodioAppToken}"
         } ],
         "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
       },
@@ -2913,15 +2913,23 @@
             } ],
             "dataRetention" : "DELETE_ON_FULL_SYNC"
           } ],
-          "relationships" : [ ]
+          "relationships" : [ {
+            "name" : "RegiontoCountry",
+            "primaryTableName" : "region",
+            "foreignTableName" : "country",
+            "columnPairs" : [ {
+              "primaryKey" : "region",
+              "foreignKey" : "region"
+            } ]
+          } ]
         },
         "synchronizations" : [ {
           "name" : "syncPodio",
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : false,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 78,
-            "endLine" : 83
+            "startLine" : 91,
+            "endLine" : 96
           }
         } ],
         "actions" : [ {
@@ -2949,8 +2957,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 123,
-            "endLine" : 146
+            "startLine" : 136,
+            "endLine" : 159
           }
         } ],
         "webhookListeners" : [ ],
@@ -3248,7 +3256,7 @@
       } ]
     } ],
     "relationships" : [ {
-      "id" : 16179,
+      "id" : 16194,
       "pkTable" : {
         "id" : 20242,
         "title" : "region",
@@ -3260,10 +3268,10 @@
         "type" : "TABLE"
       },
       "alias" : "RegiontoCountry",
-      "userDefined" : true,
-      "scriptDefined" : false,
+      "userDefined" : false,
+      "scriptDefined" : true,
       "fkColumnPairs" : [ {
-        "fkId" : 16179,
+        "fkId" : 16194,
         "pkColumn" : {
           "id" : 266876,
           "title" : "region",
@@ -3302,8 +3310,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : false,
-    "oauthLoginNeeded" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
     "id" : "684fdace-68c6-449d-8b38-9cba431a8376",
@@ -3596,10 +3604,10 @@
   "modelConfiguration" : {
     "appIds" : [ "e0fc92f2-8671-4725-91e1-05fa60af91be" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Deploy the \"Covid-19 Self Certify\" micro-app to easily submit a self-certification process using Citrix Workspace and Podio",
+    "bundleDescription" : "Deploy the \"Covid-19 Self Certify\" micro-app to easily submit a self-certification process using Citrix Workspace and Podio.",
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "09FDD741DA9B5DD78062C5B48BEA06DA",
-  "appliedSappUpgrades" : [ "microapp-10860", "microapp-3547", "microapp-2450", "microapp-6262", "microapp-7888", "microapp-9701", "microapp-6264", "microapp-14978", "microapp-8576", "microapp-4666", "microapp-7561", "microapp-7961", "microapp-14613", "microapp-6617", "microapp-1980", "microapp-5227", "microapp-8950", "microapp-12427", "microapp-10549", "microapp-10421", "microapp-8921", "microapp-12505", "microapp-8892", "microapp-10876", "microapp-12525", "microapp-6853", "microapp-11136", "microapp-11340", "microapp-8511", "microapp-11836", "microapp-4518", "microapp-7984", "microapp-4020", "microapp-13233", "microapp-13808", "microapp-6593", "microapp-3580", "microapp-6293", "microapp-10858", "microapp-8003", "microapp-5025", "microapp-14492", "microapp-12936", "microapp-10856", "microapp-14849", "microapp-6790", "microapp-10420", "microapp-3548", "microapp-13344", "microapp-7290", "microapp-11349", "microapp-13471", "microapp-3838", "microapp-14177", "microapp-9702", "microapp-9597" ],
+  "appliedSappUpgrades" : [ "microapp-3838", "microapp-9597", "microapp-9701", "microapp-11349", "microapp-14613", "microapp-8950", "microapp-4020", "microapp-10856", "microapp-7290", "microapp-8892", "microapp-7561", "microapp-8921", "microapp-12427", "microapp-3580", "microapp-12936", "microapp-7961", "microapp-6617", "microapp-13233", "microapp-10549", "microapp-10420", "microapp-4518", "microapp-6593", "microapp-10876", "microapp-9702", "microapp-8576", "microapp-13344", "microapp-11340", "microapp-6262", "microapp-10860", "microapp-6853", "microapp-1980", "microapp-8003", "microapp-5227", "microapp-12505", "microapp-13808", "microapp-6264", "microapp-8511", "microapp-14492", "microapp-14849", "microapp-5025", "microapp-14978", "microapp-13471", "microapp-7984", "microapp-14177", "microapp-10858", "microapp-3548", "microapp-11836", "microapp-6790", "microapp-3547", "microapp-12525", "microapp-10421", "microapp-2450", "microapp-7888", "microapp-11136", "microapp-4666", "microapp-6293" ],
   "buildVersion" : "1.108.1.a664ca4c65937ceaa41e9ad1acad66eec5d4a3e2"
 }

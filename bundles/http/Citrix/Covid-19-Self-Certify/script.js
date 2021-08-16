@@ -39,6 +39,19 @@ integration.define({
                     { name: "image", type: "STRING", length: 255 }
                 ]
             }
+        ],
+        relationships:[
+            {
+                name: "RegiontoCountry",
+                primaryTable: "region",
+                foreignTable: "country",
+                columnPairs: [
+                    {
+                        primaryKey: "region",
+                        foreignKey: "region"
+                    }
+                ]
+            },
         ]
     },
     integrationParameters: [
