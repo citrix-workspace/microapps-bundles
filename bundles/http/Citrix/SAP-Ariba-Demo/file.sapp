@@ -3,9 +3,9 @@
     "appVersion" : {
       "id" : "b4eba76a-b007-4196-b14f-02dc26edb449",
       "serviceId" : 2,
-      "version" : 576,
+      "version" : 599,
       "parameters" : {
-        "imageUrl" : "exported/requisition.96e9c06d43dbd8914e8206e9fc2fc880.svg",
+        "imageUrl" : "exported/requisition_approve.1f74d2b88f45c18c0c99557a4e2a3fff.svg",
         "description" : "2d1c17cd-a687-40c3-903b-8890a61aae28"
       },
       "actionApp" : true,
@@ -235,10 +235,10 @@
         }, {
           "type" : "TEXT",
           "appId" : "b4eba76a-b007-4196-b14f-02dc26edb449",
-          "columnId" : 222,
+          "columnId" : 223,
           "required" : true,
           "textType" : 0,
-          "label" : "d0c9eab9-4963-4471-ad21-025bc3bb1447",
+          "label" : "ea3a6b2c-7f16-40fe-8535-cfdeec9a9e20",
           "format" : "none",
           "foreignKeyId" : null,
           "parentComponentId" : null,
@@ -314,7 +314,7 @@
         }, {
           "type" : "TEXT",
           "appId" : "b4eba76a-b007-4196-b14f-02dc26edb449",
-          "columnId" : 223,
+          "columnId" : 222,
           "required" : false,
           "textType" : 0,
           "label" : "86168beb-8b69-42c8-b4c0-cda28bccd565",
@@ -685,7 +685,8 @@
                 "format" : "none",
                 "tableColumn" : {
                   "columnType" : "DOUBLE"
-                }
+                },
+                "conditional_format" : null
               } ],
               "images" : [ ],
               "tableid" : 23,
@@ -694,11 +695,10 @@
                 "constraints" : {
                   "type" : "TERM",
                   "constraint" : {
-                    "tableId" : 24,
-                    "columnId" : 222,
-                    "foreignKeyId" : 26,
+                    "tableId" : 23,
+                    "columnId" : 232,
                     "valueType" : "COMPONENT",
-                    "variableComponent" : "deb344df-3e63-4d8a-b651-95ed8ba1d92c",
+                    "variableComponent" : "eeca9fb6-aa87-420c-937b-7e7fe369ca6d",
                     "ignoredWhenValueIsNull" : true,
                     "action" : "EQUALS_TO"
                   }
@@ -742,8 +742,9 @@
                   "name" : "updateReport",
                   "parameters" : [ {
                     "parameterId" : "Id",
-                    "valueType" : "COMPONENT",
-                    "componentId" : "deb344df-3e63-4d8a-b651-95ed8ba1d92c",
+                    "valueType" : "COLUMN",
+                    "columnId" : 222,
+                    "componentId" : "eeca9fb6-aa87-420c-937b-7e7fe369ca6d",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "Status",
@@ -773,19 +774,19 @@
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "OwnerName",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 224,
                     "componentId" : "5f5c6645-5629-48c2-8079-a84d71ce308e",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "TotalAmount",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 227,
                     "componentId" : "057751eb-28a8-4252-84e8-a421e153e282",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "Type",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 223,
                     "componentId" : "eeca9fb6-aa87-420c-937b-7e7fe369ca6d",
                     "type" : "GWSCP"
@@ -846,7 +847,7 @@
                   "name" : "updateReport",
                   "parameters" : [ {
                     "parameterId" : "Id",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 222,
                     "componentId" : "deb344df-3e63-4d8a-b651-95ed8ba1d92c",
                     "type" : "GWSCP"
@@ -878,19 +879,19 @@
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "OwnerName",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 224,
                     "componentId" : "5f5c6645-5629-48c2-8079-a84d71ce308e",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "TotalAmount",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 227,
                     "componentId" : "057751eb-28a8-4252-84e8-a421e153e282",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "Type",
-                    "valueType" : "COMPONENT",
+                    "valueType" : "COLUMN",
                     "columnId" : 223,
                     "componentId" : "eeca9fb6-aa87-420c-937b-7e7fe369ca6d",
                     "type" : "GWSCP"
@@ -926,7 +927,7 @@
           },
           "id" : "8881f949-f1a4-455d-8b68-dcce113dd584",
           "defaultvalue" : null,
-          "displayorder" : 8,
+          "displayorder" : 7,
           "pageId" : "6cf8d7cb-15d4-4437-8837-e53c97cc7480"
         }, {
           "type" : "TEXT_INPUT",
@@ -946,7 +947,7 @@
           },
           "id" : "3850beec-7abf-4bf5-b3f3-a454efeb11c7",
           "defaultvalue" : "",
-          "displayorder" : 6,
+          "displayorder" : 5,
           "pageId" : "6cf8d7cb-15d4-4437-8837-e53c97cc7480"
         }, {
           "type" : "BACK_BUTTON",
@@ -984,7 +985,7 @@
   "services" : [ {
     "id" : 2,
     "uuid" : "f3507907-d06d-4786-98ec-a5627f15a8fd",
-    "version" : 46,
+    "version" : 74,
     "title" : "SAP Ariba Demo",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -1182,7 +1183,7 @@
           },
           "scriptSourceFunctionLocationIncrSync" : {
             "startLine" : 229,
-            "endLine" : 257
+            "endLine" : 267
           }
         } ],
         "actions" : [ {
@@ -1226,8 +1227,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 259,
-            "endLine" : 267
+            "startLine" : 269,
+            "endLine" : 277
           }
         } ],
         "webhookListeners" : [ ],
@@ -1811,10 +1812,10 @@
   "modelConfiguration" : {
     "appIds" : [ "b4eba76a-b007-4196-b14f-02dc26edb449" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "Deploy this demo integration to test the microapps that come out-of-the-box with this template.",
+    "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "FCB2FAAE64953D30E9EFEEB03CD2EB7F",
+  "translationChecksum" : "DF14ADD962A344BCE22D767C173FB18F",
   "appliedSappUpgrades" : [ "microapp-8511", "microapp-11340", "microapp-4518", "microapp-14492", "microapp-13344", "microapp-6293", "microapp-6617", "microapp-9701", "microapp-1980", "microapp-3547", "microapp-13471", "microapp-4020", "microapp-12427", "microapp-10876", "microapp-3838", "microapp-10549", "microapp-14613", "microapp-14978", "microapp-12936", "microapp-11349", "microapp-12505", "microapp-4666", "microapp-6853", "microapp-8003", "microapp-8950", "microapp-10860", "microapp-7984", "microapp-14177", "microapp-7888", "microapp-8576", "microapp-8892", "microapp-3548", "microapp-13233", "microapp-7290", "microapp-2450", "microapp-9597", "microapp-5025", "microapp-6790", "microapp-10421", "microapp-10420", "microapp-11136", "microapp-9702", "microapp-12525", "microapp-13808", "microapp-6593", "microapp-7561", "microapp-6262", "microapp-3580", "microapp-10858", "microapp-10856", "microapp-7961", "microapp-8921", "microapp-5227", "microapp-6264", "microapp-11836", "microapp-14849" ],
   "buildVersion" : "1.106.0.dd5f9debc0583924d69c2d2a0191748e89661a12"
 }

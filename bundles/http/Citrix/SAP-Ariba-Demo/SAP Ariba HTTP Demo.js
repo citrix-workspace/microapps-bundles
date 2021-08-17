@@ -233,16 +233,25 @@ async function incrementalSynch({dataStore, client}) {
   const reportId = parseInt(report.Id) + Math.floor(Math.random() * (1000 - reports.length)) + reports.length
   report.Id = reportId.toString()
 
-  //randomly generating a number of expenses for a report
-  let numOfExpenses = Math.floor(Math.random() * (expenses.length - 1)) + 1
   //expenses will be saved into the array 
   let iExpenses = []
   let totalamount = 0
   //pulling the last id of an expense so we can adequately increment the ids
   //we have to slice the value since the ids are far outside of integer range 
   let eLastId = parseInt(expenses[expenses.length-1].Id.slice(12,17))
+
+  let expensechoices = [] //possible expenses in report's category
+  for (let i=0; i< expenses.length; i++) {
+    let expense = JSON.parse(JSON.stringify(expenses[i]))
+    if (expense.Category == report.Type){
+      expensechoices.push(expense)
+    }
+  }
+
+  let numOfExpenses = Math.floor(Math.random() * (expensechoices.length - 1)) + 1 //number of expenses for a report
+
   for (let i=0; i< numOfExpenses; i++) {
-    let expense = JSON.parse(JSON.stringify(expenses[Math.floor(Math.random() * (expenses.length))]))
+    let expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
     expense.ReportName = report.Id
     expense.TransactionDate=report.DateSubmitted
     let eId = eLastId + (i + 1)
@@ -250,6 +259,7 @@ async function incrementalSynch({dataStore, client}) {
     totalamount += (expense.Price * expense.Quantity)
     iExpenses.push(expense)
   }
+  
   report.TotalAmount = totalamount
   dataStore.save('reports', report)
   dataStore.save('expenses', iExpenses)
