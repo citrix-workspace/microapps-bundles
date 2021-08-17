@@ -13,51 +13,57 @@ date3.setDate(date3.getDate()-5)
 const accounts = [
     {
         Id: '1',
-        Address: 'Grand Rapids, 3223 Twin Oaks Drive,49503,USA',
+        Address: 'Grand Rapids, 3223 Twin Oaks Drive, 49503, USA',
         Industry: 'Advertising',
         Name: 'Symbio Communications',
         Phone: '231-424-7837',
-        Description: ""
+        Description: "The best advertising your money can buy!",
+        Email: 'contact@symbio.com'
     },
     {
         Id: '2',
-        Address: 'Elk Lake, 82 Orphan Road,54739,USA',
+        Address: 'Elk Lake, 82 Orphan Road, 54739, USA',
         Industry: 'Apparel',
         Name: 'Abbot Textiles',
         Phone: '618-624-2383',
-        Description: ""
+        Description: "Comfiest textiles in all the US!",
+        Email: 'contact@abbottextiles.com'
     },
     {
         Id: '3',
-        Address: 'Oakland, 1084 Blackwell Street,38060,USA',
+        Address: 'Oakland, 1084 Blackwell Street, 38060, USA',
         Industry: 'Consulting',
         Name: 'ZenePoint',
         Phone: '907-345-7323',
-        Description: ""
+        Description: "We'll consult ANYTHING with you",
+        Email: 'zene@google.co.uk'
     },
     {
         Id: '4',
-        Address: 'Edwards, 3753 Williams Avenue,93523,USA',
+        Address: 'Edwards, 3753 Williams Avenue, 93523, USA',
         Industry: 'Clothing Retail',
         Name: 'Atlantic Retail Group',
         Phone: '661-275-4752',
-        Description: ""
+        Description: "Going to a business meeting and need a business suit? We've got you covered",
+        Email: 'contact@ARGroup.com'
     },
     {
         Id: '5',
-        Address: 'Baltimore, 4827 Martha Ellen Drive,21229,USA',
+        Address: 'Baltimore, 4827 Martha Ellen Drive, 21229, USA',
         Industry: 'Book Publishing',
         Name: 'Shaw Inc.',
         Phone: '775-599-9262',
-        Description: ""
+        Description: "All the new bestsellers available at our place 2 hours before the global release!",
+        Email: 'contact@shaw.com'
     },
     {
         Id: '6',
-        Address: 'Superstition, 2790 East Avenue,85207,USA',
+        Address: 'Superstition, 2790 East Avenue, 85207, USA',
         Industry: 'Hospitality',
         Name: 'Y Hotels & Resorts Ltd',
         Phone: '480-380-3572',
-        Description: ""
+        Description: "Our hotels are so good they'd have to add 6 star ratings to the existing system",
+        Email: 'contact@YHRltd.com'
     }
 ]
 
@@ -125,7 +131,7 @@ var opportunities = [
         Amount: 8950.00,
         CurrencyCode: 'USD',
         Stage: 'Closed Lost',
-        Type: 'Existing Customer - Replacemen',
+        Type: 'Existing Customer - Replacement',
         DateSubmitted: date.toLocaleDateString(),
         DueDate: datestring,
         Probability: 25,
@@ -313,17 +319,12 @@ function createOpportunity({dataStore, actionParameters}) {
     console.log(`LENGTH OF OPPORTUNITIES IS ${opportunities.length}`)
     console.log(`Creating an opportunity with a subject ${actionParameters.Subject}`)
 
-    const {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName} = actionParameters
-    let opportunity = {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName}
+    const {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName, Stage, Type, Probability, Amount} = actionParameters
+    let opportunity = {Name, Description, AccountId, DateSubmitted, DueDate, OwnerName, Stage, Type, Probability, Amount}
     let temp = opportunities[Math.floor(Math.random() * (opportunities.length))]
 
     opportunity.Id = (+new Date).toString(36);
-    opportunity.Probability = Math.floor(Math.random() * 100)
     opportunity.CurrencyCode = 'USD'
-    opportunity.Amount = Math.floor(Math.random() * (20000-100)) + 100
-    opportunity.Type = temp.Type
-    opportunity.Stage = temp.Stage
-
     dataStore.save('opportunities', opportunity)
     opportunities.push(JSON.parse(JSON.stringify(opportunity)))
     console.log(`LENGTH OF OPPORTUNITIES IS ${opportunities.length}`)
@@ -437,6 +438,22 @@ integration.define({
                 {
                     name: 'AccountId',
                     type: 'STRING'
+                },
+                {
+                    name: 'Amount',
+                    type: 'DOUBLE'
+                },
+                {
+                    name: 'Type',
+                    type: 'STRING'
+                },
+                {
+                    name: 'Stage',
+                    type: 'STRING'
+                },
+                {
+                    name: 'Probability',
+                    type: 'INTEGER'
                 }
             ],
             function: createOpportunity
@@ -606,6 +623,11 @@ integration.define({
                         name: 'Description',
                         type: 'STRING',
                         length: 512
+                    },
+                    {
+                        name: "Email",
+                        type: 'STRING',
+                        length: 64
                     }
                 ]
             }
