@@ -563,6 +563,11 @@ function calculateReportsWithTotals(expenses, reports) {
   return reports.map(report => ({...report, TotalAmount: amounts[report.Id]}))
 }
 
+function calculateTotalAmountForNewReport(expenses, report) {
+  let totalAmount = expenses.reduce((acc, {Amount}) => acc + Amount, 0)
+  return ({...report, TotalAmount: totalAmount})
+}
+
 async function incrementalSynch({dataStore, client}) {
   console.log("Running incremental synchronization...")
   //pulling a random report from the report list
@@ -583,7 +588,8 @@ async function incrementalSynch({dataStore, client}) {
       expense.TransactionDate = report.DateSubmitted
       return expense
   })
-  const reportToSave = calculateReportsWithTotals(newExpenses, [report])
+  const reportToSave = calculateTotalAmountForNewReport(newExpenses, report)
+  
   dataStore.save('reports', reportToSave)
   dataStore.save('expenses', newExpenses)
   console.log("Incremental synchronization completed...")
