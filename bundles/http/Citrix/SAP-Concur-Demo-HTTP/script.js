@@ -547,7 +547,7 @@ async function syncReports ({ dataStore, integrationParameters }) {
   console.log("Synchronization complete")
 }
 
-function deepClone(list) {
+function takeRandomItem(list) {
   return JSON.parse(JSON.stringify(list[generateRandomNumValue(0, list.length)]))
 }
 
@@ -560,18 +560,13 @@ function calculateReportsWithTotals(expenses, reports) {
     acc[ReportId] = (acc[ReportId] || 0) + Amount
     return acc
     }, {} )
-	//is used exclusively for incremental sync, since we're passing a single object here--so map() won't work
-  if (Object.keys(amounts).length===1) {
-    reports.TotalAmount = amounts[reports.Id]
-    return
-  }
   return reports.map(report => ({...report, TotalAmount: amounts[report.Id]}))
 }
 
 async function incrementalSynch({dataStore, client}) {
   console.log("Running incremental synchronization...")
   //pulling a random report from the report list
-  let report = deepClone(reports)
+  let report = takeRandomItem(reports)
   //We need to get the string value of report id, transfer it to int, add the randomly generated value and make it a string again
   const reportId = (parseInt(report.Id) + generateRandomNumValue(reports.length, 1000)).toString()
   report.Id = reportId
@@ -581,15 +576,15 @@ async function incrementalSynch({dataStore, client}) {
   let numOfExpenses = generateRandomNumValue(1, 6)
   //expenses will be saved into the array 
   const newExpenses = _.range(0, numOfExpenses).map(i => {
-      const expense = deepClone(expenses)
+      const expense = takeRandomItem(expenses)
       expense.ReportId = report.Id
       expense.TransactionDate = report.DateSubmitted
       expense.Id = expense.Id.slice(0,12) + (generateRandomNumValue(1, 99999)).toString()
       expense.TransactionDate = report.DateSubmitted
       return expense
   })
-  calculateReportsWithTotals(newExpenses, report)
-  dataStore.save('reports', report)
+  const reportToSave = calculateReportsWithTotals(newExpenses, [report])
+  dataStore.save('reports', reportToSave)
   dataStore.save('expenses', newExpenses)
   console.log("Incremental synchronization completed...")
 }
