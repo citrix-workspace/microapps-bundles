@@ -500,7 +500,7 @@ let reports = [
 const categories = [
   {
     Type: 'Ground Transportation',
-    ImageURL: 'https://static.thenounproject.com/png/59-200.png'
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/meeting.a44eb1e81b027ba58ea71078394ca1a0.svg'
   },
   {
     Type: 'Lodging',
@@ -516,7 +516,7 @@ const categories = [
   },
   {
     Type: 'Entertainment',
-    ImageURL: 'https://cdn.pngsumo.com/entertainment-icon-png-images-vector-and-psd-files-free-entertainment-png-360_360.png'
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/default-broken.b3426980ecaefcfc0778d475c1fe4dd6.svg'
   },
   {
     Type: 'Other',
@@ -524,15 +524,15 @@ const categories = [
   },
   {
     Type: 'Office Supplies',
-    ImageURL: 'https://static.thenounproject.com/png/15102-200.png'
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/case.2bb73f1b3eff52a8134fd591447bdaa1.svg'
   },
   {
     Type: 'Advertising/Marketing',
-    ImageURL: 'https://img.icons8.com/wired/452/marketing.png'
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/lead.e61e72321674c9469b115c0552c5dc65.svg'
   },
   {
     Type: 'Office Software',
-    ImageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyD4F6vF5rGjvtQz23pJ1jkO4HspxMXgKm_zNmi-buuJpOrNwlutbndumgueMH9kqX0rg&usqp=CAU'
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_update.2d453d1646665c2ede6de83f848a6566.svg'
   }
 ]
 
