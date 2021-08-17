@@ -1,5 +1,6 @@
 package com.citrix.microapps.bundlegen.bundles;
 
+import java.io.File;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -182,13 +183,13 @@ class BundlesLoaderTest {
                 bundle, metadata);
 
         assertThat(templateFile).isPresent();
-        assertListEqualsInAnyOrder(asList(
-                "Loading of bundle metadata failed: src/test/resources/bundles/http/vendorForIconUrlTest" +
-                        "/SAP-SuccessFactors-EC-2/metadata.json",
+        assertListEqualsInAnyOrder(toMessages(validationWarnings), asList(
+                "Loading of bundle metadata failed: " +
+                        "src/test/resources/bundles/http/vendorForIconUrlTest/SAP-SuccessFactors-EC-2/metadata.json"
+                                .replace('/', File.separatorChar),
                 "Both iconUrl and iconType have to be specified",
                 "Unsupported iconType: null",
-                "Same iconUrl must be specified in both metadata.json and service configuration"),
-                toMessages(validationWarnings));
+                "Same iconUrl must be specified in both metadata.json and service configuration"));
     }
 
     @ParameterizedTest
@@ -542,7 +543,6 @@ class BundlesLoaderTest {
                                 true,
                                 Collections.singletonList("bad"),
                                 Collections.emptyList(),
-                                Collections.emptyList(),
                                 Collections.emptyList()),
                         asList(
                                 "Invalid value: field `created`, value `bad 2019-12-18T11:36:00`, pattern " +
@@ -579,7 +579,6 @@ class BundlesLoaderTest {
             "2020-12-08T06:39:48.517497Z",
             "2020-12-09T06:39:48.517497Z",
             true,
-            Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
@@ -673,7 +672,6 @@ class BundlesLoaderTest {
                 true,
                 Collections.emptyList(),
                 Collections.emptyList(),
-                Collections.emptyList(),
                 Collections.emptyList());
     }
 
@@ -692,7 +690,6 @@ class BundlesLoaderTest {
                 null,
                 null,
                 true,
-                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());
