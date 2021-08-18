@@ -721,83 +721,61 @@ integration.define({
 const pageSize = 200;
 
 async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
-    let requestOptions = {
+    const requestOptions = {
         method: 'POST',
         body: JSON.stringify(body)
     };
+    const resp = await client.fetch(endpoint, requestOptions);
 
-    let resp = await client.fetch(endpoint, requestOptions);
-    let moreRecords = true;
     if (resp.ok && resp.status === 200) {
-        let data = await resp.json();
-        let dataArray = [];
-        let types = [];
-        for (let i = 0, j = 0; i < data.records.length; i++) {
-            dataArray[i] = JSON.parse(data.records[i]);
-            dataArray[i].CreatedDateTime = new Date(dataArray[i].CreatedDateTime);
-            dataArray[i].LastModifiedDateTime = new Date(dataArray[i].LastModifiedDateTime);
-            dataArray[i].LastModDateTime = new Date(dataArray[i].LastModDateTime);
-            dataArray[i].SLAResponseWarning = new Date(dataArray[i].SLAResponseWarning);
-            dataArray[i].SLAResolutionWarning = new Date(dataArray[i].SLAResolutionWarning);
-
-            if (moduleName == 'servicesIncidentTypes' || moduleName == 'categoriesIncidentTypes') {
-                let obj = {
-                    Service: dataArray[i].Service,
-                    IncidentType: dataArray[i].IncidentType,
-                    Category: dataArray[i].Category
-                };
-                let contains = false;
-                if (moduleName == 'categoriesIncidentTypes') {
-                    contains = await containsObjectCategories(obj, types);
-                } else {
-                    contains = await containsObjectServices(obj, types);
-                }
-
-                if (!contains) {
-                    obj.id = j;
-                    types.push(obj);
-                    j++;
-                }
-            }
-        }
+        const data = await resp.json();
+        const dataArray = data.records.map(obj => {
+            let rObj = JSON.parse(obj);
+            rObj.CreatedDateTime = new Date(obj.CreatedDateTime);
+            rObj.LastModifiedDateTime = new Date(obj.LastModifiedDateTime);
+            rObj.LastModDateTime = new Date(obj.LastModDateTime);
+            rObj.SLAResponseWarning = new Date(obj.SLAResponseWarning);
+            rObj.SLAResolutionWarning = new Date(obj.SLAResolutionWarning);
+            return rObj;
+        });
 
         if (moduleName == 'servicesIncidentTypes' || moduleName == 'categoriesIncidentTypes') {
-            dataArray = types;
+            let types = dataArray.map(obj => {
+                const rType = {
+                    Service: obj.Service,
+                    IncidentType: obj.IncidentType,
+                    Category: obj.Category
+                };
+                return rType;
+            });;
+
+            if (moduleName == 'categoriesIncidentTypes') {
+                types = _.uniqBy(types, 'Category');
+            } else {
+                types = _.uniqBy(types, 'Service');
+            }
+
+            dataStore.save(moduleName, types);
+        } else {
+            dataStore.save(moduleName, dataArray);
         }
 
-        let json = JSON.stringify(dataArray, null, '\t');
-        dataStore.save(moduleName, json);
-        if (data.recordCount < data.pageSize) {
-            moreRecords = false;
-        } else {
-            moreRecords = true;
-        }
+        return data.recordCount >= data.pageSize;
     } else {
-        moreRecords = false;
+        return false;
     }
-    return moreRecords;
 }
 
 async function getUsers({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-    let fieldName = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModifiedDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('Users', latestSynchronizationTime);
+    const body = {
         filters: [
             {
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -813,23 +791,13 @@ async function getUsers({ dataStore, client, latestSynchronizationTime }) {
 async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-    let fieldName = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('Customers', latestSynchronizationTime);
+    const body = {
         filters: [
             {
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -845,27 +813,17 @@ async function getCustomers({ dataStore, client, latestSynchronizationTime }) {
 async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-    let fieldName = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModifiedDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('Incidents', latestSynchronizationTime);
+    const body = {
         filters: [
             {
-                "field": {
-                    "fieldName": "IncidentType",
-                    "searchTerm": "Incident"
+                field: {
+                    fieldName: 'IncidentType',
+                    searchTerm: 'Incident'
                 },
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -881,27 +839,17 @@ async function getIncidents({ dataStore, client, latestSynchronizationTime }) {
 async function getServiceRequests({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-    let fieldName = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModifiedDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('ServiceRequests', latestSynchronizationTime);
+    const body = {
         filters: [
             {
-                "field": {
-                    "fieldName": "IncidentType",
-                    "searchTerm": "Service Request"
+                field: {
+                    fieldName: 'IncidentType',
+                    searchTerm: 'Service Request'
                 },
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -917,27 +865,17 @@ async function getServiceRequests({ dataStore, client, latestSynchronizationTime
 async function getComments({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-    let fieldName = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModifiedDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('Comments', latestSynchronizationTime);
+    const body = {
         filters: [
             {
-                "field": {
-                    "fieldName": "ShowInSelfService",
-                    "searchTerm": "True"
+                field: {
+                    fieldName: 'ShowInSelfService',
+                    searchTerm: 'true'
                 },
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -953,27 +891,17 @@ async function getComments({ dataStore, client, latestSynchronizationTime }) {
 async function getIncidentServices({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let fieldName = '';
-    let date = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-        fieldName = 'CreatedDateTime';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-        fieldName = 'LastModifiedDateTime';
-    }
-
-    let body = {
+    const filters = await buildFilters('IncidentServices', latestSynchronizationTime);
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "VisibleInPortal",
-                    searchTerm: "true"
+                    fieldName: 'VisibleInPortal',
+                    searchTerm: 'true'
                 },
-                "range": {
-                    "fieldName": fieldName,
-                    "gte": date
+                range: {
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -989,12 +917,12 @@ async function getIncidentServices({ dataStore, client, latestSynchronizationTim
 async function getIncidentCategories({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
-    let body = {
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "VisibleInPortal",
-                    searchTerm: "true"
+                    fieldName: 'VisibleInPortal',
+                    searchTerm: 'true'
                 }
             }
         ]
@@ -1010,12 +938,12 @@ async function getIncidentCategories({ dataStore, client }) {
 async function getIncidentSubCategories({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
-    let body = {
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "VisibleInPortal",
-                    searchTerm: "true"
+                    fieldName: 'VisibleInPortal',
+                    searchTerm: 'true'
                 }
             }
         ]
@@ -1031,12 +959,12 @@ async function getIncidentSubCategories({ dataStore, client }) {
 async function getServicesIncidentTypes({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
-    let body = {
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "VisibleInPortal",
-                    searchTerm: "true"
+                    fieldName: 'VisibleInPortal',
+                    searchTerm: 'true'
                 }
             }
         ]
@@ -1052,12 +980,12 @@ async function getServicesIncidentTypes({ dataStore, client }) {
 async function getCategoriesIncidentTypes({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
-    let body = {
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "VisibleInPortal",
-                    searchTerm: "true"
+                    fieldName: 'VisibleInPortal',
+                    searchTerm: 'true'
                 }
             }
         ]
@@ -1073,12 +1001,12 @@ async function getCategoriesIncidentTypes({ dataStore, client }) {
 async function getIncidentSources({ dataStore, client }) {
     let page = 1;
     let moreRecords = true;
-    let body = {
+    const body = {
         filters: [
             {
                 field: {
-                    fieldName: "Source",
-                    searchTerm: "Portal"
+                    fieldName: 'Source',
+                    searchTerm: 'Portal'
                 }
             }
         ]
@@ -1094,20 +1022,13 @@ async function getIncidentSources({ dataStore, client }) {
 async function getIncidentPriorities({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '1900-01-01';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-    }
-
-    let body = {
+    const filters = await buildFilters('IncidentPriorities', latestSynchronizationTime);
+    const body = {
         filters: [
             {
                 range: {
-                    fieldName: "LastModDateTime",
-                    gte: date
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -1123,20 +1044,13 @@ async function getIncidentPriorities({ dataStore, client, latestSynchronizationT
 async function getIncidentStatuses({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
-    let date = '';
-
-    if (latestSynchronizationTime === undefined) {
-        date = '2000-01-01';
-    } else {
-        date = new Date(latestSynchronizationTime).toISOString();
-    }
-
-    let body = {
+    const filters = await buildFilters('IncidentStatuses', latestSynchronizationTime);
+    const body = {
         filters: [
             {
                 range: {
-                    fieldName: "LastModifiedDateTime",
-                    gte: date
+                    fieldName: filters.fieldName,
+                    gte: filters.date
                 }
             }
         ]
@@ -1149,40 +1063,24 @@ async function getIncidentStatuses({ dataStore, client, latestSynchronizationTim
     }
 }
 
-async function postRequest({ client }, body, endpoint) {
-    let requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(body)
-    };
-    return await client.fetch(endpoint, requestOptions);
-}
-
-async function patchRequest({ client }, body, endpoint) {
-    let requestOptions = {
-        method: 'PATCH',
-        body: JSON.stringify(body)
-    };
-    return await client.fetch(endpoint, requestOptions);
-}
-
 async function createComment({ dataStore, client, actionParameters }) {
-    let body = {
+    const body = {
         comment: actionParameters.username + ': ' + actionParameters.comment
     }
-    let endpoint = 'V1/object/Incident/' + actionParameters.incident_id + '/comments';
-    let resp = await postRequest({ client }, body, endpoint);
-    if (resp.ok) {
-        if (resp.status === 200) {
-            let dt = new Date();
-            dt.setHours(dt.getHours() - 1);
-            let latestSynchronizationTime = dt.toLocaleString();
-            await getComments({ dataStore, client, latestSynchronizationTime });
-        }
+    const endpoint = 'V1/object/Incident/' + actionParameters.incident_id + '/comments';
+    const resp = await postRequest({ client }, body, endpoint);
+    if (resp.ok && resp.status === 200) {
+        let dt = new Date();
+        dt.setHours(dt.getHours() - 1);
+        const latestSynchronizationTime = dt.toLocaleString();
+        await getComments({ dataStore, client, latestSynchronizationTime });
+    } else {
+        throw new Error(`Create comment Error (${resp.status}: ${resp.statusText})`);
     }
 }
 
 async function createIncident({ dataStore, client, actionParameters }) {
-    let body = {
+    const body = {
         Service: actionParameters.Service,
         Category: actionParameters.Category,
         Subcategory: actionParameters.Subcategory,
@@ -1192,49 +1090,47 @@ async function createIncident({ dataStore, client, actionParameters }) {
         CreatedByEmail: actionParameters.CreatedByEmail,
         PortalAffectsPrimaryFunction: actionParameters.PortalAffectsPrimaryFunction,
         PortalAffectsMultipleUsers: actionParameters.PortalAffectsMultipleUsers,
-        IncidentType: "Incident"
+        IncidentType: 'Incident'
     };
-    let endpoint = 'V1/object/Incident';
-    let resp = await postRequest({ client }, body, endpoint);
-    if (resp.ok) {
-        if (resp.status === 200) {
-            let dt = new Date();
-            dt.setHours(dt.getHours() - 1);
-            let latestSynchronizationTime = dt.toLocaleString();
-            await getIncidents({ dataStore, client, latestSynchronizationTime });
-        }
+    const endpoint = 'V1/object/Incident';
+    const resp = await postRequest({ client }, body, endpoint);
+    if (resp.ok && resp.status === 200) {
+        let dt = new Date();
+        dt.setHours(dt.getHours() - 1);
+        const latestSynchronizationTime = dt.toLocaleString();
+        await getIncidents({ dataStore, client, latestSynchronizationTime });
+    } else {
+        throw new Error(`Create Incident Error (${resp.status}: ${resp.statusText})`);
     }
 }
 
 async function withdrawIncident({ dataStore, client, actionParameters }) {
-    actionParameters.datetime = actionParameters.datetime.toLocaleDateString() + " " + actionParameters.datetime.toLocaleTimeString();
-    let body = {
-        comment: "Request to cancel by " + actionParameters.username + " on " + actionParameters.datetime + " via Self Service Portal.\n " + actionParameters.comment
+    actionParameters.datetime = actionParameters.datetime.toLocaleDateString() + ' ' + actionParameters.datetime.toLocaleTimeString();
+    const body = {
+        comment: 'Request to cancel by ' + actionParameters.username + ' on ' + actionParameters.datetime + ' via Self Service Portal.\n ' + actionParameters.comment
     };
-    let endpoint = 'V1/object/incident/' + actionParameters.incident_id + '/comments';
-    let resp = await postRequest({ client }, body, endpoint);
-    if (resp.ok) {
-        if (resp.status === 200) {
-            let withdrawBody = {
-                Status: "Resolved"
-            }
-            let withdrawEndpoint = 'V1/object/incident/' + actionParameters.incident_id;
-            let withdrawResp = await patchRequest({ client }, withdrawBody, withdrawEndpoint);
-            if (withdrawResp.ok) {
-                if (withdrawResp.status === 200) {
-                    let dt = new Date();
-                    dt.setHours(dt.getHours() - 1);
-                    let latestSynchronizationTime = dt.toLocaleString();
-                    await getIncidents({ dataStore, client, latestSynchronizationTime });
-                    await getServiceRequests({ dataStore, client, latestSynchronizationTime });
-                }
-            }
+    const endpoint = 'V1/object/incident/' + actionParameters.incident_id + '/comments';
+    const resp = await postRequest({ client }, body, endpoint);
+    if (resp.ok && resp.status === 200) {
+        const withdrawBody = {
+            Status: 'Resolved'
         }
+        const withdrawEndpoint = 'V1/object/incident/' + actionParameters.incident_id;
+        const withdrawResp = await patchRequest({ client }, withdrawBody, withdrawEndpoint);
+        if (withdrawResp.ok && withdrawResp.status === 200) {
+            let dt = new Date();
+            dt.setHours(dt.getHours() - 1);
+            const latestSynchronizationTime = dt.toLocaleString();
+            await getIncidents({ dataStore, client, latestSynchronizationTime });
+            await getServiceRequests({ dataStore, client, latestSynchronizationTime });
+        }
+    } else {
+        throw new Error(`Withdraw Incident Error (${resp.status}: ${resp.statusText})`);
     }
 }
 
 async function createServiceRequest({ dataStore, client, actionParameters }) {
-    let body = {
+    const body = {
         Service: actionParameters.Service,
         Category: actionParameters.Category,
         Subcategory: actionParameters.Subcategory,
@@ -1242,37 +1138,59 @@ async function createServiceRequest({ dataStore, client, actionParameters }) {
         CallSource: actionParameters.CallSource,
         CustomerDisplayName: actionParameters.CustomerDisplayName,
         CreatedByEmail: actionParameters.CreatedByEmail,
-        IncidentType: "Service Request"
+        IncidentType: 'Service Request'
     };
-    let endpoint = 'V1/object/Incident';
-    let resp = await postRequest({ client }, body, endpoint);
-    if (resp.ok) {
-        if (resp.status === 200) {
-            let dt = new Date();
-            dt.setHours(dt.getHours() - 1);
-            let latestSynchronizationTime = dt.toLocaleString();
-            await getServiceRequests({ dataStore, client, latestSynchronizationTime });
-        }
+    const endpoint = 'V1/object/Incident';
+    const resp = await postRequest({ client }, body, endpoint);
+    if (resp.ok && resp.status === 200) {
+        let dt = new Date();
+        dt.setHours(dt.getHours() - 1);
+        const latestSynchronizationTime = dt.toLocaleString();
+        await getServiceRequests({ dataStore, client, latestSynchronizationTime });
+    } else {
+        throw new Error(`Create Service Request Error (${resp.status}: ${resp.statusText})`);
     }
 }
 
 //Aux Functions
-async function containsObjectServices(obj, list) {
-    let i;
-    for (i = 0; i < list.length; i++) {
-        if (list[i].Service === obj.Service && list[i].IncidentType === obj.IncidentType) {
-            return true;
-        }
-    }
-    return false;
+async function postRequest({ client }, body, endpoint) {
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(body)
+    };
+    return await client.fetch(endpoint, requestOptions);
 }
 
-async function containsObjectCategories(obj, list) {
-    let i;
-    for (i = 0; i < list.length; i++) {
-        if (list[i].Category === obj.Category && list[i].IncidentType === obj.IncidentType) {
-            return true;
-        }
+async function patchRequest({ client }, body, endpoint) {
+    const requestOptions = {
+        method: 'PATCH',
+        body: JSON.stringify(body)
+    };
+    return await client.fetch(endpoint, requestOptions);
+}
+
+async function buildFilters(functionName, latestSynchronizationTime) {
+    let date = '';
+    let fieldName = '';
+    const latestSynchronizationDate = new Date(latestSynchronizationTime).toISOString();
+
+    switch (functionName) {
+        case 'IncidentStatuses':
+            date = latestSynchronizationTime === undefined ? '2000-01-01' : latestSynchronizationDate;
+            fieldName = 'LastModifiedDateTime';
+            break;
+        case 'IncidentPriorities':
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            fieldName = 'LastModDateTime';
+            break;
+        case 'Customers':
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            fieldName = latestSynchronizationTime === undefined ? 'CreatedDateTime' : 'LastModDateTime';
+            break;
+        default:
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            fieldName = latestSynchronizationTime === undefined ? 'CreatedDateTime' : 'LastModifiedDateTime';
+            break;
     }
-    return false;
+    return { fieldName, date }
 }
