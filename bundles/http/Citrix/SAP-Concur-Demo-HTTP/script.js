@@ -188,7 +188,7 @@ const today = moment().toDate()
 const twoDaysAgo = moment().subtract(2, 'days').toDate()
 const fiveDaysAgo = moment().subtract(5, 'days').toDate()
 
-let reports = [
+const reports = [
     {
         Id: '12372847', 
         Type: 'Austin Trip', 
@@ -539,7 +539,7 @@ const categories = [
 async function syncReports ({ dataStore, integrationParameters }) {
   console.log('Synching data...')
 
-  let saveReports = calculateReportsWithTotals(expenses, reports)
+  const saveReports = calculateReportsWithTotals(expenses, reports)
 
   dataStore.save('reports', saveReports)
   dataStore.save('expenses', expenses)
@@ -556,7 +556,7 @@ function generateRandomNumValue(floor, ceiling) {
 }
 
 function calculateReportsWithTotals(expenses, reports) {
-  let amounts = expenses.reduce((acc, {ReportId, Amount}) => {    
+  const amounts = expenses.reduce((acc, {ReportId, Amount}) => {    
     acc[ReportId] = (acc[ReportId] || 0) + Amount
     return acc
     }, {} )
@@ -564,21 +564,21 @@ function calculateReportsWithTotals(expenses, reports) {
 }
 
 function calculateTotalAmountForNewReport(expenses, report) {
-  let totalAmount = expenses.reduce((acc, {Amount}) => acc + Amount, 0)
+  const totalAmount = expenses.reduce((acc, {Amount}) => acc + Amount, 0)
   return ({...report, TotalAmount: totalAmount})
 }
 
 async function incrementalSynch({dataStore, client}) {
   console.log("Running incremental synchronization...")
   //pulling a random report from the report list
-  let report = takeRandomItem(reports)
+  const report = takeRandomItem(reports)
   //We need to get the string value of report id, transfer it to int, add the randomly generated value and make it a string again
   const reportId = (parseInt(report.Id) + generateRandomNumValue(reports.length, 1000)).toString()
   report.Id = reportId
   report.DateSubmitted = today
 
   //randomly generating a number of expenses for a report
-  let numOfExpenses = generateRandomNumValue(1, 6)
+  const numOfExpenses = generateRandomNumValue(1, 6)
   //expenses will be saved into the array 
   const newExpenses = _.range(0, numOfExpenses).map(i => {
       const expense = takeRandomItem(expenses)
