@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "035b0593-2b2c-48d8-b93c-f9222a6a3128",
       "serviceId" : 13,
-      "version" : 133,
+      "version" : 143,
       "parameters" : {
         "imageUrl" : "exported/opportunity_update.98140dfea12bf829fd37a00b07b81837.svg",
         "description" : "a84c6a46-e5ab-487b-93a6-b09711b812cb"
@@ -65,7 +65,7 @@
           "columnId" : null,
           "required" : true,
           "textType" : 0,
-          "label" : "8f77964f-954f-4c7a-affb-198e63afe600",
+          "label" : "04351f04-db51-40af-a5c7-3abe18898106",
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : "b24494e7-999b-4916-958c-b556a7bf18f8",
@@ -544,7 +544,7 @@
           "type" : "SELECT",
           "appId" : "035b0593-2b2c-48d8-b93c-f9222a6a3128",
           "columnId" : 2714,
-          "required" : false,
+          "required" : true,
           "textType" : null,
           "label" : "4e24b866-fc38-4fb8-9615-80ac1990156a",
           "format" : "none",
@@ -576,7 +576,7 @@
           "type" : "SELECT",
           "appId" : "035b0593-2b2c-48d8-b93c-f9222a6a3128",
           "columnId" : 2713,
-          "required" : false,
+          "required" : true,
           "textType" : null,
           "label" : "f870fb50-1361-41c2-85c7-6fb8c9337dfd",
           "format" : "none",
@@ -655,7 +655,7 @@
     "appVersion" : {
       "id" : "b765337e-4b23-4215-978b-216294de954a",
       "serviceId" : 13,
-      "version" : 168,
+      "version" : 172,
       "parameters" : {
         "imageUrl" : "exported/task_update.98fdbd6b9b77c9de36f221b4449e1601.svg",
         "description" : "e5b90d4d-2b52-46c1-97a7-c8b0ea54b81b"
@@ -796,7 +796,7 @@
           "type" : "SELECT",
           "appId" : "b765337e-4b23-4215-978b-216294de954a",
           "columnId" : 2726,
-          "required" : false,
+          "required" : true,
           "textType" : null,
           "label" : "d867f73b-82d2-4184-8a13-fecb15b0bd45",
           "format" : "none",
@@ -1047,7 +1047,7 @@
     "appVersion" : {
       "id" : "d857c411-372f-45e6-a1bd-ca656741dcdf",
       "serviceId" : 13,
-      "version" : 281,
+      "version" : 283,
       "parameters" : {
         "imageUrl" : "exported/opportunity.0c540a511c468189e370aec2529cbe8b.svg",
         "description" : "388dd062-71e4-42f8-93a1-241c92f0beaf"
@@ -1284,7 +1284,7 @@
           "columnId" : 2716,
           "required" : false,
           "textType" : 0,
-          "label" : "5ed0b797-d65c-45de-b083-69945cdcc341",
+          "label" : "b0e64215-31ca-4340-b8c6-7fe578b23562",
           "format" : "datetime",
           "foreignKeyId" : null,
           "parentComponentId" : "9bb52059-6edd-460b-afa7-6f2dc64fa1c7",
@@ -1303,7 +1303,7 @@
           "id" : "710d057f-e9f5-48f6-8215-fb860ba0d092",
           "defaultvalue" : "CURRENT_TIMESTAMP",
           "displayorder" : 2,
-          "columnType" : "TIMESTAMP",
+          "columnType" : "DATE",
           "tableid" : 111
         }, {
           "type" : "TEXT",
@@ -4179,7 +4179,7 @@
   "services" : [ {
     "id" : 13,
     "uuid" : "3ff8180c-6eca-46db-937f-1ba51c3e5946",
-    "version" : 91,
+    "version" : 123,
     "title" : "Salesforce Demo",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -4268,7 +4268,7 @@
             }, {
               "name" : "DueDate",
               "primaryKey" : false,
-              "type" : "DATETIME",
+              "type" : "DATE",
               "mandatory" : false
             }, {
               "name" : "Probability",
@@ -4433,12 +4433,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 271,
-            "endLine" : 280
+            "startLine" : 608,
+            "endLine" : 617
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 282,
-            "endLine" : 295
+            "startLine" : 623,
+            "endLine" : 636
           }
         } ],
         "actions" : [ {
@@ -4478,8 +4478,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 297,
-            "endLine" : 305
+            "startLine" : 638,
+            "endLine" : 646
           }
         }, {
           "name" : "createTask",
@@ -4514,8 +4514,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 307,
-            "endLine" : 316
+            "startLine" : 648,
+            "endLine" : 656
           }
         }, {
           "name" : "createOpportunity",
@@ -4534,7 +4534,7 @@
             "required" : false
           }, {
             "name" : "DueDate",
-            "type" : "DATETIME",
+            "type" : "DATE",
             "required" : false
           }, {
             "name" : "Description",
@@ -4562,8 +4562,8 @@
             "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 318,
-            "endLine" : 332
+            "startLine" : 658,
+            "endLine" : 668
           }
         } ],
         "webhookListeners" : [ ],
@@ -4808,7 +4808,7 @@
         "title" : "duedate",
         "displayName" : "Due Date",
         "attributeName" : "DueDate",
-        "type" : "TIMESTAMP",
+        "type" : "DATE",
         "nullable" : true,
         "autoIncrement" : false,
         "roleType" : "DB_COLUMN",
@@ -5229,22 +5229,34 @@
     "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
-    "id" : "eb2de46e-7d34-4dbd-b223-19745c337874",
-    "legacyId" : 37,
-    "appId" : "d857c411-372f-45e6-a1bd-ca656741dcdf",
-    "version" : 3,
+    "id" : "8db02d9f-983c-4c4a-8589-b32d8f678ffc",
+    "legacyId" : 47,
+    "appId" : "e737012b-2770-4e74-9821-1d0deb73ce79",
+    "version" : 4,
     "eventType" : "REMINDER",
     "serviceId" : 13,
-    "tableId" : 111,
+    "tableId" : 112,
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
-      "groupByDateColumnId" : 2716,
+      "groupByDateColumnId" : 2724,
       "groupByDatePeriod" : "DAY",
       "reminderPeriod" : 1,
       "reminderType" : "BEFORE"
     },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 112,
+        "columnId" : 2725,
+        "columnType" : "STRING",
+        "action" : "BECOMES",
+        "comparator" : "EQUALS_TO",
+        "value" : "Completed",
+        "valueType" : "VALUE"
+      }
+    },
     "expirationDelete" : true,
-    "label" : "dda6f222-958b-42c5-a719-46f21ad385f3",
+    "label" : "c543e238-5245-4ab2-9684-e30c84023378",
     "schedule" : {
       "jobSchedule" : "HOURLY",
       "useTimeRange" : true,
@@ -5252,16 +5264,15 @@
       "runTo" : "21:00",
       "runTimezone" : "Etc/GMT"
     },
-    "audience" : "BY_USER_QUERY",
+    "audience" : "ALL",
     "audienceQuery" : {
-      "tableId" : 111,
-      "columnId" : 2728,
+      "tableId" : 112,
       "variable" : "USER_EMAIL"
     },
     "messageDefinition" : {
-      "title" : "70f1c024-0048-43ec-ae5c-a5a1743f973c",
-      "body" : "12cb41eb-7d90-4b2f-86d4-693c60c4ae67",
-      "gotoAppPageId" : "2df6f09c-d663-4bec-a704-b0bce0698a2e",
+      "title" : "9028f8f9-78c1-4405-98e3-b96916353b2f",
+      "body" : "82669d6b-b70f-4a6a-8d70-c1e01dd0a7d3",
+      "gotoAppPageId" : "0dc5cacc-1d98-4347-8bca-61cb70130796",
       "configuration" : {
         "cardTtlHours" : 2,
         "highPriority" : false,
@@ -5270,10 +5281,10 @@
           "type" : "LIBRARY"
         },
         "cardTtlColumn" : {
-          "columnId" : 2716
+          "columnId" : 2724
         }
       },
-      "actionButtonIds" : [ ],
+      "actionButtonIds" : [ "bb18de99-0565-47b8-96a5-0d3c1df5ac42" ],
       "task" : false
     },
     "messageCountLimit" : 50,
@@ -5287,7 +5298,7 @@
     "bundleDescription" : "Deploy this demo integration to test the microapps that come out-of-the-box with this template.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "FCB4AFF8C865AF55440EEB612E85EC87",
+  "translationChecksum" : "87E9401CBE5D87E21FAB230DDE9A6B9E",
   "appliedSappUpgrades" : [ "microapp-10420", "microapp-8511", "microapp-9597", "microapp-3580", "microapp-1980", "microapp-12525", "microapp-9702", "microapp-7984", "microapp-8921", "microapp-4518", "microapp-11836", "microapp-10549", "microapp-7290", "microapp-13344", "microapp-4020", "microapp-10421", "microapp-14613", "microapp-3548", "microapp-12936", "microapp-13233", "microapp-5025", "microapp-9701", "microapp-14177", "microapp-12427", "microapp-13471", "microapp-4666", "microapp-11340", "microapp-7888", "microapp-6264", "microapp-10856", "microapp-10876", "microapp-6853", "microapp-7561", "microapp-3838", "microapp-8950", "microapp-14978", "microapp-10858", "microapp-6790", "microapp-8003", "microapp-3547", "microapp-6617", "microapp-13808", "microapp-12505", "microapp-6593", "microapp-14849", "microapp-2450", "microapp-14492", "microapp-7961", "microapp-8892", "microapp-11349", "microapp-6262", "microapp-6293", "microapp-11136", "microapp-10860", "microapp-5227", "microapp-8576" ],
   "buildVersion" : "1.107.1.cdbca32c62136d698b823f93c59cd255cca7ea8d"
 }
