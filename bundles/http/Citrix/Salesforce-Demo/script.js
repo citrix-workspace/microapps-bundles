@@ -631,15 +631,15 @@ function generateRandomNumber(floor, ceiling) {
 async function incrementSyncOpportunity({ dataStore }) {
   console.log("Running incremental sync...");
 
-  let task = JSON.parse(
-    JSON.stringify(tasks[generateRandomNumber(0, tasks.length)])
-  );
-  task.Id = uuid.v4();
-  task.AccountId = generateRandomNumber(1, accounts.length).toString();
-  task.SubmittedOn = today;
-  task.DueDate = todayPlusOneHour;
+  const task = {
+    ...JSON.parse(JSON.stringify(tasks[generateRandomNumber(0, tasks.length)])),
+    Id: uuid.v4(),
+    AccountId: generateRandomNumber(1, accounts.length).toString(),
+    SubmittedOn: today,
+    DueDate: todayPlusOneHour,
+    Probability: generateRandomNumber(1, 100),
+  };
   task.Subject = "Another " + task.Subject;
-  task.Probability = generateRandomNumber(1, 100);
 
   dataStore.save("tasks", task);
   console.log("Incremental sync complete");
@@ -677,6 +677,7 @@ async function createTask({ dataStore, actionParameters }) {
   console.log(
     `Creating a task with subject ${actionParameters.Subject} for account with id of ${actionParameters.AccountId}`
   );
+
   const {
     Subject,
     AccountId,
@@ -686,7 +687,8 @@ async function createTask({ dataStore, actionParameters }) {
     Status,
     Description,
   } = actionParameters;
-  let task = {
+  const task = {
+    Id: uuid.v4(),
     Subject,
     AccountId,
     SubmittedOn,
@@ -695,7 +697,6 @@ async function createTask({ dataStore, actionParameters }) {
     Status,
     Description,
   };
-  task.Id = uuid.v4();
 
   dataStore.save("tasks", task);
   console.log(`Task with id ${task.Id} created..`);
@@ -718,7 +719,8 @@ function createOpportunity({ dataStore, actionParameters }) {
     Probability,
     Amount,
   } = actionParameters;
-  let opportunity = {
+  const opportunity = {
+    Id: uuid.v4(),
     Name,
     Description,
     AccountId,
@@ -729,10 +731,9 @@ function createOpportunity({ dataStore, actionParameters }) {
     Type,
     Probability,
     Amount,
+    CurrencyCode: "USD",
   };
 
-  opportunity.Id = uuid.v4();
-  opportunity.CurrencyCode = "USD";
   dataStore.save("opportunities", opportunity);
   console.log(`Opportunity with id ${opportunity.Id} created...`);
 }
