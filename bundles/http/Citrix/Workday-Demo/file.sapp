@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
       "serviceId" : 1,
-      "version" : 658,
+      "version" : 662,
       "parameters" : {
         "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
         "description" : "ef92ec9b-5be5-47d4-8db4-070f2944066c"
@@ -124,6 +124,8 @@
               },
               "image" : {
                 "dataColumnsMap" : { },
+                "tableid" : 1,
+                "columnid" : 1599,
                 "type" : "SIMPLE",
                 "stringFormat" : ""
               },
@@ -151,8 +153,8 @@
               "flipTitleDescription" : false,
               "showItemMeta" : false,
               "listStyle" : "BORDER",
-              "listImageStyle" : "CIRCLE",
-              "showItemImage" : false,
+              "listImageStyle" : "SQUARE",
+              "showItemImage" : true,
               "listImagePosition" : "LEFT",
               "listMetaStyle" : "BADGE",
               "listImageSize" : "SMALL"
@@ -782,7 +784,7 @@
   "services" : [ {
     "id" : 1,
     "uuid" : "19af0398-ac9b-4b7e-899e-4a4bb882b49c",
-    "version" : 1536,
+    "version" : 2307,
     "title" : "Workday Demo Integration",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -874,6 +876,11 @@
               "primaryKey" : false,
               "type" : "DATE",
               "mandatory" : false
+            }, {
+              "name" : "IMG",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
             } ],
             "dataRetention" : "DELETE_ON_FULL_SYNC"
           } ],
@@ -884,12 +891,12 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : true,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 74,
-            "endLine" : 74
+            "startLine" : 72,
+            "endLine" : 72
           },
           "scriptSourceFunctionLocationIncrSync" : {
-            "startLine" : 75,
-            "endLine" : 75
+            "startLine" : 73,
+            "endLine" : 73
           }
         } ],
         "actions" : [ {
@@ -935,10 +942,14 @@
             "name" : "AdvanceAmount",
             "type" : "DOUBLE",
             "required" : true
+          }, {
+            "name" : "IMG",
+            "type" : "STRING",
+            "required" : false
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 59,
-            "endLine" : 66
+            "startLine" : 58,
+            "endLine" : 65
           }
         } ],
         "webhookListeners" : [ ],
@@ -950,7 +961,7 @@
       "synchronizationContexts" : {
         "expensesReport" : { },
         "expenseReport" : {
-          "key1" : "145"
+          "key1" : "25"
         }
       }
     },
@@ -1115,6 +1126,20 @@
         "readable" : true,
         "writable" : false,
         "defaultLabel" : "Date",
+        "primaryKey" : false
+      }, {
+        "id" : 1599,
+        "title" : "img",
+        "displayName" : "Img",
+        "attributeName" : "IMG",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Img",
         "primaryKey" : false
       } ]
     } ],

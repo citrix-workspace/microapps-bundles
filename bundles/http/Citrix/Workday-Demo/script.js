@@ -5,7 +5,8 @@ Date: 18.7.2021
 */
 
 const _ = library.load('lodash')
-const names = ["Mark Knopfler","Ritchie Blackmore","Eddie Van Halen","Adrian Smith","Billy Duffy"]
+
+const names = ["Aline Gomes", "Billy Taylor", "Danielle Ledford", "Diana Sarkozy", "Erberto Tirado"]
 const descriptions = ["Lyft","Uber","Dinner","Hotel","Flight Tickets","Rental"]
 
 //Function, that generates data for the table, using random values, both for incremental and full sync
@@ -13,8 +14,7 @@ async function getExpenses (dataStore,context,fullSync) {
   let iterations;
   let dateRandom;
   const min = 100
-  const max = 20000
-
+  const max = 2000
 //Switch statement, that regulates behavior of loop, depending on sync type
   switch (fullSync) {
     case true:
@@ -28,8 +28,6 @@ async function getExpenses (dataStore,context,fullSync) {
       dateRandom = false
       break;
   }
-  console.log(context.key1)
-  console.log(iterations)
 const expenseReport = _.range(context.key1, iterations).map(ID => {
 			const min = 100
       const max = 20000
@@ -37,9 +35,8 @@ const expenseReport = _.range(context.key1, iterations).map(ID => {
       let date = new Date()
       dateRandom ? date.setDate(date.getDate()-(Math.floor(Math.random() * (10)))) : date.setDate(date.getDate());
       date.toLocaleDateString()
-      //Init blank object for expense and set min and max expense values
+      //Init blank object for expense, set min and max expense values and populate it
       let expense = {};
-      
       expense['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
       expense['ID'] = ID
       expense['Currency'] = 'USD'
@@ -50,6 +47,8 @@ const expenseReport = _.range(context.key1, iterations).map(ID => {
       expense['ReimbursementAmount'] = Math.floor(Math.random() * (expense['Amount'] - min + 1)) + min
       expense['AdvanceAmount'] = expense['Amount'] - expense['ReimbursementAmount']
       expense['Status'] = "In Progress";
+      expense['IMG'] = "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg"
+
 	return expense
 
 })
@@ -57,9 +56,9 @@ const expenseReport = _.range(context.key1, iterations).map(ID => {
   dataStore.save('expenseReport', expenseReport) 
 }
 async function updateStatus({ dataStore, client, actionParameters, integrationParameters }) {
-  
   let {Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date} = actionParameters
-  let expenses = {Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date}
+  const IMG = "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg"
+  let expenses = {Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date, IMG}
 
   dataStore.save('expenseReport', expenses)
   
@@ -69,7 +68,6 @@ integration.define({
   synchronizations: [
     {
       name: 'expenseReport',
-
       //Sync implementation with added custom parameter
       fullSyncFunction: function({dataStore, context}) { return getExpenses(dataStore, context, true) },
       incrementalSyncFunction: function({dataStore, context}) { return getExpenses(dataStore, context, false) },
@@ -128,7 +126,11 @@ integration.define({
           name: 'AdvanceAmount',
           type: 'DOUBLE',
           required: true
-        }
+        },
+        {
+          name: 'IMG',
+          type: 'STRING',
+        },
       ],
       function: updateStatus
     }
@@ -178,6 +180,10 @@ integration.define({
           {
             name: 'Date',
             type: 'DATE'
+          },
+          {
+            name: 'IMG',
+            type: 'STRING'
           },
         ]
       }
