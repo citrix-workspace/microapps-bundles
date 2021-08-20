@@ -614,7 +614,7 @@ const priorities = [
 ];
 
 async function syncAccounts({ dataStore }) {
-  console.log("Synching accounts");
+  console.log("Running full synchronization...");
 
   dataStore.save("accounts", accounts);
   dataStore.save("opportunities", opportunities);
