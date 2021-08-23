@@ -304,7 +304,8 @@ integration.define({
                     },
                     {
                         "name": "IncidentID",
-                        "type": "INTEGER"
+                        "type": "STRING",
+                        "length": 45,
                     },
                     {
                         "name": "CreatedDateTime",
@@ -410,7 +411,8 @@ integration.define({
                     },
                     {
                         "name": "IncidentID",
-                        "type": "INTEGER"
+                        "type": "STRING",
+                        "length": 45,
                     },
                     {
                         "name": "CreatedDateTime",
@@ -710,7 +712,8 @@ integration.define({
                     },
                     {
                         "name": "Priority",
-                        "type": "INTEGER"
+                        "type": "STRING",
+                        "length": 10,
                     }
                 ]
             }
@@ -731,17 +734,18 @@ async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
         const data = await resp.json();
         const dataArray = data.records.map(obj => {
             let rObj = JSON.parse(obj);
-            rObj.CreatedDateTime = new Date(obj.CreatedDateTime);
-            rObj.LastModifiedDateTime = new Date(obj.LastModifiedDateTime);
-            rObj.LastModDateTime = new Date(obj.LastModDateTime);
-            rObj.SLAResponseWarning = new Date(obj.SLAResponseWarning);
-            rObj.SLAResolutionWarning = new Date(obj.SLAResolutionWarning);
+            rObj.CreatedDateTime = new Date(rObj.CreatedDateTime);
+            rObj.LastModifiedDateTime = new Date(rObj.LastModifiedDateTime);
+            rObj.LastModDateTime = new Date(rObj.LastModDateTime);
+            rObj.SLAResponseWarning = new Date(rObj.SLAResponseWarning);
+            rObj.SLAResolutionWarning = new Date(rObj.SLAResolutionWarning);
             return rObj;
         });
 
         if (moduleName == 'servicesIncidentTypes' || moduleName == 'categoriesIncidentTypes') {
-            let types = dataArray.map(obj => {
+            let types = dataArray.map((obj, index) => {
                 const rType = {
+                    id: index,
                     Service: obj.Service,
                     IncidentType: obj.IncidentType,
                     Category: obj.Category
@@ -749,13 +753,24 @@ async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
                 return rType;
             });;
 
+            let uniqTypes = [];
             if (moduleName == 'categoriesIncidentTypes') {
-                types = _.uniqBy(types, 'Category');
+                for (const element of types) {
+                    let contains = await listContains(uniqTypes, element, 'Category', 'IncidentType');
+                    if (!contains) {
+                        uniqTypes.push(element);
+                    }
+                }
             } else {
-                types = _.uniqBy(types, 'Service');
+                for (const element of types) {
+                    let contains = await listContains(uniqTypes, element, 'Service', 'IncidentType');
+                    if (!contains) {
+                        uniqTypes.push(element);
+                    }
+                }
             }
 
-            dataStore.save(moduleName, types);
+            dataStore.save(moduleName, uniqTypes);
         } else {
             dataStore.save(moduleName, dataArray);
         }
@@ -766,6 +781,7 @@ async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
     }
 }
 
+//Synchronizations
 async function getUsers({ dataStore, client, latestSynchronizationTime }) {
     let page = 1;
     let moreRecords = true;
@@ -1063,6 +1079,7 @@ async function getIncidentStatuses({ dataStore, client, latestSynchronizationTim
     }
 }
 
+//Servie Actions
 async function createComment({ dataStore, client, actionParameters }) {
     const body = {
         comment: actionParameters.username + ': ' + actionParameters.comment
@@ -1172,25 +1189,33 @@ async function patchRequest({ client }, body, endpoint) {
 async function buildFilters(functionName, latestSynchronizationTime) {
     let date = '';
     let fieldName = '';
-    const latestSynchronizationDate = new Date(latestSynchronizationTime).toISOString();
 
     switch (functionName) {
         case 'IncidentStatuses':
-            date = latestSynchronizationTime === undefined ? '2000-01-01' : latestSynchronizationDate;
+            date = latestSynchronizationTime === undefined ? '2000-01-01' : new Date(latestSynchronizationTime).toISOString();
             fieldName = 'LastModifiedDateTime';
             break;
         case 'IncidentPriorities':
-            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : new Date(latestSynchronizationTime).toISOString();
             fieldName = 'LastModDateTime';
             break;
         case 'Customers':
-            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : new Date(latestSynchronizationTime).toISOString();
             fieldName = latestSynchronizationTime === undefined ? 'CreatedDateTime' : 'LastModDateTime';
             break;
         default:
-            date = latestSynchronizationTime === undefined ? '1900-01-01' : latestSynchronizationDate;
+            date = latestSynchronizationTime === undefined ? '1900-01-01' : new Date(latestSynchronizationTime).toISOString();
             fieldName = latestSynchronizationTime === undefined ? 'CreatedDateTime' : 'LastModifiedDateTime';
             break;
     }
     return { fieldName, date }
+}
+
+async function listContains(list, obj, property1, property2) {
+    for (const listObj of list) {
+        if (listObj[property1] === obj[property1] && listObj[property2] === obj[property2]) {
+            return true;
+        }
+    }
+    return false;
 }
