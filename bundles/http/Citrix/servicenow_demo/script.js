@@ -1,70 +1,75 @@
-/*
-Name: ServiceNow Demo integration, using generated dummy data
-Created by: Andrey Kornilov
-Date: 1.8.2021
-*/
-
+/**Libraries, used in this project*/
 const _ = library.load('lodash')
-const names = ["Mark Knopfler", "Ritchie Blackmore", "Eddie Van Halen", "Adrian Smith", "Billy Duffy"]
+const moment = library.load('moment-timezone')
+/**Change values in arrays, in order to change displayed data*/
+const names = ["Aline Gomes", "Billy Taylor", "Danielle Ledford", "Diana Sarkozy", "Erberto Tirado"]
 const descriptions = ["OS failure", "Laptop replacement", "Local installation assistance", "Network storage unavailable", "HDD issues", "Credentials error"]
-const states = ["Active", "New", "Awaiting User Info", "Closed", "Awaiting Evidence", "Resolved", "Closed"]
+const asignee = ["John Doe", "Jane Doe", "Josef Antos", "Nathan Zaitsev"]
+const states = ["Active", "New", "Awaiting User Info", "Awaiting Evidence"]
 const location = ["Prague", "London", "Berlin", "Paris", "San Francisco", "Moscow", "Malaga"]
 const company = ["Citrix", "Wrike", "Sapho", "Microsoft", "Apple", "Google", "Oracle"]
-const contact = ["Email", "Phone", "Post", "Fax", "Pager", "Slack", "Teams"]
-const priority = ["4-Low", "3-Moderate", "2-High", "1-Critical"]
-
+const contact = ["Email", "Phone", "Slack", "Teams"]
+const priority = ["Low", "Medium", "High"]
+/**Approvals Descriptions*/
 const descApproval = ["SSD Replacement", "New Laptop Request", "New Monitor Request", "Docking Station Request", "IntelliJ Idea License Request"]
 
 
-//Function, that generates data for the table, using random values, both for incremental and full sync
+
+/** Function, that generates data for the table, using random values, both for incremental and full sync */
 async function getData(dataStore, context, fullSync) {
-  let iterations;
-  let dateRandom;
-
-  //Switch statement, that regulates behavior of loop, depending on sync type
-  switch (fullSync) {
-    case true:
-      context.key1 = 1;
-      iterations = context.key1 + 15
-      dateRandom = true
-      break;
-
-    default:
-      iterations = context.key1 + 3
-      dateRandom = false
-      break;
-  }
-  console.log(context.key1)
-  console.log(iterations)
-  const incidentsReport = _.range(context.key1, iterations).map(ID => {
-    //Init date instance and check, if we need to randomize dates
-    let date = new Date()
-    dateRandom ? date.setDate(date.getDate() - (Math.floor(Math.random() * (10)))) : date.setDate(date.getDate());
-    date.toLocaleDateString()
-    //Init blank object for expense and set min and max expense values
-    let incident = {};
-
-    incident['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
-    incident['ID'] = ID
-    incident['Name'] = names[Math.floor(Math.random() * (names.length))]
-    incident['Location'] = location[Math.floor(Math.random() * (location.length))]
-    incident['Company'] = company[Math.floor(Math.random() * (company.length))]
-    incident['Contact'] = contact[Math.floor(Math.random() * (contact.length))]
-    incident['Impact'] = priority[Math.floor(Math.random() * (priority.length))]
-    incident['Urgency'] = priority[Math.floor(Math.random() * (priority.length))]
-    incident['Severity'] = priority[Math.floor(Math.random() * (priority.length))]
-    incident['Priority'] = priority[Math.floor(Math.random() * (priority.length))]
-    incident['Number'] = `INC${ID}`
-    incident['OpenedAt'] = date.toLocaleDateString()
-    incident['State'] = states[Math.floor(Math.random() * (states.length))]
-    incident['IncidentState'] = states[Math.floor(Math.random() * (states.length))]
-    incident['Active'] = true
+  const fullSyncIterations = 16
+  const incSyncIterations = 3
+  /**Regulation of behavior of loop, depending on sync type*/
+  const { iterations, dateRandom, key } = fullSync
+    ? ({
+      key: 1,
+      iterations: fullSyncIterations,
+      dateRandom: true
+    })
+    : ({
+      key: context.iterations,
+      iterations: context.iterations + incSyncIterations,
+      dateRandom: false
+    })
+  context.iterations = key
+  /** Incidents data generator */
+  const incidentsReport = _.range(context.iterations, iterations).map(ID => {
+    /**Init date instance and check, if we need to randomize dates*/
+    let date
+    if (dateRandom) {
+      date = moment().subtract(Math.random() * 10, 'days').toISOString()
+    }
+    else {
+      date = moment().toISOString()
+    }
+    /** Incidents Data Object */
+    const incident = {
+      Description: descriptions[Math.floor(Math.random() * (descriptions.length))],
+      ID: ID,
+      Name: names[Math.floor(Math.random() * (names.length))],
+      Asignee: asignee[Math.floor(Math.random() * (asignee.length))],
+      Location: location[Math.floor(Math.random() * (location.length))],
+      Company: company[Math.floor(Math.random() * (company.length))],
+      Contact: contact[Math.floor(Math.random() * (contact.length))],
+      Impact: priority[Math.floor(Math.random() * (priority.length))],
+      Urgency: priority[Math.floor(Math.random() * (priority.length))],
+      Severity: priority[Math.floor(Math.random() * (priority.length))],
+      Priority: priority[Math.floor(Math.random() * (priority.length))],
+      Number: `INC${ID}`,
+      OpenedAt: date,
+      State: states[Math.floor(Math.random() * (states.length))],
+      IncidentState: states[Math.floor(Math.random() * (states.length))],
+      Active: true,
+      IMG: "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/ticket_assign.760c8db6db27596531b2337171bed63d.svg"
+    };
+    /** Assigning Priority Number, for sorting purposes in list component */
+    incident.PriorityNum = incident['Priority'] == "High" ? 1 : incident['Priority'] == "Low" ? 3 : 2
 
     return incident
-
   })
-  const approvalsReport = _.range(context.key1, iterations).map(ID => {
-    //Init date instance and check, if we need to randomize dates
+  /** Approvals data generator */
+  const approvalsReport = _.range(context.iterations, iterations).map(ID => {
+    /**Init date instance and check, if we need to randomize dates*/
     let dateCurrent = new Date()
     dateRandom ? dateCurrent.setDate(dateCurrent.getDate() - (Math.floor(Math.random() * (10)))) : dateCurrent.setDate(dateCurrent.getDate());
 
@@ -74,38 +79,29 @@ async function getData(dataStore, context, fullSync) {
     dateCurrent.toLocaleDateString()
     dateDue.toLocaleDateString()
 
-    //Init blank object for expense and set min and max expense values
-    let approval = {};
-
-    approval['Description'] = descApproval[Math.floor(Math.random() * (descApproval.length))]
-    approval['ID'] = ID
-    approval['Name'] = names[Math.floor(Math.random() * (names.length))]
-    approval['Number'] = `CHG${ID}`
-    approval['OpenedAt'] = dateCurrent
-    approval['State'] = states[Math.floor(Math.random() * (states.length))]
-    approval['Active'] = true
-    approval['Type'] = descApproval[Math.floor(Math.random() * (descApproval.length))]
-    approval['DueDate'] = dateDue
-    approval['Approver'] = "Marilyn Monroe"
-    approval['ApprovalGroup'] = "Product"
-    approval['ApprovalSource'] = "Source Here"
-    approval['Active'] = true
-
+    /** Approvals Data Object */
+    let approval = {
+      Description: descApproval[Math.floor(Math.random() * (descApproval.length))],
+      ID: ID,
+      Name: names[Math.floor(Math.random() * (names.length))],
+      Number: `CHG${ID}`,
+      OpenedAt: dateCurrent,
+      State: "Requested",
+      Active: true,
+      Type: descApproval[Math.floor(Math.random() * (descApproval.length))],
+      DueDate: dateDue,
+      Approver: "Robert Clayton",
+      ApprovalGroup: "Product",
+      ApprovalSource: "Source Here",
+      IMG: "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/ticket_resolved.f6b6a522aa2af5d1ec8b70c693bb8760.svg"
+    };
     return approval
-
   })
-  context.key1 = iterations
+  context.iterations = iterations
   dataStore.save('incidentsReport', incidentsReport)
   dataStore.save('approvalsReport', approvalsReport)
 }
-async function updateStatus({ dataStore, actionParameters }) {
 
-  let { Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date } = actionParameters
-  let expenses = { Name, ID, Currency, Amount, ReportID, Description, ReimbursementAmount, AdvanceAmount, Status, Date }
-
-  dataStore.save('expenseReport', expenses)
-
-}
 async function createIncident({ dataStore, actionParameters }) {
   let dateNew = new Date()
   dateNew.setDate(dateNew.getDate());
@@ -114,24 +110,28 @@ async function createIncident({ dataStore, actionParameters }) {
   const Number = `INC${ID}`
 
   const Name = "John Doe"
+  const Asignee = asignee[Math.floor(Math.random() * (asignee.length))]
   const Company = "Citrix"
   const Location = "Prague"
-  const Contact = "Pigeon Post"
   const State = "Active"
   const IncidentState = "Active"
+  const IMG = "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/ticket_assign.760c8db6db27596531b2337171bed63d.svg"
 
-  let { Urgency, Impact, Description } = actionParameters
+  let { Urgency, Impact, Description, Contact } = actionParameters
   const OpenedAt = dateNew
   const Severity = Impact
   const Priority = Urgency
   const Active = true
-
-  let incident = { Name, ID, Location, Company, Number, Description, Contact, State, IncidentState, OpenedAt, Urgency, Priority, Severity, Impact, Active }
+  let PriorityNum = (Priority == "High")
+    ? 1
+    : (Priority == "Low")
+      ? 3
+      : 2
+  let incident = { Name, ID, Location, Company, Number, Description, Contact, State, IncidentState, OpenedAt, Urgency, Priority, Severity, Impact, Active, IMG, PriorityNum, Asignee }
 
   dataStore.save('incidentsReport', incident)
-
 }
-async function createComment({ dataStore, actionParameters }) {
+async function createApproval({ dataStore, actionParameters }) {
   let { Comment, ID, CurrentDate, Active, Name, Number, Description, State, Type, OpenedAt, DueDate, Approver, ApprovalGroup, ApprovalSource } = actionParameters
   OpenedAt.toLocaleDateString()
   DueDate.toLocaleDateString()
@@ -140,11 +140,32 @@ async function createComment({ dataStore, actionParameters }) {
   dataStore.save('approvalsReport', approvalParams)
   dataStore.save('comments', commantaryParams)
 }
-async function addComment({ dataStore, actionParameters }) {
+async function saveIncidentDetails({ dataStore, actionParameters }) {
+  let { Description, ID, Name, Location, Company, Contact, Impact, Urgency, Severity, Priority, Number, OpenedAt, State, IncidentState, Active, Comment, CurrentDate, Asignee } = actionParameters
+  let IMG = "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/ticket_assign.760c8db6db27596531b2337171bed63d.svg"
+  let PriorityNum = Priority == "High"
+    ? 1
+    : Priority == "Low"
+      ? 3
+      : 2
+  let incidentParams = { Description, ID, Name, Location, Company, Contact, Impact, Urgency, Severity, Priority, Number, OpenedAt, State, IncidentState, Active, PriorityNum, Asignee }
+  let commantaryParams = { ID, Comment, CurrentDate }
+
+  dataStore.save('incidentsReport', incidentParams)
+  dataStore.save('commentsIncidents', commantaryParams)
+}
+async function addCommentIncident({ dataStore, actionParameters }) {
   const ID = Math.floor(Math.random() * (1000 - 200 + 1)) + 200;
   let { Comment, RndID, CurrentDate } = actionParameters
-  console.log(RndID)
   let commantaryParams = { ID, Comment, CurrentDate, RndID }
+
+  dataStore.save('commentsIncidents', commantaryParams)
+}
+async function addCommentApproval({ dataStore, actionParameters }) {
+  const ID = Math.floor(Math.random() * (1000 - 200 + 1)) + 200;
+  let { Comment, RndID, CurrentDate } = actionParameters
+  let commantaryParams = { ID, Comment, CurrentDate, RndID }
+
   dataStore.save('comments', commantaryParams)
 }
 
@@ -153,7 +174,7 @@ integration.define({
     {
       name: 'incidentsReport',
 
-      //Sync implementation with added custom parameter
+      /** Sync implementation with added custom parameter */
       fullSyncFunction: function ({ dataStore, context }) { return getData(dataStore, context, true) },
       incrementalSyncFunction: function ({ dataStore, context }) { return getData(dataStore, context, false) },
     }
@@ -175,12 +196,35 @@ integration.define({
           type: 'DATE'
         },
         {
-            name: 'RndID',
-            type: 'DOUBLE',
-           
-          },
+          name: 'RndID',
+          type: 'DOUBLE',
+
+        },
       ],
-      function: addComment
+      function: addCommentApproval
+    },
+    {
+      name: 'addCommentIncident',
+      parameters: [
+        {
+          name: 'ID',
+          type: 'DOUBLE'
+        },
+        {
+          name: 'Comment',
+          type: 'STRING'
+        },
+        {
+          name: 'CurrentDate',
+          type: 'DATE'
+        },
+        {
+          name: 'RndID',
+          type: 'DOUBLE',
+
+        },
+      ],
+      function: addCommentIncident
     },
     {
       name: 'approval',
@@ -223,7 +267,7 @@ integration.define({
         },
         {
           name: 'OpenedAt',
-          type: 'DATE'
+          type: 'DATETIME'
         },
         {
           name: 'DueDate',
@@ -243,7 +287,7 @@ integration.define({
         },
 
       ],
-      function: createComment
+      function: createApproval
     },
     {
       name: 'addIncident',
@@ -257,6 +301,10 @@ integration.define({
           name: 'Active',
           type: 'BOOLEAN',
 
+        },
+        {
+          name: 'Asignee',
+          type: 'STRING'
         },
         {
           name: 'Name',
@@ -285,7 +333,7 @@ integration.define({
         },
         {
           name: 'OpenedAt',
-          type: 'DATE',
+          type: 'DATETIME',
           required: true
         },
         {
@@ -324,8 +372,106 @@ integration.define({
           type: 'STRING',
 
         },
+        {
+          name: 'IMG',
+          type: 'STRING'
+        },
+        {
+          name: 'PriorityNum',
+          type: 'INTEGER'
+        },
       ],
       function: createIncident
+    },
+    {
+      name: 'saveIncident',
+      parameters: [
+        {
+          name: 'ID',
+          type: 'DOUBLE',
+
+        },
+        {
+          name: 'Active',
+          type: 'BOOLEAN',
+
+        },
+        {
+          name: 'Asignee',
+          type: 'STRING'
+        },
+        {
+          name: 'Name',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Number',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Description',
+          type: 'STRING',
+        },
+        {
+          name: 'State',
+          type: 'STRING',
+
+        },
+        {
+          name: 'IncidentState',
+          type: 'STRING',
+
+        },
+        {
+          name: 'OpenedAt',
+          type: 'DATETIME',
+        },
+        {
+          name: 'Impact',
+          type: 'STRING',
+        },
+        {
+          name: 'Urgency',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Severity',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Priority',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Location',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Company',
+          type: 'STRING',
+
+        },
+        {
+          name: 'Contact',
+          type: 'STRING',
+
+        },
+        {
+          name: 'IMG',
+          type: 'STRING'
+        },
+        {
+          name: 'PriorityNum',
+          type: 'INTEGER'
+        },
+      ],
+      function: saveIncidentDetails
     }
   ],
   model: {
@@ -334,6 +480,17 @@ integration.define({
         name: 'commentaries',
         primaryTable: 'approvalsReport',
         foreignTable: 'comments',
+        columnPairs: [
+          {
+            primaryKey: 'ID',
+            foreignKey: 'RndID'
+          }
+        ]
+      },
+      {
+        name: 'commentariesIncidents',
+        primaryTable: 'incidentsReport',
+        foreignTable: 'commentsIncidents',
         columnPairs: [
           {
             primaryKey: 'ID',
@@ -354,6 +511,10 @@ integration.define({
           {
             name: 'Active',
             type: 'BOOLEAN',
+          },
+          {
+            name: 'Asignee',
+            type: 'STRING'
           },
           {
             name: 'Name',
@@ -377,7 +538,7 @@ integration.define({
           },
           {
             name: 'OpenedAt',
-            type: 'DATE'
+            type: 'DATETIME'
           },
           {
             name: 'Impact',
@@ -406,6 +567,14 @@ integration.define({
           {
             name: 'Contact',
             type: 'STRING'
+          },
+          {
+            name: 'IMG',
+            type: 'STRING'
+          },
+          {
+            name: 'PriorityNum',
+            type: 'INTEGER'
           },
         ],
       },
@@ -443,11 +612,11 @@ integration.define({
           },
           {
             name: 'OpenedAt',
-            type: 'DATE'
+            type: 'DATETIME'
           },
           {
             name: 'DueDate',
-            type: 'DATE'
+            type: 'DATETIME'
           },
           {
             name: 'Approver',
@@ -465,6 +634,10 @@ integration.define({
             name: 'Comment',
             type: 'STRING'
           },
+          {
+            name: 'IMG',
+            type: 'STRING'
+          }
         ]
       },
       {
@@ -474,7 +647,28 @@ integration.define({
             name: 'ID',
             type: 'DOUBLE',
             primaryKey: true
-
+          },
+          {
+            name: 'RndID',
+            type: 'DOUBLE',
+          },
+          {
+            name: 'Comment',
+            type: 'STRING'
+          },
+          {
+            name: 'CurrentDate',
+            type: 'DATE'
+          },
+        ]
+      },
+      {
+        name: "commentsIncidents",
+        columns: [
+          {
+            name: 'ID',
+            type: 'DOUBLE',
+            primaryKey: true
           },
           {
             name: 'RndID',
