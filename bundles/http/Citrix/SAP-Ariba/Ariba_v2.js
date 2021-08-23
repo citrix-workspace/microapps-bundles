@@ -51,7 +51,7 @@ function flatRequisition(requisition) {
     return requisition
 }
 
-async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
+async function parseAndStoreApprovalRequests(sync, json, totalCost, groups, syncId) {
     //this function is resolving approvers for requisitions and copy necessary informations to create notifications
     let rqUserList = []
     for (let appReqsr of json) {
@@ -79,6 +79,9 @@ async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
             }
         }
     }
+    rqUserList.forEach(function (element) {
+        element.newChangeId = syncId
+    })
     sync.dataStore.save('pendingApprovablesRequisitions', rqUserList) //saving approvers
     return groups
 }
@@ -132,7 +135,7 @@ function resolveGroupApproval(json, groupMembers, groupId) {
     })
 }
 
-async function storeRequisition(sync, requisitions, groups = new Map()) {
+async function storeRequisition(sync, requisitions, syncId, groups = new Map()) {
     console.log("Loading requisition details, count: " + requisitions.length)
     for (let requisition of requisitions) { // getting requisition details and additional data
         let responseData = await sync.client.fetch('requisitions/' + requisition + '?realm=' + sync.integrationParameters.realm, {
@@ -142,12 +145,12 @@ async function storeRequisition(sync, requisitions, groups = new Map()) {
         })
         let json = await responseData.json()
         if (responseData.ok && isObject(json)) {
-            if (notEmptyArray(json.comments)) {
+            if (notEmptyArray(json.comments)) {   
                 sync.dataStore.save('rq_comments', flatComments(json.comments)) //saving comments
                 delete json.comments //deleting comments from json to gain better performance
             }
             if (notEmptyArray(json.approvalRequests)) {
-                await parseAndStoreApprovalRequests(sync, json.approvalRequests, json.totalCost, groups)
+                await parseAndStoreApprovalRequests(sync, json.approvalRequests, json.totalCost, groups, syncId)
                 delete json.approvalRequests
             }
             if (notEmptyArray(json.lineItems)) { //saving line items
@@ -156,10 +159,15 @@ async function storeRequisition(sync, requisitions, groups = new Map()) {
                         sync.dataStore.save('rq_li_accountings', flatLineItemsAccountings(json.lineItems[j].accountings)) //saving li accounting
                         delete json.lineItems[j].accountings
                     }
-                }
+                } 
+                json.lineItems.forEach(function (element) {
+                    element.newChangeId = syncId
+                })
+
                 sync.dataStore.save('rq_lineitems', flatLineItems(json.lineItems)) //saving line items
                 delete json.lineItems
             }
+            json.newChangeId = syncId
             sync.dataStore.save('requisition_details', flatRequisition(json))
         }
     }
@@ -287,7 +295,7 @@ async function syncAriba(sync, incrementalSync) {
         documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days
     documentsLists.requisitions = [...new Set(documentsLists.requisitions)] //creating uniq list
     documentsLists.invoices = [...new Set(documentsLists.invoices)] //creating uniq list
-    await storeRequisition(sync, documentsLists.requisitions) //storing requisitions and resolve group approvables
+    await storeRequisition(sync, documentsLists.requisitions, documentsLists.newChangeId) //storing requisitions and resolve group approvables
     if (documentsLists.newChangeId > documentsLists.lastChangeId) {
         sync.context.lastChangeSequenceId = documentsLists.newChangeId
     } //saving  lastChangeSequenceId for incremental sync into context
@@ -527,6 +535,10 @@ integration.define({
                     {
                         'name': 'totalCostAmount',
                         'type': 'DOUBLE'
+                    },
+                    {
+                        'name': 'newChangeId',
+                        'type': 'INTEGER'
                     }
                 ]
             },
@@ -647,6 +659,10 @@ integration.define({
                         'name': 'tc_currency',
                         'type': 'STRING',
                         'length': 16
+                    },
+                    {
+                        'name': 'newChangeId',
+                        'type': 'INTEGER'
                     }
                 ]
             },
@@ -775,6 +791,10 @@ integration.define({
                         'name': 'supp_name',
                         'type': 'STRING',
                         'length': 64
+                    },
+                    {
+                        'name': 'newChangeId',
+                        'type': 'INTEGER'
                     }
                 ]
             },
@@ -869,6 +889,10 @@ integration.define({
                     {
                         "primaryKey": "uniqueName",
                         "foreignKey": "requisitionId"
+                    },
+                    {
+                        "primaryKey": "newChangeId",
+                        "foreignKey": "newChangeId"
                     }
                 ]
             },
@@ -880,6 +904,10 @@ integration.define({
                     {
                         "primaryKey": "requisitionId",
                         "foreignKey": "requisitionId"
+                    },
+                    {
+                        "primaryKey": "newChangeId",
+                        "foreignKey": "newChangeId"
                     }
                 ]
             },
