@@ -251,7 +251,7 @@ const tickets = [
     AssigneeId: "6",
     ReporterId: "4",
     Description:
-      "Definitely a problem on our side. The logs are available at...",
+      "Definitely a problem on our side. The logs are available at www.example.com",
   },
   {
     IssueKey: "ISS2",
