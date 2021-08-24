@@ -732,45 +732,15 @@ async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
 
     if (resp.ok && resp.status === 200) {
         const data = await resp.json();
-        const dataArray = data.records.map(obj => {
-            let rObj = JSON.parse(obj);
-            rObj.CreatedDateTime = new Date(rObj.CreatedDateTime);
-            rObj.LastModifiedDateTime = new Date(rObj.LastModifiedDateTime);
-            rObj.LastModDateTime = new Date(rObj.LastModDateTime);
-            rObj.SLAResponseWarning = new Date(rObj.SLAResponseWarning);
-            rObj.SLAResolutionWarning = new Date(rObj.SLAResolutionWarning);
-            return rObj;
-        });
-
+        const dataArray = data.records.map(JSON.parse).map(convertDateProperties('CreatedDateTime', 'LastModifiedDateTime', 'LastModDateTime', 'SLAResponseWarning', 'SLAResolutionWarning'));
         if (moduleName == 'servicesIncidentTypes' || moduleName == 'categoriesIncidentTypes') {
-            let types = dataArray.map((obj, index) => {
-                const rType = {
-                    id: index,
-                    Service: obj.Service,
-                    IncidentType: obj.IncidentType,
-                    Category: obj.Category
-                };
-                return rType;
-            });;
-
-            let uniqTypes = [];
+            let types = dataArray.map(({ Service, IncidentType, Category }, index) => ({ id: index, Service, IncidentType, Category }));
             if (moduleName == 'categoriesIncidentTypes') {
-                for (const element of types) {
-                    let contains = await listContains(uniqTypes, element, 'Category', 'IncidentType');
-                    if (!contains) {
-                        uniqTypes.push(element);
-                    }
-                }
+                types = uniqWith(types, (a, b) => a.Category == b.Category && a.IncidentType == b.IncidentType);
             } else {
-                for (const element of types) {
-                    let contains = await listContains(uniqTypes, element, 'Service', 'IncidentType');
-                    if (!contains) {
-                        uniqTypes.push(element);
-                    }
-                }
+                types = uniqWith(types, (a, b) => a.Service == b.Service && a.IncidentType == b.IncidentType);
             }
-
-            dataStore.save(moduleName, uniqTypes);
+            dataStore.save(moduleName, types);
         } else {
             dataStore.save(moduleName, dataArray);
         }
@@ -1211,11 +1181,23 @@ async function buildFilters(functionName, latestSynchronizationTime) {
     return { fieldName, date }
 }
 
-async function listContains(list, obj, property1, property2) {
-    for (const listObj of list) {
-        if (listObj[property1] === obj[property1] && listObj[property2] === obj[property2]) {
-            return true;
+function convertDateProperties(...args) {
+    const propertyNames = [...args]
+    return obj => Object.entries(obj).reduce((acc, [prop, value]) => {
+        if (propertyNames.includes(prop)) {
+            acc[prop] = new Date(value);
+        } else {
+            acc[prop] = value;
+        } return acc;
+    }, {})
+}
+
+function uniqWith(arr, comparator) {
+    let uniques = [];
+    for (let a of arr) {
+        if (uniques.findIndex(u => comparator(a, u)) === -1) {
+            uniques.push(a);
         }
     }
-    return false;
+    return uniques;
 }
