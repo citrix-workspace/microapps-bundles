@@ -1,288 +1,12 @@
 var date = new Date()
 
-const reports = [
-  {
-      Id: '12372844', 
-      Type: 'Appliances', 
-      OwnerName: 'Aline Gomes', 
-      OwnerMail: 'aline.gomes@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD',
-      Comment: '', 
-      Status: 'Submitted'
-      },
-      {
-      Id: '12372845', 
-      Type: 'Appliances', 
-      OwnerName: 'Billy Taylor', 
-      OwnerMail: 'billy.taylor@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD',
-      Comment: '', 
-      Status: 'Submitted'
-      },
-      {
-      Id: '12372846', 
-      Type: 'Training', 
-      OwnerName: 'Marijan Humerca', 
-      OwnerMail: 'marijan.humerca@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD', 
-      Comment: '', 
-      Status: 'Submitted'
-      },
-      {
-      Id: '12372847', 
-      Type: 'Office Supplies', 
-      OwnerName: 'Mark Smith', 
-      OwnerMail: 'mark.smith@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD',
-      Comment: '',  
-      Status: 'Submitted'
-      },
-      {
-      Id: '12372848', 
-      Type: 'Office Software', 
-      OwnerName: 'Robert Clayton', 
-      OwnerMail: 'robert.clayton@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD', 
-      Comment: '', 
-      Status: 'Submitted'
-      },
-      {
-      Id: '12372849', 
-      Type: 'Maintenance', 
-      OwnerName: 'Sarah Silva', 
-      OwnerMail: 'sarah.silva@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
-      TotalAmount: 0, 
-      CurrencyCode: 'USD', 
-      Comment: '', 
-      Status: 'Submitted'
-      }  
-]
-
-const expenses = [
-  {
-      Id: '19710704432971771', 
-      Supplier: 'JB Hifi', 
-      Category: 'Appliances',
-      Description: 'Printer',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 500, 
-      CurrencyCode: 'USD', 
-      Quantity: 1,
-      ReportName: '12372844',
-      Total: 500
-      },
-      {
-      Id: '19710704432971772', 
-      Supplier: 'JB Hifi', 
-      Category: 'Appliances',
-      Description: 'Scanner',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 400, 
-      CurrencyCode: 'USD', 
-      Quantity: 1,
-      ReportName: '12372845',
-      Total: 400
-      },
-      {
-      Id: '19710704432971773', 
-      Supplier: 'Linkedin Learning', 
-      Category: 'Training',
-      Description: 'JavaScript Course',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 100, 
-      CurrencyCode: 'USD', 
-      Quantity: 1,
-      ReportName: '12372846',
-      Total: 100
-      },
-      {
-      Id: '19710704432971774', 
-      Supplier: 'Linkedin Learning', 
-      Category: 'Training',
-      Description: 'Cloud Concepts Course',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 120, 
-      CurrencyCode: 'USD', 
-      Quantity: 1,
-      ReportName: '12372846',
-      Total: 120
-      },
-      {
-      Id: '19710704432971775', 
-      Supplier: 'Staples', 
-      Category: 'Office Supplies',
-      Description: 'Printer Paper',
-      TransactionDate: date.toLocaleDateString(),  
-      Price: 50.25, 
-      CurrencyCode: 'USD', 
-      Quantity: 10,
-      ReportName: '12372847',
-      Total: 502.50
-      },
-      {
-      Id: '19710704432971776', 
-      Supplier: 'Staples', 
-      Category: 'Office Supplies',
-      Description: 'Ink Cartridges',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 120.50, 
-      CurrencyCode: 'USD', 
-      Quantity: 12,
-      ReportName: '12372847',
-      Total: 1446
-      },
-      {
-      Id: '19710704432971777', 
-      Supplier: 'Office Depot', 
-      Category: 'Office Supplies',
-      Description: 'General Stationary',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 30, 
-      CurrencyCode: 'USD', 
-      Quantity: 5,
-      ReportName: '12372847',
-      Total: 150
-      },
-      {
-      Id: '19710704432971778', 
-      Supplier: 'Microsoft', 
-      Category: 'Office Software',
-      Description: 'Microsoft 365 Subscription',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 30, 
-      CurrencyCode: 'USD', 
-      Quantity: 5,
-      ReportName: '12372848',
-      Total: 150
-      },
-      {
-      Id: '19710704432971779', 
-      Supplier: 'Electrician', 
-      Category: 'Maintenance',
-      Description: 'Fix lights',
-      TransactionDate: date.toLocaleDateString(), 
-      Price: 75.60, 
-      CurrencyCode: 'USD', 
-      Quantity: 1,
-      ReportName: '12372849',
-      Total: 75.60
-      }
-]
-
-const categories = [
-  {
-    Type: 'Appliances',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/folder.462b3c7e85bf4fa6e7a50801cd400bd2.svg'
-  },
-  {
-    Type: 'Maintenance',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/incident.e71280c2c22b2abd3aba06971728c296.svg'
-  },
-  {
-    Type: 'Training',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/course.fa9aabf2ac03cfad305b04ed8db96430.svg'
-  },
-  {
-    Type: 'Other',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/feedback.c533ed2d280d39d9288b2fd741a18651.svg'
-  },
-  {
-    Type: 'Office Supplies',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/case.2bb73f1b3eff52a8134fd591447bdaa1.svg'
-  },
-  {
-    Type: 'Office Software',
-    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_update.2d453d1646665c2ede6de83f848a6566.svg'
-  }
-]
-
-async function syncReports ({ dataStore, integrationParameters }) {
-  console.log('Synching data...')
-
-  countTotalAmount()
-
-  dataStore.save('reports', reports)
-  dataStore.save('expenses', expenses)
-  dataStore.save('categories', categories)
-  console.log("Synchronization complete")
-}
-
-function countTotalAmount() {
-  let amounts = new Map()
-  expenses.forEach(e => {
-    amounts.set(e.ReportName, (amounts.has(e.ReportName)? amounts.get(e.ReportName) : 0) + (e.Price*e.Quantity))
-  })
-  reports.forEach(r => r.TotalAmount = amounts.get(r.Id))
-}
-
-async function incrementalSynch({dataStore, client}) {
-  console.log("Running incremental synchronization...")
-  let report = JSON.parse(JSON.stringify(reports[Math.floor(Math.random() * (reports.length))]))
-  //but we need to get the string value of report id, transfer it to int, add the randomly generated value...
-  const reportId = parseInt(report.Id) + Math.floor(Math.random() * (1000 - reports.length)) + reports.length
-  report.Id = reportId.toString()
-
-  //expenses will be saved into the array 
-  let iExpenses = []
-  let totalamount = 0
-  //pulling the last id of an expense so we can adequately increment the ids
-  //we have to slice the value since the ids are far outside of integer range 
-  let eLastId = parseInt(expenses[expenses.length-1].Id.slice(12,17))
-
-  let expensechoices = [] //possible expenses in report's category
-  for (let i=0; i< expenses.length; i++) {
-    let expense = JSON.parse(JSON.stringify(expenses[i]))
-    if (expense.Category == report.Type){
-      expensechoices.push(expense)
-    }
-  }
-
-  let numOfExpenses = Math.floor(Math.random() * (expensechoices.length - 1)) + 1 //number of expenses for a report
-
-  for (let i=0; i< numOfExpenses; i++) {
-    let expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
-    expense.ReportName = report.Id
-    expense.TransactionDate=report.DateSubmitted
-    let eId = eLastId + (i + 1)
-    expense.Id = expense.Id.slice(0,12) + eId.toString()
-    totalamount += (expense.Price * expense.Quantity)
-    iExpenses.push(expense)
-  }
-  
-  report.TotalAmount = totalamount
-  dataStore.save('reports', report)
-  dataStore.save('expenses', iExpenses)
-  console.log("Incremental synchronization completed...")
-}
-
-async function updateReport({ dataStore, client, actionParameters, integrationParameters }) {
-  console.log(`Updating report with id ${actionParameters.Id}...`)
-  
-  const {Id, Type, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status} = actionParameters
-  const report = {Id, Type, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status}
-
-  dataStore.save('reports', report)
-  console.log(`Report with id ${actionParameters.Id} updated`)
-}
-
 integration.define({
   actions: [
     {
       name: 'updateReport',
       parameters: [
         {
-          name: 'Id',
+          name: 'ID',
           type: 'STRING',
           required: true
         },
@@ -292,7 +16,7 @@ integration.define({
           required: true
         },
         {
-          name: 'Type',
+          name: 'Category',
           type: 'STRING'
         },
         {
@@ -336,13 +60,13 @@ integration.define({
         name: 'reports',
         columns: [
           {
-            name: 'Id',
+            name: 'ID',
             type: 'STRING',
             length: 255,
             primaryKey: true
           },
           {
-            name: 'Type',
+            name: 'Category',
             type: 'STRING',
             length: 255
           },
@@ -384,7 +108,7 @@ integration.define({
         name: 'expenses',
         columns: [
           {
-            name: 'Id',
+            name: 'ID',
             type: 'STRING',
             length: 255,
             primaryKey: true
@@ -421,7 +145,7 @@ integration.define({
             type: 'DATE',
           },
           {
-            name: 'ReportName',
+            name: 'ReportID',
             type: 'STRING',
           },
           {
@@ -434,7 +158,7 @@ integration.define({
         name: 'categories',
         columns: [
           {
-            name: 'Type',
+            name: 'Category',
             type: 'STRING',
             length: 255,
             primaryKey: true
@@ -454,8 +178,8 @@ integration.define({
         foreignTable: 'expenses',
         columnPairs: [
           {
-            primaryKey: 'Id',
-            foreignKey: 'ReportName'
+            primaryKey: 'ID',
+            foreignKey: 'ReportID'
           }
         ]
       },
@@ -465,11 +189,297 @@ integration.define({
         foreignTable: 'categories',
         columnPairs: [
           {
-            primaryKey: 'Type',
-            foreignKey: 'Type'
+            primaryKey: 'Category',
+            foreignKey: 'Category'
           }
         ]
       }
     ]
   }
 })
+
+const reports = [
+  {
+      ID: '12372844', 
+      Category: 'Appliances', 
+      OwnerName: 'Aline Gomes', 
+      OwnerMail: 'aline.gomes@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD',
+      Comment: '', 
+      Status: 'Submitted'
+      },
+      {
+      ID: '12372845', 
+      Category: 'Appliances', 
+      OwnerName: 'Billy Taylor', 
+      OwnerMail: 'billy.taylor@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD',
+      Comment: '', 
+      Status: 'Submitted'
+      },
+      {
+      ID: '12372846', 
+      Category: 'Training', 
+      OwnerName: 'Marijan Humerca', 
+      OwnerMail: 'marijan.humerca@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD', 
+      Comment: '', 
+      Status: 'Submitted'
+      },
+      {
+      ID: '12372847', 
+      Category: 'Office Supplies', 
+      OwnerName: 'Mark Smith', 
+      OwnerMail: 'mark.smith@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD',
+      Comment: '',  
+      Status: 'Submitted'
+      },
+      {
+      ID: '12372848', 
+      Category: 'Office Software', 
+      OwnerName: 'Robert Clayton', 
+      OwnerMail: 'robert.clayton@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD', 
+      Comment: '', 
+      Status: 'Submitted'
+      },
+      {
+      ID: '12372849', 
+      Category: 'Maintenance', 
+      OwnerName: 'Sarah Silva', 
+      OwnerMail: 'sarah.silva@acme.com',
+      DateSubmitted: date.toLocaleDateString(), 
+      TotalAmount: 0, 
+      CurrencyCode: 'USD', 
+      Comment: '', 
+      Status: 'Submitted'
+      }  
+]
+
+const expenses = [
+  {
+      ID: '19710704432971771', 
+      Supplier: 'JB Hifi', 
+      Category: 'Appliances',
+      Description: 'Printer',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 500, 
+      CurrencyCode: 'USD', 
+      Quantity: 1,
+      ReportID: '12372844',
+      Total: 500
+      },
+      {
+      ID: '19710704432971772', 
+      Supplier: 'JB Hifi', 
+      Category: 'Appliances',
+      Description: 'Scanner',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 400, 
+      CurrencyCode: 'USD', 
+      Quantity: 1,
+      ReportID: '12372845',
+      Total: 400
+      },
+      {
+      ID: '19710704432971773', 
+      Supplier: 'Linkedin Learning', 
+      Category: 'Training',
+      Description: 'JavaScript Course',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 100, 
+      CurrencyCode: 'USD', 
+      Quantity: 1,
+      ReportID: '12372846',
+      Total: 100
+      },
+      {
+      ID: '19710704432971774', 
+      Supplier: 'Linkedin Learning', 
+      Category: 'Training',
+      Description: 'Cloud Concepts Course',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 120, 
+      CurrencyCode: 'USD', 
+      Quantity: 1,
+      ReportID: '12372846',
+      Total: 120
+      },
+      {
+      ID: '19710704432971775', 
+      Supplier: 'Staples', 
+      Category: 'Office Supplies',
+      Description: 'Printer Paper',
+      TransactionDate: date.toLocaleDateString(),  
+      Price: 50.25, 
+      CurrencyCode: 'USD', 
+      Quantity: 10,
+      ReportID: '12372847',
+      Total: 502.50
+      },
+      {
+      ID: '19710704432971776', 
+      Supplier: 'Staples', 
+      Category: 'Office Supplies',
+      Description: 'Ink Cartridges',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 120.50, 
+      CurrencyCode: 'USD', 
+      Quantity: 12,
+      ReportID: '12372847',
+      Total: 1446
+      },
+      {
+      ID: '19710704432971777', 
+      Supplier: 'Office Depot', 
+      Category: 'Office Supplies',
+      Description: 'General Stationary',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 30, 
+      CurrencyCode: 'USD', 
+      Quantity: 5,
+      ReportID: '12372847',
+      Total: 150
+      },
+      {
+      ID: '19710704432971778', 
+      Supplier: 'Microsoft', 
+      Category: 'Office Software',
+      Description: 'Microsoft 365 Subscription',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 30, 
+      CurrencyCode: 'USD', 
+      Quantity: 5,
+      ReportID: '12372848',
+      Total: 150
+      },
+      {
+      ID: '19710704432971779', 
+      Supplier: 'Electrician', 
+      Category: 'Maintenance',
+      Description: 'Fix lights',
+      TransactionDate: date.toLocaleDateString(), 
+      Price: 75.60, 
+      CurrencyCode: 'USD', 
+      Quantity: 1,
+      ReportID: '12372849',
+      Total: 75.60
+      }
+]
+
+const categories = [
+  {
+    Category: 'Appliances',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/folder.462b3c7e85bf4fa6e7a50801cd400bd2.svg'
+  },
+  {
+    Category: 'Maintenance',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/incident.e71280c2c22b2abd3aba06971728c296.svg'
+  },
+  {
+    Category: 'Training',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/course.fa9aabf2ac03cfad305b04ed8db96430.svg'
+  },
+  {
+    Category: 'Other',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/feedback.c533ed2d280d39d9288b2fd741a18651.svg'
+  },
+  {
+    Category: 'Office Supplies',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/case.2bb73f1b3eff52a8134fd591447bdaa1.svg'
+  },
+  {
+    Category: 'Office Software',
+    ImageURL: 'https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_update.2d453d1646665c2ede6de83f848a6566.svg'
+  }
+]
+
+async function syncReports ({ dataStore, integrationParameters }) {
+  console.log('Synching data...')
+
+  countTotalAmount()
+
+  dataStore.save('reports', reports)
+  dataStore.save('expenses', expenses)
+  dataStore.save('categories', categories)
+  console.log("Synchronization complete")
+}
+
+function countTotalAmount() {
+  let amounts = new Map()
+  expenses.forEach(e => {
+    amounts.set(e.ReportID, (amounts.has(e.ReportID)? amounts.get(e.ReportID) : 0) + (e.Price*e.Quantity))
+  })
+  reports.forEach(r => r.TotalAmount = amounts.get(r.ID))
+}
+
+function getRandomReport(list){
+  return JSON.parse(JSON.stringify(list[Math.floor(Math.random() * (list.length))]))
+}
+
+function createReportID(id, list){
+  id = parseInt(id)
+  let new_id = id + Math.floor(Math.random() * (1000 - list.length)) + list.length
+  return new_id.toString()
+}
+
+function getNumOfExpenses(list){
+  return Math.floor(Math.random() * (list.length - 1)) + 1
+}
+
+function generateRandomNumValue(floor, ceiling) {
+  return Math.floor(Math.random()* (ceiling - floor)) + floor
+}
+
+async function incrementalSynch({dataStore, client}) {
+  console.log("Running incremental synchronization...")
+  let report = getRandomReport(reports)
+  report.ID = createReportID(report.ID, reports)
+  let newExpenses = []
+  let totalamount = 0
+
+  let expensechoices = [] //possible expenses in report's category
+  for (let i=0; i< expenses.length; i++) {
+    let expense = JSON.parse(JSON.stringify(expenses[i]))
+    if (expense.Category == report.Category){
+      expensechoices.push(expense)
+    }
+  }
+
+  let numOfExpenses =  getNumOfExpenses(expensechoices)
+
+  for (let i=0; i < numOfExpenses; i++) {
+    let expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
+    expense.ReportID = report.ID
+    expense.TransactionDate = report.DateSubmitted
+    expense.ID = expense.ID.slice(0,12) + (generateRandomNumValue(1, 99999)).toString()
+    totalamount += (expense.Price * expense.Quantity)
+    newExpenses.push(expense)
+  }
+  
+  report.TotalAmount = totalamount
+  dataStore.save('reports', report)
+  dataStore.save('expenses', newExpenses)
+  console.log("Incremental synchronization completed...")
+}
+
+async function updateReport({ dataStore, client, actionParameters, integrationParameters }) {
+  console.log(`Updating report with id ${actionParameters.ID}...`)
+  
+  const {ID, Category, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status} = actionParameters
+  const report = {ID, Category, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status}
+
+  dataStore.save('reports', report)
+  console.log(`Report with id ${actionParameters.ID} updated`)
+}
