@@ -31307,6 +31307,12 @@ integration.define({
                         primaryKey: false,
                     },
                     {
+                        name: 'state',
+                        type: 'STRING',
+                        length: 256,
+                        primaryKey: false
+                    },
+                    {
                         name: 'selfie',
                         type: 'STRING',
                         length: 256,
