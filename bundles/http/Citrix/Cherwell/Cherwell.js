@@ -735,10 +735,11 @@ async function getRequest({ dataStore, client }, moduleName, body, endpoint) {
         const dataArray = data.records.map(JSON.parse).map(convertDateProperties('CreatedDateTime', 'LastModifiedDateTime', 'LastModDateTime', 'SLAResponseWarning', 'SLAResolutionWarning'));
         if (moduleName == 'servicesIncidentTypes' || moduleName == 'categoriesIncidentTypes') {
             let types = dataArray.map(({ Service, IncidentType, Category }, index) => ({ id: index, Service, IncidentType, Category }));
+            const _ = library.load("lodash");
             if (moduleName == 'categoriesIncidentTypes') {
-                types = uniqWith(types, (a, b) => a.Category == b.Category && a.IncidentType == b.IncidentType);
+                types = _.uniqWith(types, (a, b) => a.Category == b.Category && a.IncidentType == b.IncidentType);
             } else {
-                types = uniqWith(types, (a, b) => a.Service == b.Service && a.IncidentType == b.IncidentType);
+                types = _.uniqWith(types, (a, b) => a.Service == b.Service && a.IncidentType == b.IncidentType);
             }
             dataStore.save(moduleName, types);
         } else {
@@ -1190,14 +1191,4 @@ function convertDateProperties(...args) {
             acc[prop] = value;
         } return acc;
     }, {})
-}
-
-function uniqWith(arr, comparator) {
-    let uniques = [];
-    for (let a of arr) {
-        if (uniques.findIndex(u => comparator(a, u)) === -1) {
-            uniques.push(a);
-        }
-    }
-    return uniques;
 }
