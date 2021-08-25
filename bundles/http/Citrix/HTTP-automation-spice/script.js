@@ -31312,6 +31312,12 @@ integration.define({
                         length: 256,
                         primaryKey: false,
                     },
+                    {
+                        name: 'state',
+                        type: 'STRING',
+                        length: 256,
+                        primaryKey: false,
+                    },
                 ],
             },
             {
