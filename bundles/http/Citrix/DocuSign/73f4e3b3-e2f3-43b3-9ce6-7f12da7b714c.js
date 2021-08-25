@@ -1,7 +1,6 @@
 const moment = library.load('moment-timezone');
 const uuid = library.load('uuid');
 
-
 integration.define({
     synchronizations: [
         {
@@ -104,6 +103,15 @@ integration.define({
                     { name: "user_status", type: "STRING", length: 255 },
                     { name: "user_type", type: "STRING", length: 255 },
                 ]
+
+            },
+            {
+                name: "Envelopeview",
+                columns: [
+                    { name: "url", type: "STRING", length: 3000 },
+                    { name: "email", type: "STRING", length: 255, primaryKey: true },
+                    { name: "envelope_id", type: "STRING", length: 255 }
+                ]
             }
         ],
         relationships: [
@@ -146,59 +154,83 @@ integration.define({
         {
             name: "Add_Recipient",
             parameters: [
-                { name: "envelope_Id", type: "STRING", required:true },
+                { name: "envelope_Id", type: "STRING", required: true },
                 { name: "recipient_Name", type: "STRING" },
                 { name: "recipient_Email", type: "STRING" },
                 { name: "role_Name", type: "STRING" },
                 { name: "recipient_Email_Unknown", type: "STRING" },
-                { name: "user_Id", type: "STRING", required:true },
+                { name: "user_Id", type: "STRING", required: true },
             ],
             function: addRecipient
         },
         {
             name: "Update_Or_Resend_Envelope",
             parameters: [
-                { name: "envelope_Id", type: "STRING", required:true },
+                { name: "envelope_Id", type: "STRING", required: true },
                 { name: "recipient_Name", type: "STRING" },
-                { name: "recipient_Id", type: "STRING", required:true },
+                { name: "recipient_Id", type: "STRING", required: true },
                 { name: "recipient_Email", type: "STRING" },
-                { name: "user_Id", type: "STRING", required:true },
-                { name: "method_Name", type: "STRING", required:true },
+                { name: "user_Id", type: "STRING", required: true },
+                { name: "method_Name", type: "STRING", required: true },
             ],
             function: updateOrResendEnvelope
         },
         {
             name: "Send_Envelope",
             parameters: [
-                { name: "role_Name_one", type: "STRING", required:true },
+                { name: "role_Name_one", type: "STRING", required: true },
                 { name: "role_Name_two", type: "STRING" },
                 { name: "role_Name_three", type: "STRING" },
-                { name: "recipient_Name_one", type: "STRING", required:true },
+                { name: "recipient_Name_one", type: "STRING", required: true },
                 { name: "recipient_Name_two", type: "STRING" },
                 { name: "recipient_Name_three", type: "STRING" },
-                { name: "recipient_Email_one", type: "STRING", required:true },
+                { name: "recipient_Email_one", type: "STRING", required: true },
                 { name: "recipient_Email_two", type: "STRING" },
                 { name: "recipient_Email_three", type: "STRING" },
-                { name: "template_Id", type: "STRING", required:true },
+                { name: "template_Id", type: "STRING", required: true },
                 { name: "email_Subject", type: "STRING" },
-                { name: "recipient_Email_one_Unknown", type: "STRING", required:true},
+                { name: "recipient_Email_one_Unknown", type: "STRING", required: true },
                 { name: "recipient_Email_two_Unknown", type: "STRING" },
                 { name: "recipient_Email_three_Unknown", type: "STRING" },
-                { name: "user_Id", type: "STRING", required:true },
+                { name: "user_Id", type: "STRING", required: true },
             ],
             function: sendTemplateThreeRecipient
         },
         {
             name: "Delete_Recipient",
             parameters: [
-                { name: "envelope_Id", type: "STRING", required:true},
-                { name: "recipient_Id", type: "STRING", required:true },
-                { name: "user_Id", type: "STRING", required:true },
+                { name: "envelope_Id", type: "STRING", required: true },
+                { name: "recipient_Id", type: "STRING", required: true },
+                { name: "user_Id", type: "STRING", required: true },
             ],
             function: deleteRecipient
         },
+        {
+            name: "Envelopeview",
+            parameters: [
+                { name: "envelope_Id", type: "STRING", required: true },
+                { name: "email", type: "STRING" },
+                { name: "userName", type: "STRING" }
+            ],
+            function: envelopeview
+        }
     ]
+
 });
+
+async function validateResponse(response) {
+    const body = await response.text()
+    if (response.headers.map['content-type']?.toLowerCase()?.includes("application/json")) {
+        const jsonBody = JSON.parse(body)
+        if (!response.ok) {
+            return { responseBody: jsonBody, errorMessage: jsonBody.message, errorStatus: true }
+        } else {
+            return { responseBody: jsonBody, errorStatus: false }
+        }
+    } else {
+        return { responseBody: body, errorMessage: 'Unable to process the request', errorStatus: true }
+    }
+}
 
 async function fullSync({ client, dataStore, integrationParameters, context }) {
     const ACCOUNT_ID = integrationParameters.account_Id
@@ -224,13 +256,13 @@ async function syncUsers(client, dataStore, account_id) {
     let totalSetSize = 0
     let userids = []
     do {
-        const response = await client.fetch(`/accounts/${account_id}/users?count=${COUNT}&start_position=${start_position}`)
-        const json = await response.json()
-        if (!response.ok) {
-            throw new Error(JSON.stringify(json))
+        const userResponse = await client.fetch(`/accounts/${account_id}/users?count=${COUNT}&start_position=${start_position}`)
+        const { responseBody, errorMessage, errorStatus } = await validateResponse(userResponse)
+        if (errorStatus) {
+            console.log(JSON.stringify(responseBody), errorMessage)
+            throw new Error(errorMessage)
         }
-        const data = json.users
-        let userData = data.map(user => {
+        let userData = (responseBody?.users ?? []).map(user => {
             userids.push(user.userId)
             return {
                 "created_date_time": new Date(user.createdDateTime),
@@ -248,32 +280,30 @@ async function syncUsers(client, dataStore, account_id) {
         dataStore.save('users', userData)
 
         start_position += COUNT;
-        totalSetSize = json['totalSetSize'];
+        totalSetSize = responseBody['totalSetSize'];
     } while (start_position < totalSetSize)
     return userids;
 }
 
-async function syncTemplates(client, dataStore, account_id, latestSynchronizationTime=null) {
+async function syncTemplates(client, dataStore, account_id, latestSynchronizationTime = null) {
     const COUNT = 100
     let start_position = 0
     let totalSetSize = 0
     const MODIFIED_FROM_DATE = moment(latestSynchronizationTime).utc().format()
     do {
         let url = `/accounts/${account_id}/templates?count=${COUNT}&order_by=modified&order=desc&include=documents&start_position=${start_position}`
-        if(latestSynchronizationTime != null){
-            url+=`&modified_from_date=${MODIFIED_FROM_DATE}`
+        if (latestSynchronizationTime != null) {
+            url += `&modified_from_date=${MODIFIED_FROM_DATE}`
         }
-        const response = await client.fetch(url)
-        const json = await response.json()
-        if (!response.ok) {
-            throw new Error(json)
+        const templateResponse = await client.fetch(url)
+        const { responseBody, errorMessage, errorStatus } = await validateResponse(templateResponse)
+        if (errorStatus) {
+            console.log(JSON.stringify(responseBody), errorMessage)
+            throw new Error(errorMessage)
         }
-        const templates = json.envelopeTemplates ?? []
-        let templateData = templates.map(template => {
-            const documents = template.documents ?? []
-            const folderIds = template.folderIds ?? []
-
-            let documentData = documents.map(document => {
+        const templates = responseBody.envelopeTemplates ?? []
+        let templateData = (responseBody.envelopeTemplates ?? []).map(template => {
+            let documentData = (template?.documents ?? []).map(document => {
                 return {
                     "document_id": +document.documentId,
                     "name": document.name,
@@ -284,7 +314,7 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
 
             dataStore.save("templates_documents", documentData)
 
-            let folderData = folderIds.map(folderId => {
+            let folderData = (template?.folderIds ?? []).map(folderId => {
                 return {
                     "value": folderId,
                     "parent_template_id": template.templateId,
@@ -311,27 +341,25 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
         dataStore.save('templates', templateData)
 
         start_position += COUNT;
-        totalSetSize = json['totalSetSize'];
+        totalSetSize = responseBody['totalSetSize'];
     } while (start_position < totalSetSize)
 }
 
-async function syncEnvelopes(client, dataStore, account_id, userids, latestSynchronizationTime=null) {
+async function syncEnvelopes(client, dataStore, account_id, userids, latestSynchronizationTime = null) {
     const COUNT = 100
-    const FROM_DATE = latestSynchronizationTime == null ?moment().subtract(4, 'M').utc().format():moment(latestSynchronizationTime).utc().format()
+    const FROM_DATE = latestSynchronizationTime == null ? moment().subtract(4, 'M').utc().format() : moment(latestSynchronizationTime).utc().format()
     let start_position = 0
     let totalSetSize = 0
     let i = 0
     do {
-        const response = await client.fetch(`/accounts/${account_id}/envelopes?from_date=${FROM_DATE}&include=recipients&count=${COUNT}&order=desc&order_by=created&user_id=${userids[i]}&status=any&start_position=${start_position}`)
-        const json = await response.json()
-        if (!response.ok) {
-            throw new Error(JSON.stringify(json))
+        const envelopeResponse = await client.fetch(`/accounts/${account_id}/envelopes?from_date=${FROM_DATE}&include=recipients&count=${COUNT}&order=desc&order_by=created&user_id=${userids[i]}&status=any&start_position=${start_position}`)
+        const { responseBody, errorMessage, errorStatus } = await validateResponse(envelopeResponse)
+        if (errorStatus) {
+            console.log(JSON.stringify(responseBody), errorMessage)
+            throw new Error(errorMessage)
         }
-        const envelopes = json.envelopes ?? []
-        let templateData = envelopes.map(envelope => {
-            const recipients = envelope.recipients?.signers ?? []
-
-            let recipientsData = recipients.map(recipient => {
+        let templateData = (responseBody.envelopes ?? []).map(envelope => {
+            let recipientsData = (envelope.recipients?.signers ?? []).map(recipient => {
                 return {
                     "delivered_date_time": recipient.deliveredDateTime != undefined ? new Date(recipient.deliveredDateTime) : null,
                     "email": recipient.email,
@@ -378,7 +406,7 @@ async function syncEnvelopes(client, dataStore, account_id, userids, latestSynch
         dataStore.save('envelopes', templateData)
 
         start_position += COUNT;
-        totalSetSize = json['totalSetSize'];
+        totalSetSize = responseBody['totalSetSize'];
         if (start_position > totalSetSize || totalSetSize == 0) {
             i++;
             start_position = 0
@@ -433,24 +461,25 @@ async function updateOrResendEnvelope({ client, dataStore, integrationParameters
 
 async function sendTemplateThreeRecipient({ client, dataStore, integrationParameters, actionParameters }) {
     const ACCOUNT_ID = integrationParameters.account_Id;
+    console.log(JSON.stringify(actionParameters))
     let templateRoles = [{
         roleName: actionParameters.role_Name_one,
         name: actionParameters.recipient_Name_one,
-        email: actionParameters.recipient_Email_one ?? actionParameters.recipient_Email_one_Unknown
+        email: actionParameters.recipient_Email_one != "" && actionParameters.recipient_Email_one != undefined ?  actionParameters.recipient_Email_one : actionParameters.recipient_Email_one_Unknown,
     }]
 
     if (actionParameters.role_Name_two != null && actionParameters.recipient_Name_two != null) {
         templateRoles.push({
             roleName: actionParameters.role_Name_two,
             name: actionParameters.recipient_Name_two,
-            email: actionParameters.recipient_Email_two ?? actionParameters.recipient_Email_two_Unknown,
+            email: actionParameters.recipient_Email_two != "" && actionParameters.recipient_Email_two != undefined ?  actionParameters.recipient_Email_two : actionParameters.recipient_Email_two_Unknown,
         })
     }
     if (actionParameters.role_Name_three != null && actionParameters.recipient_Name_three != null) {
         templateRoles.push({
             roleName: actionParameters.role_Name_three,
             name: actionParameters.recipient_Name_three,
-            email: actionParameters.recipient_Email_three ?? actionParameters.recipient_Email_three_Unknown
+            email: actionParameters.recipient_Email_three != "" && actionParameters.recipient_Email_three != undefined ?  actionParameters.recipient_Email_three : actionParameters.recipient_Email_three_Unknown,
         })
     }
     const response = await client.fetch(`accounts/${ACCOUNT_ID}/envelopes`, {
@@ -479,4 +508,30 @@ async function deleteRecipient({ client, dataStore, integrationParameters, actio
         throw new Error(await response.text())
     }
     dataStore.deleteById('envelopes_recipients_signers', actionParameters.recipient_Id)
+}
+async function envelopeview({ client, dataStore, integrationParameters, actionParameters }) {
+    const ACCOUNT_ID = integrationParameters.account_Id;
+    const envelopeViewResponse = await client.fetch(`accounts/${ACCOUNT_ID}/envelopes/${actionParameters.envelope_Id}/views/recipient`,
+        {
+            method: "POST",
+            body: JSON.stringify(
+                {
+                    "userName": `${actionParameters.userName}`,
+                    "email": `${actionParameters.email}`,
+                    "returnUrl": 'https://docusign.github.io/returnUrl/',
+                    "authenticationMethod": "None"
+                })
+        })
+
+    const { responseBody, errorMessage, errorStatus } = await validateResponse(envelopeViewResponse)
+    if (errorStatus) {
+        console.log(JSON.stringify(responseBody), errorMessage)
+        throw new Error(errorMessage)
+    }
+    const result = {
+        "envelope_id": actionParameters.envelope_Id,
+        "url": responseBody.url,
+        "email": actionParameters.email
+    }
+    dataStore.save('Envelopeview', result)
 }
