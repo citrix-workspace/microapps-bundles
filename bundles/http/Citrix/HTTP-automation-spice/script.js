@@ -31317,7 +31317,6 @@ integration.define({
                         type: 'STRING',
                         length: 256,
                         primaryKey: false,
-
                     },
                 ],
             },
