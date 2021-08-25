@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "540025d2-ba59-457f-baad-101edc2d1423",
       "serviceId" : 3,
-      "version" : 803,
+      "version" : 805,
       "parameters" : {
         "imageUrl" : "exported/ticket_assign.760c8db6db27596531b2337171bed63d.svg",
         "description" : "a1f545aa-910f-4fa5-b28e-9fbbc6a0f783"
@@ -171,8 +171,8 @@
               "columnCount" : 2,
               "showItemMeta" : true,
               "listStyle" : "BORDER",
-              "listImageStyle" : "CIRCLE",
-              "listMetaStyle" : "BADGE",
+              "listImageStyle" : "SQUARE",
+              "listMetaStyle" : "TEXT",
               "listImageSize" : "SMALL"
             },
             "description" : ""
@@ -3302,7 +3302,7 @@
   "services" : [ {
     "id" : 3,
     "uuid" : "b5241bb0-175d-465a-9a7e-5f10d7213115",
-    "version" : 1624,
+    "version" : 2066,
     "title" : "ServiceNow Demo",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -3868,7 +3868,7 @@
       "synchronizationContexts" : {
         "incidentsReport" : {
           "key1" : "4",
-          "iterations" : "19"
+          "iterations" : "25"
         }
       }
     },
@@ -4668,6 +4668,44 @@
     "messageCountLimit" : 50,
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
+  }, {
+    "id" : "a9dd16ae-9384-453e-9bc3-53b38fa83779",
+    "legacyId" : 42,
+    "appId" : "db8150f5-6454-4b1c-b893-253e0674404a",
+    "version" : 2,
+    "eventType" : "NEW",
+    "serviceId" : 3,
+    "tableId" : 75,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "label" : "e4f89fb9-cb02-4f01-97ef-0f797c979fe6",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "d4896c1e-06e0-4622-bfbc-234212209422",
+      "body" : "e73d5ba3-4262-4f8b-acd8-80ade4a13998",
+      "gotoAppPageId" : "aadb130a-96fe-4974-a2f9-028afc713382",
+      "configuration" : {
+        "cardTtlHours" : 24,
+        "highPriority" : false,
+        "cardIcon" : {
+          "type" : "MICRO_APP_ICON"
+        }
+      },
+      "actionButtonIds" : [ "5545d6b9-3949-4cb5-8978-fb40cdf4f99d", "ef1edef6-31b0-4c79-ae1f-5f642f72e3c9" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
   } ],
   "resolvers" : [ ],
   "modelConfiguration" : {
@@ -4676,7 +4714,7 @@
     "bundleDescription" : "ServiceNow Demo Integration",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "E94ACDD77545DD0077A76DFC1BA86A4F",
+  "translationChecksum" : "B8FF7A3B84E7BA66DEC0FD745A634D66",
   "appliedSappUpgrades" : [ "microapp-10549", "microapp-13471", "microapp-7984", "microapp-6293", "microapp-4666", "microapp-3580", "microapp-6593", "microapp-8892", "microapp-8950", "microapp-13344", "microapp-8511", "microapp-12427", "microapp-7888", "microapp-3547", "microapp-10421", "microapp-10860", "microapp-9701", "microapp-10856", "microapp-14613", "microapp-7290", "microapp-10876", "microapp-11340", "microapp-4518", "microapp-12525", "microapp-11136", "microapp-10420", "microapp-9702", "microapp-8003", "microapp-4020", "microapp-3838", "microapp-6790", "microapp-8921", "microapp-14849", "microapp-6264", "microapp-6853", "microapp-12505", "microapp-13233", "microapp-7561", "microapp-6617", "microapp-6262", "microapp-10858", "microapp-12936", "microapp-14177", "microapp-7961", "microapp-1980", "microapp-3548", "microapp-11836", "microapp-9597", "microapp-8576", "microapp-5025", "microapp-5227", "microapp-11349", "microapp-14492", "microapp-13808", "microapp-14978", "microapp-2450" ],
   "buildVersion" : "1.106.0.dd5f9debc0583924d69c2d2a0191748e89661a12"
 }
