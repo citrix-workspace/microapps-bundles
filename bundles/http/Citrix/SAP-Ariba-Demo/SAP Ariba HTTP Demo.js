@@ -1,4 +1,4 @@
-var date = new Date()
+var date = new Date().toLocaleDateString()
 
 integration.define({
   actions: [
@@ -204,7 +204,7 @@ const reports = [
       Category: 'Appliances', 
       OwnerName: 'Aline Gomes', 
       OwnerMail: 'aline.gomes@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD',
       Comment: '', 
@@ -215,7 +215,7 @@ const reports = [
       Category: 'Appliances', 
       OwnerName: 'Billy Taylor', 
       OwnerMail: 'billy.taylor@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD',
       Comment: '', 
@@ -226,7 +226,7 @@ const reports = [
       Category: 'Training', 
       OwnerName: 'Marijan Humerca', 
       OwnerMail: 'marijan.humerca@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD', 
       Comment: '', 
@@ -237,7 +237,7 @@ const reports = [
       Category: 'Office Supplies', 
       OwnerName: 'Mark Smith', 
       OwnerMail: 'mark.smith@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD',
       Comment: '',  
@@ -248,7 +248,7 @@ const reports = [
       Category: 'Office Software', 
       OwnerName: 'Robert Clayton', 
       OwnerMail: 'robert.clayton@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD', 
       Comment: '', 
@@ -259,7 +259,7 @@ const reports = [
       Category: 'Maintenance', 
       OwnerName: 'Sarah Silva', 
       OwnerMail: 'sarah.silva@acme.com',
-      DateSubmitted: date.toLocaleDateString(), 
+      DateSubmitted: date, 
       TotalAmount: 0, 
       CurrencyCode: 'USD', 
       Comment: '', 
@@ -273,7 +273,7 @@ const expenses = [
       Supplier: 'JB Hifi', 
       Category: 'Appliances',
       Description: 'Printer',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 500, 
       CurrencyCode: 'USD', 
       Quantity: 1,
@@ -285,7 +285,7 @@ const expenses = [
       Supplier: 'JB Hifi', 
       Category: 'Appliances',
       Description: 'Scanner',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 400, 
       CurrencyCode: 'USD', 
       Quantity: 1,
@@ -297,7 +297,7 @@ const expenses = [
       Supplier: 'Linkedin Learning', 
       Category: 'Training',
       Description: 'JavaScript Course',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 100, 
       CurrencyCode: 'USD', 
       Quantity: 1,
@@ -309,7 +309,7 @@ const expenses = [
       Supplier: 'Linkedin Learning', 
       Category: 'Training',
       Description: 'Cloud Concepts Course',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 120, 
       CurrencyCode: 'USD', 
       Quantity: 1,
@@ -321,7 +321,7 @@ const expenses = [
       Supplier: 'Staples', 
       Category: 'Office Supplies',
       Description: 'Printer Paper',
-      TransactionDate: date.toLocaleDateString(),  
+      TransactionDate: date,  
       Price: 50.25, 
       CurrencyCode: 'USD', 
       Quantity: 10,
@@ -333,7 +333,7 @@ const expenses = [
       Supplier: 'Staples', 
       Category: 'Office Supplies',
       Description: 'Ink Cartridges',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 120.50, 
       CurrencyCode: 'USD', 
       Quantity: 12,
@@ -345,7 +345,7 @@ const expenses = [
       Supplier: 'Office Depot', 
       Category: 'Office Supplies',
       Description: 'General Stationary',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 30, 
       CurrencyCode: 'USD', 
       Quantity: 5,
@@ -357,7 +357,7 @@ const expenses = [
       Supplier: 'Microsoft', 
       Category: 'Office Software',
       Description: 'Microsoft 365 Subscription',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 30, 
       CurrencyCode: 'USD', 
       Quantity: 5,
@@ -369,7 +369,7 @@ const expenses = [
       Supplier: 'Electrician', 
       Category: 'Maintenance',
       Description: 'Fix lights',
-      TransactionDate: date.toLocaleDateString(), 
+      TransactionDate: date, 
       Price: 75.60, 
       CurrencyCode: 'USD', 
       Quantity: 1,
@@ -408,20 +408,20 @@ const categories = [
 async function syncReports ({ dataStore, integrationParameters }) {
   console.log('Synching data...')
 
-  countTotalAmount()
+  const saveReports = calculateReportsWithTotals(expenses, reports)
 
-  dataStore.save('reports', reports)
+  dataStore.save('reports', saveReports)
   dataStore.save('expenses', expenses)
   dataStore.save('categories', categories)
   console.log("Synchronization complete")
 }
 
-function countTotalAmount() {
-  let amounts = new Map()
-  expenses.forEach(e => {
-    amounts.set(e.ReportID, (amounts.has(e.ReportID)? amounts.get(e.ReportID) : 0) + (e.Price*e.Quantity))
-  })
-  reports.forEach(r => r.TotalAmount = amounts.get(r.ID))
+function calculateTotalAmount(reportId, expenses) {
+  return expenses.filter((expense) => expense.ReportID === reportId).reduce((result, expense) => result + expense.Price*expense.Quantity, 0)
+}
+
+function calculateReportsWithTotals(expenses, reports) {
+  return reports.map(report => ({...report, TotalAmount: calculateTotalAmount(report.ID, expenses)}))
 }
 
 function getRandomReport(list){
@@ -440,6 +440,11 @@ function getNumOfExpenses(list){
 
 function generateRandomNumValue(floor, ceiling) {
   return Math.floor(Math.random()* (ceiling - floor)) + floor
+}
+
+function calculateTotalAmountForNewReport(expenses, report) {
+  const totalAmount = expenses.reduce((acc, {Total}) => acc + Total, 0)
+  return ({...report, TotalAmount: totalAmount})
 }
 
 async function incrementalSynch({dataStore, client}) {
@@ -464,12 +469,10 @@ async function incrementalSynch({dataStore, client}) {
     expense.ReportID = report.ID
     expense.TransactionDate = report.DateSubmitted
     expense.ID = expense.ID.slice(0,12) + (generateRandomNumValue(1, 99999)).toString()
-    totalamount += (expense.Price * expense.Quantity)
     newExpenses.push(expense)
   }
-  
-  report.TotalAmount = totalamount
-  dataStore.save('reports', report)
+  const reportToSave = calculateTotalAmountForNewReport(newExpenses, report)
+  dataStore.save('reports', reportToSave)
   dataStore.save('expenses', newExpenses)
   console.log("Incremental synchronization completed...")
 }
