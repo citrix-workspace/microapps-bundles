@@ -645,14 +645,10 @@ async function storeEntryInDatabase(dataStore, timeEntryId, timeSheetRecord, tim
         user_email: user_email
     }
 
-    console.log("timeEntries#1: " + JSON.stringify(timeEntries))
-
     if (timeClockManagement && startedAt !== "undefined") {
         timeEntries.start_at = startedAt ? startedAt : moment().format()
         timeEntries.end_at = timeEntryId ? endAt.format() : ''
     }
-
-    console.log("timeEntries#2: " + JSON.stringify(timeEntries))
 
     dataStore.save("TimeEntries", timeEntries);
     dataStore.save("TimeEntriesClock", timeEntries);
@@ -847,8 +843,6 @@ async function clockManager({dataStore, client, actionParameters}) {
 
     const timeEntry = await getCreatedTimeEntryApiRequest(client, createdEntry.d.PersonWorkAgreementExternalID,
         createdEntry.d.CompanyCode, createdEntry.d.TimeSheetRecord)
-
-    console.log("timeEntry: " + JSON.stringify(timeEntry))
 
     const timeSheetDateTimeStamp = timeEntry.TimeSheetDate.replace(/[^.\d]/g, '');
 
