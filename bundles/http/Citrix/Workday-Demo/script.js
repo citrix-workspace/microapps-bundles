@@ -1,58 +1,67 @@
-/*
-Name: Workday Demo HTTP integration, using generated dummy data
-Created by: Andrey Kornilov
-Date: 18.7.2021
-*/
-
+/** Init used libraries */
 const _ = library.load('lodash')
-
+const moment = library.load('moment-timezone')
+/** Names and descriptions can be changed here*/
 const names = ["Aline Gomes", "Billy Taylor", "Danielle Ledford", "Diana Sarkozy", "Erberto Tirado"]
 const descriptions = ["Lyft","Uber","Dinner","Hotel","Flight Tickets","Rental"]
-
-//Function, that generates data for the table, using random values, both for incremental and full sync
+/**
+ * Function, that generates data for the table, using random values, both for incremental and full sync
+ * fullSyncIterations - number of data, generated with full sync
+ * incSyncIterations - number of data, generated with incremental sync
+ * min, max - minimum and maximum amounts for expenses reports
+ * */
 async function getExpenses (dataStore,context,fullSync) {
-  let iterations;
-  let dateRandom;
+  const fullSyncIterations = 16
+  const incSyncIterations = 3
   const min = 100
   const max = 2000
-//Switch statement, that regulates behavior of loop, depending on sync type
-  switch (fullSync) {
-    case true:
-      context.key1 = 1;
-      iterations = context.key1 + 15
-      dateRandom = true
-      break;
+/**Regulation of behavior of loop, depending on sync type*/
+  const {iterations, dateRandom, key} = fullSync
+  ? ({
+    key: 1,
+    iterations: fullSyncIterations,
+    dateRandom: true
+  })
+  : ({
+    key: context.iterations,
+    iterations: context.iterations + incSyncIterations,
+    dateRandom: false
+  })
+  context.iterations = key
+  console.log(context.iterations)
+  console.log(iterations)
 
-    default:
-      iterations = context.key1 + 3
-      dateRandom = false
-      break;
+const expenseReport = _.range(context.iterations, iterations).map(ID => {
+  /**Init date instance and check, if we need to randomize dates*/
+  let date
+  if (dateRandom) {
+    date = moment().subtract(Math.random() * 10, 'days').toISOString()
   }
-const expenseReport = _.range(context.key1, iterations).map(ID => {
-			const min = 100
-      const max = 20000
-      //Init date instance and check, if we need to randomize dates
-      let date = new Date()
-      dateRandom ? date.setDate(date.getDate()-(Math.floor(Math.random() * (10)))) : date.setDate(date.getDate());
-      date.toLocaleDateString()
-      //Init blank object for expense, set min and max expense values and populate it
-      let expense = {};
-      expense['Description'] = descriptions[Math.floor(Math.random() * (descriptions.length))]
-      expense['ID'] = ID
-      expense['Currency'] = 'USD'
-      expense['Name'] = names[Math.floor(Math.random() * (names.length))]
-      expense['Amount'] = Math.floor(Math.random() * (max - min + 1)) + min;
-      expense['ReportID'] = `EXP-${ID}`
-      expense['Date'] = date.toLocaleDateString()
-      expense['ReimbursementAmount'] = Math.floor(Math.random() * (expense['Amount'] - min + 1)) + min
-      expense['AdvanceAmount'] = expense['Amount'] - expense['ReimbursementAmount']
-      expense['Status'] = "In Progress";
-      expense['IMG'] = "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg"
+  else {
+    date = moment().toISOString()
+  }
 
-	return expense
+  /** Data object used as an expense report */
+  const amount =  Math.floor(Math.random() * (max - min + 1)) + min
+  const reimbursementAmount = Math.floor(Math.random() * (amount - min + 1)) + min
+  const advanceAmount = amount - reimbursementAmount
+  const expense = {
+    Amount: amount,
+    ReimbursementAmount: reimbursementAmount,
+    AdvanceAmount: advanceAmount,
+    ID: ID,
+    Currency: 'USD',
+    Name: names[Math.floor(Math.random() * (names.length))],
+    Description: descriptions[Math.floor(Math.random() * (descriptions.length))],
+    ReportID: `EXP-${ID}`,
+    Date: date,
+    Status: "In Progress",
+    IMG: "https://iws-stage-global-cdn-endpoint.azureedge.net/microapps/assets/exported/report_approve.6897d341db0d63786415dca6b68694ad.svg"
+  };
+  context.iterations = iterations
 
+  return expense
 })
-  context.key1 = iterations
   dataStore.save('expenseReport', expenseReport) 
 }
 async function updateStatus({ dataStore, client, actionParameters, integrationParameters }) {
@@ -89,7 +98,7 @@ integration.define({
         },
         {
           name: 'Date',
-          type: 'DATE',
+          type: 'DATETIME',
           required: true
         },
         {
@@ -179,7 +188,7 @@ integration.define({
           },
           {
             name: 'Date',
-            type: 'DATE'
+            type: 'DATETIME'
           },
           {
             name: 'IMG',
