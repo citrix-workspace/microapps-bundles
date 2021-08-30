@@ -1,13 +1,17 @@
 const controllingArea = "A000";
 Headers = library.load("fetch-api").Headers
+
+const headersGET = new Headers([
+    ['Content-Type', 'application/json'],
+    ['X-CSRF-Token', 'fetch'],
+])
+
 const defaultGetOptions = {
     method: 'GET',
-    headers: {
-        'content-type': 'applicaton/json',
-        'x-csrf-token': 'fetch',
-    }
+    headers: headersGET
 }
-const  moment = library.load("moment-timezone");
+
+const moment = library.load("moment-timezone");
 
 integration.define({
     "synchronizations": [
@@ -384,7 +388,8 @@ integration.define({
                 },
                 {
                     name: 'RecordedHours',
-                    type: 'STRING'},
+                    type: 'STRING'
+                },
                 {
                     name: 'RecordedQuantity',
                     type: 'STRING'
@@ -522,21 +527,141 @@ integration.define({
 })
 
 async function getToken(client) {
-    const respGET = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$top=1', defaultGetOptions);
+    const respGET = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$top=1', defaultGetOptions)
 
     if (!respGET.ok) {
-        throw new Error(`Could not Retrieve a time entry ## Status -> ${respGET.status} / Response [getToken] -> ${JSON.stringify(respGET.headers)}`);
+        throw new Error(`Could not Retrieve a time entry ## Response [getToken] -> ${JSON.stringify(respGET.headers)}`);
     }
 
     return respGET
 
 }
 
-function timeToDecimal(timeStr) {
-    const [hours, minutes] = timeStr.split(':')
-    return parseInt(hours, 10) + parseInt(minutes, 10)/60;
+async function getPostHeader(client) {
+    let tokenResponse = await getToken(client);
+    let token = tokenResponse.headers.get("x-csrf-token")
+
+    let cookies = tokenResponse.headers.get("set-cookie").split(",")
+    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+        cookies[1].substring(0, cookies[1].indexOf(";"));
+
+    return {
+        'X-CSRF-Token': token,
+        'cookie': cookie
+    }
+
 }
 
+async function createTimeEntryApiRequest(headerPost, client, receiverCostCenter, purchaseOrderItem, timeSheetTaskType,
+                                         timeSheetTaskLevel, timeSheetTaskComponent,
+                                         timeSheetNote, recordedHours, hoursUnitOfMeasure, personWorkAgreementExternalID,
+                                         companyCode, personWorkAgreement, date, timeSheetStatus, timeSheetOperation, timeEntryId, startedAt, endAt) {
+    const body = {
+        TimeSheetDataFields: {
+            ControllingArea: controllingArea,
+            ReceiverCostCenter: receiverCostCenter,
+            PurchaseOrderItem: purchaseOrderItem,
+            TimeSheetTaskType: timeSheetTaskType,
+            TimeSheetTaskLevel: timeSheetTaskLevel,
+            TimeSheetTaskComponent: timeSheetTaskComponent,
+            TimeSheetNote: timeSheetNote,
+            RecordedHours: recordedHours,
+            RecordedQuantity: recordedHours,
+            HoursUnitOfMeasure: hoursUnitOfMeasure,
+            TimeSheetOvertimeCategory: ""
+        },
+        PersonWorkAgreementExternalID: personWorkAgreementExternalID,
+        CompanyCode: companyCode,
+        PersonWorkAgreement: personWorkAgreement,
+        TimeSheetDate: `/Date(${date})/`,
+        TimeSheetStatus: timeSheetStatus,
+        TimeSheetOperation: timeSheetOperation
+    }
+
+    if (timeEntryId) {
+        let startedAtMoment = moment(startedAt)
+        let minutesDiff = endAt.diff(startedAtMoment, 'minutes');
+        let total = minutesDiff / 60
+
+        body.TimeSheetRecord = timeEntryId
+        body.TimeSheetDataFields.RecordedHours = total.toString()
+        body.TimeSheetDataFields.RecordedQuantity = total.toString()
+
+    }
+
+    const respPOST = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection', {
+        headers: headerPost,
+        method: 'POST',
+        body: JSON.stringify(body)
+    });
+
+    if (!respPOST.ok) {
+        throw new Error(`[respPOST] ## Error Response -> (${JSON.stringify(respPOST)})`);
+    }
+
+    return respPOST.json()
+}
+
+async function getCreatedTimeEntryApiRequest(client, personWorkAgreementExternalId, companyCode, timeSheetRecord) {
+
+    const timeEntryUrl = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection(PersonWorkAgreementExternalID='${personWorkAgreementExternalId}',CompanyCode='${companyCode}',TimeSheetRecord='${timeSheetRecord}')`
+
+    const getCreatedTimeEntry = await client.fetch(timeEntryUrl, defaultGetOptions);
+
+    if (!getCreatedTimeEntry.ok) {
+        throw new Error(`Could not retrieve data from time entry (${getCreatedTimeEntry.status}: ${getCreatedTimeEntry.statusText})`);
+    }
+
+    const timeEntry = await getCreatedTimeEntry.json()
+
+    return timeEntry.d
+}
+
+async function storeEntryInDatabase(dataStore, timeEntryId, timeSheetRecord, timeSheetDateTimeStamp, companyCode, personWorkAgreement,
+                                    personWorkAgreementExternalID, controllingArea, hoursUnitOfMeasure, purchaseOrderItem,
+                                    receiverCostCenter, recordedHours, recordedQuantity, timeSheetOvertimeCategory,
+                                    timeSheetTaskComponent, timeSheetTaskLevel, timeSheetTaskType, timeSheetNote, timeSheetOperation,
+                                    timeSheetStatus, user_email, startedAt, timeClockManagement, endAt) {
+    const timeEntries = {
+        id: timeEntryId ? parseInt(timeEntryId) : parseInt(timeSheetRecord),
+        ts_id: timeSheetRecord,
+        ts_date: new Date(parseInt(timeSheetDateTimeStamp)),
+        company_code: companyCode,
+        person_work_agreement: personWorkAgreement,
+        person_work_agreement_external_id: personWorkAgreementExternalID,
+        ts_df_controlling_area: controllingArea,
+        ts_df_hours_unit_of_measure: hoursUnitOfMeasure,
+        ts_df_purchase_order_item: purchaseOrderItem,
+        ts_df_receiver_cost_center: receiverCostCenter,
+        ts_df_recorded_hours: recordedHours,
+        ts_df_recorded_quantity: recordedQuantity,
+        ts_df_ts_overtime_category: timeSheetOvertimeCategory,
+        ts_df_ts_task_component: timeSheetTaskComponent,
+        ts_df_ts_task_level: timeSheetTaskLevel,
+        ts_df_ts_task_type: timeSheetTaskType,
+        ts_df_ts_note: timeSheetNote,
+        ts_operation: timeSheetOperation,
+        ts_status: timeSheetStatus,
+        user_email: user_email
+    }
+
+    console.log("timeEntries#1: " + JSON.stringify(timeEntries))
+
+    if (timeClockManagement && startedAt !== "undefined") {
+        timeEntries.start_at = startedAt ? startedAt : moment().format()
+        timeEntries.end_at = timeEntryId ? endAt.format() : ''
+    }
+
+    console.log("timeEntries#2: " + JSON.stringify(timeEntries))
+
+    dataStore.save("TimeEntries", timeEntries);
+    dataStore.save("TimeEntriesClock", timeEntries);
+}
+
+function timeToDecimal(timeStr) {
+    const [hours, minutes] = timeStr.split(':')
+    return parseInt(hours, 10) + parseInt(minutes, 10) / 60;
+}
 
 async function fullSync({dataStore, client}) {
     return getTimeEntries(dataStore, client);
@@ -578,9 +703,9 @@ async function incrementalSync({dataStore, client, latestSynchronizationTime}) {
 
 async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
     let timeEntries = [];
-    let today = moment().format('YYYY-MM-DDT00:00:00')
-    let sevenDaysBefore = moment().subtract(7,'d').format('YYYY-MM-DDT00:00:00')
-    let thirtyDaysBefore = moment().subtract(30,'d').format('YYYY-MM-DDT00:00:00')
+    const today = moment().format('YYYY-MM-DDT00:00:00')
+    const sevenDaysBefore = moment().subtract(7, 'd').format('YYYY-MM-DDT00:00:00')
+    const thirtyDaysBefore = moment().subtract(30, 'd').format('YYYY-MM-DDT00:00:00')
 
     let dateFilter = `TimeSheetDate ge datetime'${thirtyDaysBefore}' and TimeSheetDate le datetime'${today}'`
 
@@ -588,17 +713,15 @@ async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
         dateFilter = `TimeSheetDate ge datetime'${sevenDaysBefore}'`
     }
 
-    let statusFilter = "(TimeSheetStatus eq '10' or " +
+    const statusFilter = "(TimeSheetStatus eq '10' or " +
         "TimeSheetStatus eq '20' or " +
         "TimeSheetStatus eq '30' or " +
         "TimeSheetStatus eq '40' or " +
         "TimeSheetStatus eq '50')"
 
-    let filter = `${dateFilter} and ${statusFilter}`
+    const filter = `${dateFilter} and ${statusFilter}`
 
-    let url = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=${filter}`
-
-    console.log('## URL -> ' + url)
+    const url = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=${filter}`
 
     let respGET = await client.fetch(url, defaultGetOptions);
 
@@ -643,114 +766,56 @@ async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
     dataStore.save("TimeEntriesClock", timeEntries);
 }
 
-async function createTimeEntry({dataStore, client, actionParameters, serviceClient}) {
+async function createTimeEntry({dataStore, client, actionParameters}) {
+
+    let tokenResponse = await getToken(client);
+    let token = tokenResponse.headers.get("x-csrf-token")
+
+    let cookies = tokenResponse.headers.get("set-cookie").split(",")
+    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+        cookies[1].substring(0, cookies[1].indexOf(";"));
+
+    let headersPOST = new Headers([
+        ['X-CSRF-Token', token],
+        ['cookie', cookie],
+    ])
+
+    const timeClockManagement = false
 
     const user_email = actionParameters.UserEmail
 
     const date = moment(actionParameters.Date).valueOf()
 
-    let timeEntries = [];
-
-    let tokenResponse = await getToken(client);
-    let token = tokenResponse.headers.get("x-csrf-token")
-
-    let cookies = tokenResponse.headers.get("set-cookie").split(",")
-    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
-        cookies[1].substring(0, cookies[1].indexOf(";"));
-
-    const headersPOST = {
-        'X-CSRF-Token': token,
-        'cookie': cookie
-    }
-
+    const timeEntryId = actionParameters.TimeEntryId
     const recordedTime = await timeToDecimal(actionParameters.RecordedQuantity)
-    const employeeBusinessPartner =await getEmployeeBusinessPartner(client, user_email)
+    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, user_email)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    const body = {
-        TimeSheetDataFields: {
-            ControllingArea: controllingArea,
-            ReceiverCostCenter: workAgreement.CostCenter,
-            PurchaseOrderItem: actionParameters.PurchaseOrderItem,
-            TimeSheetTaskType: actionParameters.TimeSheetTaskType,
-            TimeSheetTaskLevel: actionParameters.TimeSheetTaskLevel,
-            TimeSheetTaskComponent: actionParameters.TimeSheetTaskComponent,
-            TimeSheetNote: actionParameters.TimeSheetNote,
-            RecordedHours: recordedTime.toString(),
-            RecordedQuantity: recordedTime.toString(),
-            HoursUnitOfMeasure: actionParameters.HoursUnitOfMeasure,
-            TimeSheetOvertimeCategory: ""
-        },
-        PersonWorkAgreementExternalID: workAgreement.PersonWorkAgreementExternalID,
-        CompanyCode: workAgreement.CompanyCode,
-        PersonWorkAgreement: workAgreement.PersonWorkAgreement,
-        TimeSheetDate: `/Date(${date})/`,
-        TimeSheetStatus: actionParameters.TimeSheetStatus,
-        TimeSheetOperation: actionParameters.TimeSheetOperation
-    }
+    const createdEntry = await createTimeEntryApiRequest(headersPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+        actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
+        actionParameters.TimeSheetNote, recordedTime.toString(), actionParameters.HoursUnitOfMeasure,
+        workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
+        date, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, timeEntryId, null)
 
-    const respPOST = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection', {
-        headers: headersPOST,
-        method: 'POST',
-        body: JSON.stringify(body)
-    });
+    const timeEntry = await getCreatedTimeEntryApiRequest(client, createdEntry.d.PersonWorkAgreementExternalID,
+        createdEntry.d.CompanyCode, createdEntry.d.TimeSheetRecord)
 
-    console.log('## [respPOST] -> ' + JSON.stringify(body))
+    const timeSheetDateTimeStamp = timeEntry.TimeSheetDate.replace(/[^.\d]/g, '');
 
-    // AFTER POST
-    if (!respPOST.ok) {
-        throw new Error(`Could not create time entry -> Status: ${respPOST.status} / Response: ${JSON.stringify(respPOST)})`);
-    }
+    await storeEntryInDatabase(dataStore, null, timeEntry.TimeSheetRecord, timeSheetDateTimeStamp,
+        timeEntry.CompanyCode, timeEntry.PersonWorkAgreement,
+        timeEntry.PersonWorkAgreementExternalID, timeEntry.TimeSheetDataFields.ControllingArea,
+        timeEntry.TimeSheetDataFields.HoursUnitOfMeasure, timeEntry.TimeSheetDataFields.PurchaseOrderItem,
+        timeEntry.TimeSheetDataFields.ReceiverCostCenter, timeEntry.TimeSheetDataFields.RecordedHours,
+        timeEntry.TimeSheetDataFields.RecordedQuantity, timeEntry.TimeSheetDataFields.TimeSheetOvertimeCategory,
+        timeEntry.TimeSheetDataFields.TimeSheetTaskComponent, timeEntry.TimeSheetDataFields.TimeSheetTaskLevel,
+        timeEntry.TimeSheetDataFields.TimeSheetTaskType, timeEntry.TimeSheetDataFields.TimeSheetNote,
+        timeEntry.TimeSheetOperation, timeEntry.TimeSheetStatus,
+        user_email, actionParameters.StartedAt, timeClockManagement)
 
-    let postJson = await respPOST.json()
-
-    const requestPersonWorkAgreementExternalId = postJson.d.PersonWorkAgreementExternalID
-    const requestCompanyCode = postJson.d.CompanyCode
-    const requestTimeSheetRecord = postJson.d.TimeSheetRecord
-
-    const timeEntryUrl = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection(PersonWorkAgreementExternalID='${requestPersonWorkAgreementExternalId}',CompanyCode='${requestCompanyCode}',TimeSheetRecord='${requestTimeSheetRecord}')`
-
-    const getCreatedTimeEntry = await client.fetch(timeEntryUrl, defaultGetOptions);
-
-    if (!getCreatedTimeEntry.ok) {
-        throw new Error(`Could not retrieve data from time entry (${getCreatedTimeEntry.status}: ${getCreatedTimeEntry.statusText})`);
-    }
-
-    const timeEntryResponse = await getCreatedTimeEntry.json()
-
-    const TimeSheetDateTimeStamp =  timeEntryResponse.d.TimeSheetDate.replace(/[^.\d]/g, '');
-
-    timeEntries.push({
-        id: parseInt(timeEntryResponse.d.TimeSheetRecord),
-        ts_id: timeEntryResponse.d.TimeSheetRecord,
-        ts_date: new Date(parseInt(TimeSheetDateTimeStamp)),
-        company_code: timeEntryResponse.d.CompanyCode,
-        person_work_agreement: timeEntryResponse.d.PersonWorkAgreement,
-        person_work_agreement_external_id: timeEntryResponse.d.PersonWorkAgreementExternalID,
-        ts_df_controlling_area: timeEntryResponse.d.TimeSheetDataFields.ControllingArea,
-        ts_df_hours_unit_of_measure: timeEntryResponse.d.TimeSheetDataFields.HoursUnitOfMeasure,
-        ts_df_purchase_order_item: timeEntryResponse.d.TimeSheetDataFields.PurchaseOrderItem,
-        ts_df_receiver_cost_center: timeEntryResponse.d.TimeSheetDataFields.ReceiverCostCenter,
-        ts_df_recorded_hours: timeEntryResponse.d.TimeSheetDataFields.RecordedHours,
-        ts_df_recorded_quantity: timeEntryResponse.d.TimeSheetDataFields.RecordedQuantity,
-        ts_df_ts_overtime_category: timeEntryResponse.d.TimeSheetDataFields.TimeSheetOvertimeCategory,
-        ts_df_ts_task_component: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskComponent,
-        ts_df_ts_task_level: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskLevel,
-        ts_df_ts_task_type: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskType,
-        ts_df_ts_note: timeEntryResponse.d.TimeSheetDataFields.TimeSheetNote,
-        ts_operation: timeEntryResponse.d.TimeSheetOperation,
-        ts_status: timeEntryResponse.d.TimeSheetStatus,
-        user_email: user_email
-    })
-
-    dataStore.save("TimeEntries", timeEntries);
-    dataStore.save("TimeEntriesClock", timeEntries);
 }
 
 async function clockManager({dataStore, client, actionParameters}) {
-    const todayTs = moment().valueOf();
-    let endAt = moment();
-    console.log("## endAt: " + endAt)
 
     let tokenResponse = await getToken(client);
     let token = tokenResponse.headers.get("x-csrf-token")
@@ -759,135 +824,47 @@ async function clockManager({dataStore, client, actionParameters}) {
     let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
         cookies[1].substring(0, cookies[1].indexOf(";"));
 
-    const headersPOST = {
-        'X-CSRF-Token': token,
-        'cookie': cookie
-    }
+    let headersPOST = new Headers([
+        ['X-CSRF-Token', token],
+        ['cookie', cookie],
+    ])
 
+    const todayTs = moment().valueOf();
+    const endAt = moment();
+    const timeClockManagement = true
     const user_email = actionParameters.UserEmail
     const timeEntryId = actionParameters.TimeEntryId
-    const employeeBusinessPartner =await getEmployeeBusinessPartner(client, user_email)
+    const startedAt = actionParameters.StartedAt
+
+    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, user_email)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    let body = {
-        TimeSheetDataFields: {
-            ControllingArea: controllingArea,
-            ReceiverCostCenter: workAgreement.CostCenter,
-            PurchaseOrderItem: actionParameters.PurchaseOrderItem,
-            TimeSheetTaskType: actionParameters.TimeSheetTaskType,
-            TimeSheetTaskLevel: actionParameters.TimeSheetTaskLevel,
-            TimeSheetTaskComponent: actionParameters.TimeSheetTaskComponent,
-            TimeSheetNote: actionParameters.TimeSheetNote,
-            RecordedHours: actionParameters.RecordedHours,
-            RecordedQuantity: actionParameters.RecordedQuantity,
-            HoursUnitOfMeasure: actionParameters.HoursUnitOfMeasure,
-            TimeSheetOvertimeCategory: ""
-        },
-        PersonWorkAgreementExternalID: workAgreement.PersonWorkAgreementExternalID,
-        CompanyCode: workAgreement.CompanyCode,
-        PersonWorkAgreement: workAgreement.PersonWorkAgreement,
-        TimeSheetDate: `/Date(${todayTs})/`,
-        TimeSheetStatus: actionParameters.TimeSheetStatus,
-        TimeSheetOperation: actionParameters.TimeSheetOperation,
-    }
+    const createdEntry = await createTimeEntryApiRequest(headersPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+        actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
+        actionParameters.TimeSheetNote, actionParameters.RecordedHours, actionParameters.HoursUnitOfMeasure,
+        workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
+        todayTs, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, timeEntryId, startedAt, endAt)
 
-    console.log('## BODY : ' + JSON.stringify(body))
-    console.log("## ActionParameters: " + JSON.stringify(actionParameters))
-    console.log('## TimeEntryId: ' + timeEntryId)
+    const timeEntry = await getCreatedTimeEntryApiRequest(client, createdEntry.d.PersonWorkAgreementExternalID,
+        createdEntry.d.CompanyCode, createdEntry.d.TimeSheetRecord)
 
+    console.log("timeEntry: " + JSON.stringify(timeEntry))
 
-    // Stop Clock funcionality
-    if (timeEntryId) {
+    const timeSheetDateTimeStamp = timeEntry.TimeSheetDate.replace(/[^.\d]/g, '');
 
-        let startedAt = moment(actionParameters.StartedAt)
-        let minutesDiff = endAt.diff(startedAt, 'minutes');
-        let total = minutesDiff/60
-
-        body.TimeSheetRecord = timeEntryId
-        body.TimeSheetDataFields.RecordedHours = total.toString()
-        body.TimeSheetDataFields.RecordedQuantity = total.toString()
-
-    }
-
-    console.log('## BODY [Stop Clock]: ' + JSON.stringify(body))
-
-    const postOptions = {
-        headers: headersPOST,
-        method: 'POST',
-        body: JSON.stringify(body)
-    };
-
-    const respPOST = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection', postOptions);
-
-    // AFTER POST
-    if (!respPOST.ok) {
-        throw new Error(`[respPOST] ## Error Response -> (${JSON.stringify(respPOST)})`);
-    }
-
-    const postJson = await respPOST.json()
-
-    const requestPersonWorkAgreementExternalId = postJson.d.PersonWorkAgreementExternalID
-    const requestCompanyCode = postJson.d.CompanyCode
-    const requestTimeSheetRecord = postJson.d.TimeSheetRecord
-
-    const timeEntryUrl = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection(PersonWorkAgreementExternalID='${requestPersonWorkAgreementExternalId}',CompanyCode='${requestCompanyCode}',TimeSheetRecord='${requestTimeSheetRecord}')`
-
-    const getCreatedTimeEntry = await client.fetch(timeEntryUrl, defaultGetOptions);
-
-    if (!getCreatedTimeEntry.ok) {
-        throw new Error(`[getCreatedTimeEntry] ## Error Response -> (${JSON.stringify(respPOST)})`);
-    }
-
-    const timeEntryResponse = await getCreatedTimeEntry.json()
-
-    const TimeSheetDateTimeStamp =  timeEntryResponse.d.TimeSheetDate.replace(/[^.\d]/g, '');
-
-    console.log("## ts_id: " + timeEntryResponse.d.TimeSheetRecord)
-    console.log("## id: " + parseInt(timeEntryResponse.d.TimeSheetRecord))
-
-    const timeEntries = {
-        id: timeEntryId ? parseInt(timeEntryId) : parseInt(timeEntryResponse.d.TimeSheetRecord),
-        ts_id: timeEntryResponse.d.TimeSheetRecord,
-        company_code: timeEntryResponse.d.CompanyCode,
-        ts_date: new Date(parseInt(TimeSheetDateTimeStamp)),
-        person_work_agreement: timeEntryResponse.d.PersonWorkAgreement,
-        person_work_agreement_external_id: timeEntryResponse.d.PersonWorkAgreementExternalID,
-        ts_df_controlling_area: timeEntryResponse.d.TimeSheetDataFields.ControllingArea,
-        ts_df_hours_unit_of_measure: timeEntryResponse.d.TimeSheetDataFields.HoursUnitOfMeasure,
-        ts_df_purchase_order_item: timeEntryResponse.d.TimeSheetDataFields.PurchaseOrderItem,
-        ts_df_receiver_cost_center: timeEntryResponse.d.TimeSheetDataFields.ReceiverCostCenter,
-        ts_df_recorded_hours: timeEntryResponse.d.TimeSheetDataFields.RecordedHours,
-        ts_df_recorded_quantity: timeEntryResponse.d.TimeSheetDataFields.RecordedQuantity,
-        ts_df_ts_overtime_category: timeEntryResponse.d.TimeSheetDataFields.TimeSheetOvertimeCategory,
-        ts_df_ts_task_component: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskComponent,
-        ts_df_ts_task_level: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskLevel,
-        ts_df_ts_task_type: timeEntryResponse.d.TimeSheetDataFields.TimeSheetTaskType,
-        ts_df_ts_note: timeEntryResponse.d.TimeSheetDataFields.TimeSheetNote,
-        ts_operation: timeEntryResponse.d.TimeSheetOperation,
-        ts_status: timeEntryResponse.d.TimeSheetStatus,
-        user_email: user_email,
-        start_at: actionParameters.StartedAt ? actionParameters.StartedAt : moment().format(),
-        end_at: timeEntryId ? endAt.format() : ''
-    }
-
-    console.log("#### timeEntries -> " + JSON.stringify(timeEntries))
-    dataStore.save("TimeEntries", timeEntries);
-    dataStore.save("TimeEntriesClock", timeEntries);
+    await storeEntryInDatabase(dataStore, timeEntryId, timeEntry.TimeSheetRecord, timeSheetDateTimeStamp,
+        timeEntry.CompanyCode, timeEntry.PersonWorkAgreement,
+        timeEntry.PersonWorkAgreementExternalID, timeEntry.TimeSheetDataFields.ControllingArea,
+        timeEntry.TimeSheetDataFields.HoursUnitOfMeasure, timeEntry.TimeSheetDataFields.PurchaseOrderItem,
+        timeEntry.TimeSheetDataFields.ReceiverCostCenter, timeEntry.TimeSheetDataFields.RecordedHours,
+        timeEntry.TimeSheetDataFields.RecordedQuantity, timeEntry.TimeSheetDataFields.TimeSheetOvertimeCategory,
+        timeEntry.TimeSheetDataFields.TimeSheetTaskComponent, timeEntry.TimeSheetDataFields.TimeSheetTaskLevel,
+        timeEntry.TimeSheetDataFields.TimeSheetTaskType, timeEntry.TimeSheetDataFields.TimeSheetNote,
+        timeEntry.TimeSheetOperation, timeEntry.TimeSheetStatus,
+        user_email, startedAt, timeClockManagement, endAt)
 }
 
 async function removeClockEntry({dataStore, client, actionParameters}) {
-
-    let tokenResponse = await getToken(client);
-    let token = tokenResponse.headers.get("x-csrf-token")
-
-    let cookies = tokenResponse.headers.get("set-cookie").split(",")
-    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
-        cookies[1].substring(0, cookies[1].indexOf(";"));
-
-    const headersPOST = {
-        'X-CSRF-Token': token,
-        'cookie': cookie
-    }
 
     const body = {
         PersonWorkAgreement: actionParameters.PersonWorkAgreement,
@@ -896,7 +873,7 @@ async function removeClockEntry({dataStore, client, actionParameters}) {
     }
 
     const postOptions = {
-        headers: headersPOST,
+        headers: await getPostHeader(client),
         method: 'POST',
         body: JSON.stringify(body)
     };
