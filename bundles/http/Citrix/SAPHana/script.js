@@ -529,32 +529,17 @@ async function getToken(client) {
     if (!respGET.ok) {
         throw new Error(`Could not Retrieve a time entry ## Response [getToken] -> ${JSON.stringify(respGET.headers)}`);
     }
+    console.log("respGET: " + JSON.stringify(respGET.headers))
 
     return respGET
 
 }
 
-async function getPostHeader(client) {
-    const tokenResponse = await getToken(client);
-    const token = tokenResponse.headers.get("x-csrf-token")
-
-    const cookies = tokenResponse.headers.get("set-cookie").split(",")
-    const cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
-        cookies[1].substring(0, cookies[1].indexOf(";"));
-
-    return {
-        'X-CSRF-Token': token,
-        'cookie': cookie
-    }
-
-}
-
-async function createTimeEntryApiRequest(client, receiverCostCenter, purchaseOrderItem, timeSheetTaskType,
+async function createTimeEntryApiRequest(headerPost, client, receiverCostCenter, purchaseOrderItem, timeSheetTaskType,
                                          timeSheetTaskLevel, timeSheetTaskComponent,
                                          timeSheetNote, recordedHours, hoursUnitOfMeasure, personWorkAgreementExternalID,
                                          companyCode, personWorkAgreement, date, timeSheetStatus, timeSheetOperation, timeEntryId, startedAt, endAt) {
 
-    const headerPost = await getPostHeader(client)
 
     const body = {
         TimeSheetDataFields: {
@@ -768,13 +753,24 @@ async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
 
 async function createTimeEntry({dataStore, client, actionParameters}) {
 
+    const headerPost = await getToken(client)
+    const token = headerPost.headers.get("x-csrf-token")
+    const cookies = headerPost.headers.get("set-cookie").split(",")
+    const cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+        cookies[1].substring(0, cookies[1].indexOf(";"));
+
+    let headerPOST = {
+        'X-CSRF-Token': token,
+        'cookie': cookie
+    }
+
     const timeClockManagement = false
     const date = moment(actionParameters.Date).valueOf()
     const recordedTime = await timeToDecimal(actionParameters.RecordedQuantity)
     const employeeBusinessPartner = await getEmployeeBusinessPartner(client, actionParameters.UserEmail)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    const createdEntry = await createTimeEntryApiRequest(client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+    const createdEntry = await createTimeEntryApiRequest(headerPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
         actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
         actionParameters.TimeSheetNote, recordedTime.toString(), actionParameters.HoursUnitOfMeasure,
         workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
@@ -800,13 +796,24 @@ async function createTimeEntry({dataStore, client, actionParameters}) {
 
 async function clockManager({dataStore, client, actionParameters}) {
 
+    const headerPost = await getToken(client)
+    const token = headerPost.headers.get("x-csrf-token")
+    const cookies = headerPost.headers.get("set-cookie").split(",")
+    const cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+        cookies[1].substring(0, cookies[1].indexOf(";"));
+
+    let headerPOST = {
+        'X-CSRF-Token': token,
+        'cookie': cookie
+    }
+
     const todayTs = moment().valueOf();
     const endAt = moment();
     const timeClockManagement = true
     const employeeBusinessPartner = await getEmployeeBusinessPartner(client, actionParameters.UserEmail)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    const createdEntry = await createTimeEntryApiRequest(client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+    const createdEntry = await createTimeEntryApiRequest(headerPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
         actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
         actionParameters.TimeSheetNote, actionParameters.RecordedHours, actionParameters.HoursUnitOfMeasure,
         workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
@@ -831,7 +838,17 @@ async function clockManager({dataStore, client, actionParameters}) {
 
 async function removeClockEntry({dataStore, client, actionParameters}) {
 
-    const headerPost = await getPostHeader(client)
+    const headerPost = await getToken(client)
+    const token = headerPost.headers.get("x-csrf-token")
+    const cookies = headerPost.headers.get("set-cookie").split(",")
+    const cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+        cookies[1].substring(0, cookies[1].indexOf(";"));
+
+    let headerPOST = {
+        'X-CSRF-Token': token,
+        'cookie': cookie
+    }
+
 
     const body = {
         PersonWorkAgreement: actionParameters.PersonWorkAgreement,
@@ -840,7 +857,7 @@ async function removeClockEntry({dataStore, client, actionParameters}) {
     }
 
     const postOptions = {
-        headers: headerPost,
+        headers: headerPOST,
         method: 'POST',
         body: JSON.stringify(body)
     };
