@@ -535,11 +535,11 @@ async function getToken(client) {
 }
 
 async function getPostHeader(client) {
-    let tokenResponse = await getToken(client);
-    let token = tokenResponse.headers.get("x-csrf-token")
+    const tokenResponse = await getToken(client);
+    const token = tokenResponse.headers.get("x-csrf-token")
 
-    let cookies = tokenResponse.headers.get("set-cookie").split(",")
-    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
+    const cookies = tokenResponse.headers.get("set-cookie").split(",")
+    const cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
         cookies[1].substring(0, cookies[1].indexOf(";"));
 
     return {
