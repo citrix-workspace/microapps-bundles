@@ -1,14 +1,11 @@
 const controllingArea = "A000";
-Headers = library.load("fetch-api").Headers
-
-const headersGET = new Headers([
-    ['Content-Type', 'application/json'],
-    ['X-CSRF-Token', 'fetch'],
-])
 
 const defaultGetOptions = {
     method: 'GET',
-    headers: headersGET
+    headers: {
+        'content-type': 'applicaton/json',
+        'x-csrf-token': 'fetch',
+    }
 }
 
 const moment = library.load("moment-timezone");
@@ -552,10 +549,13 @@ async function getPostHeader(client) {
 
 }
 
-async function createTimeEntryApiRequest(headerPost, client, receiverCostCenter, purchaseOrderItem, timeSheetTaskType,
+async function createTimeEntryApiRequest(client, receiverCostCenter, purchaseOrderItem, timeSheetTaskType,
                                          timeSheetTaskLevel, timeSheetTaskComponent,
                                          timeSheetNote, recordedHours, hoursUnitOfMeasure, personWorkAgreementExternalID,
                                          companyCode, personWorkAgreement, date, timeSheetStatus, timeSheetOperation, timeEntryId, startedAt, endAt) {
+
+    const headerPost = await getPostHeader(client)
+
     const body = {
         TimeSheetDataFields: {
             ControllingArea: controllingArea,
@@ -645,10 +645,14 @@ async function storeEntryInDatabase(dataStore, timeEntryId, timeSheetRecord, tim
         user_email: user_email
     }
 
+    console.log("timeEntries#1: " + JSON.stringify(timeEntries))
+
     if (timeClockManagement && startedAt !== "undefined") {
         timeEntries.start_at = startedAt ? startedAt : moment().format()
         timeEntries.end_at = timeEntryId ? endAt.format() : ''
     }
+
+    console.log("timeEntries#2: " + JSON.stringify(timeEntries))
 
     dataStore.save("TimeEntries", timeEntries);
     dataStore.save("TimeEntriesClock", timeEntries);
@@ -719,7 +723,7 @@ async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
 
     const url = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=${filter}`
 
-    let respGET = await client.fetch(url, defaultGetOptions);
+    const respGET = await client.fetch(url, defaultGetOptions);
 
     if (!respGET.ok) {
         throw new Error(`Could not Retrieve Time Entries (${respGET.status}: ${respGET.statusText})`);
@@ -764,34 +768,17 @@ async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
 
 async function createTimeEntry({dataStore, client, actionParameters}) {
 
-    let tokenResponse = await getToken(client);
-    let token = tokenResponse.headers.get("x-csrf-token")
-
-    let cookies = tokenResponse.headers.get("set-cookie").split(",")
-    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
-        cookies[1].substring(0, cookies[1].indexOf(";"));
-
-    let headersPOST = new Headers([
-        ['X-CSRF-Token', token],
-        ['cookie', cookie],
-    ])
-
     const timeClockManagement = false
-
-    const user_email = actionParameters.UserEmail
-
     const date = moment(actionParameters.Date).valueOf()
-
-    const timeEntryId = actionParameters.TimeEntryId
     const recordedTime = await timeToDecimal(actionParameters.RecordedQuantity)
-    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, user_email)
+    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, actionParameters.UserEmail)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    const createdEntry = await createTimeEntryApiRequest(headersPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+    const createdEntry = await createTimeEntryApiRequest(client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
         actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
         actionParameters.TimeSheetNote, recordedTime.toString(), actionParameters.HoursUnitOfMeasure,
         workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
-        date, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, timeEntryId, null)
+        date, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, actionParameters.TimeEntryId, null)
 
     const timeEntry = await getCreatedTimeEntryApiRequest(client, createdEntry.d.PersonWorkAgreementExternalID,
         createdEntry.d.CompanyCode, createdEntry.d.TimeSheetRecord)
@@ -807,46 +794,30 @@ async function createTimeEntry({dataStore, client, actionParameters}) {
         timeEntry.TimeSheetDataFields.TimeSheetTaskComponent, timeEntry.TimeSheetDataFields.TimeSheetTaskLevel,
         timeEntry.TimeSheetDataFields.TimeSheetTaskType, timeEntry.TimeSheetDataFields.TimeSheetNote,
         timeEntry.TimeSheetOperation, timeEntry.TimeSheetStatus,
-        user_email, actionParameters.StartedAt, timeClockManagement)
+        actionParameters.UserEmail, actionParameters.StartedAt, timeClockManagement)
 
 }
 
 async function clockManager({dataStore, client, actionParameters}) {
 
-    let tokenResponse = await getToken(client);
-    let token = tokenResponse.headers.get("x-csrf-token")
-
-    let cookies = tokenResponse.headers.get("set-cookie").split(",")
-    let cookie = cookies[0].substring(0, cookies[0].indexOf(";")) + ";" +
-        cookies[1].substring(0, cookies[1].indexOf(";"));
-
-    let headersPOST = new Headers([
-        ['X-CSRF-Token', token],
-        ['cookie', cookie],
-    ])
-
     const todayTs = moment().valueOf();
     const endAt = moment();
     const timeClockManagement = true
-    const user_email = actionParameters.UserEmail
-    const timeEntryId = actionParameters.TimeEntryId
-    const startedAt = actionParameters.StartedAt
-
-    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, user_email)
+    const employeeBusinessPartner = await getEmployeeBusinessPartner(client, actionParameters.UserEmail)
     const workAgreement = await getWorkAgreement(client, employeeBusinessPartner)
 
-    const createdEntry = await createTimeEntryApiRequest(headersPOST, client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
+    const createdEntry = await createTimeEntryApiRequest(client, workAgreement.CostCenter, actionParameters.PurchaseOrderItem,
         actionParameters.TimeSheetTaskType, actionParameters.TimeSheetTaskLevel, actionParameters.TimeSheetTaskComponent,
         actionParameters.TimeSheetNote, actionParameters.RecordedHours, actionParameters.HoursUnitOfMeasure,
         workAgreement.PersonWorkAgreementExternalID, workAgreement.CompanyCode, workAgreement.PersonWorkAgreement,
-        todayTs, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, timeEntryId, startedAt, endAt)
+        todayTs, actionParameters.TimeSheetStatus, actionParameters.TimeSheetOperation, actionParameters.TimeEntryId, actionParameters.StartedAt, endAt)
 
     const timeEntry = await getCreatedTimeEntryApiRequest(client, createdEntry.d.PersonWorkAgreementExternalID,
         createdEntry.d.CompanyCode, createdEntry.d.TimeSheetRecord)
 
     const timeSheetDateTimeStamp = timeEntry.TimeSheetDate.replace(/[^.\d]/g, '');
 
-    await storeEntryInDatabase(dataStore, timeEntryId, timeEntry.TimeSheetRecord, timeSheetDateTimeStamp,
+    await storeEntryInDatabase(dataStore, actionParameters.TimeEntryId, timeEntry.TimeSheetRecord, timeSheetDateTimeStamp,
         timeEntry.CompanyCode, timeEntry.PersonWorkAgreement,
         timeEntry.PersonWorkAgreementExternalID, timeEntry.TimeSheetDataFields.ControllingArea,
         timeEntry.TimeSheetDataFields.HoursUnitOfMeasure, timeEntry.TimeSheetDataFields.PurchaseOrderItem,
@@ -855,10 +826,12 @@ async function clockManager({dataStore, client, actionParameters}) {
         timeEntry.TimeSheetDataFields.TimeSheetTaskComponent, timeEntry.TimeSheetDataFields.TimeSheetTaskLevel,
         timeEntry.TimeSheetDataFields.TimeSheetTaskType, timeEntry.TimeSheetDataFields.TimeSheetNote,
         timeEntry.TimeSheetOperation, timeEntry.TimeSheetStatus,
-        user_email, startedAt, timeClockManagement, endAt)
+        actionParameters.UserEmail, actionParameters.StartedAt, timeClockManagement, endAt)
 }
 
 async function removeClockEntry({dataStore, client, actionParameters}) {
+
+    const headerPost = await getPostHeader(client)
 
     const body = {
         PersonWorkAgreement: actionParameters.PersonWorkAgreement,
@@ -867,7 +840,7 @@ async function removeClockEntry({dataStore, client, actionParameters}) {
     }
 
     const postOptions = {
-        headers: await getPostHeader(client),
+        headers: headerPost,
         method: 'POST',
         body: JSON.stringify(body)
     };
