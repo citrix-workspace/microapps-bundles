@@ -1,4 +1,5 @@
 const uuid = library.load("uuid");
+const moment = library.load("moment-timezone");
 
 integration.define({
   actions: [
@@ -39,6 +40,10 @@ integration.define({
           name: "ReporterId",
           type: "STRING",
         },
+        {
+          name: "DateSubmitted",
+          type: "DATETIME",
+        },
       ],
       function: updateTicket,
     },
@@ -73,6 +78,10 @@ integration.define({
         {
           name: "ReporterId",
           type: "STRING",
+        },
+        {
+          name: "DateSubmitted",
+          type: "DATETIME",
         },
       ],
       function: createTicket,
@@ -146,6 +155,10 @@ integration.define({
             name: "ReporterId",
             type: "STRING",
             length: 16,
+          },
+          {
+            name: "DateSubmitted",
+            type: "DATETIME",
           },
         ],
       },
@@ -241,6 +254,17 @@ integration.define({
   },
 });
 
+const today = moment().toISOString();
+const twoDaysAgo = moment()
+  .subtract(2, "days")
+  .subtract(5, "hours")
+  .toISOString();
+const fiveDaysAgo = moment()
+  .subtract(5, "days")
+  .subtract(2, "hours")
+  .subtract(26, "minutes")
+  .toISOString();
+
 const tickets = [
   {
     IssueKey: "ISS1",
@@ -252,6 +276,7 @@ const tickets = [
     ReporterId: "4",
     Description:
       "Definitely a problem on our side. The logs are available at www.example.com",
+    DateSubmitted: today,
   },
   {
     IssueKey: "ISS2",
@@ -259,8 +284,11 @@ const tickets = [
     Summary: "Proxy settings don't work",
     Status: "In Progress",
     Priority: "Medium",
+    AssigneeId: "3",
+    ReporterId: "11",
     Description:
       "I am sitting in a corporate network. We have a typical proxy configuration script that we need to use for Internet Explorer or Chrome so we can connect to internet. For CPG Module proxy settings, there is no option to select a configuration script, so I opened the script and using the proxy host/port specified in that file. But CPG Module still can't connect to internet. This is supposed to be simple.. really..   CPG Module version 1.8.0_25",
+    DateSubmitted: today,
   },
   {
     IssueKey: "ISS3",
@@ -272,6 +300,7 @@ const tickets = [
     ReporterId: "11",
     Description:
       "As reported by Erberto, we should improve our code formatting to be more consistent.      What tool/plugin could we use to check this?",
+    DateSubmitted: twoDaysAgo,
   },
   {
     IssueKey: "ISS4",
@@ -283,6 +312,7 @@ const tickets = [
     ReporterId: "1",
     Description:
       "For JSF 2.3 / Mojarra I'm currently in progress of adding a standard f:websocket tag. As Mojarra is to be designed as a container-provided JAR (not an user-provided JAR), the endpoint needs to be programmatically added in a ServletContextListener, but at that point, servletContext.getAttribute(ServerContainer.class.getName()) returns null when Tyrus is used (Payara/GlassFish). Upon inspection it turns out that the TyrusServletContainerInitializer#onStartup() immediately returns when there are no user-provided endpoints and doesn't register the ServerContainer anymore, causing it to not be placed in ServletContext anymore.  I'm therefore making the following proposals to ensure that the websocket container can forcibly be initialized from the container on regardless of the user-provided endpoints.    1. Proposal #1: require eager initialization.  - Always initialize container regardless of the onStartup(classes).    2. Proposal #2: check a context param.  - Check if a context param something like 'javax.websocket.ALWAYS_ENABLED' is set.  - If so, initialize container regardless of the onStartup(classes).    3. Proposal #3: check a context attribute.  - Check if servletContext.getAttribute(ServerContainer.class.getName()) returns null.  - If so, check if ServerContainer.class.getName() is present in servletContext.getAttributeNames().  - If so, initialize container regardless of the onStartup(classes).",
+    DateSubmitted: twoDaysAgo,
   },
   {
     IssueKey: "ISS5",
@@ -294,6 +324,7 @@ const tickets = [
     ReporterId: "2",
     Description:
       "Clicking Done on the installation wizard shows a broken HTML page instead of the Home page",
+    DateSubmitted: twoDaysAgo,
   },
   {
     IssueKey: "ISS6",
@@ -305,6 +336,7 @@ const tickets = [
     ReporterId: "9",
     Description:
       "Could be an issue with a new update. Investigate and rollback if needed",
+    DateSubmitted: twoDaysAgo,
   },
   {
     IssueKey: "ISS7",
@@ -315,6 +347,7 @@ const tickets = [
     AssigneeId: "10",
     ReporterId: "5",
     Description: "None",
+    DateSubmitted: twoDaysAgo,
   },
   {
     IssueKey: "ISS8",
@@ -326,6 +359,7 @@ const tickets = [
     ReporterId: "2",
     Description:
       "Collect necessary info and add integration with Slack to the service.",
+    DateSubmitted: fiveDaysAgo,
   },
   {
     IssueKey: "ISS9",
@@ -337,6 +371,7 @@ const tickets = [
     ReporterId: "7",
     Description:
       "Unlike the SE port, {{AbstractUnit}} in the RI does not implement {{Comparable}}. As it is available in CLDC8, it should be added there, too.",
+    DateSubmitted: fiveDaysAgo,
   },
   {
     IssueKey: "ISS10",
@@ -348,6 +383,7 @@ const tickets = [
     ReporterId: "10",
     Description:
       "While trying out the measurements API we noticed that most of the interfaces/classes don't seem to support serialization.    Would it possible to add this support where needed/possible?    This would help a lot in cases where an object that (for example) includes a quantity that needs to be either transmited (rmi, ...) or stored (caches, ...).",
+    DateSubmitted: fiveDaysAgo,
   },
 ];
 
@@ -613,6 +649,7 @@ function updateTicket({ dataStore, actionParameters }) {
     Status,
     AssigneeId,
     ReporterId,
+    DateSubmitted,
   } = actionParameters;
   const ticket = {
     IssueKey,
@@ -623,6 +660,7 @@ function updateTicket({ dataStore, actionParameters }) {
     Status,
     AssigneeId,
     ReporterId,
+    DateSubmitted,
   };
 
   dataStore.save("tickets", ticket);
@@ -640,6 +678,7 @@ function createTicket({ dataStore, actionParameters }) {
     Status,
     AssigneeId,
     ReporterId,
+    DateSubmitted,
   } = actionParameters;
   const ticket = {
     IssueKey: "ISS" + generateRandomNumber(0, 1000).toString(),
@@ -650,6 +689,7 @@ function createTicket({ dataStore, actionParameters }) {
     Status,
     AssigneeId,
     ReporterId,
+    DateSubmitted,
   };
 
   dataStore.save("tickets", ticket);
