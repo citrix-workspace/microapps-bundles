@@ -39,7 +39,6 @@ public class DipMetadata extends Metadata {
             @JsonProperty(value = "supportsOAuthForActions") boolean supportsOAuthForActions,
             @JsonProperty(value = "i18nLanguages") List<String> i18nLanguages,
             @JsonProperty(value = "apps") List<App> apps,
-            @JsonProperty(value = "vaResolvers") List<VaResolver> vaResolvers,
             @JsonProperty(value = "tags") List<Tag> tags
     ) {
         super(id,
@@ -57,7 +56,6 @@ public class DipMetadata extends Metadata {
                 supportsOAuthForActions,
                 i18nLanguages,
                 apps,
-                vaResolvers,
                 tags,
                 false);
 

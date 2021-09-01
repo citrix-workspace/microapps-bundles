@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +14,7 @@ import static java.util.Optional.ofNullable;
 /**
  * Metadata of a bundle loaded from `metadata.json`, common parts.
  */
-
+@JsonIgnoreProperties(value = { "vaResolvers" })
 @Getter
 @SuperBuilder(toBuilder = true)
 public abstract class Metadata {
@@ -33,7 +34,6 @@ public abstract class Metadata {
     private final boolean supportsOAuthForActions;
     private final List<String> i18nLanguages;
     private final List<App> apps;
-    private final List<VaResolver> vaResolvers;
     private final List<Tag> tags;
     private final boolean hideAddButton;
 
@@ -53,7 +53,6 @@ public abstract class Metadata {
             boolean supportsOAuthForActions,
             List<String> i18nLanguages,
             List<App> apps,
-            List<VaResolver> vaResolvers,
             List<Tag> tags,
             boolean hideAddButton
     ) {
@@ -72,7 +71,6 @@ public abstract class Metadata {
         this.supportsOAuthForActions = supportsOAuthForActions;
         this.i18nLanguages = ofNullable(i18nLanguages).orElse(emptyList());
         this.apps = ofNullable(apps).orElse(emptyList());
-        this.vaResolvers = ofNullable(vaResolvers).orElse(emptyList());
         this.tags = ofNullable(tags).orElse(emptyList());
         this.hideAddButton = ofNullable(hideAddButton).orElse(false);
     }
