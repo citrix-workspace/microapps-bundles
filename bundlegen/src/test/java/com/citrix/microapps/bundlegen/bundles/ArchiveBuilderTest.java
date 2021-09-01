@@ -73,7 +73,7 @@ class ArchiveBuilderTest {
                 () -> assertThat(BundlesArchiver.shaHex(content)).satisfiesAnyOf(
                         hash -> assertEquals("ad8a78f8d64b3573c4ce620cb2077a16f44daa9fabc94a01b530e13a15ec1c97", hash, // UNIX
                                 "Produced zip should be always exactly same on byte level"),
-                        hash -> assertEquals("ad8a78f8d64b3573c4ce620cb2077a16f44daa9fabc94a01b530e13a15ec1c97", hash, // WINDOWS
+                        hash -> assertEquals("1073a5119710a72a22b5f213fec8baa2089e83f1bac849c87b66d3d6b88e32eb", hash, // WINDOWS
                                 "Produced zip should be always exactly same on byte level")
                 ),
                 () -> assertEquals(expectedEntries, listEntriesInZip(content))

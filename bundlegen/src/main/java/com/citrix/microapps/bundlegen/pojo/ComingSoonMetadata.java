@@ -53,7 +53,6 @@ public class ComingSoonMetadata extends Metadata {
                 false,
                 null,
                 null,
-                null,
                 tags,
                 false);
         this.version = version;
