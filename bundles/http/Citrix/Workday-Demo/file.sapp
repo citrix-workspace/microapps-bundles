@@ -1,0 +1,1218 @@
+{
+  "applications" : [ {
+    "appVersion" : {
+      "id" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+      "serviceId" : 1,
+      "version" : 662,
+      "parameters" : {
+        "imageUrl" : "exported/report_approve.6897d341db0d63786415dca6b68694ad.svg",
+        "description" : "ef92ec9b-5be5-47d4-8db4-070f2944066c"
+      },
+      "startPageId" : "95352ded-db28-436c-867e-baaaa485878f",
+      "title" : "ca1d6f18-a61b-483c-bb4a-6f2b9e611261",
+      "trackingUuid" : "3a4a8d95-5259-485f-a3a7-43aeedd78858",
+      "pages" : [ {
+        "id" : "95352ded-db28-436c-867e-baaaa485878f",
+        "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+        "type" : "LIST",
+        "components" : [ {
+          "type" : "LIST",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "28297b9d-16d7-4fd8-8e46-5e89c1979960",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "componentTableId" : 1,
+          "defaultLimit" : 20,
+          "parameters" : {
+            "dataSource" : "TABLE",
+            "staticItems" : [ ],
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "GOTO_PAGE",
+                "id" : "a34b432c-0031-4c2e-a0c2-4e25b511cb08",
+                "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+                "pageId" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35",
+                "clearRecord" : false,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "children" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tableid" : 1,
+            "sqlquery" : {
+              "id" : "652f2162-ea80-4709-a164-d28c12ddd3ae",
+              "constraints" : {
+                "type" : "EXPRESSION",
+                "left" : {
+                  "type" : "EXPRESSION",
+                  "left" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 1,
+                      "columnId" : 9,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "530717c7-8238-4d43-8163-a84014778385",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  },
+                  "operator" : "OR",
+                  "right" : {
+                    "type" : "TERM",
+                    "constraint" : {
+                      "tableId" : 1,
+                      "columnId" : 3,
+                      "valueType" : "COMPONENT",
+                      "variableComponent" : "530717c7-8238-4d43-8163-a84014778385",
+                      "ignoredWhenValueIsNull" : true,
+                      "action" : "LIKE"
+                    }
+                  }
+                },
+                "operator" : "AND",
+                "right" : {
+                  "type" : "TERM",
+                  "constraint" : {
+                    "tableId" : 1,
+                    "columnId" : 8,
+                    "valueType" : "VALUE",
+                    "value" : "In Progress",
+                    "ignoredWhenValueIsNull" : false,
+                    "action" : "EQUALS_TO"
+                  }
+                }
+              },
+              "autojoins" : false
+            },
+            "sqlorder" : {
+              "id" : "9b9e42c2-c176-47f1-a461-87d2ae1bf47b",
+              "constraints" : {
+                "type" : "TERM",
+                "constraint" : {
+                  "tableId" : 1,
+                  "columnId" : 141,
+                  "order" : "DESC",
+                  "ignoredWhenValueIsNull" : false
+                }
+              },
+              "autojoins" : false
+            },
+            "show_1_to_n" : "0",
+            "item" : {
+              "title" : {
+                "template" : "2071d0ff-4315-49e7-b012-418924680600",
+                "dataColumnsMap" : { },
+                "type" : "TEMPLATE",
+                "stringFormat" : ""
+              },
+              "image" : {
+                "dataColumnsMap" : { },
+                "tableid" : 1,
+                "columnid" : 1599,
+                "type" : "SIMPLE",
+                "stringFormat" : ""
+              },
+              "body" : {
+                "template" : "654c5345-7f2a-47bc-9fe9-f6ddf2a4b128",
+                "dataColumnsMap" : { },
+                "tableid" : 1,
+                "columnid" : 2,
+                "type" : "TEMPLATE",
+                "stringFormat" : "none"
+              },
+              "meta" : {
+                "dataColumnsMap" : { },
+                "tableid" : 1,
+                "columnid" : 141,
+                "type" : "SIMPLE",
+                "stringFormat" : "none"
+              }
+            },
+            "hideIfEmpty" : false,
+            "layout" : {
+              "listType" : "LIST_THUMBNAIL",
+              "showItemBody" : true,
+              "showItemTitle" : true,
+              "flipTitleDescription" : false,
+              "showItemMeta" : false,
+              "listStyle" : "BORDER",
+              "listImageStyle" : "SQUARE",
+              "showItemImage" : true,
+              "listImagePosition" : "LEFT",
+              "listMetaStyle" : "BADGE",
+              "listImageSize" : "SMALL"
+            },
+            "description" : ""
+          },
+          "id" : "ae8a695d-3d06-450a-b58d-2051d57f791f",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "defaultLimit" : 20,
+          "componentTableId" : null,
+          "pageId" : "95352ded-db28-436c-867e-baaaa485878f"
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "fef18921-9c9f-45a7-95ba-2b9d0f93b058",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "disabled" : 0
+          },
+          "id" : "530717c7-8238-4d43-8163-a84014778385",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "pageId" : "1ebf3c39-3e5a-4431-b91c-df208659cc0a"
+        } ],
+        "title" : "e38a5190-d5c0-4c06-ac90-58c5ab03522e",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 1,
+        "datasourceid" : 1,
+        "pagetype" : "List",
+        "pagetype" : "List"
+      }, {
+        "id" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35",
+        "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+        "type" : "DETAIL",
+        "components" : [ {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 2,
+          "required" : false,
+          "textType" : 0,
+          "label" : "4edfb991-34dc-4392-976f-2f6646d16068",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9350f9e7-898a-417e-88cc-e8e139d4dd6f",
+          "parameters" : {
+            "template" : "22ad37f9-8be7-4efb-8640-e711809d2ac7",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "name" : "Amount"
+          },
+          "id" : "c6b47567-a34e-46e2-8561-ccb41c942a4b",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "columnType" : "DOUBLE",
+          "tableid" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 8,
+          "required" : false,
+          "textType" : 0,
+          "label" : "6aef12c7-62a8-4829-ab10-6adce6ea5e87",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "0fa73f7e-4716-44e6-a4ef-4c05be9550fe",
+          "parameters" : {
+            "template" : "cc9620c1-eed3-499c-b3b0-52ca697dae63",
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "name" : "Description",
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "519396b3-272d-487e-9fc6-b7d01e15d5d1",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "columnType" : "STRING",
+          "tableid" : 1
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 3,
+          "required" : false,
+          "textType" : 0,
+          "label" : "c96fc075-3eff-43bd-98d4-87e34aef2094",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "0fa73f7e-4716-44e6-a4ef-4c05be9550fe",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "name" : "Report Id",
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "bab21c7a-64db-4942-be03-f4f8579d3b09",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "columnType" : "DOUBLE",
+          "tableid" : 1
+        }, {
+          "type" : "FLEXIBLE_GRID",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "cellCount" : 4,
+            "columnCountMobile" : 1,
+            "visible" : 1,
+            "defaultHorizontalAlign" : "STRETCH",
+            "columnCount" : 2,
+            "defaultVerticalAlign" : "TOP",
+            "mobileWrappingMode" : "Row"
+          },
+          "id" : "9eef59f8-1e15-4496-8672-3e5e993012d1",
+          "defaultvalue" : null,
+          "displayorder" : 7,
+          "components" : [ ],
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9eef59f8-1e15-4496-8672-3e5e993012d1",
+          "parameters" : { },
+          "id" : "b6367881-280d-4d39-be0d-36beb84c8c0a",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9eef59f8-1e15-4496-8672-3e5e993012d1",
+          "parameters" : { },
+          "id" : "0fa73f7e-4716-44e6-a4ef-4c05be9550fe",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9eef59f8-1e15-4496-8672-3e5e993012d1",
+          "parameters" : { },
+          "id" : "9350f9e7-898a-417e-88cc-e8e139d4dd6f",
+          "defaultvalue" : null,
+          "displayorder" : 3,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9eef59f8-1e15-4496-8672-3e5e993012d1",
+          "parameters" : { },
+          "id" : "e418b243-9cf9-415b-8ce0-0d11520bd5c8",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "STATIC_TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : 1,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "content" : "942500da-ae7a-40e1-818b-d2f035e5d9b0",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "font_size" : "0",
+            "alignment" : "left",
+            "fontStyle" : [ ]
+          },
+          "id" : "d7039812-dd97-43f3-b7de-ed7879261b07",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "f511c034-4c22-4be3-a47e-b7909ef0a2da",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9350f9e7-898a-417e-88cc-e8e139d4dd6f",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run service action",
+                "id" : "op_4ohbcn",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "8d09cac8-8f72-4929-b1b3-198256f6d648",
+                  "name" : "approveExpense",
+                  "parameters" : [ {
+                    "parameterId" : "AdvanceAmount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 11,
+                    "componentId" : "38d61d41-7d7a-4dc6-9060-ce588f03a806",
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Amount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 2,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Currency",
+                    "valueType" : "COLUMN",
+                    "columnId" : 140,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Date",
+                    "valueType" : "COMPONENT",
+                    "columnId" : 141,
+                    "componentId" : "10842b26-43b3-4bb0-a41a-c92766619878",
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Description",
+                    "valueType" : "COLUMN",
+                    "columnId" : 4,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ID",
+                    "valueType" : "COLUMN",
+                    "columnId" : 1,
+                    "componentId" : "18a2b1c3-ea65-4f5a-808a-11d26317350c",
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Name",
+                    "valueType" : "COLUMN",
+                    "columnId" : 9,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ReimbursementAmount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 10,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ReportID",
+                    "valueType" : "COLUMN",
+                    "columnId" : 3,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Status",
+                    "valueType" : "VALUE",
+                    "value" : "Submitted",
+                    "type" : "GWSCP"
+                  } ],
+                  "serviceActionId" : "b8ac98bb-939f-4ce5-9c06-3a0d4cf82dd3",
+                  "serviceId" : 1,
+                  "preserveComponentValues" : false
+                },
+                "serviceId" : 1,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "PRIMARY",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "7ffa8d78-3178-43b5-a732-4a19864ced01",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "78e4bb79-6668-46f4-9388-0f4c26133dd3",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "e418b243-9cf9-415b-8ce0-0d11520bd5c8",
+          "parameters" : {
+            "operationStack" : {
+              "operations" : [ {
+                "type" : "SERVICE_ACTION",
+                "label" : "Run service action",
+                "id" : "op_s6k5g3",
+                "children" : [ ],
+                "serviceAction" : {
+                  "type" : "GWSC",
+                  "id" : "db3ec5ca-1cf9-413b-b811-ca323454e2bf",
+                  "name" : "approveExpense",
+                  "parameters" : [ {
+                    "parameterId" : "AdvanceAmount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 11,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Amount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 2,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Currency",
+                    "valueType" : "COLUMN",
+                    "columnId" : 140,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Date",
+                    "valueType" : "COMPONENT",
+                    "columnId" : 141,
+                    "componentId" : "10842b26-43b3-4bb0-a41a-c92766619878",
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Description",
+                    "valueType" : "COLUMN",
+                    "columnId" : 4,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ID",
+                    "valueType" : "COLUMN",
+                    "columnId" : 1,
+                    "componentId" : "18a2b1c3-ea65-4f5a-808a-11d26317350c",
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Name",
+                    "valueType" : "COLUMN",
+                    "columnId" : 9,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ReimbursementAmount",
+                    "valueType" : "COLUMN",
+                    "columnId" : 10,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "ReportID",
+                    "valueType" : "COLUMN",
+                    "columnId" : 3,
+                    "type" : "GWSCP"
+                  }, {
+                    "parameterId" : "Status",
+                    "valueType" : "VALUE",
+                    "value" : "Declined",
+                    "type" : "GWSCP"
+                  } ],
+                  "serviceActionId" : "b8ac98bb-939f-4ce5-9c06-3a0d4cf82dd3",
+                  "serviceId" : 1,
+                  "preserveComponentValues" : false
+                },
+                "serviceId" : 1,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "pageId" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "clearRecord" : null,
+                "appId" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "value" : null,
+                "events" : null
+              } ]
+            },
+            "tone" : "RED",
+            "size" : "STANDARD",
+            "disabled" : 0,
+            "showInBladeFooter" : true
+          },
+          "id" : "231fdcdf-3e8c-4ea0-a28c-1bec9ba33ac8",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 11,
+          "required" : false,
+          "textType" : null,
+          "label" : "5212296e-195a-43cf-b634-205854bd1ae1",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "b6367881-280d-4d39-be0d-36beb84c8c0a",
+          "parameters" : {
+            "template" : "84b8259f-1197-41a3-8558-ae94c25f88ea",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "38d61d41-7d7a-4dc6-9060-ce588f03a806",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "columnType" : "DOUBLE",
+          "tableid" : 1,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 4,
+          "required" : false,
+          "textType" : null,
+          "label" : "95f4d1a2-0f9f-4ebd-8eaa-6650ee4a7273",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "1891d533-75da-48ab-95f6-a2630c362ec2",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "columnType" : "STRING",
+          "tableid" : 1,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "DIVIDER",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "a91ddfe7-0b71-4e76-bf14-33e72b583f3d",
+          "defaultvalue" : null,
+          "displayorder" : 5,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "BACK_BUTTON",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "bf145909-8e95-4c3c-a771-5e7cae171e1d",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "08825b01-80e6-4147-b86b-dd71feda80e1"
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 9,
+          "required" : false,
+          "textType" : null,
+          "label" : "b9980507-4cc5-41ab-930a-00978a2bddb1",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "f0151358-dca6-4c80-957b-317568da7030",
+          "defaultvalue" : null,
+          "displayorder" : 3,
+          "tableid" : 1,
+          "pageId" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35"
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "3dd6effe-5c4c-4d50-85eb-2ab9eaba21f2",
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : "b6367881-280d-4d39-be0d-36beb84c8c0a",
+          "parameters" : {
+            "template" : "a6a52b5f-30f2-4dc2-bcb5-90424a7b732e",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1
+          },
+          "id" : "00b9aa53-0fc1-4c10-943e-9c5c218ca2b7",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35"
+        }, {
+          "type" : "TEXT",
+          "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+          "columnId" : 141,
+          "required" : false,
+          "textType" : null,
+          "label" : "cf1d942d-27b6-460d-906e-c42d103582d0",
+          "format" : "date",
+          "foreignKeyId" : null,
+          "parentComponentId" : "e418b243-9cf9-415b-8ce0-0d11520bd5c8",
+          "parameters" : {
+            "type" : "SIMPLE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : false,
+            "visible" : 1,
+            "conditional_format" : {
+              "condition" : "none"
+            }
+          },
+          "id" : "10842b26-43b3-4bb0-a41a-c92766619878",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "columnType" : "DATE",
+          "tableid" : 1,
+          "pageId" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35"
+        } ],
+        "title" : "a9bc0137-b719-437f-8366-f3eb88f1670f",
+        "parameters" : {
+          "operationStack" : {
+            "operations" : [ ]
+          }
+        },
+        "tableid" : 1,
+        "datasourceid" : 1,
+        "pagetype" : "Detail",
+        "pagetype" : "Detail"
+      } ],
+      "actionApp" : true
+    },
+    "outboundLinks" : {
+      "page" : [ ],
+      "notification" : [ ]
+    }
+  } ],
+  "services" : [ {
+    "id" : 1,
+    "uuid" : "19af0398-ac9b-4b7e-899e-4a4bb882b49c",
+    "version" : 3307,
+    "title" : "Workday Demo Integration",
+    "serviceType" : "GWSC",
+    "group" : "GWSC:JSON",
+    "schemaName" : "andreff97c1_workday_demo",
+    "configuration" : {
+      "trackingUuid" : "47f59a68-1e03-4853-ae3c-73ca72da6097",
+      "baseUrl" : "https://citrix.com",
+      "security" : {
+        "type" : "NONE"
+      },
+      "useServiceActionSecurity" : false,
+      "serviceActionSecurity" : {
+        "type" : "NONE"
+      },
+      "useOnPremProxy" : false,
+      "certificateValidationDisabled" : false,
+      "unsecure" : false,
+      "webhookListeners" : [ ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : true,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
+        "schedule" : "DAILY"
+      }, {
+        "synchronizationTypeId" : "IncrementalSynchronization",
+        "useTimeRange" : false,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
+        "schedule" : "FIFTEEN_MINUTES"
+      } ],
+      "endpoints" : [ ],
+      "actions" : [ ],
+      "iconUrl" : "exported/Workday.6802ebc5497a2243ad129bc04a3975ab.svg",
+      "iconType" : "LIBRARY",
+      "timeoutInSeconds" : 120,
+      "scriptConfiguration" : {
+        "id" : "f8165c47-4935-49b8-a498-13dc6f765f74",
+        "model" : {
+          "tables" : [ {
+            "name" : "expenseReport",
+            "columns" : [ {
+              "name" : "ID",
+              "primaryKey" : true,
+              "type" : "DOUBLE",
+              "mandatory" : true
+            }, {
+              "name" : "Name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            }, {
+              "name" : "Amount",
+              "primaryKey" : false,
+              "type" : "DOUBLE",
+              "mandatory" : false
+            }, {
+              "name" : "Currency",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            }, {
+              "name" : "ReportID",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            }, {
+              "name" : "Description",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            }, {
+              "name" : "ReimbursementAmount",
+              "primaryKey" : false,
+              "type" : "DOUBLE",
+              "mandatory" : false
+            }, {
+              "name" : "AdvanceAmount",
+              "primaryKey" : false,
+              "type" : "DOUBLE",
+              "mandatory" : false
+            }, {
+              "name" : "Status",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            }, {
+              "name" : "Date",
+              "primaryKey" : false,
+              "type" : "DATETIME",
+              "mandatory" : false
+            }, {
+              "name" : "IMG",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "mandatory" : false
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
+          } ],
+          "relationships" : [ ]
+        },
+        "synchronizations" : [ {
+          "name" : "expenseReport",
+          "fullSyncConfigured" : true,
+          "incrementalSyncConfigured" : true,
+          "scriptSourceFunctionLocationFullSync" : {
+            "startLine" : 81,
+            "endLine" : 81
+          },
+          "scriptSourceFunctionLocationIncrSync" : {
+            "startLine" : 82,
+            "endLine" : 82
+          }
+        } ],
+        "actions" : [ {
+          "name" : "approveExpense",
+          "uniqueId" : "b8ac98bb-939f-4ce5-9c06-3a0d4cf82dd3",
+          "parameters" : [ {
+            "name" : "ID",
+            "type" : "DOUBLE",
+            "required" : true
+          }, {
+            "name" : "Currency",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "Date",
+            "type" : "DATETIME",
+            "required" : true
+          }, {
+            "name" : "Name",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "Amount",
+            "type" : "DOUBLE",
+            "required" : true
+          }, {
+            "name" : "Status",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "ReportID",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "Description",
+            "type" : "STRING",
+            "required" : true
+          }, {
+            "name" : "ReimbursementAmount",
+            "type" : "DOUBLE",
+            "required" : true
+          }, {
+            "name" : "AdvanceAmount",
+            "type" : "DOUBLE",
+            "required" : true
+          }, {
+            "name" : "IMG",
+            "type" : "STRING",
+            "required" : false
+          } ],
+          "scriptSourceFunctionLocation" : {
+            "startLine" : 67,
+            "endLine" : 74
+          }
+        } ],
+        "webhookListeners" : [ ],
+        "integrationParameters" : [ ]
+      },
+      "serviceActions" : [ ]
+    },
+    "context" : {
+      "synchronizationContexts" : {
+        "expensesReport" : { },
+        "expenseReport" : {
+          "key1" : "163",
+          "iterations" : "202"
+        }
+      }
+    },
+    "tables" : [ {
+      "id" : 1,
+      "title" : "expensereport",
+      "displayName" : "Expense Report",
+      "entityName" : "expenseReport",
+      "type" : "TABLE",
+      "loadingType" : "ALL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
+      "columns" : [ {
+        "id" : 1,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "ID",
+        "type" : "DOUBLE",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 2,
+        "title" : "amount",
+        "displayName" : "Amount",
+        "attributeName" : "Amount",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Amount",
+        "primaryKey" : false
+      }, {
+        "id" : 3,
+        "title" : "reportid",
+        "displayName" : "Report Id",
+        "attributeName" : "ReportID",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Report Id",
+        "primaryKey" : false
+      }, {
+        "id" : 4,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "Description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 5,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      }, {
+        "id" : 8,
+        "title" : "status",
+        "displayName" : "Status",
+        "attributeName" : "Status",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Status",
+        "primaryKey" : false
+      }, {
+        "id" : 9,
+        "title" : "name",
+        "displayName" : "Name",
+        "attributeName" : "Name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Name",
+        "primaryKey" : false
+      }, {
+        "id" : 10,
+        "title" : "reimbursementamount",
+        "displayName" : "Reimbursement Amount",
+        "attributeName" : "ReimbursementAmount",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Reimbursement Amount",
+        "primaryKey" : false
+      }, {
+        "id" : 11,
+        "title" : "advanceamount",
+        "displayName" : "Advance Amount",
+        "attributeName" : "AdvanceAmount",
+        "type" : "DOUBLE",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Advance Amount",
+        "primaryKey" : false
+      }, {
+        "id" : 140,
+        "title" : "currency",
+        "displayName" : "Currency",
+        "attributeName" : "Currency",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Currency",
+        "primaryKey" : false
+      }, {
+        "id" : 141,
+        "title" : "date",
+        "displayName" : "Date",
+        "attributeName" : "Date",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Date",
+        "primaryKey" : false
+      }, {
+        "id" : 1599,
+        "title" : "img",
+        "displayName" : "Img",
+        "attributeName" : "IMG",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Img",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ ],
+    "metadata" : {
+      "vendor" : "Citrix",
+      "description" : "Demo Workday",
+      "categories" : [ ],
+      "tags" : [ ],
+      "hideAddButton" : false
+    },
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
+  } ],
+  "notifications" : [ {
+    "id" : "ef8b5a4d-b884-4156-bcd7-7df0f7d53fce",
+    "legacyId" : 3,
+    "appId" : "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821",
+    "version" : 5,
+    "eventType" : "NEW",
+    "serviceId" : 1,
+    "tableId" : 1,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationChangeConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 1,
+        "columnId" : 8,
+        "columnType" : "STRING",
+        "action" : "CHANGES",
+        "comparator" : "EQUALS_TO",
+        "valueType" : "VALUE"
+      }
+    },
+    "expirationDelete" : false,
+    "label" : "b0b429cf-b826-42ef-bdc5-d8e0f8399efc",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "0194e54c-c075-47a2-9910-36f015f9b233",
+      "body" : "3493e60b-271f-477d-a491-aa9b8daa239c",
+      "gotoAppPageId" : "9a66dcd3-e0ea-41b7-96ce-f4bcbbaa0f35",
+      "configuration" : {
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/Workday.6802ebc5497a2243ad129bc04a3975ab.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ "7ffa8d78-3178-43b5-a732-4a19864ced01", "231fdcdf-3e8c-4ea0-a28c-1bec9ba33ac8" ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true
+  } ],
+  "resolvers" : [ ],
+  "modelConfiguration" : {
+    "appIds" : [ "5d9c0ad0-9c0a-4bd4-b9eb-81e4b80f5821" ],
+    "resolverIds" : [ ],
+    "bundleDescription" : "Demo Workday",
+    "bundleVendor" : "Citrix"
+  },
+  "translationChecksum" : "B36D7152986032F64454D1729523E2B1",
+  "appliedSappUpgrades" : [ "microapp-10549", "microapp-13471", "microapp-7984", "microapp-6293", "microapp-4666", "microapp-3580", "microapp-6593", "microapp-8892", "microapp-8950", "microapp-13344", "microapp-8511", "microapp-12427", "microapp-7888", "microapp-3547", "microapp-10421", "microapp-10860", "microapp-9701", "microapp-10856", "microapp-14613", "microapp-7290", "microapp-10876", "microapp-11340", "microapp-4518", "microapp-12525", "microapp-11136", "microapp-10420", "microapp-9702", "microapp-8003", "microapp-4020", "microapp-3838", "microapp-6790", "microapp-8921", "microapp-14849", "microapp-6264", "microapp-6853", "microapp-12505", "microapp-13233", "microapp-7561", "microapp-6617", "microapp-6262", "microapp-10858", "microapp-12936", "microapp-14177", "microapp-7961", "microapp-1980", "microapp-3548", "microapp-11836", "microapp-9597", "microapp-8576", "microapp-5025", "microapp-5227", "microapp-11349", "microapp-14492", "microapp-13808", "microapp-14978", "microapp-2450" ],
+  "buildVersion" : "1.106.0.dd5f9debc0583924d69c2d2a0191748e89661a12"
+}
