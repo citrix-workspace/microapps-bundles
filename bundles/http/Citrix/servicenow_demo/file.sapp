@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "540025d2-ba59-457f-baad-101edc2d1423",
       "serviceId" : 3,
-      "version" : 805,
+      "version" : 856,
       "parameters" : {
         "imageUrl" : "exported/ticket_assign.760c8db6db27596531b2337171bed63d.svg",
         "description" : "a1f545aa-910f-4fa5-b28e-9fbbc6a0f783"
@@ -16,12 +16,32 @@
         "appId" : "540025d2-ba59-457f-baad-101edc2d1423",
         "type" : "LIST",
         "components" : [ {
+          "type" : "TEXT_INPUT",
+          "appId" : "540025d2-ba59-457f-baad-101edc2d1423",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "cc460b87-13c5-4865-89ed-902e5544d81e",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "disabled" : 0
+          },
+          "id" : "a8d74d6b-83e8-41d7-87a4-c8ae2b0402bf",
+          "defaultvalue" : "",
+          "displayorder" : 1,
+          "pageId" : "1e9a9e09-af6b-4b0c-b5c6-512d65720d7e"
+        }, {
           "type" : "LIST",
           "appId" : "540025d2-ba59-457f-baad-101edc2d1423",
           "columnId" : null,
           "required" : false,
           "textType" : null,
-          "label" : "6e1c5187-210c-4892-b027-5a5401af39bc",
+          "label" : "0ac6f583-501a-4aec-a19f-adf4a8308b77",
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
@@ -33,7 +53,7 @@
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_PAGE",
-                "id" : "8b30c46f-2ff9-450e-a82b-26819962f005",
+                "id" : "97e9ffa8-997c-450a-8d0f-a8af6391ee71",
                 "appId" : "540025d2-ba59-457f-baad-101edc2d1423",
                 "pageId" : "1c2d5ff8-c646-4364-af88-cd919fb92849",
                 "clearRecord" : false,
@@ -57,7 +77,7 @@
             },
             "tableid" : 74,
             "sqlquery" : {
-              "id" : "1ffa25a9-6aab-474d-b598-861253680376",
+              "id" : "49d7e195-b253-498a-a6af-c4f8b84feb59",
               "constraints" : {
                 "type" : "EXPRESSION",
                 "left" : {
@@ -116,7 +136,7 @@
               "autojoins" : false
             },
             "sqlorder" : {
-              "id" : "bd217541-3469-4574-9772-c8c7db617e3f",
+              "id" : "f9202b99-dd45-4cb4-8a9f-3d7116e168ff",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
@@ -131,12 +151,10 @@
             "show_1_to_n" : "0",
             "item" : {
               "title" : {
-                "template" : "05227303-cd0f-442a-9aea-7d4b1b697795",
+                "template" : "1517eb0f-b9b6-44ec-837e-1c86a26297f4",
                 "dataColumnsMap" : { },
-                "tableid" : 74,
-                "columnid" : 766,
                 "type" : "TEMPLATE",
-                "stringFormat" : "none"
+                "stringFormat" : ""
               },
               "image" : {
                 "dataColumnsMap" : { },
@@ -146,7 +164,7 @@
                 "stringFormat" : ""
               },
               "body" : {
-                "template" : "0b5a66e7-5f75-42a2-a2fd-b4503c357aa8",
+                "template" : "66f9def7-a1ac-402c-ace2-0d0bae1f3da8",
                 "dataColumnsMap" : { },
                 "type" : "TEMPLATE",
                 "stringFormat" : ""
@@ -161,7 +179,7 @@
             },
             "hideIfEmpty" : false,
             "layout" : {
-              "listType" : "LIST_THUMBNAIL",
+              "listType" : "GRID_THUMBNAIL_SIDE",
               "showItemBody" : true,
               "showItemTitle" : true,
               "flipTitleDescription" : false,
@@ -170,39 +188,19 @@
               "listImagePosition" : "LEFT",
               "columnCount" : 2,
               "showItemMeta" : true,
-              "listStyle" : "BORDER",
+              "listStyle" : "NONE",
               "listImageStyle" : "SQUARE",
-              "listMetaStyle" : "TEXT",
+              "listMetaStyle" : "BADGE",
               "listImageSize" : "SMALL"
             },
             "description" : ""
           },
-          "id" : "d2549ba8-2c80-40f1-9634-612759292979",
+          "id" : "f1f69159-d07e-40ce-81aa-d43d933a6098",
           "defaultvalue" : null,
           "displayorder" : 2,
           "componentTableId" : null,
           "defaultLimit" : 20,
           "pageId" : "de91e844-9f31-4439-b1b4-91a673ea6f01"
-        }, {
-          "type" : "TEXT_INPUT",
-          "appId" : "540025d2-ba59-457f-baad-101edc2d1423",
-          "columnId" : null,
-          "required" : false,
-          "textType" : null,
-          "label" : "cc460b87-13c5-4865-89ed-902e5544d81e",
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "field_width" : "large",
-            "visible" : 1,
-            "mapToDataColumn" : false,
-            "disabled" : 0
-          },
-          "id" : "a8d74d6b-83e8-41d7-87a4-c8ae2b0402bf",
-          "defaultvalue" : "",
-          "displayorder" : 1,
-          "pageId" : "1e9a9e09-af6b-4b0c-b5c6-512d65720d7e"
         } ],
         "title" : "56ae2037-b142-4372-a8f9-10fefe0eb687",
         "parameters" : {
@@ -1024,6 +1022,11 @@
                     "componentId" : "ea91c74c-4fb6-4712-8c9b-f26ac65a46c2",
                     "type" : "GWSCP"
                   }, {
+                    "parameterId" : "Asignee",
+                    "valueType" : "COMPONENT",
+                    "componentId" : "3c50bc15-d9e0-4ba8-9c6d-238a389e9bd2",
+                    "type" : "GWSCP"
+                  }, {
                     "parameterId" : "Company",
                     "valueType" : "COLUMN",
                     "columnId" : 776,
@@ -1092,11 +1095,6 @@
                     "parameterId" : "Urgency",
                     "valueType" : "COLUMN",
                     "columnId" : 772,
-                    "type" : "GWSCP"
-                  }, {
-                    "parameterId" : "Asignee",
-                    "valueType" : "COMPONENT",
-                    "componentId" : "3c50bc15-d9e0-4ba8-9c6d-238a389e9bd2",
                     "type" : "GWSCP"
                   } ],
                   "serviceActionId" : "8ade1ee3-8636-47a3-b52e-3e47c64adcdc",
@@ -3302,7 +3300,7 @@
   "services" : [ {
     "id" : 3,
     "uuid" : "b5241bb0-175d-465a-9a7e-5f10d7213115",
-    "version" : 2066,
+    "version" : 4442,
     "title" : "ServiceNow Demo",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -3868,7 +3866,7 @@
       "synchronizationContexts" : {
         "incidentsReport" : {
           "key1" : "4",
-          "iterations" : "25"
+          "iterations" : "292"
         }
       }
     },
@@ -4711,10 +4709,10 @@
   "modelConfiguration" : {
     "appIds" : [ "db8150f5-6454-4b1c-b893-253e0674404a", "f344d497-4c88-476c-a3ad-06c61ee60d11", "540025d2-ba59-457f-baad-101edc2d1423" ],
     "resolverIds" : [ ],
-    "bundleDescription" : "ServiceNow Demo Integration",
+    "bundleDescription" : "",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "B8FF7A3B84E7BA66DEC0FD745A634D66",
+  "translationChecksum" : "43802C6EDB4DA5E90DAE384B97F06FAA",
   "appliedSappUpgrades" : [ "microapp-10549", "microapp-13471", "microapp-7984", "microapp-6293", "microapp-4666", "microapp-3580", "microapp-6593", "microapp-8892", "microapp-8950", "microapp-13344", "microapp-8511", "microapp-12427", "microapp-7888", "microapp-3547", "microapp-10421", "microapp-10860", "microapp-9701", "microapp-10856", "microapp-14613", "microapp-7290", "microapp-10876", "microapp-11340", "microapp-4518", "microapp-12525", "microapp-11136", "microapp-10420", "microapp-9702", "microapp-8003", "microapp-4020", "microapp-3838", "microapp-6790", "microapp-8921", "microapp-14849", "microapp-6264", "microapp-6853", "microapp-12505", "microapp-13233", "microapp-7561", "microapp-6617", "microapp-6262", "microapp-10858", "microapp-12936", "microapp-14177", "microapp-7961", "microapp-1980", "microapp-3548", "microapp-11836", "microapp-9597", "microapp-8576", "microapp-5025", "microapp-5227", "microapp-11349", "microapp-14492", "microapp-13808", "microapp-14978", "microapp-2450" ],
   "buildVersion" : "1.106.0.dd5f9debc0583924d69c2d2a0191748e89661a12"
 }

@@ -148,7 +148,7 @@ async function saveIncidentDetails({ dataStore, actionParameters }) {
     : Priority == "Low"
       ? 3
       : 2
-  let incidentParams = { Description, ID, Name, Location, Company, Contact, Impact, Urgency, Severity, Priority, Number, OpenedAt, State, IncidentState, Active, PriorityNum, Asignee }
+  let incidentParams = { Description, ID, Name, Location, Company, Contact, Impact, Urgency, Severity, Priority, Number, OpenedAt, State, IncidentState, Active, PriorityNum, Asignee, IMG }
   let commantaryParams = { ID, Comment, CurrentDate }
 
   dataStore.save('incidentsReport', incidentParams)
