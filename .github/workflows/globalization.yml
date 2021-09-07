@@ -12,7 +12,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: G11n Radar
-        uses: citrix-workspace/g11n-scan@master
+        uses: citrix-workspace/g11n-scan@v20.12.8
         with:
           repoToken: ${{secrets.GITHUB_TOKEN}}
           skip: 'bundles/coming_soon/'
