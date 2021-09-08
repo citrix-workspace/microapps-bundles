@@ -261,7 +261,7 @@ async function syncUsers(client, dataStore, account_id) {
     let userids = []
     do {
         const userResponse = await client.fetch(`/accounts/${account_id}/users?count=${COUNT}&start_position=${start_position}`)
-        const { responseBody, errorMessage, errorStatus } = await validateResponse(userResponse)
+        const { responseBody} = await validateResponse(userResponse)
         const userData = (responseBody?.users ?? []).map(user => {
             userids.push(user.userId)
             return {
@@ -296,7 +296,7 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
             url += `&modified_from_date=${MODIFIED_FROM_DATE}`
         }
         const templateResponse = await client.fetch(url)
-        const { responseBody, errorMessage, errorStatus } = await validateResponse(templateResponse)
+        const { responseBody } = await validateResponse(templateResponse)
         
         const templateData = (responseBody.envelopeTemplates ?? []).map(template => {
             const documentData = (template?.documents ?? []).map(document => {
@@ -349,7 +349,7 @@ async function syncEnvelopes(client, dataStore, account_id, userids, latestSynch
     let i = 0
     do {
         const envelopeResponse = await client.fetch(`/accounts/${account_id}/envelopes?from_date=${FROM_DATE}&include=recipients&count=${COUNT}&order=desc&order_by=created&user_id=${userids[i]}&status=any&start_position=${start_position}`)
-        const { responseBody, errorMessage, errorStatus } = await validateResponse(envelopeResponse)
+        const { responseBody } = await validateResponse(envelopeResponse)
         const templateData = (responseBody.envelopes ?? []).map(envelope => {
             const recipientsData = (envelope.recipients?.signers ?? []).map(recipient => {
                 return {
@@ -476,8 +476,8 @@ async function sendTemplateThreeRecipient({ client, dataStore, integrationParame
     const response = await client.fetch(`accounts/${ACCOUNT_ID}/envelopes`, {
         method: "POST",
         body: JSON.stringify({
-            "emailSubject": `${actionParameters.email_Subject}`,
-            "templateId": `${actionParameters.template_Id}`,
+            "emailSubject": actionParameters.email_Subject,
+            "templateId": actionParameters.template_Id,
             "templateRoles": templateRoles,
             "status": "sent"
         })
@@ -507,14 +507,14 @@ async function envelopeview({ client, dataStore, integrationParameters, actionPa
             method: "POST",
             body: JSON.stringify(
                 {
-                    "userName": `${actionParameters.userName}`,
-                    "email": `${actionParameters.email}`,
+                    "userName": actionParameters.userName,
+                    "email": actionParameters.email,
                     "returnUrl": 'https://docusign.github.io/returnUrl/',
                     "authenticationMethod": "None"
                 })
         })
 
-    const { responseBody, errorMessage, errorStatus } = await validateResponse(envelopeViewResponse)
+    const { responseBody } = await validateResponse(envelopeViewResponse)
     
     const result = {
         "envelope_id": actionParameters.envelope_Id,
