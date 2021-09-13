@@ -430,7 +430,7 @@ function getRandomReport(list){
 
 function createReportID(id, list){
   id = parseInt(id)
-  let new_id = id + Math.floor(Math.random() * (1000 - list.length)) + list.length
+  const new_id = id + Math.floor(Math.random() * (1000 - list.length)) + list.length
   return new_id.toString()
 }
 
@@ -449,23 +449,23 @@ function calculateTotalAmountForNewReport(expenses, report) {
 
 async function incrementalSynch({dataStore, client}) {
   console.log("Running incremental synchronization...")
-  let report = getRandomReport(reports)
+  const report = getRandomReport(reports)
   report.ID = createReportID(report.ID, reports)
-  let newExpenses = []
+  const newExpenses = []
   let totalamount = 0
 
-  let expensechoices = [] //possible expenses in report's category
+  const expensechoices = [] //possible expenses in report's category
   for (let i=0; i< expenses.length; i++) {
-    let expense = JSON.parse(JSON.stringify(expenses[i]))
+    const expense = JSON.parse(JSON.stringify(expenses[i]))
     if (expense.Category == report.Category){
       expensechoices.push(expense)
     }
   }
 
-  let numOfExpenses =  getNumOfExpenses(expensechoices)
+  const numOfExpenses =  getNumOfExpenses(expensechoices)
 
   for (let i=0; i < numOfExpenses; i++) {
-    let expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
+    const expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
     expense.ReportID = report.ID
     expense.TransactionDate = report.DateSubmitted
     expense.ID = expense.ID.slice(0,12) + (generateRandomNumValue(1, 99999)).toString()
