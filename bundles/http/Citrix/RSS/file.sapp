@@ -1,50 +1,52 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+      "id" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
       "serviceId" : 53,
-      "version" : 129,
+      "version" : 268,
       "parameters" : {
         "imageUrl" : "exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
         "description" : "058ea0cb-2d30-4611-8f8d-436682643c30"
       },
-      "startPageId" : "de2f4fc6-b8f2-4a24-8ca8-516c8f0e10fc",
+      "actionApp" : true,
+      "startPageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
+      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
+      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
       "pages" : [ {
-        "id" : "de2f4fc6-b8f2-4a24-8ca8-516c8f0e10fc",
-        "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+        "id" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
+        "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TEXT_INPUT",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
           "columnId" : null,
           "required" : false,
           "textType" : null,
-          "label" : "db951757-cc96-4471-b1c7-0142b00e44ea",
+          "label" : "9b1b1068-814c-4b2c-b921-805426b214d8",
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : {
             "field_width" : "large",
             "visible" : 1,
-            "query" : null,
-            "prefill" : null,
-            "disabled" : 0,
-            "order" : null
+            "mapToDataColumn" : false,
+            "disabled" : 0
           },
-          "id" : "c6dfc8bb-cd61-4a51-9078-cf0623c1e54b",
+          "id" : "b9725ce5-d9a9-4b1f-ac7f-9bb148298081",
           "defaultvalue" : "",
-          "displayorder" : 1
+          "displayorder" : 1,
+          "pageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f"
         }, {
           "type" : "LIST",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
           "columnId" : null,
           "required" : false,
           "textType" : null,
-          "label" : "1d3d80b2-0b31-463c-a61b-5bcd2af6c5fc",
+          "label" : "4d8cb708-2a66-4a80-af2d-4ce4abba5c95",
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 628,
+          "componentTableId" : 441,
           "defaultLimit" : 20,
           "parameters" : {
             "dataSource" : "TABLE",
@@ -52,38 +54,22 @@
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_PAGE",
-                "id" : "084cfa1c-8891-44e7-8f25-17123f0bbfeb",
-                "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-                "pageId" : "cdb2f0b5-546a-433f-a64b-7a12ea02eefa",
-                "clearRecord" : false,
-                "notes" : null,
-                "componentId" : null,
-                "subject" : null,
-                "columnId" : null,
-                "urlTemplate" : null,
-                "message" : null,
-                "body" : null,
-                "title" : null,
-                "foreignKeyId" : null,
-                "children" : null,
-                "tableId" : null,
-                "style" : null,
-                "to" : null,
-                "serviceId" : null,
-                "value" : null,
-                "events" : null
+                "id" : "6a844657-da11-4827-b729-b8ffc889fc13",
+                "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+                "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
+                "clearRecord" : false
               } ]
             },
-            "tableid" : 628,
+            "tableid" : 441,
             "sqlquery" : {
-              "id" : "1a38dcb6-910a-45bf-bf53-6314027be36b",
+              "id" : "fbcadf26-c982-4bbe-a5e8-acb240e2a432",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 628,
-                  "columnId" : 14606,
+                  "tableId" : 441,
+                  "columnId" : 7745,
                   "valueType" : "COMPONENT",
-                  "variableComponent" : "c6dfc8bb-cd61-4a51-9078-cf0623c1e54b",
+                  "variableComponent" : "b9725ce5-d9a9-4b1f-ac7f-9bb148298081",
                   "ignoredWhenValueIsNull" : true,
                   "action" : "LIKE"
                 }
@@ -91,12 +77,12 @@
               "autojoins" : false
             },
             "sqlorder" : {
-              "id" : "3dbdd75b-2e81-4e63-8659-8d05d576c5af",
+              "id" : "d23eb70c-1136-49fd-891d-c54691ef817d",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 628,
-                  "columnId" : 14610,
+                  "tableId" : 441,
+                  "columnId" : 7744,
                   "order" : "ASC",
                   "ignoredWhenValueIsNull" : false
                 }
@@ -107,8 +93,8 @@
             "item" : {
               "title" : {
                 "dataColumnsMap" : { },
-                "tableid" : 628,
-                "columnid" : 14606,
+                "tableid" : 441,
+                "columnid" : 7745,
                 "type" : "SIMPLE",
                 "stringFormat" : "none"
               },
@@ -118,19 +104,17 @@
                 "stringFormat" : ""
               },
               "body" : {
-                "template" : "0944adca-37a1-49ef-94f8-795559afeabd",
+                "template" : "2984667b-0dfd-422f-8ad5-4e85b1796907",
                 "dataColumnsMap" : { },
-                "tableid" : 628,
-                "columnid" : 14611,
                 "type" : "TEMPLATE",
-                "stringFormat" : "none"
+                "stringFormat" : ""
               },
               "meta" : {
                 "dataColumnsMap" : { },
-                "tableid" : 628,
-                "columnid" : 14610,
+                "tableid" : 441,
+                "columnid" : 7744,
                 "type" : "SIMPLE",
-                "stringFormat" : "none"
+                "stringFormat" : "datetime"
               }
             },
             "hideIfEmpty" : false,
@@ -149,59 +133,31 @@
             },
             "description" : ""
           },
-          "id" : "86273d6e-46ec-41f7-bd3a-68e609bf50e7",
+          "id" : "64659a99-ab2f-4b39-a560-4b703015fc20",
           "defaultvalue" : null,
           "displayorder" : 2,
           "componentTableId" : null,
           "defaultLimit" : 20,
-          "pageId" : "de2f4fc6-b8f2-4a24-8ca8-516c8f0e10fc"
+          "pageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f"
         } ],
-        "title" : "84d91351-175f-4799-9258-505698a99faa",
-        "logicConfiguration" : [ ],
+        "title" : "c113ffc2-ec4d-47ec-bc2f-1584d8a00e10",
         "parameters" : {
           "operationStack" : {
             "operations" : [ ]
           }
         },
-        "tableid" : 628,
+        "tableid" : 441,
         "datasourceid" : 53,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       }, {
-        "id" : "cdb2f0b5-546a-433f-a64b-7a12ea02eefa",
-        "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+        "id" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
+        "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
         "type" : "DETAIL",
         "components" : [ {
-          "type" : "TEXT",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : 14611,
-          "required" : false,
-          "textType" : null,
-          "label" : null,
-          "format" : "none",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "template" : "2201ce1b-4d00-4d58-87b2-64ba5e064edc",
-            "type" : "TEMPLATE",
-            "operationStack" : {
-              "operations" : [ ]
-            },
-            "hideIfEmpty" : true,
-            "visible" : 1,
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "78e19d3f-75b9-404c-9cc5-756515747d79",
-          "defaultvalue" : null,
-          "displayorder" : 2,
-          "columnType" : "STRING",
-          "tableid" : 628
-        }, {
-          "type" : "HTML_CONTENT",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : 14600,
+          "type" : "BACK_BUTTON",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : null,
@@ -209,16 +165,70 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
+            "titleTemplate" : "28e1b910-1ef6-49c9-96f7-bbfe74d1aaab"
           },
-          "id" : "5f6856ad-dfb6-44af-8d46-b811ec27ddc2",
+          "id" : "2916ba7e-6e25-4043-ae98-bc85bdd16271",
           "defaultvalue" : null,
-          "displayorder" : 4
+          "displayorder" : 1,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
+        }, {
+          "type" : "TEXT",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "none",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "template" : "8e14dc92-c96b-40fc-b36a-61de628e9481",
+            "type" : "TEMPLATE",
+            "operationStack" : {
+              "operations" : [ ]
+            },
+            "hideIfEmpty" : true,
+            "visible" : 1
+          },
+          "id" : "70f6f6b5-131b-4c9b-aa68-d0a9b4510240",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
+        }, {
+          "type" : "HTML_CONTENT",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : 7740,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "737f5198-e27e-4162-abbc-becc1a7d28b9",
+          "defaultvalue" : null,
+          "displayorder" : 4,
+          "columnType" : null,
+          "tableid" : 441,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
+        }, {
+          "type" : "DIVIDER",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : { },
+          "id" : "bae49f9e-298b-40ba-9a35-eee32a413317",
+          "defaultvalue" : null,
+          "displayorder" : 3,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -228,180 +238,156 @@
           "parentComponentId" : null,
           "parameters" : {
             "cellCount" : 2,
+            "columnCountMobile" : 1,
             "visible" : 1,
-            "query" : null,
-            "prefill" : null,
+            "defaultHorizontalAlign" : "STRETCH",
             "columnCount" : 2,
+            "defaultVerticalAlign" : "TOP",
             "columnWidths" : [ 10, 2 ],
-            "order" : null
+            "mobileWrappingMode" : "Row"
           },
-          "id" : "bf5423c4-036d-420a-939f-f898b2b50d77",
+          "id" : "25aae808-59d1-4d2f-b227-38f42bde67de",
           "defaultvalue" : null,
-          "displayorder" : 5
+          "displayorder" : 5,
+          "components" : [ {
+            "type" : "GRID_ITEM",
+            "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+            "columnId" : null,
+            "required" : false,
+            "textType" : null,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+            "parameters" : { },
+            "id" : "9fa3993a-de7c-49cf-8771-62d90354a06f",
+            "defaultvalue" : null,
+            "displayorder" : 1,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
+            "components" : [ ]
+          }, {
+            "type" : "GRID_ITEM",
+            "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+            "columnId" : null,
+            "required" : false,
+            "textType" : null,
+            "label" : null,
+            "format" : "",
+            "queryDependsOn" : [ ],
+            "foreignKeyId" : null,
+            "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+            "parameters" : { },
+            "id" : "1d64f03b-f184-467e-98fd-d58c43d2cf16",
+            "defaultvalue" : null,
+            "displayorder" : 2,
+            "filterConstraints" : [ ],
+            "prefillConstraints" : [ ],
+            "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
+            "components" : [ ]
+          } ],
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "bf5423c4-036d-420a-939f-f898b2b50d77",
-          "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "381a2303-d2bf-4a15-9be9-aaa9304f75ff",
-          "defaultvalue" : "",
-          "displayorder" : 1
-        }, {
-          "type" : "GRID_ITEM",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : null,
-          "required" : false,
-          "textType" : 0,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : "bf5423c4-036d-420a-939f-f898b2b50d77",
-          "parameters" : {
-            "query" : null,
-            "prefill" : null,
-            "order" : null
-          },
-          "id" : "00b57548-9fda-40ea-b57c-947160efe9ec",
-          "defaultvalue" : "",
-          "displayorder" : 2
-        }, {
-          "type" : "BUTTON",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
           "columnId" : null,
           "required" : false,
           "textType" : null,
-          "label" : "3686a1bb-a89a-49f5-9aea-293ebd68d5d7",
+          "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "381a2303-d2bf-4a15-9be9-aaa9304f75ff",
+          "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+          "parameters" : { },
+          "id" : "9fa3993a-de7c-49cf-8771-62d90354a06f",
+          "defaultvalue" : null,
+          "displayorder" : 1,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
+        }, {
+          "type" : "GRID_ITEM",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : null,
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+          "parameters" : { },
+          "id" : "1d64f03b-f184-467e-98fd-d58c43d2cf16",
+          "defaultvalue" : null,
+          "displayorder" : 2,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
+        }, {
+          "type" : "BUTTON",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "f45faedb-c313-4886-aba7-65fcff39abe5",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : "9fa3993a-de7c-49cf-8771-62d90354a06f",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
                 "type" : "GOTO_URL",
                 "label" : "Go to URL",
-                "id" : "op_2awe29",
-                "urlTemplate" : "{{url}}",
-                "notes" : null,
-                "componentId" : null,
-                "subject" : null,
-                "columnId" : null,
-                "message" : null,
-                "pageId" : null,
-                "body" : null,
-                "title" : null,
-                "foreignKeyId" : null,
-                "clearRecord" : null,
-                "children" : null,
-                "appId" : null,
-                "tableId" : null,
-                "style" : null,
-                "to" : null,
-                "serviceId" : null,
-                "value" : "http://www.nasa.gov/press-release/nasa-leadership-to-call-space-station-crew",
-                "events" : null
+                "id" : "op_rlmu04",
+                "urlTemplate" : "{{url}}"
               } ]
             },
             "tone" : "PRIMARY",
             "size" : "STANDARD",
-            "query" : null,
-            "prefill" : null,
             "disabled" : 0,
-            "showInBladeFooter" : true,
-            "order" : null
+            "showInBladeFooter" : true
           },
-          "id" : "aad5f6ed-4450-4187-ae66-cf4eafcc2ad5",
+          "id" : "a3c1edd2-2036-40f6-ac56-2756d428ccb4",
           "defaultvalue" : null,
-          "displayorder" : 1
+          "displayorder" : 1,
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "BUTTON",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
+          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
           "columnId" : null,
           "required" : false,
           "textType" : null,
-          "label" : "e933ed63-6942-4e05-b19e-c5a7fa3a4417",
+          "label" : "c6d7c065-5d3d-47c3-94ad-9d0413dbabf3",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "00b57548-9fda-40ea-b57c-947160efe9ec",
+          "parentComponentId" : "1d64f03b-f184-467e-98fd-d58c43d2cf16",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
                 "type" : "SEND_EMAIL",
-                "label" : "Send Email",
-                "id" : "op_qnlly9",
-                "to" : "",
-                "subject" : "84034881-fc46-45c7-a78e-c32f3d8c2e98",
-                "body" : "2a01401e-7df4-4677-a0f4-a490d0e1c137"
+                "label" : "Send email",
+                "id" : "op_mpy6mb",
+                "subject" : "7bdf8ce3-55c6-43c1-a833-c74c78121b20",
+                "body" : "f75d7ee8-0072-4d1d-818c-95399dbd06b0"
               } ]
             },
             "tone" : "SECONDARY",
-            "size" : "STANDARD",
-            "query" : null,
-            "prefill" : null,
+            "size" : "BABY",
             "disabled" : 0,
-            "showInBladeFooter" : false,
-            "order" : null
+            "showInBladeFooter" : false
           },
-          "id" : "ec5547c9-6f5d-49f6-8cf9-a5c60f5c6389",
-          "defaultvalue" : null,
-          "displayorder" : 1
-        }, {
-          "type" : "DIVIDER",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : null,
-          "required" : false,
-          "textType" : null,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : { },
-          "id" : "357f2120-5e2f-4315-ac5b-7defdfa0f7fd",
-          "defaultvalue" : null,
-          "displayorder" : 3,
-          "pageId" : "cdb2f0b5-546a-433f-a64b-7a12ea02eefa"
-        }, {
-          "type" : "BACK_BUTTON",
-          "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-          "columnId" : null,
-          "required" : false,
-          "textType" : null,
-          "label" : null,
-          "format" : "",
-          "foreignKeyId" : null,
-          "parentComponentId" : null,
-          "parameters" : {
-            "titleTemplate" : "ae688f3f-5cc2-4045-80d9-3b36d46094e6"
-          },
-          "id" : "9be46e3c-ed13-4694-803a-51e476265893",
+          "id" : "87d58bc0-0b86-4f21-b6e4-492499d00287",
           "defaultvalue" : null,
           "displayorder" : 1,
-          "pageId" : "cdb2f0b5-546a-433f-a64b-7a12ea02eefa"
+          "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         } ],
-        "title" : "f94b8d1a-34df-499f-a6c2-2934ff404400",
-        "logicConfiguration" : [ ],
+        "title" : "efc47b0e-ef55-4def-9153-69859564504d",
         "parameters" : {
           "operationStack" : {
             "operations" : [ ]
           }
         },
-        "tableid" : 628,
+        "tableid" : 441,
         "datasourceid" : 53,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "actionApp" : true,
-      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
-      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -410,15 +396,15 @@
   } ],
   "services" : [ {
     "id" : 53,
-    "uuid" : "09923ad7-4097-43b4-bf7b-237c5bdebc1f",
-    "version" : 35,
+    "uuid" : "096dca7b-d898-4513-beda-f4332e5e06c7",
+    "version" : 48,
     "title" : "RSS",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
-    "schemaName" : "micha17dac1_rss_http",
+    "schemaName" : "martff97c1_rss",
     "configuration" : {
       "trackingUuid" : "9ca965fd-d10b-4049-b375-fcbfbf9a9b42",
-      "baseUrl" : "http://feeds.feedblitz.com/",
+      "baseUrl" : "http://feeds.feedblitz.com",
       "security" : {
         "type" : "NONE"
       },
@@ -433,6 +419,8 @@
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
         "useTimeRange" : false,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
         "schedule" : "FOUR_HOURS"
       } ],
       "endpoints" : [ {
@@ -449,164 +437,18 @@
           "body" : "",
           "bodyParameters" : [ ],
           "transformation" : {
-            "script" : "async ({response}) => {\nlet parser = library.load(\"xml2js\")\nlet result = await parser.parseStringPromise(response,{explicitArray: false });\nreturn JSON.stringify(result['rss']) \n}"
+            "script" : "async ({response}) => {\nlet parser = library.load(\"xml2js\")\nlet result = await parser.parseStringPromise(response,{explicitArray: false });\nif (Array.isArray(result.rss.channel.item)) {\n        result.Items = result.rss.channel.item.map(arrayItem => {\n            if (arrayItem.link.length > 128) {\n                arrayItem.id = arrayItem.link.substr(arrayItem.link.length-128)\n            }\n            else {\n                arrayItem.id = arrayItem.link\n            }\n            return arrayItem\n        })\n    }\nreturn JSON.stringify(result.rss.channel.item) \n}"
           }
         },
         "incrementalSyncEnabled" : false,
         "dataStructure" : {
           "uniqueId" : "a608b6a0-dd66-4c80-b413-df611da8fe3c",
-          "baseTableName" : "RSS",
+          "baseTableName" : "items",
           "rootPath" : "",
           "tables" : [ {
-            "id" : 7,
-            "tableName" : "categories",
-            "path" : "",
-            "columns" : [ {
-              "name" : "channel_atom_link_href",
-              "path" : "channel/atom:link/$/href",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_atom_link_rel",
-              "path" : "channel/atom:link/$/rel",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_atom_link_type",
-              "path" : "channel/atom:link/$/type",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_description",
-              "path" : "channel/description",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_feed_asset_id",
-              "path" : "channel/feed_asset/id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "INTEGER",
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_feed_asset_seo",
-              "path" : "channel/feed_asset/seo",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_feed_asset_subtype",
-              "path" : "channel/feed_asset/subtype",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_feed_asset_type",
-              "path" : "channel/feed_asset/type",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_language",
-              "path" : "channel/language",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_last_build_date",
-              "path" : "channel/lastBuildDate",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_link",
-              "path" : "channel/link",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_pub_date",
-              "path" : "channel/pubDate",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "channel_title",
-              "path" : "channel/title",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD",
-              "columnRole" : "PRIMARY_KEY"
-            }, {
-              "name" : "channel_ttl",
-              "path" : "channel/ttl",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "INTEGER",
-              "source" : "RECORD"
-            }, {
-              "name" : "version",
-              "path" : "$/version",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "DOUBLE",
-              "precision" : 20,
-              "scale" : 5,
-              "source" : "RECORD"
-            }, {
-              "name" : "xmlns_atom",
-              "path" : "$/xmlns:atom",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            }, {
-              "name" : "xmlns_metadata",
-              "path" : "$/xmlns:metadata",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "RECORD"
-            } ],
-            "root" : true,
-            "ignored" : false,
-            "childTables" : [ "channel/item" ],
-            "detailEndpointIds" : [ ],
-            "loadingType" : "PULL"
-          }, {
-            "id" : 8,
+            "id" : 10,
             "tableName" : "items",
-            "path" : "channel/item",
+            "path" : "",
             "columns" : [ {
               "name" : "author",
               "path" : "dc:creator",
@@ -616,10 +458,32 @@
               "length" : 255,
               "source" : "RECORD"
             }, {
+              "name" : "comments",
+              "path" : "comments",
+              "primaryKeyCandidate" : true,
+              "ignored" : true,
+              "columnType" : "STRING",
+              "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "content_encoded",
+              "path" : "content:encoded",
+              "primaryKeyCandidate" : true,
+              "ignored" : true,
+              "columnType" : "BINARY",
+              "source" : "RECORD"
+            }, {
               "name" : "description",
               "path" : "description",
               "primaryKeyCandidate" : true,
               "ignored" : false,
+              "columnType" : "BINARY",
+              "source" : "RECORD"
+            }, {
+              "name" : "feedburner_orig_link",
+              "path" : "feedburner:origLink",
+              "primaryKeyCandidate" : true,
+              "ignored" : true,
               "columnType" : "STRING",
               "length" : 255,
               "source" : "RECORD"
@@ -639,27 +503,14 @@
               "columnType" : "BOOLEAN",
               "source" : "RECORD"
             }, {
-              "name" : "metadata_id",
-              "path" : "metadata:id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "INTEGER",
-              "source" : "RECORD"
-            }, {
-              "name" : "metadata_sponsored",
-              "path" : "metadata:sponsored",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "BOOLEAN",
-              "source" : "RECORD"
-            }, {
-              "name" : "metadata_type",
-              "path" : "metadata:type",
+              "name" : "id",
+              "path" : "id",
               "primaryKeyCandidate" : true,
               "ignored" : false,
               "columnType" : "STRING",
               "length" : 255,
-              "source" : "RECORD"
+              "source" : "RECORD",
+              "columnRole" : "PRIMARY_KEY"
             }, {
               "name" : "published_at",
               "path" : "pubDate",
@@ -667,6 +518,13 @@
               "ignored" : false,
               "columnType" : "STRING",
               "length" : 255,
+              "source" : "RECORD"
+            }, {
+              "name" : "slash_comments",
+              "path" : "slash:comments",
+              "primaryKeyCandidate" : true,
+              "ignored" : true,
+              "columnType" : "INTEGER",
               "source" : "RECORD"
             }, {
               "name" : "title",
@@ -685,36 +543,17 @@
               "length" : 255,
               "source" : "RECORD"
             }, {
-              "name" : "parent_channel_title",
+              "name" : "wfw_comment_rss",
+              "path" : "wfw:commentRss",
               "primaryKeyCandidate" : true,
-              "ignored" : false,
+              "ignored" : true,
               "columnType" : "STRING",
               "length" : 255,
-              "source" : "PARENT_RECORD",
-              "parentColumnReference" : "channel_title",
-              "parentTableReference" : "categories",
-              "referenceGroup" : "nested_table_1"
-            }, {
-              "name" : "unique_id",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 36,
-              "source" : "GENERATED",
-              "columnRole" : "PRIMARY_KEY"
-            }, {
-              "name" : "root_channel_title",
-              "primaryKeyCandidate" : true,
-              "ignored" : false,
-              "columnType" : "STRING",
-              "length" : 255,
-              "source" : "ROOT_RECORD",
-              "columnRole" : "ROOT_KEY_REFERENCE",
-              "parentColumnReference" : "channel_title"
+              "source" : "RECORD"
             } ],
-            "root" : false,
+            "root" : true,
             "ignored" : false,
-            "childTables" : [ ],
+            "childTables" : [ "category" ],
             "detailEndpointIds" : [ ],
             "loadingType" : "PULL"
           } ]
@@ -728,7 +567,7 @@
     },
     "context" : { },
     "tables" : [ {
-      "id" : 628,
+      "id" : 441,
       "title" : "items",
       "displayName" : "Items",
       "entityName" : "items",
@@ -736,161 +575,7 @@
       "loadingType" : "PULL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 14600,
-        "title" : "description",
-        "displayName" : "Description",
-        "attributeName" : "description",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Description",
-        "primaryKey" : false
-      }, {
-        "id" : 14601,
-        "title" : "guid",
-        "displayName" : "Guid",
-        "attributeName" : "guid",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Guid",
-        "primaryKey" : false
-      }, {
-        "id" : 14602,
-        "title" : "guid_is_perma_link",
-        "displayName" : "Guid Is Perma Link",
-        "attributeName" : "guid_is_perma_link",
-        "type" : "BOOLEAN",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Guid Is Perma Link",
-        "primaryKey" : false
-      }, {
-        "id" : 14603,
-        "title" : "metadata_id",
-        "displayName" : "Metadata Id",
-        "attributeName" : "metadata_id",
-        "type" : "INTEGER",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Metadata Id",
-        "primaryKey" : false
-      }, {
-        "id" : 14604,
-        "title" : "metadata_sponsored",
-        "displayName" : "Metadata Sponsored",
-        "attributeName" : "metadata_sponsored",
-        "type" : "BOOLEAN",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Metadata Sponsored",
-        "primaryKey" : false
-      }, {
-        "id" : 14605,
-        "title" : "metadata_type",
-        "displayName" : "Metadata Type",
-        "attributeName" : "metadata_type",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Metadata Type",
-        "primaryKey" : false
-      }, {
-        "id" : 14606,
-        "title" : "title",
-        "displayName" : "Title",
-        "attributeName" : "title",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Title",
-        "primaryKey" : false
-      }, {
-        "id" : 14607,
-        "title" : "parent_channel_title",
-        "displayName" : "Parent Channel Title",
-        "attributeName" : "parent_channel_title",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Parent Channel Title",
-        "primaryKey" : false
-      }, {
-        "id" : 14608,
-        "title" : "unique_id",
-        "displayName" : "Unique Id",
-        "attributeName" : "unique_id",
-        "type" : "STRING",
-        "nullable" : false,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Unique Id",
-        "primaryKey" : true
-      }, {
-        "id" : 14609,
-        "title" : "root_channel_title",
-        "displayName" : "Root Channel Title",
-        "attributeName" : "root_channel_title",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Root Channel Title",
-        "primaryKey" : false
-      }, {
-        "id" : 14610,
-        "title" : "published_at",
-        "displayName" : "Published At",
-        "attributeName" : "published_at",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Published At",
-        "primaryKey" : false
-      }, {
-        "id" : 14611,
+        "id" : 7739,
         "title" : "author",
         "displayName" : "Author",
         "attributeName" : "author",
@@ -904,7 +589,91 @@
         "defaultLabel" : "Author",
         "primaryKey" : false
       }, {
-        "id" : 14612,
+        "id" : 7740,
+        "title" : "description",
+        "displayName" : "Description",
+        "attributeName" : "description",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Description",
+        "primaryKey" : false
+      }, {
+        "id" : 7741,
+        "title" : "guid",
+        "displayName" : "Guid",
+        "attributeName" : "guid",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Guid",
+        "primaryKey" : false
+      }, {
+        "id" : 7742,
+        "title" : "guid_is_perma_link",
+        "displayName" : "Guid Is Perma Link",
+        "attributeName" : "guid_is_perma_link",
+        "type" : "BOOLEAN",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Guid Is Perma Link",
+        "primaryKey" : false
+      }, {
+        "id" : 7743,
+        "title" : "id",
+        "displayName" : "Id",
+        "attributeName" : "id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Id",
+        "primaryKey" : true
+      }, {
+        "id" : 7744,
+        "title" : "published_at",
+        "displayName" : "Published At",
+        "attributeName" : "published_at",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Published At",
+        "primaryKey" : false
+      }, {
+        "id" : 7745,
+        "title" : "title",
+        "displayName" : "Title",
+        "attributeName" : "title",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Title",
+        "primaryKey" : false
+      }, {
+        "id" : 7746,
         "title" : "url",
         "displayName" : "Url",
         "attributeName" : "url",
@@ -918,362 +687,67 @@
         "defaultLabel" : "Url",
         "primaryKey" : false
       } ]
-    }, {
-      "id" : 629,
-      "title" : "categories",
-      "displayName" : "Categories",
-      "entityName" : "categories",
-      "type" : "TABLE",
-      "loadingType" : "PULL",
-      "dataRetention" : "DELETE_ON_FULL_SYNC",
-      "columns" : [ {
-        "id" : 14613,
-        "title" : "channel_atom_link_href",
-        "displayName" : "Channel Atom Link Href",
-        "attributeName" : "channel_atom_link_href",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Atom Link Href",
-        "primaryKey" : false
-      }, {
-        "id" : 14614,
-        "title" : "channel_atom_link_rel",
-        "displayName" : "Channel Atom Link Rel",
-        "attributeName" : "channel_atom_link_rel",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Atom Link Rel",
-        "primaryKey" : false
-      }, {
-        "id" : 14615,
-        "title" : "channel_atom_link_type",
-        "displayName" : "Channel Atom Link Type",
-        "attributeName" : "channel_atom_link_type",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Atom Link Type",
-        "primaryKey" : false
-      }, {
-        "id" : 14616,
-        "title" : "channel_description",
-        "displayName" : "Channel Description",
-        "attributeName" : "channel_description",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Description",
-        "primaryKey" : false
-      }, {
-        "id" : 14617,
-        "title" : "channel_feed_asset_id",
-        "displayName" : "Channel Feed Asset Id",
-        "attributeName" : "channel_feed_asset_id",
-        "type" : "INTEGER",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Feed Asset Id",
-        "primaryKey" : false
-      }, {
-        "id" : 14618,
-        "title" : "channel_feed_asset_seo",
-        "displayName" : "Channel Feed Asset Seo",
-        "attributeName" : "channel_feed_asset_seo",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Feed Asset Seo",
-        "primaryKey" : false
-      }, {
-        "id" : 14619,
-        "title" : "channel_feed_asset_subtyp",
-        "displayName" : "Channel Feed Asset Subtype",
-        "attributeName" : "channel_feed_asset_subtype",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Feed Asset Subtype",
-        "primaryKey" : false
-      }, {
-        "id" : 14620,
-        "title" : "channel_feed_asset_type",
-        "displayName" : "Channel Feed Asset Type",
-        "attributeName" : "channel_feed_asset_type",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Feed Asset Type",
-        "primaryKey" : false
-      }, {
-        "id" : 14621,
-        "title" : "channel_language",
-        "displayName" : "Channel Language",
-        "attributeName" : "channel_language",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Language",
-        "primaryKey" : false
-      }, {
-        "id" : 14622,
-        "title" : "channel_last_build_date",
-        "displayName" : "Channel Last Build Date",
-        "attributeName" : "channel_last_build_date",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Last Build Date",
-        "primaryKey" : false
-      }, {
-        "id" : 14623,
-        "title" : "channel_link",
-        "displayName" : "Channel Link",
-        "attributeName" : "channel_link",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Link",
-        "primaryKey" : false
-      }, {
-        "id" : 14624,
-        "title" : "channel_pub_date",
-        "displayName" : "Channel Pub Date",
-        "attributeName" : "channel_pub_date",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Pub Date",
-        "primaryKey" : false
-      }, {
-        "id" : 14625,
-        "title" : "channel_title",
-        "displayName" : "Channel Title",
-        "attributeName" : "channel_title",
-        "type" : "STRING",
-        "nullable" : false,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Title",
-        "primaryKey" : true
-      }, {
-        "id" : 14626,
-        "title" : "channel_ttl",
-        "displayName" : "Channel Ttl",
-        "attributeName" : "channel_ttl",
-        "type" : "INTEGER",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Channel Ttl",
-        "primaryKey" : false
-      }, {
-        "id" : 14627,
-        "title" : "version",
-        "displayName" : "Version",
-        "attributeName" : "version",
-        "type" : "DOUBLE",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Version",
-        "primaryKey" : false
-      }, {
-        "id" : 14628,
-        "title" : "xmlns_atom",
-        "displayName" : "Xmlns Atom",
-        "attributeName" : "xmlns_atom",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Xmlns Atom",
-        "primaryKey" : false
-      }, {
-        "id" : 14629,
-        "title" : "xmlns_metadata",
-        "displayName" : "Xmlns Metadata",
-        "attributeName" : "xmlns_metadata",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Xmlns Metadata",
-        "primaryKey" : false
-      } ]
     } ],
-    "relationships" : [ {
-      "id" : 879,
-      "pkTable" : {
-        "id" : 629,
-        "title" : "categories",
-        "type" : "TABLE"
-      },
-      "fkTable" : {
-        "id" : 628,
-        "title" : "items",
-        "type" : "TABLE"
-      },
-      "alias" : "nested_table_1",
-      "userDefined" : false,
-      "scriptDefined" : false,
-      "fkColumnPairs" : [ {
-        "fkId" : 879,
-        "pkColumn" : {
-          "id" : 14625,
-          "title" : "channel_title",
-          "displayName" : "Channel Title",
-          "attributeName" : "channel_title",
-          "type" : "STRING",
-          "nullable" : false,
-          "autoIncrement" : false,
-          "roleType" : "DB_COLUMN",
-          "searchable" : true,
-          "readable" : true,
-          "writable" : false,
-          "defaultLabel" : "Channel Title",
-          "primaryKey" : true
-        },
-        "fkColumn" : {
-          "id" : 14607,
-          "title" : "parent_channel_title",
-          "displayName" : "Parent Channel Title",
-          "attributeName" : "parent_channel_title",
-          "type" : "STRING",
-          "nullable" : true,
-          "autoIncrement" : false,
-          "roleType" : "DB_COLUMN",
-          "searchable" : true,
-          "readable" : true,
-          "writable" : false,
-          "defaultLabel" : "Parent Channel Title",
-          "primaryKey" : false
-        }
-      } ]
-    } ],
+    "relationships" : [ ],
     "metadata" : {
       "vendor" : "Citrix",
-      "categories" : [ ],
-      "tags" : [ ],
+      "description" : "Integrate with RSS to follow the RSS feed of any chosen online channel.",
+      "categories" : [ "WEB_SERVICES" ],
+      "tags" : [ {
+        "tag" : "helpUrl",
+        "value" : "https://docs.citrix.com/en-us/citrix-microapps/downloads/rss-connector-specifications.html"
+      } ],
       "hideAddButton" : false
     },
     "fullyConfigured" : true,
     "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
-    "id" : "169670ef-fbd8-4228-9e6d-b5583b18438f",
-    "legacyId" : 440,
-    "appId" : "46cae5a7-3151-4cf7-b025-a2cad562713a",
-    "version" : 3,
+    "id" : "3ae32352-ee19-4359-9268-4f876c9beb5a",
+    "legacyId" : 134,
+    "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+    "version" : 1,
     "eventType" : "NEW",
     "serviceId" : 53,
-    "tableId" : 628,
-    "linkedServiceId" : 53,
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "expirationDelete" : true,
-    "label" : "d9af827a-9300-4b3e-b3c0-60135e1d424f",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/UTC"
-    },
+    "tableId" : 441,
     "audience" : "ALL",
     "messageDefinition" : {
-      "title" : "0ca73546-c717-4e22-b723-32a672e30ac8",
-      "body" : "dd857e18-0194-4806-bf98-cc9eb3d3d858",
-      "gotoAppPageId" : "cdb2f0b5-546a-433f-a64b-7a12ea02eefa",
+      "title" : "ed745610-7cff-471c-a148-bb5acd480ce2",
+      "body" : "4f6164c1-ab39-40da-be68-1a8862fee2cb",
+      "gotoAppPageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
       "configuration" : {
-        "color" : "",
         "highPriority" : false,
         "cardIcon" : {
           "imageUrl" : "exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
           "type" : "LIBRARY"
         }
       },
-      "actionButtonIds" : [ "aad5f6ed-4450-4187-ae66-cf4eafcc2ad5" ],
-      "task" : false,
-      "url" : ""
+      "actionButtonIds" : [ "a3c1edd2-2036-40f6-ac56-2756d428ccb4" ],
+      "task" : false
     },
     "messageCountLimit" : 50,
+    "notifyExternalChannels" : true,
     "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "hasValidConstraints" : true,
+    "label" : "e557e3d4-614f-43ea-b34b-e3137dae7821",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true
   } ],
-  "resolvers" : [ ],
   "modelConfiguration" : {
-    "appIds" : [ "46cae5a7-3151-4cf7-b025-a2cad562713a" ],
-    "resolverIds" : [ ],
+    "appIds" : [ "1997dd65-4cc5-4a60-9f02-2945bffec6b1" ],
     "bundleDescription" : "Integrate with RSS to follow the RSS feed of any chosen online channel.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "580E9E52B7A8465CE4BBE67432A91675",
-  "appliedSappUpgrades" : [ "microapp-7984", "microapp-8892", "microapp-10876", "microapp-13471", "microapp-1980", "microapp-6790", "microapp-10421", "microapp-13344", "microapp-4020", "microapp-8921", "microapp-6264", "microapp-7888", "microapp-9597", "microapp-7961", "microapp-13808", "microapp-11349", "microapp-11340", "microapp-5025", "microapp-6293", "microapp-14613", "microapp-9702", "microapp-13233", "microapp-9701", "microapp-8511", "microapp-10420", "microapp-7290", "microapp-10860", "microapp-6853", "microapp-8003", "microapp-3548", "microapp-14492", "microapp-14978", "microapp-3838", "microapp-3580", "microapp-14177", "microapp-10549", "microapp-4518", "microapp-7561", "microapp-11836", "microapp-3547", "microapp-10856", "microapp-10858", "microapp-2450", "microapp-6617", "microapp-4666", "microapp-12936", "microapp-6262", "microapp-5227", "microapp-11136", "microapp-6593", "microapp-12505", "microapp-8576", "microapp-12525", "microapp-12427", "microapp-8950", "microapp-14849" ],
-  "buildVersion" : "1.110.0.ef182677445c0c253de1b05842b952bbafb4184f"
+  "translationChecksum" : "4B93D6586CA9546BCDF2096034A8FEE7",
+  "appliedSappUpgrades" : [ "microapp-15578", "microapp-3548", "microapp-14177", "microapp-10860", "microapp-5227", "microapp-13233", "microapp-6293", "microapp-11340", "microapp-6790", "microapp-6593", "microapp-9702", "microapp-10549", "microapp-7888", "microapp-8003", "microapp-6264", "microapp-10421", "microapp-9701", "microapp-12936", "microapp-13344", "microapp-10876", "microapp-3547", "microapp-8576", "microapp-8892", "microapp-6617", "microapp-8511", "microapp-6262", "microapp-11136", "microapp-4518", "microapp-2450", "microapp-14978", "microapp-7984", "microapp-14492", "microapp-10420", "microapp-14642", "microapp-7961", "microapp-13471", "microapp-14849", "microapp-13808", "microapp-4666", "microapp-14613", "microapp-7561", "microapp-4020", "microapp-8921", "microapp-9597", "microapp-12525", "microapp-8950", "microapp-10858", "microapp-3580", "microapp-6853", "microapp-12427", "microapp-10856", "microapp-3838", "microapp-11349", "microapp-7290", "microapp-12505", "microapp-1980", "microapp-11836", "microapp-5025" ],
+  "buildVersion" : "1.116.0.21e3c20a72f6ee28fd6f7fabb2d55bdb80e7e01d"
 }
