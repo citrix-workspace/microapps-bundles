@@ -3,15 +3,11 @@
     "appVersion" : {
       "id" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
       "serviceId" : 53,
-      "version" : 268,
+      "version" : 272,
       "parameters" : {
         "imageUrl" : "exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
         "description" : "058ea0cb-2d30-4611-8f8d-436682643c30"
       },
-      "actionApp" : true,
-      "startPageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
-      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
-      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
       "pages" : [ {
         "id" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
         "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
@@ -46,8 +42,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 441,
           "defaultLimit" : 20,
+          "componentTableId" : 441,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -387,7 +383,11 @@
         "datasourceid" : 53,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ]
+      } ],
+      "startPageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
+      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
+      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
+      "actionApp" : true
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -397,14 +397,14 @@
   "services" : [ {
     "id" : 53,
     "uuid" : "096dca7b-d898-4513-beda-f4332e5e06c7",
-    "version" : 48,
+    "version" : 61,
     "title" : "RSS",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "martff97c1_rss",
     "configuration" : {
       "trackingUuid" : "9ca965fd-d10b-4049-b375-fcbfbf9a9b42",
-      "baseUrl" : "http://feeds.feedblitz.com",
+      "baseUrl" : "http://feeds.feedblitz.com/",
       "security" : {
         "type" : "NONE"
       },
@@ -699,23 +699,36 @@
       } ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "3ae32352-ee19-4359-9268-4f876c9beb5a",
     "legacyId" : 134,
     "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
-    "version" : 1,
+    "version" : 3,
     "eventType" : "NEW",
     "serviceId" : 53,
     "tableId" : 441,
+    "periodicDefinition" : {
+      "groupByDataUsed" : "SAME",
+      "groupByDatePeriod" : "DAY",
+      "reminderPeriod" : 0
+    },
+    "expirationDelete" : true,
+    "label" : "e557e3d4-614f-43ea-b34b-e3137dae7821",
+    "schedule" : {
+      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "ed745610-7cff-471c-a148-bb5acd480ce2",
       "body" : "4f6164c1-ab39-40da-be68-1a8862fee2cb",
       "gotoAppPageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
       "configuration" : {
+        "cardTtlHours" : 72,
         "highPriority" : false,
         "cardIcon" : {
           "imageUrl" : "exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
@@ -728,19 +741,7 @@
     "messageCountLimit" : 50,
     "notifyExternalChannels" : true,
     "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true,
-    "label" : "e557e3d4-614f-43ea-b34b-e3137dae7821",
-    "schedule" : {
-      "jobSchedule" : "AFTER_CONNECTOR_SYNC",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/GMT"
-    },
-    "periodicDefinition" : {
-      "groupByDataUsed" : "SAME",
-      "groupByDatePeriod" : "DAY",
-      "reminderPeriod" : 0
-    },
-    "expirationDelete" : true
+    "hasValidConstraints" : true
   } ],
   "modelConfiguration" : {
     "appIds" : [ "1997dd65-4cc5-4a60-9f02-2945bffec6b1" ],
@@ -748,6 +749,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "4B93D6586CA9546BCDF2096034A8FEE7",
-  "appliedSappUpgrades" : [ "microapp-15578", "microapp-3548", "microapp-14177", "microapp-10860", "microapp-5227", "microapp-13233", "microapp-6293", "microapp-11340", "microapp-6790", "microapp-6593", "microapp-9702", "microapp-10549", "microapp-7888", "microapp-8003", "microapp-6264", "microapp-10421", "microapp-9701", "microapp-12936", "microapp-13344", "microapp-10876", "microapp-3547", "microapp-8576", "microapp-8892", "microapp-6617", "microapp-8511", "microapp-6262", "microapp-11136", "microapp-4518", "microapp-2450", "microapp-14978", "microapp-7984", "microapp-14492", "microapp-10420", "microapp-14642", "microapp-7961", "microapp-13471", "microapp-14849", "microapp-13808", "microapp-4666", "microapp-14613", "microapp-7561", "microapp-4020", "microapp-8921", "microapp-9597", "microapp-12525", "microapp-8950", "microapp-10858", "microapp-3580", "microapp-6853", "microapp-12427", "microapp-10856", "microapp-3838", "microapp-11349", "microapp-7290", "microapp-12505", "microapp-1980", "microapp-11836", "microapp-5025" ],
+  "appliedSappUpgrades" : [ "microapp-6790", "microapp-4666", "microapp-15578", "microapp-8892", "microapp-11836", "microapp-11340", "microapp-10860", "microapp-7561", "microapp-3548", "microapp-12525", "microapp-4020", "microapp-13233", "microapp-10856", "microapp-10858", "microapp-12427", "microapp-7290", "microapp-12505", "microapp-5025", "microapp-3838", "microapp-8921", "microapp-11136", "microapp-2450", "microapp-9701", "microapp-13471", "microapp-14642", "microapp-6617", "microapp-4518", "microapp-12936", "microapp-6853", "microapp-9597", "microapp-7961", "microapp-14177", "microapp-9702", "microapp-10421", "microapp-8950", "microapp-13808", "microapp-10549", "microapp-7888", "microapp-13344", "microapp-8576", "microapp-6264", "microapp-14613", "microapp-6262", "microapp-7984", "microapp-11349", "microapp-3580", "microapp-1980", "microapp-3547", "microapp-6593", "microapp-14849", "microapp-8003", "microapp-10420", "microapp-10876", "microapp-8511", "microapp-14978", "microapp-5227", "microapp-6293", "microapp-14492" ],
   "buildVersion" : "1.116.0.21e3c20a72f6ee28fd6f7fabb2d55bdb80e7e01d"
 }
