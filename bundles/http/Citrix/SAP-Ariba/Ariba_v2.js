@@ -79,6 +79,7 @@ async function parseAndStoreApprovalRequests(sync, json, totalCost, groups) {
             }
         }
     }
+     
     sync.dataStore.save('pendingApprovablesRequisitions', rqUserList) //saving approvers
     return groups
 }
@@ -132,9 +133,16 @@ function resolveGroupApproval(json, groupMembers, groupId) {
     })
 }
 
-async function storeRequisition(sync, requisitions, groups = new Map()) {
+async function storeRequisition(sync, requisitions,incrementalSync, groups = new Map()) {
     console.log("Loading requisition details, count: " + requisitions.length)
     for (let requisition of requisitions) { // getting requisition details and additional data
+        if(incrementalSync){
+        sync.dataStore.deleteBy('pendingApprovablesRequisitions',{requisitionId:requisition});
+        sync.dataStore.deleteBy('rq_comments',{requisitionId:requisition});
+        sync.dataStore.deleteBy('rq_li_accountings',{requisitionId:requisition});
+        sync.dataStore.deleteBy('rq_lineitems',{requisitionId:requisition})
+        }
+
         let responseData = await sync.client.fetch('requisitions/' + requisition + '?realm=' + sync.integrationParameters.realm, {
             headers: {
                 'apikey': sync.integrationParameters.apiKey
@@ -157,7 +165,7 @@ async function storeRequisition(sync, requisitions, groups = new Map()) {
                         delete json.lineItems[j].accountings
                     }
                 }
-                sync.dataStore.save('rq_lineitems', flatLineItems(json.lineItems)) //saving line items
+                sync.dataStore.save('rq_lineitems',flatLineItems(json.lineItems)) //saving line items
                 delete json.lineItems
             }
             sync.dataStore.save('requisition_details', flatRequisition(json))
@@ -287,7 +295,7 @@ async function syncAriba(sync, incrementalSync) {
         documentsLists) //geting documents id, this endpoint is used for full and incr, hold all data only for last 90 days
     documentsLists.requisitions = [...new Set(documentsLists.requisitions)] //creating uniq list
     documentsLists.invoices = [...new Set(documentsLists.invoices)] //creating uniq list
-    await storeRequisition(sync, documentsLists.requisitions) //storing requisitions and resolve group approvables
+    await storeRequisition(sync, documentsLists.requisitions,incrementalSync) //storing requisitions and resolve group approvables
     if (documentsLists.newChangeId > documentsLists.lastChangeId) {
         sync.context.lastChangeSequenceId = documentsLists.newChangeId
     } //saving  lastChangeSequenceId for incremental sync into context
