@@ -1,4 +1,5 @@
-var date = new Date().toLocaleDateString()
+const date = new Date().toLocaleDateString()
+const _ = library.load('lodash');
 
 integration.define({
   actions: [
@@ -424,8 +425,12 @@ function calculateReportsWithTotals(expenses, reports) {
   return reports.map(report => ({...report, TotalAmount: calculateTotalAmount(report.ID, expenses)}))
 }
 
+function cloneViaJson(list){
+  return JSON.parse(JSON.stringify(list))
+}
+
 function getRandomReport(list){
-  return JSON.parse(JSON.stringify(list[Math.floor(Math.random() * (list.length))]))
+  return cloneViaJson(list[Math.floor(Math.random() * (list.length))])
 }
 
 function createReportID(id, list){
@@ -451,12 +456,10 @@ async function incrementalSynch({dataStore, client}) {
   console.log("Running incremental synchronization...")
   const report = getRandomReport(reports)
   report.ID = createReportID(report.ID, reports)
-  const newExpenses = []
-  let totalamount = 0
 
   const expensechoices = [] //possible expenses in report's category
   for (let i=0; i< expenses.length; i++) {
-    const expense = JSON.parse(JSON.stringify(expenses[i]))
+    const expense = cloneViaJson(expenses[i])
     if (expense.Category == report.Category){
       expensechoices.push(expense)
     }
@@ -464,13 +467,14 @@ async function incrementalSynch({dataStore, client}) {
 
   const numOfExpenses =  getNumOfExpenses(expensechoices)
 
-  for (let i=0; i < numOfExpenses; i++) {
-    const expense = JSON.parse(JSON.stringify(expensechoices[Math.floor(Math.random() * (expensechoices.length))]))
+  const newExpenses = _.range(0, numOfExpenses).map(i => {
+    const expense = cloneViaJson(expensechoices[Math.floor(Math.random() * (expensechoices.length))])
     expense.ReportID = report.ID
     expense.TransactionDate = report.DateSubmitted
     expense.ID = expense.ID.slice(0,12) + (generateRandomNumValue(1, 99999)).toString()
-    newExpenses.push(expense)
-  }
+    return expense
+  })
+
   const reportToSave = calculateTotalAmountForNewReport(newExpenses, report)
   dataStore.save('reports', reportToSave)
   dataStore.save('expenses', newExpenses)
@@ -479,10 +483,7 @@ async function incrementalSynch({dataStore, client}) {
 
 async function updateReport({ dataStore, client, actionParameters, integrationParameters }) {
   console.log(`Updating report with id ${actionParameters.ID}...`)
-  
-  const {ID, Category, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status} = actionParameters
-  const report = {ID, Category, OwnerName, OwnerMail, DateSubmitted, TotalAmount, CurrencyCode, Comment, Status}
-
+  const report = _.pick(actionParameters, ['ID', 'Category', 'OwnerName', 'OwnerMail', 'DateSubmitted', 'TotalAmount', 'CurrencyCode', 'Comment', 'Status'])
   dataStore.save('reports', report)
   console.log(`Report with id ${actionParameters.ID} updated`)
 }
