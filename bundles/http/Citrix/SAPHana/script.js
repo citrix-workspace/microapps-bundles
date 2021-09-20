@@ -691,7 +691,7 @@ function incrementalSync({dataStore, client, latestSynchronizationTime}) {
 }
 
 async function getTimeEntries(dataStore, client, latestSynchronizationTime) {
-    let timeEntries = []
+    const timeEntries = []
     const today = moment().format('YYYY-MM-DDT00:00:00')
     const sevenDaysBefore = moment().subtract(7, 'd').format('YYYY-MM-DDT00:00:00')
     const thirtyDaysBefore = moment().subtract(30, 'd').format('YYYY-MM-DDT00:00:00')
