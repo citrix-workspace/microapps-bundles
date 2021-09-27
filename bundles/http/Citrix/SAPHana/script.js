@@ -812,7 +812,7 @@ async function createTimeEntry({ dataStore, client, actionParameters }) {
     const storeObject = {
         common,
         "timeEntryId": actionParameters.TimeEntryId,
-        "endAt": endAt
+        "endAt": ''
     }
 
     storeEntryInDatabase(dataStore, storeObject)
