@@ -856,10 +856,8 @@ async function clockManager({ dataStore, client, actionParameters }) {
 
 async function removeClockEntry({ dataStore, client, actionParameters }) {
 
-    const headers = await createHeaderPost(client)
-
     const respPOST = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection', {
-        headers,
+        headers: await createHeaderPost(client),
         method: 'POST',
         body: JSON.stringify({
             PersonWorkAgreement: actionParameters.PersonWorkAgreement,
