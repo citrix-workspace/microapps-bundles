@@ -1,5 +1,3 @@
-const controllingArea = "A000";
-
 const defaultGetOptions = {
     method: 'GET',
     headers: {
@@ -614,10 +612,8 @@ function commonStoreParameters(timeEntry, actionParameters, timeSheetDateTimeSta
 async function createHeaderPost(client) {
     const respGET = await client.fetch('API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$top=1', defaultGetOptions)
     if (!respGET.ok) {
-        throw new Error(`Could not Retrieve a time entry ## Response [getToken] -> ${JSON.stringify(respGET.headers)}​`);
+        throw new Error(`Could not Retrieve a time entry ## Response [getToken] -> ${JSON.stringify(respGET.headers)}`);
     }
-
-    console.log("respGET: " + JSON.stringify(respGET.headers))
 
     const token = respGET.headers.get("x-csrf-token")
     const cookies = respGET.headers.get("set-cookie").split(",")
@@ -649,7 +645,7 @@ async function createTimeEntryApiRequest(client, headers, timeEntryObj) {
         PersonWorkAgreementExternalID: timeEntryObj.personWorkAgreementExternalID,
         CompanyCode: timeEntryObj.companyCode,
         PersonWorkAgreement: timeEntryObj.personWorkAgreement,
-        TimeSheetDate: `/Date(${timeEntryObj.date}​)/`,
+        TimeSheetDate: `/Date(${timeEntryObj.date})/`,
         TimeSheetStatus: timeEntryObj.timeSheetStatus,
         TimeSheetOperation: timeEntryObj.timeSheetOperation
     }
@@ -670,7 +666,7 @@ async function createTimeEntryApiRequest(client, headers, timeEntryObj) {
     });
 
     if (!respPOST.ok) {
-        throw new Error(`[respPOST] ## Error Response -> (${JSON.stringify(respPOST)}​)`);
+        throw new Error(`[respPOST] ## Error Response -> (${JSON.stringify(respPOST)})`);
     }
 
     return respPOST.json()
@@ -678,12 +674,12 @@ async function createTimeEntryApiRequest(client, headers, timeEntryObj) {
 
 async function getCreatedTimeEntryApiRequest(client, personWorkAgreementExternalId, companyCode, timeSheetRecord) {
 
-    const timeEntryUrl = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection(PersonWorkAgreementExternalID='${personWorkAgreementExternalId}​',CompanyCode='${companyCode}​',TimeSheetRecord='${timeSheetRecord}​')`
+    const timeEntryUrl = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection(PersonWorkAgreementExternalID='${personWorkAgreementExternalId}',CompanyCode='${companyCode}',TimeSheetRecord='${timeSheetRecord}')`
 
     const getCreatedTimeEntry = await client.fetch(timeEntryUrl, defaultGetOptions);
 
     if (!getCreatedTimeEntry.ok) {
-        throw new Error(`Could not retrieve data from time entry (${getCreatedTimeEntry.status}​: ${getCreatedTimeEntry.statusText}​)`);
+        throw new Error(`Could not retrieve data from time entry (${getCreatedTimeEntry.status}: ${getCreatedTimeEntry.statusText})`);
     }
 
     const timeEntry = await getCreatedTimeEntry.json()
@@ -693,12 +689,12 @@ async function getCreatedTimeEntryApiRequest(client, personWorkAgreementExternal
 
 async function getEmployeeBusinessPartner(client, user_email) {
 
-    const employeeDataUrl = `YY1_EMPLOYEEDATA_CDS/YY1_EmployeeData?$filter=DefaultEmailAddress eq '${user_email}​'`
+    const employeeDataUrl = `YY1_EMPLOYEEDATA_CDS/YY1_EmployeeData?$filter=DefaultEmailAddress eq '${user_email}'`
 
     const employeeDataGET = await client.fetch(employeeDataUrl, defaultGetOptions);
 
     if (!employeeDataGET.ok) {
-        throw new Error(`Could not Retrieve Employee Data(${employeeDataGET.status}​: ${employeeDataGET.statusText}​)`);
+        throw new Error(`Could not Retrieve Employee Data(${employeeDataGET.status}: ${employeeDataGET.statusText})`);
     }
 
     const employeeDataResponse = await employeeDataGET.json()
@@ -707,28 +703,29 @@ async function getEmployeeBusinessPartner(client, user_email) {
 }
 
 async function getWorkAgreement(client, employeeBusinessPartner) {
-    const workAgreementUrl = `YY1_WORKAGREEMENTDETAILS_CDS/YY1_WorkAgreementDetails?$filter=Person eq '${employeeBusinessPartner}​'`
+    const workAgreementUrl = `YY1_WORKAGREEMENTDETAILS_CDS/YY1_WorkAgreementDetails?$filter=Person eq '${employeeBusinessPartner}'`
 
     const workAgreementGET = await client.fetch(workAgreementUrl, defaultGetOptions);
 
     if (!workAgreementGET.ok) {
-        throw new Error(`Could not Retrieve Employee Data(${workAgreementGET.status}​: ${workAgreementGET.statusText}​)`);
+        throw new Error(`Could not Retrieve Employee Data(${workAgreementGET.status}: ${workAgreementGET.statusText})`);
     }
 
     const workAgreementResponse = await workAgreementGET.json()
 
     return workAgreementResponse.d.results[0]
 }
+
 async function getTimeEntries({ dataStore, client }, incrementalSync) {
-    let timeEntries = []
+    const timeEntries = []
     const today = moment().format('YYYY-MM-DDT00:00:00')
     const sevenDaysBefore = moment().subtract(7, 'd').format('YYYY-MM-DDT00:00:00')
     const thirtyDaysBefore = moment().subtract(30, 'd').format('YYYY-MM-DDT00:00:00')
 
-    let dateFilter = `TimeSheetDate ge datetime'${thirtyDaysBefore}​' and TimeSheetDate le datetime'${today}​'`
+    let dateFilter = `TimeSheetDate ge datetime'${thirtyDaysBefore}' and TimeSheetDate le datetime'${today}'`
 
     if (incrementalSync) {
-        dateFilter = `TimeSheetDate ge datetime'${sevenDaysBefore}​'`
+        dateFilter = `TimeSheetDate ge datetime'${sevenDaysBefore}'`
     }
 
     const statusFilter = "(TimeSheetStatus eq '10' or " +
@@ -737,14 +734,14 @@ async function getTimeEntries({ dataStore, client }, incrementalSync) {
         "TimeSheetStatus eq '40' or " +
         "TimeSheetStatus eq '50')"
 
-    const filter = `${dateFilter}​ and ${statusFilter}​`
+    const filter = `${dateFilter} and ${statusFilter}`
 
-    const url = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=${filter}​`
+    const url = `API_MANAGE_WORKFORCE_TIMESHEET/TimeSheetEntryCollection?$filter=${filter}`
 
     const respGET = await client.fetch(url, defaultGetOptions);
 
     if (!respGET.ok) {
-        throw new Error(`Could not Retrieve Time Entries (${respGET.status}​: ${respGET.statusText}​)`);
+        throw new Error(`Could not Retrieve Time Entries (${respGET.status}: ${respGET.statusText})`);
     }
 
 
@@ -868,7 +865,7 @@ async function removeClockEntry({ dataStore, client, actionParameters }) {
 
     // AFTER POST
     if (!respPOST.ok) {
-        throw new Error(`Could not create time entry -> Status: ${respPOST.status}​ / Response: ${JSON.stringify(respPOST)}​)`);
+        throw new Error(`Could not create time entry -> Status: ${respPOST.status} / Response: ${JSON.stringify(respPOST)})`);
     }
 
     dataStore.deleteById("TimeEntries", actionParameters.Id)
