@@ -1,20 +1,24 @@
 {
   "applications" : [ {
     "appVersion" : {
-      "id" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
-      "serviceId" : 53,
-      "version" : 272,
+      "id" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
+      "serviceId" : 55,
+      "version" : 279,
       "parameters" : {
         "imageUrl" : "exported/RSS.b2dda706cd7035dfaac710f076fb94ce.svg",
         "description" : "058ea0cb-2d30-4611-8f8d-436682643c30"
       },
+      "startPageId" : "82fa4c4a-40ad-4301-8796-cc714f5ee40b",
+      "actionApp" : true,
+      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
+      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
       "pages" : [ {
-        "id" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
-        "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+        "id" : "82fa4c4a-40ad-4301-8796-cc714f5ee40b",
+        "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "TEXT_INPUT",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -28,13 +32,13 @@
             "mapToDataColumn" : false,
             "disabled" : 0
           },
-          "id" : "b9725ce5-d9a9-4b1f-ac7f-9bb148298081",
+          "id" : "8c78cd4c-3513-475c-93d9-ff343896d552",
           "defaultvalue" : "",
           "displayorder" : 1,
           "pageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f"
         }, {
           "type" : "LIST",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -43,7 +47,7 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "defaultLimit" : 20,
-          "componentTableId" : 441,
+          "componentTableId" : 444,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -51,21 +55,37 @@
               "operations" : [ {
                 "type" : "GOTO_PAGE",
                 "id" : "6a844657-da11-4827-b729-b8ffc889fc13",
-                "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
-                "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
-                "clearRecord" : false
+                "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
+                "pageId" : "0bbb3baa-28bb-4392-923f-496400b485d7",
+                "clearRecord" : false,
+                "notes" : null,
+                "componentId" : null,
+                "subject" : null,
+                "columnId" : null,
+                "urlTemplate" : null,
+                "message" : null,
+                "body" : null,
+                "title" : null,
+                "foreignKeyId" : null,
+                "children" : null,
+                "tableId" : null,
+                "style" : null,
+                "to" : null,
+                "serviceId" : null,
+                "value" : null,
+                "events" : null
               } ]
             },
-            "tableid" : 441,
+            "tableid" : 444,
             "sqlquery" : {
-              "id" : "fbcadf26-c982-4bbe-a5e8-acb240e2a432",
+              "id" : "aa00ee5c-2c1b-456b-abb7-4df94d025a49",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 441,
-                  "columnId" : 7745,
+                  "tableId" : 444,
+                  "columnId" : 7769,
                   "valueType" : "COMPONENT",
-                  "variableComponent" : "b9725ce5-d9a9-4b1f-ac7f-9bb148298081",
+                  "variableComponent" : "8c78cd4c-3513-475c-93d9-ff343896d552",
                   "ignoredWhenValueIsNull" : true,
                   "action" : "LIKE"
                 }
@@ -73,12 +93,12 @@
               "autojoins" : false
             },
             "sqlorder" : {
-              "id" : "d23eb70c-1136-49fd-891d-c54691ef817d",
+              "id" : "3555f47a-c371-4b93-9aa4-8544bfbc65f5",
               "constraints" : {
                 "type" : "TERM",
                 "constraint" : {
-                  "tableId" : 441,
-                  "columnId" : 7744,
+                  "tableId" : 444,
+                  "columnId" : 7771,
                   "order" : "ASC",
                   "ignoredWhenValueIsNull" : false
                 }
@@ -89,8 +109,8 @@
             "item" : {
               "title" : {
                 "dataColumnsMap" : { },
-                "tableid" : 441,
-                "columnid" : 7745,
+                "tableid" : 444,
+                "columnid" : 7769,
                 "type" : "SIMPLE",
                 "stringFormat" : "none"
               },
@@ -107,8 +127,8 @@
               },
               "meta" : {
                 "dataColumnsMap" : { },
-                "tableid" : 441,
-                "columnid" : 7744,
+                "tableid" : 444,
+                "columnid" : 7771,
                 "type" : "SIMPLE",
                 "stringFormat" : "datetime"
               }
@@ -129,12 +149,12 @@
             },
             "description" : ""
           },
-          "id" : "64659a99-ab2f-4b39-a560-4b703015fc20",
+          "id" : "c239064c-2e42-465e-ad0d-4eee5387ed3a",
           "defaultvalue" : null,
           "displayorder" : 2,
-          "componentTableId" : null,
           "defaultLimit" : 20,
-          "pageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f"
+          "componentTableId" : null,
+          "pageId" : "82fa4c4a-40ad-4301-8796-cc714f5ee40b"
         } ],
         "title" : "c113ffc2-ec4d-47ec-bc2f-1584d8a00e10",
         "parameters" : {
@@ -142,17 +162,17 @@
             "operations" : [ ]
           }
         },
-        "tableid" : 441,
-        "datasourceid" : 53,
+        "tableid" : 444,
+        "datasourceid" : 55,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       }, {
-        "id" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
-        "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+        "id" : "0bbb3baa-28bb-4392-923f-496400b485d7",
+        "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
         "type" : "DETAIL",
         "components" : [ {
           "type" : "BACK_BUTTON",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -163,13 +183,13 @@
           "parameters" : {
             "titleTemplate" : "28e1b910-1ef6-49c9-96f7-bbfe74d1aaab"
           },
-          "id" : "2916ba7e-6e25-4043-ae98-bc85bdd16271",
+          "id" : "04e45f2b-f214-493e-bfda-62f85dd5270f",
           "defaultvalue" : null,
           "displayorder" : 1,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "TEXT",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -186,14 +206,14 @@
             "hideIfEmpty" : true,
             "visible" : 1
           },
-          "id" : "70f6f6b5-131b-4c9b-aa68-d0a9b4510240",
+          "id" : "fbc7bed0-74bf-4cdf-9af6-54f17dbd03db",
           "defaultvalue" : null,
           "displayorder" : 2,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "HTML_CONTENT",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
-          "columnId" : 7740,
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
+          "columnId" : 7764,
           "required" : false,
           "textType" : null,
           "label" : null,
@@ -201,7 +221,7 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : { },
-          "id" : "737f5198-e27e-4162-abbc-becc1a7d28b9",
+          "id" : "27a08041-63e7-4d86-bfe1-3deb72713427",
           "defaultvalue" : null,
           "displayorder" : 4,
           "columnType" : null,
@@ -209,7 +229,7 @@
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "DIVIDER",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -218,13 +238,13 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : { },
-          "id" : "bae49f9e-298b-40ba-9a35-eee32a413317",
+          "id" : "db25e91c-c006-4f5e-b66f-487a650bee53",
           "defaultvalue" : null,
           "displayorder" : 3,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "FLEXIBLE_GRID",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
@@ -242,7 +262,7 @@
             "columnWidths" : [ 10, 2 ],
             "mobileWrappingMode" : "Row"
           },
-          "id" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+          "id" : "3536aca4-b1c1-4931-b432-aa593459620b",
           "defaultvalue" : null,
           "displayorder" : 5,
           "components" : [ {
@@ -287,44 +307,44 @@
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+          "parentComponentId" : "3536aca4-b1c1-4931-b432-aa593459620b",
           "parameters" : { },
-          "id" : "9fa3993a-de7c-49cf-8771-62d90354a06f",
+          "id" : "90a9737a-84ee-4ba6-bdd6-b3bab358cd33",
           "defaultvalue" : null,
           "displayorder" : 1,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "GRID_ITEM",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : null,
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "25aae808-59d1-4d2f-b227-38f42bde67de",
+          "parentComponentId" : "3536aca4-b1c1-4931-b432-aa593459620b",
           "parameters" : { },
-          "id" : "1d64f03b-f184-467e-98fd-d58c43d2cf16",
+          "id" : "5bc611fc-095b-48d8-a94b-419d4c90d60f",
           "defaultvalue" : null,
           "displayorder" : 2,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "BUTTON",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : "f45faedb-c313-4886-aba7-65fcff39abe5",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "9fa3993a-de7c-49cf-8771-62d90354a06f",
+          "parentComponentId" : "90a9737a-84ee-4ba6-bdd6-b3bab358cd33",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
@@ -339,20 +359,20 @@
             "disabled" : 0,
             "showInBladeFooter" : true
           },
-          "id" : "a3c1edd2-2036-40f6-ac56-2756d428ccb4",
+          "id" : "f5605ce4-cdfa-46b2-a706-3aead2c80aa0",
           "defaultvalue" : null,
           "displayorder" : 1,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
         }, {
           "type" : "BUTTON",
-          "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
+          "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
           "columnId" : null,
           "required" : false,
           "textType" : null,
           "label" : "c6d7c065-5d3d-47c3-94ad-9d0413dbabf3",
           "format" : "",
           "foreignKeyId" : null,
-          "parentComponentId" : "1d64f03b-f184-467e-98fd-d58c43d2cf16",
+          "parentComponentId" : "5bc611fc-095b-48d8-a94b-419d4c90d60f",
           "parameters" : {
             "operationStack" : {
               "operations" : [ {
@@ -368,7 +388,7 @@
             "disabled" : 0,
             "showInBladeFooter" : false
           },
-          "id" : "87d58bc0-0b86-4f21-b6e4-492499d00287",
+          "id" : "ceb45068-324a-469a-a14f-e3c7717a8ac5",
           "defaultvalue" : null,
           "displayorder" : 1,
           "pageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e"
@@ -379,15 +399,11 @@
             "operations" : [ ]
           }
         },
-        "tableid" : 441,
-        "datasourceid" : 53,
+        "tableid" : 444,
+        "datasourceid" : 55,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "startPageId" : "fb8fbefa-11fc-42a4-8315-210d3be0f75f",
-      "title" : "ae7b3337-b0fe-4ce0-875b-dee6ac9b4424",
-      "trackingUuid" : "dca556a2-e4aa-4e1d-b811-4d50bb006d18",
-      "actionApp" : true
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -395,9 +411,9 @@
     }
   } ],
   "services" : [ {
-    "id" : 53,
-    "uuid" : "096dca7b-d898-4513-beda-f4332e5e06c7",
-    "version" : 61,
+    "id" : 55,
+    "uuid" : "9d2115f9-b7ad-454e-a0e3-50ed9e546dcb",
+    "version" : 65,
     "title" : "RSS",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
@@ -437,7 +453,7 @@
           "body" : "",
           "bodyParameters" : [ ],
           "transformation" : {
-            "script" : "async ({response}) => {\nlet parser = library.load(\"xml2js\")\nlet result = await parser.parseStringPromise(response,{explicitArray: false });\nif (Array.isArray(result.rss.channel.item)) {\n        result.Items = result.rss.channel.item.map(arrayItem => {\n            if (arrayItem.link.length > 128) {\n                arrayItem.id = arrayItem.link.substr(arrayItem.link.length-128)\n            }\n            else {\n                arrayItem.id = arrayItem.link\n            }\n            return arrayItem\n        })\n    }\nreturn JSON.stringify(result.rss.channel.item) \n}"
+            "script" : "async ({response}) => {\nlet parser = library.load(\"xml2js\")\nlet result = await parser.parseStringPromise(response,{explicitArray: false });\nif (Array.isArray(result.rss.channel.item)) {\n        result.Items = result.rss.channel.item.map(arrayItem => {\n            if (arrayItem.link.length > 128) {\n                arrayItem.id = arrayItem.link.substr(arrayItem.link.length-128)\n            }\n            else {\n                arrayItem.id = arrayItem.link\n            }\n            arrayItem.published = new Date(arrayItem.pubDate)\n            return arrayItem\n        })\n    }\nreturn JSON.stringify(result.rss.channel.item) \n}"
           }
         },
         "incrementalSyncEnabled" : false,
@@ -512,10 +528,17 @@
               "source" : "RECORD",
               "columnRole" : "PRIMARY_KEY"
             }, {
+              "name" : "published",
+              "path" : "published",
+              "primaryKeyCandidate" : true,
+              "ignored" : false,
+              "columnType" : "TIMESTAMP",
+              "source" : "RECORD"
+            }, {
               "name" : "published_at",
               "path" : "pubDate",
               "primaryKeyCandidate" : true,
-              "ignored" : false,
+              "ignored" : true,
               "columnType" : "STRING",
               "length" : 255,
               "source" : "RECORD"
@@ -567,7 +590,7 @@
     },
     "context" : { },
     "tables" : [ {
-      "id" : 441,
+      "id" : 444,
       "title" : "items",
       "displayName" : "Items",
       "entityName" : "items",
@@ -575,7 +598,7 @@
       "loadingType" : "PULL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 7739,
+        "id" : 7763,
         "title" : "author",
         "displayName" : "Author",
         "attributeName" : "author",
@@ -589,7 +612,7 @@
         "defaultLabel" : "Author",
         "primaryKey" : false
       }, {
-        "id" : 7740,
+        "id" : 7764,
         "title" : "description",
         "displayName" : "Description",
         "attributeName" : "description",
@@ -603,7 +626,7 @@
         "defaultLabel" : "Description",
         "primaryKey" : false
       }, {
-        "id" : 7741,
+        "id" : 7765,
         "title" : "guid",
         "displayName" : "Guid",
         "attributeName" : "guid",
@@ -617,7 +640,7 @@
         "defaultLabel" : "Guid",
         "primaryKey" : false
       }, {
-        "id" : 7742,
+        "id" : 7766,
         "title" : "guid_is_perma_link",
         "displayName" : "Guid Is Perma Link",
         "attributeName" : "guid_is_perma_link",
@@ -631,7 +654,7 @@
         "defaultLabel" : "Guid Is Perma Link",
         "primaryKey" : false
       }, {
-        "id" : 7743,
+        "id" : 7767,
         "title" : "id",
         "displayName" : "Id",
         "attributeName" : "id",
@@ -645,21 +668,7 @@
         "defaultLabel" : "Id",
         "primaryKey" : true
       }, {
-        "id" : 7744,
-        "title" : "published_at",
-        "displayName" : "Published At",
-        "attributeName" : "published_at",
-        "type" : "STRING",
-        "nullable" : true,
-        "autoIncrement" : false,
-        "roleType" : "DB_COLUMN",
-        "searchable" : true,
-        "readable" : true,
-        "writable" : false,
-        "defaultLabel" : "Published At",
-        "primaryKey" : false
-      }, {
-        "id" : 7745,
+        "id" : 7769,
         "title" : "title",
         "displayName" : "Title",
         "attributeName" : "title",
@@ -673,7 +682,7 @@
         "defaultLabel" : "Title",
         "primaryKey" : false
       }, {
-        "id" : 7746,
+        "id" : 7770,
         "title" : "url",
         "displayName" : "Url",
         "attributeName" : "url",
@@ -685,6 +694,20 @@
         "readable" : true,
         "writable" : false,
         "defaultLabel" : "Url",
+        "primaryKey" : false
+      }, {
+        "id" : 7771,
+        "title" : "published",
+        "displayName" : "Published",
+        "attributeName" : "published",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Published",
         "primaryKey" : false
       } ]
     } ],
@@ -699,21 +722,33 @@
       } ],
       "hideAddButton" : false
     },
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
-    "id" : "3ae32352-ee19-4359-9268-4f876c9beb5a",
-    "legacyId" : 134,
-    "appId" : "1997dd65-4cc5-4a60-9f02-2945bffec6b1",
-    "version" : 3,
+    "id" : "c6f6d812-bd27-4223-8720-6f3c63641477",
+    "legacyId" : 136,
+    "appId" : "831efb51-902c-4c1f-a2ca-3ee39d38d7f8",
+    "version" : 4,
     "eventType" : "NEW",
-    "serviceId" : 53,
-    "tableId" : 441,
+    "serviceId" : 55,
+    "tableId" : 444,
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
       "reminderPeriod" : 0
+    },
+    "messageConditions" : {
+      "type" : "TERM",
+      "constraint" : {
+        "tableId" : 444,
+        "columnId" : 7771,
+        "columnType" : "TIMESTAMP",
+        "action" : "BECOMES",
+        "comparator" : "GREATER_OR_EQUAL",
+        "value" : "1",
+        "valueType" : "TODAY_MINUS_N"
+      }
     },
     "expirationDelete" : true,
     "label" : "e557e3d4-614f-43ea-b34b-e3137dae7821",
@@ -726,7 +761,7 @@
     "messageDefinition" : {
       "title" : "ed745610-7cff-471c-a148-bb5acd480ce2",
       "body" : "4f6164c1-ab39-40da-be68-1a8862fee2cb",
-      "gotoAppPageId" : "da686333-a22a-47c1-b17b-7b9f1665cf0e",
+      "gotoAppPageId" : "0bbb3baa-28bb-4392-923f-496400b485d7",
       "configuration" : {
         "cardTtlHours" : 72,
         "highPriority" : false,
@@ -735,7 +770,7 @@
           "type" : "LIBRARY"
         }
       },
-      "actionButtonIds" : [ "a3c1edd2-2036-40f6-ac56-2756d428ccb4" ],
+      "actionButtonIds" : [ "f5605ce4-cdfa-46b2-a706-3aead2c80aa0" ],
       "task" : false
     },
     "messageCountLimit" : 50,
@@ -744,11 +779,11 @@
     "hasValidConstraints" : true
   } ],
   "modelConfiguration" : {
-    "appIds" : [ "1997dd65-4cc5-4a60-9f02-2945bffec6b1" ],
+    "appIds" : [ "831efb51-902c-4c1f-a2ca-3ee39d38d7f8" ],
     "bundleDescription" : "Integrate with RSS to follow the RSS feed of any chosen online channel.",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "4B93D6586CA9546BCDF2096034A8FEE7",
-  "appliedSappUpgrades" : [ "microapp-6790", "microapp-4666", "microapp-15578", "microapp-8892", "microapp-11836", "microapp-11340", "microapp-10860", "microapp-7561", "microapp-3548", "microapp-12525", "microapp-4020", "microapp-13233", "microapp-10856", "microapp-10858", "microapp-12427", "microapp-7290", "microapp-12505", "microapp-5025", "microapp-3838", "microapp-8921", "microapp-11136", "microapp-2450", "microapp-9701", "microapp-13471", "microapp-14642", "microapp-6617", "microapp-4518", "microapp-12936", "microapp-6853", "microapp-9597", "microapp-7961", "microapp-14177", "microapp-9702", "microapp-10421", "microapp-8950", "microapp-13808", "microapp-10549", "microapp-7888", "microapp-13344", "microapp-8576", "microapp-6264", "microapp-14613", "microapp-6262", "microapp-7984", "microapp-11349", "microapp-3580", "microapp-1980", "microapp-3547", "microapp-6593", "microapp-14849", "microapp-8003", "microapp-10420", "microapp-10876", "microapp-8511", "microapp-14978", "microapp-5227", "microapp-6293", "microapp-14492" ],
+  "translationChecksum" : "7E90E3DF80512CC8784F31E102F61CEE",
+  "appliedSappUpgrades" : [ "microapp-3580", "microapp-6264", "microapp-1980", "microapp-9701", "microapp-3548", "microapp-12936", "microapp-10876", "microapp-8892", "microapp-6262", "microapp-13471", "microapp-8921", "microapp-8576", "microapp-7888", "microapp-10856", "microapp-10549", "microapp-8511", "microapp-11836", "microapp-14613", "microapp-3838", "microapp-14642", "microapp-15578", "microapp-14492", "microapp-8950", "microapp-6593", "microapp-6790", "microapp-9702", "microapp-4020", "microapp-6293", "microapp-14978", "microapp-5227", "microapp-14849", "microapp-11349", "microapp-7561", "microapp-6853", "microapp-14177", "microapp-10860", "microapp-2450", "microapp-11340", "microapp-10858", "microapp-8003", "microapp-5025", "microapp-6617", "microapp-4666", "microapp-10421", "microapp-13233", "microapp-7290", "microapp-13808", "microapp-9597", "microapp-4518", "microapp-3547", "microapp-7961", "microapp-12505", "microapp-7984", "microapp-12525", "microapp-10420", "microapp-12427", "microapp-11136", "microapp-13344" ],
   "buildVersion" : "1.116.0.21e3c20a72f6ee28fd6f7fabb2d55bdb80e7e01d"
 }
