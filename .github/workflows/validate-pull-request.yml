@@ -32,8 +32,9 @@ jobs:
 
           mvn --batch-mode exec:java -pl bundlegen -Dexec.mainClass="${main_class}" -Dexec.args="${args}"
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload bundles
+        uses: actions/upload-artifact@v2
         with:
-          name: artifacts
+          name: bundles
           path: "${BUNDLES_DIST_DIR}/archives/*/*.zip"
 
