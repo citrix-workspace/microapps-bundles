@@ -32,9 +32,11 @@ jobs:
 
           mvn --batch-mode exec:java -pl bundlegen -Dexec.mainClass="${main_class}" -Dexec.args="${args}"
 
-      - name: Upload bundles
+      - name: Determine bundle artifacts path
+        run: echo "BUNDLE_ARTIFACTS_PATH=${BUNDLES_DIST_DIR}/archives/*/*.zip" >> $GITHUB_ENV
+
+      - name: Upload bundle artifacts
         uses: actions/upload-artifact@v2
         with:
           name: bundles
-          path: "${BUNDLES_DIST_DIR}/archives/*/*.zip"
-
+          path: ${{ env.BUNDLE_ARTIFACTS_PATH }}
