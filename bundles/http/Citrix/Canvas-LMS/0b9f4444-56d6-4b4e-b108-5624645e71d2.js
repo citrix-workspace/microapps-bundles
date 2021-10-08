@@ -9,43 +9,41 @@ const perPage = 100;
 //Dataloading Endpoints
 async function canvasFullSync({ dataStore, client, latestSynchronizationTime = null }) {
 	const accountResponse = await client.fetch(`api/v1/accounts?per_page=${perPage}`);
-	if (accountResponse.ok) {
-		const account = await accountResponse.json();
-		for (const accountValue of account) {
-			let i = 1;
-			let nextPageExists;
-
-			do {
-				nextPageExists = false;
-				const courseResponse = await client.fetch(
-					`api/v1/accounts/${accountValue.id}/courses?page=${i}&per_page=${perPage}`
-				);
-				i++;
-				const tempCourseLink = courseResponse.headers.map.link.split(',');
-				if (!courseResponse.ok) {
-					throw new Error(`Courses sync failed ${courseResponse.status}:${courseResponse.statusText}.`);
-				}
-				const course = await courseResponse.json();
-
-				for (const courseValue of course) {
-					if (latestSynchronizationTime) {
-						const lastSyncTime = moment(latestSynchronizationTime).utc().format();
-						await updateAction(dataStore, client, courseValue.id, lastSyncTime, endDate, false);
-					} else {
-						await updateAction(dataStore, client, courseValue.id, startDate, endDate, false);
-					}
-				}
-				tempCourseLink.forEach((element) => {
-					const courseLink = element.split('; ')[1];
-					if (courseLink === `rel="next"`) {
-						console.log(`element=> ${element}`);
-						nextPageExists = true;
-					}
-				});
-			} while (nextPageExists);
-		}
-	} else {
+	if (!accountResponse.ok){
 		throw new Error(`Accounts sync failed ${accountResponse.status}:${accountResponse.statusText}.`);
+	}
+	const account = await accountResponse.json();
+	for (const accountValue of account) {
+		let i = 1;
+		let nextPageExists;
+
+		do {
+			nextPageExists = false;
+			const courseResponse = await client.fetch(
+				`api/v1/accounts/${accountValue.id}/courses?page=${i}&per_page=${perPage}`
+			);
+			i++;
+			const tempCourseLink = courseResponse.headers.map.link.split(',');
+			if (!courseResponse.ok) {
+				throw new Error(`Courses sync failed ${courseResponse.status}:${courseResponse.statusText}.`);
+			}
+			const course = await courseResponse.json();
+
+			for (const courseValue of course) {
+				if (latestSynchronizationTime) {
+					const lastSyncTime = moment(latestSynchronizationTime).utc().format();
+					await updateAction(dataStore, client, courseValue.id, lastSyncTime, endDate, false);
+				} else {
+					await updateAction(dataStore, client, courseValue.id, startDate, endDate, false);
+				}
+			}
+			tempCourseLink.forEach((element) => {
+				const courseLink = element.split('; ')[1];
+				if (courseLink === `rel="next"`) {
+					nextPageExists = true;
+				}
+			});
+		} while (nextPageExists);
 	}
 }
 
@@ -63,11 +61,10 @@ async function createCourseAnnouncement({ dataStore, client, actionParameters, s
 		})
 	});
 
-	if (response.ok) {
-		return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
-	} else {
+	if (!response.ok) {
 		throw new Error(`Could not create course announcement (${response.status}: ${response.statusText})`);
 	}
+	return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
 }
 
 //SA-Accept Invitation
@@ -78,11 +75,10 @@ async function acceptInvitation({ dataStore, client, actionParameters, serviceCl
 			method: 'POST'
 		}
 	);
-	if (response.ok) {
-		return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
-	} else {
+	if (!response.ok) {
 		throw new Error(`Could not accept invitation: (${response.status}: ${response.statusText})`);
 	}
+	return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
 }
 
 //SA-Reject Invitation
@@ -93,11 +89,10 @@ async function rejectInvitation({ dataStore, client, actionParameters }) {
 			method: 'POST'
 		}
 	);
-	if (response.ok) {
-		dataStore.deleteById('enrollments', actionParameters.enrollmentId);
-	} else {
+	if (!response.ok) {
 		throw new Error(`Could not reject invitation: (${response.status}: ${response.statusText})`);
 	}
+	dataStore.deleteById('enrollments', actionParameters.enrollmentId);
 }
 
 //SA-Create Invitation
@@ -108,11 +103,10 @@ async function createInvitation({ dataStore, client, actionParameters, serviceCl
 			method: 'POST'
 		}
 	);
-	if (response.ok) {
-		return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
-	} else {
+	if (!response.ok) {
 		throw new Error(`Could not create course registration: (${response.status}: ${response.statusText})`);
 	}
+	return updateAction(dataStore, serviceClient, actionParameters.courseId, now, end, true);
 }
 
 // Announcement & Enrollment API call
@@ -125,8 +119,11 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate, endDa
 			`api/v1/announcements?context_codes[]=course_${courseId}&start_date=${StartDate}&end_date=${endDate}&page=${announcementIncrement}&per_page=${perPage}`
 		);
 		const tempAnnouncementLink = announcementResponse.headers.map.link.split(',');
-
-		if (announcementResponse.ok) {
+		if(!announcementResponse.ok){
+			throw new Error(
+				`Announcement sync failed ${announcementResponse.status}:${announcementResponse.statusText}.`
+			);
+		}
 			const announcement = await announcementResponse.json();
 			let enrollmentIncrement = 1;
 			let enrollmentPageExists;
@@ -138,7 +135,11 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate, endDa
 
 				const tempEnrollmentLink = enrollmentResponse.headers.map.link.split(',');
 				let enrollment;
-				if (enrollmentResponse.ok) {
+				if(!enrollmentResponse.ok){
+					throw new Error(
+						`Enrollments sync failed ${enrollmentResponse.status}:${enrollmentResponse.statusText}.`
+					);
+				}
 					enrollment = await enrollmentResponse.json();
 					for (const enrollmentValue of enrollment) {
 						const enrollmentBody = {
@@ -171,36 +172,26 @@ async function updateAction(dataStore, serviceClient, courseId, StartDate, endDa
 							dataStore.save('announcements', announcementBody);
 						}
 					}
-				} else {
-					throw new Error(
-						`Enrollments sync failed ${enrollmentResponse.status}:${enrollmentResponse.statusText}.`
-					);
-				}
 				tempEnrollmentLink.forEach((element) => {
 					const enrollmentLink = element.split('; ')[1];
 
-					if (enrollmentLink == 'rel="next"') {
+					if (enrollmentLink === `rel="next"`) {
 						enrollmentIncrement = element
 							.split('; ')[0]
-							.replace(/^\<+|\>+$/g, '')
+							.replace(/^<+|>+$/g, '')
 							.split('?page=')[1]
 							.split('&per_page')[0];
 						enrollmentPageExists = true;
 					}
 				});
 			} while (enrollmentPageExists && !isUpdateAfterAction);
-		} else {
-			throw new Error(
-				`Announcement sync failed ${announcementResponse.status}:${announcementResponse.statusText}.`
-			);
-		}
 
 		tempAnnouncementLink.forEach((element) => {
 			const announcementLink = element.split('; ')[1];
-			if (announcementLink == 'rel="next"') {
+			if (announcementLink === `rel="next"`) {
 				announcementIncrement = element
 					.split('; ')[0]
-					.replace(/^\<+|\>+$/g, '')
+					.replace(/^<+|>+$/g, '')
 					.split('&page=')[1]
 					.split('&per_page')[0];
 				announcementPageExists = true;
