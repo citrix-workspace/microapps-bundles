@@ -404,7 +404,7 @@ async function syncEnvelopes(client, dataStore, account_id, userids, dataUpdateA
             start_position = 0
             totalSetSize = 0
         }
-    } while (dataUpdateAfterAction != true && i < userids.length)
+    } while (!dataUpdateAfterAction && i < userids.length)
 }
 //Service Actions
 async function addRecipient({ client, dataStore, integrationParameters, actionParameters }) {
