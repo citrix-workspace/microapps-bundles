@@ -241,7 +241,7 @@ async function fullSync({ client, dataStore, integrationParameters, context }) {
     const userids = await syncUsers(client, dataStore, ACCOUNT_ID)
     await Promise.all([
         syncTemplates(client, dataStore, ACCOUNT_ID),
-        syncEnvelopes(client, dataStore, ACCOUNT_ID, userids)
+        syncEnvelopes(client, dataStore, ACCOUNT_ID, userids, false)
     ])
 }
 
@@ -250,7 +250,7 @@ async function incrementalSync({ client, dataStore, integrationParameters, lates
     const userids = await syncUsers(client, dataStore, ACCOUNT_ID)
     await Promise.all([
         syncTemplates(client, dataStore, ACCOUNT_ID, latestSynchronizationTime),
-        syncEnvelopes(client, dataStore, ACCOUNT_ID, userids, latestSynchronizationTime)
+        syncEnvelopes(client, dataStore, ACCOUNT_ID, userids, false, latestSynchronizationTime)
     ])
 }
 
@@ -341,7 +341,7 @@ async function syncTemplates(client, dataStore, account_id, latestSynchronizatio
     } while (start_position < totalSetSize)
 }
 
-async function syncEnvelopes(client, dataStore, account_id, userids, latestSynchronizationTime = null) {
+async function syncEnvelopes(client, dataStore, account_id, userids, dataUpdateAfterAction, latestSynchronizationTime = null) {
     const COUNT = 100
     const FROM_DATE = latestSynchronizationTime === null ? moment().subtract(4, 'M').utc().format() : moment(latestSynchronizationTime).utc().format()
     let start_position = 0
@@ -404,7 +404,7 @@ async function syncEnvelopes(client, dataStore, account_id, userids, latestSynch
             start_position = 0
             totalSetSize = 0
         }
-    } while (i < userids.length)
+    } while (!dataUpdateAfterAction && i < userids.length)
 }
 //Service Actions
 async function addRecipient({ client, dataStore, integrationParameters, actionParameters }) {
@@ -427,7 +427,7 @@ async function addRecipient({ client, dataStore, integrationParameters, actionPa
     if (!response.ok) {
         throw new Error(await response.text())
     }
-    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
+    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id], true)
 }
 async function updateOrResendEnvelope({ client, dataStore, integrationParameters, actionParameters }) {
     const ACCOUNT_ID = integrationParameters.account_Id;
@@ -448,7 +448,7 @@ async function updateOrResendEnvelope({ client, dataStore, integrationParameters
     if (!response.ok) {
         throw new Error(await response.text())
     }
-    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
+    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id], true)
 }
 
 async function sendTemplateThreeRecipient({ client, dataStore, integrationParameters, actionParameters }) {
@@ -486,7 +486,7 @@ async function sendTemplateThreeRecipient({ client, dataStore, integrationParame
     if (!response.ok) {
         throw new Error(await response.text())
     }
-    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id])
+    await syncEnvelopes(client, dataStore, ACCOUNT_ID, [actionParameters.user_Id], true)
 }
 
 async function deleteRecipient({ client, dataStore, integrationParameters, actionParameters }) {
