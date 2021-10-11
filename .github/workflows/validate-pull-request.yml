@@ -4,6 +4,7 @@ on:
 env:
   BUNDLES_DIR: bundles
   BUNDLES_DIST_DIR: bundles-dist
+  BUNDLES_ARCHIVE_DIR: archives
   LINK_BUNDLES: https://github.com/microapps-test/workspace-microapps-test-bundles/tree/master/bundles/
 jobs:
   build:
@@ -32,8 +33,14 @@ jobs:
 
           mvn --batch-mode exec:java -pl bundlegen -Dexec.mainClass="${main_class}" -Dexec.args="${args}"
 
+      - name: Change bundle extensions zip to mapp
+        run: |
+          for f in ${BUNDLES_DIST_DIR}/${BUNDLES_ARCHIVE_DIR}/*/*.zip; do
+              mv -- "$f" "${f%.zip}.mapp"
+          done
+
       - name: Determine bundle artifacts path
-        run: echo "BUNDLE_ARTIFACTS_PATH=${BUNDLES_DIST_DIR}/archives/*/*.zip" >> $GITHUB_ENV
+        run: echo "BUNDLE_ARTIFACTS_PATH=${BUNDLES_DIST_DIR}/${BUNDLES_ARCHIVE_DIR}/*/*.mapp" >> $GITHUB_ENV
 
       - name: Upload bundle artifacts
         uses: actions/upload-artifact@v2
