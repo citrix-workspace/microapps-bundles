@@ -3,7 +3,7 @@
     "appVersion" : {
       "id" : "e43e81aa-577d-43c6-91aa-9f522c8abfa4",
       "serviceId" : 2746,
-      "version" : 827,
+      "version" : 830,
       "parameters" : {
         "imageUrl" : "exported/report_change.6eae3b312aa0161c24c68c3632534b05.svg",
         "description" : "c7c3b302-889d-4898-afd4-701218413d64"
@@ -23,8 +23,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "componentTableId" : 21204,
           "defaultLimit" : 20,
+          "componentTableId" : 21204,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -247,7 +247,7 @@
                   }, {
                     "parameterId" : "status",
                     "valueType" : "COMPONENT",
-                    "componentId" : "cdd9e6ed-1a68-4c38-86ef-50adb6fbf2f5",
+                    "componentId" : "3fb76d85-268c-4a7d-975d-2ef52f8651af",
                     "type" : "GWSCP"
                   }, {
                     "parameterId" : "expire_after",
@@ -1121,8 +1121,8 @@
         "pagetype" : "Detail",
         "pagetype" : "Detail"
       } ],
-      "startPageId" : "e30c4301-f602-437d-9cc1-601200186bd1",
       "title" : "eb67663d-9c17-4f6e-a21a-e77f5105fcb6",
+      "startPageId" : "e30c4301-f602-437d-9cc1-601200186bd1",
       "trackingUuid" : "b244b07f-4a76-46a0-9409-8f21f77026bb"
     },
     "outboundLinks" : {
@@ -1628,8 +1628,8 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ {
     "id" : "2492f393-c847-4284-aad9-e18dc8e05c3a",
@@ -1639,6 +1639,13 @@
     "eventType" : "REMINDER",
     "serviceId" : 2746,
     "tableId" : 21204,
+    "schedule" : {
+      "jobSchedule" : "DAILY",
+      "useTimeRange" : false,
+      "scheduleTime" : "10:00",
+      "runTimezone" : "Etc/UTC"
+    },
+    "label" : "71da3920-cbaa-4d70-88d6-28a8992f4bf7",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDateColumnId" : 276426,
@@ -1686,13 +1693,6 @@
       }
     },
     "expirationDelete" : true,
-    "label" : "71da3920-cbaa-4d70-88d6-28a8992f4bf7",
-    "schedule" : {
-      "jobSchedule" : "DAILY",
-      "useTimeRange" : false,
-      "scheduleTime" : "10:00",
-      "runTimezone" : "Etc/UTC"
-    },
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "8231f510-5b33-4f90-89ac-7970df281424",
@@ -1719,6 +1719,6 @@
     "bundleVendor" : "Citrix"
   },
   "translationChecksum" : "6F4A8F33368DE15014610B09E99C5362",
-  "appliedSappUpgrades" : [ "microapp-4518", "microapp-6262", "microapp-4666", "microapp-13233", "microapp-15787", "microapp-12525", "microapp-7961", "microapp-8921", "microapp-14849", "microapp-14978", "microapp-6617", "microapp-11349", "microapp-10860", "microapp-13808", "microapp-9702", "microapp-7561", "microapp-7984", "microapp-8892", "microapp-9701", "microapp-14177", "microapp-6264", "microapp-9597", "microapp-8511", "microapp-3547", "microapp-6790", "microapp-13471", "microapp-15578", "microapp-15642", "microapp-2450", "microapp-14613", "microapp-3548", "microapp-4020", "microapp-7888", "microapp-12936", "microapp-13344", "microapp-10856", "microapp-7290", "microapp-6853", "microapp-8003", "microapp-6293", "microapp-11836", "microapp-5227", "microapp-11136", "microapp-1980", "microapp-5025", "microapp-14642", "microapp-12505", "microapp-6593", "microapp-12427", "microapp-8576", "microapp-8950", "microapp-10420", "microapp-10421", "microapp-11340", "microapp-10858", "microapp-3838", "microapp-10876", "microapp-10549", "microapp-14492", "microapp-3580" ],
-  "buildVersion" : "1.123.0.c5c78c9c76e0922413771aa951dae298a13e2655"
+  "appliedSappUpgrades" : [ "microapp-13808", "microapp-14978", "microapp-6853", "microapp-15642", "microapp-3547", "microapp-9597", "microapp-2450", "microapp-5025", "microapp-8892", "microapp-9701", "microapp-9702", "microapp-14177", "microapp-4020", "microapp-6293", "microapp-13344", "microapp-14492", "microapp-8950", "microapp-7961", "microapp-10860", "microapp-11136", "microapp-8003", "microapp-14642", "microapp-3838", "microapp-10420", "microapp-6790", "microapp-10856", "microapp-5227", "microapp-13233", "microapp-4666", "microapp-14849", "microapp-13471", "microapp-7984", "microapp-7290", "microapp-1980", "microapp-15578", "microapp-10549", "microapp-12525", "microapp-11836", "microapp-6262", "microapp-10876", "microapp-8511", "microapp-3548", "microapp-10858", "microapp-6264", "microapp-8921", "microapp-7888", "microapp-12505", "microapp-7561", "microapp-11340", "microapp-12427", "microapp-11349", "microapp-12936", "microapp-6593", "microapp-8576", "microapp-14613", "microapp-10421", "microapp-4518", "microapp-15787", "microapp-3580", "microapp-6617" ],
+  "buildVersion" : "1.124.1.4988d4145d523da2a8b129a2747c99d643c7fd63"
 }
