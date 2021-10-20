@@ -23,8 +23,8 @@ function syncTickets(dataStore, client, jql) {
                 "summary": issue.fields.summary,
                 "created": moment.utc(issue.fields.created).toDate(),
                 "project": issue.fields.summary,
-                "reporter_email": issue.fields.reporter.emailAddress,
-                "reporter_name": issue.fields.reporter.displayName,
+                "reporter_email": issue.fields.reporter?.emailAddress ?? null,
+                "reporter_name": issue.fields.reporter?.displayName ?? null,
                 "status": issue.fields.status.name,
             }
         });
