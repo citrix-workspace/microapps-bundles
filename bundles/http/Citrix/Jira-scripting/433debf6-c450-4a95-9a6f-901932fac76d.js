@@ -1,7 +1,7 @@
 const { pick } = library.load("lodash");
 const moment = library.load("moment-timezone");
 
-function syncTickets(dataStore, client, jql) {
+async function syncTickets(dataStore, client, jql) {
     const searchParameters = {
         startAt: 0,
         maxResults: 50,
@@ -31,11 +31,11 @@ function syncTickets(dataStore, client, jql) {
     do {
         console.log(`syncTickets(startAt=${searchParameters.startAt}, jql=${jql})`);
 
-        const response = client.fetchSync("rest/api/2/search", {
+        const response = await client.fetch("rest/api/2/search", {
             method: "POST",
             body: JSON.stringify(searchParameters),
         });
-        currentResult = response.jsonSync();
+        currentResult = await response.json();
 
         console.log(
             `Ticket response received, status: ${response.status}, total: ${currentResult.total}`
@@ -63,26 +63,26 @@ function syncTickets(dataStore, client, jql) {
     } while (searchParameters.startAt < currentResult.total);
 }
 
-function fullSyncTickets({ dataStore, client }) {
+async function fullSyncTickets({ dataStore, client }) {
     console.log("Full sync of tickets started");
 
     const jql = "updated >= -30d";
-    syncTickets(dataStore, client, jql);
+    await syncTickets(dataStore, client, jql);
 }
 
-function incrementalSyncTickets({ dataStore, client, latestSynchronizationTime }) {
+async function incrementalSyncTickets({ dataStore, client, latestSynchronizationTime }) {
     console.log(`Incremental sync of tickets started, last sync at ${latestSynchronizationTime}`);
 
     const updatedDateTime = moment(new Date(latestSynchronizationTime)).format("YYYY-MM-DD HH:mm");
     const jql = `updated >= '${updatedDateTime}'`;
-    return syncTickets(dataStore, client, jql);
+    await syncTickets(dataStore, client, jql);
 }
 
-function fullSyncProjects({ dataStore, client }) {
+async function fullSyncProjects({ dataStore, client }) {
     console.log("Full sync of projects started");
 
-    const response = client.fetchSync("/rest/api/2/project/search");
-    const projects = response.jsonSync().values.map(project => ({
+    const response = await client.fetch("/rest/api/2/project/search");
+    const projects = (await response.json()).values.map(project => ({
         id: parseInt(project.id, 10),
         ...pick(project, ["key", "name", "isPrivate"]),
     }));
