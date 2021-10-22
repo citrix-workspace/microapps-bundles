@@ -1,5 +1,5 @@
-const {User, Group, UserGroupMapping} = library.load("microapp-user-groups");
-const uuid = library.load("uuid");
+const {User, Group, UserGroupMapping} = library.load("microapp-user-groups")
+const uuid = library.load("uuid")
 
 function fullSync(params) {
     fullSyncUsers(params)
@@ -14,7 +14,7 @@ function fullSyncUsers({client, dataStore}) {
     let pageUserCount = 0
 
     do {
-        console.log(`fullSyncUsers(startAt=${searchParameters.startAt})`);
+        console.log(`fullSyncUsers(startAt=${searchParameters.startAt})`)
         const response = client.fetchSync(`/rest/api/2/users/search?username=.&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`)
         if (!response.ok) {
             const errorMessage = `Users sync failed ${response.status}:${response.statusText}.`
@@ -24,37 +24,29 @@ function fullSyncUsers({client, dataStore}) {
         } else {
             let responseUsers = response.jsonSync()
             pageUserCount = responseUsers.length
-            console.log(`Users on page=${pageUserCount} offset=${searchParameters.startAt}`);
+            console.log(`Users on page=${pageUserCount} offset=${searchParameters.startAt}`)
             console.log(`Users received data: (${JSON.stringify(responseUsers)})`)
 
-            let users = responseUsers
-                //.filter(user => user.active && user.accountType === "atlassian") // TODO filter accountType: !app && accountType: atlassian
-                .map(user => {
-                    const userId = trimIdPrefix(user.accountId);
-                    return {
-                        "account_name": user.displayName,
-                        "display_name": user.displayName,
-                        "email": user.emailAddress ?? userId + "@todo.com",// TODO missing address? is it mandatory
-                        "domain": "domain",
-                        "user_principal_name": user.displayName,
-                        "user_id": userId,
-                    }
-                });
+            // TODO missing mandatory email?
+            let users = responseUsers.map(user => {
+                const userId = trimIdPrefix(user.accountId)
+                const email = user.emailAddress ?? userId
+                return new User(user.displayName, user.displayName, email, "domain", user.name, userId)
+            })
 
             console.log(`Users data: (${JSON.stringify(users)})`)
-            // users.map(user => console.log(user.accountId, user.displayName, user.accountType))
             dataStore.save(User.tableModel, users)
         }
         searchParameters.startAt = searchParameters.startAt + searchParameters.maxResults
 
     } while (pageUserCount == searchParameters.maxResults) //TODO
 
-    console.log(`Total users=${searchParameters.startAt}`);
+    console.log(`Total users=${searchParameters.startAt}`)
 }
 
 function trimIdPrefix(id) {
-    const elementPosition = id.indexOf(":");
-    return elementPosition != -1 ? id.slice(elementPosition + 1) : id;
+    const elementPosition = id.indexOf(":")
+    return elementPosition != -1 ? id.slice(elementPosition + 1) : id
 }
 
 function fullSyncGroups({client, dataStore}) {
@@ -64,8 +56,8 @@ function fullSyncGroups({client, dataStore}) {
     }
 
     do {
-        console.log(`fullSyncGroups(startAt=${searchParameters.startAt})`);
-        var response = client.fetchSync("/rest/api/2/group/bulk");
+        console.log(`fullSyncGroups(startAt=${searchParameters.startAt})`)
+        var response = client.fetchSync("/rest/api/2/group/bulk")
 
         if (!response.ok) {
             const errorMessage = `Groups sync failed ${response.status}:${response.statusText}.`
@@ -73,30 +65,23 @@ function fullSyncGroups({client, dataStore}) {
             console.log(`Error body: ${response.textSync()}`)
             throw new Error(errorMessage)
         } else {
-            responseGroups = response.jsonSync();
-            console.log(`Group response received, total: ${responseGroups.total}`);
+            responseGroups = response.jsonSync()
+            console.log(`Group response received, total: ${responseGroups.total}`)
             console.log(`Group received data: (${JSON.stringify(responseGroups)})`)
 
             let groups = responseGroups.values.map(group => {
-                return {
-                    "account_name": group.name,
-                    "display_name": group.name,
-                    "domain": "domain",
-                    "user_principal_name": group.name,
-                    "group_id": group.groupId,
-                    "parent_group_id": null,
-                }
-            });
+                return new Group(group.name, group.name, "domain", group.name, group.groupId, null)
+            })
 
-            console.log(`Saving ${groups.length} to data store`);
+            console.log(`Saving ${groups.length} to data store`)
 
-            dataStore.save(Group.tableModel, groups);
+            dataStore.save(Group.tableModel, groups)
             console.log(`Groups data: (${JSON.stringify(groups)})`)
             groups.map(group => {
                 console.log(`Group account_name=${group.account_name} group_id=${group.group_id}`)
                 userGroupMapping(client, dataStore, group)
             })
-            searchParameters.startAt += searchParameters.maxResults;
+            searchParameters.startAt += searchParameters.maxResults
         }
     } while (searchParameters.startAt < responseGroups.total)
 }
@@ -108,32 +93,30 @@ function userGroupMapping(client, dataStore, group) {
     }
 
     do {
-        console.log(`userGroupMapping(startAt=${searchParameters.startAt})`);
-        var response = client.fetchSync(`/rest/api/2/group/member?groupname=${group.account_name}&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);//TODO ?account_name
+        console.log(`userGroupMapping(startAt=${searchParameters.startAt})`)
+        var response = client.fetchSync(`/rest/api/2/group/member?groupname=${group.account_name}&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`)
+        //TODO ?account_name
 
         if (!response.ok) {
-            const errorMessage = `Groups sync failed ${response.status}:${response.statusText}.`
-            console.error(errorMessage)
+            const message = `Groups sync failed ${response.status}:${response.statusText}.`
+            console.log(message)
             console.log(`Error body: ${response.textSync()}`)
-            return;
+            return
         } else {
-            responseMappings = response.jsonSync();
-            console.log(`Group mappings response received, total: ${responseMappings.total}`);
+            responseMappings = response.jsonSync()
+            console.log(`Group mappings response received, total: ${responseMappings.total}`)
             console.log(`Group received data: (${JSON.stringify(responseMappings)})`)
 
-
             let userGroupMappings = responseMappings.values.map(user => {
-                return {
-                    "group_id": group.group_id,
-                    "user_id": trimIdPrefix(user.accountId),
-                }
-            });
+                return new UserGroupMapping(group.group_id, trimIdPrefix(user.accountId))
+            })
+
             console.log(`Group mappings data: (${JSON.stringify(userGroupMappings)})`)
-            console.log(`Saving ${userGroupMappings.length} to data store`);
-            dataStore.save(UserGroupMapping.tableModel, userGroupMappings);
+            console.log(`Saving ${userGroupMappings.length} to data store`)
+            dataStore.save(UserGroupMapping.tableModel, userGroupMappings)
 
         }
-        searchParameters.startAt += searchParameters.maxResults;
+        searchParameters.startAt += searchParameters.maxResults
     } while (searchParameters.startAt < responseMappings.total)
 }
 
