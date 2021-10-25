@@ -3,12 +3,15 @@
     "appVersion" : {
       "id" : "e43e81aa-577d-43c6-91aa-9f522c8abfa4",
       "serviceId" : 2746,
-      "version" : 830,
+      "version" : 834,
       "parameters" : {
         "imageUrl" : "exported/report_change.6eae3b312aa0161c24c68c3632534b05.svg",
         "description" : "c7c3b302-889d-4898-afd4-701218413d64"
       },
       "actionApp" : true,
+      "startPageId" : "e30c4301-f602-437d-9cc1-601200186bd1",
+      "title" : "eb67663d-9c17-4f6e-a21a-e77f5105fcb6",
+      "trackingUuid" : "b244b07f-4a76-46a0-9409-8f21f77026bb",
       "pages" : [ {
         "id" : "e30c4301-f602-437d-9cc1-601200186bd1",
         "appId" : "e43e81aa-577d-43c6-91aa-9f522c8abfa4",
@@ -23,8 +26,8 @@
           "format" : "",
           "foreignKeyId" : null,
           "parentComponentId" : null,
-          "defaultLimit" : 20,
           "componentTableId" : 21204,
+          "defaultLimit" : 20,
           "parameters" : {
             "dataSource" : "TABLE",
             "staticItems" : [ ],
@@ -961,7 +964,8 @@
             "comparison" : "EQUAL_TO",
             "valueType" : "COMPONENT",
             "id" : "dbd53303-de1a-4526-a369-28afe656df2e",
-            "equality" : "IS_NOT"
+            "equality" : "IS_NOT",
+            "value" : null
           } ],
           "children" : [ {
             "targetComponentId" : "53815f5a-049e-4357-88da-e882e01e1afd",
@@ -1016,6 +1020,14 @@
             "id" : "f4343c23-2e73-419b-91bb-ac4b7158ac72",
             "equality" : "IS",
             "value" : "Disable Survey"
+          }, {
+            "sourceComponentId" : "1bcd6fd6-b4bd-4b2d-b68d-97263e730419",
+            "targetComponentId" : "cdd9e6ed-1a68-4c38-86ef-50adb6fbf2f5",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "COMPONENT",
+            "id" : "d8dfb75e-2741-455a-8859-c0104a1d0d83",
+            "equality" : "IS",
+            "value" : null
           } ],
           "children" : [ {
             "targetComponentId" : "0fd1bc2f-4d69-4f47-8fb6-74f7578dea1a",
@@ -1073,7 +1085,7 @@
             "valueType" : null,
             "label" : "",
             "id" : "e43eb2ad-51e5-4a9d-bc5f-2fa12f2f0be6",
-            "type" : "SHOW",
+            "type" : "HIDE",
             "customExecution" : "",
             "value" : "",
             "group" : "TRUE"
@@ -1110,6 +1122,79 @@
           "customExecution" : "",
           "value" : null,
           "group" : null
+        }, {
+          "constraints" : [ {
+            "targetComponentId" : "cdd9e6ed-1a68-4c38-86ef-50adb6fbf2f5",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "VALUE",
+            "id" : "ae274358-2ec5-419e-865b-3e68a9afd575",
+            "equality" : "IS",
+            "value" : "Disable Survey"
+          }, {
+            "sourceComponentId" : "1bcd6fd6-b4bd-4b2d-b68d-97263e730419",
+            "targetComponentId" : "cdd9e6ed-1a68-4c38-86ef-50adb6fbf2f5",
+            "comparison" : "EQUAL_TO",
+            "valueType" : "COMPONENT",
+            "id" : "b48d5db1-e929-4228-b673-4e6574bd9f03",
+            "equality" : "IS_NOT"
+          } ],
+          "children" : [ {
+            "targetComponentId" : "0fd1bc2f-4d69-4f47-8fb6-74f7578dea1a",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "f4877025-bb0d-4848-bfe1-a54fc611464e",
+            "type" : "DISABLE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "80ff7589-a47e-421e-91b2-50a6cb9f7151",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "c387fe58-1203-4a50-9497-ee5b93f2cbe9",
+            "type" : "DISABLE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "951a5245-ce3f-4310-bd03-40d41b2220d2",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "049455ff-4008-4564-943e-8c08389080d4",
+            "type" : "HIDE",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          }, {
+            "targetComponentId" : "f87b0864-02a2-4980-9716-acf04c1773c4",
+            "constraints" : [ ],
+            "children" : [ ],
+            "execution" : null,
+            "valueType" : null,
+            "label" : "",
+            "id" : "d3fd5938-4f4a-4763-966a-295de4204777",
+            "type" : "SHOW",
+            "customExecution" : "",
+            "value" : "",
+            "group" : "TRUE"
+          } ],
+          "execution" : "AND",
+          "valueType" : null,
+          "label" : "Disable Rule 2",
+          "id" : "c787ff44-61d9-4f13-918c-74acb0f3c5ff",
+          "type" : "CONDITION",
+          "customExecution" : "",
+          "value" : null,
+          "group" : null
         } ],
         "parameters" : {
           "operationStack" : {
@@ -1120,10 +1205,7 @@
         "datasourceid" : 2746,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "title" : "eb67663d-9c17-4f6e-a21a-e77f5105fcb6",
-      "startPageId" : "e30c4301-f602-437d-9cc1-601200186bd1",
-      "trackingUuid" : "b244b07f-4a76-46a0-9409-8f21f77026bb"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -1133,12 +1215,14 @@
     "appVersion" : {
       "id" : "eb68b0a7-8555-42ab-9af1-d6715ec7e987",
       "serviceId" : 2746,
-      "version" : 81,
+      "version" : 104,
       "parameters" : {
         "imageUrl" : "exported/report_send_back.2ce924639f6c446ebe6277f14d74b7b6.svg",
         "description" : "fbbdfe36-a448-49e2-83d0-539c1f1041b8"
       },
       "actionApp" : false,
+      "title" : "1cb6ed7d-a387-4bdd-876f-223e43e588c4",
+      "trackingUuid" : "3bff7fe5-6aa6-4832-99d5-4b68d5e78b6d",
       "pages" : [ {
         "id" : "38a97058-74e6-47bd-b3b7-0d86e8b1e333",
         "appId" : "eb68b0a7-8555-42ab-9af1-d6715ec7e987",
@@ -1154,7 +1238,7 @@
           "foreignKeyId" : null,
           "parentComponentId" : null,
           "parameters" : {
-            "embedUrlTemplate" : "{{webform_link}}",
+            "embedUrlTemplate" : "{{webform_link}}?fields[comments]={{userValue \"UPN\"}}",
             "multiplier" : 100,
             "heightMode" : "MULTIPLY"
           },
@@ -1212,6 +1296,27 @@
           "columnType" : "STRING",
           "tableid" : 21204,
           "pageId" : "38a97058-74e6-47bd-b3b7-0d86e8b1e333"
+        }, {
+          "type" : "TEXT_INPUT",
+          "appId" : "eb68b0a7-8555-42ab-9af1-d6715ec7e987",
+          "columnId" : null,
+          "required" : false,
+          "textType" : null,
+          "label" : "41447734-acc1-4883-897f-d9e54c812698",
+          "format" : "",
+          "foreignKeyId" : null,
+          "parentComponentId" : null,
+          "parameters" : {
+            "field_width" : "large",
+            "visible" : 1,
+            "mapToDataColumn" : false,
+            "disabled" : 0
+          },
+          "id" : "1c965a4d-9c42-4391-b986-c4da6b01de83",
+          "defaultvalue" : "{{userValue \"USER_EMAIL\"}}",
+          "displayorder" : 4,
+          "pageId" : "38a97058-74e6-47bd-b3b7-0d86e8b1e333",
+          "initialValue" : ""
         } ],
         "query" : {
           "id" : "5cdc29d0-c1a8-43b5-8d97-10a1ca72ba6c",
@@ -1293,9 +1398,7 @@
         "datasourceid" : 2746,
         "pagetype" : "Detail",
         "pagetype" : "Detail"
-      } ],
-      "title" : "1cb6ed7d-a387-4bdd-876f-223e43e588c4",
-      "trackingUuid" : "3bff7fe5-6aa6-4832-99d5-4b68d5e78b6d"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -1305,8 +1408,8 @@
   "services" : [ {
     "id" : 2746,
     "uuid" : "b77a599b-81b8-45d2-83ca-e7ad64981178",
-    "version" : 96,
-    "title" : "Survey App",
+    "version" : 109,
+    "title" : "Employee Survey",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "hotsvcnv6xdz_user_experie",
@@ -1353,7 +1456,7 @@
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
-      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/pjBX0919Ni9PyI15Wx2qvX1TAt10pvpt.png",
+      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/iAmkQs7HkDz1HEodnXKUJV9oYB6ApxY2.png",
       "iconType" : "CUSTOM_IMAGE",
       "rateLimitConfiguration" : {
         "timeWindow" : {
@@ -1452,8 +1555,8 @@
             "required" : true
           } ],
           "scriptSourceFunctionLocation" : {
-            "startLine" : 112,
-            "endLine" : 133
+            "startLine" : 118,
+            "endLine" : 139
           }
         } ],
         "webhookListeners" : [ ],
@@ -1646,6 +1749,25 @@
       "runTimezone" : "Etc/UTC"
     },
     "label" : "71da3920-cbaa-4d70-88d6-28a8992f4bf7",
+    "audience" : "ALL",
+    "messageDefinition" : {
+      "title" : "8231f510-5b33-4f90-89ac-7970df281424",
+      "body" : "608db24c-006d-462b-a620-964bab15af1a",
+      "gotoAppPageId" : "38a97058-74e6-47bd-b3b7-0d86e8b1e333",
+      "configuration" : {
+        "highPriority" : false,
+        "cardIcon" : {
+          "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
+          "type" : "LIBRARY"
+        }
+      },
+      "actionButtonIds" : [ ],
+      "task" : false
+    },
+    "messageCountLimit" : 50,
+    "notifyExternalChannels" : true,
+    "skipAlreadyProcessedEvents" : false,
+    "hasValidConstraints" : true,
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDateColumnId" : 276426,
@@ -1692,33 +1814,14 @@
         }
       }
     },
-    "expirationDelete" : true,
-    "audience" : "ALL",
-    "messageDefinition" : {
-      "title" : "8231f510-5b33-4f90-89ac-7970df281424",
-      "body" : "608db24c-006d-462b-a620-964bab15af1a",
-      "gotoAppPageId" : "38a97058-74e6-47bd-b3b7-0d86e8b1e333",
-      "configuration" : {
-        "highPriority" : false,
-        "cardIcon" : {
-          "imageUrl" : "exported/report_reminder.8fc1d6ceabe0ed0a5802f0eab2b4f9cb.svg",
-          "type" : "LIBRARY"
-        }
-      },
-      "actionButtonIds" : [ ],
-      "task" : false
-    },
-    "messageCountLimit" : 50,
-    "notifyExternalChannels" : true,
-    "skipAlreadyProcessedEvents" : false,
-    "hasValidConstraints" : true
+    "expirationDelete" : true
   } ],
   "modelConfiguration" : {
     "appIds" : [ "e43e81aa-577d-43c6-91aa-9f522c8abfa4", "eb68b0a7-8555-42ab-9af1-d6715ec7e987" ],
-    "bundleDescription" : "Deploy Survey App to send new survey form and manage existing survey form from any where and from any device.",
+    "bundleDescription" : "Deploy the Employee Survey App to a send new survey form and manage existing survey forms from Citrix Workspace",
     "bundleVendor" : "Citrix"
   },
-  "translationChecksum" : "6F4A8F33368DE15014610B09E99C5362",
-  "appliedSappUpgrades" : [ "microapp-13808", "microapp-14978", "microapp-6853", "microapp-15642", "microapp-3547", "microapp-9597", "microapp-2450", "microapp-5025", "microapp-8892", "microapp-9701", "microapp-9702", "microapp-14177", "microapp-4020", "microapp-6293", "microapp-13344", "microapp-14492", "microapp-8950", "microapp-7961", "microapp-10860", "microapp-11136", "microapp-8003", "microapp-14642", "microapp-3838", "microapp-10420", "microapp-6790", "microapp-10856", "microapp-5227", "microapp-13233", "microapp-4666", "microapp-14849", "microapp-13471", "microapp-7984", "microapp-7290", "microapp-1980", "microapp-15578", "microapp-10549", "microapp-12525", "microapp-11836", "microapp-6262", "microapp-10876", "microapp-8511", "microapp-3548", "microapp-10858", "microapp-6264", "microapp-8921", "microapp-7888", "microapp-12505", "microapp-7561", "microapp-11340", "microapp-12427", "microapp-11349", "microapp-12936", "microapp-6593", "microapp-8576", "microapp-14613", "microapp-10421", "microapp-4518", "microapp-15787", "microapp-3580", "microapp-6617" ],
-  "buildVersion" : "1.124.1.4988d4145d523da2a8b129a2747c99d643c7fd63"
+  "translationChecksum" : "67339326BA38601F526DB9E4602A4F17",
+  "appliedSappUpgrades" : [ "microapp-13808", "microapp-10856", "microapp-7561", "microapp-6264", "microapp-14642", "microapp-10860", "microapp-13471", "microapp-11349", "microapp-14177", "microapp-8950", "microapp-3548", "microapp-10858", "microapp-6617", "microapp-3580", "microapp-15642", "microapp-12936", "microapp-8892", "microapp-15787", "microapp-8576", "microapp-5227", "microapp-4020", "microapp-14492", "microapp-12427", "microapp-6262", "microapp-9701", "microapp-9702", "microapp-11836", "microapp-10421", "microapp-13344", "microapp-3838", "microapp-10876", "microapp-13233", "microapp-8003", "microapp-3547", "microapp-12525", "microapp-10420", "microapp-4518", "microapp-14849", "microapp-7961", "microapp-11136", "microapp-15788", "microapp-5025", "microapp-4666", "microapp-6293", "microapp-15578", "microapp-14978", "microapp-1980", "microapp-9597", "microapp-12505", "microapp-7984", "microapp-10549", "microapp-6593", "microapp-8921", "microapp-8511", "microapp-11340", "microapp-6790", "microapp-7290", "microapp-2450", "microapp-7888", "microapp-6853", "microapp-14613" ],
+  "buildVersion" : "1.126.3.f2f1f0af64f598bfe85c0c68f450ab8a39845b90"
 }

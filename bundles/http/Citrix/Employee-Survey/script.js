@@ -47,13 +47,18 @@ async function syncFunction({ client, dataStore, integrationParameters }) {
     await getSurveyData({ client, dataStore, integrationParameters }, false);
 }
 
-async function validateResponse(response) {
+async function validateResponse(response, surveyName) {
     const body = await response.text()
     if (response.headers.map['content-type']?.toLowerCase()?.includes("application/json")) {
         const jsonBody = JSON.parse(body)
         if (!response.ok) {
-            console.log(JSON.stringify(jsonBody))
-            throw new Error(jsonBody.message)
+            if(response.status === 403){
+                throw new Error(`Unable to process the request, Invalid 'Response App Id' passed for '${surveyName}'`)
+            }
+            else{
+                console.log(JSON.stringify(jsonBody.error_description))
+                throw new Error(jsonBody.error_description)
+            }            
         } else {
             return { responseBody: jsonBody}
         }
@@ -82,11 +87,12 @@ async function getSurveyData(param, dataUpdateAfterAction) {
         for (const item of responseBody.items ?? []) {
             const launchDate = getDate(item?.fields ?? [], 'Launch Date') ?? null
             const responseAppId = getTextValue(item?.fields ?? [], 'text', 'Response App Id') ?? null
-            const webFormId = responseAppId !== null ? await getAppWebFormIds(client, responseAppId) : null
+            const name = getTextValue(item?.fields ?? [], 'text', 'Survey Name')
+            const webFormId = responseAppId !== null ? await getAppWebFormIds(client, responseAppId, name) : null
             dataStore.save('survey_app_data', {
                 "response_app_id": parseInt(responseAppId),
                 "app_item_id": item.item_id,
-                "name": getTextValue(item?.fields ?? [], 'text', 'Survey Name'),
+                "name": name,
                 "status": getCategoryData(item?.fields ?? [], 'Status'),
                 "notification_date": launchDate !== null ? moment(launchDate).subtract(1, 'd').format('YYYY-MM-DD') : null,
                 "launch_date": launchDate,
@@ -99,10 +105,10 @@ async function getSurveyData(param, dataUpdateAfterAction) {
     } while (dataUpdateAfterAction !== true && offset <= total)
 }
 
-async function getAppWebFormIds(client, responseAppId) {
+async function getAppWebFormIds(client, responseAppId, surveyName) {
     const webForm = {}
     const appWebFormsResponse = await client.fetch(`form/app/${responseAppId}`)
-    const { responseBody } = await validateResponse(appWebFormsResponse);
+    const { responseBody } = await validateResponse(appWebFormsResponse, surveyName);
     (responseBody ?? []).forEach(app => {
         webForm.form_id = app?.form_id ?? null
     })
