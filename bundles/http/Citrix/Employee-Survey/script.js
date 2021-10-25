@@ -1,6 +1,4 @@
 const moment = library.load('moment-timezone')
-const _ = library.load('lodash')
-const uuid = library.load('uuid')
 integration.define({
     synchronizations: [
         {
@@ -36,7 +34,7 @@ integration.define({
                 { name: "app_item_id", type: "INTEGER", required: true },
                 { name: "launch_date", type: "DATE", required: true },
                 { name: "expire_after", type: "DATE" },
-                { name: "status", type: "INTEGER" , required:true}
+                { name: "status", type: "INTEGER", required: true }
             ],
             function: updateSurvey
         }
@@ -52,15 +50,15 @@ async function validateResponse(response, surveyName) {
     if (response.headers.map['content-type']?.toLowerCase()?.includes("application/json")) {
         const jsonBody = JSON.parse(body)
         if (!response.ok) {
-            if(response.status === 403){
+            if (response.status === 403) {
                 throw new Error(`Unable to process the request, Invalid 'Response App Id' passed for '${surveyName}'`)
             }
-            else{
+            else {
                 console.log(JSON.stringify(jsonBody.error_description))
                 throw new Error(jsonBody.error_description)
-            }            
+            }
         } else {
-            return { responseBody: jsonBody}
+            return { responseBody: jsonBody }
         }
     } else {
         console.log(body)
@@ -83,7 +81,8 @@ async function getSurveyData(param, dataUpdateAfterAction) {
                 sort_desc: true
             })
         })
-        const { responseBody} = await validateResponse(itemsResponse)
+        const { responseBody } = await validateResponse(itemsResponse)
+        total = responseBody.total
         for (const item of responseBody.items ?? []) {
             const launchDate = getDate(item?.fields ?? [], 'Launch Date') ?? null
             const responseAppId = getTextValue(item?.fields ?? [], 'text', 'Response App Id') ?? null
@@ -102,7 +101,7 @@ async function getSurveyData(param, dataUpdateAfterAction) {
             })
         }
         offset += limit
-    } while (dataUpdateAfterAction !== true && offset <= total)
+    } while (dataUpdateAfterAction !== true && offset < total)
 }
 
 async function getAppWebFormIds(client, responseAppId, surveyName) {
@@ -123,8 +122,8 @@ async function updateSurvey(param) {
         },
         "status": actionParameters.status,
     }
-    if(actionParameters.expire_after != null){
-        fields['expire-after'] =  {
+    if (actionParameters.expire_after != null) {
+        fields['expire-after'] = {
             "start": moment(actionParameters.expire_after).format('YYYY-MM-DD HH:mm:ss')
         }
     }
@@ -134,7 +133,7 @@ async function updateSurvey(param) {
             fields: fields
         })
     })
-    const { responseBody } = await validateResponse(updateRecordResonse)
+    await validateResponse(updateRecordResonse)
     await getSurveyData(param, true)
 }
 
