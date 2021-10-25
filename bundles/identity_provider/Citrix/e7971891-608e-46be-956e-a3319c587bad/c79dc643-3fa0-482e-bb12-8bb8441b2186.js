@@ -12,32 +12,21 @@ function fullSyncUsers({client, dataStore}) {
         "maxResults": 50
     };
 
-    let pageUserCount = 0;
     let currentResult;
     do {
         console.log(`fullSyncUsers(startAt=${searchParameters.startAt})`);
-        const response = client.fetchSync(`/rest/api/2/users/search?username=.&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
-
-        if (!response.ok) {
-            const errorMessage = `Users sync failed ${response.status}:${response.statusText}.`;
-            console.log(errorMessage);
-            console.log(`Error body: ${response.textSync()}`);
-            throw new Error(errorMessage);
-        }
+        const response = client.fetchSync(
+            `/rest/api/2/users/search?startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
 
         currentResult = response.jsonSync();
-
-        pageUserCount = currentResult.length;
-        console.log(`Users on page=${pageUserCount}`);
-        console.log(`Users received data: (${JSON.stringify(currentResult)})`);
 
         const users = currentResult
             .filter(user => user.active)
             .map(user => {
                 // Account id contains ID that is longer than destination table user with max 36 chars for userId
-                // "accountId": "557058:73ba846a-2e13-4020-9898-57cfab0e00b9",
+                // "accountId": "557058:73ba846a-2e13-4020-9898-57cfab0e00b9"
                 const userId = trimIdPrefix(user.accountId);
-                // Some users has missing mandatory email
+                // Some users have missing mandatory email
                 const email = user.emailAddress ?? userId;
                 // Domain value not set for user
                 return new User(user.displayName, user.displayName, email, null, user.name, userId);
@@ -52,7 +41,7 @@ function fullSyncUsers({client, dataStore}) {
 
         searchParameters.startAt = searchParameters.startAt + searchParameters.maxResults
 
-    } while (pageUserCount == searchParameters.maxResults); //TODO
+    } while (currentResult.length > 0);
 }
 
 function fullSyncGroups({client, dataStore}) {
@@ -64,18 +53,10 @@ function fullSyncGroups({client, dataStore}) {
     let currentResult;
     do {
         console.log(`fullSyncGroups(startAt=${searchParameters.startAt})`);
-        const response = client.fetchSync("/rest/api/2/group/bulk");
-
-        if (!response.ok) {
-            const errorMessage = `Groups sync failed ${response.status}:${response.statusText}.`;
-            console.log(errorMessage);
-            console.log(`Error body: ${response.textSync()}`);
-            throw new Error(errorMessage);
-        }
+        const response = client.fetchSync(
+            `/rest/api/2/group/bulk?startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
 
         currentResult = response.jsonSync();
-        console.log(`Group response received, total: ${currentResult.total}`);
-        console.log(`Group received data: (${JSON.stringify(currentResult)})`);
 
         const groups = currentResult.values.map(group =>
             new Group(group.name, group.name, null, group.name, group.groupId, null));
@@ -102,9 +83,8 @@ function mapUserGroup(client, dataStore, group) {
     let currentResult;
     do {
         console.log(`userGroupMapping(startAt=${searchParameters.startAt})`);
-        const response = client.fetchSync(`/rest/api/2/group/member?groupname=${group.account_name}
-        &startAt=${searchParameters.startAt}
-        &maxResults=${searchParameters.maxResults}`);
+        const response = client.fetchSync(
+            `/rest/api/2/group/member?groupname=${group.account_name}&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
 
         if (!response.ok) {
             const message = `User group mapping sync failed ${response.status}:${response.statusText}.`;
@@ -114,8 +94,6 @@ function mapUserGroup(client, dataStore, group) {
             return;
         } else {
             currentResult = response.jsonSync();
-            console.log(`User group mappings response received, total: ${currentResult.total}`);
-            console.log(`User group mappings data: (${JSON.stringify(currentResult)})`);
 
             const userGroupMappings = currentResult.values
                 .filter(user => user.active)
