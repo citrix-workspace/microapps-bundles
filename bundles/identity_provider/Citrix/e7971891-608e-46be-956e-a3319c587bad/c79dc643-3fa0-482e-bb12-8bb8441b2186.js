@@ -30,7 +30,7 @@ function fullSyncUsers({client, dataStore}) {
                     "display_name": user.displayName,
                     "email": user.emailAddress,
                     "domain": null,
-                    "user_principal_name": user.name,
+                    "user_principal_name": user.displayName,
                     "user_id": user.accountId,
                 }
             })
