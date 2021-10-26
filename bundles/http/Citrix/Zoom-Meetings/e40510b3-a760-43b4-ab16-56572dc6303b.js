@@ -36,12 +36,12 @@ async function syncUsers(dataStore, client) {
         }
         next_page_token = responseBody.next_page_token ?? "";
         const users = responseBody?.users.map(({ id: userid, first_name, last_name, email, timezone, last_login_time }) => ({
-            userid,
+            userid ,
             first_name,
             last_name,
             email,
             timezone,
-            last_login_time: new Date(last_login_time)
+            last_login_time: last_login_time !== undefined ? new Date(last_login_time) : null
         }))
         userDetails = userDetails.concat(users)
         dataStore.save("users", users ?? []);
@@ -79,16 +79,16 @@ async function syncMeetings(dataStore, client, users) {
         })?.map(meeting => {
             meetingData.set(meeting.id, users[i].email)
             return {
-                "uuid": meeting.uuid,
-                "id": meeting.id,
-                "host_id": meeting.host_id,
-                "topic": meeting.topic,
-                "type": meeting.type,
-                "start_time": new Date(meeting.start_time),
-                "duration": meeting.duration,
-                "timezone": meeting.timezone,
-                "created_at": new Date(meeting.created_at),
-                "join_url": meeting.join_url,
+                "uuid": meeting?.uuid ?? null,
+                "id": meeting?.id ?? null,
+                "host_id": meeting?.host_id ?? null,
+                "topic": meeting?.topic ?? null,
+                "type": meeting?.type ?? null,
+                "start_time": meeting.start_time !== undefined ? new Date(meeting.start_time) : null, 
+                "duration": meeting?.duration ?? null,
+                "timezone": meeting?.timezone ?? null,
+                "created_at": meeting.created_at !== undefined ? new Date(meeting.created_at) : null, 
+                "join_url": meeting?.join_url ?? null,
             }
         });
         dataStore.save('meetings', meetings ?? []);
@@ -113,13 +113,13 @@ async function syncMeetingsDetails(dataStore, client, meetings) {
         }
 
         let meetingDetails = {
-            "created_at": moment.utc(responseBody.created_at).toDate(),
-            "duration": responseBody.duration,
-            "host_id": responseBody.host_id,
-            "host_email": responseBody.host_email,
-            "id": responseBody.id,
-            "join_url": responseBody.join_url,
-            "password": responseBody.password,
+            "created_at": responseBody.created_at !== undefined ? new Date(responseBody.created_at) : null, 
+            "duration": responseBody?.duration ?? null,
+            "host_id": responseBody?.host_id ?? null,
+            "host_email": responseBody?.host_email ?? null,
+            "id": responseBody?.id ?? null,
+            "join_url": responseBody?.join_url ?? null,
+            "password": responseBody?.password ?? null,
             "recurrence_end_times": responseBody?.recurrence?.end_times ?? null,
             "recurrence_repeat_interva": responseBody?.recurrence?.repeat_interval ?? null,
             "recurrence_type": responseBody?.recurrence?.type ?? null,
@@ -127,10 +127,10 @@ async function syncMeetingsDetails(dataStore, client, meetings) {
             "recurrence_monthly_day": responseBody?.recurrence?.monthly_day ?? null,
             "settings_alternative_host": responseBody.settings?.alternative_hosts ?? null,
             "start_time": responseBody.start_time != undefined ? new Date(responseBody.start_time) : null,
-            "start_url": responseBody.start_url,
-            "timezone": responseBody.timezone,
-            "topic": responseBody.topic,
-            "type": responseBody.type,
+            "start_url": responseBody?.start_url ?? null,
+            "timezone": responseBody?.timezone ?? null,
+            "topic": responseBody?.topic ?? null,
+            "type": responseBody?.type ?? null,
             "visibility": true
         }
 
@@ -147,10 +147,10 @@ async function syncMeetingsDetails(dataStore, client, meetings) {
         // storing numbers of dial_in countries 
         const dialInNumbers = responseBody.settings?.global_dial_in_numbers?.map(number => {
             return {
-                "country": number.country,
-                "number": number.number,
-                "country_name": number.country_name,
-                "type": number.type,
+                "country": number?.country ?? null,
+                "number": number?.number ?? null,
+                "country_name": number?.country_name ?? null,
+                "type": number?.type ?? null,
                 "unique_id": uuid.v4(),
                 "parent_id": responseBody.id,
                 "root_id": responseBody.id
@@ -166,11 +166,11 @@ async function syncMeetingsDetails(dataStore, client, meetings) {
         else if (responseBody.type == RECURRINGMEETING) {
             const occurrenceData = responseBody.occurrences?.map(occurrence => {
                 return {
-                    "duration": occurrence.duration,
+                    "duration": occurrence?.duration ?? null,
                     "occurrence_id": Number(occurrence.occurrence_id),
-                    "meetingId": responseBody.id,
-                    "start_time": new Date(occurrence.start_time),
-                    "parent_id": responseBody.id,
+                    "meetingId": responseBody?.id ?? null,
+                    "start_time": occurrence.start_time !== undefined ? new Date(occurrence.start_time) : null, 
+                    "parent_id": responseBody?.id ?? null,
                     "visibility": true
                 }
             })
@@ -200,7 +200,7 @@ async function syncMeetingInvitations(dataStore, client, meetings) {
         }
         dataStore.save("meeting_invitations", {
             "id": Number(id),
-            "invitation": responseBody.invitation,
+            "invitation": responseBody?.invitation ?? null,
             "users_email": email
         })
     }
@@ -233,31 +233,31 @@ async function syncRecordings(dataStore, client, userids) {
         let recordingData = (responseBody?.meetings ?? []).map(meeting => {
             let recordData = (meeting?.recording_files ?? []).map(rec => {
                 return {
-                    "download_url": rec.download_url,
-                    "id": rec.id,
-                    "meeting_id": rec.meeting_id,
-                    "play_url": rec.play_url,
+                    "download_url": rec?.download_url ?? null,
+                    "id": rec?.id ?? null,
+                    "meeting_id": rec?.meeting_id ?? null,
+                    "play_url": rec?.play_url ?? null,
                     "recording_end": moment(rec.recording_end).isValid() ? new Date(rec.recording_end) : null,
                     "recording_start": moment(rec.recording_start).isValid() ? new Date(rec.recording_start) : null,
-                    "recording_type": rec.recording_type,
-                    "parent_id": meeting.id,
-                    "parent_uuid": meeting.uuid,
-                    "parent_start_time": new Date(meeting.start_time),
-                    "root_id": meeting.id,
-                    "root_uuid": meeting.uuid,
-                    "root_start_time": new Date(meeting.start_time),
+                    "recording_type": rec?.recording_type ?? null,
+                    "parent_id": meeting?.id ?? null,
+                    "parent_uuid": meeting?.uuid ?? null,
+                    "parent_start_time": meeting.start_time !== undefined ? new Date(meeting.start_time) : null, 
+                    "root_id": meeting?.id ?? null,
+                    "root_uuid": meeting?.uuid ?? null,
+                    "root_start_time": meeting.start_time !== undefined ? new Date(meeting.start_time) : null, 
                     "unique_id": uuid.v4()
                 }
             })
             dataStore.save("meeting_recordings_record", recordData);
             return {
-                "uuid": meeting.uuid,
-                "host_id": meeting.host_id,
-                "id": meeting.id,
-                "share_url": meeting.share_url,
-                "start_time": new Date(meeting.start_time),
-                "topic": meeting.topic,
-                "total_size": meeting.total_size
+                "uuid": meeting?.uuid ?? null,
+                "host_id": meeting?.host_id ?? null,
+                "id": meeting?.id ?? null,
+                "share_url": meeting?.share_url ?? null,
+                "start_time": meeting.start_time !== undefined ? new Date(meeting.start_time) : null, 
+                "topic": meeting?.topic ?? null,
+                "total_size": meeting?.total_size ?? null
             }
         });
         dataStore.save('meeting_recordings', recordingData);
@@ -661,7 +661,7 @@ integration.define({
                     { name: "share_url", type: "STRING", length: 255 },
                     { name: "start_time", type: "DATETIME", primaryKey: true },
                     { name: "topic", type: "STRING", length: 255 },
-                    { name: "total_size", type: "INTEGER" },
+                    { name: "total_size", type: "DOUBLE" },
                     { name: "uuid", type: "STRING", length: 255, primaryKey: true }
                 ]
             },
