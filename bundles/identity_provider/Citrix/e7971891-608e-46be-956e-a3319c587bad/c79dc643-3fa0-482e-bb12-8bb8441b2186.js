@@ -20,16 +20,19 @@ function fullSyncUsers({client, dataStore}) {
 
         currentResult = response.jsonSync();
 
+        console.log(`User response received, status: ${response.status}, total: ${currentResult.length}`);
+
         const users = currentResult
-            .filter(user => user.active)
+            .filter(isUserValid)
             .map(user => {
-                // Account id contains ID that is longer than destination table user with max 36 chars for userId
-                // "accountId": "557058:73ba846a-2e13-4020-9898-57cfab0e00b9"
-                const userId = trimIdPrefix(user.accountId);
-                // Some users have missing mandatory email
-                const email = user.emailAddress ?? userId;
-                // Domain value not set for user
-                return new User(user.displayName, user.displayName, email, null, user.name, userId);
+                return {
+                    "account_name": user.displayName,
+                    "display_name": user.displayName,
+                    "email": user.emailAddress,
+                    "domain": null,
+                    "user_principal_name": user.name,
+                    "user_id": user.accountId,
+                }
             })
 
         console.log(
@@ -58,6 +61,8 @@ function fullSyncGroups({client, dataStore}) {
 
         currentResult = response.jsonSync();
 
+        console.log(`Group response received, status: ${response.status}, total: ${currentResult.total}`);
+
         const groups = currentResult.values.map(group =>
             new Group(group.name, group.name, null, group.name, group.groupId, null));
 
@@ -83,20 +88,20 @@ function mapUserGroup(client, dataStore, group) {
     let currentResult;
     do {
         console.log(`userGroupMapping(startAt=${searchParameters.startAt})`);
-        const response = client.fetchSync(
-            `/rest/api/2/group/member?groupname=${group.account_name}&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
+        const response = client.fetchSync(`/rest/api/2/group/member?groupname=${group.account_name}` +
+            `&startAt=${searchParameters.startAt}&maxResults=${searchParameters.maxResults}`);
 
         if (!response.ok) {
-            const message = `User group mapping sync failed ${response.status}:${response.statusText}.`;
-            console.log(message);
-            console.log(`Error body: ${response.textSync()}`);
-            // Some of the queries for group return HTTP 404
+            // Some of the queries for user group mapping return HTTP 404
+            console.log(`User group mapping sync failed ${response.status}:${response.statusText}.`);
             return;
         } else {
             currentResult = response.jsonSync();
 
+            console.log(`User group mapping response received, status: ${response.status}, total: ${currentResult.total}`);
+
             const userGroupMappings = currentResult.values
-                .filter(user => user.active)
+                .filter(isUserValid)
                 .map(user => {
                     return new UserGroupMapping(group.group_id, trimIdPrefix(user.accountId))
                 });
@@ -108,6 +113,10 @@ function mapUserGroup(client, dataStore, group) {
         }
         searchParameters.startAt += searchParameters.maxResults;
     } while (searchParameters.startAt < currentResult.total);
+}
+
+const isUserValid = (user) => {
+    return user.active && user.emailAddress != null && user.accountType === "atlassian";
 }
 
 const trimIdPrefix = (id) => {
@@ -124,7 +133,42 @@ integration.define({
     ],
     model: {
         tables: [
-            User.tableModel,
+            {
+                name: "User",
+                columns: [
+                    {
+                        name: "account_name",
+                        type: "STRING",
+                        length: 255,
+                    },
+                    {
+                        name: "display_name",
+                        type: "STRING",
+                        length: 255,
+                    },
+                    {
+                        name: "email",
+                        type: "STRING",
+                        length: 255,
+                    },
+                    {
+                        name: "domain",
+                        type: "STRING",
+                        length: 255,
+                    },
+                    {
+                        name: "user_principal_name",
+                        type: "STRING",
+                        length: 255,
+                    },
+                    {
+                        name: "user_id", // accountId is longer than User.tableModel with max 36 chars for user_id
+                        type: "STRING",
+                        length: 100,
+                        primaryKey: true,
+                    },
+                ]
+            },
             Group.tableModel,
             UserGroupMapping.tableModel
         ]
