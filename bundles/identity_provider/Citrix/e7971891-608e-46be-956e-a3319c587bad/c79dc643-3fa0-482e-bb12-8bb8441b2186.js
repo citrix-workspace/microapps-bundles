@@ -103,7 +103,7 @@ function mapUserGroup(client, dataStore, group) {
             const userGroupMappings = currentResult.values
                 .filter(isUserValid)
                 .map(user => {
-                    return new UserGroupMapping(group.group_id, trimIdPrefix(user.accountId))
+                    return new UserGroupMapping(group.group_id, user.accountId)
                 });
 
             console.log(
@@ -117,11 +117,6 @@ function mapUserGroup(client, dataStore, group) {
 
 const isUserValid = (user) => {
     return user.active && user.emailAddress != null && user.accountType === "atlassian";
-}
-
-const trimIdPrefix = (id) => {
-    const elementPosition = id.indexOf(":");
-    return elementPosition !== -1 ? id.slice(elementPosition + 1) : id;
 }
 
 integration.define({
