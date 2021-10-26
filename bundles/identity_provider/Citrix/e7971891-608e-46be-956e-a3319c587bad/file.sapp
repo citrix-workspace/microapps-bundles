@@ -1,8 +1,8 @@
 {
   "applications" : [ ],
   "services" : [ {
-    "id" : 2,
-    "uuid" : "e7971891-608e-46be-956e-a3319c587bad",
+    "id" : 1,
+    "uuid" : "cc447de5-d6c7-4ef7-a02d-e56f6510d3d3",
     "version" : 4,
     "title" : "Jira User Provider",
     "serviceType" : "IDENTITY_PROVIDER",
@@ -10,7 +10,7 @@
     "schemaName" : "microapps_new_user_provid",
     "configuration" : {
       "trackingUuid" : "31bb98b9-bbc6-4376-b8ae-ecce257641fa",
-      "baseUrl" : "https://iws.atlassian.net/",
+      "baseUrl" : "https://iws.atlassian.net",
       "security" : {
         "type" : "BASIC",
         "password" : "{{secret 'dataEndpoint.password'}}"
@@ -75,7 +75,7 @@
               "name" : "user_id",
               "primaryKey" : true,
               "type" : "STRING",
-              "length" : 36,
+              "length" : 100,
               "mandatory" : true
             } ],
             "dataRetention" : "DELETE_ON_FULL_SYNC"
@@ -143,7 +143,7 @@
           "fullSyncConfigured" : true,
           "incrementalSyncConfigured" : false,
           "scriptSourceFunctionLocationFullSync" : {
-            "startLine" : 3,
+            "startLine" : 4,
             "endLine" : 7
           }
         } ],
@@ -152,9 +152,13 @@
         "integrationParameters" : [ ]
       }
     },
-    "context" : { },
+    "context" : {
+      "synchronizationContexts" : {
+        "jiraUserGroups" : { }
+      }
+    },
     "tables" : [ {
-      "id" : 6,
+      "id" : 2135,
       "title" : "group",
       "displayName" : "Group",
       "entityName" : "Group",
@@ -162,7 +166,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 45,
+        "id" : 3319,
         "title" : "account_name",
         "displayName" : "Account Name",
         "attributeName" : "account_name",
@@ -176,7 +180,7 @@
         "defaultLabel" : "Account Name",
         "primaryKey" : false
       }, {
-        "id" : 46,
+        "id" : 3320,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -190,7 +194,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 47,
+        "id" : 3321,
         "title" : "domain",
         "displayName" : "Domain",
         "attributeName" : "domain",
@@ -204,7 +208,7 @@
         "defaultLabel" : "Domain",
         "primaryKey" : false
       }, {
-        "id" : 48,
+        "id" : 3322,
         "title" : "user_principal_name",
         "displayName" : "User Principal Name",
         "attributeName" : "user_principal_name",
@@ -218,7 +222,7 @@
         "defaultLabel" : "User Principal Name",
         "primaryKey" : false
       }, {
-        "id" : 49,
+        "id" : 3323,
         "title" : "group_id",
         "displayName" : "Group Id",
         "attributeName" : "group_id",
@@ -232,7 +236,7 @@
         "defaultLabel" : "Group Id",
         "primaryKey" : true
       }, {
-        "id" : 50,
+        "id" : 3324,
         "title" : "parent_group_id",
         "displayName" : "Parent Group Id",
         "attributeName" : "parent_group_id",
@@ -246,7 +250,7 @@
         "defaultLabel" : "Parent Group Id",
         "primaryKey" : false
       }, {
-        "id" : 51,
+        "id" : 3325,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
@@ -261,7 +265,7 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 7,
+      "id" : 2136,
       "title" : "user",
       "displayName" : "User",
       "entityName" : "User",
@@ -269,7 +273,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 52,
+        "id" : 3326,
         "title" : "account_name",
         "displayName" : "Account Name",
         "attributeName" : "account_name",
@@ -283,7 +287,7 @@
         "defaultLabel" : "Account Name",
         "primaryKey" : false
       }, {
-        "id" : 53,
+        "id" : 3327,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -297,7 +301,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 54,
+        "id" : 3328,
         "title" : "email",
         "displayName" : "Email",
         "attributeName" : "email",
@@ -311,7 +315,7 @@
         "defaultLabel" : "Email",
         "primaryKey" : false
       }, {
-        "id" : 55,
+        "id" : 3329,
         "title" : "domain",
         "displayName" : "Domain",
         "attributeName" : "domain",
@@ -325,7 +329,7 @@
         "defaultLabel" : "Domain",
         "primaryKey" : false
       }, {
-        "id" : 56,
+        "id" : 3330,
         "title" : "user_principal_name",
         "displayName" : "User Principal Name",
         "attributeName" : "user_principal_name",
@@ -339,7 +343,7 @@
         "defaultLabel" : "User Principal Name",
         "primaryKey" : false
       }, {
-        "id" : 57,
+        "id" : 3331,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -353,7 +357,7 @@
         "defaultLabel" : "User Id",
         "primaryKey" : true
       }, {
-        "id" : 58,
+        "id" : 3332,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
@@ -368,7 +372,7 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 8,
+      "id" : 2137,
       "title" : "usergroupmapping",
       "displayName" : "User Group Mapping",
       "entityName" : "UserGroupMapping",
@@ -376,7 +380,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 59,
+        "id" : 3333,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -390,7 +394,7 @@
         "defaultLabel" : "User Id",
         "primaryKey" : true
       }, {
-        "id" : 60,
+        "id" : 3334,
         "title" : "group_id",
         "displayName" : "Group Id",
         "attributeName" : "group_id",
@@ -404,7 +408,7 @@
         "defaultLabel" : "Group Id",
         "primaryKey" : true
       }, {
-        "id" : 61,
+        "id" : 3335,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
@@ -425,11 +429,11 @@
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "fullyConfigured" : true,
-    "oauthLoginNeeded" : false
+    "oauthLoginNeeded" : false,
+    "fullyConfigured" : true
   } ],
   "notifications" : [ ],
   "modelConfiguration" : { },
-  "appliedSappUpgrades" : [ "microapp-6790", "microapp-2450", "microapp-15642", "microapp-1980", "microapp-11136", "microapp-14978", "microapp-5227", "microapp-7561", "microapp-10549", "microapp-10876", "microapp-14492", "microapp-10420", "microapp-6262", "microapp-3838", "microapp-7290", "microapp-11349", "microapp-12427", "microapp-14849", "microapp-7984", "microapp-4518", "microapp-14177", "microapp-14613", "microapp-13233", "microapp-8892", "microapp-4020", "microapp-11836", "microapp-6264", "microapp-12505", "microapp-10860", "microapp-10421", "microapp-10856", "microapp-6853", "microapp-9701", "microapp-8921", "microapp-13471", "microapp-13344", "microapp-8576", "microapp-12936", "microapp-14642", "microapp-3548", "microapp-13808", "microapp-6593", "microapp-7888", "microapp-12525", "microapp-4666", "microapp-8003", "microapp-3580", "microapp-7961", "microapp-3547", "microapp-15787", "microapp-10858", "microapp-8511", "microapp-9702", "microapp-6617", "microapp-8950", "microapp-15578", "microapp-6293", "microapp-9597", "microapp-5025", "microapp-11340" ],
+  "appliedSappUpgrades" : [ "microapp-11349", "microapp-7888", "microapp-12936", "microapp-7561", "microapp-15788", "microapp-7984", "microapp-15578", "microapp-9597", "microapp-1980", "microapp-10856", "microapp-14978", "microapp-15642", "microapp-9702", "microapp-3548", "microapp-3838", "microapp-8003", "microapp-10549", "microapp-2450", "microapp-3547", "microapp-7290", "microapp-14613", "microapp-3580", "microapp-6853", "microapp-13344", "microapp-14492", "microapp-6293", "microapp-13471", "microapp-5025", "microapp-5227", "microapp-12525", "microapp-10420", "microapp-4666", "microapp-14642", "microapp-13233", "microapp-10858", "microapp-13808", "microapp-14177", "microapp-10421", "microapp-4518", "microapp-8921", "microapp-15787", "microapp-8950", "microapp-8892", "microapp-10876", "microapp-6593", "microapp-10860", "microapp-12505", "microapp-9701", "microapp-4020", "microapp-11836", "microapp-11340", "microapp-6790", "microapp-6264", "microapp-8576", "microapp-14849", "microapp-12427", "microapp-11136", "microapp-6262", "microapp-6617", "microapp-8511", "microapp-7961" ],
   "buildVersion" : "1.0.0-SNAPSHOT"
 }
