@@ -44,7 +44,7 @@ function fullSyncUsers({client, dataStore}) {
 
         searchParameters.startAt = searchParameters.startAt + searchParameters.maxResults
 
-    } while (currentResult.length > 0);
+    } while (currentResult.length === searchParameters.maxResults);
 }
 
 function fullSyncGroups({client, dataStore}) {
