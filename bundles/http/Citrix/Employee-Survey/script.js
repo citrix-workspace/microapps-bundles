@@ -105,10 +105,9 @@ async function getAppWebFormIds(client, responseAppId, surveyName) {
     const webForm = {}
     const appWebFormsResponse = await client.fetch(`form/app/${responseAppId}`)
     const { responseBody } = await validateResponse(appWebFormsResponse, surveyName);
-    (responseBody).forEach(app => {
-        webForm.form_id = app?.form_id ?? null
-    })
-    return webForm
+    return {
+        form_id: responseBody?.[0]?.form_id ?? null
+    }
 }
 
 async function updateSurvey(param) {
