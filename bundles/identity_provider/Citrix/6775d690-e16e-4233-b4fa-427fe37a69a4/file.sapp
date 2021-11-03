@@ -1,0 +1,455 @@
+{
+  "applications" : [ ],
+  "services" : [ {
+    "id" : 1,
+    "uuid" : "6775d690-e16e-4233-b4fa-427fe37a69a4",
+    "version" : 227,
+    "title" : "New User Provider",
+    "serviceType" : "IDENTITY_PROVIDER",
+    "group" : "GWSC:JSON",
+    "schemaName" : "maria7107c3_new_user_prov",
+    "configuration" : {
+      "trackingUuid" : "38b67686-b832-4526-af33-8902773c5af1",
+      "baseUrl" : "https://citrite--sapho.my.salesforce.com",
+      "security" : {
+        "type" : "OAUTH2",
+        "grantType" : "AUTHORIZATION_CODE",
+        "clientSecret" : "{{secret 'dataEndpoint.clientSecret'}}",
+        "password" : "",
+        "scope" : "",
+        "authorizationURL" : "https://test.salesforce.com/services/oauth2/authorize",
+        "tokenURL" : "https://test.salesforce.com/services/oauth2/token",
+        "grantTypeValue" : "authorization_code",
+        "companyId" : "",
+        "oauthURL" : "",
+        "privateKey" : "",
+        "tokenAuthorization" : "REQUEST_BODY",
+        "authHeaderPrefix" : "",
+        "customAccessTokenParameters" : [ {
+          "name" : "Token",
+          "value" : "ujbx5wK9G0SXwvtrxEU1CbTlq"
+        } ],
+        "tokenRequestContentType" : "APPLICATION_FORM_URLENCODED"
+      },
+      "useServiceActionSecurity" : false,
+      "serviceActionSecurity" : {
+        "type" : "NONE"
+      },
+      "useOnPremProxy" : false,
+      "certificateValidationDisabled" : false,
+      "unsecure" : false,
+      "webhookListeners" : [ ],
+      "schedule" : [ {
+        "synchronizationTypeId" : "FullSynchronization",
+        "useTimeRange" : true,
+        "runFrom" : "00:00",
+        "runTo" : "04:00",
+        "schedule" : "MANUALLY",
+        "linkedServiceId" : null
+      } ],
+      "endpoints" : [ ],
+      "actions" : [ ],
+      "iconUrl" : "exported/HTTP.9b81384ab8a11658b635e7542ff6416c.svg",
+      "iconType" : "LIBRARY",
+      "timeoutInSeconds" : 120,
+      "scriptConfiguration" : {
+        "id" : "15cc1417-5044-40d6-824e-7784e1d8725d",
+        "model" : {
+          "tables" : [ {
+            "name" : "User",
+            "columns" : [ {
+              "name" : "account_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "display_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "email",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "domain",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "user_principal_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "user_id",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
+          }, {
+            "name" : "Group",
+            "columns" : [ {
+              "name" : "account_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "display_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "domain",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "user_principal_name",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 255,
+              "mandatory" : false
+            }, {
+              "name" : "group_id",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            }, {
+              "name" : "parent_group_id",
+              "primaryKey" : false,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : false
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
+          }, {
+            "name" : "UserGroupMapping",
+            "columns" : [ {
+              "name" : "user_id",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            }, {
+              "name" : "group_id",
+              "primaryKey" : true,
+              "type" : "STRING",
+              "length" : 36,
+              "mandatory" : true
+            } ],
+            "dataRetention" : "DELETE_ON_FULL_SYNC"
+          } ],
+          "relationships" : [ ]
+        },
+        "synchronizations" : [ {
+          "name" : "salesforceUserGroups",
+          "fullSyncConfigured" : true,
+          "incrementalSyncConfigured" : false,
+          "scriptSourceFunctionLocationFullSync" : {
+            "startLine" : 4,
+            "endLine" : 8
+          }
+        } ],
+        "actions" : [ ],
+        "webhookListeners" : [ ],
+        "integrationParameters" : [ ]
+      }
+    },
+    "context" : {
+      "synchronizationContexts" : {
+        "salesforceUserGroups" : { }
+      }
+    },
+    "tables" : [ {
+      "id" : 198,
+      "title" : "group",
+      "displayName" : "Group",
+      "entityName" : "Group",
+      "type" : "TABLE",
+      "loadingType" : "ALL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
+      "columns" : [ {
+        "id" : 1559,
+        "title" : "account_name",
+        "displayName" : "Account Name",
+        "attributeName" : "account_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Account Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1560,
+        "title" : "display_name",
+        "displayName" : "Display Name",
+        "attributeName" : "display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1561,
+        "title" : "domain",
+        "displayName" : "Domain",
+        "attributeName" : "domain",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Domain",
+        "primaryKey" : false
+      }, {
+        "id" : 1562,
+        "title" : "user_principal_name",
+        "displayName" : "User Principal Name",
+        "attributeName" : "user_principal_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Principal Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1563,
+        "title" : "group_id",
+        "displayName" : "Group Id",
+        "attributeName" : "group_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Group Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1564,
+        "title" : "parent_group_id",
+        "displayName" : "Parent Group Id",
+        "attributeName" : "parent_group_id",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Parent Group Id",
+        "primaryKey" : false
+      }, {
+        "id" : 1565,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 199,
+      "title" : "user",
+      "displayName" : "User",
+      "entityName" : "User",
+      "type" : "TABLE",
+      "loadingType" : "ALL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
+      "columns" : [ {
+        "id" : 1566,
+        "title" : "account_name",
+        "displayName" : "Account Name",
+        "attributeName" : "account_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Account Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1567,
+        "title" : "display_name",
+        "displayName" : "Display Name",
+        "attributeName" : "display_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Display Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1568,
+        "title" : "email",
+        "displayName" : "Email",
+        "attributeName" : "email",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Email",
+        "primaryKey" : false
+      }, {
+        "id" : 1569,
+        "title" : "domain",
+        "displayName" : "Domain",
+        "attributeName" : "domain",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Domain",
+        "primaryKey" : false
+      }, {
+        "id" : 1570,
+        "title" : "user_principal_name",
+        "displayName" : "User Principal Name",
+        "attributeName" : "user_principal_name",
+        "type" : "STRING",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Principal Name",
+        "primaryKey" : false
+      }, {
+        "id" : 1571,
+        "title" : "user_id",
+        "displayName" : "User Id",
+        "attributeName" : "user_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1572,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    }, {
+      "id" : 200,
+      "title" : "usergroupmapping",
+      "displayName" : "User Group Mapping",
+      "entityName" : "UserGroupMapping",
+      "type" : "TABLE",
+      "loadingType" : "ALL",
+      "dataRetention" : "DELETE_ON_FULL_SYNC",
+      "columns" : [ {
+        "id" : 1573,
+        "title" : "user_id",
+        "displayName" : "User Id",
+        "attributeName" : "user_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "User Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1574,
+        "title" : "group_id",
+        "displayName" : "Group Id",
+        "attributeName" : "group_id",
+        "type" : "STRING",
+        "nullable" : false,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Group Id",
+        "primaryKey" : true
+      }, {
+        "id" : 1575,
+        "title" : "last_modified",
+        "displayName" : "Last Modified",
+        "attributeName" : "last_modified",
+        "type" : "TIMESTAMP",
+        "nullable" : true,
+        "autoIncrement" : false,
+        "roleType" : "DB_COLUMN",
+        "searchable" : true,
+        "readable" : true,
+        "writable" : false,
+        "defaultLabel" : "Last Modified",
+        "primaryKey" : false
+      } ]
+    } ],
+    "relationships" : [ ],
+    "metadata" : {
+      "categories" : [ ],
+      "tags" : [ ],
+      "hideAddButton" : false
+    },
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
+  } ],
+  "notifications" : [ ],
+  "modelConfiguration" : { },
+  "appliedSappUpgrades" : [ "microapp-12505", "microapp-6853", "microapp-13471", "microapp-6593", "microapp-2450", "microapp-12427", "microapp-9702", "microapp-1980", "microapp-11136", "microapp-3838", "microapp-10876", "microapp-12525", "microapp-15788", "microapp-13808", "microapp-5227", "microapp-14642", "microapp-10858", "microapp-15578", "microapp-11349", "microapp-15642", "microapp-11340", "microapp-7888", "microapp-8892", "microapp-6262", "microapp-10860", "microapp-7961", "microapp-3548", "microapp-7561", "microapp-5025", "microapp-15787", "microapp-11836", "microapp-14492", "microapp-14849", "microapp-8921", "microapp-6264", "microapp-7984", "microapp-8576", "microapp-4666", "microapp-10856", "microapp-14613", "microapp-13233", "microapp-12936", "microapp-10421", "microapp-6293", "microapp-10549", "microapp-9701", "microapp-3580", "microapp-8950", "microapp-6617", "microapp-6790", "microapp-14177", "microapp-4518", "microapp-10420", "microapp-9597", "microapp-13344", "microapp-3547", "microapp-8003", "microapp-4020", "microapp-14978", "microapp-8511", "microapp-7290" ],
+  "buildVersion" : "1.126.0.e9b4f7ab5d1fe92571dfe4fe803d40a06c9906c2"
+}
