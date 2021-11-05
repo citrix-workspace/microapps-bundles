@@ -98,7 +98,7 @@ function fullSyncGroups({ client, dataStore }) {
                     )
             )
         );
-
+        console.log(JSON.stringify(groups));
 
 
         console.log("next URL", data.nextRecordsUrl)

@@ -3,8 +3,8 @@
   "services" : [ {
     "id" : 1,
     "uuid" : "6775d690-e16e-4233-b4fa-427fe37a69a4",
-    "version" : 227,
-    "title" : "New User Provider",
+    "version" : 246,
+    "title" : "Identity Provider for Salesforce",
     "serviceType" : "IDENTITY_PROVIDER",
     "group" : "GWSC:JSON",
     "schemaName" : "maria7107c3_new_user_prov",
@@ -49,11 +49,11 @@
       } ],
       "endpoints" : [ ],
       "actions" : [ ],
-      "iconUrl" : "exported/HTTP.9b81384ab8a11658b635e7542ff6416c.svg",
+      "iconUrl" : "exported/Salesforce.43b28006ce57d083904eaa95297a166d.svg",
       "iconType" : "LIBRARY",
       "timeoutInSeconds" : 120,
       "scriptConfiguration" : {
-        "id" : "15cc1417-5044-40d6-824e-7784e1d8725d",
+        "id" : "0a0e0267-1bc0-4f1e-aa5a-307065dbe494",
         "model" : {
           "tables" : [ {
             "name" : "User",
@@ -174,7 +174,7 @@
       }
     },
     "tables" : [ {
-      "id" : 198,
+      "id" : 210,
       "title" : "group",
       "displayName" : "Group",
       "entityName" : "Group",
@@ -182,7 +182,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 1559,
+        "id" : 1627,
         "title" : "account_name",
         "displayName" : "Account Name",
         "attributeName" : "account_name",
@@ -196,7 +196,7 @@
         "defaultLabel" : "Account Name",
         "primaryKey" : false
       }, {
-        "id" : 1560,
+        "id" : 1628,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -210,7 +210,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 1561,
+        "id" : 1629,
         "title" : "domain",
         "displayName" : "Domain",
         "attributeName" : "domain",
@@ -224,7 +224,7 @@
         "defaultLabel" : "Domain",
         "primaryKey" : false
       }, {
-        "id" : 1562,
+        "id" : 1630,
         "title" : "user_principal_name",
         "displayName" : "User Principal Name",
         "attributeName" : "user_principal_name",
@@ -238,7 +238,7 @@
         "defaultLabel" : "User Principal Name",
         "primaryKey" : false
       }, {
-        "id" : 1563,
+        "id" : 1631,
         "title" : "group_id",
         "displayName" : "Group Id",
         "attributeName" : "group_id",
@@ -252,7 +252,7 @@
         "defaultLabel" : "Group Id",
         "primaryKey" : true
       }, {
-        "id" : 1564,
+        "id" : 1632,
         "title" : "parent_group_id",
         "displayName" : "Parent Group Id",
         "attributeName" : "parent_group_id",
@@ -266,7 +266,7 @@
         "defaultLabel" : "Parent Group Id",
         "primaryKey" : false
       }, {
-        "id" : 1565,
+        "id" : 1633,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
@@ -281,7 +281,7 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 199,
+      "id" : 211,
       "title" : "user",
       "displayName" : "User",
       "entityName" : "User",
@@ -289,7 +289,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 1566,
+        "id" : 1634,
         "title" : "account_name",
         "displayName" : "Account Name",
         "attributeName" : "account_name",
@@ -303,7 +303,7 @@
         "defaultLabel" : "Account Name",
         "primaryKey" : false
       }, {
-        "id" : 1567,
+        "id" : 1635,
         "title" : "display_name",
         "displayName" : "Display Name",
         "attributeName" : "display_name",
@@ -317,7 +317,7 @@
         "defaultLabel" : "Display Name",
         "primaryKey" : false
       }, {
-        "id" : 1568,
+        "id" : 1636,
         "title" : "email",
         "displayName" : "Email",
         "attributeName" : "email",
@@ -331,7 +331,7 @@
         "defaultLabel" : "Email",
         "primaryKey" : false
       }, {
-        "id" : 1569,
+        "id" : 1637,
         "title" : "domain",
         "displayName" : "Domain",
         "attributeName" : "domain",
@@ -345,7 +345,7 @@
         "defaultLabel" : "Domain",
         "primaryKey" : false
       }, {
-        "id" : 1570,
+        "id" : 1638,
         "title" : "user_principal_name",
         "displayName" : "User Principal Name",
         "attributeName" : "user_principal_name",
@@ -359,7 +359,7 @@
         "defaultLabel" : "User Principal Name",
         "primaryKey" : false
       }, {
-        "id" : 1571,
+        "id" : 1639,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -373,7 +373,7 @@
         "defaultLabel" : "User Id",
         "primaryKey" : true
       }, {
-        "id" : 1572,
+        "id" : 1640,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
@@ -388,7 +388,7 @@
         "primaryKey" : false
       } ]
     }, {
-      "id" : 200,
+      "id" : 212,
       "title" : "usergroupmapping",
       "displayName" : "User Group Mapping",
       "entityName" : "UserGroupMapping",
@@ -396,7 +396,7 @@
       "loadingType" : "ALL",
       "dataRetention" : "DELETE_ON_FULL_SYNC",
       "columns" : [ {
-        "id" : 1573,
+        "id" : 1641,
         "title" : "user_id",
         "displayName" : "User Id",
         "attributeName" : "user_id",
@@ -410,7 +410,7 @@
         "defaultLabel" : "User Id",
         "primaryKey" : true
       }, {
-        "id" : 1574,
+        "id" : 1642,
         "title" : "group_id",
         "displayName" : "Group Id",
         "attributeName" : "group_id",
@@ -424,7 +424,7 @@
         "defaultLabel" : "Group Id",
         "primaryKey" : true
       }, {
-        "id" : 1575,
+        "id" : 1643,
         "title" : "last_modified",
         "displayName" : "Last Modified",
         "attributeName" : "last_modified",
