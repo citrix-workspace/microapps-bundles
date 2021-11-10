@@ -8,6 +8,10 @@
         "imageUrl" : "exported/requisition_approve.1f74d2b88f45c18c0c99557a4e2a3fff.svg",
         "description" : "b9677f4b-6ebe-4fca-a0f9-06b4cfd8bee8"
       },
+      "actionApp" : true,
+      "title" : "6240bbdd-b99b-44a3-8a82-bd4cf00718b6",
+      "startPageId" : "0f4c2a0a-3c5f-4dde-b609-04aef2fceedd",
+      "trackingUuid" : "e0fea6e8-f424-4f37-b2a3-4238c03f36bf",
       "pages" : [ {
         "id" : "9f67e4ab-8ed1-43cf-bf8e-434ec303a6d0",
         "appId" : "d5e21ca2-5aa4-4d18-970d-ae50293a39de",
@@ -389,11 +393,7 @@
         "datasourceid" : 339,
         "pagetype" : "List",
         "pagetype" : "List"
-      } ],
-      "actionApp" : true,
-      "startPageId" : "0f4c2a0a-3c5f-4dde-b609-04aef2fceedd",
-      "title" : "6240bbdd-b99b-44a3-8a82-bd4cf00718b6",
-      "trackingUuid" : "e0fea6e8-f424-4f37-b2a3-4238c03f36bf"
+      } ]
     },
     "outboundLinks" : {
       "page" : [ ],
@@ -403,14 +403,14 @@
   "services" : [ {
     "id" : 339,
     "uuid" : "84627697-3112-4b1d-95c7-6c2ea93119f1",
-    "version" : 122,
+    "version" : 123,
     "title" : "Celonis Webhook",
     "serviceType" : "GWSC",
     "group" : "GWSC:JSON",
     "schemaName" : "qi24t2jqf9xf__homestarpoc",
     "configuration" : {
       "trackingUuid" : "be1aeed5-ce68-4c41-92ff-4716107a69a0",
-      "baseUrl" : "https://api.smartsheet.com/2.0",
+      "baseUrl" : "{{site_base_url}}",
       "security" : {
         "type" : "BEARER",
         "token" : "{{secret 'dataEndpoint.token'}}"
@@ -483,8 +483,8 @@
           "detailEndpointIds" : [ ],
           "loadingType" : "PUSH"
         } ],
-        "tableNames" : [ "CelonisSAP" ],
-        "mergeStrategy" : "NONE"
+        "mergeStrategy" : "NONE",
+        "tableNames" : [ "CelonisSAP" ]
       } ],
       "schedule" : [ {
         "synchronizationTypeId" : "FullSynchronization",
@@ -521,8 +521,8 @@
         "preActionUpdates" : [ ],
         "postActionUpdates" : [ ]
       } ],
-      "iconUrl" : "exported/HTTP.9b81384ab8a11658b635e7542ff6416c.svg",
-      "iconType" : "LIBRARY",
+      "iconUrl" : "https://iws-prod-global-customicons-cdn-endpoint.azureedge.net/image/BGQwIVtTlA40G6Po4HC7h39r5hgk1ggk.png",
+      "iconType" : "CUSTOM_IMAGE",
       "timeoutInSeconds" : 120,
       "scriptConfiguration" : {
         "id" : "4c951bc3-99eb-42ff-9c99-7f01b0155d98",
@@ -923,14 +923,14 @@
       } ]
     } ],
     "metadata" : {
-      "vendor" : "Citrix",
-      "description" : "SAP Hana Mock Up with Homestar sheets.",
+      "vendor" : "A2K Partners",
+      "description" : "Celonis Webhook integration showing an AP process as an example of how the webhook can be implemented. This listener would be customized to fit the system of record being monitored by the Celonis Webhook listener and added to any existing Microapp implementation in Citrix.",
       "categories" : [ ],
       "tags" : [ ],
       "hideAddButton" : false
     },
-    "oauthLoginNeeded" : false,
-    "fullyConfigured" : true
+    "fullyConfigured" : true,
+    "oauthLoginNeeded" : false
   } ],
   "notifications" : [ {
     "id" : "c6f70078-8dde-4390-8ae2-c3095b3f8775",
@@ -940,6 +940,12 @@
     "eventType" : "QUERY",
     "serviceId" : 339,
     "tableId" : 5729,
+    "schedule" : {
+      "jobSchedule" : "MANUALLY",
+      "useTimeRange" : false,
+      "runTimezone" : "Etc/GMT"
+    },
+    "label" : "4e4e375d-38da-4fb0-b4a4-55b1395dedf1",
     "periodicDefinition" : {
       "groupByDataUsed" : "SAME",
       "groupByDatePeriod" : "DAY",
@@ -958,12 +964,6 @@
       }
     },
     "expirationDelete" : true,
-    "label" : "4e4e375d-38da-4fb0-b4a4-55b1395dedf1",
-    "schedule" : {
-      "jobSchedule" : "MANUALLY",
-      "useTimeRange" : false,
-      "runTimezone" : "Etc/GMT"
-    },
     "audience" : "ALL",
     "messageDefinition" : {
       "title" : "51e02e3e-ef2a-4bbb-994f-138324e44814",
@@ -981,16 +981,16 @@
       "task" : false
     },
     "messageCountLimit" : 50,
-    "notifyExternalChannels" : false,
+    "notifyExternalChannels" : true,
     "skipAlreadyProcessedEvents" : false,
     "hasValidConstraints" : true
   } ],
   "modelConfiguration" : {
     "appIds" : [ "d5e21ca2-5aa4-4d18-970d-ae50293a39de" ],
-    "bundleDescription" : "Celonis Webhook integration has been created to show how you can accept actions from Celonis via the webhook listener defined in this integration.  For this integration, the actions are taken in Smartsheets.",
-    "bundleVendor" : "Citrix"
+    "bundleDescription" : "Celonis Webhook integration showing an AP process as an example of how the webhook can be implemented. This listener would be customized to fit the system of record being monitored by the Celonis Webhook listener and added to any existing Microapp implementation in Citrix.",
+    "bundleVendor" : "A2K Partners"
   },
   "translationChecksum" : "17DC565058056F4DAD73A44924BC9971",
-  "appliedSappUpgrades" : [ "microapp-12936", "microapp-4020", "microapp-6593", "microapp-4518", "microapp-8511", "microapp-4666", "microapp-10549", "microapp-12505", "microapp-3548", "microapp-14978", "microapp-9702", "microapp-7888", "microapp-13808", "microapp-11136", "microapp-14177", "microapp-3580", "microapp-10420", "microapp-13233", "microapp-13471", "microapp-8003", "microapp-12427", "microapp-8950", "microapp-10856", "microapp-7290", "microapp-14492", "microapp-9701", "microapp-15578", "microapp-14849", "microapp-10858", "microapp-14642", "microapp-10421", "microapp-6262", "microapp-12525", "microapp-7561", "microapp-7984", "microapp-8892", "microapp-2450", "microapp-10860", "microapp-13344", "microapp-11349", "microapp-1980", "microapp-7961", "microapp-3547", "microapp-6293", "microapp-6264", "microapp-14613", "microapp-6853", "microapp-6617", "microapp-3838", "microapp-5025", "microapp-10876", "microapp-8576", "microapp-11340", "microapp-11836", "microapp-6790", "microapp-9597", "microapp-8921", "microapp-5227", "microapp-15642" ],
-  "buildVersion" : "1.119.1.3fd5a57ec29f6548b4ad027591b4ef5155701f48"
+  "appliedSappUpgrades" : [ "microapp-13471", "microapp-3580", "microapp-6617", "microapp-12505", "microapp-5025", "microapp-8921", "microapp-7984", "microapp-14613", "microapp-8892", "microapp-5227", "microapp-7888", "microapp-6293", "microapp-10876", "microapp-15578", "microapp-4666", "microapp-14492", "microapp-15787", "microapp-11836", "microapp-8511", "microapp-1980", "microapp-3548", "microapp-8576", "microapp-10856", "microapp-7961", "microapp-6264", "microapp-12936", "microapp-6853", "microapp-10860", "microapp-9702", "microapp-2450", "microapp-7561", "microapp-15642", "microapp-13233", "microapp-12427", "microapp-12525", "microapp-13808", "microapp-14849", "microapp-11349", "microapp-6593", "microapp-3838", "microapp-4518", "microapp-11136", "microapp-9701", "microapp-8950", "microapp-14978", "microapp-8003", "microapp-10420", "microapp-7290", "microapp-3547", "microapp-10421", "microapp-14177", "microapp-13344", "microapp-11340", "microapp-14642", "microapp-6790", "microapp-10858", "microapp-4020", "microapp-9597", "microapp-10549", "microapp-6262" ],
+  "buildVersion" : "1.124.1.4988d4145d523da2a8b129a2747c99d643c7fd63"
 }
