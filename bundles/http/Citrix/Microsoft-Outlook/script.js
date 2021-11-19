@@ -223,12 +223,10 @@ integration.define({
 
 const moment = library.load('moment-timezone');
 const uuid = library.load('uuid');
-const startDate = moment.utc().subtract(1, 'd').format();
-const endDate = moment.utc().add(30, 'd').format();
 const pageSize = 100;
-let userId = [];
 
 async function fullSync({ client, dataStore }) {
+	let userId = [];
 	let URL = `/v1.0/users?$top=${pageSize}`;
 	let nextPage = '';
 	do {
@@ -240,20 +238,24 @@ async function fullSync({ client, dataStore }) {
 		for (const value of userResponse.value) {
 			userId.push(value.id);
 			dataStore.save('user', {
-				id: value.id,
-				mail: value.mail,
-				user_principal_name: value.userPrincipalName,
-				display_name: value.displayName
+				id: value?.id ?? null,
+				mail: value?.mail ?? null,
+				user_principal_name: value?.userPrincipalName ?? null,
+				display_name: value?.displayName ?? null
 			});
 		}
 		nextPage = userResponse['@odata.nextLink'] ?? null;
 		if (nextPage != null) URL = `/v1.0/users?${nextPage.split(`?`)[1]}`;
 	} while (nextPage);
-	await calendarView(client, dataStore, userId);
-	await myEvents(client, dataStore, userId);
+	await Promise.all([
+		calendarView(client, dataStore, userId),
+		myEvents(client, dataStore, userId)
+	])
 }
 
 async function calendarView(client, dataStore, userId) {
+const startDate = moment.utc().subtract(1, 'd').format();
+const endDate = moment.utc().add(30, 'd').format();
 	for (const id of userId) {
 		const calendarViewRequest = await client.fetch(
 			`/v1.0/users/${id}/calendarView?startdatetime=${startDate}&enddatetime=${endDate}&$top=${pageSize}`
@@ -265,31 +267,31 @@ async function calendarView(client, dataStore, userId) {
 		if (calendarViewRequest.ok) {
 			for (const calendarValue of calendarViewResponse.value) {
 				dataStore.save('calendar_view', {
-					body_content: calendarValue.body.content,
-					body_preview: calendarValue.bodyPreview,
-					end_date_time: calendarValue.end.dateTime,
-					i_cal_u_id: calendarValue.iCalUId,
-					id: calendarValue.id,
-					is_cancelled: calendarValue.isCancelled,
-					is_online_meeting: calendarValue.isOnlineMeeting,
-					location_display_name: calendarValue.location.displayName,
-					online_meeting_join_url: calendarValue.onlineMeeting?.joinUrl,
-					online_meeting_provider: calendarValue.onlineMeetingProvider,
-					organizer_email_address_a: calendarValue.organizer.emailAddress.address,
-					organizer_email_address_n: calendarValue.organizer.emailAddress.name,
-					original_start_time_zone: calendarValue.originalStartTimeZone,
-					series_master_id: calendarValue.seriesMasterId,
-					start_date_time: calendarValue.start.dateTime,
-					subject: calendarValue.subject
+					body_content: calendarValue?.body?.content ?? null,
+					body_preview: calendarValue?.bodyPreview ?? null,
+					end_date_time: calendarValue?.end?.dateTime ?? null,
+					i_cal_u_id: calendarValue?.iCalUId ?? null,
+					id: calendarValue?.id ?? null,
+					is_cancelled: calendarValue?.isCancelled ?? null,
+					is_online_meeting: calendarValue?.isOnlineMeeting ?? null,
+					location_display_name: calendarValue?.location?.displayName ?? null,
+					online_meeting_join_url: calendarValue.onlineMeeting?.joinUrl ?? null,
+					online_meeting_provider: calendarValue?.onlineMeetingProvider ?? null,
+					organizer_email_address_a: calendarValue?.organizer?.emailAddress?.address ?? null,
+					organizer_email_address_n: calendarValue?.organizer?.emailAddress?.name ?? null,
+					original_start_time_zone: calendarValue?.originalStartTimeZone ?? null,
+					series_master_id: calendarValue?.seriesMasterId ?? null,
+					start_date_time: calendarValue?.start?.dateTime ?? null,
+					subject: calendarValue?.subject ?? null
 				});
 				for (const attendees of calendarValue.attendees) {
 					dataStore.save('calender_view_attendees', {
 						unique_id: uuid.v4(),
-						parent_i_cal_u_id: calendarValue.iCalUId,
-						root_i_cal_u_id: calendarValue.iCalUId,
-						email_address_address: attendees?.emailAddress?.address,
-						email_address_name: attendees?.emailAddress?.name,
-						type: attendees?.type
+						parent_i_cal_u_id: calendarValue?.iCalUId ?? null,
+						root_i_cal_u_id: calendarValue?.iCalUId ?? null,
+						email_address_address: attendees?.emailAddress?.address ?? null,
+						email_address_name: attendees?.emailAddress?.name ?? null,
+						type: attendees?.type ?? null
 					});
 				}
 			}
@@ -307,11 +309,11 @@ async function myEvents(client, dataStore, userId) {
 		if (myEventRequest.ok) {
 			for (const myEventsValue of myEventResponse.value) {
 				dataStore.save('my_events', {
-					i_cal_u_id: myEventsValue.iCalUId,
-					id: myEventsValue.id,
-					recurrence_pattern_day_of: myEventsValue.recurrence?.pattern.dayOfMonth,
-					recurrence_pattern_type: myEventsValue.recurrence?.pattern.type,
-					recurrence_range_end_date: myEventsValue.recurrence?.range.endDate
+					i_cal_u_id: myEventsValue?.iCalUId ?? null,
+					id: myEventsValue?.id ?? null,
+					recurrence_pattern_day_of: myEventsValue?.recurrence?.pattern?.dayOfMonth ?? null,
+					recurrence_pattern_type: myEventsValue?.recurrence?.pattern?.type ?? null,
+					recurrence_range_end_date: myEventsValue?.recurrence?.range?.endDate ?? null
 				});
 			}
 		}
