@@ -1081,7 +1081,7 @@ const pageSize = 100;
 const startDate = moment.utc().subtract(1, 'd').format();
 
 async function fullSync({ client, dataStore }) {
-	let userId = [];
+	const userIds = [];
 	let URL = `/v1.0/users?$top=${pageSize}`;
 	let nextPage = '';
 	do {
@@ -1091,7 +1091,7 @@ async function fullSync({ client, dataStore }) {
 		}
 		const userResponse = await userRequest.json();
 		for (const value of userResponse.value) {
-			userId.push(value.id);
+			userIds.push(value.id);
 			dataStore.save('users', {
 				id: value?.id ?? null,
 				mail: value?.mail ?? null,
@@ -1103,8 +1103,8 @@ async function fullSync({ client, dataStore }) {
 		if (nextPage != null) URL = `/v1.0/users?${nextPage.split(`?`)[1]}`;
 	} while (nextPage);
 	await Promise.all([
-		calendarView(client, dataStore, userId, startDate),
-		myEvents(client, dataStore, userId)
+		calendarView(client, dataStore, userIds, startDate),
+		myEvents(client, dataStore, userIds)
 	])
 }
 
@@ -1810,27 +1810,6 @@ async function editOneTimeEventWithCustomTimezone({
 	]);
 }
 
-async function myEvents(client, dataStore, userId) {
-	for (const id of userId) {
-		const myEventRequest = await client.fetch(`/v1.0/users/${id}/calendar/events?$top=${pageSize}`);
-		if (!myEventRequest.ok && myEventRequest.status != 404) {
-			throw new Error(`Events sync failed ${myEventRequest.status}:${myEventRequest.statusText}`);
-		}
-		const myEventResponse = await myEventRequest.json();
-		if (myEventRequest.ok) {
-			for (const myEventsValue of myEventResponse.value) {
-				dataStore.save('my_events', {
-					i_cal_u_id: myEventsValue?.iCalUId ?? null,
-					id: myEventsValue?.id ?? null,
-					recurrence_pattern_day_of: myEventsValue?.recurrence?.pattern?.dayOfMonth ?? null,
-					recurrence_pattern_type: myEventsValue?.recurrence?.pattern?.type ?? null,
-					recurrence_range_end_date: myEventsValue?.recurrence?.range?.endDate ?? null
-				});
-			}
-		}
-	}
-}
-
 
 async function editRecurringEventwithCurrentTimezone(param) {
 	const { client, dataStore, actionParameters } = param
@@ -1955,8 +1934,7 @@ async function editRecurringEventwithCurrentTimezone(param) {
 				"range": {
 					"type": "endDate",
 					"startDate": `${moment(actionParameters.startDate).format('YYYY-MM-DD')}`,
-					"endDate": `${moment(actionParameters.endDate)}`
-
+					"endDate": `${actionParameters.endDate}`
 				}
 			}
 		})
@@ -1964,10 +1942,10 @@ async function editRecurringEventwithCurrentTimezone(param) {
 	if (!editRecurringEventRequest.ok) {
 		throw new Error(`Edit Recurring Event with current timezone service action is failed ${editRecurringEventRequest.status}:${editRecurringEventRequest.statusText}`)
 	}
-	const userIds = [actionParameters.userId];
+	const userId = [actionParameters.userId];
 	await Promise.all([
-		calendarView(client, dataStore, userIds, start),
-		myEvents(client, dataStore, userIds),
+		calendarView(client, dataStore, userId, start),
+		myEvents(client, dataStore, userId),
 	]);
 }
 async function editRecurringEventwithCustomTimezone(param) {
@@ -1996,37 +1974,37 @@ async function editRecurringEventwithCustomTimezone(param) {
 			},
 			"attendees": [{
 				"emailAddress": {
-					"address": `${actionParameters.email1}`
+					"address": `${actionParameters?.email1 ?? ""}`
 				},
 				"type": `${actionParameters.type1}`
 			},
 			{
 				"emailAddress": {
-					"address": `${actionParameters.email2}`
+					"address": `${actionParameters?.email2 ?? ""}`
 				},
 				"type": `${actionParameters.type2}`
 			},
 			{
 				"emailAddress": {
-					"address": `${actionParameters.email3}`
+					"address": `${actionParameters?.email3 ?? ""}`
 				},
 				"type": `${actionParameters.type3}`
 			},
 			{
 				"emailAddress": {
-					"address": `${actionParameters.email4}`
+					"address": `${actionParameters?.email4 ?? ""}`
 				},
 				"type": `${actionParameters.type4}`
 			},
 			{
 				"emailAddress": {
-					"address": `${actionParameters.email5}`
+					"address": `${actionParameters?.email5 ?? ""}`
 				},
 				"type": `${actionParameters.type5}`
 			},
 			{
 				"emailAddress": {
-					"address": `${actionParameters.email6}`
+					"address": `${actionParameters?.email6 ?? ""}`
 				},
 				"type": `${actionParameters.type6}`
 			}
@@ -2052,10 +2030,10 @@ async function editRecurringEventwithCustomTimezone(param) {
 	if (!editRecurringEventRequest.ok) {
 		throw new Error(`Edit Recurring Event with custom timezone service action is failed ${editRecurringEventRequest.status}:${editRecurringEventRequest.statusText}`)
 	}
-	const userIds = [actionParameters.userId];
+	const userId = [actionParameters.userId];
 	await Promise.all([
-		calendarView(client, dataStore, userIds, start),
-		myEvents(client, dataStore, userIds),
+		calendarView(client, dataStore, userId, start),
+		myEvents(client, dataStore, userId),
 	]);
 }
 
@@ -2104,10 +2082,10 @@ async function editRecurringOfficeHoursWithCurrentTimezone(param) {
 	if (!editRecurringEventRequest.ok) {
 		throw new Error(`Edit Recurring Office Hours with current timezone service action is failed ${editRecurringEventRequest.status}:${editRecurringEventRequest.statusText}`)
 	}
-	const userIds = [actionParameters.userId];
+	const userId = [actionParameters.userId];
 	await Promise.all([
-		calendarView(client, dataStore, userIds, start),
-		myEvents(client, dataStore, userIds),
+		calendarView(client, dataStore, userId, start),
+		myEvents(client, dataStore, userId),
 	]);
 }
 
@@ -2154,10 +2132,10 @@ async function editRecurringOfficeHoursWithCustomTimezone(param) {
 	if (!editRecurringEventRequest.ok) {
 		throw new Error(`Edit Recurring Office Hours with custom timezone service action is failed ${editRecurringEventRequest.status}:${editRecurringEventRequest.statusText}`)
 	}
-	const userIds = [actionParameters.userId];
+	const userId = [actionParameters.userId];
 	await Promise.all([
-		calendarView(client, dataStore, userIds, start),
-		myEvents(client, dataStore, userIds),
+		calendarView(client, dataStore, userId, start),
+		myEvents(client, dataStore, userId),
 	]);
 }
 
