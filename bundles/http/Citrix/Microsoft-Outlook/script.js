@@ -1078,8 +1078,6 @@ integration.define({
 const moment = library.load('moment-timezone');
 const uuid = library.load('uuid');
 const pageSize = 100;
-const startDate = moment.utc().subtract(1, 'd').format();
-
 async function fullSync({ client, dataStore }) {
 	const userIds = [];
 	let URL = `/v1.0/users?$top=${pageSize}`;
@@ -1102,6 +1100,7 @@ async function fullSync({ client, dataStore }) {
 		nextPage = userResponse['@odata.nextLink'] ?? null;
 		if (nextPage != null) URL = `/v1.0/users?${nextPage.split(`?`)[1]}`;
 	} while (nextPage);
+	const startDate = moment.utc().subtract(1, 'd').format();
 	await Promise.all([
 		calendarView(client, dataStore, userIds, startDate),
 		myEvents(client, dataStore, userIds)
