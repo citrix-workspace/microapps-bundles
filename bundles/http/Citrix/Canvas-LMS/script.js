@@ -831,7 +831,7 @@ integration.define({
 			{
 				name: 'fk_courses_id',
 				primaryTable: 'announcements',
-				foreignTable: 'Courses',
+				foreignTable: 'courses',
 				columnPairs: [
 					{
 						primaryKey: 'enrollme_course_id',
@@ -874,7 +874,7 @@ integration.define({
 			},
 			{
 				name: 'fk_enrollment_course_id',
-				primaryTable: 'Courses',
+				primaryTable: 'courses',
 				foreignTable: 'enrollments',
 				columnPairs: [
 					{
