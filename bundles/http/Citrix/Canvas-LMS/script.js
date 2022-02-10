@@ -1,13 +1,12 @@
 const moment = library.load('moment-timezone');
-
-const startDate = moment.utc().subtract(30, 'd').format();
-const endDate = moment.utc().add(30, 'd').format();
 const now = moment.utc().format();
 const end = moment.utc().add(1, 'h').format();
-const quarter = moment(now).quarter();
 const perPage = 100;
 
 async function canvasFullSync({ dataStore, client, latestSynchronizationTime = null, integrationParameters }) {
+	const startDate = moment.utc().subtract(30, 'd').format();
+	const endDate = moment.utc().add(30, 'd').format();
+	const quarter = moment().quarter();
 	let courses = [];
 	let enrollmentIncrement = 1;
 	let newPageExist;
@@ -25,8 +24,7 @@ async function canvasFullSync({ dataStore, client, latestSynchronizationTime = n
 		const tempEnrollmentLink = enrollmentTermResponse.headers.map.link.split(',');
 		const enrollmentTerm = await enrollmentTermResponse.json();
 		const filteredValue = enrollmentTerm.enrollment_terms.filter((value) => {
-			if (
-				(value.start_at && value.end_at) &&
+				return(value.start_at && value.end_at) &&
 				moment(value.start_at).isBetween(
 					moment().quarter(quarter).startOf('quarter'),
 					moment().quarter(quarter).endOf('quarter')
@@ -35,8 +33,6 @@ async function canvasFullSync({ dataStore, client, latestSynchronizationTime = n
 					moment().quarter(quarter).startOf('quarter'),
 					moment().quarter(quarter).endOf('quarter')
 				)
-			)
-				return true;
 		});
 		for (const enrollmentTermValue of filteredValue) {
 			let courseIncrement = 1;
@@ -61,16 +57,12 @@ async function canvasFullSync({ dataStore, client, latestSynchronizationTime = n
 						name: courseValue.name
 					};
 					courses.push(courseDataDetails);
-					dataStore.save('Courses', courseDataDetails);
+					dataStore.save('courses', courseDataDetails);
 				}
 				tempCourseLink.forEach((element) => {
 					const courseLink = element.split('; ')[1];
 					if (courseLink === `rel="next"`) {
-						courseIncrement = element
-						.split('; ')[0]
-						.replace(/^<+|>+$/g, '')
-						.split('&page=')[1]
-						.split('&per_page')[0];
+						courseIncrement = getPageNumber( element,`&page`)
 						nextPageExists = true;
 					}
 				});
@@ -79,11 +71,7 @@ async function canvasFullSync({ dataStore, client, latestSynchronizationTime = n
 		tempEnrollmentLink.forEach((element) => {
 			const enrollmentLink = element.split('; ')[1];
 			if (enrollmentLink === `rel="next"`) {
-				enrollmentIncrement = element
-					.split('; ')[0]
-					.replace(/^<+|>+$/g, '')
-					.split('?page=')[1]
-					.split('&per_page')[0];
+				enrollmentIncrement = getPageNumber( element,`?page`)
 				newPageExist = true;
 			}
 		});
@@ -228,11 +216,7 @@ async function updateAction(dataStore, serviceClient, courses, StartDate, endDat
 					const enrollmentLink = element.split('; ')[1];
 
 					if (enrollmentLink === `rel="next"`) {
-						enrollmentIncrement = element
-							.split('; ')[0]
-							.replace(/^<+|>+$/g, '')
-							.split('?page=')[1]
-							.split('&per_page')[0];
+						enrollmentIncrement = getPageNumber( element,`?page`)
 						enrollmentPageExists = true;
 					}
 				});
@@ -241,11 +225,7 @@ async function updateAction(dataStore, serviceClient, courses, StartDate, endDat
 			tempAnnouncementLink.forEach((element) => {
 				const announcementLink = element.split('; ')[1];
 				if (announcementLink === `rel="next"`) {
-					announcementIncrement = element
-						.split('; ')[0]
-						.replace(/^<+|>+$/g, '')
-						.split('&page=')[1]
-						.split('&per_page')[0];
+					announcementIncrement = getPageNumber( element,`&page`)
 					announcementPageExists = true;
 				}
 			});
@@ -278,11 +258,7 @@ async function usersSync(dataStore, client, integrationParameters) {
 		tempUserLink.forEach((element) => {
 			const userLink = element.split('; ')[1];
 			if (userLink === `rel="next"`) {
-				userIncrement = element
-				.split('; ')[0]
-				.replace(/^<+|>+$/g, '')
-				.split('?page=')[1]
-				.split('&per_page')[0];
+				userIncrement = getPageNumber( element,`?page`)
 				newPageExist = true;
 			}
 		});
@@ -320,11 +296,7 @@ async function filesSync(dataStore, client, courses) {
 			tempFileLink.forEach((element) => {
 				const fileLink = element.split('; ')[1];
 				if (fileLink === `rel="next"`) {
-					fileIncrement = element
-						.split('; ')[0]
-						.replace(/^<+|>+$/g, '')
-						.split('?page=')[1]
-						.split('&per_page')[0];
+					fileIncrement = getPageNumber( element,`?page`)
 					fileNextPageExist = true;
 				}
 			});
@@ -365,11 +337,7 @@ async function gradesSync(dataStore, client, courses) {
 			tempGradeLink.forEach((element) => {
 				const gradesLink = element.split('; ')[1];
 				if (gradesLink === `rel="next"`) {
-					gradeIncrement = element
-						.split('; ')[0]
-						.replace(/^<+|>+$/g, '')
-						.split('&page=')[1]
-						.split('&per_page')[0];
+					gradeIncrement = getPageNumber( element,`&page`)
 					gradePageExist = true;
 				}
 			});
@@ -408,11 +376,7 @@ async function assignmentsSync(dataStore, client, courses) {
 			tempAssignmentLink.forEach((element) => {
 				const assignmentLink = element.split('; ')[1];
 				if (assignmentLink === `rel="next"`) {
-					aasignmentsIncrement = element
-						.split('; ')[0]
-						.replace(/^<+|>+$/g, '')
-						.split('?page=')[1]
-						.split('&per_page')[0];
+					aasignmentsIncrement = getPageNumber( element,`?page`)
 					newPageExist = true;
 				}
 			});
@@ -438,6 +402,13 @@ async function tabsSync(dataStore, client, courses) {
 			dataStore.save('tabs', tabsDetails);
 		}
 	}
+}
+function getPageNumber(element, character){
+ return element
+    .split('; ')[0]
+	.replace(/^<+|>+$/g, '')
+	.split(`${character}=`)[1]
+	.split('&per_page')[0];
 }
 
 integration.define({
@@ -805,7 +776,7 @@ integration.define({
 				]
 			},
 			{
-				name: 'Courses',
+				name: 'courses',
 				columns: [
 					{
 						name: 'id',
